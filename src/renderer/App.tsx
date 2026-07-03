@@ -30,7 +30,7 @@ import {
   type PlayerMatchStats,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
-import { LangProvider, useT } from './i18n'
+import { LangProvider, useT, useLang } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
 const CARD =
@@ -2025,6 +2025,8 @@ function CombatRule({ label, value, detail }: { label: string; value: string; de
 }
 
 function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
+  const t = useT()
+  const lang = useLang()
   const [queries, setQueries] = useState(['', '', ''])
   const [pickedIds, setPickedIds] = useState<Array<number | null>>([null, null, null])
   const [ownedQuery, setOwnedQuery] = useState('')
@@ -2033,7 +2035,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
   const ownedAugments = ownedIds.map((id) => getAugment(core.augById, id)).filter((a): a is Augment => !!a)
   const decisions = selected
     .filter((a): a is Augment => !!a)
-    .map((augment) => scoreAugmentPick(augment, arch, ownedAugments))
+    .map((augment) => scoreAugmentPick(augment, arch, ownedAugments, lang))
     .sort((a, b) => b.score - a.score)
   const winner = decisions[0]
 
@@ -2061,9 +2063,9 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
       <div className="relative grid grid-cols-[minmax(0,1fr)_320px] gap-5 max-[1000px]:grid-cols-1">
         <div className="min-w-0">
           <div className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-hex">Augment decision lab</div>
-          <h3 className="mt-1 text-xl font-extrabold text-cream">三选一增强推荐器</h3>
+          <h3 className="mt-1 text-xl font-extrabold text-cream">{t('lab.title')}</h3>
           <p className="mt-2 text-sm leading-6 text-dim">
-            先手动输入本轮出现的 3 个海克斯。人工核心/备选/陷阱会强覆盖，其余增强按标签规则评为 S/A/B/C/D。
+            {t('lab.subtitle')}
           </p>
           <OwnedAugmentsPanel
             query={ownedQuery}
@@ -2092,7 +2094,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
           <div className="flex items-center justify-between gap-3">
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">Recommendation</div>
             <button onClick={clear} className="text-[11px] text-dim hover:text-cream cursor-pointer">
-              清空
+              {t('lab.clear')}
             </button>
           </div>
           {winner ? (
@@ -2106,7 +2108,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
             </>
           ) : (
             <div className="mt-4 rounded-2xl border border-line/60 bg-panel/50 p-4 text-sm leading-6 text-dim">
-              输入或选择三个增强后，这里会给出等级、排序和理由。
+              {t('lab.emptyRecommendation')}
             </div>
           )}
         </div>
@@ -2130,6 +2132,7 @@ function AugmentChoiceInput({
   onQuery: (value: string) => void
   onPick: (augment: Augment) => void
 }) {
+  const t = useT()
   const needle = query.trim().toLowerCase()
   const suggestions = needle
     ? augments
@@ -2140,11 +2143,11 @@ function AugmentChoiceInput({
 
   return (
     <div className="rounded-[22px] border border-line/70 bg-panel/70 p-3">
-      <label className="text-[11px] font-extrabold text-dim">选项 {idx + 1}</label>
+      <label className="text-[11px] font-extrabold text-dim">{t('lab.option', { n: idx + 1 })}</label>
       <input
         value={query}
         onChange={(e) => onQuery(e.target.value)}
-        placeholder="输入增强名称"
+        placeholder={t('lab.inputPlaceholder')}
         className="mt-2 w-full rounded-2xl border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {picked && (
@@ -2186,6 +2189,7 @@ function OwnedAugmentsPanel({
   onAdd: (augment: Augment) => void
   onRemove: (id: number) => void
 }) {
+  const t = useT()
   const needle = query.trim().toLowerCase()
   const ownedIds = new Set(ownedAugments.map((a) => a.id))
   const suggestions = needle
@@ -2202,19 +2206,19 @@ function OwnedAugmentsPanel({
     <div className="mt-4 rounded-[24px] border border-hex/25 bg-hex/8 p-3">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <div className="text-xs font-extrabold text-hex">本局已选增强</div>
-          <div className="mt-1 text-[11px] text-dim">用于同标签叠加、核心路线确认和路线偏移判断</div>
+          <div className="text-xs font-extrabold text-hex">{t('lab.owned.title')}</div>
+          <div className="mt-1 text-[11px] text-dim">{t('lab.owned.desc')}</div>
         </div>
         {ownedAugments.length > 0 && (
           <span className="rounded-full border border-line/60 bg-panel/55 px-2 py-1 text-[10px] text-dim">
-            {ownedAugments.length} 个
+            {t('lab.owned.count', { n: ownedAugments.length })}
           </span>
         )}
       </div>
       <input
         value={query}
         onChange={(e) => onQuery(e.target.value)}
-        placeholder="添加已选增强"
+        placeholder={t('lab.owned.addPlaceholder')}
         className="mt-3 w-full rounded-2xl border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {suggestions.length > 0 && (
@@ -2238,7 +2242,7 @@ function OwnedAugmentsPanel({
               key={a.id}
               onClick={() => onRemove(a.id)}
               className="flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/8 px-2 py-1 text-xs text-cream transition hover:border-red/45 hover:text-red cursor-pointer"
-              title="点击移除"
+              title={t('lab.owned.removeHint')}
             >
               <img src={icon(a.iconSmallLocal)} alt={a.name} className="h-4 w-4 rounded-full" />
               {a.name}
@@ -2248,7 +2252,7 @@ function OwnedAugmentsPanel({
         </div>
       ) : (
         <div className="mt-3 rounded-2xl border border-line/50 bg-panel/45 p-2 text-[11px] text-dim">
-          还没有添加已选增强。添加后，右侧推荐会根据本局路线加权。
+          {t('lab.owned.empty')}
         </div>
       )}
     </div>
@@ -2256,6 +2260,8 @@ function OwnedAugmentsPanel({
 }
 
 function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; rank: number; featured?: boolean }) {
+  const t = useT()
+  const lang = useLang()
   const tone =
     pick.tone === 'recommend'
       ? 'border-gold/45 bg-gold/10 text-gold'
@@ -2280,11 +2286,11 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
             <span className="text-xs font-bold">{pick.label}</span>
             {pick.verified ? (
               <span className="rounded-full border border-[#3fb950]/40 bg-[#3fb950]/10 px-1.5 py-px text-[9px] font-bold text-[#3fb950]">
-                ✓ 人工核实
+                {t('lab.verified')}
               </span>
             ) : (
               <span className="rounded-full border border-line/60 bg-panel/55 px-1.5 py-px text-[9px] font-bold text-dim">
-                ⚠ 规则猜测·未核实
+                {t('lab.unverified')}
               </span>
             )}
           </div>
@@ -2298,7 +2304,7 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
       )}
       {pick.tags.length > 0 && (
         <div className="mt-2 text-[10px] text-dim/70">
-          标签命中：{pick.tags.slice(0, 4).map(augmentTagLabel).join(' · ')}
+          {t('lab.tagsHit')}{pick.tags.slice(0, 4).map((tag) => augmentTagLabel(tag, lang)).join(' · ')}
         </div>
       )}
     </div>

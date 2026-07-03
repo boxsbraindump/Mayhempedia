@@ -1,4 +1,5 @@
 import type { Archetype, Augment } from './data'
+import { t, type Lang } from './i18n'
 
 export type AugmentTag =
   | 'ap'
@@ -40,6 +41,7 @@ export interface DecisionPick {
   verified: boolean
 }
 
+// 中文标签保留作 t() 的 fallback（key 缺失/未来新增 tag 忘记补字典时不会显示裸 key)。
 const TAG_LABEL: Record<AugmentTag, string> = {
   ap: '法强',
   ad: '攻击力',
@@ -64,8 +66,8 @@ const TAG_LABEL: Record<AugmentTag, string> = {
   survival: '保命',
 }
 
-export function augmentTagLabel(tag: AugmentTag): string {
-  return TAG_LABEL[tag]
+export function augmentTagLabel(tag: AugmentTag, lang: Lang = 'zh'): string {
+  return t(lang, `augTag.${tag}`, TAG_LABEL[tag])
 }
 
 const DEFAULT_WEIGHTS: Partial<Record<AugmentTag, number>> = {
@@ -200,7 +202,7 @@ function summarizeOwnedTags(ownedAugments: Augment[]): Map<AugmentTag, number> {
   return counts
 }
 
-function comboAdjustment(tags: AugmentTag[], arch: Archetype, ownedAugments: Augment[]): { score: number; notes: string[] } {
+function comboAdjustment(tags: AugmentTag[], arch: Archetype, ownedAugments: Augment[], lang: Lang): { score: number; notes: string[] } {
   if (ownedAugments.length === 0) return { score: 0, notes: [] }
   const weights = inferArchetypeWeights(arch)
   const ownedTags = summarizeOwnedTags(ownedAugments)
@@ -214,7 +216,7 @@ function comboAdjustment(tags: AugmentTag[], arch: Archetype, ownedAugments: Aug
     const count = ownedTags.get(tag) ?? 0
     const bonus = Math.min(18, 6 + count * 6)
     score += bonus
-    notes.push(`与已选增强形成${TAG_LABEL[tag]}叠加，+${bonus}`)
+    notes.push(t(lang, 'lab.combo.stack', { tag: augmentTagLabel(tag, lang), bonus }))
   }
 
   const hasCore = ownedAugments.some((augment) => arch.augments.core.some((ref) => ref.id === augment.id))
@@ -222,7 +224,7 @@ function comboAdjustment(tags: AugmentTag[], arch: Archetype, ownedAugments: Aug
     const routeTags = tags.filter((tag) => (weights[tag] ?? 0) >= 18)
     if (routeTags.length > 0) {
       score += 10
-      notes.push('已命中核心路线，同方向增强提权 +10')
+      notes.push(t(lang, 'lab.combo.coreRoute'))
     }
   }
 
@@ -232,18 +234,18 @@ function comboAdjustment(tags: AugmentTag[], arch: Archetype, ownedAugments: Aug
   })
   if (offRouteTags.length >= 2) {
     score -= 12
-    notes.push(`疑似路线偏移：${offRouteTags.slice(0, 2).map((tag) => TAG_LABEL[tag]).join('、')}，-12`)
+    notes.push(t(lang, 'lab.combo.offRoute', { tags: offRouteTags.slice(0, 2).map((tag) => augmentTagLabel(tag, lang)).join('、') }))
   }
 
   return { score, notes }
 }
 
-export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugments: Augment[] = []): DecisionPick {
+export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugments: Augment[] = [], lang: Lang = 'zh'): DecisionPick {
   const inCore = arch.augments.core.some((ref) => ref.id === augment.id)
   const inGood = arch.augments.good.some((ref) => ref.id === augment.id)
   const inTrap = arch.augments.trap.some((ref) => ref.id === augment.id)
   const tags = inferAugmentTags(augment)
-  const combo = comboAdjustment(tags, arch, ownedAugments)
+  const combo = comboAdjustment(tags, arch, ownedAugments, lang)
 
   if (inTrap) {
     return {
@@ -251,8 +253,8 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
       score: -100,
       grade: 'Trap',
       tone: 'avoid',
-      label: '避开',
-      reason: '人工标记为当前路线陷阱，容易偏离伤害/出装收益。',
+      label: t(lang, 'lab.pick.trapLabel'),
+      reason: t(lang, 'lab.pick.trapReason'),
       tags,
       comboNotes: combo.notes,
       verified: true,
@@ -265,8 +267,8 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
       score,
       grade: 'S',
       tone: 'recommend',
-      label: '首选',
-      reason: combo.notes.length > 0 ? `人工标记为当前流派核心增强，且有本局 combo 加权。` : '人工标记为当前流派核心增强，优先级最高。',
+      label: t(lang, 'lab.pick.coreLabel'),
+      reason: combo.notes.length > 0 ? t(lang, 'lab.pick.coreReasonCombo') : t(lang, 'lab.pick.coreReason'),
       tags,
       comboNotes: combo.notes,
       verified: true,
@@ -280,8 +282,8 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
       score,
       grade,
       tone: toneFromGrade(grade),
-      label: '可选',
-      reason: combo.notes.length > 0 ? `人工标记为当前流派备选增强，并获得本局 combo 加权。` : '人工标记为当前流派备选增强，核心没出现时可以拿。',
+      label: t(lang, 'lab.pick.goodLabel'),
+      reason: combo.notes.length > 0 ? t(lang, 'lab.pick.goodReasonCombo') : t(lang, 'lab.pick.goodReason'),
       tags,
       comboNotes: combo.notes,
       verified: true,
@@ -296,7 +298,8 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
     .filter((tag) => (weights[tag] ?? 0) > 0)
     .sort((a, b) => (weights[b] ?? 0) - (weights[a] ?? 0))
     .slice(0, 3)
-    .map((tag) => TAG_LABEL[tag])
+    .map((tag) => augmentTagLabel(tag, lang))
+  const degree = grade === 'S' ? t(lang, 'lab.pick.degree.strong') : grade === 'A' || grade === 'B' ? t(lang, 'lab.pick.degree.some') : t(lang, 'lab.pick.degree.limited')
 
   return {
     augment,
@@ -306,10 +309,10 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
     label: grade,
     reason:
       combo.notes.length > 0
-        ? `按标签规则评为 ${grade}，并结合本局已选增强调整。`
+        ? t(lang, 'lab.pick.heuristicReasonCombo', { grade })
         : matched.length > 0
-        ? `按标签规则评为 ${grade}：命中 ${matched.join('、')}，与当前路线有${grade === 'A' || grade === 'B' ? '一定' : grade === 'S' ? '强' : '有限'}协同。`
-        : `按标签规则评为 ${grade}：没有明显命中当前路线偏好，除非局势需要，否则优先级较低。`,
+        ? t(lang, 'lab.pick.heuristicReasonMatched', { grade, tags: matched.join('、'), degree })
+        : t(lang, 'lab.pick.heuristicReasonNone', { grade }),
     tags,
     comboNotes: combo.notes,
     verified: false,
