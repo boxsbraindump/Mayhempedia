@@ -1,0 +1,37 @@
+{
+  "championId": 904,
+  "championName": "亚恒",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD战士亚恒",
+      "damageType": "AD",
+      "note": "亚恒目前只有一条主流打法：AD战斗法师式持续输出/续航流，核心是靠焚天/狂妄/死亡之舞类装备打出以战养战。海克斯优先渴血、秘术冲拳延续Q/E连招的续航与爆发。⚠️ 亚恒E/R机制不吃「全凭身法」类位移增强，千万别拿——这条来自中文攻略的具体提示已独立核实。",
+      "augments": {
+        "core": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ],
+        "good": [
+          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 42, "apiName": "GuiltyPleasure", "name": "恶趣味" }
+        ],
+        "trap": [
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ]
+      },
+      "items": [
+        { "id": 6697, "name": "狂妄" },
+        { "id": 6610, "name": "焚天" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3161, "name": "朔极之矛" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "news.qq.com"]
+    }
+  ]
+}
