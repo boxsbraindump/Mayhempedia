@@ -1,0 +1,38 @@
+{
+  "championId": 26,
+  "championName": "基兰",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP基兰(法术急速流)",
+      "damageType": "AP",
+      "note": "基兰是纯粹的法强+技能急速流玩法：靠Q定时炸弹+W穿梭叠加控制/爆发，堆叠急速后可打出QW连续放置炸弹的高频压制，R自我复活可当保命/续航核心。尤里卡、循环往复是两大热门高选取率海克斯之一，不同数据站给出的「最优先」选择略有差异，属于正常波动。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
+          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ]
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 4645, "name": "影焰" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "championId": 15,
+  "championName": "希维尔",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击希维尔",
+      "damageType": "AD",
+      "note": "希维尔只有一条主流路线：暴击/攻速流ADC，靠W回旋刀的弹射覆盖全场打对枪。灵巧、连拨击锤、双刀流都是社区常见推荐，具体谁最优在不同数据站间有分歧，不是唯一定论。易损、虚幻武器因为回旋刀弹射不触发on-hit效果，是这个英雄明确的陷阱选项。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 51, "apiName": "LightemUp", "name": "点亮他们！" },
+          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" }
+        ],
+        "trap": [
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ]
+      },
+      "items": [
+        { "id": 6670, "name": "正午箭袋" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 6671, "name": "狂风之力" },
+        { "id": 6672, "name": "海妖杀手" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 6676, "name": "收集者" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}

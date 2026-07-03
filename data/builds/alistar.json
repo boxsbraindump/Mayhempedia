@@ -1,0 +1,38 @@
+{
+  "championId": 12,
+  "championName": "阿利斯塔",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克阿利斯塔（心之钢流）",
+      "damageType": "Tank",
+      "note": "阿利斯塔目前只有一条主流打法：叠血量做纯坦克开团/越塔，核心是心之钢的减伤护盾配合Q的连续群体击飞反复触发；坦克引擎/任务：钢化你心是社区公认的高频高胜率强化符文。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ],
+        "trap": [
+          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3119, "name": "凛冬之临" },
+        { "id": 3065, "name": "振奋盔甲" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3075, "name": "荆棘之甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

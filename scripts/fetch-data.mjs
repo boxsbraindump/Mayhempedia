@@ -1,7 +1,7 @@
 // 抓取 & 归一化 海克斯增强 + 装备 数据 → data/*.json
 //   增强源：Community Dragon 斗魂竞技场(Cherry)增强库（大乱斗复用这套）
 //   装备源：Community Dragon items.json
-// 运行：node scripts/fetch-data.mjs
+// 运行：node scripts/fetch-data.mjs [lang]   (lang 省略默认 zh_cn，写 data/；传 default 写 data/en/)
 //
 // 产出：data/augments.json、data/items.json（含解析好的图标 URL）
 // 图片下载在 scripts/download-icons.mjs（本脚本只存 URL 并抽样验证）
@@ -12,13 +12,18 @@ import { dirname, join } from 'node:path'
 import { pinyin } from 'pinyin-pro'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = join(__dirname, '..', 'data')
 
-const LANG = 'zh_cn' // 语言：'default'(英文) | 'zh_cn' | 'ko_kr' ... 图标与语言无关
+const LANG = process.argv[2] || 'zh_cn' // 语言：'default'(英文) | 'zh_cn' | 'ko_kr' ... 图标与语言无关
+// ⚠️ zh_cn 是唯一验证过 name/description 字段错位的 locale；default(英文) 是正常顺序(name=真名)。
+// 别的 locale 没实测过，先只信这两个已验证的分支。
+const DATA_DIR = LANG === 'zh_cn' ? join(__dirname, '..', 'data') : join(__dirname, '..', 'data', 'en')
 const GD = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global'
 const CDRAGON_ICON = `${GD}/default` // 装备图标始终在 default 分支（不分语言）
 const GAME = 'https://raw.communitydragon.org/latest/game' // 增强图标在这个分支下
-const AUG_URL = `https://raw.communitydragon.org/latest/cdragon/arena/${LANG}.json`
+// ⚠️ arena(增强)这个端点的英文 locale 代号是 en_us，不是 default——跟 items/champion-summary 那两个
+// GD 端点不一致(它们用 default)。实测 default.json 在这个端点上是 404，混用会直接抓取失败。
+const AUG_LANG = LANG === 'default' ? 'en_us' : LANG
+const AUG_URL = `https://raw.communitydragon.org/latest/cdragon/arena/${AUG_LANG}.json`
 const ITEMS_URL = `${GD}/${LANG}/v1/items.json`
 
 // 斗魂竞技场稀有度（4 档待进一步确认，见下方 note）
@@ -130,15 +135,18 @@ async function main() {
     pinyin(name, { pattern: first ? 'first' : undefined, toneType: 'none', type: 'array', nonZh: 'consecutive' })
       .join('')
       .toLowerCase()
-  // ⚠️ zh_cn 字段错位：name=称号(虚空之女)、description=真名(卡莎)
+  // ⚠️ 只有 zh_cn 字段错位：name=称号(虚空之女)、description=真名(卡莎)。
+  // 实测过 default(英文)是正常顺序：name=真名(Kai'Sa)、description=称号(Daughter of the Void)，
+  // 不能对 default 用同一套 swap，会把称号当真名，两个字段整个错位。
   const champions = champRaw
     .filter((c) => c.id > 0) // id=-1 是 None 占位
     .map((c) => {
-      const name = c.description || c.name
+      const name = LANG === 'zh_cn' ? c.description || c.name : c.name
+      const title = LANG === 'zh_cn' ? c.name : c.description || c.name
       return {
         id: c.id,
-        name, // 卡莎
-        title: c.name, // 虚空之女
+        name, // 卡莎 / Kai'Sa
+        title, // 虚空之女 / Daughter of the Void
         alias: c.alias, // Kaisa
         pinyin: py(name, false), // 卡莎 → kasha
         initials: py(name, true), // 卡莎 → ks

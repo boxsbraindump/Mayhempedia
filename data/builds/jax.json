@@ -1,0 +1,37 @@
+{
+  "championId": 24,
+  "championName": "贾克斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD攻速贾克斯（三相流）",
+      "damageType": "AD",
+      "note": "三相之力起手的攻速/特效流打野-上单打法，靠E格挡+Q跳脸叠加普攻特效爆发。双刀流是社区独立复核确认的最高选取率强化符文；大力、渴血、秘术冲拳也在多个真实出装列表里出现，具体优先级各站略有出入。⚠️ 贾克斯在当前版本大乱斗整体强度偏弱（社区评级C档），选他不代表稳赢，出装思路仅供参考。是否存在独立的AP流分支目前证据不足，暂未收录。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 28, "apiName": "Erosion", "name": "侵蚀" }
+        ],
+        "trap": [
+          { "id": 112, "apiName": "UltimateUnstoppable", "name": "终极不可阻挡" },
+          { "id": 206, "apiName": "escAPADe", "name": "魔法转物理" }
+        ]
+      },
+      "items": [
+        { "id": 3078, "name": "三相之力" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6632, "name": "神圣分离者" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3053, "name": "斯特拉克的挑战护手" },
+        { "id": 3153, "name": "破败王者之刃" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

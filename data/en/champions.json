@@ -1,0 +1,2382 @@
+[
+  {
+    "id": 266,
+    "name": "Aatrox",
+    "title": "the Darkin Blade",
+    "alias": "Aatrox",
+    "pinyin": "aatrox",
+    "initials": "aatrox",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/266.png",
+    "iconLocal": "icons/champions/266.png"
+  },
+  {
+    "id": 103,
+    "name": "Ahri",
+    "title": "the Nine-Tailed Fox",
+    "alias": "Ahri",
+    "pinyin": "ahri",
+    "initials": "ahri",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/103.png",
+    "iconLocal": "icons/champions/103.png"
+  },
+  {
+    "id": 84,
+    "name": "Akali",
+    "title": "the Rogue Assassin",
+    "alias": "Akali",
+    "pinyin": "akali",
+    "initials": "akali",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/84.png",
+    "iconLocal": "icons/champions/84.png"
+  },
+  {
+    "id": 166,
+    "name": "Akshan",
+    "title": "the Rogue Sentinel",
+    "alias": "Akshan",
+    "pinyin": "akshan",
+    "initials": "akshan",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/166.png",
+    "iconLocal": "icons/champions/166.png"
+  },
+  {
+    "id": 12,
+    "name": "Alistar",
+    "title": "the Minotaur",
+    "alias": "Alistar",
+    "pinyin": "alistar",
+    "initials": "alistar",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/12.png",
+    "iconLocal": "icons/champions/12.png"
+  },
+  {
+    "id": 799,
+    "name": "Ambessa",
+    "title": "Matriarch of War",
+    "alias": "Ambessa",
+    "pinyin": "ambessa",
+    "initials": "ambessa",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/799.png",
+    "iconLocal": "icons/champions/799.png"
+  },
+  {
+    "id": 32,
+    "name": "Amumu",
+    "title": "the Sad Mummy",
+    "alias": "Amumu",
+    "pinyin": "amumu",
+    "initials": "amumu",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/32.png",
+    "iconLocal": "icons/champions/32.png"
+  },
+  {
+    "id": 34,
+    "name": "Anivia",
+    "title": "the Cryophoenix",
+    "alias": "Anivia",
+    "pinyin": "anivia",
+    "initials": "anivia",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/34.png",
+    "iconLocal": "icons/champions/34.png"
+  },
+  {
+    "id": 1,
+    "name": "Annie",
+    "title": "the Dark Child",
+    "alias": "Annie",
+    "pinyin": "annie",
+    "initials": "annie",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/1.png",
+    "iconLocal": "icons/champions/1.png"
+  },
+  {
+    "id": 523,
+    "name": "Aphelios",
+    "title": "the Weapon of the Faithful",
+    "alias": "Aphelios",
+    "pinyin": "aphelios",
+    "initials": "aphelios",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/523.png",
+    "iconLocal": "icons/champions/523.png"
+  },
+  {
+    "id": 22,
+    "name": "Ashe",
+    "title": "the Frost Archer",
+    "alias": "Ashe",
+    "pinyin": "ashe",
+    "initials": "ashe",
+    "roles": [
+      "marksman",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/22.png",
+    "iconLocal": "icons/champions/22.png"
+  },
+  {
+    "id": 136,
+    "name": "Aurelion Sol",
+    "title": "The Star Forger",
+    "alias": "AurelionSol",
+    "pinyin": "aurelion sol",
+    "initials": "aurelion sol",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/136.png",
+    "iconLocal": "icons/champions/136.png"
+  },
+  {
+    "id": 893,
+    "name": "Aurora",
+    "title": "the Witch Between Worlds",
+    "alias": "Aurora",
+    "pinyin": "aurora",
+    "initials": "aurora",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/893.png",
+    "iconLocal": "icons/champions/893.png"
+  },
+  {
+    "id": 268,
+    "name": "Azir",
+    "title": "the Emperor of the Sands",
+    "alias": "Azir",
+    "pinyin": "azir",
+    "initials": "azir",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/268.png",
+    "iconLocal": "icons/champions/268.png"
+  },
+  {
+    "id": 432,
+    "name": "Bard",
+    "title": "the Wandering Caretaker",
+    "alias": "Bard",
+    "pinyin": "bard",
+    "initials": "bard",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/432.png",
+    "iconLocal": "icons/champions/432.png"
+  },
+  {
+    "id": 200,
+    "name": "Bel'Veth",
+    "title": "the Empress of the Void",
+    "alias": "Belveth",
+    "pinyin": "bel'veth",
+    "initials": "bel'veth",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/200.png",
+    "iconLocal": "icons/champions/200.png"
+  },
+  {
+    "id": 53,
+    "name": "Blitzcrank",
+    "title": "the Great Steam Golem",
+    "alias": "Blitzcrank",
+    "pinyin": "blitzcrank",
+    "initials": "blitzcrank",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/53.png",
+    "iconLocal": "icons/champions/53.png"
+  },
+  {
+    "id": 63,
+    "name": "Brand",
+    "title": "the Burning Vengeance",
+    "alias": "Brand",
+    "pinyin": "brand",
+    "initials": "brand",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/63.png",
+    "iconLocal": "icons/champions/63.png"
+  },
+  {
+    "id": 201,
+    "name": "Braum",
+    "title": "the Heart of the Freljord",
+    "alias": "Braum",
+    "pinyin": "braum",
+    "initials": "braum",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/201.png",
+    "iconLocal": "icons/champions/201.png"
+  },
+  {
+    "id": 233,
+    "name": "Briar",
+    "title": "the Restrained Hunger",
+    "alias": "Briar",
+    "pinyin": "briar",
+    "initials": "briar",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/233.png",
+    "iconLocal": "icons/champions/233.png"
+  },
+  {
+    "id": 51,
+    "name": "Caitlyn",
+    "title": "the Sheriff of Piltover",
+    "alias": "Caitlyn",
+    "pinyin": "caitlyn",
+    "initials": "caitlyn",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/51.png",
+    "iconLocal": "icons/champions/51.png"
+  },
+  {
+    "id": 164,
+    "name": "Camille",
+    "title": "the Steel Shadow",
+    "alias": "Camille",
+    "pinyin": "camille",
+    "initials": "camille",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/164.png",
+    "iconLocal": "icons/champions/164.png"
+  },
+  {
+    "id": 69,
+    "name": "Cassiopeia",
+    "title": "the Serpent's Embrace",
+    "alias": "Cassiopeia",
+    "pinyin": "cassiopeia",
+    "initials": "cassiopeia",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/69.png",
+    "iconLocal": "icons/champions/69.png"
+  },
+  {
+    "id": 31,
+    "name": "Cho'Gath",
+    "title": "the Terror of the Void",
+    "alias": "Chogath",
+    "pinyin": "cho'gath",
+    "initials": "cho'gath",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/31.png",
+    "iconLocal": "icons/champions/31.png"
+  },
+  {
+    "id": 42,
+    "name": "Corki",
+    "title": "the Daring Bombardier",
+    "alias": "Corki",
+    "pinyin": "corki",
+    "initials": "corki",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/42.png",
+    "iconLocal": "icons/champions/42.png"
+  },
+  {
+    "id": 122,
+    "name": "Darius",
+    "title": "the Hand of Noxus",
+    "alias": "Darius",
+    "pinyin": "darius",
+    "initials": "darius",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/122.png",
+    "iconLocal": "icons/champions/122.png"
+  },
+  {
+    "id": 131,
+    "name": "Diana",
+    "title": "Scorn of the Moon",
+    "alias": "Diana",
+    "pinyin": "diana",
+    "initials": "diana",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/131.png",
+    "iconLocal": "icons/champions/131.png"
+  },
+  {
+    "id": 36,
+    "name": "Dr. Mundo",
+    "title": "the Madman of Zaun",
+    "alias": "DrMundo",
+    "pinyin": "dr. mundo",
+    "initials": "dr. mundo",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/36.png",
+    "iconLocal": "icons/champions/36.png"
+  },
+  {
+    "id": 119,
+    "name": "Draven",
+    "title": "the Glorious Executioner",
+    "alias": "Draven",
+    "pinyin": "draven",
+    "initials": "draven",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/119.png",
+    "iconLocal": "icons/champions/119.png"
+  },
+  {
+    "id": 245,
+    "name": "Ekko",
+    "title": "the Boy Who Shattered Time",
+    "alias": "Ekko",
+    "pinyin": "ekko",
+    "initials": "ekko",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/245.png",
+    "iconLocal": "icons/champions/245.png"
+  },
+  {
+    "id": 60,
+    "name": "Elise",
+    "title": "the Spider Queen",
+    "alias": "Elise",
+    "pinyin": "elise",
+    "initials": "elise",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/60.png",
+    "iconLocal": "icons/champions/60.png"
+  },
+  {
+    "id": 28,
+    "name": "Evelynn",
+    "title": "Agony's Embrace",
+    "alias": "Evelynn",
+    "pinyin": "evelynn",
+    "initials": "evelynn",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/28.png",
+    "iconLocal": "icons/champions/28.png"
+  },
+  {
+    "id": 81,
+    "name": "Ezreal",
+    "title": "the Prodigal Explorer",
+    "alias": "Ezreal",
+    "pinyin": "ezreal",
+    "initials": "ezreal",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/81.png",
+    "iconLocal": "icons/champions/81.png"
+  },
+  {
+    "id": 9,
+    "name": "Fiddlesticks",
+    "title": "the Ancient Fear",
+    "alias": "FiddleSticks",
+    "pinyin": "fiddlesticks",
+    "initials": "fiddlesticks",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/9.png",
+    "iconLocal": "icons/champions/9.png"
+  },
+  {
+    "id": 114,
+    "name": "Fiora",
+    "title": "the Grand Duelist",
+    "alias": "Fiora",
+    "pinyin": "fiora",
+    "initials": "fiora",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/114.png",
+    "iconLocal": "icons/champions/114.png"
+  },
+  {
+    "id": 105,
+    "name": "Fizz",
+    "title": "the Tidal Trickster",
+    "alias": "Fizz",
+    "pinyin": "fizz",
+    "initials": "fizz",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/105.png",
+    "iconLocal": "icons/champions/105.png"
+  },
+  {
+    "id": 3,
+    "name": "Galio",
+    "title": "the Colossus",
+    "alias": "Galio",
+    "pinyin": "galio",
+    "initials": "galio",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/3.png",
+    "iconLocal": "icons/champions/3.png"
+  },
+  {
+    "id": 41,
+    "name": "Gangplank",
+    "title": "the Saltwater Scourge",
+    "alias": "Gangplank",
+    "pinyin": "gangplank",
+    "initials": "gangplank",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/41.png",
+    "iconLocal": "icons/champions/41.png"
+  },
+  {
+    "id": 86,
+    "name": "Garen",
+    "title": "The Might of Demacia",
+    "alias": "Garen",
+    "pinyin": "garen",
+    "initials": "garen",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/86.png",
+    "iconLocal": "icons/champions/86.png"
+  },
+  {
+    "id": 150,
+    "name": "Gnar",
+    "title": "the Missing Link",
+    "alias": "Gnar",
+    "pinyin": "gnar",
+    "initials": "gnar",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/150.png",
+    "iconLocal": "icons/champions/150.png"
+  },
+  {
+    "id": 79,
+    "name": "Gragas",
+    "title": "the Rabble Rouser",
+    "alias": "Gragas",
+    "pinyin": "gragas",
+    "initials": "gragas",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/79.png",
+    "iconLocal": "icons/champions/79.png"
+  },
+  {
+    "id": 104,
+    "name": "Graves",
+    "title": "the Outlaw",
+    "alias": "Graves",
+    "pinyin": "graves",
+    "initials": "graves",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/104.png",
+    "iconLocal": "icons/champions/104.png"
+  },
+  {
+    "id": 887,
+    "name": "Gwen",
+    "title": "The Hallowed Seamstress",
+    "alias": "Gwen",
+    "pinyin": "gwen",
+    "initials": "gwen",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/887.png",
+    "iconLocal": "icons/champions/887.png"
+  },
+  {
+    "id": 120,
+    "name": "Hecarim",
+    "title": "the Shadow of War",
+    "alias": "Hecarim",
+    "pinyin": "hecarim",
+    "initials": "hecarim",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/120.png",
+    "iconLocal": "icons/champions/120.png"
+  },
+  {
+    "id": 74,
+    "name": "Heimerdinger",
+    "title": "the Revered Inventor",
+    "alias": "Heimerdinger",
+    "pinyin": "heimerdinger",
+    "initials": "heimerdinger",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/74.png",
+    "iconLocal": "icons/champions/74.png"
+  },
+  {
+    "id": 910,
+    "name": "Hwei",
+    "title": "the Visionary",
+    "alias": "Hwei",
+    "pinyin": "hwei",
+    "initials": "hwei",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/910.png",
+    "iconLocal": "icons/champions/910.png"
+  },
+  {
+    "id": 420,
+    "name": "Illaoi",
+    "title": "the Kraken Priestess",
+    "alias": "Illaoi",
+    "pinyin": "illaoi",
+    "initials": "illaoi",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/420.png",
+    "iconLocal": "icons/champions/420.png"
+  },
+  {
+    "id": 39,
+    "name": "Irelia",
+    "title": "the Blade Dancer",
+    "alias": "Irelia",
+    "pinyin": "irelia",
+    "initials": "irelia",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/39.png",
+    "iconLocal": "icons/champions/39.png"
+  },
+  {
+    "id": 427,
+    "name": "Ivern",
+    "title": "the Green Father",
+    "alias": "Ivern",
+    "pinyin": "ivern",
+    "initials": "ivern",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/427.png",
+    "iconLocal": "icons/champions/427.png"
+  },
+  {
+    "id": 40,
+    "name": "Janna",
+    "title": "the Storm's Fury",
+    "alias": "Janna",
+    "pinyin": "janna",
+    "initials": "janna",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/40.png",
+    "iconLocal": "icons/champions/40.png"
+  },
+  {
+    "id": 59,
+    "name": "Jarvan IV",
+    "title": "the Exemplar of Demacia",
+    "alias": "JarvanIV",
+    "pinyin": "jarvan iv",
+    "initials": "jarvan iv",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/59.png",
+    "iconLocal": "icons/champions/59.png"
+  },
+  {
+    "id": 24,
+    "name": "Jax",
+    "title": "Grandmaster at Arms",
+    "alias": "Jax",
+    "pinyin": "jax",
+    "initials": "jax",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/24.png",
+    "iconLocal": "icons/champions/24.png"
+  },
+  {
+    "id": 126,
+    "name": "Jayce",
+    "title": "the Defender of Tomorrow",
+    "alias": "Jayce",
+    "pinyin": "jayce",
+    "initials": "jayce",
+    "roles": [
+      "fighter",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/126.png",
+    "iconLocal": "icons/champions/126.png"
+  },
+  {
+    "id": 202,
+    "name": "Jhin",
+    "title": "the Virtuoso",
+    "alias": "Jhin",
+    "pinyin": "jhin",
+    "initials": "jhin",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/202.png",
+    "iconLocal": "icons/champions/202.png"
+  },
+  {
+    "id": 222,
+    "name": "Jinx",
+    "title": "the Loose Cannon",
+    "alias": "Jinx",
+    "pinyin": "jinx",
+    "initials": "jinx",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/222.png",
+    "iconLocal": "icons/champions/222.png"
+  },
+  {
+    "id": 897,
+    "name": "K'Sante",
+    "title": "the Pride of Nazumah",
+    "alias": "KSante",
+    "pinyin": "k'sante",
+    "initials": "k'sante",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/897.png",
+    "iconLocal": "icons/champions/897.png"
+  },
+  {
+    "id": 145,
+    "name": "Kai'Sa",
+    "title": "Daughter of the Void",
+    "alias": "Kaisa",
+    "pinyin": "kai'sa",
+    "initials": "kai'sa",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/145.png",
+    "iconLocal": "icons/champions/145.png"
+  },
+  {
+    "id": 429,
+    "name": "Kalista",
+    "title": "the Spear of Vengeance",
+    "alias": "Kalista",
+    "pinyin": "kalista",
+    "initials": "kalista",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/429.png",
+    "iconLocal": "icons/champions/429.png"
+  },
+  {
+    "id": 43,
+    "name": "Karma",
+    "title": "the Enlightened One",
+    "alias": "Karma",
+    "pinyin": "karma",
+    "initials": "karma",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/43.png",
+    "iconLocal": "icons/champions/43.png"
+  },
+  {
+    "id": 30,
+    "name": "Karthus",
+    "title": "the Deathsinger",
+    "alias": "Karthus",
+    "pinyin": "karthus",
+    "initials": "karthus",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/30.png",
+    "iconLocal": "icons/champions/30.png"
+  },
+  {
+    "id": 38,
+    "name": "Kassadin",
+    "title": "the Void Walker",
+    "alias": "Kassadin",
+    "pinyin": "kassadin",
+    "initials": "kassadin",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/38.png",
+    "iconLocal": "icons/champions/38.png"
+  },
+  {
+    "id": 55,
+    "name": "Katarina",
+    "title": "the Sinister Blade",
+    "alias": "Katarina",
+    "pinyin": "katarina",
+    "initials": "katarina",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/55.png",
+    "iconLocal": "icons/champions/55.png"
+  },
+  {
+    "id": 10,
+    "name": "Kayle",
+    "title": "the Righteous",
+    "alias": "Kayle",
+    "pinyin": "kayle",
+    "initials": "kayle",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/10.png",
+    "iconLocal": "icons/champions/10.png"
+  },
+  {
+    "id": 141,
+    "name": "Kayn",
+    "title": "the Shadow Reaper",
+    "alias": "Kayn",
+    "pinyin": "kayn",
+    "initials": "kayn",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/141.png",
+    "iconLocal": "icons/champions/141.png"
+  },
+  {
+    "id": 85,
+    "name": "Kennen",
+    "title": "the Heart of the Tempest",
+    "alias": "Kennen",
+    "pinyin": "kennen",
+    "initials": "kennen",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/85.png",
+    "iconLocal": "icons/champions/85.png"
+  },
+  {
+    "id": 121,
+    "name": "Kha'Zix",
+    "title": "the Voidreaver",
+    "alias": "Khazix",
+    "pinyin": "kha'zix",
+    "initials": "kha'zix",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/121.png",
+    "iconLocal": "icons/champions/121.png"
+  },
+  {
+    "id": 203,
+    "name": "Kindred",
+    "title": "The Eternal Hunters",
+    "alias": "Kindred",
+    "pinyin": "kindred",
+    "initials": "kindred",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/203.png",
+    "iconLocal": "icons/champions/203.png"
+  },
+  {
+    "id": 240,
+    "name": "Kled",
+    "title": "the Cantankerous Cavalier",
+    "alias": "Kled",
+    "pinyin": "kled",
+    "initials": "kled",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/240.png",
+    "iconLocal": "icons/champions/240.png"
+  },
+  {
+    "id": 96,
+    "name": "Kog'Maw",
+    "title": "the Mouth of the Abyss",
+    "alias": "KogMaw",
+    "pinyin": "kog'maw",
+    "initials": "kog'maw",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/96.png",
+    "iconLocal": "icons/champions/96.png"
+  },
+  {
+    "id": 7,
+    "name": "LeBlanc",
+    "title": "the Deceiver",
+    "alias": "Leblanc",
+    "pinyin": "leblanc",
+    "initials": "leblanc",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/7.png",
+    "iconLocal": "icons/champions/7.png"
+  },
+  {
+    "id": 64,
+    "name": "Lee Sin",
+    "title": "the Blind Monk",
+    "alias": "LeeSin",
+    "pinyin": "lee sin",
+    "initials": "lee sin",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/64.png",
+    "iconLocal": "icons/champions/64.png"
+  },
+  {
+    "id": 89,
+    "name": "Leona",
+    "title": "the Radiant Dawn",
+    "alias": "Leona",
+    "pinyin": "leona",
+    "initials": "leona",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/89.png",
+    "iconLocal": "icons/champions/89.png"
+  },
+  {
+    "id": 876,
+    "name": "Lillia",
+    "title": "the Bashful Bloom",
+    "alias": "Lillia",
+    "pinyin": "lillia",
+    "initials": "lillia",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/876.png",
+    "iconLocal": "icons/champions/876.png"
+  },
+  {
+    "id": 127,
+    "name": "Lissandra",
+    "title": "the Ice Witch",
+    "alias": "Lissandra",
+    "pinyin": "lissandra",
+    "initials": "lissandra",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/127.png",
+    "iconLocal": "icons/champions/127.png"
+  },
+  {
+    "id": 805,
+    "name": "Locke",
+    "title": "the Ashen Exorcist",
+    "alias": "Locke",
+    "pinyin": "locke",
+    "initials": "locke",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/805.png",
+    "iconLocal": "icons/champions/805.png"
+  },
+  {
+    "id": 236,
+    "name": "Lucian",
+    "title": "the Purifier",
+    "alias": "Lucian",
+    "pinyin": "lucian",
+    "initials": "lucian",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/236.png",
+    "iconLocal": "icons/champions/236.png"
+  },
+  {
+    "id": 117,
+    "name": "Lulu",
+    "title": "the Fae Sorceress",
+    "alias": "Lulu",
+    "pinyin": "lulu",
+    "initials": "lulu",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/117.png",
+    "iconLocal": "icons/champions/117.png"
+  },
+  {
+    "id": 99,
+    "name": "Lux",
+    "title": "the Lady of Luminosity",
+    "alias": "Lux",
+    "pinyin": "lux",
+    "initials": "lux",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/99.png",
+    "iconLocal": "icons/champions/99.png"
+  },
+  {
+    "id": 54,
+    "name": "Malphite",
+    "title": "Shard of the Monolith",
+    "alias": "Malphite",
+    "pinyin": "malphite",
+    "initials": "malphite",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/54.png",
+    "iconLocal": "icons/champions/54.png"
+  },
+  {
+    "id": 90,
+    "name": "Malzahar",
+    "title": "the Prophet of the Void",
+    "alias": "Malzahar",
+    "pinyin": "malzahar",
+    "initials": "malzahar",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/90.png",
+    "iconLocal": "icons/champions/90.png"
+  },
+  {
+    "id": 57,
+    "name": "Maokai",
+    "title": "the Twisted Treant",
+    "alias": "Maokai",
+    "pinyin": "maokai",
+    "initials": "maokai",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/57.png",
+    "iconLocal": "icons/champions/57.png"
+  },
+  {
+    "id": 11,
+    "name": "Master Yi",
+    "title": "the Wuju Bladesman",
+    "alias": "MasterYi",
+    "pinyin": "master yi",
+    "initials": "master yi",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/11.png",
+    "iconLocal": "icons/champions/11.png"
+  },
+  {
+    "id": 800,
+    "name": "Mel",
+    "title": "the Soul's Reflection",
+    "alias": "Mel",
+    "pinyin": "mel",
+    "initials": "mel",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/800.png",
+    "iconLocal": "icons/champions/800.png"
+  },
+  {
+    "id": 902,
+    "name": "Milio",
+    "title": "The Gentle Flame",
+    "alias": "Milio",
+    "pinyin": "milio",
+    "initials": "milio",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/902.png",
+    "iconLocal": "icons/champions/902.png"
+  },
+  {
+    "id": 21,
+    "name": "Miss Fortune",
+    "title": "the Bounty Hunter",
+    "alias": "MissFortune",
+    "pinyin": "miss fortune",
+    "initials": "miss fortune",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/21.png",
+    "iconLocal": "icons/champions/21.png"
+  },
+  {
+    "id": 82,
+    "name": "Mordekaiser",
+    "title": "the Iron Revenant",
+    "alias": "Mordekaiser",
+    "pinyin": "mordekaiser",
+    "initials": "mordekaiser",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/82.png",
+    "iconLocal": "icons/champions/82.png"
+  },
+  {
+    "id": 25,
+    "name": "Morgana",
+    "title": "the Fallen",
+    "alias": "Morgana",
+    "pinyin": "morgana",
+    "initials": "morgana",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/25.png",
+    "iconLocal": "icons/champions/25.png"
+  },
+  {
+    "id": 950,
+    "name": "Naafiri",
+    "title": "the Hound of a Hundred Bites",
+    "alias": "Naafiri",
+    "pinyin": "naafiri",
+    "initials": "naafiri",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/950.png",
+    "iconLocal": "icons/champions/950.png"
+  },
+  {
+    "id": 267,
+    "name": "Nami",
+    "title": "the Tidecaller",
+    "alias": "Nami",
+    "pinyin": "nami",
+    "initials": "nami",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/267.png",
+    "iconLocal": "icons/champions/267.png"
+  },
+  {
+    "id": 75,
+    "name": "Nasus",
+    "title": "the Curator of the Sands",
+    "alias": "Nasus",
+    "pinyin": "nasus",
+    "initials": "nasus",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/75.png",
+    "iconLocal": "icons/champions/75.png"
+  },
+  {
+    "id": 111,
+    "name": "Nautilus",
+    "title": "the Titan of the Depths",
+    "alias": "Nautilus",
+    "pinyin": "nautilus",
+    "initials": "nautilus",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/111.png",
+    "iconLocal": "icons/champions/111.png"
+  },
+  {
+    "id": 518,
+    "name": "Neeko",
+    "title": "the Curious Chameleon",
+    "alias": "Neeko",
+    "pinyin": "neeko",
+    "initials": "neeko",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/518.png",
+    "iconLocal": "icons/champions/518.png"
+  },
+  {
+    "id": 76,
+    "name": "Nidalee",
+    "title": "the Bestial Huntress",
+    "alias": "Nidalee",
+    "pinyin": "nidalee",
+    "initials": "nidalee",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/76.png",
+    "iconLocal": "icons/champions/76.png"
+  },
+  {
+    "id": 895,
+    "name": "Nilah",
+    "title": "the Joy Unbound",
+    "alias": "Nilah",
+    "pinyin": "nilah",
+    "initials": "nilah",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/895.png",
+    "iconLocal": "icons/champions/895.png"
+  },
+  {
+    "id": 56,
+    "name": "Nocturne",
+    "title": "the Eternal Nightmare",
+    "alias": "Nocturne",
+    "pinyin": "nocturne",
+    "initials": "nocturne",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/56.png",
+    "iconLocal": "icons/champions/56.png"
+  },
+  {
+    "id": 20,
+    "name": "Nunu & Willump",
+    "title": "the Boy and His Yeti",
+    "alias": "Nunu",
+    "pinyin": "nunu & willump",
+    "initials": "nunu & willump",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/20.png",
+    "iconLocal": "icons/champions/20.png"
+  },
+  {
+    "id": 2,
+    "name": "Olaf",
+    "title": "the Berserker",
+    "alias": "Olaf",
+    "pinyin": "olaf",
+    "initials": "olaf",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/2.png",
+    "iconLocal": "icons/champions/2.png"
+  },
+  {
+    "id": 61,
+    "name": "Orianna",
+    "title": "the Lady of Clockwork",
+    "alias": "Orianna",
+    "pinyin": "orianna",
+    "initials": "orianna",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/61.png",
+    "iconLocal": "icons/champions/61.png"
+  },
+  {
+    "id": 516,
+    "name": "Ornn",
+    "title": "The Fire below the Mountain",
+    "alias": "Ornn",
+    "pinyin": "ornn",
+    "initials": "ornn",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/516.png",
+    "iconLocal": "icons/champions/516.png"
+  },
+  {
+    "id": 80,
+    "name": "Pantheon",
+    "title": "the Unbreakable Spear",
+    "alias": "Pantheon",
+    "pinyin": "pantheon",
+    "initials": "pantheon",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/80.png",
+    "iconLocal": "icons/champions/80.png"
+  },
+  {
+    "id": 78,
+    "name": "Poppy",
+    "title": "Keeper of the Hammer",
+    "alias": "Poppy",
+    "pinyin": "poppy",
+    "initials": "poppy",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/78.png",
+    "iconLocal": "icons/champions/78.png"
+  },
+  {
+    "id": 555,
+    "name": "Pyke",
+    "title": "the Bloodharbor Ripper",
+    "alias": "Pyke",
+    "pinyin": "pyke",
+    "initials": "pyke",
+    "roles": [
+      "support",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/555.png",
+    "iconLocal": "icons/champions/555.png"
+  },
+  {
+    "id": 246,
+    "name": "Qiyana",
+    "title": "Empress of the Elements",
+    "alias": "Qiyana",
+    "pinyin": "qiyana",
+    "initials": "qiyana",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/246.png",
+    "iconLocal": "icons/champions/246.png"
+  },
+  {
+    "id": 133,
+    "name": "Quinn",
+    "title": "Demacia's Wings",
+    "alias": "Quinn",
+    "pinyin": "quinn",
+    "initials": "quinn",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/133.png",
+    "iconLocal": "icons/champions/133.png"
+  },
+  {
+    "id": 497,
+    "name": "Rakan",
+    "title": "The Charmer",
+    "alias": "Rakan",
+    "pinyin": "rakan",
+    "initials": "rakan",
+    "roles": [
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/497.png",
+    "iconLocal": "icons/champions/497.png"
+  },
+  {
+    "id": 33,
+    "name": "Rammus",
+    "title": "the Armordillo",
+    "alias": "Rammus",
+    "pinyin": "rammus",
+    "initials": "rammus",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/33.png",
+    "iconLocal": "icons/champions/33.png"
+  },
+  {
+    "id": 421,
+    "name": "Rek'Sai",
+    "title": "the Void Burrower",
+    "alias": "RekSai",
+    "pinyin": "rek'sai",
+    "initials": "rek'sai",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/421.png",
+    "iconLocal": "icons/champions/421.png"
+  },
+  {
+    "id": 526,
+    "name": "Rell",
+    "title": "the Iron Maiden",
+    "alias": "Rell",
+    "pinyin": "rell",
+    "initials": "rell",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/526.png",
+    "iconLocal": "icons/champions/526.png"
+  },
+  {
+    "id": 888,
+    "name": "Renata Glasc",
+    "title": "the Chem-Baroness",
+    "alias": "Renata",
+    "pinyin": "renata glasc",
+    "initials": "renata glasc",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/888.png",
+    "iconLocal": "icons/champions/888.png"
+  },
+  {
+    "id": 58,
+    "name": "Renekton",
+    "title": "the Butcher of the Sands",
+    "alias": "Renekton",
+    "pinyin": "renekton",
+    "initials": "renekton",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/58.png",
+    "iconLocal": "icons/champions/58.png"
+  },
+  {
+    "id": 107,
+    "name": "Rengar",
+    "title": "the Pridestalker",
+    "alias": "Rengar",
+    "pinyin": "rengar",
+    "initials": "rengar",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/107.png",
+    "iconLocal": "icons/champions/107.png"
+  },
+  {
+    "id": 92,
+    "name": "Riven",
+    "title": "the Exile",
+    "alias": "Riven",
+    "pinyin": "riven",
+    "initials": "riven",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/92.png",
+    "iconLocal": "icons/champions/92.png"
+  },
+  {
+    "id": 68,
+    "name": "Rumble",
+    "title": "the Mechanized Menace",
+    "alias": "Rumble",
+    "pinyin": "rumble",
+    "initials": "rumble",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/68.png",
+    "iconLocal": "icons/champions/68.png"
+  },
+  {
+    "id": 13,
+    "name": "Ryze",
+    "title": "the Rune Mage",
+    "alias": "Ryze",
+    "pinyin": "ryze",
+    "initials": "ryze",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/13.png",
+    "iconLocal": "icons/champions/13.png"
+  },
+  {
+    "id": 360,
+    "name": "Samira",
+    "title": "the Desert Rose",
+    "alias": "Samira",
+    "pinyin": "samira",
+    "initials": "samira",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/360.png",
+    "iconLocal": "icons/champions/360.png"
+  },
+  {
+    "id": 113,
+    "name": "Sejuani",
+    "title": "Fury of the North",
+    "alias": "Sejuani",
+    "pinyin": "sejuani",
+    "initials": "sejuani",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/113.png",
+    "iconLocal": "icons/champions/113.png"
+  },
+  {
+    "id": 235,
+    "name": "Senna",
+    "title": "the Redeemer",
+    "alias": "Senna",
+    "pinyin": "senna",
+    "initials": "senna",
+    "roles": [
+      "support",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/235.png",
+    "iconLocal": "icons/champions/235.png"
+  },
+  {
+    "id": 147,
+    "name": "Seraphine",
+    "title": "the Starry-Eyed Songstress",
+    "alias": "Seraphine",
+    "pinyin": "seraphine",
+    "initials": "seraphine",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/147.png",
+    "iconLocal": "icons/champions/147.png"
+  },
+  {
+    "id": 875,
+    "name": "Sett",
+    "title": "the Boss",
+    "alias": "Sett",
+    "pinyin": "sett",
+    "initials": "sett",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/875.png",
+    "iconLocal": "icons/champions/875.png"
+  },
+  {
+    "id": 35,
+    "name": "Shaco",
+    "title": "the Demon Jester",
+    "alias": "Shaco",
+    "pinyin": "shaco",
+    "initials": "shaco",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/35.png",
+    "iconLocal": "icons/champions/35.png"
+  },
+  {
+    "id": 98,
+    "name": "Shen",
+    "title": "the Eye of Twilight",
+    "alias": "Shen",
+    "pinyin": "shen",
+    "initials": "shen",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/98.png",
+    "iconLocal": "icons/champions/98.png"
+  },
+  {
+    "id": 102,
+    "name": "Shyvana",
+    "title": "the Half-Dragon",
+    "alias": "Shyvana",
+    "pinyin": "shyvana",
+    "initials": "shyvana",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/102.png",
+    "iconLocal": "icons/champions/102.png"
+  },
+  {
+    "id": 27,
+    "name": "Singed",
+    "title": "the Mad Chemist",
+    "alias": "Singed",
+    "pinyin": "singed",
+    "initials": "singed",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/27.png",
+    "iconLocal": "icons/champions/27.png"
+  },
+  {
+    "id": 14,
+    "name": "Sion",
+    "title": "The Undead Juggernaut",
+    "alias": "Sion",
+    "pinyin": "sion",
+    "initials": "sion",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/14.png",
+    "iconLocal": "icons/champions/14.png"
+  },
+  {
+    "id": 15,
+    "name": "Sivir",
+    "title": "the Battle Mistress",
+    "alias": "Sivir",
+    "pinyin": "sivir",
+    "initials": "sivir",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/15.png",
+    "iconLocal": "icons/champions/15.png"
+  },
+  {
+    "id": 72,
+    "name": "Skarner",
+    "title": "the Primordial Sovereign",
+    "alias": "Skarner",
+    "pinyin": "skarner",
+    "initials": "skarner",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/72.png",
+    "iconLocal": "icons/champions/72.png"
+  },
+  {
+    "id": 901,
+    "name": "Smolder",
+    "title": "the Fiery Fledgling",
+    "alias": "Smolder",
+    "pinyin": "smolder",
+    "initials": "smolder",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/901.png",
+    "iconLocal": "icons/champions/901.png"
+  },
+  {
+    "id": 37,
+    "name": "Sona",
+    "title": "Maven of the Strings",
+    "alias": "Sona",
+    "pinyin": "sona",
+    "initials": "sona",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/37.png",
+    "iconLocal": "icons/champions/37.png"
+  },
+  {
+    "id": 16,
+    "name": "Soraka",
+    "title": "the Starchild",
+    "alias": "Soraka",
+    "pinyin": "soraka",
+    "initials": "soraka",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/16.png",
+    "iconLocal": "icons/champions/16.png"
+  },
+  {
+    "id": 50,
+    "name": "Swain",
+    "title": "the Noxian Grand General",
+    "alias": "Swain",
+    "pinyin": "swain",
+    "initials": "swain",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/50.png",
+    "iconLocal": "icons/champions/50.png"
+  },
+  {
+    "id": 517,
+    "name": "Sylas",
+    "title": "the Unshackled",
+    "alias": "Sylas",
+    "pinyin": "sylas",
+    "initials": "sylas",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/517.png",
+    "iconLocal": "icons/champions/517.png"
+  },
+  {
+    "id": 134,
+    "name": "Syndra",
+    "title": "the Dark Sovereign",
+    "alias": "Syndra",
+    "pinyin": "syndra",
+    "initials": "syndra",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/134.png",
+    "iconLocal": "icons/champions/134.png"
+  },
+  {
+    "id": 223,
+    "name": "Tahm Kench",
+    "title": "The River King",
+    "alias": "TahmKench",
+    "pinyin": "tahm kench",
+    "initials": "tahm kench",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/223.png",
+    "iconLocal": "icons/champions/223.png"
+  },
+  {
+    "id": 163,
+    "name": "Taliyah",
+    "title": "the Stoneweaver",
+    "alias": "Taliyah",
+    "pinyin": "taliyah",
+    "initials": "taliyah",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/163.png",
+    "iconLocal": "icons/champions/163.png"
+  },
+  {
+    "id": 91,
+    "name": "Talon",
+    "title": "the Blade's Shadow",
+    "alias": "Talon",
+    "pinyin": "talon",
+    "initials": "talon",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/91.png",
+    "iconLocal": "icons/champions/91.png"
+  },
+  {
+    "id": 44,
+    "name": "Taric",
+    "title": "the Shield of Valoran",
+    "alias": "Taric",
+    "pinyin": "taric",
+    "initials": "taric",
+    "roles": [
+      "support",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/44.png",
+    "iconLocal": "icons/champions/44.png"
+  },
+  {
+    "id": 17,
+    "name": "Teemo",
+    "title": "the Swift Scout",
+    "alias": "Teemo",
+    "pinyin": "teemo",
+    "initials": "teemo",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/17.png",
+    "iconLocal": "icons/champions/17.png"
+  },
+  {
+    "id": 412,
+    "name": "Thresh",
+    "title": "the Chain Warden",
+    "alias": "Thresh",
+    "pinyin": "thresh",
+    "initials": "thresh",
+    "roles": [
+      "support",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/412.png",
+    "iconLocal": "icons/champions/412.png"
+  },
+  {
+    "id": 18,
+    "name": "Tristana",
+    "title": "the Yordle Gunner",
+    "alias": "Tristana",
+    "pinyin": "tristana",
+    "initials": "tristana",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/18.png",
+    "iconLocal": "icons/champions/18.png"
+  },
+  {
+    "id": 48,
+    "name": "Trundle",
+    "title": "the Troll King",
+    "alias": "Trundle",
+    "pinyin": "trundle",
+    "initials": "trundle",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/48.png",
+    "iconLocal": "icons/champions/48.png"
+  },
+  {
+    "id": 23,
+    "name": "Tryndamere",
+    "title": "the Barbarian King",
+    "alias": "Tryndamere",
+    "pinyin": "tryndamere",
+    "initials": "tryndamere",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/23.png",
+    "iconLocal": "icons/champions/23.png"
+  },
+  {
+    "id": 4,
+    "name": "Twisted Fate",
+    "title": "the Card Master",
+    "alias": "TwistedFate",
+    "pinyin": "twisted fate",
+    "initials": "twisted fate",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/4.png",
+    "iconLocal": "icons/champions/4.png"
+  },
+  {
+    "id": 29,
+    "name": "Twitch",
+    "title": "the Plague Rat",
+    "alias": "Twitch",
+    "pinyin": "twitch",
+    "initials": "twitch",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/29.png",
+    "iconLocal": "icons/champions/29.png"
+  },
+  {
+    "id": 77,
+    "name": "Udyr",
+    "title": "the Spirit Walker",
+    "alias": "Udyr",
+    "pinyin": "udyr",
+    "initials": "udyr",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/77.png",
+    "iconLocal": "icons/champions/77.png"
+  },
+  {
+    "id": 6,
+    "name": "Urgot",
+    "title": "the Dreadnought",
+    "alias": "Urgot",
+    "pinyin": "urgot",
+    "initials": "urgot",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/6.png",
+    "iconLocal": "icons/champions/6.png"
+  },
+  {
+    "id": 110,
+    "name": "Varus",
+    "title": "the Arrow of Retribution",
+    "alias": "Varus",
+    "pinyin": "varus",
+    "initials": "varus",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/110.png",
+    "iconLocal": "icons/champions/110.png"
+  },
+  {
+    "id": 67,
+    "name": "Vayne",
+    "title": "the Night Hunter",
+    "alias": "Vayne",
+    "pinyin": "vayne",
+    "initials": "vayne",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/67.png",
+    "iconLocal": "icons/champions/67.png"
+  },
+  {
+    "id": 45,
+    "name": "Veigar",
+    "title": "the Tiny Master of Evil",
+    "alias": "Veigar",
+    "pinyin": "veigar",
+    "initials": "veigar",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/45.png",
+    "iconLocal": "icons/champions/45.png"
+  },
+  {
+    "id": 161,
+    "name": "Vel'Koz",
+    "title": "the Eye of the Void",
+    "alias": "Velkoz",
+    "pinyin": "vel'koz",
+    "initials": "vel'koz",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/161.png",
+    "iconLocal": "icons/champions/161.png"
+  },
+  {
+    "id": 711,
+    "name": "Vex",
+    "title": "the Gloomist",
+    "alias": "Vex",
+    "pinyin": "vex",
+    "initials": "vex",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/711.png",
+    "iconLocal": "icons/champions/711.png"
+  },
+  {
+    "id": 254,
+    "name": "Vi",
+    "title": "the Piltover Enforcer",
+    "alias": "Vi",
+    "pinyin": "vi",
+    "initials": "vi",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/254.png",
+    "iconLocal": "icons/champions/254.png"
+  },
+  {
+    "id": 234,
+    "name": "Viego",
+    "title": "The Ruined King",
+    "alias": "Viego",
+    "pinyin": "viego",
+    "initials": "viego",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/234.png",
+    "iconLocal": "icons/champions/234.png"
+  },
+  {
+    "id": 112,
+    "name": "Viktor",
+    "title": "the Herald of the Arcane",
+    "alias": "Viktor",
+    "pinyin": "viktor",
+    "initials": "viktor",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/112.png",
+    "iconLocal": "icons/champions/112.png"
+  },
+  {
+    "id": 8,
+    "name": "Vladimir",
+    "title": "the Crimson Reaper",
+    "alias": "Vladimir",
+    "pinyin": "vladimir",
+    "initials": "vladimir",
+    "roles": [
+      "mage",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/8.png",
+    "iconLocal": "icons/champions/8.png"
+  },
+  {
+    "id": 106,
+    "name": "Volibear",
+    "title": "the Relentless Storm",
+    "alias": "Volibear",
+    "pinyin": "volibear",
+    "initials": "volibear",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/106.png",
+    "iconLocal": "icons/champions/106.png"
+  },
+  {
+    "id": 19,
+    "name": "Warwick",
+    "title": "the Uncaged Wrath of Zaun",
+    "alias": "Warwick",
+    "pinyin": "warwick",
+    "initials": "warwick",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/19.png",
+    "iconLocal": "icons/champions/19.png"
+  },
+  {
+    "id": 62,
+    "name": "Wukong",
+    "title": "the Monkey King",
+    "alias": "MonkeyKing",
+    "pinyin": "wukong",
+    "initials": "wukong",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/62.png",
+    "iconLocal": "icons/champions/62.png"
+  },
+  {
+    "id": 498,
+    "name": "Xayah",
+    "title": "the Rebel",
+    "alias": "Xayah",
+    "pinyin": "xayah",
+    "initials": "xayah",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/498.png",
+    "iconLocal": "icons/champions/498.png"
+  },
+  {
+    "id": 101,
+    "name": "Xerath",
+    "title": "the Magus Ascendant",
+    "alias": "Xerath",
+    "pinyin": "xerath",
+    "initials": "xerath",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/101.png",
+    "iconLocal": "icons/champions/101.png"
+  },
+  {
+    "id": 5,
+    "name": "Xin Zhao",
+    "title": "the Seneschal of Demacia",
+    "alias": "XinZhao",
+    "pinyin": "xin zhao",
+    "initials": "xin zhao",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/5.png",
+    "iconLocal": "icons/champions/5.png"
+  },
+  {
+    "id": 157,
+    "name": "Yasuo",
+    "title": "the Unforgiven",
+    "alias": "Yasuo",
+    "pinyin": "yasuo",
+    "initials": "yasuo",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/157.png",
+    "iconLocal": "icons/champions/157.png"
+  },
+  {
+    "id": 777,
+    "name": "Yone",
+    "title": "the Unforgotten",
+    "alias": "Yone",
+    "pinyin": "yone",
+    "initials": "yone",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/777.png",
+    "iconLocal": "icons/champions/777.png"
+  },
+  {
+    "id": 83,
+    "name": "Yorick",
+    "title": "Shepherd of Souls",
+    "alias": "Yorick",
+    "pinyin": "yorick",
+    "initials": "yorick",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/83.png",
+    "iconLocal": "icons/champions/83.png"
+  },
+  {
+    "id": 804,
+    "name": "Yunara",
+    "title": "the Unbroken Faith",
+    "alias": "Yunara",
+    "pinyin": "yunara",
+    "initials": "yunara",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/804.png",
+    "iconLocal": "icons/champions/804.png"
+  },
+  {
+    "id": 350,
+    "name": "Yuumi",
+    "title": "the Magical Cat",
+    "alias": "Yuumi",
+    "pinyin": "yuumi",
+    "initials": "yuumi",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/350.png",
+    "iconLocal": "icons/champions/350.png"
+  },
+  {
+    "id": 904,
+    "name": "Zaahen",
+    "title": "The Unsundered",
+    "alias": "Zaahen",
+    "pinyin": "zaahen",
+    "initials": "zaahen",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/904.png",
+    "iconLocal": "icons/champions/904.png"
+  },
+  {
+    "id": 154,
+    "name": "Zac",
+    "title": "the Secret Weapon",
+    "alias": "Zac",
+    "pinyin": "zac",
+    "initials": "zac",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/154.png",
+    "iconLocal": "icons/champions/154.png"
+  },
+  {
+    "id": 238,
+    "name": "Zed",
+    "title": "the Master of Shadows",
+    "alias": "Zed",
+    "pinyin": "zed",
+    "initials": "zed",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/238.png",
+    "iconLocal": "icons/champions/238.png"
+  },
+  {
+    "id": 221,
+    "name": "Zeri",
+    "title": "The Spark of Zaun",
+    "alias": "Zeri",
+    "pinyin": "zeri",
+    "initials": "zeri",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/221.png",
+    "iconLocal": "icons/champions/221.png"
+  },
+  {
+    "id": 115,
+    "name": "Ziggs",
+    "title": "the Hexplosives Expert",
+    "alias": "Ziggs",
+    "pinyin": "ziggs",
+    "initials": "ziggs",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/115.png",
+    "iconLocal": "icons/champions/115.png"
+  },
+  {
+    "id": 26,
+    "name": "Zilean",
+    "title": "the Chronokeeper",
+    "alias": "Zilean",
+    "pinyin": "zilean",
+    "initials": "zilean",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/26.png",
+    "iconLocal": "icons/champions/26.png"
+  },
+  {
+    "id": 142,
+    "name": "Zoe",
+    "title": "the Aspect of Twilight",
+    "alias": "Zoe",
+    "pinyin": "zoe",
+    "initials": "zoe",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/142.png",
+    "iconLocal": "icons/champions/142.png"
+  },
+  {
+    "id": 143,
+    "name": "Zyra",
+    "title": "Rise of the Thorns",
+    "alias": "Zyra",
+    "pinyin": "zyra",
+    "initials": "zyra",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/143.png",
+    "iconLocal": "icons/champions/143.png"
+  }
+]

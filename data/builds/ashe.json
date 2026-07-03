@@ -1,0 +1,66 @@
+{
+  "championId": 22,
+  "championName": "艾希",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击/攻速艾希",
+      "damageType": "AD",
+      "note": "主流打法：靠灵巧+暴击流海克斯堆叠攻速与暴击，配合W减CD持续放风筝消耗，是社区最常推荐的核心出装路线。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 51, "apiName": "LightemUp", "name": "点亮他们！" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+        ],
+        "trap": [
+          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" }
+        ]
+      },
+      "items": [
+        { "id": 6673, "name": "不朽盾弓" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 6672, "name": "海妖杀手" },
+        { "id": 3085, "name": "卢安娜的飓风" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com", "mobalytics.gg"]
+    },
+    {
+      "key": "poke-ap",
+      "name": "Poke/AP大招流艾希",
+      "damageType": "AP",
+      "note": "冷门但有独立信源验证的分支打法：靠老练狙神大幅减少W冷却+珠光护手让技能能暴击，专注R大招的AP加成进行远距离消耗与开团，搭配穿甲/法穿装备。这条路线的核心组合被 arammayhem.com 专门做了连招页面收录，属于社区认可但非主流的另一条路线。",
+      "augments": {
+        "core": [
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+        ],
+        "good": [
+          { "id": 103, "apiName": "BreadAndButter", "name": "面包和黄油" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3035, "name": "最后的轻语" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3115, "name": "纳什之牙" },
+        { "id": 3157, "name": "中娅沙漏" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "ali213.net", "9game.cn"]
+    }
+  ]
+}
