@@ -1,0 +1,38 @@
+{
+  "championId": 901,
+  "championName": "斯莫德",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "暴击斯莫德",
+      "damageType": "AD",
+      "note": "暴击/攻速流ADC，靠Q技能叠层与暴击缩放后期爆发极高，夺萃之镰+无尽之刃为核心。",
+      "augments": {
+        "core": [
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" },
+          { "id": 86, "apiName": "TrueshotProdigy", "name": "精准奇才" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+        ],
+        "trap": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }
+        ]
+      },
+      "items": [
+        { "id": 3508, "name": "夺萃之镰" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 3161, "name": "朔极之矛" },
+        { "id": 3094, "name": "疾射火炮" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3033, "name": "凡性的提醒" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "hupu.com", "blitz.gg"]
+    }
+  ]
+}

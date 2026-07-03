@@ -1,0 +1,1158 @@
+[
+  {
+    "id": 1,
+    "name": "安妮",
+    "apiname": "Annie",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "shielding": 0.9
+  },
+  {
+    "id": 2,
+    "name": "奥拉夫",
+    "apiname": "Olaf",
+    "dmgDealt": 1.05
+  },
+  {
+    "id": 3,
+    "name": "加里奥",
+    "apiname": "Galio",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 5,
+    "name": "赵信",
+    "apiname": "XinZhao",
+    "dmgDealt": 0.95
+  },
+  {
+    "id": 6,
+    "name": "厄加特",
+    "apiname": "Urgot",
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 7,
+    "name": "乐芙兰",
+    "apiname": "Leblanc",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "abilityHaste": 20
+  },
+  {
+    "id": 8,
+    "name": "弗拉基米尔",
+    "apiname": "Vladimir",
+    "dmgDealt": 1,
+    "dmgTaken": 1.05,
+    "healing": 0.9
+  },
+  {
+    "id": 9,
+    "name": "费德提克",
+    "apiname": "Fiddlesticks",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 10,
+    "name": "凯尔",
+    "apiname": "Kayle",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 11,
+    "name": "易",
+    "apiname": "MasterYi",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 12,
+    "name": "阿利斯塔",
+    "apiname": "Alistar",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "healing": 0.8
+  },
+  {
+    "id": 13,
+    "name": "瑞兹",
+    "apiname": "Ryze",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 14,
+    "name": "赛恩",
+    "apiname": "Sion",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 15,
+    "name": "希维尔",
+    "apiname": "Sivir",
+    "dmgDealt": 0.93,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 16,
+    "name": "索拉卡",
+    "apiname": "Soraka",
+    "dmgDealt": 1,
+    "dmgTaken": 1,
+    "abilityHaste": 10,
+    "healing": 1
+  },
+  {
+    "id": 17,
+    "name": "提莫",
+    "apiname": "Teemo",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 18,
+    "name": "崔丝塔娜",
+    "apiname": "Tristana",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 19,
+    "name": "沃里克",
+    "apiname": "Warwick",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "healing": 1
+  },
+  {
+    "id": 20,
+    "name": "努努和威朗普",
+    "apiname": "Nunu",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "healing": 1.1,
+    "shielding": 1.2,
+    "tenacity": 1.2
+  },
+  {
+    "id": 21,
+    "name": "厄运小姐",
+    "apiname": "MissFortune",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 22,
+    "name": "艾希",
+    "apiname": "Ashe",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 23,
+    "name": "泰达米尔",
+    "apiname": "Tryndamere",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "healing": 1.2
+  },
+  {
+    "id": 24,
+    "name": "贾克斯",
+    "apiname": "Jax",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.97
+  },
+  {
+    "id": 25,
+    "name": "莫甘娜",
+    "apiname": "Morgana",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 26,
+    "name": "基兰",
+    "apiname": "Zilean",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 27,
+    "name": "辛吉德",
+    "apiname": "Singed",
+    "dmgDealt": 1,
+    "dmgTaken": 1.08
+  },
+  {
+    "id": 28,
+    "name": "伊芙琳",
+    "apiname": "Evelynn",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "tenacity": 1.2
+  },
+  {
+    "id": 29,
+    "name": "图奇",
+    "apiname": "Twitch",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 30,
+    "name": "卡尔萨斯",
+    "apiname": "Karthus",
+    "dmgDealt": 0.93,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 31,
+    "name": "科加斯",
+    "apiname": "Chogath",
+    "dmgDealt": 1,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 32,
+    "name": "阿木木",
+    "apiname": "Amumu",
+    "dmgTaken": 1
+  },
+  {
+    "id": 33,
+    "name": "拉莫斯",
+    "apiname": "Rammus",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 34,
+    "name": "艾尼维亚",
+    "apiname": "Anivia",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 35,
+    "name": "萨科",
+    "apiname": "Shaco",
+    "dmgDealt": 1.05
+  },
+  {
+    "id": 36,
+    "name": "蒙多医生",
+    "apiname": "DrMundo",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05,
+    "healing": 0.9
+  },
+  {
+    "id": 37,
+    "name": "娑娜",
+    "apiname": "Sona",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 38,
+    "name": "卡萨丁",
+    "apiname": "Kassadin",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 39,
+    "name": "艾瑞莉娅",
+    "apiname": "Irelia",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1,
+    "abilityHaste": 20
+  },
+  {
+    "id": 40,
+    "name": "迦娜",
+    "apiname": "Janna",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "healing": 0.9,
+    "shielding": 1
+  },
+  {
+    "id": 41,
+    "name": "普朗克",
+    "apiname": "Gangplank",
+    "dmgDealt": 1.05
+  },
+  {
+    "id": 42,
+    "name": "库奇",
+    "apiname": "Corki",
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 43,
+    "name": "卡尔玛",
+    "apiname": "Karma",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 44,
+    "name": "塔里克",
+    "apiname": "Taric",
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 45,
+    "name": "维迦",
+    "apiname": "Veigar",
+    "dmgDealt": 0.93,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 48,
+    "name": "特朗德尔",
+    "apiname": "Trundle",
+    "dmgTaken": 1.05,
+    "healing": 1
+  },
+  {
+    "id": 50,
+    "name": "斯维因",
+    "apiname": "Swain",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.15,
+    "healing": 0.8
+  },
+  {
+    "id": 51,
+    "name": "凯特琳",
+    "apiname": "Caitlyn",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 55,
+    "name": "卡特琳娜",
+    "apiname": "Katarina",
+    "dmgDealt": 1,
+    "dmgTaken": 1,
+    "tenacity": 1.2,
+    "abilityHaste": 10
+  },
+  {
+    "id": 56,
+    "name": "魔腾",
+    "apiname": "Nocturne",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "healing": 1.2
+  },
+  {
+    "id": 57,
+    "name": "茂凯",
+    "apiname": "Maokai",
+    "dmgDealt": 0.85,
+    "dmgTaken": 1.1,
+    "healing": 1
+  },
+  {
+    "id": 58,
+    "name": "雷克顿",
+    "apiname": "Renekton",
+    "dmgDealt": 1,
+    "healing": 1.1
+  },
+  {
+    "id": 59,
+    "name": "嘉文四世",
+    "apiname": "JarvanIV",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 60,
+    "name": "伊莉丝",
+    "apiname": "Elise",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.9,
+    "tenacity": 1.1
+  },
+  {
+    "id": 63,
+    "name": "布兰德",
+    "apiname": "Brand",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 64,
+    "name": "李青",
+    "apiname": "LeeSin",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "healing": 1.1,
+    "shielding": 1.2,
+    "energyRegenMod": 1.2
+  },
+  {
+    "id": 67,
+    "name": "薇恩",
+    "apiname": "Vayne",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 68,
+    "name": "兰博",
+    "apiname": "Rumble",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 72,
+    "name": "斯卡纳",
+    "apiname": "Skarner",
+    "dmgTaken": 1
+  },
+  {
+    "id": 74,
+    "name": "黑默丁格",
+    "apiname": "Heimerdinger",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 75,
+    "name": "内瑟斯",
+    "apiname": "Nasus",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 76,
+    "name": "奈德丽",
+    "apiname": "Nidalee",
+    "dmgDealt": 1.1
+  },
+  {
+    "id": 77,
+    "name": "乌迪尔",
+    "apiname": "Udyr",
+    "dmgDealt": 1
+  },
+  {
+    "id": 79,
+    "name": "古拉加斯",
+    "apiname": "Gragas",
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 80,
+    "name": "潘森",
+    "apiname": "Pantheon",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 81,
+    "name": "伊泽瑞尔",
+    "apiname": "Ezreal",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 82,
+    "name": "莫德凯撒",
+    "apiname": "Mordekaiser",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 84,
+    "name": "阿卡丽",
+    "apiname": "Akali",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95,
+    "energyRegenMod": 1.2,
+    "tenacity": 1.2
+  },
+  {
+    "id": 85,
+    "name": "凯南",
+    "apiname": "Kennen",
+    "dmgDealt": 1,
+    "dmgTaken": 1,
+    "energyRegenMod": 1.2
+  },
+  {
+    "id": 86,
+    "name": "盖伦",
+    "apiname": "Garen",
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 89,
+    "name": "蕾欧娜",
+    "apiname": "Leona",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 90,
+    "name": "玛尔扎哈",
+    "apiname": "Malzahar",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 91,
+    "name": "泰隆",
+    "apiname": "Talon",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "tenacity": 1.2
+  },
+  {
+    "id": 92,
+    "name": "锐雯",
+    "apiname": "Riven",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.92,
+    "shielding": 1
+  },
+  {
+    "id": 96,
+    "name": "克格莫",
+    "apiname": "KogMaw",
+    "dmgDealt": 0.92,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 98,
+    "name": "慎",
+    "apiname": "Shen",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 99,
+    "name": "拉克丝",
+    "apiname": "Lux",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.1,
+    "shielding": 0.9
+  },
+  {
+    "id": 101,
+    "name": "泽拉斯",
+    "apiname": "Xerath",
+    "dmgDealt": 0.93,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 102,
+    "name": "希瓦娜",
+    "apiname": "Shyvana",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 103,
+    "name": "阿狸",
+    "apiname": "Ahri",
+    "dmgDealt": 1,
+    "dmgTaken": 1,
+    "healing": 0.9
+  },
+  {
+    "id": 105,
+    "name": "菲兹",
+    "apiname": "Fizz",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "tenacity": 1.1
+  },
+  {
+    "id": 107,
+    "name": "雷恩加尔",
+    "apiname": "Rengar",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.92,
+    "tenacity": 1.2
+  },
+  {
+    "id": 110,
+    "name": "韦鲁斯",
+    "apiname": "Varus",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 111,
+    "name": "诺提勒斯",
+    "apiname": "Nautilus",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 112,
+    "name": "维克托",
+    "apiname": "Viktor",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 113,
+    "name": "瑟庄妮",
+    "apiname": "Sejuani",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 114,
+    "name": "菲奥娜",
+    "apiname": "Fiora",
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 115,
+    "name": "吉格斯",
+    "apiname": "Ziggs",
+    "dmgDealt": 0.92,
+    "dmgTaken": 1.2
+  },
+  {
+    "id": 117,
+    "name": "璐璐",
+    "apiname": "Lulu",
+    "dmgDealt": 1,
+    "shielding": 1
+  },
+  {
+    "id": 119,
+    "name": "德莱文",
+    "apiname": "Draven",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 120,
+    "name": "赫卡里姆",
+    "apiname": "Hecarim",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.9,
+    "healing": 1.2,
+    "abilityHaste": 10
+  },
+  {
+    "id": 121,
+    "name": "卡兹克",
+    "apiname": "Khazix",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "healing": 1.2,
+    "tenacity": 1.2
+  },
+  {
+    "id": 122,
+    "name": "德莱厄斯",
+    "apiname": "Darius",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 126,
+    "name": "杰斯",
+    "apiname": "Jayce",
+    "dmgDealt": 1.05
+  },
+  {
+    "id": 127,
+    "name": "丽桑卓",
+    "apiname": "Lissandra",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 131,
+    "name": "黛安娜",
+    "apiname": "Diana",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 133,
+    "name": "奎因",
+    "apiname": "Quinn",
+    "totalAs": 1.025,
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "tenacity": 1.2
+  },
+  {
+    "id": 134,
+    "name": "辛德拉",
+    "apiname": "Syndra",
+    "dmgDealt": 1.05,
+    "abilityHaste": 5
+  },
+  {
+    "id": 141,
+    "name": "凯隐",
+    "apiname": "Kayn",
+    "dmgDealt": 1,
+    "healing": 0.8,
+    "tenacity": 1.2
+  },
+  {
+    "id": 142,
+    "name": "佐伊",
+    "apiname": "Zoe",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 143,
+    "name": "婕拉",
+    "apiname": "Zyra",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 145,
+    "name": "卡莎",
+    "apiname": "Kaisa",
+    "totalAs": 1.025,
+    "dmgDealt": 1,
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 147,
+    "name": "萨勒芬妮",
+    "apiname": "Seraphine",
+    "dmgDealt": 1,
+    "dmgTaken": 1.2,
+    "healing": 0.8,
+    "shielding": 0.8
+  },
+  {
+    "id": 150,
+    "name": "纳尔",
+    "apiname": "Gnar",
+    "totalAs": 1.025,
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 154,
+    "name": "扎克",
+    "apiname": "Zac",
+    "dmgTaken": 0.96,
+    "healing": 1.1
+  },
+  {
+    "id": 157,
+    "name": "亚索",
+    "apiname": "Yasuo",
+    "totalAs": 1.025
+  },
+  {
+    "id": 161,
+    "name": "维克兹",
+    "apiname": "Velkoz",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 163,
+    "name": "塔莉垭",
+    "apiname": "Taliyah",
+    "dmgDealt": 1
+  },
+  {
+    "id": 164,
+    "name": "卡蜜尔",
+    "apiname": "Camille",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "healing": 1.2,
+    "shielding": 1.1,
+    "abilityHaste": 10
+  },
+  {
+    "id": 166,
+    "name": "阿克尚",
+    "apiname": "Akshan",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 200,
+    "name": "卑尔维斯",
+    "apiname": "Belveth",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "tenacity": 1.2
+  },
+  {
+    "id": 202,
+    "name": "烬",
+    "apiname": "Jhin",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 203,
+    "name": "千珏",
+    "apiname": "Kindred",
+    "totalAs": 1.025,
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 221,
+    "name": "泽丽",
+    "apiname": "Zeri",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 222,
+    "name": "金克丝",
+    "apiname": "Jinx",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 223,
+    "name": "塔姆",
+    "apiname": "TahmKench",
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 233,
+    "name": "贝蕾亚",
+    "apiname": "Briar",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1,
+    "healing": 1.1
+  },
+  {
+    "id": 234,
+    "name": "佛耶戈",
+    "apiname": "Viego",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 235,
+    "name": "赛娜",
+    "apiname": "Senna",
+    "dmgDealt": 0.92,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 236,
+    "name": "卢锡安",
+    "apiname": "Lucian",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "tenacity": 1.2,
+    "abilityHaste": 10
+  },
+  {
+    "id": 238,
+    "name": "劫",
+    "apiname": "Zed",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95,
+    "energyRegenMod": 1.2,
+    "tenacity": 1.2
+  },
+  {
+    "id": 240,
+    "name": "克烈",
+    "apiname": "Kled",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 240,
+    "name": "克烈",
+    "apiname": "Kled",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 245,
+    "name": "艾克",
+    "apiname": "Ekko",
+    "dmgDealt": 1.1,
+    "dmgTaken": 1,
+    "tenacity": 1.2
+  },
+  {
+    "id": 246,
+    "name": "奇亚娜",
+    "apiname": "Qiyana",
+    "abilityHaste": 20,
+    "dmgDealt": 1.15,
+    "dmgTaken": 0.9,
+    "tenacity": 1.2
+  },
+  {
+    "id": 254,
+    "name": "蔚",
+    "apiname": "Vi",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.95
+  },
+  {
+    "id": 266,
+    "name": "亚托克斯",
+    "apiname": "Aatrox",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 267,
+    "name": "娜美",
+    "apiname": "Nami",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "healing": 1
+  },
+  {
+    "id": 268,
+    "name": "阿兹尔",
+    "apiname": "Azir",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95,
+    "totalAs": 1.025,
+    "abilityHaste": 20
+  },
+  {
+    "id": 350,
+    "name": "悠米",
+    "apiname": "Yuumi",
+    "dmgDealt": 1
+  },
+  {
+    "id": 360,
+    "name": "莎弥拉",
+    "apiname": "Samira",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 412,
+    "name": "锤石",
+    "apiname": "Thresh",
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 420,
+    "name": "俄洛伊",
+    "apiname": "Illaoi",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "healing": 0.8
+  },
+  {
+    "id": 421,
+    "name": "雷克塞",
+    "apiname": "RekSai",
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 427,
+    "name": "艾翁",
+    "apiname": "Ivern",
+    "dmgDealt": 0.95,
+    "shielding": 0.9
+  },
+  {
+    "id": 429,
+    "name": "卡莉丝塔",
+    "apiname": "Kalista",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9
+  },
+  {
+    "id": 432,
+    "name": "巴德",
+    "apiname": "Bard",
+    "dmgDealt": 1.15,
+    "dmgTaken": 0.85,
+    "healing": 1.2
+  },
+  {
+    "id": 497,
+    "name": "洛",
+    "apiname": "Rakan",
+    "dmgDealt": 1,
+    "dmgTaken": 0.95,
+    "abilityHaste": 10
+  },
+  {
+    "id": 498,
+    "name": "霞",
+    "apiname": "Xayah",
+    "totalAs": 1.03,
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 516,
+    "name": "奥恩",
+    "apiname": "Ornn",
+    "dmgDealt": 0.9,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 517,
+    "name": "塞拉斯",
+    "apiname": "Sylas",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 523,
+    "name": "厄斐琉斯",
+    "apiname": "Aphelios",
+    "dmgDealt": 1,
+    "dmgTaken": 1
+  },
+  {
+    "id": 526,
+    "name": "芮尔",
+    "apiname": "Rell",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1,
+    "shielding": 0.9
+  },
+  {
+    "id": 555,
+    "name": "派克",
+    "apiname": "Pyke",
+    "dmgDealt": 1.1,
+    "dmgTaken": 0.9,
+    "tenacity": 1.2
+  },
+  {
+    "id": 711,
+    "name": "薇古丝",
+    "apiname": "Vex",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1
+  },
+  {
+    "id": 777,
+    "name": "永恩",
+    "apiname": "Yone",
+    "totalAs": 1.025,
+    "dmgDealt": 1.05,
+    "dmgTaken": 0.97
+  },
+  {
+    "id": 799,
+    "name": "安蓓萨",
+    "apiname": "Ambessa",
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 804,
+    "name": "芸阿娜",
+    "apiname": "Yunara",
+    "dmgDealt": 1
+  },
+  {
+    "id": 875,
+    "name": "瑟提",
+    "apiname": "Sett",
+    "dmgDealt": 1,
+    "dmgTaken": 1.1
+  },
+  {
+    "id": 876,
+    "name": "莉莉娅",
+    "apiname": "Lillia",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 887,
+    "name": "格温",
+    "apiname": "Gwen",
+    "dmgDealt": 1.02
+  },
+  {
+    "id": 888,
+    "name": "烈娜塔 · 戈拉斯克",
+    "apiname": "Renata",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05,
+    "shielding": 1
+  },
+  {
+    "id": 893,
+    "name": "阿萝拉",
+    "apiname": "Aurora",
+    "abilityHaste": 10
+  },
+  {
+    "id": 895,
+    "name": "尼菈",
+    "apiname": "Nilah",
+    "dmgDealt": 1,
+    "healing": 1
+  },
+  {
+    "id": 897,
+    "name": "奎桑提",
+    "apiname": "KSante",
+    "dmgDealt": 1.05,
+    "dmgTaken": 1
+  },
+  {
+    "id": 901,
+    "name": "斯莫德",
+    "apiname": "Smolder",
+    "dmgTaken": 1.02
+  },
+  {
+    "id": 902,
+    "name": "米利欧",
+    "apiname": "Milio",
+    "healing": 0.95,
+    "shielding": 0.9
+  },
+  {
+    "id": 904,
+    "name": "亚恒",
+    "apiname": "Zaahen",
+    "dmgDealt": 0.95,
+    "dmgTaken": 1.05
+  },
+  {
+    "id": 910,
+    "name": "彗",
+    "apiname": "Hwei",
+    "dmgDealt": 0.95
+  },
+  {
+    "id": 950,
+    "name": "纳亚菲利",
+    "apiname": "Naafiri",
+    "dmgDealt": 1.1,
+    "abilityHaste": 10
+  }
+]

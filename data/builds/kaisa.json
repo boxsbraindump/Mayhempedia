@@ -1,0 +1,58 @@
+{
+  "championId": 145,
+  "championName": "卡莎",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP卡莎",
+      "damageType": "AP",
+      "note": "",
+      "augments": {
+        "core": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "good": [
+          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
+          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 2510, "name": "黄昏与黎明" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3135, "name": "虚空之杖" },
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3115, "name": "纳什之牙" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null
+    },
+    {
+      "key": "ad",
+      "name": "AD卡莎",
+      "damageType": "AD",
+      "note": "on-hit/暴击流，数据来源 OP.GG（26.13）交叉核对",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6672, "name": "海妖杀手" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3124, "name": "鬼索的狂暴之刃" },
+        { "id": 3115, "name": "纳什之牙" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3087, "name": "斯塔缇克电刃" }
+      ],
+      "runes": null
+    }
+  ]
+}

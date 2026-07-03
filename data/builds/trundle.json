@@ -1,0 +1,35 @@
+{
+  "championId": 48,
+  "championName": "特朗德尔",
+  "archetypes": [
+    {
+      "key": "onhit",
+      "name": "普攻/吸血特朗德尔",
+      "damageType": "AD",
+      "note": "叠攻速吸血打普攻续航坦线，海克斯偏向攻速/生命偷取和控制后的爆发。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "good": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ],
+        "trap": [{ "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3065, "name": "振奋盔甲" },
+        { "id": 2504, "name": "败魔" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3110, "name": "冰霜之心" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg", "aramgg.com"]
+    }
+  ]
+}

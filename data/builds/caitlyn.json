@@ -1,0 +1,31 @@
+{
+  "championId": 51,
+  "championName": "凯特琳",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击凯特琳",
+      "damageType": "AD",
+      "note": "远程消耗+暴击后期核心；「亮出你的剑」会把她转成近战附加护甲/生命偷取，是短时间换血/收割用的爆发窗口，不是打法主轴。",
+      "augments": {
+        "core": [
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" }
+        ],
+        "trap": [{ "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }]
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3031, "name": "无尽之刃" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

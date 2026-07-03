@@ -1,0 +1,36 @@
+{
+  "championId": 245,
+  "championName": "艾克",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP刺客艾克",
+      "damageType": "AP",
+      "note": "AP爆发刺客，靠W被动(对残血目标真实伤害)+多件法穿/爆发装快速burst，海克斯优先叠法术强度与技能急速。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ],
+        "good": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" },
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 2510, "name": "黄昏与黎明" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3152, "name": "海克斯科技火箭腰带" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "blitz.gg", "metasrc.com"]
+    }
+  ]
+}

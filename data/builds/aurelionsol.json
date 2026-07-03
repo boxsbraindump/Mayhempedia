@@ -1,0 +1,37 @@
+{
+  "championId": 136,
+  "championName": "奥瑞利安·索尔",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP灼烧奥瑞利安·索尔",
+      "damageType": "AP",
+      "note": "Q持续命中叠加灼烧/减速类海克斯，配合瑞莱的冰晶节杖+兰德里的折磨打持续法术伤害。",
+      "augments": {
+        "core": [
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3116, "name": "瑞莱的冰晶节杖" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 2503, "name": "黯炎火炬" },
+        { "id": 3003, "name": "大天使之杖" },
+        { "id": 4645, "name": "影焰" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "blitz.gg"]
+    }
+  ]
+}

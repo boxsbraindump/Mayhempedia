@@ -1,0 +1,34 @@
+{
+  "championId": 876,
+  "championName": "莉莉娅",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP莉莉娅",
+      "damageType": "AP",
+      "note": "被动持续法术伤害配合高额外移速在团战中风筝消耗，黯炎火炬起手叠燃烧法强，瑞莱的冰晶节杖利用高机动性打出减速差距。",
+      "augments": {
+        "core": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" }
+        ],
+        "good": [
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 238, "apiName": "TransmutePrismatic", "name": "质变：棱彩阶" },
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 2503, "name": "黯炎火炬" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3116, "name": "瑞莱的冰晶节杖" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "aramgg.com"]
+    }
+  ]
+}

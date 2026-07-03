@@ -1,0 +1,36 @@
+{
+  "championId": 11,
+  "championName": "易",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD易(暴击/秘术冲拳流)",
+      "damageType": "AD",
+      "note": "AD暴击+攻速真伤流，E鬼魅步伐叠加真实伤害配合暴击装秒杀脆皮，「秘术冲拳」棱彩缩短技能CD做到Q几乎无CD。",
+      "augments": {
+        "core": [
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
+          { "id": 51, "apiName": "LightemUp", "name": "点亮他们！" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ],
+        "trap": [{ "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }]
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 6632, "name": "神圣分离者" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "op.gg", "metasrc.com"]
+    }
+  ]
+}

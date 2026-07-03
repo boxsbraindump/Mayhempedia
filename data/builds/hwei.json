@@ -1,0 +1,35 @@
+{
+  "championId": 910,
+  "championName": "彗",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP彗(法术爆发/持续燃烧流)",
+      "damageType": "AP",
+      "note": "叠加燃烧类DoT效果并利用范围技能打团，出装以黯炎火炬+兰德里的折磨为核心DoT组合，法师之靴走位保命，后期死亡之帽/影焰提升爆发。",
+      "augments": {
+        "core": [
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "good": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" }
+        ],
+        "trap": [{ "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }]
+      },
+      "items": [
+        { "id": 3802, "name": "遗失的章节" },
+        { "id": 2503, "name": "黯炎火炬" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg", "u.gg"]
+    }
+  ]
+}

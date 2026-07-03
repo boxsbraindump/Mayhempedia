@@ -1,0 +1,34 @@
+{
+  "championId": 89,
+  "championName": "蕾欧娜",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克蕾欧娜",
+      "damageType": "Tank",
+      "note": "纯开团坦克：Q晒、E拉、大招定身，站前排叠血量装备触发被动伤害。",
+      "augments": {
+        "core": [
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3068, "name": "日炎圣盾" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "championId": 516,
+  "championName": "奥恩",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克流奥恩",
+      "damageType": "Tank",
+      "note": "叠血量与护甲魔抗被动放大身板，靠坦克引擎和钢化你心任务把身板叠到离谱，站场吃伤害保护AP核心。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 70, "apiName": "RestlessRestoration", "name": "无休回复" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" }
+        ],
+        "trap": [{ "id": 234, "apiName": "GambaAnvil", "name": "财运锻造器" }]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3065, "name": "振奋盔甲" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 6665, "name": "千变者贾修" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+    },
+    {
+      "key": "ap-burst",
+      "name": "AP爆发奥恩(精怪魔法流)",
+      "damageType": "AP",
+      "note": "进阶/情景向combo：精怪魔法在大招首次命中时可4段触发易碎(18%最大生命值魔法伤害×4)，配合法穿与增伤海克斯瞬间做出巨额爆发，比标准坦克流伤害更高但更依赖连招时机。",
+      "augments": {
+        "core": [{ "id": 194, "apiName": "FeyMagic", "name": "精怪魔法" }],
+        "good": [
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 98, "apiName": "WithHaste", "name": "急急小子" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3011, "name": "炼金科技纯化器" },
+        { "id": 3135, "name": "虚空之杖" },
+        { "id": 3068, "name": "日炎圣盾" },
+        { "id": 6665, "name": "千变者贾修" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "zhihu.com"]
+    }
+  ]
+}

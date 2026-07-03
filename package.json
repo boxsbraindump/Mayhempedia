@@ -1,0 +1,41 @@
+{
+  "name": "aram-copilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "海克斯大乱斗 overlay — ARAM Build Copilot (流派副官)",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && npm run build:renderer && electron .",
+    "watch": "tsc -w",
+    "dev": "vite",
+    "build:renderer": "vite build",
+    "data": "node scripts/fetch-data.mjs && node scripts/download-icons.mjs && node scripts/fetch-aram-balance.mjs && node scripts/build-hero-tier.mjs",
+    "data:fetch": "node scripts/fetch-data.mjs",
+    "data:icons": "node scripts/download-icons.mjs",
+    "data:balance": "node scripts/fetch-aram-balance.mjs",
+    "data:tier": "node scripts/build-hero-tier.mjs",
+    "validate": "node scripts/validate-builds.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "electron": "^42.5.0",
+    "pinyin-pro": "^3.28.1",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.2"
+  },
+  "dependencies": {
+    "electron-store": "^11.0.2",
+    "league-connect": "^6.0.0-rc13",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "uiohook-napi": "^1.5.5"
+  }
+}

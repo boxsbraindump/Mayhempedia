@@ -1,0 +1,2382 @@
+[
+  {
+    "id": 245,
+    "name": "艾克",
+    "title": "时间刺客",
+    "alias": "Ekko",
+    "pinyin": "aike",
+    "initials": "ak",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/245.png",
+    "iconLocal": "icons/champions/245.png"
+  },
+  {
+    "id": 34,
+    "name": "艾尼维亚",
+    "title": "冰晶凤凰",
+    "alias": "Anivia",
+    "pinyin": "ainiweiya",
+    "initials": "anwy",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/34.png",
+    "iconLocal": "icons/champions/34.png"
+  },
+  {
+    "id": 39,
+    "name": "艾瑞莉娅",
+    "title": "刀锋舞者",
+    "alias": "Irelia",
+    "pinyin": "airuiliya",
+    "initials": "arly",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/39.png",
+    "iconLocal": "icons/champions/39.png"
+  },
+  {
+    "id": 427,
+    "name": "艾翁",
+    "title": "翠神",
+    "alias": "Ivern",
+    "pinyin": "aiweng",
+    "initials": "aw",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/427.png",
+    "iconLocal": "icons/champions/427.png"
+  },
+  {
+    "id": 22,
+    "name": "艾希",
+    "title": "寒冰射手",
+    "alias": "Ashe",
+    "pinyin": "aixi",
+    "initials": "ax",
+    "roles": [
+      "marksman",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/22.png",
+    "iconLocal": "icons/champions/22.png"
+  },
+  {
+    "id": 84,
+    "name": "阿卡丽",
+    "title": "离群之刺",
+    "alias": "Akali",
+    "pinyin": "akali",
+    "initials": "akl",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/84.png",
+    "iconLocal": "icons/champions/84.png"
+  },
+  {
+    "id": 166,
+    "name": "阿克尚",
+    "title": "影哨",
+    "alias": "Akshan",
+    "pinyin": "akeshang",
+    "initials": "aks",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/166.png",
+    "iconLocal": "icons/champions/166.png"
+  },
+  {
+    "id": 103,
+    "name": "阿狸",
+    "title": "九尾妖狐",
+    "alias": "Ahri",
+    "pinyin": "ali",
+    "initials": "al",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/103.png",
+    "iconLocal": "icons/champions/103.png"
+  },
+  {
+    "id": 12,
+    "name": "阿利斯塔",
+    "title": "牛头酋长",
+    "alias": "Alistar",
+    "pinyin": "alisita",
+    "initials": "alst",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/12.png",
+    "iconLocal": "icons/champions/12.png"
+  },
+  {
+    "id": 893,
+    "name": "阿萝拉",
+    "title": "双界灵兔",
+    "alias": "Aurora",
+    "pinyin": "aluola",
+    "initials": "all",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/893.png",
+    "iconLocal": "icons/champions/893.png"
+  },
+  {
+    "id": 32,
+    "name": "阿木木",
+    "title": "殇之木乃伊",
+    "alias": "Amumu",
+    "pinyin": "amumu",
+    "initials": "amm",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/32.png",
+    "iconLocal": "icons/champions/32.png"
+  },
+  {
+    "id": 799,
+    "name": "安蓓萨",
+    "title": "铁血狼母",
+    "alias": "Ambessa",
+    "pinyin": "anbeisa",
+    "initials": "abs",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/799.png",
+    "iconLocal": "icons/champions/799.png"
+  },
+  {
+    "id": 1,
+    "name": "安妮",
+    "title": "黑暗之女",
+    "alias": "Annie",
+    "pinyin": "anni",
+    "initials": "an",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/1.png",
+    "iconLocal": "icons/champions/1.png"
+  },
+  {
+    "id": 516,
+    "name": "奥恩",
+    "title": "山隐之焰",
+    "alias": "Ornn",
+    "pinyin": "aoen",
+    "initials": "ae",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/516.png",
+    "iconLocal": "icons/champions/516.png"
+  },
+  {
+    "id": 2,
+    "name": "奥拉夫",
+    "title": "狂战士",
+    "alias": "Olaf",
+    "pinyin": "aolafu",
+    "initials": "alf",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/2.png",
+    "iconLocal": "icons/champions/2.png"
+  },
+  {
+    "id": 61,
+    "name": "奥莉安娜",
+    "title": "发条魔灵",
+    "alias": "Orianna",
+    "pinyin": "aolianna",
+    "initials": "alan",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/61.png",
+    "iconLocal": "icons/champions/61.png"
+  },
+  {
+    "id": 136,
+    "name": "奥瑞利安·索尔",
+    "title": "铸星龙王",
+    "alias": "AurelionSol",
+    "pinyin": "aoruilian·suoer",
+    "initials": "arla·se",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/136.png",
+    "iconLocal": "icons/champions/136.png"
+  },
+  {
+    "id": 268,
+    "name": "阿兹尔",
+    "title": "沙漠皇帝",
+    "alias": "Azir",
+    "pinyin": "azier",
+    "initials": "aze",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/268.png",
+    "iconLocal": "icons/champions/268.png"
+  },
+  {
+    "id": 432,
+    "name": "巴德",
+    "title": "星界游神",
+    "alias": "Bard",
+    "pinyin": "bade",
+    "initials": "bd",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/432.png",
+    "iconLocal": "icons/champions/432.png"
+  },
+  {
+    "id": 200,
+    "name": "卑尔维斯",
+    "title": "虚空女皇",
+    "alias": "Belveth",
+    "pinyin": "beierweisi",
+    "initials": "bews",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/200.png",
+    "iconLocal": "icons/champions/200.png"
+  },
+  {
+    "id": 233,
+    "name": "贝蕾亚",
+    "title": "狂厄蔷薇",
+    "alias": "Briar",
+    "pinyin": "beileiya",
+    "initials": "bly",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/233.png",
+    "iconLocal": "icons/champions/233.png"
+  },
+  {
+    "id": 78,
+    "name": "波比",
+    "title": "圣锤之毅",
+    "alias": "Poppy",
+    "pinyin": "bobi",
+    "initials": "bb",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/78.png",
+    "iconLocal": "icons/champions/78.png"
+  },
+  {
+    "id": 63,
+    "name": "布兰德",
+    "title": "复仇焰魂",
+    "alias": "Brand",
+    "pinyin": "bulande",
+    "initials": "bld",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/63.png",
+    "iconLocal": "icons/champions/63.png"
+  },
+  {
+    "id": 53,
+    "name": "布里茨",
+    "title": "蒸汽机器人",
+    "alias": "Blitzcrank",
+    "pinyin": "bulici",
+    "initials": "blc",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/53.png",
+    "iconLocal": "icons/champions/53.png"
+  },
+  {
+    "id": 201,
+    "name": "布隆",
+    "title": "弗雷尔卓德之心",
+    "alias": "Braum",
+    "pinyin": "bulong",
+    "initials": "bl",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/201.png",
+    "iconLocal": "icons/champions/201.png"
+  },
+  {
+    "id": 412,
+    "name": "锤石",
+    "title": "魂锁典狱长",
+    "alias": "Thresh",
+    "pinyin": "chuishi",
+    "initials": "cs",
+    "roles": [
+      "support",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/412.png",
+    "iconLocal": "icons/champions/412.png"
+  },
+  {
+    "id": 18,
+    "name": "崔丝塔娜",
+    "title": "麦林炮手",
+    "alias": "Tristana",
+    "pinyin": "cuisitana",
+    "initials": "cstn",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/18.png",
+    "iconLocal": "icons/champions/18.png"
+  },
+  {
+    "id": 4,
+    "name": "崔斯特",
+    "title": "卡牌大师",
+    "alias": "TwistedFate",
+    "pinyin": "cuisite",
+    "initials": "cst",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/4.png",
+    "iconLocal": "icons/champions/4.png"
+  },
+  {
+    "id": 131,
+    "name": "黛安娜",
+    "title": "皎月女神",
+    "alias": "Diana",
+    "pinyin": "daianna",
+    "initials": "dan",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/131.png",
+    "iconLocal": "icons/champions/131.png"
+  },
+  {
+    "id": 122,
+    "name": "德莱厄斯",
+    "title": "诺克萨斯之手",
+    "alias": "Darius",
+    "pinyin": "delaiesi",
+    "initials": "dles",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/122.png",
+    "iconLocal": "icons/champions/122.png"
+  },
+  {
+    "id": 119,
+    "name": "德莱文",
+    "title": "荣耀行刑官",
+    "alias": "Draven",
+    "pinyin": "delaiwen",
+    "initials": "dlw",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/119.png",
+    "iconLocal": "icons/champions/119.png"
+  },
+  {
+    "id": 523,
+    "name": "厄斐琉斯",
+    "title": "残月之肃",
+    "alias": "Aphelios",
+    "pinyin": "efeiliusi",
+    "initials": "efls",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/523.png",
+    "iconLocal": "icons/champions/523.png"
+  },
+  {
+    "id": 6,
+    "name": "厄加特",
+    "title": "无畏战车",
+    "alias": "Urgot",
+    "pinyin": "ejiate",
+    "initials": "ejt",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/6.png",
+    "iconLocal": "icons/champions/6.png"
+  },
+  {
+    "id": 420,
+    "name": "俄洛伊",
+    "title": "海兽祭司",
+    "alias": "Illaoi",
+    "pinyin": "eluoyi",
+    "initials": "ely",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/420.png",
+    "iconLocal": "icons/champions/420.png"
+  },
+  {
+    "id": 21,
+    "name": "厄运小姐",
+    "title": "赏金猎人",
+    "alias": "MissFortune",
+    "pinyin": "eyunxiaojie",
+    "initials": "eyxj",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/21.png",
+    "iconLocal": "icons/champions/21.png"
+  },
+  {
+    "id": 114,
+    "name": "菲奥娜",
+    "title": "无双剑姬",
+    "alias": "Fiora",
+    "pinyin": "feiaona",
+    "initials": "fan",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/114.png",
+    "iconLocal": "icons/champions/114.png"
+  },
+  {
+    "id": 9,
+    "name": "费德提克",
+    "title": "远古恐惧",
+    "alias": "FiddleSticks",
+    "pinyin": "feidetike",
+    "initials": "fdtk",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/9.png",
+    "iconLocal": "icons/champions/9.png"
+  },
+  {
+    "id": 105,
+    "name": "菲兹",
+    "title": "潮汐海灵",
+    "alias": "Fizz",
+    "pinyin": "feizi",
+    "initials": "fz",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/105.png",
+    "iconLocal": "icons/champions/105.png"
+  },
+  {
+    "id": 234,
+    "name": "佛耶戈",
+    "title": "破败之王",
+    "alias": "Viego",
+    "pinyin": "foyege",
+    "initials": "fyg",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/234.png",
+    "iconLocal": "icons/champions/234.png"
+  },
+  {
+    "id": 8,
+    "name": "弗拉基米尔",
+    "title": "猩红收割者",
+    "alias": "Vladimir",
+    "pinyin": "fulajimier",
+    "initials": "fljme",
+    "roles": [
+      "mage",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/8.png",
+    "iconLocal": "icons/champions/8.png"
+  },
+  {
+    "id": 86,
+    "name": "盖伦",
+    "title": "德玛西亚之力",
+    "alias": "Garen",
+    "pinyin": "gailun",
+    "initials": "gl",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/86.png",
+    "iconLocal": "icons/champions/86.png"
+  },
+  {
+    "id": 104,
+    "name": "格雷福斯",
+    "title": "法外狂徒",
+    "alias": "Graves",
+    "pinyin": "geleifusi",
+    "initials": "glfs",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/104.png",
+    "iconLocal": "icons/champions/104.png"
+  },
+  {
+    "id": 887,
+    "name": "格温",
+    "title": "灵罗娃娃",
+    "alias": "Gwen",
+    "pinyin": "gewen",
+    "initials": "gw",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/887.png",
+    "iconLocal": "icons/champions/887.png"
+  },
+  {
+    "id": 79,
+    "name": "古拉加斯",
+    "title": "酒桶",
+    "alias": "Gragas",
+    "pinyin": "gulajiasi",
+    "initials": "gljs",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/79.png",
+    "iconLocal": "icons/champions/79.png"
+  },
+  {
+    "id": 74,
+    "name": "黑默丁格",
+    "title": "大发明家",
+    "alias": "Heimerdinger",
+    "pinyin": "heimodingge",
+    "initials": "hmdg",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/74.png",
+    "iconLocal": "icons/champions/74.png"
+  },
+  {
+    "id": 120,
+    "name": "赫卡里姆",
+    "title": "战争之影",
+    "alias": "Hecarim",
+    "pinyin": "hekalimu",
+    "initials": "hklm",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/120.png",
+    "iconLocal": "icons/champions/120.png"
+  },
+  {
+    "id": 910,
+    "name": "彗",
+    "title": "异画师",
+    "alias": "Hwei",
+    "pinyin": "hui",
+    "initials": "h",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/910.png",
+    "iconLocal": "icons/champions/910.png"
+  },
+  {
+    "id": 24,
+    "name": "贾克斯",
+    "title": "武器大师",
+    "alias": "Jax",
+    "pinyin": "jiakesi",
+    "initials": "jks",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/24.png",
+    "iconLocal": "icons/champions/24.png"
+  },
+  {
+    "id": 3,
+    "name": "加里奥",
+    "title": "正义巨像",
+    "alias": "Galio",
+    "pinyin": "jialiao",
+    "initials": "jla",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/3.png",
+    "iconLocal": "icons/champions/3.png"
+  },
+  {
+    "id": 40,
+    "name": "迦娜",
+    "title": "风暴之怒",
+    "alias": "Janna",
+    "pinyin": "jiana",
+    "initials": "jn",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/40.png",
+    "iconLocal": "icons/champions/40.png"
+  },
+  {
+    "id": 59,
+    "name": "嘉文四世",
+    "title": "德玛西亚皇子",
+    "alias": "JarvanIV",
+    "pinyin": "jiawensishi",
+    "initials": "jwss",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/59.png",
+    "iconLocal": "icons/champions/59.png"
+  },
+  {
+    "id": 238,
+    "name": "劫",
+    "title": "影流之主",
+    "alias": "Zed",
+    "pinyin": "jie",
+    "initials": "j",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/238.png",
+    "iconLocal": "icons/champions/238.png"
+  },
+  {
+    "id": 143,
+    "name": "婕拉",
+    "title": "荆棘之兴",
+    "alias": "Zyra",
+    "pinyin": "jiela",
+    "initials": "jl",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/143.png",
+    "iconLocal": "icons/champions/143.png"
+  },
+  {
+    "id": 126,
+    "name": "杰斯",
+    "title": "未来守护者",
+    "alias": "Jayce",
+    "pinyin": "jiesi",
+    "initials": "js",
+    "roles": [
+      "fighter",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/126.png",
+    "iconLocal": "icons/champions/126.png"
+  },
+  {
+    "id": 115,
+    "name": "吉格斯",
+    "title": "爆破鬼才",
+    "alias": "Ziggs",
+    "pinyin": "jigesi",
+    "initials": "jgs",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/115.png",
+    "iconLocal": "icons/champions/115.png"
+  },
+  {
+    "id": 26,
+    "name": "基兰",
+    "title": "时光守护者",
+    "alias": "Zilean",
+    "pinyin": "jilan",
+    "initials": "jl",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/26.png",
+    "iconLocal": "icons/champions/26.png"
+  },
+  {
+    "id": 202,
+    "name": "烬",
+    "title": "戏命师",
+    "alias": "Jhin",
+    "pinyin": "jin",
+    "initials": "j",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/202.png",
+    "iconLocal": "icons/champions/202.png"
+  },
+  {
+    "id": 222,
+    "name": "金克丝",
+    "title": "暴走萝莉",
+    "alias": "Jinx",
+    "pinyin": "jinkesi",
+    "initials": "jks",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/222.png",
+    "iconLocal": "icons/champions/222.png"
+  },
+  {
+    "id": 43,
+    "name": "卡尔玛",
+    "title": "天启者",
+    "alias": "Karma",
+    "pinyin": "kaerma",
+    "initials": "kem",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/43.png",
+    "iconLocal": "icons/champions/43.png"
+  },
+  {
+    "id": 30,
+    "name": "卡尔萨斯",
+    "title": "死亡颂唱者",
+    "alias": "Karthus",
+    "pinyin": "kaersasi",
+    "initials": "kess",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/30.png",
+    "iconLocal": "icons/champions/30.png"
+  },
+  {
+    "id": 10,
+    "name": "凯尔",
+    "title": "正义天使",
+    "alias": "Kayle",
+    "pinyin": "kaier",
+    "initials": "ke",
+    "roles": [
+      "mage",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/10.png",
+    "iconLocal": "icons/champions/10.png"
+  },
+  {
+    "id": 85,
+    "name": "凯南",
+    "title": "狂暴之心",
+    "alias": "Kennen",
+    "pinyin": "kainan",
+    "initials": "kn",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/85.png",
+    "iconLocal": "icons/champions/85.png"
+  },
+  {
+    "id": 51,
+    "name": "凯特琳",
+    "title": "皮城女警",
+    "alias": "Caitlyn",
+    "pinyin": "kaitelin",
+    "initials": "ktl",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/51.png",
+    "iconLocal": "icons/champions/51.png"
+  },
+  {
+    "id": 141,
+    "name": "凯隐",
+    "title": "影流之镰",
+    "alias": "Kayn",
+    "pinyin": "kaiyin",
+    "initials": "ky",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/141.png",
+    "iconLocal": "icons/champions/141.png"
+  },
+  {
+    "id": 429,
+    "name": "卡莉丝塔",
+    "title": "复仇之矛",
+    "alias": "Kalista",
+    "pinyin": "kalisita",
+    "initials": "klst",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/429.png",
+    "iconLocal": "icons/champions/429.png"
+  },
+  {
+    "id": 164,
+    "name": "卡蜜尔",
+    "title": "青钢影",
+    "alias": "Camille",
+    "pinyin": "kamier",
+    "initials": "kme",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/164.png",
+    "iconLocal": "icons/champions/164.png"
+  },
+  {
+    "id": 38,
+    "name": "卡萨丁",
+    "title": "虚空行者",
+    "alias": "Kassadin",
+    "pinyin": "kasading",
+    "initials": "ksd",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/38.png",
+    "iconLocal": "icons/champions/38.png"
+  },
+  {
+    "id": 145,
+    "name": "卡莎",
+    "title": "虚空之女",
+    "alias": "Kaisa",
+    "pinyin": "kasha",
+    "initials": "ks",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/145.png",
+    "iconLocal": "icons/champions/145.png"
+  },
+  {
+    "id": 55,
+    "name": "卡特琳娜",
+    "title": "不祥之刃",
+    "alias": "Katarina",
+    "pinyin": "katelinna",
+    "initials": "ktln",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/55.png",
+    "iconLocal": "icons/champions/55.png"
+  },
+  {
+    "id": 69,
+    "name": "卡西奥佩娅",
+    "title": "魔蛇之拥",
+    "alias": "Cassiopeia",
+    "pinyin": "kaxiaopeiya",
+    "initials": "kxapy",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/69.png",
+    "iconLocal": "icons/champions/69.png"
+  },
+  {
+    "id": 121,
+    "name": "卡兹克",
+    "title": "虚空掠夺者",
+    "alias": "Khazix",
+    "pinyin": "kazike",
+    "initials": "kzk",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/121.png",
+    "iconLocal": "icons/champions/121.png"
+  },
+  {
+    "id": 96,
+    "name": "克格莫",
+    "title": "深渊巨口",
+    "alias": "KogMaw",
+    "pinyin": "kegemo",
+    "initials": "kgm",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/96.png",
+    "iconLocal": "icons/champions/96.png"
+  },
+  {
+    "id": 31,
+    "name": "科加斯",
+    "title": "虚空恐惧",
+    "alias": "Chogath",
+    "pinyin": "kejiasi",
+    "initials": "kjs",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/31.png",
+    "iconLocal": "icons/champions/31.png"
+  },
+  {
+    "id": 240,
+    "name": "克烈",
+    "title": "暴怒骑士",
+    "alias": "Kled",
+    "pinyin": "kelie",
+    "initials": "kl",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/240.png",
+    "iconLocal": "icons/champions/240.png"
+  },
+  {
+    "id": 897,
+    "name": "奎桑提",
+    "title": "纳祖芒荣耀",
+    "alias": "KSante",
+    "pinyin": "kuisangti",
+    "initials": "kst",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/897.png",
+    "iconLocal": "icons/champions/897.png"
+  },
+  {
+    "id": 133,
+    "name": "奎因",
+    "title": "德玛西亚之翼",
+    "alias": "Quinn",
+    "pinyin": "kuiyin",
+    "initials": "ky",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/133.png",
+    "iconLocal": "icons/champions/133.png"
+  },
+  {
+    "id": 42,
+    "name": "库奇",
+    "title": "英勇投弹手",
+    "alias": "Corki",
+    "pinyin": "kuqi",
+    "initials": "kq",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/42.png",
+    "iconLocal": "icons/champions/42.png"
+  },
+  {
+    "id": 99,
+    "name": "拉克丝",
+    "title": "光辉女郎",
+    "alias": "Lux",
+    "pinyin": "lakesi",
+    "initials": "lks",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/99.png",
+    "iconLocal": "icons/champions/99.png"
+  },
+  {
+    "id": 33,
+    "name": "拉莫斯",
+    "title": "披甲龙龟",
+    "alias": "Rammus",
+    "pinyin": "lamosi",
+    "initials": "lms",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/33.png",
+    "iconLocal": "icons/champions/33.png"
+  },
+  {
+    "id": 68,
+    "name": "兰博",
+    "title": "机械公敌",
+    "alias": "Rumble",
+    "pinyin": "lanbo",
+    "initials": "lb",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/68.png",
+    "iconLocal": "icons/champions/68.png"
+  },
+  {
+    "id": 7,
+    "name": "乐芙兰",
+    "title": "诡术妖姬",
+    "alias": "Leblanc",
+    "pinyin": "lefulan",
+    "initials": "lfl",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/7.png",
+    "iconLocal": "icons/champions/7.png"
+  },
+  {
+    "id": 107,
+    "name": "雷恩加尔",
+    "title": "傲之追猎者",
+    "alias": "Rengar",
+    "pinyin": "leienjiaer",
+    "initials": "leje",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/107.png",
+    "iconLocal": "icons/champions/107.png"
+  },
+  {
+    "id": 58,
+    "name": "雷克顿",
+    "title": "荒漠屠夫",
+    "alias": "Renekton",
+    "pinyin": "leikedun",
+    "initials": "lkd",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/58.png",
+    "iconLocal": "icons/champions/58.png"
+  },
+  {
+    "id": 421,
+    "name": "雷克塞",
+    "title": "虚空遁地兽",
+    "alias": "RekSai",
+    "pinyin": "leikesai",
+    "initials": "lks",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/421.png",
+    "iconLocal": "icons/champions/421.png"
+  },
+  {
+    "id": 89,
+    "name": "蕾欧娜",
+    "title": "曙光女神",
+    "alias": "Leona",
+    "pinyin": "leiouna",
+    "initials": "lon",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/89.png",
+    "iconLocal": "icons/champions/89.png"
+  },
+  {
+    "id": 888,
+    "name": "烈娜塔 · 戈拉斯克",
+    "title": "炼金男爵",
+    "alias": "Renata",
+    "pinyin": "lienata · gelasike",
+    "initials": "lnt · glsk",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/888.png",
+    "iconLocal": "icons/champions/888.png"
+  },
+  {
+    "id": 876,
+    "name": "莉莉娅",
+    "title": "含羞蓓蕾",
+    "alias": "Lillia",
+    "pinyin": "liliya",
+    "initials": "lly",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/876.png",
+    "iconLocal": "icons/champions/876.png"
+  },
+  {
+    "id": 64,
+    "name": "李青",
+    "title": "盲僧",
+    "alias": "LeeSin",
+    "pinyin": "liqing",
+    "initials": "lq",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/64.png",
+    "iconLocal": "icons/champions/64.png"
+  },
+  {
+    "id": 127,
+    "name": "丽桑卓",
+    "title": "冰霜女巫",
+    "alias": "Lissandra",
+    "pinyin": "lisangzhuo",
+    "initials": "lsz",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/127.png",
+    "iconLocal": "icons/champions/127.png"
+  },
+  {
+    "id": 117,
+    "name": "璐璐",
+    "title": "仙灵女巫",
+    "alias": "Lulu",
+    "pinyin": "lulu",
+    "initials": "ll",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/117.png",
+    "iconLocal": "icons/champions/117.png"
+  },
+  {
+    "id": 497,
+    "name": "洛",
+    "title": "幻翎",
+    "alias": "Rakan",
+    "pinyin": "luo",
+    "initials": "l",
+    "roles": [
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/497.png",
+    "iconLocal": "icons/champions/497.png"
+  },
+  {
+    "id": 805,
+    "name": "洛克",
+    "title": "灰烬驱魔人",
+    "alias": "Locke",
+    "pinyin": "luoke",
+    "initials": "lk",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/805.png",
+    "iconLocal": "icons/champions/805.png"
+  },
+  {
+    "id": 236,
+    "name": "卢锡安",
+    "title": "圣枪游侠",
+    "alias": "Lucian",
+    "pinyin": "luxian",
+    "initials": "lxa",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/236.png",
+    "iconLocal": "icons/champions/236.png"
+  },
+  {
+    "id": 90,
+    "name": "玛尔扎哈",
+    "title": "虚空先知",
+    "alias": "Malzahar",
+    "pinyin": "maerzhaha",
+    "initials": "mezh",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/90.png",
+    "iconLocal": "icons/champions/90.png"
+  },
+  {
+    "id": 57,
+    "name": "茂凯",
+    "title": "扭曲树精",
+    "alias": "Maokai",
+    "pinyin": "maokai",
+    "initials": "mk",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/57.png",
+    "iconLocal": "icons/champions/57.png"
+  },
+  {
+    "id": 800,
+    "name": "梅尔",
+    "title": "流光镜影",
+    "alias": "Mel",
+    "pinyin": "meier",
+    "initials": "me",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/800.png",
+    "iconLocal": "icons/champions/800.png"
+  },
+  {
+    "id": 36,
+    "name": "蒙多医生",
+    "title": "祖安狂人",
+    "alias": "DrMundo",
+    "pinyin": "mengduoyisheng",
+    "initials": "mdys",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/36.png",
+    "iconLocal": "icons/champions/36.png"
+  },
+  {
+    "id": 902,
+    "name": "米利欧",
+    "title": "明烛",
+    "alias": "Milio",
+    "pinyin": "miliou",
+    "initials": "mlo",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/902.png",
+    "iconLocal": "icons/champions/902.png"
+  },
+  {
+    "id": 82,
+    "name": "莫德凯撒",
+    "title": "铁铠冥魂",
+    "alias": "Mordekaiser",
+    "pinyin": "modekaisa",
+    "initials": "mdks",
+    "roles": [
+      "fighter",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/82.png",
+    "iconLocal": "icons/champions/82.png"
+  },
+  {
+    "id": 54,
+    "name": "墨菲特",
+    "title": "熔岩巨兽",
+    "alias": "Malphite",
+    "pinyin": "mofeite",
+    "initials": "mft",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/54.png",
+    "iconLocal": "icons/champions/54.png"
+  },
+  {
+    "id": 25,
+    "name": "莫甘娜",
+    "title": "堕落天使",
+    "alias": "Morgana",
+    "pinyin": "moganna",
+    "initials": "mgn",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/25.png",
+    "iconLocal": "icons/champions/25.png"
+  },
+  {
+    "id": 56,
+    "name": "魔腾",
+    "title": "永恒梦魇",
+    "alias": "Nocturne",
+    "pinyin": "moteng",
+    "initials": "mt",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/56.png",
+    "iconLocal": "icons/champions/56.png"
+  },
+  {
+    "id": 150,
+    "name": "纳尔",
+    "title": "迷失之牙",
+    "alias": "Gnar",
+    "pinyin": "naer",
+    "initials": "ne",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/150.png",
+    "iconLocal": "icons/champions/150.png"
+  },
+  {
+    "id": 76,
+    "name": "奈德丽",
+    "title": "狂野女猎手",
+    "alias": "Nidalee",
+    "pinyin": "naideli",
+    "initials": "ndl",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/76.png",
+    "iconLocal": "icons/champions/76.png"
+  },
+  {
+    "id": 267,
+    "name": "娜美",
+    "title": "唤潮鲛姬",
+    "alias": "Nami",
+    "pinyin": "namei",
+    "initials": "nm",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/267.png",
+    "iconLocal": "icons/champions/267.png"
+  },
+  {
+    "id": 950,
+    "name": "纳亚菲利",
+    "title": "百裂冥犬",
+    "alias": "Naafiri",
+    "pinyin": "nayafeili",
+    "initials": "nyfl",
+    "roles": [
+      "assassin",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/950.png",
+    "iconLocal": "icons/champions/950.png"
+  },
+  {
+    "id": 75,
+    "name": "内瑟斯",
+    "title": "沙漠死神",
+    "alias": "Nasus",
+    "pinyin": "neisesi",
+    "initials": "nss",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/75.png",
+    "iconLocal": "icons/champions/75.png"
+  },
+  {
+    "id": 518,
+    "name": "妮蔻",
+    "title": "万花通灵",
+    "alias": "Neeko",
+    "pinyin": "nikou",
+    "initials": "nk",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/518.png",
+    "iconLocal": "icons/champions/518.png"
+  },
+  {
+    "id": 895,
+    "name": "尼菈",
+    "title": "不羁之悦",
+    "alias": "Nilah",
+    "pinyin": "nila",
+    "initials": "nl",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/895.png",
+    "iconLocal": "icons/champions/895.png"
+  },
+  {
+    "id": 20,
+    "name": "努努和威朗普",
+    "title": "雪原双子",
+    "alias": "Nunu",
+    "pinyin": "nunuheweilangpu",
+    "initials": "nnhwlp",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/20.png",
+    "iconLocal": "icons/champions/20.png"
+  },
+  {
+    "id": 111,
+    "name": "诺提勒斯",
+    "title": "深海泰坦",
+    "alias": "Nautilus",
+    "pinyin": "nuotilesi",
+    "initials": "ntls",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/111.png",
+    "iconLocal": "icons/champions/111.png"
+  },
+  {
+    "id": 555,
+    "name": "派克",
+    "title": "血港鬼影",
+    "alias": "Pyke",
+    "pinyin": "paike",
+    "initials": "pk",
+    "roles": [
+      "support",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/555.png",
+    "iconLocal": "icons/champions/555.png"
+  },
+  {
+    "id": 80,
+    "name": "潘森",
+    "title": "不屈之枪",
+    "alias": "Pantheon",
+    "pinyin": "pansen",
+    "initials": "ps",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/80.png",
+    "iconLocal": "icons/champions/80.png"
+  },
+  {
+    "id": 41,
+    "name": "普朗克",
+    "title": "海洋之灾",
+    "alias": "Gangplank",
+    "pinyin": "pulangke",
+    "initials": "plk",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/41.png",
+    "iconLocal": "icons/champions/41.png"
+  },
+  {
+    "id": 203,
+    "name": "千珏",
+    "title": "永猎双子",
+    "alias": "Kindred",
+    "pinyin": "qianjue",
+    "initials": "qj",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/203.png",
+    "iconLocal": "icons/champions/203.png"
+  },
+  {
+    "id": 246,
+    "name": "奇亚娜",
+    "title": "元素女皇",
+    "alias": "Qiyana",
+    "pinyin": "qiyana",
+    "initials": "qyn",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/246.png",
+    "iconLocal": "icons/champions/246.png"
+  },
+  {
+    "id": 526,
+    "name": "芮尔",
+    "title": "镕铁少女",
+    "alias": "Rell",
+    "pinyin": "ruier",
+    "initials": "re",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/526.png",
+    "iconLocal": "icons/champions/526.png"
+  },
+  {
+    "id": 92,
+    "name": "锐雯",
+    "title": "放逐之刃",
+    "alias": "Riven",
+    "pinyin": "ruiwen",
+    "initials": "rw",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/92.png",
+    "iconLocal": "icons/champions/92.png"
+  },
+  {
+    "id": 13,
+    "name": "瑞兹",
+    "title": "符文法师",
+    "alias": "Ryze",
+    "pinyin": "ruizi",
+    "initials": "rz",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/13.png",
+    "iconLocal": "icons/champions/13.png"
+  },
+  {
+    "id": 14,
+    "name": "赛恩",
+    "title": "亡灵战神",
+    "alias": "Sion",
+    "pinyin": "saien",
+    "initials": "se",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/14.png",
+    "iconLocal": "icons/champions/14.png"
+  },
+  {
+    "id": 517,
+    "name": "塞拉斯",
+    "title": "解脱者",
+    "alias": "Sylas",
+    "pinyin": "sailasi",
+    "initials": "sls",
+    "roles": [
+      "mage",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/517.png",
+    "iconLocal": "icons/champions/517.png"
+  },
+  {
+    "id": 235,
+    "name": "赛娜",
+    "title": "涤魂圣枪",
+    "alias": "Senna",
+    "pinyin": "saina",
+    "initials": "sn",
+    "roles": [
+      "support",
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/235.png",
+    "iconLocal": "icons/champions/235.png"
+  },
+  {
+    "id": 35,
+    "name": "萨科",
+    "title": "恶魔小丑",
+    "alias": "Shaco",
+    "pinyin": "sake",
+    "initials": "sk",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/35.png",
+    "iconLocal": "icons/champions/35.png"
+  },
+  {
+    "id": 147,
+    "name": "萨勒芬妮",
+    "title": "星籁歌姬",
+    "alias": "Seraphine",
+    "pinyin": "salefenni",
+    "initials": "slfn",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/147.png",
+    "iconLocal": "icons/champions/147.png"
+  },
+  {
+    "id": 875,
+    "name": "瑟提",
+    "title": "腕豪",
+    "alias": "Sett",
+    "pinyin": "seti",
+    "initials": "st",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/875.png",
+    "iconLocal": "icons/champions/875.png"
+  },
+  {
+    "id": 113,
+    "name": "瑟庄妮",
+    "title": "北地之怒",
+    "alias": "Sejuani",
+    "pinyin": "sezhuangni",
+    "initials": "szn",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/113.png",
+    "iconLocal": "icons/champions/113.png"
+  },
+  {
+    "id": 360,
+    "name": "莎弥拉",
+    "title": "沙漠玫瑰",
+    "alias": "Samira",
+    "pinyin": "shamila",
+    "initials": "sml",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/360.png",
+    "iconLocal": "icons/champions/360.png"
+  },
+  {
+    "id": 98,
+    "name": "慎",
+    "title": "暮光之眼",
+    "alias": "Shen",
+    "pinyin": "shen",
+    "initials": "s",
+    "roles": [
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/98.png",
+    "iconLocal": "icons/champions/98.png"
+  },
+  {
+    "id": 72,
+    "name": "斯卡纳",
+    "title": "上古领主",
+    "alias": "Skarner",
+    "pinyin": "sikana",
+    "initials": "skn",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/72.png",
+    "iconLocal": "icons/champions/72.png"
+  },
+  {
+    "id": 901,
+    "name": "斯莫德",
+    "title": "炽炎雏龙",
+    "alias": "Smolder",
+    "pinyin": "simode",
+    "initials": "smd",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/901.png",
+    "iconLocal": "icons/champions/901.png"
+  },
+  {
+    "id": 50,
+    "name": "斯维因",
+    "title": "诺克萨斯统领",
+    "alias": "Swain",
+    "pinyin": "siweiyin",
+    "initials": "swy",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/50.png",
+    "iconLocal": "icons/champions/50.png"
+  },
+  {
+    "id": 62,
+    "name": "孙悟空",
+    "title": "齐天大圣",
+    "alias": "MonkeyKing",
+    "pinyin": "sunwukong",
+    "initials": "swk",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/62.png",
+    "iconLocal": "icons/champions/62.png"
+  },
+  {
+    "id": 16,
+    "name": "索拉卡",
+    "title": "众星之子",
+    "alias": "Soraka",
+    "pinyin": "suolaka",
+    "initials": "slk",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/16.png",
+    "iconLocal": "icons/champions/16.png"
+  },
+  {
+    "id": 37,
+    "name": "娑娜",
+    "title": "琴瑟仙女",
+    "alias": "Sona",
+    "pinyin": "suona",
+    "initials": "sn",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/37.png",
+    "iconLocal": "icons/champions/37.png"
+  },
+  {
+    "id": 23,
+    "name": "泰达米尔",
+    "title": "蛮族之王",
+    "alias": "Tryndamere",
+    "pinyin": "taidamier",
+    "initials": "tdme",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/23.png",
+    "iconLocal": "icons/champions/23.png"
+  },
+  {
+    "id": 91,
+    "name": "泰隆",
+    "title": "刀锋之影",
+    "alias": "Talon",
+    "pinyin": "tailong",
+    "initials": "tl",
+    "roles": [
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/91.png",
+    "iconLocal": "icons/champions/91.png"
+  },
+  {
+    "id": 44,
+    "name": "塔里克",
+    "title": "瓦洛兰之盾",
+    "alias": "Taric",
+    "pinyin": "talike",
+    "initials": "tlk",
+    "roles": [
+      "support",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/44.png",
+    "iconLocal": "icons/champions/44.png"
+  },
+  {
+    "id": 163,
+    "name": "塔莉垭",
+    "title": "岩雀",
+    "alias": "Taliyah",
+    "pinyin": "taliya",
+    "initials": "tly",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/163.png",
+    "iconLocal": "icons/champions/163.png"
+  },
+  {
+    "id": 223,
+    "name": "塔姆",
+    "title": "河流之王",
+    "alias": "TahmKench",
+    "pinyin": "tamu",
+    "initials": "tm",
+    "roles": [
+      "tank",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/223.png",
+    "iconLocal": "icons/champions/223.png"
+  },
+  {
+    "id": 48,
+    "name": "特朗德尔",
+    "title": "巨魔之王",
+    "alias": "Trundle",
+    "pinyin": "telangdeer",
+    "initials": "tlde",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/48.png",
+    "iconLocal": "icons/champions/48.png"
+  },
+  {
+    "id": 17,
+    "name": "提莫",
+    "title": "迅捷斥候",
+    "alias": "Teemo",
+    "pinyin": "timo",
+    "initials": "tm",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/17.png",
+    "iconLocal": "icons/champions/17.png"
+  },
+  {
+    "id": 29,
+    "name": "图奇",
+    "title": "瘟疫之源",
+    "alias": "Twitch",
+    "pinyin": "tuqi",
+    "initials": "tq",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/29.png",
+    "iconLocal": "icons/champions/29.png"
+  },
+  {
+    "id": 254,
+    "name": "蔚",
+    "title": "皮城执法官",
+    "alias": "Vi",
+    "pinyin": "wei",
+    "initials": "w",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/254.png",
+    "iconLocal": "icons/champions/254.png"
+  },
+  {
+    "id": 67,
+    "name": "薇恩",
+    "title": "暗夜猎手",
+    "alias": "Vayne",
+    "pinyin": "weien",
+    "initials": "we",
+    "roles": [
+      "marksman",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/67.png",
+    "iconLocal": "icons/champions/67.png"
+  },
+  {
+    "id": 711,
+    "name": "薇古丝",
+    "title": "愁云使者",
+    "alias": "Vex",
+    "pinyin": "weigusi",
+    "initials": "wgs",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/711.png",
+    "iconLocal": "icons/champions/711.png"
+  },
+  {
+    "id": 45,
+    "name": "维迦",
+    "title": "邪恶小法师",
+    "alias": "Veigar",
+    "pinyin": "weijia",
+    "initials": "wj",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/45.png",
+    "iconLocal": "icons/champions/45.png"
+  },
+  {
+    "id": 112,
+    "name": "维克托",
+    "title": "奥术先驱",
+    "alias": "Viktor",
+    "pinyin": "weiketuo",
+    "initials": "wkt",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/112.png",
+    "iconLocal": "icons/champions/112.png"
+  },
+  {
+    "id": 161,
+    "name": "维克兹",
+    "title": "虚空之眼",
+    "alias": "Velkoz",
+    "pinyin": "weikezi",
+    "initials": "wkz",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/161.png",
+    "iconLocal": "icons/champions/161.png"
+  },
+  {
+    "id": 110,
+    "name": "韦鲁斯",
+    "title": "惩戒之箭",
+    "alias": "Varus",
+    "pinyin": "weilusi",
+    "initials": "wls",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/110.png",
+    "iconLocal": "icons/champions/110.png"
+  },
+  {
+    "id": 106,
+    "name": "沃利贝尔",
+    "title": "不灭狂雷",
+    "alias": "Volibear",
+    "pinyin": "wolibeier",
+    "initials": "wlbe",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/106.png",
+    "iconLocal": "icons/champions/106.png"
+  },
+  {
+    "id": 19,
+    "name": "沃里克",
+    "title": "祖安怒兽",
+    "alias": "Warwick",
+    "pinyin": "wolike",
+    "initials": "wlk",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/19.png",
+    "iconLocal": "icons/champions/19.png"
+  },
+  {
+    "id": 77,
+    "name": "乌迪尔",
+    "title": "兽灵行者",
+    "alias": "Udyr",
+    "pinyin": "wudier",
+    "initials": "wde",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/77.png",
+    "iconLocal": "icons/champions/77.png"
+  },
+  {
+    "id": 498,
+    "name": "霞",
+    "title": "逆羽",
+    "alias": "Xayah",
+    "pinyin": "xia",
+    "initials": "x",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/498.png",
+    "iconLocal": "icons/champions/498.png"
+  },
+  {
+    "id": 134,
+    "name": "辛德拉",
+    "title": "暗黑元首",
+    "alias": "Syndra",
+    "pinyin": "xindela",
+    "initials": "xdl",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/134.png",
+    "iconLocal": "icons/champions/134.png"
+  },
+  {
+    "id": 27,
+    "name": "辛吉德",
+    "title": "炼金术士",
+    "alias": "Singed",
+    "pinyin": "xinjide",
+    "initials": "xjd",
+    "roles": [
+      "tank",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/27.png",
+    "iconLocal": "icons/champions/27.png"
+  },
+  {
+    "id": 102,
+    "name": "希瓦娜",
+    "title": "龙血武姬",
+    "alias": "Shyvana",
+    "pinyin": "xiwana",
+    "initials": "xwn",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/102.png",
+    "iconLocal": "icons/champions/102.png"
+  },
+  {
+    "id": 15,
+    "name": "希维尔",
+    "title": "战争女神",
+    "alias": "Sivir",
+    "pinyin": "xiweier",
+    "initials": "xwe",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/15.png",
+    "iconLocal": "icons/champions/15.png"
+  },
+  {
+    "id": 904,
+    "name": "亚恒",
+    "title": "不落魔锋",
+    "alias": "Zaahen",
+    "pinyin": "yaheng",
+    "initials": "yh",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/904.png",
+    "iconLocal": "icons/champions/904.png"
+  },
+  {
+    "id": 157,
+    "name": "亚索",
+    "title": "疾风剑豪",
+    "alias": "Yasuo",
+    "pinyin": "yasuo",
+    "initials": "ys",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/157.png",
+    "iconLocal": "icons/champions/157.png"
+  },
+  {
+    "id": 266,
+    "name": "亚托克斯",
+    "title": "暗裔剑魔",
+    "alias": "Aatrox",
+    "pinyin": "yatuokesi",
+    "initials": "ytks",
+    "roles": [
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/266.png",
+    "iconLocal": "icons/champions/266.png"
+  },
+  {
+    "id": 11,
+    "name": "易",
+    "title": "无极剑圣",
+    "alias": "MasterYi",
+    "pinyin": "yi",
+    "initials": "y",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/11.png",
+    "iconLocal": "icons/champions/11.png"
+  },
+  {
+    "id": 28,
+    "name": "伊芙琳",
+    "title": "痛苦之拥",
+    "alias": "Evelynn",
+    "pinyin": "yifulin",
+    "initials": "yfl",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/28.png",
+    "iconLocal": "icons/champions/28.png"
+  },
+  {
+    "id": 60,
+    "name": "伊莉丝",
+    "title": "蜘蛛女皇",
+    "alias": "Elise",
+    "pinyin": "yilisi",
+    "initials": "yls",
+    "roles": [
+      "assassin",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/60.png",
+    "iconLocal": "icons/champions/60.png"
+  },
+  {
+    "id": 81,
+    "name": "伊泽瑞尔",
+    "title": "探险家",
+    "alias": "Ezreal",
+    "pinyin": "yizeruier",
+    "initials": "yzre",
+    "roles": [
+      "marksman",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/81.png",
+    "iconLocal": "icons/champions/81.png"
+  },
+  {
+    "id": 777,
+    "name": "永恩",
+    "title": "封魔剑魂",
+    "alias": "Yone",
+    "pinyin": "yongen",
+    "initials": "ye",
+    "roles": [
+      "fighter",
+      "assassin"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/777.png",
+    "iconLocal": "icons/champions/777.png"
+  },
+  {
+    "id": 350,
+    "name": "悠米",
+    "title": "魔法猫咪",
+    "alias": "Yuumi",
+    "pinyin": "youmi",
+    "initials": "ym",
+    "roles": [
+      "support",
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/350.png",
+    "iconLocal": "icons/champions/350.png"
+  },
+  {
+    "id": 83,
+    "name": "约里克",
+    "title": "牧魂人",
+    "alias": "Yorick",
+    "pinyin": "yuelike",
+    "initials": "ylk",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/83.png",
+    "iconLocal": "icons/champions/83.png"
+  },
+  {
+    "id": 804,
+    "name": "芸阿娜",
+    "title": "不破之誓",
+    "alias": "Yunara",
+    "pinyin": "yunana",
+    "initials": "yan",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/804.png",
+    "iconLocal": "icons/champions/804.png"
+  },
+  {
+    "id": 101,
+    "name": "泽拉斯",
+    "title": "远古巫灵",
+    "alias": "Xerath",
+    "pinyin": "zelasi",
+    "initials": "zls",
+    "roles": [
+      "mage",
+      "support"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/101.png",
+    "iconLocal": "icons/champions/101.png"
+  },
+  {
+    "id": 221,
+    "name": "泽丽",
+    "title": "祖安花火",
+    "alias": "Zeri",
+    "pinyin": "zeli",
+    "initials": "zl",
+    "roles": [
+      "marksman"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/221.png",
+    "iconLocal": "icons/champions/221.png"
+  },
+  {
+    "id": 154,
+    "name": "扎克",
+    "title": "生化魔人",
+    "alias": "Zac",
+    "pinyin": "zhake",
+    "initials": "zk",
+    "roles": [
+      "tank",
+      "fighter"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/154.png",
+    "iconLocal": "icons/champions/154.png"
+  },
+  {
+    "id": 5,
+    "name": "赵信",
+    "title": "德邦总管",
+    "alias": "XinZhao",
+    "pinyin": "zhaoxin",
+    "initials": "zx",
+    "roles": [
+      "fighter",
+      "tank"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/5.png",
+    "iconLocal": "icons/champions/5.png"
+  },
+  {
+    "id": 142,
+    "name": "佐伊",
+    "title": "暮光星灵",
+    "alias": "Zoe",
+    "pinyin": "zuoyi",
+    "initials": "zy",
+    "roles": [
+      "mage"
+    ],
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/142.png",
+    "iconLocal": "icons/champions/142.png"
+  }
+]

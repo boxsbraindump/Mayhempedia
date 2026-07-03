@@ -1,0 +1,34 @@
+{
+  "championId": 14,
+  "championName": "赛恩",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克赛恩",
+      "damageType": "Tank",
+      "note": "堆血量再靠E转化伤害与减伤，配合坦克向海克斯滚雪球体型和数值。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 327, "apiName": "UndyingGuard", "name": "不灭守护" },
+          { "id": 314, "apiName": "Unshackled", "name": "解脱者" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3083, "name": "狂徒铠甲" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3075, "name": "荆棘之甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

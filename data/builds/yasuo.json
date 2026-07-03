@@ -1,0 +1,59 @@
+{
+  "championId": 157,
+  "championName": "亚索",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击·无限Q流",
+      "damageType": "AD",
+      "note": "破败王者之刃起手补真实伤害与吸血，走无尽之刃/不朽盾弓暴击核心，秘术冲拳(棱彩)配合亚索1.33秒Q基础CD打出近乎无限Q循环。",
+      "augments": {
+        "core": [{ "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6673, "name": "不朽盾弓" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 6672, "name": "海妖杀手" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    },
+    {
+      "key": "shield",
+      "name": "会心治疗护盾流",
+      "damageType": "AD",
+      "note": "进阶build-around打法：拿到棱彩「会心治疗」后第一件转「毁坏仪式」叠AP护盾，利用E的AP加成配合频繁位移刷新护盾与吸血；没有会心治疗时应回归常规AD暴击出装。",
+      "augments": {
+        "core": [{ "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" }],
+        "good": [
+          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 79, "apiName": "SymphonyofWar", "name": "战争交响乐" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+        ],
+        "trap": [{ "id": 206, "apiName": "escAPADe", "name": "魔法转物理" }]
+      },
+      "items": [
+        { "id": 3430, "name": "毁坏仪式" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com"]
+    }
+  ]
+}

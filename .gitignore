@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-renderer/
+*.log
+.DS_Store
+
+# 抓取的图标（~11MB，可用 npm run data:icons 重新生成）；JSON 保留入库
+data/icons/

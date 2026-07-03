@@ -1,0 +1,30 @@
+{
+  "championId": 4,
+  "championName": "崔斯特",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP崔斯特",
+      "damageType": "AP",
+      "note": "法术爆发/消耗型打法，卢登回声起手叠法强，Q弹射+W黄牌暴击标记打连招爆发。",
+      "augments": {
+        "core": [{ "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }],
+        "good": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "trap": [{ "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }]
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

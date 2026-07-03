@@ -1,0 +1,29 @@
+{
+  "championId": 222,
+  "championName": "金克丝",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "暴击/攻速金克丝",
+      "damageType": "AD",
+      "note": "暴击海克斯叠加暴击装备打出爆炸输出，卢安娜的飓风+无尽之刃+收集者为核心组合。",
+      "augments": {
+        "core": [{ "id": 225, "apiName": "DualWield", "name": "双刀流" }],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" }
+        ],
+        "trap": [{ "id": 87, "apiName": "Typhoon", "name": "台风" }]
+      },
+      "items": [
+        { "id": 3085, "name": "卢安娜的飓风" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

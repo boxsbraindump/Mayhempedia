@@ -1,0 +1,31 @@
+{
+  "championId": 17,
+  "championName": "提莫",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP法术提莫",
+      "damageType": "AP",
+      "note": "AP法术爆发/poke流，围绕大招蘑菇持续伤害、被动隐身poke和E毒素DoT堆叠法强与技能急速做爆发消耗，残疫+兰德里的折磨为核心。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "good": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 36, "apiName": "Firebrand", "name": "火上浇油" }
+        ],
+        "trap": [{ "id": 22, "apiName": "Deft", "name": "灵巧" }]
+      },
+      "items": [
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3118, "name": "残疫" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 4645, "name": "影焰" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "championId": 141,
+  "championName": "凯隐",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD凯隐(红开·物理弹反)",
+      "damageType": "AD",
+      "note": "本条为红开(AD)打法整理：靠Q技能反复QQQ做主要输出，全凭身法强化Q的突进急速。凯隐也存在蓝开(AP/珠光护手爆发)分支，暂未收录完整数据。",
+      "augments": {
+        "core": [{ "id": 19, "apiName": "Dashing", "name": "全凭身法" }],
+        "good": [
+          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6697, "name": "狂妄" },
+        { "id": 6692, "name": "星蚀" },
+        { "id": 3071, "name": "黑色切割者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3065, "name": "振奋盔甲" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    }
+  ]
+}

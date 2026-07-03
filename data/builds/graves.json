@@ -1,0 +1,61 @@
+{
+  "championId": 104,
+  "championName": "格雷福斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击格雷福斯",
+      "damageType": "AD",
+      "note": "常规远程AD射手出装，靠暴击+致命节奏打出高额单体伤害，Q和被动子弹近距离双倍触发。",
+      "augments": {
+        "core": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" }
+        ],
+        "good": [
+          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" },
+          { "id": 103, "apiName": "BreadAndButter", "name": "面包和黄油" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+        ],
+        "trap": [{ "id": 7, "apiName": "BluntForce", "name": "大力" }]
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 3142, "name": "幽梦之灵" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    },
+    {
+      "key": "melee-sword",
+      "name": "亮出你的剑·近战格雷福斯",
+      "damageType": "AD",
+      "note": "拿到棱彩「亮出你的剑」后转型近战刺客：攻击距离缩短但获得大量额外AD/攻速/生命/移速/吸血，被动近距离双倍弹丸伤害极高。",
+      "augments": {
+        "core": [{ "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }],
+        "good": [
+          { "id": 250, "apiName": "SlowAndSteady", "name": "一板一眼" },
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" },
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" },
+          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3142, "name": "幽梦之灵" },
+        { "id": 6697, "name": "狂妄" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

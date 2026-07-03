@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+/* 设计 token（Tailwind v4 @theme）——Hextech command room */
+@theme {
+  --color-ink: #091428;
+  --color-panel: #111c2f;
+  --color-panel2: #1b263b;
+  --color-line: #31415a;
+  --color-gold: #c8aa6e;
+  --color-red: #d64045;
+  --color-cream: #f0e6d2;
+  --color-dim: #8fa2bd;
+  --color-hex: #29d3ff;
+}
+
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #091428;
+}
+
+html.overlay-html {
+  width: 392px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  margin: 0;
+  min-width: 960px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(41, 211, 255, 0.16), transparent 32%),
+    radial-gradient(circle at 78% 4%, rgba(200, 170, 110, 0.18), transparent 26%),
+    linear-gradient(135deg, #091428 0%, #101a2b 48%, #1b263b 100%);
+  color: #f0e6d2;
+}
+
+body.overlay-body {
+  width: 392px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body.overlay-body #root {
+  width: 392px;
+  overflow: hidden;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}

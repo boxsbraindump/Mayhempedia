@@ -1,0 +1,64 @@
+{
+  "championId": 21,
+  "championName": "厄运小姐",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击厄运小姐",
+      "damageType": "AD",
+      "note": "亮剑变近战叠攻速暴击、E减速控场后连拨击锤打AOE，是当前主流强势玩法。",
+      "augments": {
+        "core": [
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+        ],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
+          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 6694, "name": "赛瑞尔达的怨恨" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+    },
+    {
+      "key": "ap",
+      "name": "AP消耗厄运小姐",
+      "damageType": "AP",
+      "note": "堆法强/冷却，用E长距离减速消耗、R清场，高AP下E伤害与减速极高。「任务：沃格勒特的巫师帽」是社区公认的最强连招之一，没抽到冷却类符文时不要硬凑AP，E空窗期长会拖累胜率。",
+      "augments": {
+        "core": [
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" }
+        ],
+        "good": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 2503, "name": "黯炎火炬" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "dvg.cn"]
+    }
+  ]
+}

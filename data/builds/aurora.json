@@ -1,0 +1,34 @@
+{
+  "championId": 893,
+  "championName": "阿萝拉",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP阿萝拉(爆发法师)",
+      "damageType": "AP",
+      "note": "靠被动三重印记的最大生命值魔法伤害+Q/E连招爆发，堆纯AP和法力回复/CDR滚雪球。",
+      "augments": {
+        "core": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "mobalytics.gg", "blitz.gg"]
+    }
+  ]
+}

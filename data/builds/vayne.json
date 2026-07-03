@@ -1,0 +1,33 @@
+{
+  "championId": 67,
+  "championName": "薇恩",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击薇恩",
+      "damageType": "AD",
+      "note": "双发/多重攻击类海克斯配合破败王者之刃+狂热的攻速平A乘区放大伤害。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 107, "apiName": "TwiceThrice", "name": "接二连三" },
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 87, "apiName": "Typhoon", "name": "台风" },
+          { "id": 54, "apiName": "MasterofDuality", "name": "物法皆修" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3086, "name": "狂热" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
+    }
+  ]
+}

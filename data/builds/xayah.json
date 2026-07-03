@@ -1,0 +1,35 @@
+{
+  "championId": 498,
+  "championName": "霞",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "AD暴击流霞",
+      "damageType": "AD",
+      "note": "暴击攻速流ADC，靠W(致命之羽)清野/清线+叠加暴击装备打团爆发。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 6675, "name": "纳沃利烁刃" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3032, "name": "育恩塔尔荒野箭" },
+        { "id": 3085, "name": "卢安娜的飓风" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+    }
+  ]
+}
