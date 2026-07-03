@@ -480,17 +480,18 @@ function DashboardHero({
   onOpenPatchNotes: () => void
   selectedArchetypeByChampionId: Record<string, string>
 }) {
+  const t = useT()
   const covered = Object.keys(core.buildIndex).length
   const status =
     lcuStatus?.state === 'connected'
       ? detectedChamp
         ? detectedHasBuild
-          ? '已识别英雄，推荐已就绪'
-          : '已识别英雄，等待补充流派'
-        : '已连接，等待选人'
+          ? t('dash.hero.status.ready')
+          : t('dash.hero.status.needBuild')
+        : t('dash.hero.status.waitingPick')
       : lcuStatus?.state === 'error'
-        ? '客户端连接失败'
-        : '正在寻找客户端'
+        ? t('dash.hero.status.error')
+        : t('dash.hero.status.searching')
   const statusTone =
     lcuStatus?.state === 'connected' && detectedChamp && detectedHasBuild
       ? 'text-[#3fb950] border-[#3fb950]/40 bg-[#3fb950]/10'
@@ -508,29 +509,29 @@ function DashboardHero({
             Hextech Mayhem Companion
           </div>
           <h1 className="mt-4 max-w-[720px] text-[42px] leading-[1.04] font-extrabold text-cream">
-            游戏里自动就位的海克斯决策副官
+            {t('dash.hero.title')}
           </h1>
           <p className="mt-3 max-w-[650px] text-sm leading-7 text-dim">
-            进入选人后自动识别英雄，在 overlay 里给出核心海克斯、备选路线、陷阱提醒和出装顺序。
+            {t('dash.hero.subtitle')}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <button
               onClick={() => (detectedChamp ? onPick(detectedChamp.id) : onGoChamp())}
               className="rounded-2xl bg-gradient-to-br from-[#f0e6d2] to-gold px-5 py-2.5 text-sm font-extrabold text-[#1c1508] shadow-[0_12px_34px_rgba(200,170,110,0.24)] transition hover:-translate-y-0.5 hover:brightness-105 cursor-pointer"
             >
-              {detectedChamp ? `查看 ${detectedChamp.name} 流派` : '打开英雄流派库'}
+              {detectedChamp ? t('dash.hero.viewBuild', { name: detectedChamp.name }) : t('dash.hero.openLibrary')}
             </button>
             <button
               onClick={onGoTier}
               className="rounded-2xl border border-hex/35 bg-hex/10 px-5 py-2.5 text-sm font-bold text-hex transition hover:-translate-y-0.5 hover:border-hex/70 cursor-pointer"
             >
-              查看英雄 Tier
+              {t('dash.hero.viewTier')}
             </button>
             <button
               onClick={onOpenPatchNotes}
               className="rounded-2xl border border-line/80 bg-panel2/70 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:text-cream hover:border-gold/45 cursor-pointer"
             >
-              版本变化
+              {t('dash.hero.patchNotes')}
             </button>
           </div>
         </div>
@@ -540,27 +541,39 @@ function DashboardHero({
           <div className="mt-4 flex flex-col gap-2">
             <StatusStep
               index="01"
-              label="连接客户端"
+              label={t('dash.hero.step.connect')}
               state={lcuStatus?.state === 'connected' ? 'done' : lcuStatus?.state === 'error' ? 'blocked' : 'active'}
-              detail={lcuStatus?.state === 'connected' ? 'LCU 已在线' : lcuStatus?.state === 'error' ? '等待重连' : '寻找 League 客户端'}
+              detail={
+                lcuStatus?.state === 'connected'
+                  ? t('dash.hero.step.connect.done')
+                  : lcuStatus?.state === 'error'
+                    ? t('dash.hero.step.connect.error')
+                    : t('dash.hero.step.connect.idle')
+              }
             />
             <StatusStep
               index="02"
-              label="等待选人"
+              label={t('dash.hero.step.pick')}
               state={detectedChamp ? 'done' : lcuStatus?.state === 'connected' ? 'active' : 'idle'}
-              detail={detectedChamp ? `已识别 ${detectedChamp.name}` : '进入 ARAM: Mayhem 后自动识别'}
+              detail={detectedChamp ? t('dash.hero.step.pick.done', { name: detectedChamp.name }) : t('dash.hero.step.pick.idle')}
             />
             <StatusStep
               index="03"
-              label="装载流派"
+              label={t('dash.hero.step.build')}
               state={detectedChamp ? (detectedHasBuild ? 'done' : 'blocked') : 'idle'}
-              detail={detectedChamp ? (detectedHasBuild ? '推荐已就绪' : '该英雄待补数据') : `${covered}/${core.champions.length} 英雄可用`}
+              detail={
+                detectedChamp
+                  ? detectedHasBuild
+                    ? t('dash.hero.step.build.done')
+                    : t('dash.hero.step.build.blocked')
+                  : t('dash.hero.step.build.idle', { covered, total: core.champions.length })
+              }
             />
             <StatusStep
               index="04"
-              label="游戏内面板"
+              label={t('dash.hero.step.overlay')}
               state={detectedChamp && detectedHasBuild ? 'active' : 'idle'}
-              detail={detectedChamp && detectedHasBuild ? 'Overlay 会自动呼出' : 'Ctrl+Shift+X 手动呼出'}
+              detail={detectedChamp && detectedHasBuild ? t('dash.hero.step.overlay.active') : t('dash.hero.step.overlay.idle')}
             />
           </div>
           {detectedChamp && (
@@ -670,40 +683,41 @@ function StatusMetric({ label, value }: { label: string; value: string }) {
 /** 主页没有本机对局数据时（浏览器预览/刚打开还没打过大乱斗）填的引导块——
  *  不是纯装饰性留白填充，是真的告诉用户"数据从哪来"+顺带把他导去有内容的页面逛逛。 */
 function DashboardOnboarding({ onGoChamp, onGoTier }: { onGoChamp: () => void; onGoTier: () => void }) {
+  const t = useT()
   return (
     <section className={CARD + ' p-6 mt-4'}>
       <div className="pointer-events-none absolute -right-10 -top-16 h-36 w-36 rounded-full bg-hex/10 blur-3xl" />
       <div className="relative flex items-center gap-2 mb-4">
         <span className="h-2 w-2 rounded-full bg-hex shadow-[0_0_18px_rgba(41,211,255,0.75)]" />
-        <h3 className="text-base font-extrabold text-cream">等待第一条本地战斗记录</h3>
+        <h3 className="text-base font-extrabold text-cream">{t('dash.onboarding.title')}</h3>
       </div>
       <div className="relative grid grid-cols-3 gap-5 mb-5 max-[700px]:grid-cols-1">
         <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">1. 打开客户端</div>
-          <div className="text-xs text-dim leading-relaxed">保持英雄联盟客户端在后台运行，Mayhempedia 会自动连接。</div>
+          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step1')}</div>
+          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step1Desc')}</div>
         </div>
         <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">2. 打几把大乱斗</div>
-          <div className="text-xs text-dim leading-relaxed">身份卡、近期对局、成就都是从你本机的嚎哭深渊战绩算出来的。</div>
+          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step2')}</div>
+          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step2Desc')}</div>
         </div>
         <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">3. 回到主页</div>
-          <div className="text-xs text-dim leading-relaxed">数据全在本地计算，不联网、不上传，只有你自己看得到。</div>
+          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step3')}</div>
+          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step3Desc')}</div>
         </div>
       </div>
       <div className="relative flex items-center gap-3 pt-4 border-t border-line/70 flex-wrap">
-        <span className="text-xs text-dim">在等一局的时候，可以先看看：</span>
+        <span className="text-xs text-dim">{t('dash.onboarding.meanwhile')}</span>
         <button
           onClick={onGoChamp}
           className="text-xs px-3 py-1.5 rounded-xl bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
         >
-          英雄出装 →
+          {t('dash.onboarding.goChamp')}
         </button>
         <button
           onClick={onGoTier}
           className="text-xs px-3 py-1.5 rounded-xl bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
         >
-          英雄 Tier →
+          {t('dash.onboarding.goTier')}
         </button>
       </div>
     </section>
@@ -732,6 +746,7 @@ function Snowflake() {
 }
 
 function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: SummonerInfo | null }) {
+  const t = useT()
   if (!arp) {
     return (
       <section className={CARD + ' p-6 flex items-center gap-6'}>
@@ -740,9 +755,9 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
           <Snowflake />
         </div>
         <div className="relative flex-1 min-w-0">
-          <div className="text-[18px] font-extrabold text-cream">暂无战力数据</div>
+          <div className="text-[18px] font-extrabold text-cream">{t('dash.identity.empty')}</div>
           <div className="mt-1.5 text-[13px] text-dim leading-relaxed">
-            需要在真正的 Mayhempedia 客户端窗口里运行(不是浏览器预览)，且本机 LoL 客户端有嚎哭深渊对局记录。
+            {t('dash.identity.emptyDesc')}
           </div>
         </div>
       </section>
@@ -764,12 +779,12 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
         <div className="flex items-center gap-2.5">
           <span className="text-[28px] font-extrabold tracking-wide text-[#f6e9cb]">{arp.rankName}</span>
           <span className="text-[10px] text-dim border border-line/70 bg-panel/60 px-2 py-0.5 rounded-full">
-            非官方估算
+            {t('dash.identity.unofficial')}
           </span>
         </div>
         <div className="mt-1.5 text-[13px] text-dim">
-          近 {arp.wins + arp.losses} 场嚎哭深渊 · <b className="text-[#63c07a]">{arp.wins}</b>W -{' '}
-          <b className="text-red">{arp.losses}</b>L · 胜率 {arp.winRatePct}%
+          {t('dash.identity.recent', { n: arp.wins + arp.losses })} · <b className="text-[#63c07a]">{arp.wins}</b>W -{' '}
+          <b className="text-red">{arp.losses}</b>L · {t('dash.identity.winRate')} {arp.winRatePct}%
         </div>
         <div className="mt-3 h-2 max-w-[360px] bg-[#0a1428] rounded-full overflow-hidden border border-line/40">
           <div
@@ -777,9 +792,9 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
             style={{ width: `${arp.score}%` }}
           />
         </div>
-        <div className="mt-3 text-[13px] italic text-[#d7bfa0]">"你比 {arp.score}% 的深渊路人更冷静。"</div>
+        <div className="mt-3 text-[13px] italic text-[#d7bfa0]">{t('dash.identity.quote', { score: arp.score })}</div>
         <button className="mt-3.5 px-4 py-2 bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] rounded-2xl font-extrabold text-[13px] cursor-pointer hover:brightness-105 transition">
-          生成分享卡
+          {t('dash.identity.share')}
         </button>
       </div>
     </section>

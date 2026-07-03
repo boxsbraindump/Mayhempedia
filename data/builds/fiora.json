@@ -1,0 +1,33 @@
+{
+  "championId": 114,
+  "championName": "菲奥娜",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD决斗菲奥娜",
+      "damageType": "AD",
+      "note": "菲奥娜是AD决斗/斩杀构筑，核心思路是用秘术冲拳压缩Q和大招冷却打出更多真实伤害切成，配合渴血续航生存。出装以三相之力+贪欲九头蛇打爆发续航、水银之靴/死亡之舞补足生存。",
+      "augments": {
+        "core": [
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "good": [
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3074, "name": "贪欲九头蛇" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3078, "name": "三相之力" },
+        { "id": 6333, "name": "死亡之舞" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "op.gg"]
+    }
+  ]
+}

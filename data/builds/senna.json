@@ -1,0 +1,32 @@
+{
+  "championId": 235,
+  "championName": "赛娜",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "暴击/被动叠层 AD 赛娜",
+      "damageType": "AD",
+      "note": "赛娜围绕被动灵魂叠层与暴击/攻速特效触发展开。双刀流+最万用的瞄准镜是公认T0组合，能让一次普攻触发两次特效，快速叠灵魂、放大电刀/飓风类装备收益。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+        ],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 87, "apiName": "Typhoon", "name": "台风" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3087, "name": "斯塔缇克电刃" },
+        { "id": 6676, "name": "收集者" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "dvg.cn"]
+    }
+  ]
+}

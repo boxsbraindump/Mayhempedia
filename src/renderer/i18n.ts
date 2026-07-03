@@ -1,6 +1,5 @@
 // 极简 i18n：不用外部库，一个 key→文案的字典 + React context。
-// 设计边界：这一步只搭基础设施 + 打通导航栏/设置页两处做验证，
-// App.tsx/Overlay.tsx 里剩下上百处硬编码中文文案的全量替换是单独的后续任务，
+// 逐块推进：导航栏/设置页(全部)/Dashboard 已接入字典，其余页面陆续补上；
 // 没有覆盖到的 key 会 fallback 回中文文案本身，不会崩、不会显示 undefined。
 
 import { createContext, useContext } from 'react'
@@ -70,6 +69,51 @@ const zh: Dict = {
   'settings.privacy.title': '数据与隐私',
   'settings.privacy.persist': '本地积累对局记录',
   'settings.privacy.persistDesc': '为长期战力分析/英雄强度统计攒素材。只写在你自己电脑本地，从不上传。',
+
+  'dash.hero.title': '游戏里自动就位的海克斯决策副官',
+  'dash.hero.subtitle': '进入选人后自动识别英雄，在 overlay 里给出核心海克斯、备选路线、陷阱提醒和出装顺序。',
+  'dash.hero.viewBuild': '查看 {name} 流派',
+  'dash.hero.openLibrary': '打开英雄流派库',
+  'dash.hero.viewTier': '查看英雄 Tier',
+  'dash.hero.patchNotes': '版本变化',
+  'dash.hero.status.ready': '已识别英雄，推荐已就绪',
+  'dash.hero.status.needBuild': '已识别英雄，等待补充流派',
+  'dash.hero.status.waitingPick': '已连接，等待选人',
+  'dash.hero.status.error': '客户端连接失败',
+  'dash.hero.status.searching': '正在寻找客户端',
+  'dash.hero.step.connect': '连接客户端',
+  'dash.hero.step.connect.done': 'LCU 已在线',
+  'dash.hero.step.connect.error': '等待重连',
+  'dash.hero.step.connect.idle': '寻找 League 客户端',
+  'dash.hero.step.pick': '等待选人',
+  'dash.hero.step.pick.done': '已识别 {name}',
+  'dash.hero.step.pick.idle': '进入 ARAM: Mayhem 后自动识别',
+  'dash.hero.step.build': '装载流派',
+  'dash.hero.step.build.done': '推荐已就绪',
+  'dash.hero.step.build.blocked': '该英雄待补数据',
+  'dash.hero.step.build.idle': '{covered}/{total} 英雄可用',
+  'dash.hero.step.overlay': '游戏内面板',
+  'dash.hero.step.overlay.active': 'Overlay 会自动呼出',
+  'dash.hero.step.overlay.idle': 'Ctrl+Shift+X 手动呼出',
+
+  'dash.onboarding.title': '等待第一条本地战斗记录',
+  'dash.onboarding.step1': '1. 打开客户端',
+  'dash.onboarding.step1Desc': '保持英雄联盟客户端在后台运行，Mayhempedia 会自动连接。',
+  'dash.onboarding.step2': '2. 打几把大乱斗',
+  'dash.onboarding.step2Desc': '身份卡、近期对局、成就都是从你本机的嚎哭深渊战绩算出来的。',
+  'dash.onboarding.step3': '3. 回到主页',
+  'dash.onboarding.step3Desc': '数据全在本地计算，不联网、不上传，只有你自己看得到。',
+  'dash.onboarding.meanwhile': '在等一局的时候，可以先看看：',
+  'dash.onboarding.goChamp': '英雄出装 →',
+  'dash.onboarding.goTier': '英雄 Tier →',
+
+  'dash.identity.empty': '暂无战力数据',
+  'dash.identity.emptyDesc': '需要在真正的 Mayhempedia 客户端窗口里运行(不是浏览器预览)，且本机 LoL 客户端有嚎哭深渊对局记录。',
+  'dash.identity.unofficial': '非官方估算',
+  'dash.identity.recent': '近 {n} 场嚎哭深渊',
+  'dash.identity.winRate': '胜率',
+  'dash.identity.quote': '"你比 {score}% 的深渊路人更冷静。"',
+  'dash.identity.share': '生成分享卡',
 }
 
 const en: Dict = {
@@ -133,12 +177,67 @@ const en: Dict = {
   'settings.privacy.title': 'Data & Privacy',
   'settings.privacy.persist': 'Persist match history locally',
   'settings.privacy.persistDesc': 'Builds a dataset for long-term performance tracking and champion strength stats. Stored only on your own machine, never uploaded.',
+
+  'dash.hero.title': 'Your in-game hextech decision copilot',
+  'dash.hero.subtitle': 'Auto-detects your champion during pick, then shows core augments, alternates, traps, and item order right in the overlay.',
+  'dash.hero.viewBuild': 'View {name} build',
+  'dash.hero.openLibrary': 'Open champion library',
+  'dash.hero.viewTier': 'View champion tier list',
+  'dash.hero.patchNotes': 'Patch changes',
+  'dash.hero.status.ready': 'Champion detected, build ready',
+  'dash.hero.status.needBuild': 'Champion detected, build pending',
+  'dash.hero.status.waitingPick': 'Connected, waiting for pick',
+  'dash.hero.status.error': 'Client connection failed',
+  'dash.hero.status.searching': 'Searching for client',
+  'dash.hero.step.connect': 'Connect client',
+  'dash.hero.step.connect.done': 'LCU online',
+  'dash.hero.step.connect.error': 'Waiting to reconnect',
+  'dash.hero.step.connect.idle': 'Looking for League client',
+  'dash.hero.step.pick': 'Wait for pick',
+  'dash.hero.step.pick.done': 'Detected {name}',
+  'dash.hero.step.pick.idle': 'Auto-detects when you enter ARAM: Mayhem',
+  'dash.hero.step.build': 'Load build',
+  'dash.hero.step.build.done': 'Recommendation ready',
+  'dash.hero.step.build.blocked': 'No data for this champion yet',
+  'dash.hero.step.build.idle': '{covered}/{total} champions available',
+  'dash.hero.step.overlay': 'In-game panel',
+  'dash.hero.step.overlay.active': 'Overlay shows automatically',
+  'dash.hero.step.overlay.idle': 'Ctrl+Shift+X to show manually',
+
+  'dash.onboarding.title': 'Waiting for your first local match record',
+  'dash.onboarding.step1': '1. Open the client',
+  'dash.onboarding.step1Desc': 'Keep the League client running in the background — Mayhempedia connects automatically.',
+  'dash.onboarding.step2': '2. Play a few ARAM Mayhem games',
+  'dash.onboarding.step2Desc': 'Your identity card, recent matches, and achievements are all computed from your local Howling Abyss match history.',
+  'dash.onboarding.step3': '3. Come back to the dashboard',
+  'dash.onboarding.step3Desc': 'Everything is computed locally — no network access, no uploads, only you can see it.',
+  'dash.onboarding.meanwhile': 'While you wait for a game, check out:',
+  'dash.onboarding.goChamp': 'Champion builds →',
+  'dash.onboarding.goTier': 'Champion tier list →',
+
+  'dash.identity.empty': 'No performance data yet',
+  'dash.identity.emptyDesc': 'Needs to run inside the real Mayhempedia app window (not a browser preview), with local Howling Abyss match history on this machine.',
+  'dash.identity.unofficial': 'Unofficial estimate',
+  'dash.identity.recent': 'Last {n} Howling Abyss games',
+  'dash.identity.winRate': 'win rate',
+  'dash.identity.quote': '"Calmer than {score}% of Howling Abyss regulars."',
+  'dash.identity.share': 'Generate share card',
 }
 
 const DICTS: Record<Lang, Dict> = { zh, en }
 
-export function t(lang: Lang, key: string, fallback?: string): string {
-  return DICTS[lang][key] ?? DICTS.zh[key] ?? fallback ?? key
+type Vars = Record<string, string | number>
+
+function interpolate(text: string, vars?: Vars): string {
+  if (!vars) return text
+  return text.replace(/\{(\w+)\}/g, (m, name) => (name in vars ? String(vars[name]) : m))
+}
+
+/** 第二个参数是字符串就当 fallback 文案，是对象就当模板变量({name}/{covered}这类占位符替换)。 */
+export function t(lang: Lang, key: string, fallbackOrVars?: string | Vars): string {
+  const raw = DICTS[lang][key] ?? DICTS.zh[key]
+  if (raw == null) return typeof fallbackOrVars === 'string' ? fallbackOrVars : key
+  return interpolate(raw, typeof fallbackOrVars === 'object' ? fallbackOrVars : undefined)
 }
 
 const LangContext = createContext<Lang>('zh')
@@ -148,7 +247,7 @@ export function useLang(): Lang {
   return useContext(LangContext)
 }
 
-export function useT(): (key: string, fallback?: string) => string {
+export function useT(): (key: string, fallbackOrVars?: string | Vars) => string {
   const lang = useLang()
-  return (key: string, fallback?: string) => t(lang, key, fallback)
+  return (key: string, fallbackOrVars?: string | Vars) => t(lang, key, fallbackOrVars)
 }

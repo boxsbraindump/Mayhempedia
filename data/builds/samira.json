@@ -1,0 +1,37 @@
+{
+  "championId": 360,
+  "championName": "莎弥拉",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD 暴击莎弥拉",
+      "damageType": "AD",
+      "note": "莎弥拉是暴击/攻速AD输出流，核心是靠连招堆连击数打出爆发并用W护盾保命。「亮出你的剑」是版本最强棱彩海克斯，收集者+水银之靴+无尽之刃是主流出装。⚠️ 装备卢安娜的飓风后系统不会再供应「亮出你的剑」这个海克斯，两者互斥。",
+      "augments": {
+        "core": [
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 86, "apiName": "TrueshotProdigy", "name": "精准奇才" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ],
+        "trap": [
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" }
+        ]
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6673, "name": "不朽盾弓" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 6333, "name": "死亡之舞" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}
