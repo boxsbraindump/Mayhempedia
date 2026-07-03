@@ -849,14 +849,15 @@ function VersionChanges({
     [core],
   )
 
+  const t = useT()
   return (
     <section className={CARD + ' p-4'}>
       <PanelHead
-        title="本版本变动"
-        meta="ARAM 平衡数值 · 只显示修正最大的"
+        title={t('dash.versionChanges.title', '本版本变动')}
+        meta={t('dash.versionChanges.meta', 'ARAM 平衡数值 · 只显示修正最大的')}
         action={
           <button onClick={onOpenPatchNotes} className="text-xs text-red hover:underline cursor-pointer shrink-0">
-            完整更新日志 →
+            {t('dash.versionChanges.full')}
           </button>
         }
       />
@@ -869,9 +870,9 @@ function VersionChanges({
             <button
               key={b.id}
               onClick={() => onPick(b.id)}
-              title={`造成 ${fmtPct(b.dmgDealt)} · 承受 ${fmtPct(b.dmgTaken)}${
-                b.healing != null ? ` · 治疗 ${fmtPct(b.healing)}` : ''
-              }${b.shielding != null ? ` · 护盾 ${fmtPct(b.shielding)}` : ''}`}
+              title={`${t('dash.versionChanges.dealt')} ${fmtPct(b.dmgDealt)} · ${t('dash.versionChanges.taken')} ${fmtPct(b.dmgTaken)}${
+                b.healing != null ? ` · ${t('dash.versionChanges.healing')} ${fmtPct(b.healing)}` : ''
+              }${b.shielding != null ? ` · ${t('dash.versionChanges.shielding')} ${fmtPct(b.shielding)}` : ''}`}
               className="group flex flex-col items-center gap-1.5 cursor-pointer"
             >
               <div className="relative">
@@ -903,11 +904,12 @@ function RecentMatches({
   champById: Map<number, Champion>
   onPick: (gameId: number) => void
 }) {
+  const t = useT()
   return (
     <section className={CARD + ' p-4'}>
-      <PanelHead title="近期对局" />
-      {!matches && <div className="text-xs text-dim py-2">暂无数据（需真机 Electron 窗口 + 本机对局记录）</div>}
-      {matches && matches.length === 0 && <div className="text-xs text-dim py-2">本机暂无嚎哭深渊对局记录</div>}
+      <PanelHead title={t('dash.recentMatches.title', '近期对局')} />
+      {!matches && <div className="text-xs text-dim py-2">{t('dash.emptyNeedElectron')}</div>}
+      {matches && matches.length === 0 && <div className="text-xs text-dim py-2">{t('dash.recentMatches.empty')}</div>}
       <div className="flex flex-col gap-2">
         {(matches ?? []).slice(0, 8).map((m) => {
           const c = champById.get(m.championId)
@@ -916,7 +918,7 @@ function RecentMatches({
             <button
               key={m.gameId}
               onClick={() => onPick(m.gameId)}
-              title={`点击查看该局出装/海克斯 · 队内综合表现百分位 ${m.impactPercentile}%`}
+              title={t('dash.recentMatches.tooltip', { pct: m.impactPercentile })}
               className={
                 'flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg bg-panel2 border-l-[3px] cursor-pointer text-left ' +
                 (m.win ? 'border-[#63c07a]' : 'border-red')
@@ -928,7 +930,7 @@ function RecentMatches({
                 {m.kills} / {m.deaths} / {m.assists}
               </span>
               <span className={'text-xs font-bold w-4 text-center ' + (m.win ? 'text-[#63c07a]' : 'text-red')}>
-                {m.win ? '胜' : '负'}
+                {m.win ? t('dash.recentMatches.win') : t('dash.recentMatches.loss')}
               </span>
             </button>
           )
@@ -939,12 +941,13 @@ function RecentMatches({
 }
 
 function Achievements({ achievements }: { achievements: Achievement[] | null }) {
+  const t = useT()
   return (
     <section className={CARD + ' p-4'}>
-      <PanelHead title="新解锁" />
-      {!achievements && <div className="text-xs text-dim py-2">暂无数据（需真机 Electron 窗口 + 本机对局记录）</div>}
+      <PanelHead title={t('dash.achievements.title', '新解锁')} />
+      {!achievements && <div className="text-xs text-dim py-2">{t('dash.emptyNeedElectron')}</div>}
       {achievements && achievements.length === 0 && (
-        <div className="text-xs text-dim py-2">最近对局还没解锁成就，再打几场？</div>
+        <div className="text-xs text-dim py-2">{t('dash.achievements.empty')}</div>
       )}
       <div className="flex flex-col gap-2.5">
         {(achievements ?? []).map((a) => (
@@ -958,7 +961,7 @@ function Achievements({ achievements }: { achievements: Achievement[] | null }) 
               <div className="text-[11px] text-dim mt-0.5 leading-snug">{a.desc}</div>
             </div>
             <button className="px-3 py-1.5 bg-gold text-[#2b1e07] rounded-lg font-bold text-xs cursor-pointer hover:brightness-105">
-              分享
+              {t('dash.achievements.share')}
             </button>
           </div>
         ))}

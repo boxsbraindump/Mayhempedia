@@ -114,6 +114,26 @@ const zh: Dict = {
   'dash.identity.winRate': '胜率',
   'dash.identity.quote': '"你比 {score}% 的深渊路人更冷静。"',
   'dash.identity.share': '生成分享卡',
+
+  'dash.emptyNeedElectron': '暂无数据（需真机 Electron 窗口 + 本机对局记录）',
+
+  'dash.versionChanges.title': '本版本变动',
+  'dash.versionChanges.meta': 'ARAM 平衡数值 · 只显示修正最大的',
+  'dash.versionChanges.full': '完整更新日志 →',
+  'dash.versionChanges.dealt': '造成',
+  'dash.versionChanges.taken': '承受',
+  'dash.versionChanges.healing': '治疗',
+  'dash.versionChanges.shielding': '护盾',
+
+  'dash.recentMatches.title': '近期对局',
+  'dash.recentMatches.empty': '本机暂无嚎哭深渊对局记录',
+  'dash.recentMatches.tooltip': '点击查看该局出装/海克斯 · 队内综合表现百分位 {pct}%',
+  'dash.recentMatches.win': '胜',
+  'dash.recentMatches.loss': '负',
+
+  'dash.achievements.title': '新解锁',
+  'dash.achievements.empty': '最近对局还没解锁成就，再打几场？',
+  'dash.achievements.share': '分享',
 }
 
 const en: Dict = {
@@ -222,6 +242,26 @@ const en: Dict = {
   'dash.identity.winRate': 'win rate',
   'dash.identity.quote': '"Calmer than {score}% of Howling Abyss regulars."',
   'dash.identity.share': 'Generate share card',
+
+  'dash.emptyNeedElectron': 'No data yet (needs the real Electron app window + local match history)',
+
+  'dash.versionChanges.title': 'Patch Changes',
+  'dash.versionChanges.meta': 'ARAM balance values · biggest changes only',
+  'dash.versionChanges.full': 'Full patch notes →',
+  'dash.versionChanges.dealt': 'Dealt',
+  'dash.versionChanges.taken': 'Taken',
+  'dash.versionChanges.healing': 'Healing',
+  'dash.versionChanges.shielding': 'Shielding',
+
+  'dash.recentMatches.title': 'Recent Matches',
+  'dash.recentMatches.empty': 'No Howling Abyss match history found on this machine',
+  'dash.recentMatches.tooltip': 'Click to view this match\'s build/augments · Team performance percentile {pct}%',
+  'dash.recentMatches.win': 'W',
+  'dash.recentMatches.loss': 'L',
+
+  'dash.achievements.title': 'Achievements',
+  'dash.achievements.empty': 'No achievements unlocked in recent matches yet — play a few more?',
+  'dash.achievements.share': 'Share',
 }
 
 const DICTS: Record<Lang, Dict> = { zh, en }
