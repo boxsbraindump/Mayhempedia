@@ -249,6 +249,17 @@ const zh: Dict = {
   'augTag.melee': '近战',
   'augTag.marksman': '射手',
   'augTag.survival': '保命',
+
+  'archetypeCard.augments': '海克斯选择',
+  'archetypeCard.core': '核心',
+  'archetypeCard.good': '备选',
+  'archetypeCard.trap': '陷阱',
+  'archetypeCard.items': '推荐出装',
+  'archetypeCard.sources': '数据来源：{sources} · 人工交叉核对，非实时胜率数据',
+
+  'routeCard.setActive': '{name} · 已设为本局路线',
+  'routeCard.loading': '读取推荐路线中',
+  'routeCard.noBuild': '这个英雄还缺少 Mayhem 流派',
 }
 
 const en: Dict = {
@@ -492,6 +503,17 @@ const en: Dict = {
   'augTag.melee': 'Melee',
   'augTag.marksman': 'Marksman',
   'augTag.survival': 'Survival',
+
+  'archetypeCard.augments': 'Augment Picks',
+  'archetypeCard.core': 'Core',
+  'archetypeCard.good': 'Alternates',
+  'archetypeCard.trap': 'Traps',
+  'archetypeCard.items': 'Recommended Build',
+  'archetypeCard.sources': 'Sources: {sources} · Manually cross-checked, not live win-rate data',
+
+  'routeCard.setActive': '{name} · Locked in for this game',
+  'routeCard.loading': 'Loading recommended route',
+  'routeCard.noBuild': 'No Mayhem build for this champion yet',
 }
 
 const DICTS: Record<Lang, Dict> = { zh, en }

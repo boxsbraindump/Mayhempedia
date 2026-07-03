@@ -632,6 +632,7 @@ function DetectedRouteCard({
   hasBuild: boolean
   selectedArchetypeKey?: string
 }) {
+  const t = useT()
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
 
   useEffect(() => {
@@ -658,11 +659,11 @@ function DetectedRouteCard({
           <div className="mt-1 text-xs text-dim">
             {route
               ? selectedArchetypeKey
-                ? `${route.name} · 已设为本局路线`
+                ? t('routeCard.setActive', { name: route.name })
                 : route.name
               : hasBuild
-                ? '读取推荐路线中'
-                : '这个英雄还缺少 Mayhem 流派'}
+                ? t('routeCard.loading')
+                : t('routeCard.noBuild')}
           </div>
         </div>
       </div>
@@ -2659,6 +2660,7 @@ function ArchetypeCard({
   augById: Map<number, Augment>
   itemById: Map<number, Item>
 }) {
+  const t = useT()
   return (
     <section className={CARD + ' mt-[18px] p-5'}>
       <div className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-hex/8 blur-3xl" />
@@ -2678,16 +2680,16 @@ function ArchetypeCard({
       </div>
       {arch.note && <p className="relative mt-2 max-w-3xl text-[13px] text-dim leading-relaxed">{arch.note}</p>}
 
-      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">海克斯选择</div>
+      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">{t('archetypeCard.augments')}</div>
       <div className="relative flex flex-col gap-3">
-        <AugTier label="核心" tone="core" refs={arch.augments.core} augById={augById} />
-        <AugTier label="备选" tone="good" refs={arch.augments.good} augById={augById} />
+        <AugTier label={t('archetypeCard.core')} tone="core" refs={arch.augments.core} augById={augById} />
+        <AugTier label={t('archetypeCard.good')} tone="good" refs={arch.augments.good} augById={augById} />
         {arch.augments.trap.length > 0 && (
-          <AugTier label="陷阱" tone="trap" refs={arch.augments.trap} augById={augById} />
+          <AugTier label={t('archetypeCard.trap')} tone="trap" refs={arch.augments.trap} augById={augById} />
         )}
       </div>
 
-      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">推荐出装</div>
+      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">{t('archetypeCard.items')}</div>
       <div className="relative flex flex-wrap items-center gap-2">
         {arch.items.map((ref, idx) => {
           const it = itemById.get(ref.id)
@@ -2706,7 +2708,7 @@ function ArchetypeCard({
 
       {arch.sources && arch.sources.length > 0 && (
         <div className="relative mt-5 pt-3 border-t border-line/70 text-[11px] text-dim/70">
-          数据来源：{arch.sources.join(' · ')} · 人工交叉核对，非实时胜率数据
+          {t('archetypeCard.sources', { sources: arch.sources.join(' · ') })}
         </div>
       )}
     </section>
