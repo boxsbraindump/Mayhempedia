@@ -1,0 +1,35 @@
+{
+  "championId": 38,
+  "championName": "卡萨丁",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP卡萨丁",
+      "damageType": "AP",
+      "note": "卡萨丁只有一套主流打法：法师爆发+大招R反复位移消耗/收割，核心思路是用R的连续释放贴脸沉默秒脆皮后撤退。⚠️ 已知数据缺口：社区资料显示的T0海克斯「最终形态(Final Form)」目前不在我们的海克斯数据库里（Mayhem模式专属新增，非文档记录的常规缺口），暂时没法收录，如实说明而非强行替代。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ],
+        "good": [
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3803, "name": "万世催化石" },
+        { "id": 3003, "name": "大天使之杖" },
+        { "id": 3118, "name": "残疫" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3157, "name": "中娅沙漏" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}

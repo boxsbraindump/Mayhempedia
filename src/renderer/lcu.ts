@@ -125,6 +125,7 @@ export interface DashboardSections {
   achievements: boolean
 }
 export interface Settings {
+  language: 'zh' | 'en'
   autoLaunch: boolean
   zoomFactor: number
   overlay: OverlaySettings

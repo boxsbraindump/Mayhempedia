@@ -1,0 +1,35 @@
+{
+  "championId": 37,
+  "championName": "娑娜",
+  "archetypes": [
+    {
+      "key": "enchanter",
+      "name": "AP辅助娑娜（技能急速/奏鸣流）",
+      "damageType": "Support",
+      "note": "核心思路是叠技能急速+法强，靠E/W循环治疗护盾续航全队，后期用大招团控收割。循环往复、尤里卡是社区确认的高选取率强化符文。不同数据站对这个英雄整体强度评级有分歧，具体以你实际对局体感为准。",
+      "augments": {
+        "core": [
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "good": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 231, "apiName": "LightWarden", "name": "光明守望者" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6617, "name": "月石再生器" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 2526, "name": "耳语头环" },
+        { "id": 3504, "name": "炽热香炉" },
+        { "id": 6621, "name": "黎明核心" },
+        { "id": 3107, "name": "救赎" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

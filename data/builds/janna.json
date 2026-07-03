@@ -1,0 +1,37 @@
+{
+  "championId": 40,
+  "championName": "迦娜",
+  "archetypes": [
+    {
+      "key": "enchanter",
+      "name": "AP辅助迦娜（治疗护盾流）",
+      "damageType": "Support",
+      "note": "迦娜在海克斯大乱斗里主流打法是纯辅助型强化辉光流，堆叠治疗/护盾强度和技能急速，用大招风墙护盾、W减速、Q控场来保护队友，而非追求自身输出。核心装备月石重生器→耳语头环→炽热香炉是两个独立信源高度一致确认的路线。",
+      "augments": {
+        "core": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "good": [
+          { "id": 141, "apiName": "AllForYou", "name": "全心为你" },
+          { "id": 76, "apiName": "SonicBoom", "name": "天音爆" },
+          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" },
+          { "id": 231, "apiName": "LightWarden", "name": "光明守望者" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ]
+      },
+      "items": [
+        { "id": 3012, "name": "祝福圣杯" },
+        { "id": 6617, "name": "月石再生器" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 3504, "name": "炽热香炉" },
+        { "id": 3107, "name": "救赎" },
+        { "id": 3222, "name": "米凯尔的祝福" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "mobalytics.gg"]
+    }
+  ]
+}

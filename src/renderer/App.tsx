@@ -30,6 +30,7 @@ import {
   type PlayerMatchStats,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
+import { LangProvider, useT } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
 const CARD =
@@ -138,8 +139,8 @@ export default function App() {
   const [dashboardSections, setDashboardSections] = useState<DashboardSections | null>(null)
 
   useEffect(() => {
-    loadCore().then(setCore).catch((e) => setErr(String(e)))
-  }, [])
+    loadCore(settings?.language ?? 'zh').then(setCore).catch((e) => setErr(String(e)))
+  }, [settings?.language])
 
   // 只在真正的 Electron 窗口里生效；浏览器预览下 window.mayhem 不存在，安全跳过。
   useEffect(() => {
@@ -195,6 +196,7 @@ export default function App() {
   }, [detectedChamp?.id])
 
   return (
+    <LangProvider value={settings?.language ?? 'zh'}>
     <div className="relative flex min-h-screen overflow-hidden bg-ink text-cream">
       <div className="pointer-events-none fixed inset-0 opacity-80">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(41,211,255,0.16),transparent_28%),radial-gradient(circle_at_82%_6%,rgba(200,170,110,0.18),transparent_24%),linear-gradient(135deg,#091428_0%,#111c2f_56%,#1b263b_100%)]" />
@@ -286,6 +288,7 @@ export default function App() {
         )}
       </main>
     </div>
+    </LangProvider>
   )
 }
 
@@ -336,6 +339,7 @@ function Sidebar({
   onTab: (t: Tab) => void
   lcuStatus: LcuStatus | null
 }) {
+  const t = useT()
   return (
     <aside className="relative z-10 w-60 shrink-0 border-r border-line/70 bg-[#091428]/88 px-4 py-5 sticky top-0 h-screen flex flex-col shadow-[18px_0_60px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
       <div className="mb-7 px-2.5">
@@ -364,7 +368,7 @@ function Sidebar({
               <span className="w-[18px] inline-flex items-center justify-center">
                 <NavIcon k={n.key} />
               </span>
-              {n.label}
+              {t(`nav.${n.key}`, n.label)}
             </button>
           )
         })}
@@ -996,6 +1000,7 @@ function fmtAccountDate(value?: string): string {
 }
 
 function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
+  const t = useT()
   const [settings, setSettings] = useState<Settings | null>(null)
   const [accounts, setAccounts] = useState<PersistedAccountSummary[] | null>(null)
 
@@ -1225,8 +1230,24 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         </div>
       </SettingsSection>
 
-      <SettingsSection title="语言">
-        <div className="text-sm text-dim">当前仅支持中文，多语言暂不支持</div>
+      <SettingsSection title={t('settings.language.title', '语言')}>
+        <div className="flex gap-2">
+          {(['zh', 'en'] as const).map((lang) => (
+            <button
+              key={lang}
+              onClick={() => update('language', lang)}
+              className={
+                'px-3 py-1.5 rounded-lg text-xs cursor-pointer transition ' +
+                (settings.language === lang
+                  ? 'bg-gold text-[#2b1e07] font-bold'
+                  : 'bg-panel2 text-dim hover:text-cream')
+              }
+            >
+              {t(`settings.language.${lang}`, lang === 'zh' ? '中文' : 'English')}
+            </button>
+          ))}
+        </div>
+        <div className="mt-2 text-xs text-dim">{t('settings.language.note')}</div>
       </SettingsSection>
 
       <SettingsSection title="数据与隐私">

@@ -21,6 +21,9 @@ export interface DashboardSections {
 }
 
 export interface Settings {
+  // 语言
+  language: 'zh' | 'en'
+
   // 启动/窗口类
   autoLaunch: boolean
   zoomFactor: number // 0.8–1.4
@@ -40,6 +43,7 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
+  language: 'zh',
   autoLaunch: false,
   zoomFactor: 1,
   overlay: {

@@ -108,11 +108,18 @@ export interface Core {
   patchNotes: PatchNotes
 }
 
-export async function loadCore(): Promise<Core> {
+/**
+ * lang='en' 时英雄/装备/海克斯这三份"身份数据"改读 /en/ 下的英文版(CDragon 官方翻译，成本低)。
+ * 其余几份(builds索引/平衡数值/Tier/补丁说明)目前还是纯中文——渲染层拿它们只做 id 查找/数值展示，
+ * 真正显示的名字全部通过 augById/itemById/champions 这三份已经本地化的数据反查，
+ * 所以英文模式下增强/装备/英雄名字已经能正确显示，只有人工撰写的说明文字还没翻译(见任务#22/#23)。
+ */
+export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
+  const root = lang === 'en' ? '/en' : ''
   const [aug, items, champions, buildIndex, aramBalance, heroTier, patchNotes] = await Promise.all([
-    fetch('/augments.json').then((r) => r.json() as Promise<Augment[]>),
-    fetch('/items.json').then((r) => r.json() as Promise<Item[]>),
-    fetch('/champions.json').then((r) => r.json() as Promise<Champion[]>),
+    fetch(`${root}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
+    fetch(`${root}/items.json`).then((r) => r.json() as Promise<Item[]>),
+    fetch(`${root}/champions.json`).then((r) => r.json() as Promise<Champion[]>),
     fetch('/builds/index.json').then((r) => r.json() as Promise<Record<string, string>>),
     fetch('/aram-balance.json').then((r) => r.json() as Promise<AramBalance[]>),
     fetch('/hero-tier.json').then((r) => r.json() as Promise<HeroTier[]>),
