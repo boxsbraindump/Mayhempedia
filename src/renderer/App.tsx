@@ -1315,6 +1315,7 @@ function ChampionGrid({
   detectedChamp: Champion | null
   detectedHasBuild: boolean
 }) {
+  const t = useT()
   const [q, setQ] = useState('')
   const [role, setRole] = useState<string | null>(null)
   const hasBuild = (id: number) => !!core.buildIndex[id]
@@ -1341,17 +1342,17 @@ function ChampionGrid({
 
   return (
     <>
-      <ViewHead title="流派档案" meta={`Mayhem 推荐已覆盖 ${done} / ${core.champions.length}`} />
+      <ViewHead title={t('nav.champ')} meta={t('champGrid.coverage', { done, total: core.champions.length })} />
       <section className="relative mb-5 overflow-hidden rounded-[28px] border border-hex/25 bg-[linear-gradient(135deg,rgba(17,28,47,0.94),rgba(9,20,40,0.9))] p-5 shadow-[0_18px_54px_rgba(0,0,0,0.24)]">
         <div className="pointer-events-none absolute -right-12 -top-20 h-44 w-44 rounded-full bg-hex/12 blur-3xl" />
         <div className="relative flex items-center justify-between gap-5 max-[760px]:flex-col max-[760px]:items-start">
           <div className="min-w-0">
             <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-hex">Champion-first archive</div>
             <h2 className="mt-2 text-2xl font-extrabold text-cream">
-              {detectedChamp ? `当前识别：${detectedChamp.name}` : '等待选人，自动点亮当前英雄'}
+              {detectedChamp ? t('champGrid.detected', { name: detectedChamp.name }) : t('champGrid.waitingPick')}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-dim">
-              这里不是普通英雄列表。优先查看已收录 Mayhem 流派的英雄；进入选人后，当前英雄会置顶并标出推荐是否就绪。
+              {t('champGrid.subtitle')}
             </p>
           </div>
           {detectedChamp ? (
@@ -1372,20 +1373,20 @@ function ChampionGrid({
               <div className="min-w-0">
                 <div className="text-sm font-extrabold text-cream">{detectedChamp.name}</div>
                 <div className="mt-1 text-xs text-dim">
-                  {detectedHasBuild ? '流派推荐已就绪，点击进入' : '还缺流派数据，优先补这个'}
+                  {detectedHasBuild ? t('champGrid.buildReady') : t('champGrid.buildMissing')}
                 </div>
               </div>
             </button>
           ) : (
             <div className="rounded-[22px] border border-line/70 bg-panel/70 p-4 text-sm text-dim">
-              打开客户端并进入 ARAM: Mayhem 选人后，副官会自动锁定你的英雄。
+              {t('champGrid.hint')}
             </div>
           )}
         </div>
       </section>
       <input
         className={SEARCH}
-        placeholder="搜英雄（支持拼音，试试 kasha 或 ks）"
+        placeholder={t('champGrid.search')}
         value={q}
         onChange={(e) => setQ(e.target.value)}
         autoFocus
@@ -1400,7 +1401,7 @@ function ChampionGrid({
               : 'bg-panel/80 border border-line/70 text-dim hover:text-cream')
           }
         >
-          全部
+          {t('champGrid.all')}
         </button>
         {ROLES.map((r) => (
           <button
@@ -1413,7 +1414,7 @@ function ChampionGrid({
                 : 'bg-panel/80 border border-line/70 text-dim hover:text-cream')
             }
           >
-            {r.label}
+            {t(`role.${r.key}`, r.label)}
           </button>
         ))}
       </div>
@@ -1422,12 +1423,13 @@ function ChampionGrid({
           const has = hasBuild(c.id)
           const isDetected = detectedChamp?.id === c.id
           const tier = tierById.get(c.id)
-          const primaryRole = ROLES.find((r) => c.roles.includes(r.key))?.label ?? c.roles[0]
+          const primaryRoleKey = ROLES.find((r) => c.roles.includes(r.key))
+          const primaryRole = primaryRoleKey ? t(`role.${primaryRoleKey.key}`, primaryRoleKey.label) : c.roles[0]
           return (
             <button
               key={c.id}
               onClick={() => onPick(c.id)}
-              title={has ? c.name : `${c.name}（暂无数据）`}
+              title={has ? c.name : t('champGrid.noData', { name: c.name })}
               className={
                 'group relative overflow-hidden rounded-[22px] border p-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
                 (isDetected
@@ -1459,17 +1461,17 @@ function ChampionGrid({
                   <div className="mt-1 truncate text-[11px] text-dim">{primaryRole}</div>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5">
                     {tier && <span className="rounded-full border border-gold/35 bg-gold/10 px-1.5 py-0.5 text-[10px] font-bold text-gold">{tier}</span>}
-                    {isDetected && <span className="rounded-full border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-bold text-hex">当前</span>}
+                    {isDetected && <span className="rounded-full border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-bold text-hex">{t('champGrid.current')}</span>}
                   </div>
                 </div>
               </div>
               <div className={'relative mt-3 rounded-xl border px-2 py-1.5 text-[11px] leading-tight ' + (has ? 'border-gold/25 bg-gold/8 text-gold' : 'border-line/60 bg-panel2/40 text-dim')}>
-                {has ? 'Mayhem 推荐已就绪' : '待补充流派数据'}
+                {has ? t('champGrid.cardReady') : t('champGrid.cardMissing')}
               </div>
             </button>
           )
         })}
-        {list.length === 0 && <div className="col-span-full p-11 text-center text-dim">没找到「{q}」</div>}
+        {list.length === 0 && <div className="col-span-full p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
       </div>
     </>
   )
@@ -1760,6 +1762,7 @@ function Detail({
   selectedArchetypeKey?: string
   onArchetypePreference: (championId: number, archetypeKey: string) => void
 }) {
+  const t = useT()
   const champ = core.champions.find((c) => c.id === championId)
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
   const [activeIdx, setActiveIdx] = useState(0)
@@ -1804,16 +1807,16 @@ function Detail({
   return (
     <>
       <button className="text-hex text-sm cursor-pointer pb-3.5 hover:underline" onClick={onBack}>
-        ← 返回流派档案
+        {t('detail.back')}
       </button>
       {champ && build && build.archetypes.length > 1 && (
         <section className="mb-5 rounded-[28px] border border-gold/40 bg-[linear-gradient(135deg,rgba(200,170,110,0.16),rgba(41,211,255,0.08),rgba(10,20,40,0.92))] p-4 shadow-[0_18px_54px_rgba(0,0,0,0.26),0_0_44px_rgba(200,170,110,0.10)]">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-gold">Pre-game route lock</div>
-              <div className="mt-1 text-lg font-extrabold text-cream">选择这局 {champ.name} 要玩的流派</div>
+              <div className="mt-1 text-lg font-extrabold text-cream">{t('detail.chooseArchetype', { name: champ.name })}</div>
               <div className="mt-1 text-xs leading-relaxed text-dim">
-                这里选中的路线会立即同步到游戏内 overlay，之后再次拿到这个英雄也会默认使用它。
+                {t('detail.chooseArchetypeDesc')}
               </div>
             </div>
             {active && (
@@ -1840,7 +1843,7 @@ function Detail({
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-extrabold">{a.name}</span>
                   <span className={i === activeIdx ? 'mt-1 block text-[11px] text-[#2b1e07]/75' : 'mt-1 block text-[11px] text-dim'}>
-                    {i === activeIdx ? '本局 overlay 已锁定' : '点击设为本局路线'}
+                    {i === activeIdx ? t('detail.archetypeLocked') : t('detail.archetypeSetActive')}
                   </span>
                 </span>
                 <span
@@ -1861,21 +1864,21 @@ function Detail({
         </section>
       )}
       {champ && <ChampionWarRoom champ={champ} build={build} active={active} core={core} />}
-      {build === undefined && <div className="p-16 text-center text-dim">加载中…</div>}
+      {build === undefined && <div className="p-16 text-center text-dim">{t('detail.loading')}</div>}
       {build === null && (
         <div className="pt-5 pb-4">
           <div className={CARD + ' p-8 text-center'}>
-            <div className="text-lg font-extrabold text-cream">「{champ?.name}」还没有 Mayhem 作战档案</div>
+            <div className="text-lg font-extrabold text-cream">{t('detail.noBuild', { name: champ?.name ?? '' })}</div>
             <div className="mx-auto mt-2 max-w-xl text-sm leading-6 text-dim">
-              这个状态会被视为补数据优先级信号。下一步应该补它的核心海克斯、陷阱增强和第一套推荐出装。
+              {t('detail.noBuildDesc')}
             </div>
             <div className="mt-2 text-xs text-dim/70">
-              已收录 {covered.length + 1} / {core.champions.length} 位英雄，持续更新中
+              {t('detail.coverage', { covered: covered.length + 1, total: core.champions.length })}
             </div>
           </div>
           {covered.length > 0 && (
             <div className="mt-10 max-w-2xl mx-auto">
-              <div className="text-xs text-dim mb-3 text-center">已收录出装数据的英雄，先看看这些</div>
+              <div className="text-xs text-dim mb-3 text-center">{t('detail.checkOutOthers')}</div>
               <div className="flex flex-wrap justify-center gap-2.5">
                 {covered.map((c) => (
                   <button
