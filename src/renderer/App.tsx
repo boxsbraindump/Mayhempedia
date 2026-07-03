@@ -1917,6 +1917,7 @@ function ChampionWarRoom({
   active: Archetype | undefined
   core: Core
 }) {
+  const t = useT()
   const coreAugs = active?.augments.core.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
   const goodAugs = active?.augments.good.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
   const trapAugs = active?.augments.trap.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
@@ -1941,11 +1942,11 @@ function ChampionWarRoom({
               <div className="mt-2 text-sm text-dim">{champ.title}</div>
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="rounded-full border border-line/70 bg-panel/70 px-3 py-1 text-xs text-dim">
-                  {routeCount ? `${routeCount} 套路线` : '路线待补'}
+                  {routeCount ? t('warRoom.routeCount', { n: routeCount }) : t('warRoom.routePending')}
                 </span>
                 {active && (
                   <span className="rounded-full border border-hex/35 bg-hex/10 px-3 py-1 text-xs font-bold text-hex">
-                    当前：{active.name}
+                    {t('warRoom.current', { name: active.name })}
                   </span>
                 )}
                 {active && (
@@ -1965,35 +1966,35 @@ function ChampionWarRoom({
           <div className="mt-6 rounded-[24px] border border-hex/25 bg-hex/8 p-4">
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-hex">Decision brief</div>
             <p className="mt-2 text-sm leading-7 text-cream">
-              {active?.note || '这位英雄的 Mayhem 玩法还没有完成整理。优先补充它的核心增强、陷阱增强和出装顺序。'}
+              {active?.note || t('warRoom.noNote')}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3 max-[900px]:grid-cols-1">
             <CombatRule
-              label="看到核心"
-              value={coreAugs.length > 0 ? '直接优先' : '待补数据'}
-              detail={coreAugs[0] ? `${coreAugs[0].name} 是这条路线的第一信号` : '还没有核心增强判断'}
+              label={t('warRoom.rule.core')}
+              value={coreAugs.length > 0 ? t('warRoom.rule.core.value.has') : t('warRoom.rule.core.value.none')}
+              detail={coreAugs[0] ? t('warRoom.rule.core.detail.has', { name: coreAugs[0].name }) : t('warRoom.rule.core.detail.none')}
             />
             <CombatRule
-              label="没有核心"
-              value={goodAugs.length > 0 ? '拿备选' : '看装备'}
-              detail={goodAugs[0] ? `备选增强优先找 ${goodAugs[0].name}` : '按推荐出装继续推进'}
+              label={t('warRoom.rule.good')}
+              value={goodAugs.length > 0 ? t('warRoom.rule.good.value.has') : t('warRoom.rule.good.value.none')}
+              detail={goodAugs[0] ? t('warRoom.rule.good.detail.has', { name: goodAugs[0].name }) : t('warRoom.rule.good.detail.none')}
             />
             <CombatRule
-              label="遇到陷阱"
-              value={trapAugs.length > 0 ? '谨慎避开' : '暂无陷阱'}
-              detail={trapAugs[0] ? `${trapAugs[0].name} 与当前路线不匹配` : '这套路线还没有标记明显陷阱'}
+              label={t('warRoom.rule.trap')}
+              value={trapAugs.length > 0 ? t('warRoom.rule.trap.value.has') : t('warRoom.rule.trap.value.none')}
+              detail={trapAugs[0] ? t('warRoom.rule.trap.detail.has', { name: trapAugs[0].name }) : t('warRoom.rule.trap.detail.none')}
             />
           </div>
         </div>
 
         <div className="rounded-[28px] border border-line/70 bg-[#0a1428]/75 p-4 shadow-[inset_0_1px_0_rgba(240,230,210,0.06)]">
           <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">At a glance</div>
-          <QuickAugLine label="优先拿" tone="core" items={coreAugs} />
-          <QuickAugLine label="可备选" tone="good" items={goodAugs} />
-          <QuickAugLine label="要避开" tone="trap" items={trapAugs} />
+          <QuickAugLine label={t('warRoom.quick.core')} tone="core" items={coreAugs} />
+          <QuickAugLine label={t('warRoom.quick.good')} tone="good" items={goodAugs} />
+          <QuickAugLine label={t('warRoom.quick.trap')} tone="trap" items={trapAugs} />
           <div className="mt-4 border-t border-line/60 pt-4">
-            <div className="mb-2 text-xs font-bold text-dim">出装节奏</div>
+            <div className="mb-2 text-xs font-bold text-dim">{t('warRoom.itemOrder')}</div>
             {firstItems.length > 0 ? (
               <div className="flex flex-wrap items-center gap-2">
                 {firstItems.map((it, idx) => (
@@ -2004,7 +2005,7 @@ function ChampionWarRoom({
                 ))}
               </div>
             ) : (
-              <div className="text-xs text-dim">等待补充装备路线</div>
+              <div className="text-xs text-dim">{t('warRoom.itemOrderPending')}</div>
             )}
           </div>
         </div>
@@ -2305,6 +2306,7 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
 }
 
 function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'good' | 'trap'; items: Augment[] }) {
+  const t = useT()
   const toneClass =
     tone === 'core'
       ? 'text-gold border-gold/25 bg-gold/8'
@@ -2326,7 +2328,7 @@ function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'g
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-line/55 bg-panel/40 px-2.5 py-2 text-xs text-dim">暂无</div>
+        <div className="rounded-2xl border border-line/55 bg-panel/40 px-2.5 py-2 text-xs text-dim">{t('common.none')}</div>
       )}
     </div>
   )

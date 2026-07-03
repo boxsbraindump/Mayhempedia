@@ -9,6 +9,8 @@ export type Lang = 'zh' | 'en'
 type Dict = Record<string, string>
 
 const zh: Dict = {
+  'common.none': '暂无',
+
   'nav.dash': '副官状态',
   'nav.champ': '流派档案',
   'nav.tier': '强度路线',
@@ -167,9 +169,36 @@ const zh: Dict = {
   'detail.noBuildDesc': '这个状态会被视为补数据优先级信号。下一步应该补它的核心海克斯、陷阱增强和第一套推荐出装。',
   'detail.coverage': '已收录 {covered} / {total} 位英雄，持续更新中',
   'detail.checkOutOthers': '已收录出装数据的英雄，先看看这些',
+
+  'warRoom.routeCount': '{n} 套路线',
+  'warRoom.routePending': '路线待补',
+  'warRoom.current': '当前：{name}',
+  'warRoom.noNote': '这位英雄的 Mayhem 玩法还没有完成整理。优先补充它的核心增强、陷阱增强和出装顺序。',
+  'warRoom.rule.core': '看到核心',
+  'warRoom.rule.core.value.has': '直接优先',
+  'warRoom.rule.core.value.none': '待补数据',
+  'warRoom.rule.core.detail.has': '{name} 是这条路线的第一信号',
+  'warRoom.rule.core.detail.none': '还没有核心增强判断',
+  'warRoom.rule.good': '没有核心',
+  'warRoom.rule.good.value.has': '拿备选',
+  'warRoom.rule.good.value.none': '看装备',
+  'warRoom.rule.good.detail.has': '备选增强优先找 {name}',
+  'warRoom.rule.good.detail.none': '按推荐出装继续推进',
+  'warRoom.rule.trap': '遇到陷阱',
+  'warRoom.rule.trap.value.has': '谨慎避开',
+  'warRoom.rule.trap.value.none': '暂无陷阱',
+  'warRoom.rule.trap.detail.has': '{name} 与当前路线不匹配',
+  'warRoom.rule.trap.detail.none': '这套路线还没有标记明显陷阱',
+  'warRoom.quick.core': '优先拿',
+  'warRoom.quick.good': '可备选',
+  'warRoom.quick.trap': '要避开',
+  'warRoom.itemOrder': '出装节奏',
+  'warRoom.itemOrderPending': '等待补充装备路线',
 }
 
 const en: Dict = {
+  'common.none': 'None',
+
   'nav.dash': 'Dashboard',
   'nav.champ': 'Champions',
   'nav.tier': 'Tier List',
@@ -328,6 +357,31 @@ const en: Dict = {
   'detail.noBuildDesc': 'This is treated as a priority signal for missing data — next up: core augments, trap augments, and a first recommended build.',
   'detail.coverage': '{covered} / {total} champions covered, updated continuously',
   'detail.checkOutOthers': 'Champions with build data already — check these out',
+
+  'warRoom.routeCount': '{n} routes',
+  'warRoom.routePending': 'Route data pending',
+  'warRoom.current': 'Current: {name}',
+  'warRoom.noNote': "This champion's Mayhem strategy hasn't been curated yet. Priority: core augments, trap augments, and item order.",
+  'warRoom.rule.core': 'See the core pick',
+  'warRoom.rule.core.value.has': 'Take it',
+  'warRoom.rule.core.value.none': 'Data pending',
+  'warRoom.rule.core.detail.has': '{name} is the strongest signal for this route',
+  'warRoom.rule.core.detail.none': 'No core augment call yet',
+  'warRoom.rule.good': "Core isn't offered",
+  'warRoom.rule.good.value.has': 'Take an alternate',
+  'warRoom.rule.good.value.none': 'Check items',
+  'warRoom.rule.good.detail.has': 'Prioritize {name} among the alternates',
+  'warRoom.rule.good.detail.none': 'Keep going with the recommended build',
+  'warRoom.rule.trap': 'Trap offered',
+  'warRoom.rule.trap.value.has': 'Avoid it',
+  'warRoom.rule.trap.value.none': 'No known traps',
+  'warRoom.rule.trap.detail.has': "{name} doesn't fit this route",
+  'warRoom.rule.trap.detail.none': 'No clear trap flagged for this route yet',
+  'warRoom.quick.core': 'Priority pick',
+  'warRoom.quick.good': 'Alternates',
+  'warRoom.quick.trap': 'Avoid',
+  'warRoom.itemOrder': 'Item order',
+  'warRoom.itemOrderPending': 'Item order pending',
 }
 
 const DICTS: Record<Lang, Dict> = { zh, en }
