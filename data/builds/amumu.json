@@ -1,0 +1,61 @@
+{
+  "championId": 32,
+  "championName": "阿木木",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克阿木木 (心之钢流)",
+      "damageType": "Tank",
+      "note": "以团控开团+叠血量坦度为核心：靠W黏人、R开团后靠装备减伤和回复扛住伤害，心之钢+无终恨意+水银之靴是核心确认的三件套。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3075, "name": "荆棘之甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com"]
+    },
+    {
+      "key": "ap",
+      "name": "AP阿木木 (超凡邪恶流)",
+      "damageType": "AP",
+      "note": "靠技能命中持续叠加超凡邪恶的AP层数，边坦边输出，配合灼烧类AP装备打持续伤害。兰德里的折磨+瑞莱的冰晶节杖是核心确认的组合。",
+      "augments": {
+        "core": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" }
+        ],
+        "good": [
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 96, "apiName": "WisdomofAges", "name": "时光之智慧" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ]
+      },
+      "items": [
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3116, "name": "瑞莱的冰晶节杖" },
+        { "id": 3020, "name": "法师之靴" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramonly.com"]
+    }
+  ]
+}

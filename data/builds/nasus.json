@@ -1,0 +1,33 @@
+{
+  "championId": 75,
+  "championName": "内瑟斯",
+  "archetypes": [
+    {
+      "key": "onhit-tank",
+      "name": "叠层三相坦克流内瑟斯",
+      "damageType": "AD/Tank",
+      "note": "以Q(吸取打击)叠层配合三相之力持续输出，出装走坦克化路线保证前排续航。坦克引擎、重量级打击手是社区确认的高胜率强化符文。⚠️ 需要如实说明：还有一条选取率更高的AP灼烧出装分支(黯炎火炬体系)，目前数据不足没有单独收录。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "good": [
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "trap": [
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ]
+      },
+      "items": [
+        { "id": 3078, "name": "三相之力" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3065, "name": "振奋盔甲" }
+      ],
+      "runes": null,
+      "sources": ["op.gg", "aramgg.com"]
+    }
+  ]
+}

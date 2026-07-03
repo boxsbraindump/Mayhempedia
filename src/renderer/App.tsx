@@ -988,6 +988,12 @@ const POSITION_LABEL: Record<OverlaySettings['position'], string> = {
   'bottom-left': '左下',
   'bottom-right': '右下',
 }
+const POSITION_KEY: Record<OverlaySettings['position'], string> = {
+  'top-left': 'topLeft',
+  'top-right': 'topRight',
+  'bottom-left': 'bottomLeft',
+  'bottom-right': 'bottomRight',
+}
 
 function accountName(account: PersistedAccountSummary): string {
   if (!account.gameName) return `未知账号 · ${account.puuid.slice(-6)}`
@@ -1031,35 +1037,35 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
   if (!isElectron()) {
     return (
       <>
-        <ViewHead title="设置" />
-        <div className="p-11 text-center text-dim text-sm">需要在真正的 Mayhempedia 客户端窗口里运行才能读写设置(浏览器预览下 window.mayhem 不存在)。</div>
+        <ViewHead title={t('settings.title', '设置')} />
+        <div className="p-11 text-center text-dim text-sm">{t('settings.electronOnly')}</div>
       </>
     )
   }
   if (!settings) {
     return (
       <>
-        <ViewHead title="设置" />
-        <div className="p-11 text-center text-dim text-sm">加载中…</div>
+        <ViewHead title={t('settings.title', '设置')} />
+        <div className="p-11 text-center text-dim text-sm">{t('settings.loading')}</div>
       </>
     )
   }
 
   return (
     <>
-      <ViewHead title="设置" />
+      <ViewHead title={t('settings.title', '设置')} />
 
-      <SettingsSection title="启动与窗口">
+      <SettingsSection title={t('settings.startup.title', '启动与窗口')}>
         <div className="flex items-center justify-between py-2">
           <div>
-            <div className="text-sm">开机自启</div>
-            <div className="text-xs text-dim mt-0.5">开机后自动启动 Mayhempedia</div>
+            <div className="text-sm">{t('settings.startup.autoLaunch')}</div>
+            <div className="text-xs text-dim mt-0.5">{t('settings.startup.autoLaunchDesc')}</div>
           </div>
           <Toggle on={settings.autoLaunch} onClick={() => update('autoLaunch', !settings.autoLaunch)} />
         </div>
         <div className="py-2">
           <div className="flex items-center justify-between">
-            <div className="text-sm">界面缩放</div>
+            <div className="text-sm">{t('settings.startup.zoom')}</div>
             <span className="text-xs text-dim">{Math.round(settings.zoomFactor * 100)}%</span>
           </div>
           <input
@@ -1074,9 +1080,9 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         </div>
       </SettingsSection>
 
-      <SettingsSection title="Overlay 行为">
+      <SettingsSection title={t('settings.overlay.title', 'Overlay 行为')}>
         <div className="py-2">
-          <div className="text-sm mb-2">位置</div>
+          <div className="text-sm mb-2">{t('settings.overlay.position')}</div>
           <div className="flex gap-2">
             {(Object.keys(POSITION_LABEL) as OverlaySettings['position'][]).map((pos) => (
               <button
@@ -1089,14 +1095,14 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                     : 'bg-panel2 text-dim hover:text-cream')
                 }
               >
-                {POSITION_LABEL[pos]}
+                {t(`settings.overlay.pos.${POSITION_KEY[pos]}`, POSITION_LABEL[pos])}
               </button>
             ))}
           </div>
         </div>
         <div className="py-2">
           <div className="flex items-center justify-between">
-            <div className="text-sm">透明度</div>
+            <div className="text-sm">{t('settings.overlay.opacity')}</div>
             <span className="text-xs text-dim">{Math.round(settings.overlay.opacity * 100)}%</span>
           </div>
           <input
@@ -1110,51 +1116,51 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
           />
         </div>
         <div className="py-2">
-          <div className="text-sm">呼出快捷键</div>
+          <div className="text-sm">{t('settings.overlay.hotkey')}</div>
           <div className="text-xs text-dim mt-1">
             {settings.overlay.hotkey.ctrl && 'Ctrl+'}
             {settings.overlay.hotkey.shift && 'Shift+'}
             {settings.overlay.hotkey.alt && 'Alt+'}
             {settings.overlay.hotkey.key}
-            <span className="ml-2 opacity-70">（自定义按键捕获开发中）</span>
+            <span className="ml-2 opacity-70">{t('settings.overlay.hotkeyNote')}</span>
           </div>
         </div>
         <div className="py-2">
-          <div className="text-sm">拖动定位快捷键</div>
+          <div className="text-sm">{t('settings.overlay.moveHotkey')}</div>
           <div className="text-xs text-dim mt-1">
             {settings.overlay.moveHotkey.ctrl && 'Ctrl+'}
             {settings.overlay.moveHotkey.shift && 'Shift+'}
             {settings.overlay.moveHotkey.alt && 'Alt+'}
             {settings.overlay.moveHotkey.key}
-            <span className="ml-2 opacity-70">游戏里按一下解锁，像 TFT 插件一样拖面板，再按一下锁定保存位置</span>
+            <span className="ml-2 opacity-70">{t('settings.overlay.moveHotkeyNote')}</span>
           </div>
         </div>
         {settings.overlay.customPos && (
           <div className="py-2 flex items-center justify-between">
             <div className="text-xs text-dim">
-              已手动拖动定位到 ({settings.overlay.customPos.x}, {settings.overlay.customPos.y})
+              {t('settings.overlay.customPos')} ({settings.overlay.customPos.x}, {settings.overlay.customPos.y})
             </div>
             <button
               onClick={() => update('overlay', { ...settings.overlay, customPos: null })}
               className="px-2.5 py-1 rounded-lg text-xs cursor-pointer bg-panel2 text-dim hover:text-cream transition"
             >
-              重置为锚点默认位置
+              {t('settings.overlay.resetPos')}
             </button>
           </div>
         )}
       </SettingsSection>
 
-      <SettingsSection title="主页内容显示">
+      <SettingsSection title={t('settings.dashboard.title', '主页内容显示')}>
         {(
           [
-            ['identityCard', '身份卡'],
-            ['versionChanges', '本版本变动'],
-            ['recentMatches', '近期对局'],
-            ['achievements', '新解锁'],
-          ] as [keyof DashboardSections, string][]
-        ).map(([key, label]) => (
+            ['identityCard', 'settings.dashboard.identityCard', '身份卡'],
+            ['versionChanges', 'settings.dashboard.versionChanges', '本版本变动'],
+            ['recentMatches', 'settings.dashboard.recentMatches', '近期对局'],
+            ['achievements', 'settings.dashboard.achievements', '新解锁'],
+          ] as [keyof DashboardSections, string, string][]
+        ).map(([key, tkey, fallback]) => (
           <div key={key} className="flex items-center justify-between py-2">
-            <div className="text-sm">{label}</div>
+            <div className="text-sm">{t(tkey, fallback)}</div>
             <Toggle
               on={settings.dashboardSections[key]}
               onClick={() =>
@@ -1165,23 +1171,23 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         ))}
       </SettingsSection>
 
-      <SettingsSection title="账号">
+      <SettingsSection title={t('settings.account.title', '账号')}>
         <div className="flex items-center justify-between gap-3 pb-3 border-b border-line">
           <div>
-            <div className="text-sm">{summoner ? `${summoner.gameName}#${summoner.tagLine}` : '未检测到登录账号'}</div>
-            <div className="text-xs text-dim mt-1">本地历史按账号分开记录，不联网、不绑定 Riot 云账号。</div>
+            <div className="text-sm">{summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}</div>
+            <div className="text-xs text-dim mt-1">{t('settings.account.desc')}</div>
           </div>
           <button
             onClick={() => window.mayhem!.getStoredAccounts().then(setAccounts)}
             className="px-2.5 py-1 rounded-lg text-xs cursor-pointer bg-panel2 text-dim hover:text-cream transition shrink-0"
           >
-            刷新
+            {t('settings.account.refresh')}
           </button>
         </div>
         <div className="pt-3">
-          {!accounts && <div className="text-xs text-dim py-2">读取本地账号记录中…</div>}
+          {!accounts && <div className="text-xs text-dim py-2">{t('settings.account.loading')}</div>}
           {accounts && accounts.length === 0 && (
-            <div className="text-xs text-dim py-2">还没有累计过任何账号的本地对局记录。</div>
+            <div className="text-xs text-dim py-2">{t('settings.account.empty')}</div>
           )}
           {accounts && accounts.length > 0 && (
             <div className="flex flex-col">
@@ -1191,18 +1197,20 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                     <div className="flex items-center gap-2">
                       <span className="text-sm truncate">{accountName(account)}</span>
                       {account.isCurrent && (
-                        <span className="text-[10px] px-1.5 py-px rounded bg-gold/15 text-gold shrink-0">当前</span>
+                        <span className="text-[10px] px-1.5 py-px rounded bg-gold/15 text-gold shrink-0">{t('settings.account.current')}</span>
                       )}
                     </div>
                     <div className="text-xs text-dim mt-0.5">
-                      {account.matchCount} 场 · {account.detailCount} 场详情缓存 · 最近对局 {fmtAccountDate(account.latestGameCreationDate)}
+                      {t('settings.account.matches', '{n} 场').replace('{n}', String(account.matchCount))} ·{' '}
+                      {t('settings.account.detailsCached', '{n} 场详情缓存').replace('{n}', String(account.detailCount))} ·{' '}
+                      {t('settings.account.lastMatch', '最近对局')} {fmtAccountDate(account.latestGameCreationDate)}
                     </div>
                   </div>
                   <button
                     onClick={() => forgetAccount(account.puuid)}
                     className="text-xs text-dim hover:text-red transition cursor-pointer shrink-0"
                   >
-                    清除本地记录
+                    {t('settings.account.forget')}
                   </button>
                 </div>
               ))}
@@ -1211,7 +1219,7 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         </div>
       </SettingsSection>
 
-      <SettingsSection title="通知">
+      <SettingsSection title={t('settings.notification.title', '通知')}>
         <div className="flex gap-2">
           {(['inpage', 'system'] as const).map((mode) => (
             <button
@@ -1224,7 +1232,7 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                   : 'bg-panel2 text-dim hover:text-cream')
               }
             >
-              {mode === 'inpage' ? '页面内提示' : '系统通知'}
+              {mode === 'inpage' ? t('settings.notification.inpage') : t('settings.notification.system')}
             </button>
           ))}
         </div>
@@ -1250,12 +1258,12 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         <div className="mt-2 text-xs text-dim">{t('settings.language.note')}</div>
       </SettingsSection>
 
-      <SettingsSection title="数据与隐私">
+      <SettingsSection title={t('settings.privacy.title', '数据与隐私')}>
         <div className="flex items-center justify-between py-2">
           <div>
-            <div className="text-sm">本地积累对局记录</div>
+            <div className="text-sm">{t('settings.privacy.persist')}</div>
             <div className="text-xs text-dim mt-0.5 max-w-md">
-              为长期战力分析/英雄强度统计攒素材。只写在你自己电脑本地，从不上传。
+              {t('settings.privacy.persistDesc')}
             </div>
           </div>
           <Toggle

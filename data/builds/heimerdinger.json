@@ -1,0 +1,33 @@
+{
+  "championId": 74,
+  "championName": "黑默丁格",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP黑默丁格（法术急速炮台流）",
+      "damageType": "AP",
+      "note": "核心思路是靠三炮台+火箭+手雷打控场消耗，配合灼烧类装备(兰德里/黯炎)叠加DOT，再用技能急速/法术强化类符文把技能循环拉满打爆发。循环往复、尤里卡、炼狱导管是社区确认的棱彩档高选取率组合。",
+      "augments": {
+        "core": [
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+        ],
+        "good": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 2503, "name": "黯炎火炬" },
+        { "id": 3020, "name": "法师之靴" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com"]
+    }
+  ]
+}

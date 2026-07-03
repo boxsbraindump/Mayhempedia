@@ -1,0 +1,60 @@
+{
+  "championId": 110,
+  "championName": "韦鲁斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暴击/攻速韦鲁斯（双刀流）",
+      "damageType": "AD",
+      "note": "主流打法：靠暴击和攻速堆叠输出，核心海克斯优先拿双刀流搭配老练狙神。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" }
+        ],
+        "good": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
+          { "id": 103, "apiName": "BreadAndButter", "name": "面包和黄油" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    },
+    {
+      "key": "ap",
+      "name": "AP法强韦鲁斯（物法皆修流）",
+      "damageType": "AP",
+      "note": "海克斯专属冷门分支：靠物法皆修+物理转魔法把W三层枯萎的AD加成转化为AP爆发，可秒杀高魔抗前排。非该英雄主流打法，仅在拿到对应海克斯手牌时考虑。",
+      "augments": {
+        "core": [
+          { "id": 54, "apiName": "MasterofDuality", "name": "物法皆修" },
+          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }
+        ],
+        "good": [
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "trap": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+        ]
+      },
+      "items": [
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3157, "name": "中娅沙漏" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["mobalytics.gg"]
+    }
+  ]
+}

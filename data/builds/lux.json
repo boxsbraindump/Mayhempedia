@@ -1,0 +1,38 @@
+{
+  "championId": 99,
+  "championName": "拉克丝",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP法术拉克丝",
+      "damageType": "AP",
+      "note": "拉克丝是远程消耗法师，核心思路是堆叠法强/技能急速打爆发连招(E-Q-R)，利用超远射程在安全距离外持续消耗。尤里卡是社区确认的棱彩档高选取率海克斯，出装核心卢登的回声→灭世者的死亡之帽是常见路线。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" }
+        ],
+        "good": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 135, "apiName": "Spellwake", "name": "法术苏醒" }
+        ]
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 4636, "name": "暗夜收割者" },
+        { "id": 3135, "name": "虚空之杖" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}
