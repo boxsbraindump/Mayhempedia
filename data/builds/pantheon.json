@@ -1,0 +1,35 @@
+{
+  "championId": 80,
+  "championName": "潘森",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD破败潘森(先攻爆发流)",
+      "damageType": "AD",
+      "note": "靠W减CD快速接Q爆发斩杀，出装走狂妄+破败王者之刃的先攻爆发流。⚠️ 本档案经过大幅修正：草稿最初引用的知乎/虎扑来源经核实与海克斯大乱斗完全无关(一篇讨论的是不出破败的召唤师符文玩法，另一篇是2021年、早于海克斯大乱斗上线的常规大乱斗老帖)，所谓「三站数据一致」的说法不成立，均已剔除。目前只保留arammayhem.com直接确认的链路：狂妄→破败王者之刃→死亡之舞为核心，黑色切割者/日炎圣盾/饮血剑为该站列出的合理后续件；大力/渴血两个白银海克斯的高胜率(57%+)是唯一被独立坐实的部分。",
+      "augments": {
+        "core": [
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ],
+        "good": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6697, "name": "狂妄" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3071, "name": "黑色切割者" },
+        { "id": 3068, "name": "日炎圣盾" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com"]
+    }
+  ]
+}
