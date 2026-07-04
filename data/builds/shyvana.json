@@ -1,0 +1,63 @@
+{
+  "championId": 102,
+  "championName": "希瓦娜",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP在野状态希瓦娜（燃烧点燃流）",
+      "damageType": "AP",
+      "note": "叠W燃烧DOT+E印记的法伤路线，靠秘术冲拳/虚幻武器把普攻转化为持续法术伤害。⚠️ 出装已按实测数据改正：arammayhem.com实测两条最高胜率组合分别是心之钢+黄昏与黎明+裂隙制造者(56.85%)和黄昏与黎明+兰德里的折磨+裂隙制造者(56.30%)，草稿最初的巫妖之祸/中娅沙漏/女妖面纱缺乏独立支持，已替换为这两条真实组合的共同核心件。「神射法师=陷阱(Q技能无法触发)」这一具体机制说明经arammayhem.com原文逐字确认，可信度高。",
+      "augments": {
+        "core": [
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "good": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": [
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 2510, "name": "黄昏与黎明" },
+        { "id": 4633, "name": "裂隙制造者" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3111, "name": "水银之靴" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    },
+    {
+      "key": "ad",
+      "name": "AD重装战士希瓦娜（暴力打击流）",
+      "damageType": "AD",
+      "note": "次选打法：靠最大生命值转化物理伤害的重量级打击手做核心，配合渴血续航贴脸开团。⚠️ 出装已按aramgg.com实测数据精简：真实最高胜率AD路径是三相之力→水银之靴→朔极之矛(56.6%)，草稿最初的心之钢/黄昏与黎明在该站AD构建数据里并未出现，已剔除，仅保留兰顿之兆作为合理的起手抗性件。",
+      "augments": {
+        "core": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "good": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" }
+        ],
+        "trap": [
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ]
+      },
+      "items": [
+        { "id": 3143, "name": "兰顿之兆" },
+        { "id": 3078, "name": "三相之力" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3161, "name": "朔极之矛" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "metasrc.com", "blitz.gg"]
+    }
+  ]
+}

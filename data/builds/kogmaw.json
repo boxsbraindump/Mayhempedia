@@ -1,0 +1,36 @@
+{
+  "championId": 96,
+  "championName": "克格莫",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD攻速克格莫(暴击/双刀流)",
+      "damageType": "AD",
+      "note": "靠W(活体导弹)的特效加成叠加攻速/暴击类装备打出持续输出，双刀流让W额外发射的弹体也能触发暴击/特效，是招牌组合。直接核对arammayhem.com确认双刀流是棱彩级核心(60%胜率排名第一)，巨人杀手第二档(58.21%)；版本更新记录明确提到「克格莫W技能现在能正确作用于双刀流强化生成的弹体」，是模式特定的机制说明，不是通用峡谷知识。出装破败王者之刃/鬼索的狂暴之刃/卢安娜的飓风/狂战士胫甲在多个版本页反复确认。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+        ],
+        "good": [
+          { "id": 52, "apiName": "LightningStrikes", "name": "闪电打击" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ],
+        "trap": [
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ]
+      },
+      "items": [
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3124, "name": "鬼索的狂暴之刃" },
+        { "id": 3085, "name": "卢安娜的飓风" },
+        { "id": 3031, "name": "无尽之刃" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    }
+  ]
+}
