@@ -30,7 +30,7 @@ import {
   type PlayerMatchStats,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
-import { LangProvider, useT, useLang } from './i18n'
+import { LangProvider, useT, useLang, t, type Lang } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
 const CARD =
@@ -38,6 +38,7 @@ const CARD =
 const SEARCH =
   'w-full max-w-lg px-4 py-3 mb-5 bg-panel/90 border border-line/80 rounded-2xl text-cream text-sm outline-none focus:border-hex/80 focus:shadow-[0_0_24px_rgba(41,211,255,0.12)] placeholder:text-dim/55 transition'
 
+const RARITY_KEY: Record<number, string> = { 0: 'silver', 1: 'gold', 2: 'prismatic', 4: 'special' }
 const RARITY: Record<number, { label: string; text: string; border: string; bg: string }> = {
   0: { label: '白银', text: 'text-[#a7b0be]', border: 'border-[#a7b0be]', bg: 'bg-[#a7b0be]' },
   1: { label: '黄金', text: 'text-gold', border: 'border-gold', bg: 'bg-gold' },
@@ -188,6 +189,7 @@ export default function App() {
   const detectedChamp =
     core && activeChampionId ? core.champions.find((c) => c.id === activeChampionId) : null
   const detectedHasBuild = !!(detectedChamp && core?.buildIndex[detectedChamp.id])
+  const appLang: Lang = settings?.language ?? 'zh'
 
   useEffect(() => {
     if (!detectedChamp) return
@@ -227,13 +229,13 @@ export default function App() {
               className="w-10 h-10 rounded-xl border border-gold/40 shadow-[0_0_24px_rgba(200,170,110,0.16)]"
             />
             <span className="text-sm">
-              选人阶段检测到 <b className="text-gold">{detectedChamp.name}</b>
-              {detectedHasBuild ? ' · 点击查看流派 →' : ' · 暂无流派数据'}
+              {t(appLang, 'app.detectedPrefix')} <b className="text-gold">{detectedChamp.name}</b>
+              {detectedHasBuild ? t(appLang, 'app.hasBuild') : t(appLang, 'app.noBuild')}
             </span>
           </button>
         )}
-        {err && <div className="p-16 text-center text-red">加载失败：{err}</div>}
-        {!err && !core && <div className="p-16 text-center text-dim">加载数据中…</div>}
+        {err && <div className="p-16 text-center text-red">{t(appLang, 'app.loadFailed', { err })}</div>}
+        {!err && !core && <div className="p-16 text-center text-dim">{t(appLang, 'app.loadingData')}</div>}
         {core && matchDetailId != null && (
           <MatchDetail
             core={core}
@@ -1014,18 +1016,19 @@ const POSITION_KEY: Record<OverlaySettings['position'], string> = {
   'bottom-right': 'bottomRight',
 }
 
-function accountName(account: PersistedAccountSummary): string {
-  if (!account.gameName) return `未知账号 · ${account.puuid.slice(-6)}`
+function accountName(account: PersistedAccountSummary, lang: Lang): string {
+  if (!account.gameName) return t(lang, 'settings.account.unknown', { suffix: account.puuid.slice(-6) })
   return account.tagLine ? `${account.gameName}#${account.tagLine}` : account.gameName
 }
 
-function fmtAccountDate(value?: string): string {
-  if (!value) return '暂无'
-  return new Date(value).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' })
+function fmtAccountDate(value: string | undefined, lang: Lang): string {
+  if (!value) return t(lang, 'common.none')
+  return new Date(value).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN', { month: '2-digit', day: '2-digit' })
 }
 
 function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
   const t = useT()
+  const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
   const [accounts, setAccounts] = useState<PersistedAccountSummary[] | null>(null)
 
@@ -1214,7 +1217,7 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                 <div key={account.puuid} className="flex items-center justify-between gap-3 py-2 border-b border-line/60 last:border-b-0">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm truncate">{accountName(account)}</span>
+                      <span className="text-sm truncate">{accountName(account, lang)}</span>
                       {account.isCurrent && (
                         <span className="text-[10px] px-1.5 py-px rounded bg-gold/15 text-gold shrink-0">{t('settings.account.current')}</span>
                       )}
@@ -1222,7 +1225,7 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                     <div className="text-xs text-dim mt-0.5">
                       {t('settings.account.matches', '{n} 场').replace('{n}', String(account.matchCount))} ·{' '}
                       {t('settings.account.detailsCached', '{n} 场详情缓存').replace('{n}', String(account.detailCount))} ·{' '}
-                      {t('settings.account.lastMatch', '最近对局')} {fmtAccountDate(account.latestGameCreationDate)}
+                      {t('settings.account.lastMatch', '最近对局')} {fmtAccountDate(account.latestGameCreationDate, lang)}
                     </div>
                   </div>
                   <button
@@ -1479,6 +1482,7 @@ function ChampionGrid({
 }
 
 function AugmentBrowser({ core }: { core: Core }) {
+  const t = useT()
   const [q, setQ] = useState('')
   const groups = useMemo(() => {
     const s = q.trim()
@@ -1490,10 +1494,10 @@ function AugmentBrowser({ core }: { core: Core }) {
 
   return (
     <>
-      <ViewHead title="海克斯一览" meta={`${core.augments.length} 个增强`} />
+      <ViewHead title={t('nav.aug')} meta={t('augBrowser.meta', { count: core.augments.length })} />
       <input
         className={SEARCH}
-        placeholder="搜海克斯（名称或效果）…"
+        placeholder={t('augBrowser.search')}
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
@@ -1501,7 +1505,7 @@ function AugmentBrowser({ core }: { core: Core }) {
         <div key={g.rarity} className="mb-6">
           <div className="flex items-center gap-2 mb-3 text-sm font-semibold">
             <span className={'w-2.5 h-2.5 rounded-full ' + g.meta.bg} />
-            <span className={g.meta.text}>{g.meta.label}</span>
+            <span className={g.meta.text}>{t(`rarity.${RARITY_KEY[g.rarity]}`, g.meta.label)}</span>
             <span className="text-xs text-dim font-normal">{g.items.length}</span>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-2.5">
@@ -1520,20 +1524,21 @@ function AugmentBrowser({ core }: { core: Core }) {
           </div>
         </div>
       ))}
-      {groups.length === 0 && <div className="p-11 text-center text-dim">没找到「{q}」</div>}
+      {groups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
     </>
   )
 }
 
 /** 「更新日志」：官方 patch notes 摘要 + 海克斯大乱斗专属改动分开展示（人工翻译整理，见 data/patch-notes.json）。 */
 function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => void }) {
+  const t = useT()
   const pn = core.patchNotes
   return (
     <>
-      <ViewHead title="更新日志" meta={`补丁 ${pn.patch} · ${pn.releaseDate}`} />
+      <ViewHead title={t('nav.patch')} meta={t('patch.meta', { patch: pn.patch, date: pn.releaseDate })} />
 
       <section className={CARD + ' p-5 mb-5'}>
-        <div className="text-xs text-dim mb-1">本次更新主题</div>
+        <div className="text-xs text-dim mb-1">{t('patch.theme')}</div>
         <div className="text-lg font-bold text-cream">{pn.theme}</div>
         <a
           href={pn.sourceUrl}
@@ -1541,7 +1546,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
           rel="noreferrer"
           className="text-xs text-red hover:underline mt-1 inline-block"
         >
-          查看官方原文 ↗
+          {t('patch.sourceLink')}
         </a>
       </section>
 
@@ -1549,12 +1554,12 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       <section className={CARD + ' p-5 mb-5 border-gold/30'}>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-lg">🔷</span>
-          <h3 className="text-base font-bold text-gold">海克斯大乱斗专属改动</h3>
+          <h3 className="text-base font-bold text-gold">{t('patch.mayhemTitle')}</h3>
         </div>
         <p className="text-[13px] text-dim leading-relaxed mb-4">{pn.mayhem.summaryZh}</p>
         {pn.mayhem.augmentChanges.length > 0 && (
           <>
-            <div className="text-[13px] font-semibold text-cream mb-2">海克斯增强调整</div>
+            <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.augmentChanges')}</div>
             <div className="flex flex-col gap-1.5 mb-4">
               {pn.mayhem.augmentChanges.map((a, i) => (
                 <div key={i} className="flex items-start gap-2 text-[13px]">
@@ -1567,7 +1572,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
         )}
         {pn.mayhem.bugfixes.length > 0 && (
           <>
-            <div className="text-[13px] font-semibold text-cream mb-2">修复</div>
+            <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.bugfixes')}</div>
             <ul className="list-disc list-inside text-[13px] text-dim space-y-1">
               {pn.mayhem.bugfixes.map((b, i) => (
                 <li key={i}>{b}</li>
@@ -1578,7 +1583,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       </section>
 
       <section className={CARD + ' p-5 mb-5'}>
-        <h3 className="text-base font-bold text-cream mb-3">英雄改动</h3>
+        <h3 className="text-base font-bold text-cream mb-3">{t('patch.championChanges')}</h3>
         <div className="grid grid-cols-2 gap-3">
           {pn.championChanges.map((c) => {
             const champ = core.champions.find((ch) => ch.id === c.championId)
@@ -1607,7 +1612,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
 
       {pn.itemChanges.length > 0 && (
         <section className={CARD + ' p-5 mb-5'}>
-          <h3 className="text-base font-bold text-cream mb-3">装备改动</h3>
+          <h3 className="text-base font-bold text-cream mb-3">{t('patch.itemChanges')}</h3>
           <div className="flex flex-col gap-3">
             {pn.itemChanges.map((it, i) => (
               <div key={i}>
@@ -1625,7 +1630,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
 
       {pn.systemChanges.length > 0 && (
         <section className={CARD + ' p-5'}>
-          <h3 className="text-base font-bold text-cream mb-3">系统/功能更新</h3>
+          <h3 className="text-base font-bold text-cream mb-3">{t('patch.systemChanges')}</h3>
           <ul className="text-[13px] text-dim leading-relaxed space-y-1.5 list-disc list-inside">
             {pn.systemChanges.map((s, i) => (
               <li key={i}>{s}</li>
@@ -1687,6 +1692,7 @@ const TIER_META: Record<
 const TIER_ORDER = ['S', 'A', 'B', 'C', 'D']
 
 function TierTab({ core, onPick }: { core: Core; onPick: (id: number) => void }) {
+  const t = useT()
   const champById = useMemo(() => new Map(core.champions.map((c) => [c.id, c])), [core])
   const groups = TIER_ORDER.map((tier) => ({
     tier,
@@ -1697,12 +1703,11 @@ function TierTab({ core, onPick }: { core: Core; onPick: (id: number) => void })
   return (
     <>
       <ViewHead
-        title="英雄 Tier"
-        meta={`人工评级 · 已收录 ${core.heroTier.length} / ${core.champions.length}，持续更新中`}
+        title={t('nav.tier')}
+        meta={t('tierTab.meta', { covered: core.heroTier.length, total: core.champions.length })}
       />
       <div className="mb-5 text-xs text-dim leading-relaxed">
-        没有走批量爬取/官方胜率 API（Mayhem 拿不到、第三方站点条款不允许规模化抓取）——这是编辑判断，
-        参考公开信息交叉核对，不是某一家站点的数据。
+        {t('tierTab.disclaimer')}
       </div>
       <div className="flex flex-col gap-3">
         {groups.map((g) => (
@@ -2342,6 +2347,7 @@ function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'g
 }
 
 function PlayerRow({ p, core, maxDamage }: { p: PlayerMatchStats; core: Core; maxDamage: number }) {
+  const t = useT()
   const champ = core.champions.find((c) => c.id === p.championId)
   const items = p.items.map((id) => core.itemById.get(id)).filter((x): x is Item => !!x)
   const augments = p.augments.map((id) => getAugment(core.augById, id)).filter((x): x is Augment => !!x)
@@ -2357,7 +2363,7 @@ function PlayerRow({ p, core, maxDamage }: { p: PlayerMatchStats; core: Core; ma
         <img src={icon(champ.iconLocal)} alt={champ.name} className="w-9 h-9 rounded-md border border-line shrink-0" />
       )}
       <div className="w-[112px] shrink-0 min-w-0">
-        <div className="text-[13px] truncate">{champ?.name ?? '未知英雄'}</div>
+        <div className="text-[13px] truncate">{champ?.name ?? t('match.unknownChamp')}</div>
         <div className="text-[11px] text-dim truncate">{p.summonerName}</div>
       </div>
       <div className="w-16 shrink-0 text-xs text-center">
@@ -2365,7 +2371,7 @@ function PlayerRow({ p, core, maxDamage }: { p: PlayerMatchStats; core: Core; ma
       </div>
       <div className="flex-1 min-w-[100px]">
         <div className="flex items-center justify-between text-[11px] text-dim mb-0.5">
-          <span>伤害</span>
+          <span>{t('match.damage')}</span>
           <span>{p.totalDamageDealtToChampions.toLocaleString()}</span>
         </div>
         <div className="h-1.5 rounded-full bg-panel2 overflow-hidden">
@@ -2398,6 +2404,7 @@ function PlayerRow({ p, core, maxDamage }: { p: PlayerMatchStats; core: Core; ma
 }
 
 function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }) {
+  const t = useT()
   const maxDamage = Math.max(...detail.players.map((p) => p.totalDamageDealtToChampions), 1)
   const ally = detail.players.filter((p) => p.team === 'ally')
   const enemy = detail.players.filter((p) => p.team === 'enemy')
@@ -2405,7 +2412,7 @@ function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }
     <>
       <section className={CARD + ' p-4'}>
         <div className={'text-xs font-semibold mb-2 ' + (detail.win ? 'text-[#63c07a]' : 'text-red')}>
-          己方 · {detail.win ? '胜利' : '失败'}
+          {t('match.ally')} · {detail.win ? t('match.win') : t('match.loss')}
         </div>
         <div className="flex flex-col gap-1.5">
           {ally.map((p) => (
@@ -2415,7 +2422,7 @@ function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }
       </section>
       <section className={CARD + ' p-4 mt-3'}>
         <div className={'text-xs font-semibold mb-2 ' + (detail.win ? 'text-red' : 'text-[#63c07a]')}>
-          对面 · {detail.win ? '失败' : '胜利'}
+          {t('match.enemy')} · {detail.win ? t('match.loss') : t('match.win')}
         </div>
         <div className="flex flex-col gap-1.5">
           {enemy.map((p) => (
@@ -2428,20 +2435,21 @@ function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }
 }
 
 function MatchStats({ detail, core }: { detail: MatchFullDetail; core: Core }) {
+  const t = useT()
   return (
     <section className={CARD + ' p-4 overflow-x-auto'}>
       <table className="w-full text-xs whitespace-nowrap">
         <thead>
           <tr className="text-dim text-left border-b border-line">
-            <th className="py-2 pr-3 font-semibold">玩家</th>
-            <th className="py-2 px-2 text-center font-semibold">等级</th>
-            <th className="py-2 px-2 text-center font-semibold">KDA</th>
-            <th className="py-2 px-2 text-right font-semibold">伤害输出</th>
-            <th className="py-2 px-2 text-right font-semibold">承受伤害</th>
-            <th className="py-2 px-2 text-right font-semibold">治疗</th>
-            <th className="py-2 px-2 text-right font-semibold">补刀</th>
-            <th className="py-2 px-2 text-right font-semibold">视野分</th>
-            <th className="py-2 pl-2 text-right font-semibold">金币</th>
+            <th className="py-2 pr-3 font-semibold">{t('match.col.player')}</th>
+            <th className="py-2 px-2 text-center font-semibold">{t('match.col.level')}</th>
+            <th className="py-2 px-2 text-center font-semibold">{t('match.col.kda')}</th>
+            <th className="py-2 px-2 text-right font-semibold">{t('match.col.damageDealt')}</th>
+            <th className="py-2 px-2 text-right font-semibold">{t('match.col.damageTaken')}</th>
+            <th className="py-2 px-2 text-right font-semibold">{t('match.col.heal')}</th>
+            <th className="py-2 px-2 text-right font-semibold">{t('match.col.cs')}</th>
+            <th className="py-2 px-2 text-right font-semibold">{t('match.col.vision')}</th>
+            <th className="py-2 pl-2 text-right font-semibold">{t('match.col.gold')}</th>
           </tr>
         </thead>
         <tbody>
@@ -2481,9 +2489,10 @@ function MatchStats({ detail, core }: { detail: MatchFullDetail; core: Core }) {
  * 每局涨跌不同、一眼能看出"这局被拉开了没"，是LoL客户端赛后战绩页同款做法。
  */
 function MatchGraph({ detail }: { detail: MatchFullDetail }) {
+  const t = useT()
   const points = detail.goldGraph
   if (points.length < 2) {
-    return <div className={CARD + ' p-8 text-center text-xs text-dim'}>对局太短，没有足够的经济曲线数据</div>
+    return <div className={CARD + ' p-8 text-center text-xs text-dim'}>{t('match.tooShort')}</div>
   }
   const W = 640
   const H = 220
@@ -2514,15 +2523,15 @@ function MatchGraph({ detail }: { detail: MatchFullDetail }) {
         <div className="flex items-center gap-4 text-xs">
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#63c07a] inline-block" />
-            己方领先
+            {t('match.allyLead')}
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red inline-block" />
-            对面领先
+            {t('match.enemyLead')}
           </span>
         </div>
         <div className={'text-sm font-bold ' + (finalDiff >= 0 ? 'text-[#63c07a]' : 'text-red')}>
-          终局经济差 {fmtGold(finalDiff)}
+          {t('match.finalDiff', { diff: fmtGold(finalDiff) })}
         </div>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
@@ -2557,6 +2566,8 @@ const MATCH_TABS: { key: 'overview' | 'stats' | 'graph'; label: string }[] = [
 
 /** 「近期对局」点进去看的：比分/双方阵容/每人伤害经济KDA/每人出装海克斯（事实记录，不是流派推荐）。 */
 function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary | null; onBack: () => void }) {
+  const t = useT()
+  const lang = useLang()
   const [detail, setDetail] = useState<MatchFullDetail | null | undefined>(undefined) // undefined=加载中，null=拿不到
   const [matchTab, setMatchTab] = useState<'overview' | 'stats' | 'graph'>('overview')
 
@@ -2574,9 +2585,9 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
     return (
       <>
         <button className="text-red text-sm cursor-pointer pb-3.5 hover:underline" onClick={onBack}>
-          ← 返回主页
+          {t('match.back')}
         </button>
-        <div className="p-16 text-center text-dim">找不到这局的数据</div>
+        <div className="p-16 text-center text-dim">{t('match.notFound')}</div>
       </>
     )
   }
@@ -2587,7 +2598,7 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
   return (
     <>
       <button className="text-red text-sm cursor-pointer pb-3.5 hover:underline" onClick={onBack}>
-        ← 返回主页
+        {t('match.back')}
       </button>
       {champ && (
         <header className="flex items-center gap-3.5 pb-4 mb-1 border-b border-line">
@@ -2605,7 +2616,7 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
                   (match.win ? 'text-[#63c07a] bg-[#63c07a]/15' : 'text-red bg-red/15')
                 }
               >
-                {match.win ? '胜利' : '失败'}
+                {match.win ? t('match.win') : t('match.loss')}
               </span>
               {allyScore != null && enemyScore != null && (
                 <span className="text-sm font-bold text-dim">
@@ -2614,9 +2625,9 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
               )}
             </div>
             <p className="text-[13px] text-dim mt-1">
-              {match.kills} / {match.deaths} / {match.assists} · 队内综合表现百分位 {match.impactPercentile}%
+              {match.kills} / {match.deaths} / {match.assists} · {t('match.impact', { pct: match.impactPercentile })}
               {' · '}
-              {new Date(match.gameCreationDate).toLocaleString('zh-CN')}
+              {new Date(match.gameCreationDate).toLocaleString(lang === 'en' ? 'en-US' : 'zh-CN')}
             </p>
           </div>
         </header>
@@ -2638,10 +2649,10 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
         ))}
       </div>
 
-      {detail === undefined && <div className="p-11 text-center text-dim text-sm">加载完整对局详情中…</div>}
+      {detail === undefined && <div className="p-11 text-center text-dim text-sm">{t('match.loadingDetail')}</div>}
       {detail === null && (
         <div className="p-11 text-center text-dim text-sm">
-          需要在真正的 Mayhempedia 客户端窗口里运行才能拉取完整对局详情(浏览器预览下不可用)。
+          {t('match.needElectron')}
         </div>
       )}
       {detail && matchTab === 'overview' && <MatchOverview detail={detail} core={core} />}

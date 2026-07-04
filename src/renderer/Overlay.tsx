@@ -7,6 +7,7 @@
 import { useEffect, useState } from 'react'
 import { isElectron, type LcuStatus, type OverlayCollapsedState, type OverlayLockState, type Settings } from './lcu'
 import { loadCore, loadBuild, getAugment, icon, type Core, type Build, type Augment, type Item } from './data'
+import { LangProvider, useT } from './i18n'
 
 const RARITY: Record<number, { border: string; glow: string }> = {
   0: { border: 'border-[#a7b0be]', glow: 'shadow-[0_0_18px_rgba(167,176,190,0.14)]' },
@@ -31,6 +32,7 @@ function AugColumn({
   refs: Augment['id'][]
   augById: Core['augById']
 }) {
+  const t = useT()
   const augs = refs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   // overlay 窗口固定高度、默认点击穿透不能滚动，不能无限撑高——超过3个只挑前3个展示，
   // 但绝不能悄悄丢掉，剩下的必须留一行"+N"提示，不然等于我们自己的数据被程序砍掉一半。
@@ -59,7 +61,7 @@ function AugColumn({
           {hiddenCount > 0 && <div className="text-[10px] font-bold opacity-70">+{hiddenCount}</div>}
         </div>
       ) : (
-        <div className="text-[11px] text-dim">暂无</div>
+        <div className="text-[11px] text-dim">{t('common.none')}</div>
       )}
     </div>
   )
@@ -76,6 +78,7 @@ function AugmentPool({
   augById: Core['augById']
   compact?: boolean
 }) {
+  const t = useT()
   const coreAugs = coreRefs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   const goodAugs = goodRefs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   const merged = [...coreAugs, ...goodAugs.filter((a) => !coreAugs.some((core) => core.id === a.id))]
@@ -87,7 +90,7 @@ function AugmentPool({
   if (pool.length === 0) return null
   return (
     <div className={compact ? 'mt-2' : 'mt-3'}>
-      {!compact && <div className="mb-1 text-[10px] font-extrabold text-gold">推荐海克斯</div>}
+      {!compact && <div className="mb-1 text-[10px] font-extrabold text-gold">{t('overlay.recommended')}</div>}
       <div className={compact ? 'flex flex-wrap items-center gap-1.5' : 'flex flex-wrap items-center gap-2'}>
         {pool.map((a) => {
           const r = RARITY[a.rarity] ?? RARITY[0]
@@ -118,7 +121,7 @@ function AugmentPool({
         })}
         {hiddenCount > 0 && (
           <span className={(compact ? 'text-[9px]' : 'text-[11px]') + ' font-bold text-dim opacity-70'}>
-            +{hiddenCount} 更多 · 主页看完整清单
+            {t('overlay.moreInHome', { n: hiddenCount })}
           </span>
         )}
       </div>
@@ -127,12 +130,13 @@ function AugmentPool({
 }
 
 function ItemRail({ items }: { items: Item[] }) {
+  const t = useT()
   if (items.length === 0) return null
   return (
     <div>
       <div className="mb-1 flex items-center justify-between">
-        <span className="text-[9px] font-extrabold text-dim">出装</span>
-        <span className="text-[8px] text-dim/70">顺序</span>
+        <span className="text-[9px] font-extrabold text-dim">{t('overlay.items')}</span>
+        <span className="text-[8px] text-dim/70">{t('overlay.order')}</span>
       </div>
       <div className="flex flex-wrap items-center gap-1">
         {items.slice(0, 5).map((it, idx) => (
@@ -185,6 +189,7 @@ function BuildPanel({
   locked: boolean
   onToggleCollapsed: () => void
 }) {
+  const t = useT()
   const champ = core.champions.find((c) => c.id === championId)
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
 
@@ -221,7 +226,7 @@ function BuildPanel({
         {!locked && (
           <button
             onClick={onToggleCollapsed}
-            title={collapsed ? '展开 HUD' : '折叠 HUD'}
+            title={collapsed ? t('overlay.expandHud') : t('overlay.collapseHud')}
             style={{ WebkitAppRegion: 'no-drag' } as React.CSSProperties}
             className="grid h-7 w-7 place-items-center rounded-full border border-line/70 bg-panel/60 text-dim transition hover:border-gold/60 hover:text-gold"
           >
@@ -242,10 +247,10 @@ function BuildPanel({
         )}
       </div>
 
-      {build === undefined && <div className="mt-2 text-[11px] text-dim">加载流派中…</div>}
+      {build === undefined && <div className="mt-2 text-[11px] text-dim">{t('overlay.loadingBuild')}</div>}
       {build === null && (
         <div className="mt-3 rounded-2xl border border-red/30 bg-red/10 p-3 text-[11px] leading-relaxed text-dim">
-          暂无「{champ.name}」的 Mayhem 作战档案。先按常规出装，下一轮优先补这个英雄。
+          {t('overlay.noBuild', { name: champ.name })}
         </div>
       )}
       {arch && (
@@ -268,7 +273,7 @@ function BuildPanel({
             augById={core.augById}
           />
           <div className="mt-1.5">
-            <AugColumn label="谨慎避开" tone="trap" refs={arch.augments.trap.map((r) => r.id)} augById={core.augById} />
+            <AugColumn label={t('warRoom.rule.trap.value.has')} tone="trap" refs={arch.augments.trap.map((r) => r.id)} augById={core.augById} />
           </div>
           <div className="mt-1.5">
             <ItemRail items={items} />
@@ -290,8 +295,8 @@ export default function Overlay() {
   const [settings, setSettings] = useState<Settings | null>(null)
 
   useEffect(() => {
-    loadCore().then(setCore)
-  }, [])
+    loadCore(settings?.language ?? 'zh').then(setCore)
+  }, [settings?.language])
 
   useEffect(() => {
     if (!isElectron()) return
@@ -305,6 +310,39 @@ export default function Overlay() {
     window.mayhem!.onSettingsChanged(setSettings)
   }, [])
 
+  return (
+    <LangProvider value={settings?.language ?? 'zh'}>
+      <OverlayBody
+        lcuStatus={lcuStatus}
+        activeChampionId={activeChampionId}
+        core={core}
+        locked={locked}
+        collapsed={collapsed}
+        settings={settings}
+        onToggleCollapsed={() => setCollapsed((current) => !current)}
+      />
+    </LangProvider>
+  )
+}
+
+function OverlayBody({
+  lcuStatus,
+  activeChampionId,
+  core,
+  locked,
+  collapsed,
+  settings,
+  onToggleCollapsed,
+}: {
+  lcuStatus: LcuStatus | null
+  activeChampionId: number | null
+  core: Core | null
+  locked: boolean
+  collapsed: boolean
+  settings: Settings | null
+  onToggleCollapsed: () => void
+}) {
+  const t = useT()
   return (
     <div className="p-2">
       <div
@@ -320,7 +358,7 @@ export default function Overlay() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(240,230,210,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(240,230,210,0.025)_1px,transparent_1px)] bg-[size:44px_44px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
         {!locked && (
           <div className="relative mb-1.5 rounded-xl border border-hex/40 bg-hex/10 px-2 py-1 text-[10px] font-semibold text-hex">
-            拖动此面板调整位置 · Ctrl+Shift+L 锁定
+            {t('overlay.dragHint')}
           </div>
         )}
         <div className="hidden">
@@ -357,14 +395,14 @@ export default function Overlay() {
             <span className="font-bold">
               {lcuStatus
                 ? lcuStatus.state === 'connected'
-                  ? '客户端在线'
+                  ? t('overlay.clientOnline')
                   : lcuStatus.state === 'error'
-                    ? '连接失败'
-                    : '连接中'
-                : '等待客户端'}
+                    ? t('overlay.clientError')
+                    : t('overlay.clientConnecting')
+                : t('overlay.clientWaiting')}
             </span>
             <span className="ml-auto text-[9px] text-dim/70">
-              {activeChampionId ? '推荐就绪' : '等待选人'}
+              {activeChampionId ? t('overlay.pickReady') : t('overlay.waitingPick')}
             </span>
           </div>
         </div>
@@ -376,12 +414,12 @@ export default function Overlay() {
             selectedArchetypeKey={settings?.selectedArchetypeByChampionId[String(activeChampionId)]}
             collapsed={collapsed}
             locked={locked}
-            onToggleCollapsed={() => setCollapsed((current) => !current)}
+            onToggleCollapsed={onToggleCollapsed}
           />
         ) : (
           <div className="relative mt-3 rounded-[22px] border border-hex/25 bg-hex/8 p-3 text-xs leading-relaxed text-dim">
             <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-hex">Standby</div>
-            进入 ARAM: Mayhem 选人后，我会锁定你的英雄，并显示本局路线、核心增强、陷阱增强和出装节奏。
+            {t('overlay.standbyDesc')}
           </div>
         )}
       </div>
