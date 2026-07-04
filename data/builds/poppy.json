@@ -1,0 +1,38 @@
+{
+  "championId": 78,
+  "championName": "波比",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "肉盾波比",
+      "damageType": "Tank",
+      "note": "靠被动护盾+E命中远墙硬控核心，堆血量/护甲装备并叠Heartsteel任务把体型和血量滚起来。歌利亚巨人(约61%)+任务：钢化你心(约65%)经arammayhem.com与metasrc两站独立确认为最高胜率组合。⚠️ 波比英雄本体在当前版本整体偏弱(C档，约48-50%胜率)，这套海克斯路线是局部胜率很高的针对性打法，不代表英雄本身强势。",
+      "augments": {
+        "core": [
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 327, "apiName": "UndyingGuard", "name": "不灭守护" },
+          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" }
+        ],
+        "trap": [
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 443193, "name": "石像鬼石板甲" },
+        { "id": 3068, "name": "日炎圣盾" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "championId": 79,
+  "championName": "古拉加斯",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP法核古拉加斯",
+      "damageType": "AP",
+      "note": "Q闪爆+R终结的爆发法核路线，堆法强和技能急速快速清场。⚠️ 草稿最初把「一板一眼」当核心海克斯，且同一份草稿在坦克路线里又把它标成陷阱、自相矛盾，已整体剔除。重量级打击手是arammayhem.com实测确认的真实海克斯(63.49%)，出装卢登的回声/法师之靴等在metasrc/blitz等来源有印证。",
+      "augments": {
+        "core": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "good": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 311, "apiName": "Overflow", "name": "溢流" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 3157, "name": "中娅沙漏" },
+        { "id": 6653, "name": "兰德里的折磨" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "op.gg", "aramgg.com"]
+    },
+    {
+      "key": "tank",
+      "name": "坦克/生命值古拉加斯",
+      "damageType": "Tank",
+      "note": "利用海克斯的体型/生命值成长效果打成滚雪球坦克。⚠️ 实测数据显示坦克引擎(67.40%)/歌利亚巨人(60.87%)其实是古拉加斯全局最强的两个海克斯，比\"备选路线\"的定位更突出，不只是对抗坦克阵容时的次选。心之钢起手叠HP路线在aramgg.com/blitz.gg有独立印证。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" }
+        ],
+        "good": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
+          { "id": 311, "apiName": "Overflow", "name": "溢流" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3803, "name": "万世催化石" },
+        { "id": 3065, "name": "振奋盔甲" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 228020, "name": "深渊面具" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "blitz.gg"]
+    }
+  ]
+}

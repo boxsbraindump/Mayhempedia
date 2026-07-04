@@ -1,0 +1,66 @@
+{
+  "championId": 77,
+  "championName": "乌迪尔",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "穿甲暴击流乌迪尔",
+      "damageType": "AD",
+      "note": "核心是觉醒Q(闪电五连鞭)而非大招，靠护甲穿透+暴击把Q打成秒杀技，操作要求较高。⚠️ 乌迪尔在英文数据站属于小众/操作型英雄(胜率约45-48%，C~D档)，不是版本强势选择，这套是能查到的最具体的中文一图流攻略路线。科学狂人归为陷阱是编辑推断(该海克斯在部分来源被列为A级但未区分具体适配哪套打法)，非直接数据结论，仅供参考。",
+      "augments": {
+        "core": [
+          { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ],
+        "good": [
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 66, "apiName": "QuantumComputing", "name": "量子计算" }
+        ],
+        "trap": [
+          { "id": 53, "apiName": "MadScientist", "name": "科学狂人" }
+        ]
+      },
+      "items": [
+        { "id": 6697, "name": "狂妄" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3142, "name": "幽梦之灵" },
+        { "id": 3153, "name": "破败王者之刃" }
+      ],
+      "runes": null,
+      "sources": ["news.qq.com", "dvg.cn"]
+    },
+    {
+      "key": "ap-burst",
+      "name": "AP核弹流乌迪尔",
+      "damageType": "AP",
+      "note": "靠觉醒R的自动跟随机制打AP法术爆发，操作容错率更高。⚠️ 出装已按实测数据改正：metasrc/aramgg的真实核心是残疫(Malignance)-法师之靴-兰德里的折磨，草稿最初列的死亡之帽/深渊面具/虚空杖/风暴狂涌/实现器均未获独立数据支持，已替换；影焰与沃格勒特的巫师帽经确认属实。",
+      "augments": {
+        "core": [
+          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" }
+        ],
+        "good": [
+          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" },
+          { "id": 61, "apiName": "OkBoomerang", "name": "回力OK镖" }
+        ],
+        "trap": [
+          { "id": 28, "apiName": "Erosion", "name": "侵蚀" }
+        ]
+      },
+      "items": [
+        { "id": 3118, "name": "残疫" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 4645, "name": "影焰" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "aramgg.com", "news.qq.com"]
+    }
+  ]
+}

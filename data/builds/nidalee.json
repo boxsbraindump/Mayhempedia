@@ -1,0 +1,37 @@
+{
+  "championId": 76,
+  "championName": "奈德丽",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP奈德丽（人形爆发+豹女补刀）",
+      "damageType": "AP",
+      "note": "只有AP爆发一条主流路线：人形Q长矛消耗爆发，切换豹女形态收割残血/游走，核心是叠AP和暴击类海克斯把Q矛/豹女普攻打成秒杀技。经arammayhem.com实测抓取(26.13版本)确认核心装备卢登→影焰→死亡之帽，强化符文尤里卡/魔法飞弹/珠光护手为最高分档。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+        ],
+        "good": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": [
+          { "id": 206, "apiName": "escAPADe", "name": "魔法转物理" }
+        ]
+      },
+      "items": [
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 3135, "name": "虚空之杖" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "mobalytics.gg", "u.gg", "blitz.gg"]
+    }
+  ]
+}

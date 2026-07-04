@@ -1,0 +1,35 @@
+{
+  "championId": 56,
+  "championName": "魔腾",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD刺客魔腾",
+      "damageType": "AD",
+      "note": "物理坚决刺客/斗士打法，靠致命节奏(Lethality)+攻速堆叠切后排，R爆发收割脆皮，避免正面开团。⚠️ 出装已按实测数据改正：多站(arammayhem.com/metasrc.com/op.gg)一致确认的核心是收集者→水银之靴→公理圆弧→海克斯注力刚壁→夜之锋刃，草稿最初写的「狂妄」在任何独立来源里都没有印证，已替换为海克斯注力刚壁；「77%登场率」这个具体数字无法找到出处，已删除，不再引用未经证实的数字。灵巧/穿针引线两个核心海克斯有独立交叉印证。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" }
+        ],
+        "good": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
+          { "id": 89, "apiName": "Vanish", "name": "遁入暗影" }
+        ],
+        "trap": [
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" }
+        ]
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 3073, "name": "海克斯注力刚壁" },
+        { "id": 3814, "name": "夜之锋刃" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "op.gg"]
+    }
+  ]
+}
