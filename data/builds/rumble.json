@@ -1,0 +1,35 @@
+{
+  "championId": 68,
+  "championName": "兰博",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP兰博（灼烧流）",
+      "damageType": "AP",
+      "note": "唯一主流打法：靠E/大招的持续灼烧和热量机制打输出，兰德里的折磨+影焰放大灼烧伤害是核心思路。核心海克斯炼狱导管(59.06%，站方明确点名兰博的Q/大招是高频DoT，能反复触发)与循环往复(62.13%)经arammayhem.com直接确认。⚠️ 灭世者的死亡之帽在任何真实来源里都没有被列为兰博的推荐出装，已剔除，出装收尾以已确认的残疫(Malignance)为准。",
+      "augments": {
+        "core": [
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3067, "name": "燃烧宝石" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3118, "name": "残疫" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

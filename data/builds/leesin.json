@@ -1,0 +1,37 @@
+{
+  "championId": 64,
+  "championName": "李青",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD李青（打架斗士流）",
+      "damageType": "AD",
+      "note": "AD物理爆发/斗士型出装，依靠公理圆弧和星蚀的被动叠加打出爆发连招，水银之靴应对控制链，黑色切割者+死亡之舞提供穿甲和续航保命。核心海克斯秘术冲拳(Prismatic第1，55.45%)/大力(第4，57.27%)经arammayhem.com直接确认，出装路线在aramgg.com与arammayhem.com两站高度一致。",
+      "augments": {
+        "core": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ],
+        "good": [
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 310, "apiName": "ClownCollege", "name": "小丑学院" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": [
+          { "id": 50, "apiName": "KeystoneConjurer", "name": "基石法师" }
+        ]
+      },
+      "items": [
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 6692, "name": "星蚀" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3071, "name": "黑色切割者" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 6676, "name": "收集者" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"]
+    }
+  ]
+}
