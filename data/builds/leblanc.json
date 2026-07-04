@@ -1,0 +1,35 @@
+{
+  "championId": 7,
+  "championName": "乐芙兰",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP爆发法刺乐芙兰",
+      "damageType": "AP",
+      "note": "只有法核爆发一条主流路线，靠QW+终极技能秒后排。装备核心(卢登-风暴狂涌/影焰-死亡之帽)与海克斯核心(巫师式思考/全凭身法)已在metasrc.com与arammayhem.com两站直接核对一致。⚠️ 提醒：乐芙兰在当前版本海克斯大乱斗整体胜率偏低(约41-43%，C~A档视站点而定)，出装打法正确，但英雄本身不算强势选择。",
+      "augments": {
+        "core": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ],
+        "good": [
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}

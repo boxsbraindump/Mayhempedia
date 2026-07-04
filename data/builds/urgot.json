@@ -1,0 +1,36 @@
+{
+  "championId": 6,
+  "championName": "厄加特",
+  "archetypes": [
+    {
+      "key": "adbruiser",
+      "name": "AD重坦厄加特",
+      "damageType": "AD",
+      "note": "近战重坦/斗士路线：亮出你的剑(棱彩，海克斯大乱斗独有的远程转近战机制)与重量级打击手在arammayhem.com与metasrc.com两站均为胜率最高档(约62-63%)海克斯，独立印证度高。出装心之钢/巨型九头蛇是该站确认的最高使用率装备(85.5%/58.9%)，另补霸王血铠/狂徒铠甲两件血量转化装备做团战续航。",
+      "augments": {
+        "core": [
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "good": [
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 250, "apiName": "SlowAndSteady", "name": "一板一眼" },
+          { "id": 107, "apiName": "TwiceThrice", "name": "接二连三" }
+        ],
+        "trap": [
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ]
+      },
+      "items": [
+        { "id": 2501, "name": "霸王血铠" },
+        { "id": 3748, "name": "巨型九头蛇" },
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3083, "name": "狂徒铠甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
+    }
+  ]
+}

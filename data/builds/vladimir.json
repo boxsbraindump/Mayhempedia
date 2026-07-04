@@ -1,0 +1,37 @@
+{
+  "championId": 8,
+  "championName": "弗拉基米尔",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP弗拉基米尔（法术吸血核心）",
+      "damageType": "AP",
+      "note": "纯AP法术吸血/续航消耗流：靠E叠印记+Q放血斩杀、W反伤续命。尤里卡/回归基本功/沃格勒特的巫师帽在arammayhem.com与lolhaidou.cn均有独立数据支持，但按实际胜率排位，果汁盒/循环往复/超凡邪恶其实更高，一并纳入。出装以星界驱驰-灭世者的死亡之帽为确认核心。⚠️ 避坑：不要出裂隙制造者(Riftmaker)——其真实生命偷取会覆盖/顶替Q技能的回血触发机制，导致连招续航失效，这条来自Mayhem社区讨论的具体警示已独立核实并从出装中剔除。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+        ],
+        "good": [
+          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" }
+        ],
+        "trap": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }
+        ]
+      },
+      "items": [
+        { "id": 3147, "name": "幽魂面具" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4629, "name": "星界驱驰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "lolhaidou.cn", "metasrc.com"]
+    }
+  ]
+}

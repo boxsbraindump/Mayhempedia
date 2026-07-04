@@ -1,0 +1,35 @@
+{
+  "championId": 1,
+  "championName": "安妮",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP爆发安妮",
+      "damageType": "AP",
+      "note": "纯爆发法师流，靠Q闪现连招和大招提伯斯秒人。经arammayhem.com与op.gg两站直接核对(26.13版本)：巫师式思考/尤里卡/超凡邪恶/果汁盒/魔法飞弹均为真实高胜率海克斯；杀戮时间到了起初被草稿误判为陷阱，但两站都把它列为安妮的招牌连携海克斯(叠技能急速打出连续「熊」连招+杀戮时间到了的存储伤害转真实伤害爆发)，已改列为核心。出装以残疫(Malignance)开局，走兰德里的折磨-影焰的燃烧伤害叠加路线。",
+      "augments": {
+        "core": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" }
+        ],
+        "good": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3118, "name": "残疫" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 4646, "name": "风暴狂涌" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "op.gg"]
+    }
+  ]
+}

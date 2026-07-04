@@ -1,0 +1,34 @@
+{
+  "championId": 2,
+  "championName": "奥拉夫",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD近战重伤斗士奥拉夫",
+      "damageType": "AD",
+      "note": "直接核对arammayhem.com(26.13版本)奥拉夫构建页得到的真实数据：秘术冲拳(55.45%胜率)与重量级打击手(63.49%胜率)是其海克斯首选，出装以海克斯注力刚壁-死亡之舞-挺进破坏者三件套为核心(66.85%/51.90%/48.94%选取率)。草稿最初参照了一篇不相关的召唤师峡谷攻略拼凑出「双刀流」和「渴血战斧」等未经证实的条目，已剔除，只保留能在Mayhem专项数据里直接核实的部分。",
+      "augments": {
+        "core": [
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "good": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ]
+      },
+      "items": [
+        { "id": 3073, "name": "海克斯注力刚壁" },
+        { "id": 6631, "name": "挺进破坏者" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3748, "name": "巨型九头蛇" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com"]
+    }
+  ]
+}
