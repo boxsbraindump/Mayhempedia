@@ -1,0 +1,37 @@
+{
+  "championId": 34,
+  "championName": "艾尼维亚",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP艾尼维亚（法强续航/减CD流）",
+      "damageType": "AP",
+      "note": "堆法强+技能急速，靠E闪冰墙控场、Q暴风雪连环伤害配合减CD海克斯打出近乎无CD的技能循环，定位偏续航消耗而非纯爆发。直接核对arammayhem.com(26.13版本)：尤里卡+循环往复为棱彩/金档核心海克斯，魔法飞弹/炼狱导管/巫师式思考/冰寒/由心及物为契合备选。⚠️ 装备已按实测数据改正：真实核心出装是时光之杖-大天使之杖-兰德里的折磨-法师之靴，草稿最初写的残疫/瑞莱是套用通用法师模板，未获Mayhem专项数据支持，已替换。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" }
+        ],
+        "trap": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ]
+      },
+      "items": [
+        { "id": 6657, "name": "时光之杖" },
+        { "id": 3003, "name": "大天使之杖" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

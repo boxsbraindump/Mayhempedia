@@ -1,0 +1,38 @@
+{
+  "championId": 33,
+  "championName": "拉莫斯",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "反伤坦克拉莫斯",
+      "damageType": "Tank",
+      "note": "靠W的高额减伤/反伤叠心之钢+荆棘之甲，任务型海克斯「钢化你心」与「坦克引擎」是arammayhem.com/op.gg等站点独立确认的最高胜率海克斯(约65%/67%)，心之钢+荆棘之甲+斯特拉克为核心出装框架。⚠️ 源站原本的出装逻辑核心其实是围绕荆棘之甲的进阶效果+法穿路线打近似真实伤害展开，比这里列出的通用坦克框架更细，具体的进阶机制在我方数据表里未收录，仅供参考，不代表这是唯一打法。",
+      "augments": {
+        "core": [
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+        ],
+        "good": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
+          { "id": 57, "apiName": "MountainSoul", "name": "山脉龙魂" },
+          { "id": 11, "apiName": "CantTouchThis", "name": "你摸不到" }
+        ],
+        "trap": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3053, "name": "斯特拉克的挑战护手" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3047, "name": "铁板靴" },
+        { "id": 3143, "name": "兰顿之兆" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "op.gg"]
+    }
+  ]
+}

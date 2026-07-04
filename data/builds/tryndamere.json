@@ -1,0 +1,36 @@
+{
+  "championId": 23,
+  "championName": "泰达米尔",
+  "archetypes": [
+    {
+      "key": "adcrit",
+      "name": "AD暴击泰达米尔",
+      "damageType": "AD",
+      "note": "唯一主流打法：靠攻速+暴击海克斯把普攻/W放大成核心输出，R保证连招不被打断、越打越强。交叉验证了metasrc.com、arammayhem.com、aramgg.com、op.gg四站，出装以破败王者之刃-狂战士靴-无尽之刃-幻影之舞为核心；双刀流(约60%胜率)与渴血(约57%)是海克斯首选。⚠️ 草稿最初把旋转至胜/终极不可阻挡当陷阱，但两站数据显示这两个海克斯胜率中性偏正(约51.67%/48.52%)，并非差选，已从陷阱移除。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
+          { "id": 238, "apiName": "TransmutePrismatic", "name": "质变：棱彩阶" },
+          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3046, "name": "幻影之舞" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 6675, "name": "纳沃利烁刃" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com", "op.gg"]
+    }
+  ]
+}

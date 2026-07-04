@@ -1,0 +1,38 @@
+{
+  "championId": 27,
+  "championName": "辛吉德",
+  "archetypes": [
+    {
+      "key": "tank-poison",
+      "name": "毒疫坦克辛吉德",
+      "damageType": "AP",
+      "note": "靠Q毒雾持续DoT加AOE减速拖垮团战，堆最大生命值和抗性把自己变成拖不死的肉盾。坦克引擎/炼狱导管在arammayhem.com被确认为高胜率(Gold档约67%)核心海克斯——注意坦克引擎纯粹是坦度类增益，不含吸血机制。装备以时光之杖/瑞莱冰晶节杖/轻灵之靴为独立确认核心，兰德里的折磨/荆棘之甲/振奋盔甲为契合坦度+DoT思路的补充件。关键暴击/连拨击锤对不依赖普攻的辛吉德明显不适配，列为陷阱。⚠️ 辛吉德胜率随版本波动较大(B~C档不等)，非稳定强势英雄。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+        ],
+        "good": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ]
+      },
+      "items": [
+        { "id": 6657, "name": "时光之杖" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3116, "name": "瑞莱的冰晶节杖" },
+        { "id": 3009, "name": "轻灵之靴" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3065, "name": "振奋盔甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "mobalytics.gg"]
+    }
+  ]
+}
