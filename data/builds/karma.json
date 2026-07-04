@@ -1,0 +1,65 @@
+{
+  "championId": 43,
+  "championName": "卡尔玛",
+  "archetypes": [
+    {
+      "key": "ap-burst",
+      "name": "AP爆发法师卡尔玛",
+      "damageType": "AP",
+      "note": "走纯法师消耗爆发路线，堆技能急速和法强打Q闪光弹连招伤害。⚠️ 装备已按实测数据改正：arammayhem.com与metasrc.com两站的真实核心出装都是残疫(Malignance)开局，鞋子明朗之靴(全局胜率最高，含AP路线)而非法师之靴，草稿最初把恶魔法典当核心装是套用通用打法拼出来的，已剔除。",
+      "augments": {
+        "core": [
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "good": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 15, "apiName": "CircleofDeath", "name": "死亡之环" },
+          { "id": 311, "apiName": "Overflow", "name": "溢流" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ]
+      },
+      "items": [
+        { "id": 3118, "name": "残疫" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    },
+    {
+      "key": "support-enchant",
+      "name": "护盾回复辅助卡尔玛",
+      "damageType": "Support",
+      "note": "走E护盾+R强化护盾/治疗的软辅路线，靠明朗之靴压低R大招CD、堆最大生命/护盾类装备保护全队。⚠️ 引用的DVG中文攻略实际只讨论海克斯选择，不含具体出装内容，草稿最初把它当装备来源是误引，这里的装备清单按通用软辅卡尔玛思路给出，可信度弱于AP档，仅供参考。",
+      "augments": {
+        "core": [
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 311, "apiName": "Overflow", "name": "溢流" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3118, "name": "残疫" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 6620, "name": "海力亚的回响" },
+        { "id": 6617, "name": "月石再生器" },
+        { "id": 3190, "name": "钢铁烈阳之匣" },
+        { "id": 3222, "name": "米凯尔的祝福" }
+      ],
+      "runes": null,
+      "sources": ["dvg.cn", "metasrc.com"]
+    }
+  ]
+}

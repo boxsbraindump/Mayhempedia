@@ -1,0 +1,37 @@
+{
+  "championId": 53,
+  "championName": "布里茨",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克开团布里茨",
+      "damageType": "Tank",
+      "note": "靠Q勾人开团，堆生命值/护甲魔抗类装备和海克斯把自己变成不死坦。直接核对arammayhem.com实测胜率分档：循环往复棱彩档(62.10%)、虚幻武器金档(58.29%)是两个最强选择，由心及物只在银档(54.30%)，三者强度并不完全对等，此前的note把三者都说成'T0并列'夸大了置信度。核心出装心之钢+无终恨意+霸王血铠是该站实测最高使用率组合。",
+      "augments": {
+        "core": [
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "good": [
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" }
+        ],
+        "trap": [
+          { "id": 66, "apiName": "QuantumComputing", "name": "量子计算" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 2501, "name": "霸王血铠" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3143, "name": "兰顿之兆" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}
