@@ -1,0 +1,38 @@
+{
+  "championId": 429,
+  "championName": "卡莉丝塔",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD攻速卡莉丝塔（长矛攻速流）",
+      "damageType": "AD",
+      "note": "只有一条主流打法：靠攻速堆叠触发被动魔法长矛打出持续伤害并利用弹射位移风筝，核心是灵巧/双刀流/踢踏舞/全凭身法这类攻速强化符文。直接核对arammayhem.com确认核心海克斯与出装路线。",
+      "augments": {
+        "core": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ],
+        "trap": [
+          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ]
+      },
+      "items": [
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3085, "name": "卢安娜的飓风" },
+        { "id": 3124, "name": "鬼索的狂暴之刃" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "blitz.gg", "metasrc.com", "op.gg"]
+    }
+  ]
+}

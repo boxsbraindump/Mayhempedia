@@ -1,0 +1,35 @@
+{
+  "championId": 523,
+  "championName": "厄斐琉斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "暴击/攻速AD厄斐琉斯",
+      "damageType": "AD",
+      "note": "只有一条主流路线：靠武器切换打出持续输出的暴击/攻速ADC流。多个专项数据站(arammayhem.com/metasrc.com/op.gg/blitz.gg)交叉验证：核心海克斯亮出你的剑(近战肉搏形态，约62%胜率)与双刀流(约60%胜率)，巨人杀手和灵巧也是稳定高胜率备选。出装以收集者+无尽之刃开局。",
+      "augments": {
+        "core": [
+          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+        ],
+        "good": [
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3085, "name": "卢安娜的飓风" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 3072, "name": "饮血剑" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com", "op.gg", "blitz.gg"]
+    }
+  ]
+}

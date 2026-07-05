@@ -1,0 +1,36 @@
+{
+  "championId": 518,
+  "championName": "妮蔻",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP爆发妮蔻",
+      "damageType": "AP",
+      "note": "纯AP法术爆发+伪装消耗流，核心思路是叠海克斯提供的法强/技能haste，用QER combo秒杀残血目标。⚠️ 出装已按metasrc.com/mobalytics.gg实测数据改正：真实核心是卢登→残疫→法师之靴→风暴狂涌→影焰→中娅沙漏，草稿最初的暗夜收割者/灭世者的死亡之帽/虚空之杖并未获两站独立支持，已替换。核心海克斯改为arammayhem.com单一来源确实同时列出的尤里卡+循环往复；珠光护手虽然分别在中文来源里也是真实的强推荐，但没有任何来源把它和循环往复列为同一套组合，已降为好选择而非核心。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3118, "name": "残疫" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "mobalytics.gg"]
+    }
+  ]
+}

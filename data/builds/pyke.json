@@ -1,0 +1,36 @@
+{
+  "championId": 555,
+  "championName": "派克",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD暗影刺客派克",
+      "damageType": "AD",
+      "note": "致命节奏(Lethality)刺客型出装，靠E突进+R处决收割滚雪球。⚠️ 出装/海克斯已按实测数据改正：直接核对arammayhem.com真实榜单，只有全凭身法/大力有独立确认，暗影疾奔/科学狂人证据较弱已降级；出装最初漏掉了真实核心收集者与夜之锋刃(接近90%出场率)，已补上。派克被动决定普攻不能暴击，因此暴击类海克斯对他是明确的机制性陷阱。",
+      "augments": {
+        "core": [
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+        ],
+        "good": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" },
+          { "id": 53, "apiName": "MadScientist", "name": "科学狂人" },
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+        ]
+      },
+      "items": [
+        { "id": 3134, "name": "锯齿短匕" },
+        { "id": 6697, "name": "狂妄" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 3814, "name": "夜之锋刃" },
+        { "id": 3158, "name": "明朗之靴" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "metasrc.com"]
+    }
+  ]
+}
