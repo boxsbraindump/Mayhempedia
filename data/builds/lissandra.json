@@ -1,0 +1,37 @@
+{
+  "championId": 127,
+  "championName": "丽桑卓",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP爆发丽桑卓",
+      "damageType": "AP",
+      "note": "纯AP法核爆发思路：QWER+被动都是范围伤害，靠尤里卡/超强大脑堆法强和减CD，配合冰霜之棱/苦痛缠绕AOE先手，再用大招冰锥收割。⚠️ 出装已按metasrc.com实测数据改正：真实核心是遗失的章节→残疫→法师之靴→中娅沙漏→兰德里的折磨→影焰，草稿最初塞进的灭世者的死亡之帽在真实出装里找不到依据，已换成中娅沙漏；超强大脑在真实数据里排名比尤里卡还高，已提升到核心。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" }
+        ],
+        "good": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "trap": [
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ]
+      },
+      "items": [
+        { "id": 3802, "name": "遗失的章节" },
+        { "id": 3118, "name": "残疫" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3157, "name": "中娅沙漏" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 4645, "name": "影焰" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}

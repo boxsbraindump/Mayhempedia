@@ -1,0 +1,37 @@
+{
+  "championId": 163,
+  "championName": "塔莉垭",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP塔莉垭（法术炮台）",
+      "damageType": "AP",
+      "note": "只有一条主流路线：法穿/AP法师炮台流，靠Q远程消耗+法力回复类海克斯续航打消耗战，无AD或坦克分支。三个专项站(metasrc.com/arammayhem.com/aramgg.com)交叉确认核心装备卢登+法师之靴+影焰，尤里卡为独立印证的高胜率海克斯。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "good": [
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+        ],
+        "trap": [
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+        ]
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 6610, "name": "焚天" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com", "blitz.gg", "op.gg"]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "championId": 133,
+  "championName": "奎因",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "暴击奎因(AD射手)",
+      "damageType": "AD",
+      "note": "AD暴击/攻速射手流，靠W变形切换单体爆发与多目标消耗。经metasrc.com与arammayhem.com两站交叉验证(26.13版本)：双刀流与连拨击锤是棱彩阶爆款(约60%胜率)，灵巧是白银阶暴击核心。⚠️ 已修正内部矛盾：原草稿正文写「鞋子首选狂战士胫甲」但items数组错填了轻灵之靴，已改正为狂战士胫甲；海妖杀手/水银弯刀/瞄准脑袋/关键暴击在两站真实榜单里都查不到，已剔除。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+        ],
+        "good": [
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3036, "name": "多米尼克领主的致意" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com"]
+    }
+  ]
+}

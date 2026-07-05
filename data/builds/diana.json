@@ -1,0 +1,34 @@
+{
+  "championId": 131,
+  "championName": "黛安娜",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP黛安娜",
+      "damageType": "AP",
+      "note": "几乎只有AP爆发法师一条路线，靠QE连招+大招团控迅速爆发。尤里卡与虚幻武器各自独立确认为黛安娜的高胜率海克斯(虚幻武器有arammayhem.com专属连招页佐证)，但并非同一套'组合'——已修正措辞。⚠️ 出装已按实测数据改正：真实爆发路线核心是风暴狂涌→影焰→灭世者的死亡之帽，草稿最初的岚切/虚空之杖/无终恨意是套用不同路线拼凑，已替换；神射法师最初被误判为陷阱，实际是Gold档确认强势海克斯，已改列为好选择。黛安娜整体胜率在不同版本快照间波动(约45%~49%)。",
+      "augments": {
+        "core": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "good": [
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3157, "name": "中娅沙漏" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+    }
+  ]
+}

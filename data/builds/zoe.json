@@ -1,0 +1,35 @@
+{
+  "championId": 142,
+  "championName": "佐伊",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP爆发法师佐伊",
+      "damageType": "AP",
+      "note": "靠Q泡泡+E睡眠束的爆发连招秒人，核心是堆叠法强和技能急速打出连续爆发。metasrc.com/blitz.gg/arammayhem.com三个专项站数据一致指向巫师式思考/超强大脑/尤里卡为最高胜率增强，出装以卢登的回声起手法核，法师之靴+法穿法核收尾。",
+      "augments": {
+        "core": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "good": [
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3802, "name": "遗失的章节" },
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    }
+  ]
+}
