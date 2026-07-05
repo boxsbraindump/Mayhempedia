@@ -1,0 +1,34 @@
+{
+  "championId": 200,
+  "championName": "卑尔维斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD攻速卑尔维斯（真伤放血流）",
+      "damageType": "AD",
+      "note": "没有清晰的AP分支，攻速/攻击力主导的Q循环出装：秘术冲拳与她的Q命中重置W/E形成契合连招。核心装Kraken Slayer→水银之靴→破败王者之刃是arammayhem.com与aramgg.com两站共同确认的路径。⚠️ 但海克斯环节两站分歧较大(aramgg真实榜单是High Roller/Double Tap/Mad Scientist，与本档不重叠)，只有双刀流/秒术冲拳被arammayhem.com独立确认，其余good/trap条目未获交叉印证，仅供参考。卑尔维斯整体在当前版本偏弱(约43-45%胜率)。",
+      "augments": {
+        "core": [
+          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ],
+        "good": [
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6672, "name": "海妖杀手" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3153, "name": "破败王者之刃" },
+        { "id": 3071, "name": "黑色切割者" },
+        { "id": 6333, "name": "死亡之舞" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

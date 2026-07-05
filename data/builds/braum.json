@@ -1,0 +1,34 @@
+{
+  "championId": 201,
+  "championName": "布隆",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克保镖布隆",
+      "damageType": "Tank",
+      "note": "纯坦度保镖型辅助，核心思路是靠心之钢/无终恨意堆叠生命值再转化为伤害与体型，配合Q闪电束控场、E举盾保护后排。直接核对arammayhem.com确认核心出装心之钢→无终恨意→狂徒铠甲，鞋子水银之靴。⚠️ 已修正：草稿最初引用的知乎文章实际讨论的是多年前的旧版「极地大乱斗」而非海克斯大乱斗，且完全不含心之钢/海克斯内容，已剔除；扇巴掌最初被误判为陷阱，实际54.27%胜率是尚可选择，已改列为好选择；荆棘之甲/骑士之誓在真实出装页里查不到依据，已剔除。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" }
+        ],
+        "good": [
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
+          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3083, "name": "狂徒铠甲" },
+        { "id": 3111, "name": "水银之靴" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com"]
+    }
+  ]
+}

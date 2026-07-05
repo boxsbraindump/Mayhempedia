@@ -1,0 +1,37 @@
+{
+  "championId": 240,
+  "championName": "克烈",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD重装骑士克烈",
+      "damageType": "AD",
+      "note": "唯一清晰路线：靠双血条(骑士+斯嘎尔)反复冲阵拉扯，重量级打击手命中控制目标造成爆发，叠加心之钢/巨型九头蛇堆血量做AOE消耗，水银之靴防控场保命。经arammayhem.com确认重量级打击手(63.49%)/钢化你心(64.94%)为核心海克斯，心之钢/巨型九头蛇/水银之靴为核心装。",
+      "augments": {
+        "core": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 310, "apiName": "ClownCollege", "name": "小丑学院" },
+          { "id": 22, "apiName": "Deft", "name": "灵巧" },
+          { "id": 107, "apiName": "TwiceThrice", "name": "接二连三" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" }
+        ],
+        "trap": [
+          { "id": 87, "apiName": "Typhoon", "name": "台风" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3748, "name": "巨型九头蛇" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 2501, "name": "霸王血铠" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 6698, "name": "亵渎九头蛇" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "blitz.gg", "arammayhem.com"]
+    }
+  ]
+}
