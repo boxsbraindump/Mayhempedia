@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD攻速卑尔维斯（真伤放血流）",
       "damageType": "AD",
-      "note": "没有清晰的AP分支，攻速/攻击力主导的Q循环出装：秘术冲拳与她的Q命中重置W/E形成契合连招。核心装Kraken Slayer→水银之靴→破败王者之刃是arammayhem.com与aramgg.com两站共同确认的路径。⚠️ 但海克斯环节两站分歧较大(aramgg真实榜单是High Roller/Double Tap/Mad Scientist，与本档不重叠)，只有双刀流/秒术冲拳被arammayhem.com独立确认，其余good/trap条目未获交叉印证，仅供参考。卑尔维斯整体在当前版本偏弱(约43-45%胜率)。",
+      "note": "没有清晰的AP分支，攻速/攻击力主导的Q循环出装：秘术冲拳与她的Q命中重置W/E形成契合连招。核心装Kraken Slayer→水银之靴→破败王者之刃是arammayhem.com与aramgg.com两站共同确认的路径。⚠️ 但海克斯环节两站分歧较大(aramgg真实榜单是High Roller/Double Tap/Mad Scientist，与本档不重叠)，只有双刀流/秒术冲拳被arammayhem.com独立确认，其余good/trap条目未获交叉印证，仅供参考。卑尔维斯整体在当前版本偏弱(约43-45%胜率)。补充说明：黑色切割者在arammayhem.com高频三件套列表里不算主流(该站更常见的是海妖杀手+破败王者之刃+死亡之舞/智慧末刃)，但metasrc.com的具体出装序列里有独立数据支持，故保留为核心装但样本量偏小；智慧末刃经多站交叉确认为可靠的收尾件。",
       "augments": {
         "core": [
           { "id": 225, "apiName": "DualWield", "name": "双刀流" },
@@ -25,10 +25,11 @@
         { "id": 3111, "name": "水银之靴" },
         { "id": 3153, "name": "破败王者之刃" },
         { "id": 3071, "name": "黑色切割者" },
-        { "id": 6333, "name": "死亡之舞" }
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3091, "name": "智慧末刃" }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com"]
+      "sources": ["arammayhem.com", "aramgg.com", "op.gg", "metasrc.com"]
     }
   ]
 }

@@ -22,13 +22,14 @@
       },
       "items": [
         { "id": 3801, "name": "晶体护腕" },
-        { "id": 6630, "name": "渴血战斧" },
+        { "id": 226630, "name": "渴血战斧" },
         { "id": 3083, "name": "狂徒铠甲" },
         { "id": 2502, "name": "无终恨意" },
-        { "id": 3111, "name": "水银之靴" }
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3075, "name": "荆棘之甲" }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": ["arammayhem.com", "metasrc.com", "op.gg", "blitz.gg"]
     }
   ]
 }

@@ -26,10 +26,11 @@
         { "id": 3084, "name": "心之钢" },
         { "id": 2502, "name": "无终恨意" },
         { "id": 3111, "name": "水银之靴" },
-        { "id": 3075, "name": "荆棘之甲" }
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3068, "name": "日炎圣盾" }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
     },
     {
       "key": "ap",
@@ -52,10 +53,12 @@
       "items": [
         { "id": 6653, "name": "兰德里的折磨" },
         { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 3020, "name": "法师之靴" }
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 3135, "name": "虚空之杖" },
+        { "id": 3157, "name": "中娅沙漏" }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramonly.com"]
+      "sources": ["arammayhem.com", "aramonly.com", "aramgg.com"]
     }
   ]
 }
