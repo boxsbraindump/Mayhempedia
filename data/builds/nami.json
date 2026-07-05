@@ -1,0 +1,36 @@
+{
+  "championId": 267,
+  "championName": "娜美",
+  "archetypes": [
+    {
+      "key": "ap_support",
+      "name": "AP辅助娜美（奶盾+爆发连招）",
+      "damageType": "AP",
+      "note": "AP法系辅助，靠W奶盾连接队友、E减速控场、R团战大招。出装(月石再生器/明朗之靴/炽热香炉/帝国指令/救赎/女神之泪)在aramgg.com、metasrc.com等多个独立来源高度一致，可信度扎实。⚠️ 核心海克斯已改正：超凡邪恶/尤里卡是套用给任意「技能命中触发」AP英雄的通用选择，并非娜美当前版本(26.13)真正的top pick，已替换为该站真正确认的全心为你/急救用具作为核心，天音爆/会心治疗作为好选择。",
+      "augments": {
+        "core": [
+          { "id": 141, "apiName": "AllForYou", "name": "全心为你" },
+          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" }
+        ],
+        "good": [
+          { "id": 76, "apiName": "SonicBoom", "name": "天音爆" },
+          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" }
+        ],
+        "trap": [
+          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+        ]
+      },
+      "items": [
+        { "id": 3070, "name": "女神之泪" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 6617, "name": "月石再生器" },
+        { "id": 3504, "name": "炽热香炉" },
+        { "id": 4005, "name": "帝国指令" },
+        { "id": 3107, "name": "救赎" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com", "metasrc.com"]
+    }
+  ]
+}

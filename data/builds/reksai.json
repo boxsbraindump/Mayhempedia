@@ -1,0 +1,40 @@
+{
+  "championId": 421,
+  "championName": "雷克塞",
+  "archetypes": [
+    {
+      "key": "tank_ad",
+      "name": "坦克/战士雷克塞（心之钢叠血流）",
+      "damageType": "AD",
+      "note": "靠钻地Q反复突进/位移触发晕眩控制，堆叠生命值装备（心之钢、巨型九头蛇）打出基于最大生命值的物理伤害。多站(metasrc/arammayhem.com/blitz.gg/op.gg)一致确认心之钢+水银之靴+巨型九头蛇/振奋盔甲/无终恨意出装路线，重量级打击手是标志性高胜率增强(63%+)。⚠️ 雷克塞英雄整体在当前版本约为C档、45%左右胜率；这套坦克/战士体系是该英雄局部表现最好的组合，不代表英雄本身强势。",
+      "augments": {
+        "core": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 20, "apiName": "DawnbringersResolve", "name": "黎明使者的坚决" },
+          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" },
+          { "id": 57, "apiName": "MountainSoul", "name": "山脉龙魂" },
+          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+        ],
+        "trap": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 174, "apiName": "LaserEyes", "name": "镭射眼" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3748, "name": "巨型九头蛇" },
+        { "id": 6610, "name": "焚天" },
+        { "id": 3065, "name": "振奋盔甲" },
+        { "id": 2502, "name": "无终恨意" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg", "op.gg"]
+    }
+  ]
+}

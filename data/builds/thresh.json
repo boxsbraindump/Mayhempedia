@@ -1,0 +1,36 @@
+{
+  "championId": 412,
+  "championName": "锤石",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克锤石(心之钢工程)",
+      "damageType": "Tank",
+      "note": "纯坦克辅助玩法，核心是靠心之钢+叠血量装备把血量刷到很高。⚠️ 坦克引擎/任务钢化你心经arammayhem.com确认是真实高胜率海克斯(67.4%/65.3%)，但这两者其实是通用坦克向海克斯——它们各自的专属介绍页把「Specifically Recommended」名单给了阿利斯塔/阿木木/布隆等纯坦克，并未单独点名锤石，属于强力的通用坦克选择而非锤石专属技，措辞已调整。锤石在当前版本整体是C~T5档，约42.7%胜率，偏弱英雄，出装体系能提升局部表现但不代表英雄整体强势。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+        ],
+        "good": [
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" }
+        ],
+        "trap": [
+          { "id": 194, "apiName": "FeyMagic", "name": "精怪魔法" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3083, "name": "狂徒铠甲" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 3075, "name": "荆棘之甲" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}
