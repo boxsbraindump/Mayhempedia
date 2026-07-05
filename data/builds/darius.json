@@ -1,0 +1,65 @@
+{
+  "championId": 122,
+  "championName": "德莱厄斯",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD斗士德莱厄斯（三相之力流）",
+      "damageType": "AD",
+      "note": "靠海克斯叠加物理伤害和攻速，三相之力核心提供爆发+机动性。核心增强重量级打击手(63.49%)/秘术冲拳(站上标注为'无限Q'连招机制)均被arammayhem.com独立验证；⚠️「利刃华尔兹=陷阱」是本档最扎实的一条——原因是利刃华尔兹的判定是on-attack而非on-hit，无法触发德莱厄斯被动流血叠加，这个反直觉的具体机制在arammayhem.com连招页与社区讨论帖里逐字印证，不是编造。台风是该站另一条专门用于叠流血的连招，已确认为契合。焚天(Sundered Sky)是metasrc当前(26.13)构筑页列出但草稿最初遗漏的T0装备，已补上。",
+      "augments": {
+        "core": [
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+        ],
+        "good": [
+          { "id": 20, "apiName": "DawnbringersResolve", "name": "黎明使者的坚决" },
+          { "id": 87, "apiName": "Typhoon", "name": "台风" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+        ],
+        "trap": [
+          { "id": 6, "apiName": "BladeWaltz", "name": "利刃华尔兹" }
+        ]
+      },
+      "items": [
+        { "id": 3078, "name": "三相之力" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 3053, "name": "斯特拉克的挑战护手" },
+        { "id": 6631, "name": "挺进破坏者" },
+        { "id": 6610, "name": "焚天" },
+        { "id": 3065, "name": "振奋盔甲" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    },
+    {
+      "key": "tank",
+      "name": "坦克德莱厄斯（心之钢流）",
+      "damageType": "Tank",
+      "note": "备选打法：牺牲部分爆发换取极限生存，心之钢堆叠海量生命值，配合坦克引擎让每次击杀/助攻都永久增加体型和最大生命。⚠️ 出装已按aramonly.com的真实Heartsteel攻略改正：该攻略实际核心是心之钢+霸王血铠(Overlord's Bloodmail)+无终恨意(Unending Despair)+焚天(Sundered Sky)+狂徒铠甲(Warmog's Armor)的重击HP流，草稿最初的兰顿之兆/守护天使属于通用召唤师峡谷坦克装直觉，并未在该真实攻略里出现，已替换。",
+      "augments": {
+        "core": [
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+        ],
+        "good": [
+          { "id": 20, "apiName": "DawnbringersResolve", "name": "黎明使者的坚决" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 149, "apiName": "Impassable", "name": "不动如山" }
+        ],
+        "trap": [
+          { "id": 6, "apiName": "BladeWaltz", "name": "利刃华尔兹" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 2501, "name": "霸王血铠" },
+        { "id": 2502, "name": "无终恨意" },
+        { "id": 6610, "name": "焚天" },
+        { "id": 3083, "name": "狂徒铠甲" }
+      ],
+      "runes": null,
+      "sources": ["aramonly.com", "metasrc.com", "arammayhem.com"]
+    }
+  ]
+}
