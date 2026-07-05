@@ -1,0 +1,37 @@
+{
+  "championId": 897,
+  "championName": "奎桑提",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "坦克奎桑提",
+      "damageType": "Tank",
+      "note": "只有一套主流打法：叠命定血量+饮血续航的坦克/半肉核心，走心之钢起手叠属性。metasrc.com/arammayhem.com/blitz.gg三站在核心增强(歌利亚巨人/坦克引擎/钢化你心/重量级打击手)和心之钢起手上高度一致。",
+      "augments": {
+        "core": [
+          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
+          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+        ],
+        "good": [
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
+          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "trap": [
+          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+        ]
+      },
+      "items": [
+        { "id": 3084, "name": "心之钢" },
+        { "id": 6662, "name": "冰脉护手" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6665, "name": "千变者贾修" },
+        { "id": 3075, "name": "荆棘之甲" },
+        { "id": 3143, "name": "兰顿之兆" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+    }
+  ]
+}

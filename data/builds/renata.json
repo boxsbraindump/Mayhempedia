@@ -1,0 +1,33 @@
+{
+  "championId": 888,
+  "championName": "烈娜塔 · 戈拉斯克",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP烈娜塔 · 戈拉斯克（控制链输出流）",
+      "damageType": "AP/Support",
+      "note": "围绕W治疗+护盾、E强制位移和被动施法命中的持续腐蚀伤害构建，核心是利用控制效果触发扇巴掌叠加。arammayhem.com专属连招页明确将扇巴掌列为S级组合，aramgg.com与arammayhem.com都确认核心出装为残疫+明朗之靴+帝国指令，两处独立锚点均直接验证成立。",
+      "augments": {
+        "core": [
+          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+        ],
+        "good": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
+          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
+          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3118, "name": "残疫" },
+        { "id": 4005, "name": "帝国指令" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 2065, "name": "舒瑞娅的战歌" },
+        { "id": 6653, "name": "兰德里的折磨" },
+        { "id": 3190, "name": "钢铁烈阳之匣" }
+      ],
+      "runes": null,
+      "sources": ["arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

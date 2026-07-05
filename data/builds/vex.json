@@ -1,0 +1,35 @@
+{
+  "championId": 711,
+  "championName": "薇古丝",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP薇古丝（法坦爆发型）",
+      "damageType": "AP",
+      "note": "只有一条主流玩法：法术爆发+大招真实伤害/免伤反打，围绕Q压制标记和大招重置在团战节奏堆output。⚠️ 核心海克斯已改正：巫师式思考+珠光护手从未被任何单一来源列为同一套组合(分属不同版本快照的独立强项)，已拆开——巫师式思考+尤里卡是metasrc同一份数据里的真实搭配，珠光护手降为好选择。出装的风暴狂涌未获任何独立来源支持，已剔除，核心装为arammayhem.com确认的卢登→影焰→灭世者的死亡帽。叠角龙陷阱判断缺乏依据，已剔除。",
+      "augments": {
+        "core": [
+          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+        ],
+        "good": [
+          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
+          { "id": 11, "apiName": "CantTouchThis", "name": "你摸不到" },
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3802, "name": "遗失的章节" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "dvg.cn"]
+    }
+  ]
+}

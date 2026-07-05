@@ -1,0 +1,35 @@
+{
+  "championId": 799,
+  "championName": "安蓓萨",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD安蓓萨（斗士/决斗核心）",
+      "damageType": "AD",
+      "note": "唯一主流打法：AD物理斗士，靠W双层护盾+大招吸血硬吃消耗。arammayhem.com与aramgg.com独立确认狂妄+死亡之舞+星蚀+水银之靴+考尔菲德的战锤出装方向。⚠️ 回归基本功是Prismatic档最高胜率(56.32%)海克斯，渴血只是Silver档较低位置的选项，两者并非同一梯队，已把渴血降为好选择；朔极之矛在aramgg核心三件套里比黑色切割者更常被列为核心装，已替换。",
+      "augments": {
+        "core": [
+          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+        ],
+        "good": [
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
+          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
+          { "id": 27, "apiName": "Earthwake", "name": "大地苏醒" },
+          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
+          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3133, "name": "考尔菲德的战锤" },
+        { "id": 6692, "name": "星蚀" },
+        { "id": 6697, "name": "狂妄" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 3161, "name": "朔极之矛" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

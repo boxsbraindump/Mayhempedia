@@ -1,0 +1,33 @@
+{
+  "championId": 950,
+  "championName": "纳亚菲利",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD纳亚菲利(刺客/斗士)",
+      "damageType": "AD",
+      "note": "只有一条主流打法：靠Q技能流血和野狗召唤物叠加致命节奏类效果，前期靠收割者的过路费(原狂妄)+收集者滚雪球斩杀。⚠️ 核心海克斯已按实测数据改正：瞄准脑袋在metasrc/arammayhem两站真实榜单里查无实据(仅来自不可靠的搜索摘要噪音)，已剔除；穿针引线在真实排序里其实是几个海克斯里最低的，已降为好选择；全凭身法/渴血才是两站真正确认的核心。出装收割者的过路费→收集者→水银之靴→赛瑞尔达的怨恨/死亡之舞三源印证良好。",
+      "augments": {
+        "core": [
+          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
+          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+        ],
+        "good": [
+          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" },
+          { "id": 7, "apiName": "BluntForce", "name": "大力" },
+          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 443090, "name": "收割者的过路费" },
+        { "id": 6676, "name": "收集者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6694, "name": "赛瑞尔达的怨恨" },
+        { "id": 6333, "name": "死亡之舞" }
+      ],
+      "runes": null,
+      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+    }
+  ]
+}

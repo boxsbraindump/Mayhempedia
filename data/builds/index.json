@@ -154,14 +154,22 @@
   "523": "aphelios.json",
   "526": "rell.json",
   "555": "pyke.json",
+  "711": "vex.json",
   "777": "yone.json",
+  "799": "ambessa.json",
+  "800": "mel.json",
   "804": "yunara.json",
+  "805": "locke.json",
   "875": "sett.json",
   "876": "lillia.json",
   "887": "gwen.json",
+  "888": "renata.json",
   "893": "aurora.json",
+  "895": "nilah.json",
+  "897": "ksante.json",
   "901": "smolder.json",
   "902": "milio.json",
   "904": "zaahen.json",
-  "910": "hwei.json"
+  "910": "hwei.json",
+  "950": "naafiri.json"
 }
