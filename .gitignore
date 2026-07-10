@@ -1,8 +1,15 @@
 node_modules/
 dist/
 dist-renderer/
+download/
+release/
 *.log
 .DS_Store
 
 # 抓取的图标（~11MB，可用 npm run data:icons 重新生成）；JSON 保留入库
 data/icons/
+
+# 开发工具/临时产物，不入库
+scratchpad/
+.agents/
+skills-lock.json

@@ -1,4 +1,5 @@
 // 数据加载 + 类型。dev 下 data/ 目录当静态根，直接 fetch。
+import { customRouteKey, type CustomRoute } from '../custom-routes'
 
 export interface Augment {
   id: number
@@ -44,7 +45,10 @@ export interface Archetype {
   damageType: string
   note: string
   augments: { core: Ref[]; good: Ref[]; trap: Ref[] }
+  starterItems?: Ref[]
   items: Ref[]
+  boots?: Ref[]
+  optionalItems?: Ref[]
   runes: unknown
   /** 数据可信度锚点：这套玩法交叉参考过的真实站点，没有就不显示（人工手打的老数据允许缺失） */
   sources?: string[]
@@ -85,14 +89,16 @@ export interface PatchNotes {
   theme: string
   releaseDate: string
   sourceUrl: string
-  championChanges: { championId: number; championName: string; changes: string[] }[]
-  itemChanges: { itemName: string; changes: string[] }[]
+  championChanges: { championId: number; championName: string; changes: string[]; changesEn?: string[] }[]
+  itemChanges: { itemId?: number; itemName: string; itemNameEn?: string; changes: string[]; changesEn?: string[] }[]
   systemChanges: string[]
+  systemChangesEn?: string[]
   mayhem: {
     summaryZh: string
     summaryEn: string
-    augmentChanges: { name: string; change: string }[]
+    augmentChanges: { icon?: string; name: string; change: string; changeEn?: string }[]
     bugfixes: string[]
+    bugfixesEn?: string[]
   }
 }
 
@@ -149,3 +155,40 @@ export function getAugment(augById: Map<number, Augment>, id: number): Augment |
 
 /** iconLocal("icons/items/2510.png") → 可访问 URL */
 export const icon = (p: string): string => '/' + p
+
+export function refsFromIds<T extends { id: number; name: string }>(ids: number[], byId: Map<number, T>): Ref[] {
+  return ids.flatMap((id) => {
+    const value = byId.get(id)
+    return value ? [{ id, name: value.name }] : []
+  })
+}
+
+export function customRouteToArchetype(route: CustomRoute, core: Core): Archetype {
+  return {
+    key: customRouteKey(route.id),
+    name: route.title,
+    damageType: route.damageType,
+    note: route.description,
+    starterItems: refsFromIds(route.starterItemIds, core.itemById),
+    items: refsFromIds(route.itemIds, core.itemById),
+    augments: {
+      core: refsFromIds(route.coreAugmentIds, core.augById),
+      good: refsFromIds(route.goodAugmentIds, core.augById),
+      trap: refsFromIds(route.trapAugmentIds, core.augById),
+    },
+    runes: null,
+    sources: ['Local custom route'],
+  }
+}
+
+export function withCustomRoutes(build: Build | null, championId: number, routes: CustomRoute[], core: Core): Build | null {
+  const custom = routes
+    .filter((route) => route.championId === championId)
+    .map((route) => customRouteToArchetype(route, core))
+  if (custom.length === 0) return build
+  return {
+    championId,
+    championName: core.champions.find((champion) => champion.id === championId)?.name ?? '',
+    archetypes: [...(build?.archetypes ?? []), ...custom],
+  }
+}

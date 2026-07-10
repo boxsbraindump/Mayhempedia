@@ -1,23 +1,25 @@
 @import 'tailwindcss';
 
-/* 设计 token（Tailwind v4 @theme）——Hextech command room */
+/* 设计 token（Tailwind v4 @theme）——quiet tactical desktop */
 @theme {
-  --color-ink: #091428;
-  --color-panel: #111c2f;
-  --color-panel2: #1b263b;
-  --color-line: #31415a;
-  --color-gold: #c8aa6e;
-  --color-red: #d64045;
-  --color-cream: #f0e6d2;
-  --color-dim: #8fa2bd;
-  --color-hex: #29d3ff;
+  --color-ink: #080d14;
+  --color-panel: #101824;
+  --color-panel2: #172232;
+  --color-line: #2b394d;
+  --color-gold: #d0ad68;
+  --color-red: #d95b5b;
+  --color-cream: #f2ead8;
+  --color-dim: #91a0b4;
+  --color-hex: #5ec8d7;
 }
 
 :root {
   color-scheme: dark;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #091428;
+    "Aptos", "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #080d14;
+  font-variant-numeric: tabular-nums;
+  text-rendering: optimizeLegibility;
 }
 
 html.overlay-html {
@@ -30,13 +32,25 @@ html.overlay-html {
 
 body {
   margin: 0;
-  min-width: 960px;
+  min-width: 0;
   min-height: 100vh;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 18% 12%, rgba(41, 211, 255, 0.16), transparent 32%),
-    radial-gradient(circle at 78% 4%, rgba(200, 170, 110, 0.18), transparent 26%),
-    linear-gradient(135deg, #091428 0%, #101a2b 48%, #1b263b 100%);
+    radial-gradient(circle at 14% 10%, rgba(208, 173, 104, 0.12), transparent 28%),
+    radial-gradient(circle at 86% 0%, rgba(94, 200, 215, 0.1), transparent 24%),
+    linear-gradient(135deg, #080d14 0%, #0d1521 45%, #111b29 100%);
   color: #f0e6d2;
+}
+
+#root {
+  min-width: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.mayhem-scale-stage {
+  transform-origin: top left;
+  overflow: hidden;
 }
 
 body.overlay-body {
@@ -52,8 +66,214 @@ body.overlay-body #root {
   overflow: hidden;
 }
 
+/*
+ * 只继承字体/字号/行高，不继承 font-weight——font:inherit 简写会把字重也一起reset成继承值，
+ * 而这条规则不在Tailwind的@layer里，会无条件盖掉font-bold/extrabold/black这些分层工具类，
+ * 导致按钮上设的字重样式表面上写对了、实际却从来没生效过（踩过这个坑）。
+ */
 button,
 input,
 select {
-  font: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  transform: translateZ(0);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/*
+ * 包一层 @layer base：这条全局 focus-visible 轮廓规则之前不在任何 Tailwind layer 里，
+ * 会无条件盖掉具体输入框自己写的 outline-none/focus:xxx 工具类(不管特异性、层级不管用)——
+ * 搜索框自己已经用 border/shadow 做了聚焦高亮，结果这条全局规则又在外面加一圈，看起来像双重描边。
+ * 包进 base 层后，Tailwind 的 utilities 层(outline-none 等)才能按预期覆盖这条默认规则。
+ */
+@layer base {
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid rgba(208, 173, 104, 0.72);
+    outline-offset: 3px;
+  }
+}
+
+.window-drag-region {
+  -webkit-app-region: drag;
+}
+
+.window-controls,
+.window-no-drag,
+button,
+input,
+select,
+a {
+  -webkit-app-region: no-drag;
+}
+
+::selection {
+  background: rgba(208, 173, 104, 0.28);
+  color: #fff7e6;
+}
+
+/*
+ * 滚动条的空间永远保留固定宽度（不再随 is-scrolling 切换），只淡入淡出滑块的颜色。
+ * 之前 width:0 -> width:10px 的做法会让 <main> 的可用内容宽度跟着突变，
+ * 表现出来就是"内容区突然被顶出一截"——不是视觉效果，是真的布局宽度在跳变。
+ *
+ * 这是纯 Electron/Chromium 环境，不需要兼容 Firefox，所以故意不写 scrollbar-width/scrollbar-color——
+ * 这俩标准属性新版 Chromium 也认，一旦写了 scrollbar-width:thin 就会把宽度钳在浏览器的固定"细"预设值，
+ * 直接吃掉下面 ::-webkit-scrollbar{width} 设的具体像素数，改了也不会生效（踩过这个坑）。
+ */
+.scrollbar-auto-hide::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.scrollbar-auto-hide::-webkit-scrollbar-track {
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  transition: background-color 260ms ease;
+}
+
+.scrollbar-auto-hide.is-scrolling::-webkit-scrollbar-track,
+.scrollbar-auto-hide:hover::-webkit-scrollbar-track {
+  background-color: rgba(230, 226, 216, 0.2);
+}
+
+.scrollbar-auto-hide::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  transition: background-color 260ms ease;
+}
+
+.scrollbar-auto-hide.is-scrolling::-webkit-scrollbar-thumb,
+.scrollbar-auto-hide:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(230, 226, 216, 0.45);
+}
+
+.scrollbar-auto-hide::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(230, 226, 216, 0.75);
+}
+
+/* 各家 Chromium/WebKit 版本对"箭头按钮"实际吃的选择器不完全一样，
+   通用的 ::-webkit-scrollbar-button 之外，把 start/end/increment/decrement 全部列出来兜底，
+   免得只在部分版本上生效导致箭头时隐时现。 */
+.scrollbar-auto-hide::-webkit-scrollbar-button,
+.scrollbar-auto-hide::-webkit-scrollbar-button:start,
+.scrollbar-auto-hide::-webkit-scrollbar-button:end,
+.scrollbar-auto-hide::-webkit-scrollbar-button:vertical:start:decrement,
+.scrollbar-auto-hide::-webkit-scrollbar-button:vertical:end:increment,
+.scrollbar-auto-hide::-webkit-scrollbar-button:horizontal:start:decrement,
+.scrollbar-auto-hide::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.scrollbar-auto-hide::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@layer utilities {
+  .glass-panel {
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.025)),
+      rgb(16 24 36 / 0.66);
+    border-color: rgb(242 234 216 / 0.10);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.10),
+      inset 0 -1px 0 rgb(255 255 255 / 0.035),
+      0 16px 42px rgb(0 0 0 / 0.28);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  .glass-panel-strong {
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.095), rgb(255 255 255 / 0.028)),
+      rgb(11 17 26 / 0.72);
+    border-color: rgb(208 173 104 / 0.24);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      inset 0 -1px 0 rgb(255 255 255 / 0.04),
+      0 22px 58px rgb(0 0 0 / 0.34);
+    backdrop-filter: blur(26px) saturate(160%);
+    -webkit-backdrop-filter: blur(26px) saturate(160%);
+  }
+
+  .glass-control {
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.055), rgb(255 255 255 / 0.018)),
+      rgb(12 19 29 / 0.72);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+  }
+
+  .noise-field {
+    background-image:
+      radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px),
+      linear-gradient(rgba(242, 234, 216, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 234, 216, 0.022) 1px, transparent 1px);
+    background-size: 19px 19px, 72px 72px, 72px 72px;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel,
+  .glass-panel-strong,
+  .glass-control {
+    background: #101824;
+  }
+}
+
+/* English copy needs a little more optical size than Chinese at the same px value. */
+[data-lang='en'] {
+  font-size: 16.5px;
+}
+
+[data-lang='en'] .text-\[9px\] {
+  font-size: 10.5px;
+  line-height: 1.25;
+}
+
+[data-lang='en'] .text-\[10px\] {
+  font-size: 11.5px;
+  line-height: 1.25;
+}
+
+[data-lang='en'] .text-\[11px\],
+[data-lang='en'] .text-xs {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+[data-lang='en'] .text-\[12px\] {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+[data-lang='en'] .text-\[13px\] {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+[data-lang='en'] .text-sm {
+  font-size: 15px;
+  line-height: 1.45;
 }

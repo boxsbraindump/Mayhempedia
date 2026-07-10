@@ -2,12 +2,15 @@
   "name": "aram-copilot",
   "version": "0.1.0",
   "private": true,
+  "productName": "Mayhempedia",
   "description": "海克斯大乱斗 overlay — ARAM Build Copilot (流派副官)",
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && npm run build:renderer && electron .",
+    "pack": "npm run build && npm run build:renderer && electron-builder --dir",
+    "dist": "npm run build && npm run build:renderer && electron-builder --win nsis portable",
     "watch": "tsc -w",
     "dev": "vite",
     "build:renderer": "vite build",
@@ -16,7 +19,57 @@
     "data:icons": "node scripts/download-icons.mjs",
     "data:balance": "node scripts/fetch-aram-balance.mjs",
     "data:tier": "node scripts/build-hero-tier.mjs",
+    "data:augments-lcu": "node scripts/fetch-augments-from-lcu.mjs",
+    "brand:assets": "node scripts/generate-brand-assets.mjs",
     "validate": "node scripts/validate-builds.mjs"
+  },
+  "build": {
+    "appId": "gg.mayhempedia.desktop",
+    "productName": "Mayhempedia",
+    "copyright": "Copyright © 2026 Mayhempedia",
+    "directories": {
+      "output": "download"
+    },
+    "npmRebuild": false,
+    "files": [
+      "dist/**/*",
+      "dist-renderer/**/*",
+      "data/**/*",
+      "package.json"
+    ],
+    "asar": false,
+    "asarUnpack": [
+      "node_modules/uiohook-napi/**/*"
+    ],
+    "win": {
+      "icon": "data/assets/brand/mayhempedia-icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-setup-${arch}.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mayhempedia"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable-${arch}.${ext}"
+    }
   },
   "license": "MIT",
   "devDependencies": {
@@ -26,7 +79,10 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
     "pinyin-pro": "^3.28.1",
+    "png-to-ico": "^3.0.2",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3",
     "vite": "^8.1.2"

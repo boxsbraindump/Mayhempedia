@@ -6,6 +6,7 @@ import { authenticate, createWebSocketConnection, createHttp1Request } from 'lea
 import type { Credentials } from 'league-connect'
 import uiohook from 'uiohook-napi'
 import { createServer } from 'node:http'
+import https from 'node:https'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -24,6 +25,7 @@ import { getSettings, setSetting, type Settings, type OverlaySettings } from './
 const { uIOhook, UiohookKey } = uiohook
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const APP_ICON = path.join(__dirname, '..', 'data', 'assets', 'brand', 'mayhempedia-icon.ico')
 
 const MIME: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
@@ -77,11 +79,15 @@ interface ChampSelectSession {
 
 let mainWindow: BrowserWindow | null = null
 let overlayWindow: BrowserWindow | null = null
+
+const MAIN_BASE_WIDTH = 1280
+const MAIN_BASE_HEIGHT = 720
 let lastSnapshot = ''
 /** connectLcu() 认证成功后填充，供"点进某一局看完整详情"这类按需请求复用，不用每次都重新 authenticate */
 let lcuCredentials: Credentials | null = null
 let currentPuuid: string | null = null
 let buildChampionIds = new Set<number>()
+let championAliasToId = new Map<string, number>()
 let lastNotifiedChampionId: number | null = null
 const OVERLAY_WIDTH = 392
 const OVERLAY_HEIGHT = 430
@@ -106,6 +112,82 @@ async function loadBuildChampionIds(): Promise<void> {
   buildChampionIds = new Set(Object.keys(index).map((id) => Number(id)).filter((id) => Number.isFinite(id)))
 }
 
+/**
+ * 英文显示名(归一化后) → championId，给 Live Client Data API 的英雄名做匹配用。
+ * ⚠️ 踩过的坑：一开始用的是 alias("Velkoz")，但 Live Client Data 返回的是真英文显示名
+ * ("Vel'Koz"，带撇号)，两者对不上——凡是名字带撇号/空格/&的英雄(Vel'Koz/Kai'Sa/Cho'Gath/
+ * Dr. Mundo/Renata Glasc/Nunu & Willump)全部匹配失败，Wukong 这种displayName跟alias(MonkeyKing)
+ * 干脆是两个词的更是必挂。改用 data/en/champions.json 的 name 字段(真英文显示名)，
+ * 两边都做"只留字母数字"的归一化，兜住标点/空格差异。
+ */
+function normalizeChampionName(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]/g, '')
+}
+
+async function loadChampionAliasMap(): Promise<void> {
+  const raw = await readFile(path.join(__dirname, '..', 'data', 'en', 'champions.json'), 'utf-8')
+  const list = JSON.parse(raw) as Array<{ id: number; name: string }>
+  championAliasToId = new Map(list.map((c) => [normalizeChampionName(c.name), c.id]))
+}
+
+/**
+ * 启动时如果游戏已经打到一半(比如中途重启了App)，选人阶段早就结束了——
+ * /lol-champ-select/v1/session 这时候必然404，LCU 那条路彻底没法用了。
+ * Riot 官方另开了一个专门给"对局进行中查看实时数据"用的本地接口(Live Client Data API，
+ * 跟很多第三方战绩/助手工具用的是同一个)，只在真的进了游戏之后才会响应，用它兜底查
+ * "我现在正在用哪个英雄"。证书是自签的，只对这一个请求跳过校验，不影响其他请求。
+ */
+function fetchLiveClientData(urlPath: string): Promise<unknown> {
+  return new Promise((resolve, reject) => {
+    const req = https.get(
+      { hostname: '127.0.0.1', port: 2999, path: urlPath, rejectUnauthorized: false, timeout: 2000 },
+      (res) => {
+        let body = ''
+        res.on('data', (chunk) => (body += chunk))
+        res.on('end', () => {
+          if (res.statusCode !== 200) { reject(new Error(`Live Client Data ${urlPath} 返回 ${res.statusCode}`)); return }
+          try {
+            resolve(JSON.parse(body))
+          } catch (err) {
+            reject(err)
+          }
+        })
+      },
+    )
+    req.on('error', reject)
+    req.on('timeout', () => {
+      req.destroy()
+      reject(new Error('Live Client Data 请求超时（大概率不在真实对局中）'))
+    })
+  })
+}
+
+interface LiveClientPlayer {
+  championName: string
+  summonerName?: string
+  riotIdGameName?: string
+  riotIdTagLine?: string
+}
+
+/** 找不到就返回 null——不在对局中/不是这个模式/接口没起来都算正常情况，静默失败即可。 */
+async function detectInProgressChampionId(): Promise<number | null> {
+  try {
+    const data = (await fetchLiveClientData('/liveclientdata/allgamedata')) as {
+      activePlayer?: { summonerName?: string; riotId?: string }
+      allPlayers?: LiveClientPlayer[]
+    }
+    const ap = data.activePlayer
+    const me = data.allPlayers?.find((p) => {
+      if (ap?.riotId && p.riotIdGameName && p.riotIdTagLine) return `${p.riotIdGameName}#${p.riotIdTagLine}` === ap.riotId
+      return !!ap?.summonerName && p.summonerName === ap.summonerName
+    })
+    if (!me?.championName) return null
+    return championAliasToId.get(normalizeChampionName(me.championName)) ?? null
+  } catch {
+    return null
+  }
+}
+
 function notifyUser(notice: AppNotice): void {
   if (getSettings().notificationMode === 'system' && Notification.isSupported()) {
     new Notification({ title: notice.title, body: notice.body }).show()
@@ -115,10 +197,23 @@ function notifyUser(notice: AppNotice): void {
 }
 
 async function createWindow(port: number): Promise<void> {
+  const startupSize = clampedContentSize(getSettings().zoomFactor)
   mainWindow = new BrowserWindow({
-    width: 1180,
-    height: 820,
+    width: startupSize.width,
+    height: startupSize.height,
+    minWidth: Math.round(MAIN_BASE_WIDTH * 0.5),
+    minHeight: Math.round(MAIN_BASE_HEIGHT * 0.5),
+    // useContentSize + thickFrame:false：Windows 默认给 frame:false 窗口保留一圈不可见的
+    // WS_THICKFRAME 缩放边框/阴影(即使 resizable:false 也不会自动去掉)，导致 width/height 是
+    // "外框尺寸"而不是内容尺寸——实测 1280x720 请求出来的 contentSize 只有 1254x708，页面内容
+    // 被贴边裁掉一截。useContentSize 让这两个值直接对应内容区，thickFrame:false 顺便去掉多余阴影。
+    useContentSize: true,
+    thickFrame: false,
     title: 'Mayhempedia',
+    icon: APP_ICON,
+    frame: false,
+    resizable: false,
+    maximizable: false,
     backgroundColor: '#150b0d', // 跟 Tailwind --color-ink 一致，避免白屏闪一下
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
@@ -138,7 +233,7 @@ async function createWindow(port: number): Promise<void> {
   })
 
   mainWindow.loadURL(`http://127.0.0.1:${port}/`)
-  mainWindow.webContents.setZoomFactor(getSettings().zoomFactor)
+  mainWindow.webContents.setZoomFactor(1)
 
   // overlay 窗口只是隐藏(hide)不是关闭，不算进 window-all-closed 的判断——
   // 显式在主窗口关闭时退出整个 app，避免 overlay 变成看不见的僵尸进程。
@@ -187,6 +282,8 @@ function createOverlayWindow(port: number): void {
   overlayWindow = new BrowserWindow({
     width: OVERLAY_WIDTH,
     height: OVERLAY_HEIGHT,
+    useContentSize: true, // 跟主窗口一样，避免Windows的不可见缩放边框把内容区挤小、导致贴屏幕边缘定位偏几像素
+    thickFrame: false,
     x,
     y,
     frame: false,
@@ -270,6 +367,25 @@ async function fetchSummoner(credentials: Credentials): Promise<{ puuid: string;
   return { puuid: j.puuid, gameName: j.gameName, tagLine: j.tagLine ?? '' }
 }
 
+/** 呼出 overlay + 系统通知——选人阶段识别到英雄、和对局中兜底识别到英雄，走的是同一套提示逻辑。 */
+function notifyChampionDetected(myChampionId: number): void {
+  if (myChampionId === lastNotifiedChampionId) return
+  lastNotifiedChampionId = myChampionId
+  const name = championName(myChampionId)
+  const hasBuild = buildChampionIds.has(myChampionId)
+  // 只呼出 overlay(showInactive，不抢焦点)——主窗口的英雄详情页照常在后台跟着 champId 同步更新，
+  // 但不强制 restore/show/focus 抢占 OS 窗口焦点，用户在忙别的窗口时不会被硬拉走。
+  showOverlay(`检测到 ${name}`)
+  notifyUser({
+    id: `champ-${myChampionId}-${Date.now()}`,
+    title: hasBuild ? 'Overlay 已准备好' : '暂无流派数据',
+    body: hasBuild
+      ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().overlay.hotkey)} 可隐藏。`
+      : `${name} 还没收录流派数据，可以先看英雄 Tier 或海克斯一览。`,
+    tone: hasBuild ? 'success' : 'warning',
+  })
+}
+
 function handleChampSelect(session: ChampSelectSession | null): void {
   if (!session) return
 
@@ -296,22 +412,7 @@ function handleChampSelect(session: ChampSelectSession | null): void {
   })
 
   if (!myChampionId) lastNotifiedChampionId = null
-  if (myChampionId && myChampionId !== lastNotifiedChampionId) {
-    lastNotifiedChampionId = myChampionId
-    const name = championName(myChampionId)
-    const hasBuild = buildChampionIds.has(myChampionId)
-    // 只呼出 overlay(showInactive，不抢焦点)——主窗口的英雄详情页照常在后台跟着 champId 同步更新，
-    // 但不强制 restore/show/focus 抢占 OS 窗口焦点，用户在忙别的窗口时不会被硬拉走。
-    showOverlay(`检测到 ${name}`)
-    notifyUser({
-      id: `champ-${myChampionId}-${Date.now()}`,
-      title: hasBuild ? 'Overlay 已准备好' : '暂无流派数据',
-      body: hasBuild
-        ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().overlay.hotkey)} 可隐藏。`
-        : `${name} 还没收录流派数据，可以先看英雄 Tier 或海克斯一览。`,
-      tone: hasBuild ? 'success' : 'warning',
-    })
-  }
+  if (myChampionId) notifyChampionDetected(myChampionId)
 }
 
 async function connectLcu(): Promise<void> {
@@ -325,6 +426,7 @@ async function connectLcu(): Promise<void> {
   console.log('[ARAM Copilot] ✅ 英雄数据就绪')
   await loadBuildChampionIds()
   console.log(`[ARAM Copilot] ✅ 流派索引就绪：${buildChampionIds.size} 个英雄有推荐数据`)
+  await loadChampionAliasMap()
 
   send('lcu:status', { state: 'connected' })
 
@@ -347,6 +449,21 @@ async function connectLcu(): Promise<void> {
     if (res.ok) handleChampSelect((await res.json()) as ChampSelectSession)
   } catch {
     // 不在选人阶段时这个端点会 404/失败，忽略即可，后续 WebSocket 会接住真正进入选人的事件。
+  }
+
+  // 兜底：App 是中途启动的、选人阶段早就过去了(已经在对局里)，上面这条 LCU 查询必然扑空。
+  // 换 Riot 官方给"对局中查实时数据"用的 Live Client Data API(跟很多第三方战绩/助手工具同款)，
+  // 只有真的在游戏里才会响应，查到就跟选人阶段识别到英雄走一样的提示逻辑。
+  // ⚠️ 不 await：这个探测在"不在对局中"(即绝大多数冷启动)时要等到 2秒超时或连接失败才返回，
+  // 不能拿它阻塞后面的对局记录加载——放后台跑，查到了再异步呼出 overlay 即可。
+  if (lastNotifiedChampionId == null) {
+    detectInProgressChampionId().then((inProgressChampionId) => {
+      if (inProgressChampionId && lastNotifiedChampionId == null) {
+        console.log('[ARAM Copilot] 对局进行中检测到英雄:', championName(inProgressChampionId), '(中途启动App，选人阶段已结束)')
+        send('lcu:champSelect', { myChampionId: inProgressChampionId, benchChampionIds: [], benchEnabled: false })
+        notifyChampionDetected(inProgressChampionId)
+      }
+    })
   }
 
   console.log('[ARAM Copilot] 👀 正在监听选人阶段——进入一局大乱斗选人即可看到板凳。\n')
@@ -426,6 +543,27 @@ function applyAutoLaunch(enabled: boolean): void {
 }
 
 /**
+ * base 尺寸 × zoomFactor，再夹到当前显示器可用区域内。createWindow(启动) 和 applyMainWindowZoom
+ * (运行时改缩放) 共用同一套夹取逻辑——否则会出现"启动时不夹、只有改设置才夹"的不一致：用户在大屏
+ * 存了 1.5x，换到小屏启动时窗口会被创建得比屏幕还大，而这个窗口 resizable:false、无原生标题栏可拖，
+ * 用户没法把它拖回可见区域。mainWindow 还没建时(启动路径)退回主显示器。
+ */
+function clampedContentSize(zoomFactor: number): { width: number; height: number } {
+  const area = (mainWindow ? screen.getDisplayMatching(mainWindow.getBounds()) : screen.getPrimaryDisplay()).workAreaSize
+  return {
+    width: Math.min(Math.round(MAIN_BASE_WIDTH * zoomFactor), area.width),
+    height: Math.min(Math.round(MAIN_BASE_HEIGHT * zoomFactor), area.height),
+  }
+}
+
+function applyMainWindowZoom(zoomFactor: number): void {
+  if (!mainWindow) return
+  const { width, height } = clampedContentSize(zoomFactor)
+  mainWindow.webContents.setZoomFactor(1)
+  mainWindow.setContentSize(width, height) // 跟 createWindow 的 useContentSize 保持一致，别又变回外框尺寸
+}
+
+/**
  * 设置 IPC：渲染层读写都走这两个 handle，主进程是唯一真源(electron-store 落盘)。
  * settings:set 除了落盘，还要把变更实时应用到运行中的窗口/系统状态——不然用户点了开关但啥也没发生。
  */
@@ -434,7 +572,7 @@ function registerSettingsIpc(): void {
   ipcMain.handle('settings:set', (_e, key: keyof Settings, value: Settings[keyof Settings]) => {
     const updated = setSetting(key, value)
     if (key === 'autoLaunch') applyAutoLaunch(updated.autoLaunch)
-    if (key === 'zoomFactor') mainWindow?.webContents.setZoomFactor(updated.zoomFactor)
+    if (key === 'zoomFactor') applyMainWindowZoom(updated.zoomFactor)
     if (key === 'overlay') applyOverlaySettings(updated.overlay)
     // 广播给两个窗口，保持主窗口/overlay 的设置 UI 状态同步
     mainWindow?.webContents.send('settings:changed', updated)
@@ -449,6 +587,15 @@ function registerSettingsIpc(): void {
 }
 
 /** 「对局详情」按需懒加载：渲染层点进某一局才 invoke 一次，不在 connectLcu 里对所有20场预取。 */
+function registerWindowIpc(): void {
+  ipcMain.handle('appWindow:minimize', () => {
+    mainWindow?.minimize()
+  })
+  ipcMain.handle('appWindow:close', () => {
+    mainWindow?.close()
+  })
+}
+
 function registerMatchDetailIpc(): void {
   ipcMain.handle('lcu:getMatchDetail', async (_e, gameId: number) => {
     const shouldPersist = getSettings().persistMatchHistory
@@ -476,6 +623,7 @@ function registerAccountHistoryIpc(): void {
 
 app.whenReady().then(async () => {
   registerSettingsIpc()
+  registerWindowIpc()
   registerMatchDetailIpc()
   registerAccountHistoryIpc()
   applyAutoLaunch(getSettings().autoLaunch)

@@ -5,9 +5,11 @@
 // 想看其他流派/完整介绍去主 companion 窗口那边点。
 
 import { useEffect, useState } from 'react'
-import { isElectron, type LcuStatus, type OverlayCollapsedState, type OverlayLockState, type Settings } from './lcu'
-import { loadCore, loadBuild, getAugment, icon, type Core, type Build, type Augment, type Item } from './data'
+import { isElectron, type OverlayCollapsedState, type OverlayLockState, type Settings, type CustomRoute } from './lcu'
+import { loadCore, loadBuild, withCustomRoutes, getAugment, icon, type Core, type Build, type Augment, type Item } from './data'
 import { LangProvider, useT } from './i18n'
+
+const CUSTOM_ROUTES_ENABLED = false
 
 const RARITY: Record<number, { border: string; glow: string }> = {
   0: { border: 'border-[#a7b0be]', glow: 'shadow-[0_0_18px_rgba(167,176,190,0.14)]' },
@@ -18,6 +20,18 @@ const RARITY: Record<number, { border: string; glow: string }> = {
 
 function plainText(value: string): string {
   return value.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+}
+
+type CountedItem = Item & { count: number }
+
+function stackItems(items: Item[]): CountedItem[] {
+  const stacked: CountedItem[] = []
+  for (const item of items) {
+    const existing = stacked.find((entry) => entry.id === item.id)
+    if (existing) existing.count += 1
+    else stacked.push({ ...item, count: 1 })
+  }
+  return stacked
 }
 
 // 图标很多长得像，点击穿透又让 hover 提示(title)根本没机会触发——名字必须常显，不能指望 hover。
@@ -36,7 +50,7 @@ function AugColumn({
   const augs = refs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   // overlay 窗口固定高度、默认点击穿透不能滚动，不能无限撑高——超过3个只挑前3个展示，
   // 但绝不能悄悄丢掉，剩下的必须留一行"+N"提示，不然等于我们自己的数据被程序砍掉一半。
-  const SHOWN = tone === 'trap' ? 2 : 2
+  const SHOWN = 3
   const shown = augs.slice(0, SHOWN)
   const hiddenCount = augs.length - shown.length
   const toneClass = tone === 'core' ? 'text-gold' : tone === 'good' ? 'text-hex' : 'text-red'
@@ -82,36 +96,47 @@ function AugmentPool({
   const coreAugs = coreRefs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   const goodAugs = goodRefs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
   const merged = [...coreAugs, ...goodAugs.filter((a) => !coreAugs.some((core) => core.id === a.id))]
-  const SHOWN = 5
-  const pool = merged.slice(0, SHOWN)
-  const hiddenCount = merged.length - pool.length
-  const priorityId = coreAugs[0]?.id
+  const SHOWN = compact ? 4 : 5
+  const capped = merged.slice(0, SHOWN)
+  // compact 模式下若有溢出，留一格给 "+N" 徽标、只显示前3个。
+  const shownPool = compact && merged.length > SHOWN ? capped.slice(0, 3) : capped
+  // ⚠️ hiddenCount 必须从真正渲染的 shownPool 算，不能从 capped 算——否则二次截断掉的那个海克斯
+  // 会既不显示、又不计入"+N"，凭空消失(违反同文件 AugColumn 里"绝不能悄悄丢掉"的注释保证)。
+  const hiddenCount = merged.length - shownPool.length
+  const coreIds = new Set(coreAugs.map((a) => a.id))
 
-  if (pool.length === 0) return null
+  if (shownPool.length === 0) return null
   return (
-    <div className={compact ? 'mt-2' : 'mt-3'}>
+    <div className={compact ? 'mt-2 rounded-[8px] border border-line/55 bg-panel/45 p-2' : 'mt-3'}>
       {!compact && <div className="mb-1 text-[10px] font-extrabold text-gold">{t('overlay.recommended')}</div>}
-      <div className={compact ? 'flex flex-wrap items-center gap-1.5' : 'flex flex-wrap items-center gap-2'}>
-        {pool.map((a) => {
+      <div className={compact ? 'grid grid-cols-4 items-start gap-1.5' : 'grid grid-cols-3 items-start gap-x-2 gap-y-1.5'}>
+        {shownPool.map((a) => {
           const r = RARITY[a.rarity] ?? RARITY[0]
-          const priority = a.id === priorityId
+          const priority = coreIds.has(a.id)
           return (
             <div
               key={a.id}
               title={`${a.name}\n${plainText(a.desc || a.tooltip)}`}
-              className={(compact ? 'w-[66px] flex-col items-center gap-0.5' : 'w-[104px] items-center gap-1.5') + ' flex min-w-0'}
+              className={(compact ? 'w-full flex-col items-center gap-0.5' : 'grid h-[42px] grid-cols-[38px_minmax(0,1fr)] items-center gap-1.5') + ' min-w-0'}
             >
-              <span className={priority ? 'rounded-lg border-2 border-gold p-0.5 shadow-[0_0_18px_rgba(200,170,110,0.34)]' : ''}>
+              <span
+                className={
+                  (compact ? '' : 'grid h-[38px] w-[38px] place-items-center rounded-lg ') +
+                  (priority ? 'border-2 border-gold p-0.5 shadow-[0_0_18px_rgba(200,170,110,0.34)]' : '')
+                }
+              >
                 <img
                   src={icon(a.iconLargeLocal)}
                   alt={a.name}
-                  className={(compact ? 'h-7 w-7 ' : 'h-8 w-8 ') + 'rounded-md border object-cover ' + r.border + ' ' + r.glow}
+                  className={(compact ? 'h-7 w-7 ' : 'h-8 w-8 ') + 'shrink-0 rounded-md border object-cover ' + r.border + ' ' + r.glow}
                 />
               </span>
               <span
                 className={
-                  (compact ? 'max-w-[64px] text-center text-[9px]' : 'text-[12px]') +
-                  (priority ? ' truncate font-extrabold text-gold' : ' truncate font-bold text-cream')
+                  (compact
+                    ? 'block w-full truncate text-center text-[9px] leading-[11px]'
+                    : 'block h-[34px] min-w-0 overflow-hidden pt-1 text-[12px] leading-[13px] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]') +
+                  (priority ? ' font-extrabold text-gold' : ' font-bold text-cream')
                 }
               >
                 {a.name}
@@ -120,7 +145,7 @@ function AugmentPool({
           )
         })}
         {hiddenCount > 0 && (
-          <span className={(compact ? 'text-[9px]' : 'text-[11px]') + ' font-bold text-dim opacity-70'}>
+          <span className={(compact ? 'grid h-[48px] place-items-center rounded-md border border-line/50 bg-panel2/50 text-center text-[9px]' : 'grid h-[42px] place-items-center rounded-lg border border-line/50 bg-panel2/45 text-center text-[11px]') + ' font-bold text-dim opacity-70'}>
             {t('overlay.moreInHome', { n: hiddenCount })}
           </span>
         )}
@@ -132,6 +157,7 @@ function AugmentPool({
 function ItemRail({ items }: { items: Item[] }) {
   const t = useT()
   if (items.length === 0) return null
+  const visibleItems = stackItems(items).slice(0, 6)
   return (
     <div>
       <div className="mb-1 flex items-center justify-between">
@@ -139,16 +165,51 @@ function ItemRail({ items }: { items: Item[] }) {
         <span className="text-[8px] text-dim/70">{t('overlay.order')}</span>
       </div>
       <div className="flex flex-wrap items-center gap-1">
-        {items.slice(0, 5).map((it, idx) => (
+        {visibleItems.map((it, idx) => (
           <div key={it.id + '-' + idx} className="flex items-center gap-1">
+            <span className="relative block">
+              <img
+                src={icon(it.iconLocal)}
+                alt={it.name}
+                title={`${it.name}\n${plainText(it.desc)}`}
+                className="h-8 w-8 rounded-md border border-line/70 object-cover shadow-[0_0_12px_rgba(0,0,0,0.28)]"
+              />
+              {it.count > 1 && (
+                <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-[#091428] bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                  {it.count}
+                </span>
+              )}
+            </span>
+            {idx < visibleItems.length - 1 && <span className="text-[11px] text-dim">-&gt;</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function StarterRail({ items }: { items: Item[] }) {
+  const t = useT()
+  if (items.length === 0) return null
+  const visibleItems = stackItems(items)
+  return (
+    <div className="mt-1.5">
+      <div className="mb-1 text-[9px] font-extrabold text-gold">{t('overlay.starterItems')}</div>
+      <div className="flex flex-wrap items-center gap-1">
+        {visibleItems.map((it, idx) => (
+          <span key={it.id + '-' + idx} className="relative block">
             <img
               src={icon(it.iconLocal)}
               alt={it.name}
               title={`${it.name}\n${plainText(it.desc)}`}
-              className="h-8 w-8 rounded-md border border-line/70 object-cover shadow-[0_0_12px_rgba(0,0,0,0.28)]"
+              className="h-7 w-7 rounded-md border border-gold/55 object-cover"
             />
-            {idx < items.slice(0, 5).length - 1 && <span className="text-[11px] text-dim">→</span>}
-          </div>
+            {it.count > 1 && (
+              <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-[#091428] bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                {it.count}
+              </span>
+            )}
+          </span>
         ))}
       </div>
     </div>
@@ -157,19 +218,21 @@ function ItemRail({ items }: { items: Item[] }) {
 
 function CompactItemRail({ items }: { items: Item[] }) {
   if (items.length === 0) return null
+  const visibleItems = items.slice(0, 6)
   return (
-    <div className="mt-2 flex flex-wrap items-center gap-1">
-      {items.slice(0, 5).map((it, idx) => (
-        <div key={it.id + '-' + idx} className="flex items-center gap-1">
+    <div className="mt-2 rounded-[8px] border border-line/55 bg-panel/35 p-2">
+    <div className="grid grid-cols-[repeat(6,1fr)] items-center gap-1">
+      {visibleItems.map((it, idx) => (
+        <div key={it.id + '-' + idx} className="flex min-w-0 items-center justify-center gap-1">
           <img
             src={icon(it.iconLocal)}
             alt={it.name}
             title={`${it.name}\n${plainText(it.desc)}`}
-            className="h-7 w-7 rounded-md border border-line/70 object-cover"
+            className="h-7 w-7 shrink-0 rounded-md border border-line/70 object-cover"
           />
-          {idx < items.slice(0, 5).length - 1 && <span className="text-[10px] text-dim">→</span>}
         </div>
       ))}
+    </div>
     </div>
   )
 }
@@ -178,6 +241,7 @@ function BuildPanel({
   core,
   championId,
   selectedArchetypeKey,
+  customRoutes,
   collapsed,
   locked,
   onToggleCollapsed,
@@ -185,6 +249,7 @@ function BuildPanel({
   core: Core
   championId: number
   selectedArchetypeKey?: string
+  customRoutes: CustomRoute[]
   collapsed: boolean
   locked: boolean
   onToggleCollapsed: () => void
@@ -196,17 +261,31 @@ function BuildPanel({
   useEffect(() => {
     const file = core.buildIndex[championId]
     if (!file) {
-      setBuild(null)
+      setBuild(withCustomRoutes(null, championId, customRoutes, core))
       return
     }
     setBuild(undefined)
-    loadBuild(file).then(setBuild)
-  }, [championId, core])
+    loadBuild(file).then((loaded) => setBuild(withCustomRoutes(loaded, championId, customRoutes, core)))
+  }, [championId, core, customRoutes])
 
   if (!champ) return null
   const arch = build?.archetypes.find((a) => a.key === selectedArchetypeKey) ?? build?.archetypes[0]
+  const starterItems = arch?.starterItems?.map((ref) => core.itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   const items = arch?.items.map((ref) => core.itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   const coreAugs = arch?.augments.core.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
+  const quickAugs =
+    arch
+      ? [
+          ...arch.augments.core,
+          ...arch.augments.good.filter((good) => !arch.augments.core.some((core) => core.id === good.id)),
+        ]
+          // 先解析+过滤掉查不到的，最后再 slice——顺序不能反：若前3个引用里有一个 id 查不到，
+          // 先 slice 会让结果不足3个(后面能解析的被截断在外)，跟 AugmentPool 的正确写法保持一致。
+          .map((ref) => getAugment(core.augById, ref.id))
+          .filter((a): a is Augment => !!a)
+          .slice(0, 3)
+      : []
+  const quickItems = items.slice(0, 6)
 
   return (
     <div className="relative">
@@ -256,14 +335,37 @@ function BuildPanel({
       {arch && (
         <>
           {collapsed ? (
-            <div>
-              <AugmentPool
-                coreRefs={arch.augments.core.map((r) => r.id)}
-                goodRefs={arch.augments.good.map((r) => r.id)}
-                augById={core.augById}
-                compact
-              />
-              <CompactItemRail items={items} />
+            <div className="mt-2 overflow-hidden rounded-[8px] border border-line/60 bg-panel/45 px-2 py-1.5">
+              <div className="grid h-[34px] grid-cols-[24px_92px_1px_28px_1fr] items-center gap-1.5">
+                <div className="text-[8px] font-extrabold tracking-[0.12em] text-gold">AUG</div>
+                <div className="grid grid-cols-3 gap-1">
+                  {quickAugs.map((a) => {
+                    const r = RARITY[a.rarity] ?? RARITY[0]
+                    return (
+                      <img
+                        key={a.id}
+                        src={icon(a.iconLargeLocal)}
+                        alt={a.name}
+                        title={`${a.name}\n${plainText(a.desc || a.tooltip)}`}
+                        className={'h-7 w-7 shrink-0 rounded-md border object-cover ' + r.border}
+                      />
+                    )
+                  })}
+                </div>
+                <div className="h-6 w-px bg-line/70" />
+                <div className="text-[8px] font-extrabold tracking-[0.12em] text-dim">ITEM</div>
+                <div className="grid grid-cols-6 justify-items-center gap-[3px]">
+                  {quickItems.map((it, idx) => (
+                    <img
+                      key={it.id + '-' + idx}
+                      src={icon(it.iconLocal)}
+                      alt={it.name}
+                      title={`${it.name}\n${plainText(it.desc)}`}
+                      className="h-6 w-6 shrink-0 rounded-md border border-line/70 object-cover"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           ) : (
             <>
@@ -276,6 +378,7 @@ function BuildPanel({
             <AugColumn label={t('warRoom.rule.trap.value.has')} tone="trap" refs={arch.augments.trap.map((r) => r.id)} augById={core.augById} />
           </div>
           <div className="mt-1.5">
+            <StarterRail items={starterItems} />
             <ItemRail items={items} />
           </div>
             </>
@@ -287,7 +390,6 @@ function BuildPanel({
 }
 
 export default function Overlay() {
-  const [lcuStatus, setLcuStatus] = useState<LcuStatus | null>(null)
   const [activeChampionId, setActiveChampionId] = useState<number | null>(null)
   const [core, setCore] = useState<Core | null>(null)
   const [locked, setLocked] = useState(true)
@@ -300,7 +402,6 @@ export default function Overlay() {
 
   useEffect(() => {
     if (!isElectron()) return
-    window.mayhem!.onLcuStatus(setLcuStatus)
     window.mayhem!.onChampSelect((s) => {
       if (s.myChampionId) setActiveChampionId(s.myChampionId)
     })
@@ -313,7 +414,6 @@ export default function Overlay() {
   return (
     <LangProvider value={settings?.language ?? 'zh'}>
       <OverlayBody
-        lcuStatus={lcuStatus}
         activeChampionId={activeChampionId}
         core={core}
         locked={locked}
@@ -326,7 +426,6 @@ export default function Overlay() {
 }
 
 function OverlayBody({
-  lcuStatus,
   activeChampionId,
   core,
   locked,
@@ -334,7 +433,6 @@ function OverlayBody({
   settings,
   onToggleCollapsed,
 }: {
-  lcuStatus: LcuStatus | null
   activeChampionId: number | null
   core: Core | null
   locked: boolean
@@ -347,77 +445,30 @@ function OverlayBody({
     <div className="p-2">
       <div
         className={
-          'relative w-[368px] overflow-hidden rounded-[22px] border p-3 text-cream shadow-[0_18px_46px_rgba(0,0,0,0.42),0_0_34px_rgba(41,211,255,0.10)] bg-[#091428e6] backdrop-blur-xl ' +
-          (locked ? 'border-gold/45' : 'border-hex border-dashed cursor-move')
+          'relative w-[368px] overflow-hidden rounded-[10px] border p-3 text-cream bg-[#0a1220e6] backdrop-blur-xl ' +
+          (locked ? 'border-line/70' : 'border-hex border-dashed cursor-move')
         }
         style={locked ? undefined : ({ WebkitAppRegion: 'drag' } as React.CSSProperties)}
       >
-        <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-        <div className="pointer-events-none absolute -right-12 -top-16 h-28 w-28 rounded-full bg-hex/14 blur-3xl" />
-        <div className="pointer-events-none absolute -left-14 bottom-0 h-24 w-24 rounded-full bg-gold/12 blur-3xl" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(240,230,210,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(240,230,210,0.025)_1px,transparent_1px)] bg-[size:44px_44px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
+        <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
         {!locked && (
           <div className="relative mb-1.5 rounded-xl border border-hex/40 bg-hex/10 px-2 py-1 text-[10px] font-semibold text-hex">
             {t('overlay.dragHint')}
           </div>
         )}
-        <div className="hidden">
-          <div className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-xl border border-gold/45 bg-gold/10 text-gold shadow-[0_0_20px_rgba(200,170,110,0.14)]">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M12 2.5l8.5 4.9v9.2L12 21.5 3.5 16.6V7.4z" />
-                <path d="M12 7.5l4 2.3v4.4l-4 2.3-4-2.3V9.8z" />
-              </svg>
-            </span>
-            <div>
-              <div className="text-xs font-extrabold tracking-wide">
-                Mayhem<span className="text-gold">pedia</span>
-              </div>
-              <div className="text-[8px] font-bold uppercase tracking-[0.16em] text-dim">Hextech field unit</div>
-            </div>
-          </div>
-          <span className="rounded-full border border-line/60 bg-panel/55 px-2 py-1 text-[9px] font-bold text-dim">
-            Ctrl+Shift+X
-          </span>
-        </div>
-        <div className="hidden">
-          <div className="flex items-center gap-1.5 text-[10px] text-dim">
-            <span
-              className={
-                'w-2 h-2 rounded-full shrink-0 shadow-[0_0_14px_currentColor] ' +
-                (lcuStatus?.state === 'connected'
-                  ? 'bg-[#4bd07a]'
-                  : lcuStatus?.state === 'error'
-                    ? 'bg-red'
-                    : 'bg-gold animate-pulse')
-              }
-            />
-            <span className="font-bold">
-              {lcuStatus
-                ? lcuStatus.state === 'connected'
-                  ? t('overlay.clientOnline')
-                  : lcuStatus.state === 'error'
-                    ? t('overlay.clientError')
-                    : t('overlay.clientConnecting')
-                : t('overlay.clientWaiting')}
-            </span>
-            <span className="ml-auto text-[9px] text-dim/70">
-              {activeChampionId ? t('overlay.pickReady') : t('overlay.waitingPick')}
-            </span>
-          </div>
-        </div>
 
         {core && activeChampionId ? (
           <BuildPanel
             core={core}
             championId={activeChampionId}
             selectedArchetypeKey={settings?.selectedArchetypeByChampionId[String(activeChampionId)]}
+            customRoutes={CUSTOM_ROUTES_ENABLED ? settings?.customRoutes ?? [] : []}
             collapsed={collapsed}
             locked={locked}
             onToggleCollapsed={onToggleCollapsed}
           />
         ) : (
-          <div className="relative mt-3 rounded-[22px] border border-hex/25 bg-hex/8 p-3 text-xs leading-relaxed text-dim">
+          <div className="relative mt-3 rounded-[10px] border border-hex/25 bg-hex/8 p-3 text-xs leading-relaxed text-dim">
             <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-hex">Standby</div>
             {t('overlay.standbyDesc')}
           </div>

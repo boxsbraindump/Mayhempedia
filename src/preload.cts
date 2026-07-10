@@ -130,6 +130,19 @@ export interface DashboardSections {
   recentMatches: boolean
   achievements: boolean
 }
+export interface CustomRoute {
+  id: string
+  championId: number
+  title: string
+  description: string
+  damageType: string
+  starterItemIds: number[]
+  itemIds: number[]
+  coreAugmentIds: number[]
+  goodAugmentIds: number[]
+  trapAugmentIds: number[]
+  updatedAt: string
+}
 export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
@@ -137,6 +150,7 @@ export interface Settings {
   overlay: OverlaySettings
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
 }
@@ -174,4 +188,6 @@ contextBridge.exposeInMainWorld('mayhem', {
   getStoredAccounts: (): Promise<PersistedAccountSummary[]> => ipcRenderer.invoke('matchHistory:getAccounts'),
   forgetStoredAccount: (puuid: string): Promise<PersistedAccountSummary[]> =>
     ipcRenderer.invoke('matchHistory:forgetAccount', puuid),
+  minimizeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:minimize'),
+  closeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:close'),
 })

@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import {
   loadCore,
   loadBuild,
+  withCustomRoutes,
   icon,
   getAugment,
   type Augment,
@@ -13,6 +15,7 @@ import {
   type Core,
   type AramBalance,
 } from './data'
+import { customRouteKey } from '../custom-routes'
 import {
   isElectron,
   type LcuStatus,
@@ -28,15 +31,25 @@ import {
   type DashboardSections,
   type MatchFullDetail,
   type PlayerMatchStats,
+  type CustomRoute,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
 import { LangProvider, useT, useLang, t, type Lang } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
 const CARD =
-  'relative overflow-hidden rounded-[28px] border border-line/80 bg-panel/90 shadow-[0_18px_52px_rgba(0,0,0,0.28),0_0_42px_rgba(41,211,255,0.05)] backdrop-blur-xl'
-const SEARCH =
-  'w-full max-w-lg px-4 py-3 mb-5 bg-panel/90 border border-line/80 rounded-2xl text-cream text-sm outline-none focus:border-hex/80 focus:shadow-[0_0_24px_rgba(41,211,255,0.12)] placeholder:text-dim/55 transition'
+  'glass-panel relative overflow-hidden rounded-[8px] border border-line/75 transition-colors hover:border-gold/30'
+const SEARCH_INLINE =
+  'bg-panel w-full px-4 py-3 border border-line/80 rounded-lg text-cream text-sm outline-none focus:border-gold/70 focus:shadow-[0_0_0_4px_rgba(208,173,104,0.08)] placeholder:text-dim/55 transition'
+const TOOLBAR =
+  'bg-panel sticky top-4 z-20 mb-5 rounded-[8px] border border-line/75 p-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)]'
+const CHIP =
+  'px-3.5 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition border'
+
+const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5] as const
+const APP_BASE_WIDTH = 1280
+const APP_BASE_HEIGHT = 720
+const CUSTOM_ROUTES_ENABLED = false
 
 const RARITY_KEY: Record<number, string> = { 0: 'silver', 1: 'gold', 2: 'prismatic', 4: 'special' }
 const RARITY: Record<number, { label: string; text: string; border: string; bg: string }> = {
@@ -56,15 +69,15 @@ const ROLES: { key: string; label: string }[] = [
   { key: 'support', label: '辅助' },
 ]
 
-type Tab = 'dash' | 'champ' | 'tier' | 'aug' | 'patch' | 'settings'
+type Tab = 'dash' | 'champ' | 'builder' | 'tier' | 'aug' | 'patch' | 'settings'
 const NAV: { key: Tab; label: string }[] = [
   { key: 'dash', label: '副官状态' },
-  { key: 'champ', label: '流派档案' },
-  { key: 'tier', label: '强度路线' },
+  { key: 'champ', label: '英雄图鉴' },
+  { key: 'builder', label: '自定义路线' },
   { key: 'aug', label: '增强图鉴' },
   { key: 'patch', label: '战术更新' },
   { key: 'settings', label: '设置' },
-]
+].filter((item) => CUSTOM_ROUTES_ENABLED || item.key !== 'builder') as { key: Tab; label: string }[]
 
 function NavIcon({ k }: { k: Tab }) {
   const p = {
@@ -136,8 +149,18 @@ export default function App() {
   const [notice, setNotice] = useState<AppNotice | null>(null)
   const [matchDetailId, setMatchDetailId] = useState<number | null>(null) // 查看的是"近期对局"里某一局的真实出装/海克斯
   const [settings, setSettings] = useState<Settings | null>(null)
+  const [customRoutes, setCustomRoutes] = useState<CustomRoute[]>(() => {
+    if (typeof window === 'undefined') return []
+    try {
+      return JSON.parse(window.localStorage.getItem('mayhempedia.customRoutes') ?? '[]') as CustomRoute[]
+    } catch {
+      return []
+    }
+  })
   // 主页板块显隐开关；未拿到设置(浏览器预览/还没读到)前默认全部显示，不让空指针挡住主页
   const [dashboardSections, setDashboardSections] = useState<DashboardSections | null>(null)
+  const mainRef = useRef<HTMLElement | null>(null)
+  const mainScrollTimer = useRef<number | null>(null)
 
   useEffect(() => {
     loadCore(settings?.language ?? 'zh').then(setCore).catch((e) => setErr(String(e)))
@@ -168,10 +191,12 @@ export default function App() {
     })
     window.mayhem!.getSettings().then((s) => {
       setSettings(s)
+      setCustomRoutes(s.customRoutes ?? [])
       setDashboardSections(s.dashboardSections)
     })
     window.mayhem!.onSettingsChanged((s) => {
       setSettings(s)
+      setCustomRoutes(s.customRoutes ?? [])
       setDashboardSections(s.dashboardSections)
     })
   }, [])
@@ -186,10 +211,25 @@ export default function App() {
     setDashboardSections(updated.dashboardSections)
   }
 
+  async function saveCustomRoutes(routes: CustomRoute[]) {
+    setCustomRoutes(routes)
+    if (!isElectron()) {
+      window.localStorage.setItem('mayhempedia.customRoutes', JSON.stringify(routes))
+      return
+    }
+    const updated = await window.mayhem!.setSetting('customRoutes', routes)
+    setSettings(updated)
+  }
+
   const detectedChamp =
     core && activeChampionId ? core.champions.find((c) => c.id === activeChampionId) : null
-  const detectedHasBuild = !!(detectedChamp && core?.buildIndex[detectedChamp.id])
+  const visibleCustomRoutes = CUSTOM_ROUTES_ENABLED ? customRoutes : []
+  const detectedHasBuild = !!(
+    detectedChamp &&
+    (core?.buildIndex[detectedChamp.id] || visibleCustomRoutes.some((route) => route.championId === detectedChamp.id))
+  )
   const appLang: Lang = settings?.language ?? 'zh'
+  const appZoom = settings?.zoomFactor ?? 1
 
   useEffect(() => {
     if (!detectedChamp) return
@@ -197,12 +237,41 @@ export default function App() {
     setChampId(detectedChamp.id)
   }, [detectedChamp?.id])
 
+  useEffect(() => {
+    return () => {
+      if (mainScrollTimer.current != null) window.clearTimeout(mainScrollTimer.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [tab, champId, matchDetailId])
+
+  function handleMainScroll(event: { currentTarget: HTMLElement }) {
+    const scroller = event.currentTarget
+    scroller.classList.add('is-scrolling')
+    if (mainScrollTimer.current != null) window.clearTimeout(mainScrollTimer.current)
+    mainScrollTimer.current = window.setTimeout(() => scroller.classList.remove('is-scrolling'), 720)
+  }
+
   return (
     <LangProvider value={settings?.language ?? 'zh'}>
-    <div className="relative flex min-h-screen overflow-hidden bg-ink text-cream">
-      <div className="pointer-events-none fixed inset-0 opacity-80">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(41,211,255,0.16),transparent_28%),radial-gradient(circle_at_82%_6%,rgba(200,170,110,0.18),transparent_24%),linear-gradient(135deg,#091428_0%,#111c2f_56%,#1b263b_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(240,230,210,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(240,230,210,0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(circle_at_center,black,transparent_76%)]" />
+    <div className="fixed inset-0 overflow-hidden bg-ink">
+    <div
+      className="mayhem-scale-stage"
+      style={{
+        width: APP_BASE_WIDTH,
+        height: APP_BASE_HEIGHT,
+        transform: `scale(${appZoom})`,
+      }}
+    >
+    <div data-lang={appLang} className="relative h-full w-full overflow-hidden rounded-none bg-ink text-cream shadow-[inset_0_0_38px_rgba(208,173,104,0.1)]">
+      <WindowTitleBar />
+      <div className="relative flex h-[calc(100%-36px)] min-h-0 min-w-0 overflow-hidden bg-ink">
+      <div className="pointer-events-none absolute inset-0 opacity-95">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_10%,rgba(208,173,104,0.13),transparent_28%),radial-gradient(circle_at_88%_2%,rgba(94,200,215,0.1),transparent_24%),linear-gradient(135deg,#080d14_0%,#0d1521_48%,#111b29_100%)]" />
+        <div className="noise-field absolute inset-0 opacity-55 [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
+        <div className="absolute inset-y-0 left-[250px] w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent" />
       </div>
       {notice && <NoticeToast notice={notice} onClose={() => setNotice(null)} />}
       <Sidebar
@@ -214,19 +283,23 @@ export default function App() {
         }}
         lcuStatus={lcuStatus}
       />
-      <main className="relative z-10 flex-1 min-w-0 px-8 py-7 pb-16">
+      <main
+        ref={mainRef}
+        onScroll={handleMainScroll}
+        className="scrollbar-auto-hide relative z-10 h-full flex-1 min-w-0 overflow-y-auto px-7 py-6 pb-16"
+      >
         {detectedChamp && champId !== detectedChamp.id && (
           <button
             onClick={() => {
               setMatchDetailId(null)
               setChampId(detectedChamp.id)
             }}
-            className="group w-full mb-5 flex items-center gap-3 px-4 py-3 rounded-[22px] bg-gradient-to-r from-gold/18 via-panel/95 to-hex/10 border border-gold/40 text-left cursor-pointer hover:border-gold/80 hover:-translate-y-0.5 transition shadow-[0_14px_42px_rgba(0,0,0,0.24)]"
+            className="group w-full mb-5 flex items-center gap-3 px-4 py-3 rounded-[8px] bg-[#111a27]/88 border border-gold/35 text-left cursor-pointer hover:border-gold/70 hover:-translate-y-0.5 transition shadow-[0_14px_34px_rgba(0,0,0,0.24)]"
           >
             <img
               src={icon(detectedChamp.iconLocal)}
               alt={detectedChamp.name}
-              className="w-10 h-10 rounded-xl border border-gold/40 shadow-[0_0_24px_rgba(200,170,110,0.16)]"
+              className="w-10 h-10 rounded-lg border border-gold/40 shadow-[0_0_24px_rgba(200,170,110,0.16)]"
             />
             <span className="text-sm">
               {t(appLang, 'app.detectedPrefix')} <b className="text-gold">{detectedChamp.name}</b>
@@ -251,6 +324,7 @@ export default function App() {
             onPick={setChampId}
             selectedArchetypeKey={settings?.selectedArchetypeByChampionId[String(champId)]}
             onArchetypePreference={setArchetypePreference}
+            customRoutes={visibleCustomRoutes}
           />
         )}
         {core && matchDetailId == null && champId == null && tab === 'dash' && (
@@ -262,12 +336,13 @@ export default function App() {
             summoner={summoner}
             onOpenPatchNotes={() => setTab('patch')}
             onGoChamp={() => setTab('champ')}
-            onGoTier={() => setTab('tier')}
+            onGoTier={() => setTab('champ')}
             sections={dashboardSections}
             lcuStatus={lcuStatus}
             detectedChamp={detectedChamp}
             detectedHasBuild={detectedHasBuild}
             selectedArchetypeByChampionId={settings?.selectedArchetypeByChampionId ?? {}}
+            customRoutes={visibleCustomRoutes}
           />
         )}
         {core && matchDetailId == null && champId == null && tab === 'champ' && (
@@ -278,8 +353,17 @@ export default function App() {
             detectedHasBuild={detectedHasBuild}
           />
         )}
-        {core && matchDetailId == null && champId == null && tab === 'tier' && (
-          <TierTab core={core} onPick={setChampId} />
+        {CUSTOM_ROUTES_ENABLED && core && matchDetailId == null && champId == null && tab === 'builder' && (
+          <CustomRouteBuilder
+            core={core}
+            routes={customRoutes}
+            onChange={saveCustomRoutes}
+            onActivate={setArchetypePreference}
+            onOpenChampion={(id) => {
+              setChampId(id)
+              setMatchDetailId(null)
+            }}
+          />
         )}
         {core && matchDetailId == null && champId == null && tab === 'aug' && <AugmentBrowser core={core} />}
         {core && matchDetailId == null && champId == null && tab === 'patch' && (
@@ -289,16 +373,21 @@ export default function App() {
           <SettingsTab summoner={summoner} />
         )}
       </main>
+      </div>
+    </div>
+    </div>
     </div>
     </LangProvider>
   )
 }
 
 const LCU_BADGE: Record<LcuStatus['state'], { label: string; dot: string }> = {
-  connecting: { label: '连接客户端中…', dot: 'bg-gold animate-pulse' },
-  connected: { label: '已连接客户端', dot: 'bg-[#4bd07a]' },
+  connecting: { label: '连接客户端中…', dot: 'bg-hex animate-pulse' },
+  connected: { label: '已连接客户端', dot: 'bg-hex' },
   error: { label: '连接失败', dot: 'bg-red' },
 }
+
+const DEFAULT_LCU_BADGE = LCU_BADGE.connecting
 
 /* ---------------- 左侧栏 ---------------- */
 const NOTICE_TONE: Record<AppNotice['tone'], { border: string; dot: string }> = {
@@ -310,10 +399,10 @@ const NOTICE_TONE: Record<AppNotice['tone'], { border: string; dot: string }> = 
 function NoticeToast({ notice, onClose }: { notice: AppNotice; onClose: () => void }) {
   const tone = NOTICE_TONE[notice.tone]
   return (
-    <div className="fixed right-5 top-5 z-50 max-w-[360px]">
+    <div className="fixed right-5 top-14 z-50 max-w-[360px]">
       <div
         className={
-          'bg-panel/95 border rounded-[22px] shadow-[0_18px_52px_rgba(0,0,0,0.42),0_0_36px_rgba(41,211,255,0.08)] backdrop-blur-xl p-4 ' +
+          'bg-panel/95 border rounded-[8px] shadow-[0_18px_52px_rgba(0,0,0,0.42),0_0_36px_rgba(41,211,255,0.08)] backdrop-blur-xl p-4 ' +
           tone.border
         }
       >
@@ -332,6 +421,79 @@ function NoticeToast({ notice, onClose }: { notice: AppNotice; onClose: () => vo
   )
 }
 
+function WindowTitleBar() {
+  return (
+    <header className="window-drag-region relative z-50 flex h-9 shrink-0 items-center justify-between border-b border-gold/20 bg-[linear-gradient(180deg,rgba(18,26,38,0.95),rgba(8,13,20,0.72))] px-3">
+      <div className="flex items-center gap-2 text-[12px] font-extrabold tracking-tight text-cream">
+        <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-4 w-4 rounded-[4px]" />
+        <span>Mayhem<span className="text-gold">pedia</span></span>
+      </div>
+      <WindowControls />
+    </header>
+  )
+}
+
+function WindowControls() {
+  const run = (action: 'minimize' | 'close') => {
+    if (!isElectron()) return
+    if (action === 'minimize') void window.mayhem!.minimizeWindow()
+    if (action === 'close') void window.mayhem!.closeWindow()
+  }
+
+  return (
+    <div className="window-controls window-no-drag flex h-full items-stretch -mr-3">
+      <WindowButton label="Minimize" onClick={() => run('minimize')}>
+        <path d="M7 12h10" />
+      </WindowButton>
+      <WindowButton label="Close" danger onClick={() => run('close')}>
+        <path d="M8 8l8 8" />
+        <path d="M16 8l-8 8" />
+      </WindowButton>
+    </div>
+  )
+}
+
+function WindowButton({
+  label,
+  danger = false,
+  onClick,
+  children,
+}: {
+  label: string
+  danger?: boolean
+  onClick: () => void
+  children: ReactNode
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+      className={
+        'window-no-drag grid h-full w-11 place-items-center text-dim transition active:translate-y-px ' +
+        (danger
+          ? 'hover:bg-[#e81123] hover:text-white'
+          : 'hover:bg-white/18 hover:text-cream')
+      }
+    >
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        {children}
+      </svg>
+    </button>
+  )
+}
+
 function Sidebar({
   tab,
   onTab,
@@ -342,16 +504,17 @@ function Sidebar({
   lcuStatus: LcuStatus | null
 }) {
   const t = useT()
+  const lcuBadge = lcuStatus ? LCU_BADGE[lcuStatus.state] : DEFAULT_LCU_BADGE
   return (
-    <aside className="relative z-10 w-60 shrink-0 border-r border-line/70 bg-[#091428]/88 px-4 py-5 sticky top-0 h-screen flex flex-col shadow-[18px_0_60px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
-      <div className="mb-7 px-2.5">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/10 text-gold shadow-[0_0_34px_rgba(200,170,110,0.12)]">
-          <NavIcon k="aug" />
+    <aside className="relative z-10 w-[250px] shrink-0 border-r border-line/70 bg-[#080d14]/82 px-4 py-5 sticky top-0 h-full flex flex-col shadow-[18px_0_44px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
+      <div className="mb-7 px-2">
+        <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gold/35 bg-[#151d27] shadow-[inset_0_1px_0_rgba(242,234,216,0.08),0_12px_28px_rgba(0,0,0,0.24)]">
+          <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-8 w-8 rounded-md" />
         </div>
-        <div className="mt-4 text-[22px] font-extrabold tracking-wide">
+        <div className="mt-4 text-[22px] font-extrabold tracking-tight">
           Mayhem<span className="text-gold">pedia</span>
         </div>
-        <div className="mt-1 text-[11px] text-dim tracking-[0.18em] uppercase">Hextech Control Room</div>
+        <div className="mt-1 text-[11px] text-dim tracking-[0.12em] uppercase">ARAM route desk</div>
       </div>
       <nav className="flex flex-col gap-1.5">
         {NAV.map((n) => {
@@ -361,10 +524,10 @@ function Sidebar({
               key={n.key}
               onClick={() => onTab(n.key)}
               className={
-                'flex items-center gap-2.5 px-3.5 py-3 rounded-2xl text-sm text-left cursor-pointer transition ' +
+                'flex items-center gap-2.5 px-3.5 py-3 rounded-lg text-sm font-bold text-left cursor-pointer transition border ' +
                 (on
-                  ? 'bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] font-extrabold shadow-[0_12px_32px_rgba(200,170,110,0.18)]'
-                  : 'text-dim hover:bg-panel2/70 hover:text-cream hover:translate-x-0.5')
+                  ? 'border-transparent bg-white/10 text-cream shadow-[0_10px_24px_rgba(0,0,0,0.16)]'
+                  : 'border-transparent text-dim hover:bg-white/10 hover:text-cream hover:translate-x-0.5')
               }
             >
               <span className="w-[18px] inline-flex items-center justify-center">
@@ -375,15 +538,13 @@ function Sidebar({
           )
         })}
       </nav>
-      {lcuStatus && (
-        <div className="mt-auto rounded-[22px] border border-line/70 bg-panel/70 px-3.5 py-3.5 text-xs text-dim shadow-[inset_0_1px_0_rgba(240,230,210,0.06)]">
-          <div className="flex items-center gap-2">
-            <span className={'w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_18px_currentColor] ' + LCU_BADGE[lcuStatus.state].dot} />
-            <span className="font-semibold">{LCU_BADGE[lcuStatus.state].label}</span>
-          </div>
-          <div className="mt-2 text-[11px] text-dim/70">Overlay: Ctrl+Shift+X</div>
+      <div className="glass-control mt-auto rounded-[8px] border border-line/70 px-3.5 py-3.5 text-xs text-dim">
+        <div className="flex items-center gap-2">
+          <span className={'w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_14px_currentColor] ' + lcuBadge.dot} />
+          <span className="font-semibold">{t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}</span>
         </div>
-      )}
+        <div className="mt-2 text-[11px] text-dim/70">Overlay: Ctrl+Shift+X</div>
+      </div>
     </aside>
   )
 }
@@ -408,6 +569,7 @@ function Dashboard({
   detectedChamp,
   detectedHasBuild,
   selectedArchetypeByChampionId,
+  customRoutes,
 }: {
   core: Core
   onPick: (id: number) => void
@@ -422,6 +584,7 @@ function Dashboard({
   detectedChamp: Champion | null
   detectedHasBuild: boolean
   selectedArchetypeByChampionId: Record<string, string>
+  customRoutes: CustomRoute[]
 }) {
   const champById = useMemo(() => new Map(core.champions.map((c) => [c.id, c])), [core])
   // 还没读到设置(浏览器预览/尚未连上)时全部显示，不能因为空指针就把主页显示成空的
@@ -439,23 +602,38 @@ function Dashboard({
         onGoTier={onGoTier}
         onOpenPatchNotes={onOpenPatchNotes}
         selectedArchetypeByChampionId={selectedArchetypeByChampionId}
+        customRoutes={customRoutes}
       />
-      <div className="grid grid-cols-[minmax(0,1fr)_300px] gap-[18px] items-start max-[900px]:grid-cols-1">
+      <div className="grid grid-cols-[minmax(0,1fr)_320px] gap-5 items-start max-[900px]:grid-cols-1">
         <div className="flex flex-col gap-4 min-w-0">
-          {show('identityCard') && <IdentityCard arp={matchHistory?.arp ?? null} summoner={summoner} />}
+          {show('recentMatches') && (
+            <RecentMatches matches={matchHistory?.matches ?? null} champById={champById} onPick={onPickMatch} />
+          )}
           {show('versionChanges') && (
             <VersionChanges core={core} champById={champById} onPick={onPick} onOpenPatchNotes={onOpenPatchNotes} />
           )}
         </div>
         <div className="flex flex-col gap-4 min-w-0">
-          {show('recentMatches') && (
-            <RecentMatches matches={matchHistory?.matches ?? null} champById={champById} onPick={onPickMatch} />
-          )}
+          {show('identityCard') && <IdentityCard arp={matchHistory?.arp ?? null} summoner={summoner} />}
           {show('achievements') && <Achievements achievements={matchHistory?.achievements ?? null} />}
+          {!matchHistory && <DashboardOnboarding onGoChamp={onGoChamp} onGoTier={onGoTier} />}
         </div>
       </div>
-      {!matchHistory && <DashboardOnboarding onGoChamp={onGoChamp} onGoTier={onGoTier} />}
     </>
+  )
+}
+
+function RoleIcon({ role, active = false }: { role: string | null; active?: boolean }) {
+  return (
+    <img
+      src={role ? `/assets/lol-roles/${role}.png` : '/assets/lol-roles/all.svg'}
+      alt=""
+      aria-hidden="true"
+      className={
+        'h-[17px] w-[17px] object-contain transition ' +
+        (active ? 'brightness-[0.38] saturate-75 contrast-150' : 'opacity-85 drop-shadow-[0_0_8px_rgba(201,169,92,0.25)] group-hover:opacity-100')
+      }
+    />
   )
 }
 
@@ -470,6 +648,7 @@ function DashboardHero({
   onGoTier,
   onOpenPatchNotes,
   selectedArchetypeByChampionId,
+  customRoutes,
 }: {
   core: Core
   lcuStatus: LcuStatus | null
@@ -481,6 +660,7 @@ function DashboardHero({
   onGoTier: () => void
   onOpenPatchNotes: () => void
   selectedArchetypeByChampionId: Record<string, string>
+  customRoutes: CustomRoute[]
 }) {
   const t = useT()
   const covered = Object.keys(core.buildIndex).length
@@ -500,58 +680,59 @@ function DashboardHero({
       : lcuStatus?.state === 'error'
         ? 'text-red border-red/40 bg-red/10'
         : 'text-hex border-hex/40 bg-hex/10'
+  const heroState =
+    lcuStatus?.state === 'error'
+      ? 'error'
+      : lcuStatus?.state === 'connected'
+        ? detectedChamp
+          ? detectedHasBuild
+            ? 'ready'
+            : 'missing'
+          : 'waitingPick'
+        : 'searching'
+  const heroTitle =
+    heroState === 'ready' && detectedChamp
+      ? t('dash.hero.title.ready', { name: detectedChamp.name })
+      : heroState === 'missing' && detectedChamp
+        ? t('dash.hero.title.missing', { name: detectedChamp.name })
+        : heroState === 'waitingPick'
+          ? t('dash.hero.title.waitingPick', 'Waiting for champion select')
+          : heroState === 'error'
+            ? t('dash.hero.title.error', 'Client connection failed')
+            : t('dash.hero.title.searching', 'Waiting for League client')
+  const heroSubtitle =
+    heroState === 'ready'
+      ? t('dash.hero.subtitle.ready', 'Route, augments, and item order are ready for the in-game overlay.')
+      : heroState === 'missing'
+        ? t('dash.hero.subtitle.missing', 'This champion is detected, but the route data still needs to be added.')
+        : heroState === 'waitingPick'
+          ? t('dash.hero.subtitle.waitingPick', 'Enter ARAM: Mayhem champion select and Mayhempedia will lock onto your pick.')
+          : heroState === 'error'
+            ? t('dash.hero.subtitle.error', 'Mayhempedia will keep trying to reconnect in the background.')
+            : t('dash.hero.subtitle.searching', 'Open the League client to arm the live companion.')
+  const primaryLabel = detectedChamp && detectedHasBuild ? t('dash.hero.openBuild', 'Open build') : t('dash.hero.browseRoutes', 'Browse routes')
 
   return (
-    <section className="relative overflow-hidden rounded-[32px] border border-gold/25 bg-[linear-gradient(135deg,rgba(17,28,47,0.96),rgba(27,38,59,0.92))] p-7 mb-5 shadow-[0_24px_70px_rgba(0,0,0,0.32),0_0_70px_rgba(41,211,255,0.08)]">
-      <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-hex/12 blur-3xl" />
-      <div className="pointer-events-none absolute right-10 bottom-0 h-32 w-56 rounded-full bg-gold/10 blur-3xl" />
-      <div className="relative grid grid-cols-[minmax(0,1fr)_320px] gap-7 items-end max-[1000px]:grid-cols-1">
+    <section className="glass-panel-strong relative overflow-hidden rounded-[8px] border p-6 mb-5">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-gold/80 via-gold/25 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 h-40 w-72 bg-[radial-gradient(circle_at_top_right,rgba(94,200,215,0.12),transparent_62%)]" />
+      <div className="relative grid grid-cols-[minmax(0,1fr)_340px] gap-6 items-start max-[1000px]:grid-cols-1">
         <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
-            Hextech Mayhem Companion
+          <div className="inline-flex items-center gap-2 rounded-md border border-gold/35 bg-gold/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gold">
+            {t('dash.hero.live', 'Live companion')}
           </div>
-          <h1 className="mt-4 max-w-[720px] text-[42px] leading-[1.04] font-extrabold text-cream">
-            {t('dash.hero.title')}
+          <h1 className="mt-4 max-w-[720px] text-[34px] leading-[1.04] font-extrabold tracking-tight text-cream">
+            {heroTitle}
           </h1>
-          <p className="mt-3 max-w-[650px] text-sm leading-7 text-dim">
-            {t('dash.hero.subtitle')}
+          <p className="mt-3 max-w-[620px] text-[14px] leading-6 text-dim">
+            {heroSubtitle}
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => (detectedChamp ? onPick(detectedChamp.id) : onGoChamp())}
-              className="rounded-2xl bg-gradient-to-br from-[#f0e6d2] to-gold px-5 py-2.5 text-sm font-extrabold text-[#1c1508] shadow-[0_12px_34px_rgba(200,170,110,0.24)] transition hover:-translate-y-0.5 hover:brightness-105 cursor-pointer"
-            >
-              {detectedChamp ? t('dash.hero.viewBuild', { name: detectedChamp.name }) : t('dash.hero.openLibrary')}
-            </button>
-            <button
-              onClick={onGoTier}
-              className="rounded-2xl border border-hex/35 bg-hex/10 px-5 py-2.5 text-sm font-bold text-hex transition hover:-translate-y-0.5 hover:border-hex/70 cursor-pointer"
-            >
-              {t('dash.hero.viewTier')}
-            </button>
-            <button
-              onClick={onOpenPatchNotes}
-              className="rounded-2xl border border-line/80 bg-panel2/70 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:text-cream hover:border-gold/45 cursor-pointer"
-            >
-              {t('dash.hero.patchNotes')}
-            </button>
-          </div>
-        </div>
-
-        <div className="rounded-[26px] border border-line/80 bg-[#0a1428]/72 p-4 shadow-[inset_0_1px_0_rgba(240,230,210,0.08)] backdrop-blur-xl">
-          <div className={'rounded-2xl border px-3.5 py-3 text-sm font-bold ' + statusTone}>{status}</div>
-          <div className="mt-4 flex flex-col gap-2">
+          <div className="mt-5 grid grid-cols-4 gap-2 max-[760px]:grid-cols-2">
             <StatusStep
               index="01"
               label={t('dash.hero.step.connect')}
               state={lcuStatus?.state === 'connected' ? 'done' : lcuStatus?.state === 'error' ? 'blocked' : 'active'}
-              detail={
-                lcuStatus?.state === 'connected'
-                  ? t('dash.hero.step.connect.done')
-                  : lcuStatus?.state === 'error'
-                    ? t('dash.hero.step.connect.error')
-                    : t('dash.hero.step.connect.idle')
-              }
+              detail={lcuStatus?.state === 'connected' ? t('dash.hero.step.connect.done') : lcuStatus?.state === 'error' ? t('dash.hero.step.connect.error') : t('dash.hero.step.connect.idle')}
             />
             <StatusStep
               index="02"
@@ -563,13 +744,7 @@ function DashboardHero({
               index="03"
               label={t('dash.hero.step.build')}
               state={detectedChamp ? (detectedHasBuild ? 'done' : 'blocked') : 'idle'}
-              detail={
-                detectedChamp
-                  ? detectedHasBuild
-                    ? t('dash.hero.step.build.done')
-                    : t('dash.hero.step.build.blocked')
-                  : t('dash.hero.step.build.idle', { covered, total: core.champions.length })
-              }
+              detail={detectedChamp ? (detectedHasBuild ? t('dash.hero.step.build.done') : t('dash.hero.step.build.blocked')) : t('dash.hero.step.build.idle', { covered, total: core.champions.length })}
             />
             <StatusStep
               index="04"
@@ -578,12 +753,46 @@ function DashboardHero({
               detail={detectedChamp && detectedHasBuild ? t('dash.hero.step.overlay.active') : t('dash.hero.step.overlay.idle')}
             />
           </div>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => (detectedChamp && detectedHasBuild ? onPick(detectedChamp.id) : onGoChamp())}
+              className="rounded-lg bg-gold px-5 py-2.5 text-sm font-extrabold text-[#161006] shadow-[0_12px_28px_rgba(208,173,104,0.2)] transition hover:-translate-y-0.5 hover:bg-[#dec07a] cursor-pointer"
+            >
+              {primaryLabel}
+            </button>
+            <button
+              onClick={onGoTier}
+              className="rounded-lg border border-hex/35 bg-hex/8 px-5 py-2.5 text-sm font-bold text-hex transition hover:-translate-y-0.5 hover:border-hex/70 hover:bg-hex/12 cursor-pointer"
+            >
+              {t('dash.hero.viewTier')}
+            </button>
+            <button
+              onClick={onOpenPatchNotes}
+              className="rounded-lg border border-line/80 bg-panel2/55 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:text-cream hover:border-gold/45 cursor-pointer"
+            >
+              {t('dash.hero.patchNotes')}
+            </button>
+          </div>
+        </div>
+
+        <div className="glass-control rounded-[8px] border border-line/80 p-4">
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">{t('dash.hero.readout', 'Live readout')}</div>
+          <div className={'mt-3 rounded-lg border px-3.5 py-3 text-sm font-bold ' + statusTone}>{status}</div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <StatusMetric label={t('dash.hero.metric.coverage', 'Routes')} value={`${covered}/${core.champions.length}`} />
+            <StatusMetric label={t('dash.hero.metric.matches', 'Local matches')} value={matchHistory ? String(matchHistory.matches.length) : '0'} />
+          </div>
+          <div className="mt-3 rounded-lg border border-line/65 bg-panel/45 p-3">
+            <div className="text-[11px] font-bold text-dim">{t('dash.hero.overlayHotkey', 'Overlay hotkey')}</div>
+            <div className="mt-1 text-sm font-extrabold text-cream">Ctrl+Shift+X</div>
+          </div>
           {detectedChamp && (
             <DetectedRouteCard
               core={core}
               champion={detectedChamp}
               hasBuild={detectedHasBuild}
               selectedArchetypeKey={selectedArchetypeByChampionId[String(detectedChamp.id)]}
+              customRoutes={customRoutes}
             />
           )}
         </div>
@@ -612,13 +821,15 @@ function StatusStep({
           ? 'border-red/45 bg-red/10 text-red'
           : 'border-line/60 bg-panel/72 text-dim'
   return (
-    <div className={'flex items-center gap-3 rounded-2xl border px-3 py-2.5 ' + tone}>
-      <div className="w-8 shrink-0 text-[10px] font-extrabold tracking-[0.14em] opacity-80">{index}</div>
-      <div className="min-w-0 flex-1">
-        <div className="text-xs font-extrabold text-cream">{label}</div>
-        <div className="mt-0.5 truncate text-[11px] opacity-80">{detail}</div>
+    <div className={'min-h-[68px] rounded-lg border px-3 py-2.5 ' + tone}>
+      <div className="flex items-center justify-between gap-2">
+        <div className="text-[10px] font-extrabold tracking-[0.14em] opacity-80">{index}</div>
+        <span className="h-2 w-2 rounded-full bg-current shadow-[0_0_14px_currentColor]" />
       </div>
-      <span className="h-2 w-2 rounded-full bg-current shadow-[0_0_16px_currentColor]" />
+      <div className="min-w-0 flex-1">
+        <div className="mt-1 text-xs font-extrabold text-cream">{label}</div>
+        <div className="mt-0.5 line-clamp-1 text-[11px] opacity-80">{detail}</div>
+      </div>
     </div>
   )
 }
@@ -628,11 +839,13 @@ function DetectedRouteCard({
   champion,
   hasBuild,
   selectedArchetypeKey,
+  customRoutes,
 }: {
   core: Core
   champion: Champion
   hasBuild: boolean
   selectedArchetypeKey?: string
+  customRoutes: CustomRoute[]
 }) {
   const t = useT()
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
@@ -640,24 +853,46 @@ function DetectedRouteCard({
   useEffect(() => {
     const file = core.buildIndex[champion.id]
     if (!file) {
-      setBuild(null)
+      setBuild(withCustomRoutes(null, champion.id, customRoutes, core))
       return
     }
     setBuild(undefined)
-    loadBuild(file).then(setBuild).catch(() => setBuild(null))
-  }, [core, champion.id])
+    loadBuild(file)
+      .then((loaded) => setBuild(withCustomRoutes(loaded, champion.id, customRoutes, core)))
+      .catch(() => setBuild(withCustomRoutes(null, champion.id, customRoutes, core)))
+  }, [core, champion.id, customRoutes])
 
   const route = build?.archetypes.find((a) => a.key === selectedArchetypeKey) ?? build?.archetypes[0]
+  const previewItems = route?.items
+    .map((ref) => core.itemById.get(ref.id))
+    .filter((item): item is Item => !!item)
+    .slice(0, 3) ?? []
   return (
-    <div className="mt-4 rounded-[22px] border border-gold/30 bg-gold/8 p-3 shadow-[0_0_32px_rgba(200,170,110,0.08)]">
+    <div className="glass-control mt-4 rounded-[8px] border border-gold/30 p-3">
       <div className="flex items-center gap-3">
         <img
           src={icon(champion.iconLocal)}
           alt={champion.name}
-          className="h-12 w-12 rounded-2xl border border-gold/45 object-cover shadow-[0_0_22px_rgba(200,170,110,0.14)]"
+          className="h-12 w-12 rounded-lg border border-gold/45 object-cover shadow-[0_0_22px_rgba(200,170,110,0.12)]"
         />
-        <div className="min-w-0">
-          <div className="text-sm font-extrabold text-cream">{champion.name}</div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <div className="truncate text-sm font-extrabold text-cream">{champion.name}</div>
+            {route && (
+              <span
+                className={
+                  'shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-extrabold ' +
+                  (route.damageType === 'AP'
+                    ? 'bg-[#9664dc]/18 text-[#c9a3f0]'
+                    : route.damageType === 'Tank'
+                      ? 'bg-hex/12 text-hex'
+                      : 'bg-[#dc8246]/18 text-[#f0a97a]')
+                }
+              >
+                {route.damageType}
+              </span>
+            )}
+          </div>
           <div className="mt-1 text-xs text-dim">
             {route
               ? selectedArchetypeKey
@@ -669,6 +904,22 @@ function DetectedRouteCard({
           </div>
         </div>
       </div>
+      {previewItems.length > 0 && (
+        <div className="mt-3 flex items-center gap-1.5">
+          {previewItems.map((item) => (
+            <img
+              key={item.id}
+              src={icon(item.iconLocal)}
+              alt={item.name}
+              title={item.name}
+              className="h-7 w-7 rounded-lg border border-line/70 object-cover"
+            />
+          ))}
+          {route && route.items.length > previewItems.length && (
+            <span className="ml-1 text-[11px] font-bold text-dim">+{route.items.length - previewItems.length}</span>
+          )}
+        </div>
+      )}
       {route?.note && <div className="mt-3 line-clamp-2 text-[11px] leading-relaxed text-dim">{route.note}</div>}
     </div>
   )
@@ -676,7 +927,7 @@ function DetectedRouteCard({
 
 function StatusMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-line/60 bg-panel/72 p-3">
+    <div className="rounded-lg border border-line/60 bg-panel/72 p-3">
       <div className="text-[11px] text-dim">{label}</div>
       <div className="mt-1 text-sm font-extrabold text-cream">{value}</div>
     </div>
@@ -687,38 +938,42 @@ function StatusMetric({ label, value }: { label: string; value: string }) {
  *  不是纯装饰性留白填充，是真的告诉用户"数据从哪来"+顺带把他导去有内容的页面逛逛。 */
 function DashboardOnboarding({ onGoChamp, onGoTier }: { onGoChamp: () => void; onGoTier: () => void }) {
   const t = useT()
+  const steps = [
+    [t('dash.onboarding.step1'), t('dash.onboarding.step1Desc')],
+    [t('dash.onboarding.step2'), t('dash.onboarding.step2Desc')],
+    [t('dash.onboarding.step3'), t('dash.onboarding.step3Desc')],
+  ]
   return (
-    <section className={CARD + ' p-6 mt-4'}>
-      <div className="pointer-events-none absolute -right-10 -top-16 h-36 w-36 rounded-full bg-hex/10 blur-3xl" />
-      <div className="relative flex items-center gap-2 mb-4">
-        <span className="h-2 w-2 rounded-full bg-hex shadow-[0_0_18px_rgba(41,211,255,0.75)]" />
-        <h3 className="text-base font-extrabold text-cream">{t('dash.onboarding.title')}</h3>
+    <section className={CARD + ' p-4'}>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-hex/35 to-transparent" />
+      <div className="relative mb-4">
+        <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-hex">{t('dash.onboarding.kicker', 'Setup checklist')}</div>
+        <h3 className="mt-1 text-base font-extrabold text-cream">{t('dash.onboarding.title')}</h3>
       </div>
-      <div className="relative grid grid-cols-3 gap-5 mb-5 max-[700px]:grid-cols-1">
-        <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step1')}</div>
-          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step1Desc')}</div>
-        </div>
-        <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step2')}</div>
-          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step2Desc')}</div>
-        </div>
-        <div className="flex flex-col gap-1.5 rounded-2xl border border-line/50 bg-panel2/45 p-4">
-          <div className="text-gold font-bold text-sm">{t('dash.onboarding.step3')}</div>
-          <div className="text-xs text-dim leading-relaxed">{t('dash.onboarding.step3Desc')}</div>
-        </div>
+      <div className="relative flex flex-col gap-2.5">
+        {steps.map(([title, desc], index) => (
+          <div key={title} className="grid grid-cols-[26px_minmax(0,1fr)] gap-3 rounded-lg border border-line/55 bg-panel2/34 p-3">
+            <div className="grid h-6 w-6 place-items-center rounded-lg border border-hex/35 bg-hex/10 text-[10px] font-extrabold text-hex">
+              {index + 1}
+            </div>
+            <div className="min-w-0">
+              <div className="text-sm font-extrabold text-cream">{title}</div>
+              <div className="mt-1 text-xs leading-relaxed text-dim">{desc}</div>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="relative flex items-center gap-3 pt-4 border-t border-line/70 flex-wrap">
+      <div className="relative mt-4 flex items-center gap-3 pt-4 border-t border-line/70 flex-wrap">
         <span className="text-xs text-dim">{t('dash.onboarding.meanwhile')}</span>
         <button
           onClick={onGoChamp}
-          className="text-xs px-3 py-1.5 rounded-xl bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
+          className="text-xs px-3 py-1.5 rounded-lg bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
         >
           {t('dash.onboarding.goChamp')}
         </button>
         <button
           onClick={onGoTier}
-          className="text-xs px-3 py-1.5 rounded-xl bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
+          className="text-xs px-3 py-1.5 rounded-lg bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
         >
           {t('dash.onboarding.goTier')}
         </button>
@@ -753,8 +1008,7 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
   if (!arp) {
     return (
       <section className={CARD + ' p-6 flex items-center gap-6'}>
-        <div className="pointer-events-none absolute -left-10 -bottom-12 h-40 w-40 rounded-full bg-gold/8 blur-3xl" />
-        <div className="relative shrink-0 w-24 h-24 rounded-[28px] grid place-items-center bg-panel2/70 border border-line/80 text-dim">
+        <div className="relative shrink-0 w-24 h-24 rounded-[8px] grid place-items-center bg-panel2/58 border border-line/80 text-dim">
           <Snowflake />
         </div>
         <div className="relative flex-1 min-w-0">
@@ -767,9 +1021,9 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
     )
   }
   return (
-    <section className="relative overflow-hidden rounded-[30px] p-6 flex items-center gap-6 border border-gold/35 bg-gradient-to-br from-[#1b263b] via-[#111c2f] to-[#091428] shadow-[0_20px_58px_rgba(0,0,0,0.28),0_0_56px_rgba(200,170,110,0.09)]">
-      <div className="pointer-events-none absolute right-0 top-0 h-44 w-44 rounded-full bg-gold/10 blur-3xl" />
-      <div className="shrink-0 w-24 h-24 rounded-[30px] grid place-items-center bg-[#0a1428]/80 border border-gold/70 text-gold shadow-[0_0_28px_rgba(200,170,110,0.22)]">
+    <section className="glass-panel relative overflow-hidden rounded-[8px] p-6 flex items-center gap-6 border border-gold/35">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gold/60" />
+      <div className="shrink-0 w-24 h-24 rounded-[8px] grid place-items-center bg-[#0a111a]/82 border border-gold/55 text-gold shadow-[inset_0_1px_0_rgba(242,234,216,0.08)]">
         <Snowflake />
       </div>
       <div className="relative flex-1 min-w-0">
@@ -781,7 +1035,7 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
         )}
         <div className="flex items-center gap-2.5">
           <span className="text-[28px] font-extrabold tracking-wide text-[#f6e9cb]">{arp.rankName}</span>
-          <span className="text-[10px] text-dim border border-line/70 bg-panel/60 px-2 py-0.5 rounded-full">
+          <span className="text-[10px] text-dim border border-line/70 bg-panel/60 px-2 py-0.5 rounded-md">
             {t('dash.identity.unofficial')}
           </span>
         </div>
@@ -796,7 +1050,7 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
           />
         </div>
         <div className="mt-3 text-[13px] italic text-[#d7bfa0]">{t('dash.identity.quote', { score: arp.score })}</div>
-        <button className="mt-3.5 px-4 py-2 bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] rounded-2xl font-extrabold text-[13px] cursor-pointer hover:brightness-105 transition">
+        <button className="mt-3.5 px-4 py-2 bg-gold text-[#1d1709] rounded-lg font-extrabold text-[13px] cursor-pointer hover:bg-[#dec07a] transition">
           {t('dash.identity.share')}
         </button>
       </div>
@@ -808,7 +1062,7 @@ function PanelHead({ title, meta, action }: { title: string; meta?: string; acti
   return (
     <div className="flex items-baseline justify-between gap-2.5 mb-3.5">
       <div className="flex items-baseline gap-2.5 min-w-0">
-        <h3 className="text-[15px] font-bold shrink-0">{title}</h3>
+        <h3 className="text-[15px] font-extrabold tracking-tight shrink-0">{title}</h3>
         {meta && <span className="text-xs text-dim truncate">{meta}</span>}
       </div>
       {action}
@@ -876,10 +1130,10 @@ function VersionChanges({
               title={`${t('dash.versionChanges.dealt')} ${fmtPct(b.dmgDealt)} · ${t('dash.versionChanges.taken')} ${fmtPct(b.dmgTaken)}${
                 b.healing != null ? ` · ${t('dash.versionChanges.healing')} ${fmtPct(b.healing)}` : ''
               }${b.shielding != null ? ` · ${t('dash.versionChanges.shielding')} ${fmtPct(b.shielding)}` : ''}`}
-              className="group flex flex-col items-center gap-1.5 cursor-pointer"
+              className="group flex flex-col items-center gap-1.5 cursor-pointer rounded-lg p-1.5 transition hover:bg-panel2/55"
             >
               <div className="relative">
-                <img src={icon(c.iconLocal)} alt={c.name} className="w-13 h-13 rounded-lg" />
+                <img src={icon(c.iconLocal)} alt={c.name} className="w-13 h-13 rounded-lg border border-line/60" />
                 <span
                   className={
                     'absolute -right-1.5 -bottom-1.5 w-[19px] h-[19px] rounded-full grid place-items-center text-[9px] border-2 border-panel ' +
@@ -923,11 +1177,11 @@ function RecentMatches({
               onClick={() => onPick(m.gameId)}
               title={t('dash.recentMatches.tooltip', { pct: m.impactPercentile })}
               className={
-                'flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg bg-panel2 border-l-[3px] cursor-pointer text-left ' +
+                'flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-panel2/70 border border-line/50 border-l-[3px] cursor-pointer text-left transition hover:bg-panel2 hover:-translate-y-0.5 ' +
                 (m.win ? 'border-[#63c07a]' : 'border-red')
               }
             >
-              <img src={icon(c.iconLocal)} alt={c.name} className="w-[34px] h-[34px] rounded-md" />
+              <img src={icon(c.iconLocal)} alt={c.name} className="w-[34px] h-[34px] rounded-lg border border-line/55" />
               <span className="text-[13px] flex-1">{c.name}</span>
               <span className="text-xs text-dim">
                 {m.kills} / {m.deaths} / {m.assists}
@@ -953,23 +1207,44 @@ function Achievements({ achievements }: { achievements: Achievement[] | null }) 
         <div className="text-xs text-dim py-2">{t('dash.achievements.empty')}</div>
       )}
       <div className="flex flex-col gap-2.5">
-        {(achievements ?? []).map((a) => (
+        {(achievements ?? []).map((a, index) => (
           <div
             key={a.key}
-            className="flex items-center gap-3 p-3 rounded-xl border border-gold/25 bg-gradient-to-br from-gold/10 to-panel2"
+            className="flex items-center gap-3 p-3 rounded-lg border border-gold/25 bg-gold/8"
           >
-            <div className="text-2xl">{a.emoji}</div>
+            <AchievementMark index={index} />
             <div className="flex-1 min-w-0">
               <div className="text-sm font-bold text-[#f6e9cb]">{a.name}</div>
               <div className="text-[11px] text-dim mt-0.5 leading-snug">{a.desc}</div>
             </div>
-            <button className="px-3 py-1.5 bg-gold text-[#2b1e07] rounded-lg font-bold text-xs cursor-pointer hover:brightness-105">
+            <button className="px-3 py-1.5 bg-gold text-[#2b1e07] rounded-lg font-bold text-xs cursor-pointer hover:bg-[#dec07a] transition">
               {t('dash.achievements.share')}
             </button>
           </div>
         ))}
       </div>
     </section>
+  )
+}
+
+function AchievementMark({ index }: { index: number }) {
+  return (
+    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-gold/35 bg-gold/10 text-gold">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 3l7 4v7c0 3.8-2.9 6.3-7 7-4.1-.7-7-3.2-7-7V7z" />
+        {index % 2 === 0 ? <path d="M8.5 12.2l2.2 2.2 4.8-5" /> : <path d="M12 8v8M8 12h8" />}
+      </svg>
+    </div>
   )
 }
 
@@ -994,12 +1269,434 @@ function Toggle({ on, onClick }: { on: boolean; onClick?: () => void }) {
   )
 }
 
-function SettingsSection({ title, children }: { title: string; children: ReactNode }) {
+type PickerEntry = {
+  id: number
+  name: string
+  desc: string
+  iconLocal: string
+}
+
+function AssetPicker({
+  label,
+  hint,
+  entries,
+  selectedIds,
+  max,
+  allowDuplicates = false,
+  onChange,
+}: {
+  label: string
+  hint: string
+  entries: PickerEntry[]
+  selectedIds: number[]
+  max: number
+  allowDuplicates?: boolean
+  onChange: (ids: number[]) => void
+}) {
+  const [query, setQuery] = useState('')
+  const byId = useMemo(() => new Map(entries.map((entry) => [entry.id, entry])), [entries])
+  const selected = selectedIds.flatMap((id, index) => {
+    const entry = byId.get(id)
+    return entry ? [{ entry, index }] : []
+  })
+  const normalized = query.trim().toLocaleLowerCase()
+  const results = normalized
+    ? entries
+        .filter((entry) => entry.name.toLocaleLowerCase().includes(normalized))
+        .filter((entry) => allowDuplicates || !selectedIds.includes(entry.id))
+        .slice(0, 24)
+    : []
+  const full = selectedIds.length >= max
+
   return (
-    <section className={CARD + ' p-5 mb-4'}>
+    <div>
+      <div className="mb-2 flex items-end justify-between gap-3">
+        <div>
+          <div className="text-sm font-extrabold text-cream">{label}</div>
+          <div className="mt-0.5 text-[11px] text-dim">{hint}</div>
+        </div>
+        <span className={'text-xs font-extrabold ' + (full ? 'text-gold' : 'text-dim')}>
+          {selectedIds.length}/{max}
+        </span>
+      </div>
+      <div className="min-h-[72px] rounded-[8px] border border-line/70 bg-[#09121f]/65 p-2.5">
+        {selected.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {selected.map(({ entry, index }) => (
+              <button
+                key={`${entry.id}-${index}`}
+                type="button"
+                title={`移除 ${entry.name}`}
+                onClick={() => onChange(selectedIds.filter((_, itemIndex) => itemIndex !== index))}
+                className="group flex w-[92px] flex-col items-center gap-1.5 rounded-lg border border-line/70 bg-panel/75 p-2 text-center transition hover:border-red/60 hover:bg-red/8"
+              >
+                <img src={icon(entry.iconLocal)} alt="" className="h-9 w-9 rounded-lg border border-line object-cover" />
+                <span className="line-clamp-2 min-h-[28px] text-[11px] font-bold leading-[14px] text-cream group-hover:text-red">
+                  {entry.name}
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="grid min-h-[50px] place-items-center text-xs text-dim">搜索并添加内容</div>
+        )}
+      </div>
+      <div className="relative mt-2">
+        <input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          disabled={full}
+          placeholder={full ? '已达到数量上限' : `搜索${label}`}
+          className={SEARCH_INLINE + ' py-2.5 disabled:cursor-not-allowed disabled:opacity-50'}
+        />
+        {query && !full && (
+          <div className="absolute inset-x-0 top-[calc(100%+6px)] z-30 max-h-56 overflow-y-auto rounded-[8px] border border-gold/30 bg-[#0b1421]/98 p-2 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+            {results.length > 0 ? (
+              <div className="grid grid-cols-2 gap-1.5">
+                {results.map((entry) => (
+                  <button
+                    key={entry.id}
+                    type="button"
+                    onClick={() => {
+                      onChange([...selectedIds, entry.id])
+                      setQuery('')
+                    }}
+                    className="flex min-w-0 items-center gap-2 rounded-lg border border-transparent p-2 text-left transition hover:border-gold/35 hover:bg-white/5"
+                  >
+                    <img src={icon(entry.iconLocal)} alt="" className="h-8 w-8 shrink-0 rounded-lg object-cover" />
+                    <span className="truncate text-xs font-bold text-cream">{entry.name}</span>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="p-3 text-center text-xs text-dim">没有找到匹配内容</div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function createEmptyCustomRoute(championId: number): CustomRoute {
+  return {
+    id: '',
+    championId,
+    title: '',
+    description: '',
+    damageType: 'AP',
+    starterItemIds: [],
+    itemIds: [],
+    coreAugmentIds: [],
+    goodAugmentIds: [],
+    trapAugmentIds: [],
+    updatedAt: '',
+  }
+}
+
+function CustomRouteBuilder({
+  core,
+  routes,
+  onChange,
+  onActivate,
+  onOpenChampion,
+}: {
+  core: Core
+  routes: CustomRoute[]
+  onChange: (routes: CustomRoute[]) => void | Promise<void>
+  onActivate: (championId: number, archetypeKey: string) => void | Promise<void>
+  onOpenChampion: (championId: number) => void
+}) {
+  const firstChampionId = core.champions[0]?.id ?? 0
+  const [editingId, setEditingId] = useState<string | null>(routes[0]?.id ?? null)
+  const [draft, setDraft] = useState<CustomRoute>(() => routes[0] ?? createEmptyCustomRoute(firstChampionId))
+  const [message, setMessage] = useState('')
+  const champions = useMemo(() => [...core.champions].sort((a, b) => a.name.localeCompare(b.name)), [core.champions])
+  const items: PickerEntry[] = useMemo(
+    () =>
+      [...core.itemById.values()]
+        .filter((item) => item.priceTotal > 0)
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((item) => ({ id: item.id, name: item.name, desc: item.desc, iconLocal: item.iconLocal })),
+    [core.itemById],
+  )
+  const augments: PickerEntry[] = useMemo(
+    () =>
+      [...core.augments]
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((augment) => ({
+          id: augment.id,
+          name: augment.name,
+          desc: augment.desc,
+          iconLocal: augment.iconLargeLocal,
+        })),
+    [core.augments],
+  )
+  const champion = core.champions.find((entry) => entry.id === draft.championId)
+  const starterItems = draft.starterItemIds.flatMap((id) => {
+    const item = core.itemById.get(id)
+    return item ? [item] : []
+  })
+  const finalItems = draft.itemIds.flatMap((id) => {
+    const item = core.itemById.get(id)
+    return item ? [item] : []
+  })
+
+  const edit = (route: CustomRoute) => {
+    setEditingId(route.id)
+    setDraft({ ...route })
+    setMessage('')
+  }
+  const startNew = () => {
+    setEditingId(null)
+    setDraft(createEmptyCustomRoute(firstChampionId))
+    setMessage('')
+  }
+  const patch = <K extends keyof CustomRoute>(key: K, value: CustomRoute[K]) =>
+    setDraft((current) => ({ ...current, [key]: value }))
+
+  const save = async () => {
+    if (!draft.championId || !draft.title.trim()) {
+      setMessage('请选择英雄并填写路线标题。')
+      return
+    }
+    if (draft.starterItemIds.length === 0 || draft.itemIds.length !== 6) {
+      setMessage('请至少添加一件出门装，并补齐六神装。')
+      return
+    }
+    if (draft.coreAugmentIds.length === 0) {
+      setMessage('请至少添加一个核心海克斯。')
+      return
+    }
+    const id = draft.id || (globalThis.crypto?.randomUUID?.() ?? `${Date.now()}`)
+    const saved: CustomRoute = {
+      ...draft,
+      id,
+      title: draft.title.trim(),
+      description: draft.description.trim(),
+      updatedAt: new Date().toISOString(),
+    }
+    const next = editingId ? routes.map((route) => (route.id === editingId ? saved : route)) : [...routes, saved]
+    await onChange(next)
+    await onActivate(saved.championId, customRouteKey(saved.id))
+    setEditingId(saved.id)
+    setDraft(saved)
+    setMessage('已保存，并设为该英雄当前路线。')
+  }
+
+  const remove = async () => {
+    if (!editingId || !window.confirm('删除这条自定义路线？此操作无法撤销。')) return
+    await onChange(routes.filter((route) => route.id !== editingId))
+    startNew()
+  }
+
+  return (
+    <>
+      <ViewHead title="自定义路线" meta={`${routes.length} 条本地路线`} />
+      <div className="grid grid-cols-[220px_minmax(0,1fr)] items-start gap-4 max-[900px]:grid-cols-1">
+        <aside className="glass-control sticky top-4 rounded-[8px] border border-line/75 p-3">
+          <button
+            type="button"
+            onClick={startNew}
+            className="w-full rounded-lg bg-gold px-3 py-2.5 text-sm font-extrabold text-[#171006] transition hover:bg-[#dec07a] active:translate-y-px"
+          >
+            新建路线
+          </button>
+          <div className="mt-3 text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">我的路线</div>
+          <div className="mt-2 flex max-h-[520px] flex-col gap-1.5 overflow-y-auto">
+            {routes.length > 0 ? (
+              routes.map((route) => {
+                const routeChampion = core.champions.find((entry) => entry.id === route.championId)
+                return (
+                  <button
+                    type="button"
+                    key={route.id}
+                    onClick={() => edit(route)}
+                    className={
+                      'flex items-center gap-2 rounded-lg border p-2 text-left transition ' +
+                      (editingId === route.id
+                        ? 'border-gold/55 bg-gold/10'
+                        : 'border-transparent hover:border-line hover:bg-white/5')
+                    }
+                  >
+                    {routeChampion && (
+                      <img src={icon(routeChampion.iconLocal)} alt="" className="h-9 w-9 shrink-0 rounded-lg object-cover" />
+                    )}
+                    <span className="min-w-0">
+                      <span className="block truncate text-xs font-extrabold text-cream">{route.title}</span>
+                      <span className="mt-0.5 block truncate text-[11px] text-dim">{routeChampion?.name}</span>
+                    </span>
+                  </button>
+                )
+              })
+            ) : (
+              <div className="rounded-lg border border-dashed border-line p-4 text-center text-xs leading-5 text-dim">
+                还没有自定义路线
+              </div>
+            )}
+          </div>
+        </aside>
+
+        <div className="space-y-4">
+          <section className="glass-panel relative overflow-visible rounded-[8px] border border-gold/30 p-5">
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-gold">Route editor</div>
+                <h2 className="mt-1 text-xl font-extrabold text-cream">{editingId ? '编辑路线' : '创建新路线'}</h2>
+                <p className="mt-1 text-xs text-dim">内容只保存在本机，并会同步到你的游戏内 Overlay。</p>
+              </div>
+              {editingId && (
+                <button type="button" onClick={remove} className="rounded-lg border border-red/40 px-3 py-2 text-xs font-bold text-red hover:bg-red/10">
+                  删除
+                </button>
+              )}
+            </div>
+
+            <div className="grid grid-cols-[minmax(0,1fr)_180px] gap-3">
+              <label>
+                <span className="mb-1.5 block text-xs font-bold text-dim">英雄</span>
+                <select
+                  value={draft.championId}
+                  onChange={(event) => patch('championId', Number(event.target.value))}
+                  className={SEARCH_INLINE + ' appearance-none'}
+                >
+                  {champions.map((entry) => (
+                    <option key={entry.id} value={entry.id}>{entry.name}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                <span className="mb-1.5 block text-xs font-bold text-dim">伤害类型</span>
+                <select
+                  value={draft.damageType}
+                  onChange={(event) => patch('damageType', event.target.value)}
+                  className={SEARCH_INLINE + ' appearance-none'}
+                >
+                  {['AP', 'AD', 'Tank', 'Support', 'Hybrid'].map((type) => <option key={type}>{type}</option>)}
+                </select>
+              </label>
+            </div>
+            <label className="mt-3 block">
+              <span className="mb-1.5 flex justify-between text-xs font-bold text-dim">
+                <span>路线标题</span><span>{draft.title.length}/32</span>
+              </span>
+              <input
+                value={draft.title}
+                maxLength={32}
+                onChange={(event) => patch('title', event.target.value)}
+                placeholder="例如：持续灼烧控制流"
+                className={SEARCH_INLINE}
+              />
+            </label>
+            <label className="mt-3 block">
+              <span className="mb-1.5 flex justify-between text-xs font-bold text-dim">
+                <span>玩法介绍</span><span>{draft.description.length}/240</span>
+              </span>
+              <textarea
+                value={draft.description}
+                maxLength={240}
+                rows={3}
+                onChange={(event) => patch('description', event.target.value)}
+                placeholder="写下核心思路、适用场景和需要避开的陷阱。"
+                className={SEARCH_INLINE + ' resize-none leading-6'}
+              />
+            </label>
+          </section>
+
+          <section className="glass-panel relative overflow-visible rounded-[8px] border border-line/75 p-5 focus-within:z-40">
+            <div className="grid grid-cols-2 gap-5 max-[920px]:grid-cols-1">
+              <AssetPicker
+                label="出门装"
+                hint="按实际购买顺序添加，允许重复药水"
+                entries={items}
+                selectedIds={draft.starterItemIds}
+                max={6}
+                allowDuplicates
+                onChange={(ids) => patch('starterItemIds', ids)}
+              />
+              <AssetPicker
+                label="六神装"
+                hint="第一件成装放在最前，必须正好六件"
+                entries={items}
+                selectedIds={draft.itemIds}
+                max={6}
+                onChange={(ids) => patch('itemIds', ids)}
+              />
+            </div>
+          </section>
+
+          <section className="glass-panel relative overflow-visible rounded-[8px] border border-line/75 p-5 focus-within:z-40">
+            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-1">
+              <AssetPicker label="核心海克斯" hint="拿到时优先选择" entries={augments} selectedIds={draft.coreAugmentIds} max={6} onChange={(ids) => patch('coreAugmentIds', ids)} />
+              <AssetPicker label="备选海克斯" hint="稳定、泛用的选择" entries={augments} selectedIds={draft.goodAugmentIds} max={6} onChange={(ids) => patch('goodAugmentIds', ids)} />
+              <AssetPicker label="避开海克斯" hint="容易误导这套路线" entries={augments} selectedIds={draft.trapAugmentIds} max={4} onChange={(ids) => patch('trapAugmentIds', ids)} />
+            </div>
+          </section>
+
+          <section className="rounded-[8px] border border-hex/30 bg-[#0a1524]/85 p-5">
+            <div className="flex items-start gap-4">
+              {champion && <img src={icon(champion.iconLocal)} alt="" className="h-16 w-16 rounded-[8px] border border-gold/45 object-cover" />}
+              <div className="min-w-0 flex-1">
+                <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-hex">Overlay preview</div>
+                <div className="mt-1 flex items-center gap-2">
+                  <h3 className="truncate text-lg font-extrabold text-cream">{draft.title || '未命名路线'}</h3>
+                  <span className="rounded-md bg-white/8 px-2 py-0.5 text-[10px] font-bold text-dim">{draft.damageType}</span>
+                </div>
+                <p className="mt-1 line-clamp-2 text-xs leading-5 text-dim">{draft.description || '路线介绍会显示在这里。'}</p>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <div>
+                <div className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.12em] text-gold">出门装</div>
+                <MiniItemLine items={starterItems} />
+              </div>
+              <div>
+                <div className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.12em] text-hex">六神装</div>
+                <MiniItemLine items={finalItems} />
+              </div>
+            </div>
+          </section>
+
+          <div className="sticky bottom-0 z-20 flex items-center justify-between gap-4 rounded-[8px] border border-gold/30 bg-[#0a111b]/95 p-3 shadow-[0_-12px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+            <div className={'text-xs ' + (message.startsWith('已保存') ? 'text-[#63c07a]' : 'text-dim')}>
+              {message || '保存后会自动设为该英雄当前使用的路线。'}
+            </div>
+            <div className="flex gap-2">
+              {editingId && (
+                <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-4 py-2.5 text-sm font-bold text-dim hover:border-hex/45 hover:text-cream">
+                  查看英雄页
+                </button>
+              )}
+              <button type="button" onClick={save} className="rounded-lg bg-gold px-5 py-2.5 text-sm font-extrabold text-[#171006] hover:bg-[#dec07a] active:translate-y-px">
+                保存并启用
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function SettingsSection({ title, children, className = '' }: { title: string; children: ReactNode; className?: string }) {
+  return (
+    <section className={CARD + ' p-5 ' + className}>
       <h3 className="text-sm font-bold text-cream mb-4">{title}</h3>
       {children}
     </section>
+  )
+}
+
+function SettingsNavItem({ label, active = false }: { label: string; active?: boolean }) {
+  return (
+    <div
+      className={
+        'rounded-lg border px-3 py-2 text-xs font-bold ' +
+        (active ? 'border-gold/45 bg-gold/12 text-gold' : 'border-transparent text-dim')
+      }
+    >
+      {label}
+    </div>
   )
 }
 
@@ -1077,6 +1774,26 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
     <>
       <ViewHead title={t('settings.title', '设置')} />
 
+      <div className="grid grid-cols-[250px_minmax(0,1fr)] gap-5 items-start max-[980px]:grid-cols-1">
+        <aside className="glass-panel sticky top-6 rounded-[8px] border border-line/75 p-4 max-[980px]:static">
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">Control stack</div>
+          <div className="mt-3 flex flex-col gap-1">
+            <SettingsNavItem label={t('settings.startup.title', '启动与窗口')} active />
+            <SettingsNavItem label={t('settings.overlay.title', 'Overlay 行为')} />
+            <SettingsNavItem label={t('settings.dashboard.title', '主页内容显示')} />
+            <SettingsNavItem label={t('settings.account.title', '账号')} />
+            <SettingsNavItem label={t('settings.privacy.title', '数据与隐私')} />
+          </div>
+          <div className="mt-5 rounded-lg border border-line/65 bg-panel2/38 p-3">
+            <div className="text-[11px] font-bold text-dim">{t('settings.account.title', '账号')}</div>
+            <div className="mt-1 truncate text-sm font-extrabold text-cream">
+              {summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}
+            </div>
+            <div className="mt-2 text-[11px] leading-relaxed text-dim">{t('settings.account.desc')}</div>
+          </div>
+        </aside>
+
+        <div className="grid grid-cols-2 gap-4 max-[1180px]:grid-cols-1">
       <SettingsSection title={t('settings.startup.title', '启动与窗口')}>
         <div className="flex items-center justify-between py-2">
           <div>
@@ -1090,15 +1807,22 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
             <div className="text-sm">{t('settings.startup.zoom')}</div>
             <span className="text-xs text-dim">{Math.round(settings.zoomFactor * 100)}%</span>
           </div>
-          <input
-            type="range"
-            min={0.8}
-            max={1.4}
-            step={0.05}
-            value={settings.zoomFactor}
-            onChange={(e) => update('zoomFactor', parseFloat(e.target.value))}
-            className="w-full mt-2 accent-gold"
-          />
+          <div className="mt-2 grid grid-cols-5 gap-1.5 rounded-lg border border-line/60 bg-ink/30 p-1.5">
+            {ZOOM_PRESETS.map((zoom) => (
+              <button
+                key={zoom}
+                onClick={() => update('zoomFactor', zoom)}
+                className={
+                  'rounded-lg px-2 py-1.5 text-xs font-extrabold transition cursor-pointer ' +
+                  (settings.zoomFactor === zoom
+                    ? 'bg-gold text-[#1d1709]'
+                    : 'bg-panel2/45 text-dim hover:bg-panel2/80 hover:text-cream')
+                }
+              >
+                {Math.round(zoom * 100)}%
+              </button>
+            ))}
+          </div>
         </div>
       </SettingsSection>
 
@@ -1193,7 +1917,7 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
         ))}
       </SettingsSection>
 
-      <SettingsSection title={t('settings.account.title', '账号')}>
+      <SettingsSection title={t('settings.account.title', '账号')} className="col-span-2 max-[1180px]:col-span-1">
         <div className="flex items-center justify-between gap-3 pb-3 border-b border-line">
           <div>
             <div className="text-sm">{summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}</div>
@@ -1294,6 +2018,8 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
           />
         </div>
       </SettingsSection>
+        </div>
+      </div>
     </>
   )
 }
@@ -1322,6 +2048,8 @@ function ChampionGrid({
   const t = useT()
   const [q, setQ] = useState('')
   const [role, setRole] = useState<string | null>(null)
+  const [tierFilter, setTierFilter] = useState<string | null>(null)
+  const [view, setView] = useState<'tier' | 'archive'>('tier')
   const hasBuild = (id: number) => !!core.buildIndex[id]
   const tierById = useMemo(() => new Map(core.heroTier.map((h) => [h.id, h.tier])), [core.heroTier])
   const list = useMemo(() => {
@@ -1336,92 +2064,283 @@ function ChampionGrid({
         )
       : core.champions
     if (role) filtered = filtered.filter((c) => c.roles.includes(role))
+    if (tierFilter) filtered = filtered.filter((c) => tierById.get(c.id) === tierFilter)
     return [...filtered].sort((a, b) => {
       if (detectedChamp?.id === a.id) return -1
       if (detectedChamp?.id === b.id) return 1
+      const tierA = tierById.get(a.id)
+      const tierB = tierById.get(b.id)
+      const tierDelta = (tierA ? TIER_ORDER.indexOf(tierA) : 99) - (tierB ? TIER_ORDER.indexOf(tierB) : 99)
+      if (tierDelta !== 0) return tierDelta
       return (hasBuild(b.id) ? 1 : 0) - (hasBuild(a.id) ? 1 : 0)
     })
-  }, [q, role, core, detectedChamp?.id])
+  }, [q, role, tierFilter, tierById, core, detectedChamp?.id])
+  const tierGroups = useMemo(
+    () =>
+      TIER_ORDER.map((tier) => ({
+        tier,
+        meta: TIER_META[tier],
+        entries: list.filter((c) => tierById.get(c.id) === tier),
+      })).filter((g) => g.entries.length > 0),
+    [list, tierById],
+  )
   const done = Object.keys(core.buildIndex).length
+  const tiered = core.heroTier.length
+  const missing = core.champions.length - done
+  const routeTitle = detectedChamp
+    ? detectedHasBuild
+      ? t('routeLibrary.title.ready', { name: detectedChamp.name })
+      : t('routeLibrary.title.missing', { name: detectedChamp.name })
+    : t('routeLibrary.title.idle', 'Route library ready')
+  const routeSubtitle = detectedChamp
+    ? detectedHasBuild
+      ? t('routeLibrary.subtitle.ready', 'Current pick is pinned. Open the route or compare it against the tier table.')
+      : t('routeLibrary.subtitle.missing', 'Current pick is detected, but this champion still needs Mayhem route data.')
+    : t('routeLibrary.subtitle.idle', 'Search a champion, filter by role or tier, then open the route you want in champion select.')
 
   return (
     <>
       <ViewHead title={t('nav.champ')} meta={t('champGrid.coverage', { done, total: core.champions.length })} />
-      <section className="relative mb-5 overflow-hidden rounded-[28px] border border-hex/25 bg-[linear-gradient(135deg,rgba(17,28,47,0.94),rgba(9,20,40,0.9))] p-5 shadow-[0_18px_54px_rgba(0,0,0,0.24)]">
-        <div className="pointer-events-none absolute -right-12 -top-20 h-44 w-44 rounded-full bg-hex/12 blur-3xl" />
-        <div className="relative flex items-center justify-between gap-5 max-[760px]:flex-col max-[760px]:items-start">
+      <section className="glass-panel-strong relative mb-5 overflow-hidden rounded-[8px] border p-5">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-hex/80 via-hex/25 to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 h-40 w-72 bg-[radial-gradient(circle_at_top_right,rgba(208,173,104,0.12),transparent_62%)]" />
+        <div className="relative grid grid-cols-[minmax(0,1fr)_340px] gap-5 items-start max-[980px]:grid-cols-1">
           <div className="min-w-0">
-            <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-hex">Champion-first archive</div>
-            <h2 className="mt-2 text-2xl font-extrabold text-cream">
-              {detectedChamp ? t('champGrid.detected', { name: detectedChamp.name }) : t('champGrid.waitingPick')}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-dim">
-              {t('champGrid.subtitle')}
-            </p>
-          </div>
-          {detectedChamp ? (
-            <button
-              onClick={() => onPick(detectedChamp.id)}
-              className={
-                'flex min-w-[260px] items-center gap-3 rounded-[22px] border p-3 text-left transition hover:-translate-y-0.5 cursor-pointer ' +
-                (detectedHasBuild
-                  ? 'border-gold/45 bg-gold/10 shadow-[0_0_34px_rgba(200,170,110,0.1)]'
-                  : 'border-red/45 bg-red/10')
-              }
-            >
-              <img
-                src={icon(detectedChamp.iconLocal)}
-                alt={detectedChamp.name}
-                className="h-14 w-14 rounded-2xl border border-gold/40 object-cover"
-              />
-              <div className="min-w-0">
-                <div className="text-sm font-extrabold text-cream">{detectedChamp.name}</div>
-                <div className="mt-1 text-xs text-dim">
-                  {detectedHasBuild ? t('champGrid.buildReady') : t('champGrid.buildMissing')}
-                </div>
-              </div>
-            </button>
-          ) : (
-            <div className="rounded-[22px] border border-line/70 bg-panel/70 p-4 text-sm text-dim">
-              {t('champGrid.hint')}
+            <div className="inline-flex items-center gap-2 rounded-md border border-hex/35 bg-hex/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-hex">
+              {t('routeLibrary.kicker', 'Route control')}
             </div>
-          )}
+            <h2 className="mt-4 max-w-[720px] text-[32px] leading-[1.05] font-extrabold tracking-tight text-cream">
+              {routeTitle}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-dim">
+              {routeSubtitle}
+            </p>
+            <div className="mt-5 grid grid-cols-3 gap-2 max-[760px]:grid-cols-1">
+              <StatusMetric label={t('routeLibrary.metric.coverage', 'Routes')} value={`${done}/${core.champions.length}`} />
+              <StatusMetric label={t('routeLibrary.metric.tiered', 'Tiered')} value={`${tiered}`} />
+              <StatusMetric label={t('routeLibrary.metric.missing', 'Missing')} value={`${missing}`} />
+            </div>
+          </div>
+          <div className="glass-control rounded-[8px] border border-line/80 p-4">
+            <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">
+              {t('routeLibrary.readout', 'Current pick')}
+            </div>
+            {detectedChamp ? (
+              <button
+                onClick={() => onPick(detectedChamp.id)}
+                className={
+                  'mt-3 flex w-full items-center gap-3 rounded-[8px] border p-3 text-left transition hover:-translate-y-0.5 cursor-pointer ' +
+                  (detectedHasBuild
+                    ? 'border-gold/45 bg-gold/10 shadow-[0_0_34px_rgba(200,170,110,0.1)]'
+                    : 'border-red/45 bg-red/10')
+                }
+              >
+                <img
+                  src={icon(detectedChamp.iconLocal)}
+                  alt={detectedChamp.name}
+                  className="h-14 w-14 rounded-lg border border-gold/40 object-cover"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm font-extrabold text-cream">{detectedChamp.name}</div>
+                  <div className="mt-1 text-xs text-dim">
+                    {detectedHasBuild ? t('champGrid.buildReady') : t('champGrid.buildMissing')}
+                  </div>
+                </div>
+                <span
+                  className={
+                    'rounded-md border px-1.5 py-0.5 text-[10px] font-bold ' +
+                    (detectedHasBuild ? 'border-hex/35 bg-hex/8 text-hex' : 'border-red/35 bg-red/10 text-red')
+                  }
+                >
+                  {detectedHasBuild ? t('routeLibrary.status.ready', 'Ready') : t('routeLibrary.status.missing', 'Missing')}
+                </span>
+              </button>
+            ) : (
+              <div className="mt-3 rounded-[8px] border border-line/70 bg-panel/55 p-4 text-sm leading-6 text-dim">
+                {t('champGrid.hint')}
+              </div>
+            )}
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <StatusMetric label={t('routeLibrary.metric.results', 'Results')} value={`${list.length}`} />
+              <StatusMetric label={t('routeLibrary.metric.view', 'View')} value={view === 'tier' ? t('routeLibrary.tierView', 'Tier') : t('routeLibrary.archiveView', 'Archive')} />
+            </div>
+          </div>
         </div>
       </section>
-      <input
-        className={SEARCH}
-        placeholder={t('champGrid.search')}
-        value={q}
-        onChange={(e) => setQ(e.target.value)}
-        autoFocus
-      />
-      <div className="flex flex-wrap gap-2 mb-5">
-        <button
-          onClick={() => setRole(null)}
-          className={
-            'px-3.5 py-1.5 rounded-xl text-xs font-medium cursor-pointer transition ' +
-            (role === null
-              ? 'bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] font-extrabold'
-              : 'bg-panel/80 border border-line/70 text-dim hover:text-cream')
-          }
-        >
-          {t('champGrid.all')}
-        </button>
-        {ROLES.map((r) => (
+      <section className={TOOLBAR}>
+        <div className="flex items-center gap-3 max-[900px]:flex-col max-[900px]:items-stretch">
+          <input
+            className={SEARCH_INLINE}
+            placeholder={t('champGrid.search')}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            autoFocus
+          />
+          <div className="shrink-0 rounded-lg border border-line/65 bg-panel2/45 px-3 py-2 text-xs text-dim">
+            <span className="font-extrabold text-cream">{list.length}</span> / {core.champions.length}
+          </div>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-2">
           <button
-            key={r.key}
-            onClick={() => setRole((prev) => (prev === r.key ? null : r.key))}
+            onClick={() => setView('tier')}
             className={
-              'px-3.5 py-1.5 rounded-xl text-xs font-medium cursor-pointer transition ' +
-              (role === r.key
-                ? 'bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] font-extrabold'
-                : 'bg-panel/80 border border-line/70 text-dim hover:text-cream')
+              CHIP +
+              ' ' +
+              (view === 'tier'
+                ? 'border-gold/45 bg-gold text-[#1d1709] font-extrabold'
+                : 'border-line/70 bg-panel/80 text-dim hover:text-cream')
             }
           >
-            {t(`role.${r.key}`, r.label)}
+            {t('routeLibrary.tierView', 'Tier')}
           </button>
-        ))}
+          <button
+            onClick={() => setView('archive')}
+            className={
+              CHIP +
+              ' ' +
+              (view === 'archive'
+                ? 'border-gold/45 bg-gold text-[#1d1709] font-extrabold'
+                : 'border-line/70 bg-panel/80 text-dim hover:text-cream')
+            }
+          >
+            {t('routeLibrary.archiveView', '档案')}
+          </button>
+          {TIER_ORDER.map((tier) => (
+            <button
+              key={tier}
+              onClick={() => setTierFilter((current) => (current === tier ? null : tier))}
+              className={
+                CHIP +
+                ' ' +
+                (tierFilter === tier
+                  ? 'border-gold/45 bg-gold text-[#1d1709] font-extrabold'
+                  : 'border-line/70 bg-panel/80 text-dim hover:text-cream')
+              }
+            >
+              {tier}
+            </button>
+          ))}
+        </div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            onClick={() => setRole(null)}
+            className={
+              CHIP +
+              ' group inline-flex items-center gap-2 ' +
+              (role === null
+                ? 'border-gold/45 bg-gold text-[#1d1709] font-extrabold'
+                : 'border-line/70 bg-panel/80 text-dim hover:text-cream')
+            }
+          >
+            <RoleIcon role={null} active={role === null} />
+            <span>{t('champGrid.all')}</span>
+          </button>
+          {ROLES.map((r) => (
+            <button
+              key={r.key}
+              onClick={() => setRole((prev) => (prev === r.key ? null : r.key))}
+              className={
+                CHIP +
+                ' group inline-flex items-center gap-2 ' +
+                (role === r.key
+                  ? 'border-gold/45 bg-gold text-[#1d1709] font-extrabold'
+                  : 'border-line/70 bg-panel/80 text-dim hover:text-cream')
+              }
+            >
+              <RoleIcon role={r.key} active={role === r.key} />
+              <span>{t(`role.${r.key}`, r.label)}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+      <div className="mb-3 flex items-end justify-between gap-3">
+        <div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">
+            {view === 'tier' ? t('routeLibrary.results.tier', 'Tier table') : t('routeLibrary.results.archive', 'Archive grid')}
+          </div>
+          <div className="mt-1 text-sm text-dim">
+            {t('routeLibrary.results.meta', { count: list.length, total: core.champions.length })}
+          </div>
+        </div>
+        {(role || tierFilter || q.trim()) && (
+          <button
+            onClick={() => {
+              setQ('')
+              setRole(null)
+              setTierFilter(null)
+            }}
+            className="rounded-lg border border-line/70 bg-panel/65 px-3 py-1.5 text-xs font-bold text-dim transition hover:border-gold/45 hover:text-cream cursor-pointer"
+          >
+            {t('routeLibrary.clearFilters', 'Clear filters')}
+          </button>
+        )}
       </div>
+      {view === 'tier' ? (
+        <div className="flex flex-col gap-3">
+          {tierGroups.map((g) => (
+            <section key={g.tier} className={'relative overflow-hidden rounded-[8px] border p-3.5 ' + g.meta.row}>
+              <div className={'absolute inset-y-0 left-0 w-1 ' + g.meta.bar} />
+              <div className="grid grid-cols-[72px_minmax(0,1fr)] gap-4">
+                <div className="flex flex-col items-center gap-2 pt-1">
+                  <div className={'grid h-12 w-12 place-items-center rounded-lg text-2xl font-extrabold ' + g.meta.badge}>
+                    {g.tier}
+                  </div>
+                  <div className="text-center text-[10px] font-bold uppercase tracking-[0.1em] text-dim">{g.entries.length}</div>
+                </div>
+                <div className="min-w-0">
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <div className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-dim">{g.meta.label}</div>
+                    <div className="text-[11px] text-dim">{g.entries.length} champions</div>
+                  </div>
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-2.5">
+                    {g.entries.map((c) => {
+                      const has = hasBuild(c.id)
+                      const isDetected = detectedChamp?.id === c.id
+                      const primaryRoleKey = ROLES.find((r) => c.roles.includes(r.key))
+                      const primaryRole = primaryRoleKey ? t(`role.${primaryRoleKey.key}`, primaryRoleKey.label) : c.roles[0]
+                      return (
+                        <button
+                          key={c.id}
+                          onClick={() => onPick(c.id)}
+                          title={has ? c.name : t('champGrid.noData', { name: c.name })}
+                          className={
+                            'group grid grid-cols-[42px_minmax(0,1fr)_auto] items-center gap-2 rounded-lg border p-2 text-left transition hover:-translate-y-0.5 hover:border-gold/45 hover:bg-panel2/55 cursor-pointer ' +
+                            (isDetected ? 'border-gold/60 bg-gold/10' : 'border-line/65 bg-ink/28')
+                          }
+                        >
+                          <img
+                            src={icon(c.iconLocal)}
+                            alt={c.name}
+                            loading="lazy"
+                            className="h-10 w-10 rounded-lg border border-line/80 object-cover transition group-hover:border-gold/45"
+                          />
+                          <span className="min-w-0">
+                            <span className="block truncate text-sm font-extrabold text-cream">{c.name}</span>
+                            <span className="mt-0.5 block truncate text-[11px] text-dim">{primaryRole}</span>
+                          </span>
+                          <span className="flex items-center gap-1">
+                            {!has && (
+                              <span className="rounded-md border border-line/60 bg-panel2/40 px-1.5 py-0.5 text-[10px] font-bold text-dim">
+                                {t('champGrid.cardMissing')}
+                              </span>
+                            )}
+                            {isDetected && (
+                              <span className="rounded-md border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-bold text-hex">
+                                {t('champGrid.current')}
+                              </span>
+                            )}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </section>
+          ))}
+          {tierGroups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
+        </div>
+      ) : (
       <div className="grid grid-cols-[repeat(auto-fill,minmax(142px,1fr))] gap-3">
         {list.map((c) => {
           const has = hasBuild(c.id)
@@ -1435,12 +2354,12 @@ function ChampionGrid({
               onClick={() => onPick(c.id)}
               title={has ? c.name : t('champGrid.noData', { name: c.name })}
               className={
-                'group relative overflow-hidden rounded-[22px] border p-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
+                'group relative overflow-hidden rounded-[8px] border p-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
                 (isDetected
-                  ? 'bg-gold/12 border-gold/70 shadow-[0_0_34px_rgba(200,170,110,0.14)]'
+                  ? 'bg-gold/12 border-gold/70 shadow-[0_14px_34px_rgba(0,0,0,0.2)]'
                   : has
-                    ? 'bg-panel/90 border-gold/35 hover:border-gold/75'
-                    : 'bg-panel/60 border-line/60 hover:border-red/50 opacity-75')
+                    ? 'bg-panel/82 border-gold/30 hover:border-gold/70 hover:bg-panel2/70'
+                    : 'bg-panel/55 border-line/60 hover:border-red/50 opacity-75')
               }
             >
               <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-hex/0 blur-2xl transition group-hover:bg-hex/10" />
@@ -1450,11 +2369,11 @@ function ChampionGrid({
                     src={icon(c.iconLocal)}
                     alt={c.name}
                     loading="lazy"
-                    className="h-13 w-13 rounded-2xl border border-line/70 object-cover"
+                    className="h-13 w-13 rounded-lg border border-line/70 object-cover"
                   />
                   {has && (
-                    <span className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-gold border-2 border-panel grid place-items-center">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#2b1e07" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                    <span className="absolute -right-1 -bottom-1 w-4 h-4 rounded-md bg-hex border-2 border-panel grid place-items-center">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#061117" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M20 6L9 17l-5-5" />
                       </svg>
                     </span>
@@ -1464,19 +2383,22 @@ function ChampionGrid({
                   <div className={'truncate text-sm font-extrabold ' + (has ? 'text-cream' : 'text-dim')}>{c.name}</div>
                   <div className="mt-1 truncate text-[11px] text-dim">{primaryRole}</div>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                    {tier && <span className="rounded-full border border-gold/35 bg-gold/10 px-1.5 py-0.5 text-[10px] font-bold text-gold">{tier}</span>}
-                    {isDetected && <span className="rounded-full border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-bold text-hex">{t('champGrid.current')}</span>}
+                    {tier && <span className="rounded-md border border-gold/35 bg-gold/10 px-1.5 py-0.5 text-[10px] font-bold text-gold">{tier}</span>}
+                    {isDetected && <span className="rounded-md border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-bold text-hex">{t('champGrid.current')}</span>}
                   </div>
                 </div>
               </div>
-              <div className={'relative mt-3 rounded-xl border px-2 py-1.5 text-[11px] leading-tight ' + (has ? 'border-gold/25 bg-gold/8 text-gold' : 'border-line/60 bg-panel2/40 text-dim')}>
-                {has ? t('champGrid.cardReady') : t('champGrid.cardMissing')}
-              </div>
+              {!has && (
+                <div className="relative mt-3 rounded-lg border border-line/60 bg-panel2/40 px-2 py-1.5 text-[11px] leading-tight text-dim">
+                  {t('champGrid.cardMissing')}
+                </div>
+              )}
             </button>
           )
         })}
         {list.length === 0 && <div className="col-span-full p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
       </div>
+      )}
     </>
   )
 }
@@ -1495,31 +2417,37 @@ function AugmentBrowser({ core }: { core: Core }) {
   return (
     <>
       <ViewHead title={t('nav.aug')} meta={t('augBrowser.meta', { count: core.augments.length })} />
-      <input
-        className={SEARCH}
-        placeholder={t('augBrowser.search')}
-        value={q}
-        onChange={(e) => setQ(e.target.value)}
-      />
+      <section className={TOOLBAR}>
+        <div className="flex items-center gap-3 max-[760px]:flex-col max-[760px]:items-stretch">
+          <input
+            className={SEARCH_INLINE}
+            placeholder={t('augBrowser.search')}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+          />
+          <div className="shrink-0 rounded-lg border border-line/65 bg-panel2/45 px-3 py-2 text-xs text-dim">
+            <span className="font-extrabold text-cream">{groups.reduce((sum, g) => sum + g.items.length, 0)}</span> /{' '}
+            {core.augments.length}
+          </div>
+        </div>
+      </section>
       {groups.map((g) => (
         <div key={g.rarity} className="mb-6">
-          <div className="flex items-center gap-2 mb-3 text-sm font-semibold">
+          <div className="sticky top-[94px] z-10 mb-3 flex items-center gap-2 rounded-lg border border-line/60 bg-ink/82 px-3 py-2 text-sm font-semibold backdrop-blur-xl">
             <span className={'w-2.5 h-2.5 rounded-full ' + g.meta.bg} />
             <span className={g.meta.text}>{t(`rarity.${RARITY_KEY[g.rarity]}`, g.meta.label)}</span>
             <span className="text-xs text-dim font-normal">{g.items.length}</span>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-2.5">
             {g.items.map((a) => (
-              <div
-                key={a.id}
-                title={a.desc}
-                className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-panel border border-line transition hover:-translate-y-0.5"
-              >
-                <div className={'w-14 h-14 rounded-md overflow-hidden border-2 ' + g.meta.border}>
-                  <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="w-full h-full object-cover" />
+              <AugmentHoverCard key={a.id} augment={a}>
+                <div className="flex flex-col items-center gap-1.5 p-2.5 rounded-lg bg-panel border border-line transition hover:-translate-y-0.5">
+                  <div className={'w-14 h-14 rounded-md overflow-hidden border-2 ' + g.meta.border}>
+                    <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-xs text-center leading-tight">{a.name}</span>
                 </div>
-                <span className="text-xs text-center leading-tight">{a.name}</span>
-              </div>
+              </AugmentHoverCard>
             ))}
           </div>
         </div>
@@ -1532,14 +2460,21 @@ function AugmentBrowser({ core }: { core: Core }) {
 /** 「更新日志」：官方 patch notes 摘要 + 海克斯大乱斗专属改动分开展示（人工翻译整理，见 data/patch-notes.json）。 */
 function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => void }) {
   const t = useT()
+  const lang = useLang()
   const pn = core.patchNotes
   return (
     <>
       <ViewHead title={t('nav.patch')} meta={t('patch.meta', { patch: pn.patch, date: pn.releaseDate })} />
 
       <section className={CARD + ' p-5 mb-5'}>
-        <div className="text-xs text-dim mb-1">{t('patch.theme')}</div>
-        <div className="text-lg font-bold text-cream">{pn.theme}</div>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="text-xs text-dim mb-1">{t('patch.theme')}</div>
+            <div className="text-lg font-bold text-cream">{pn.theme}</div>
+            <div className="mt-2 text-xs text-dim">{pn.patch} / {pn.releaseDate}</div>
+          </div>
+          <PatchMark />
+        </div>
         <a
           href={pn.sourceUrl}
           target="_blank"
@@ -1553,18 +2488,26 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       {/* 海克斯大乱斗专属改动放最前面——这是这个 App 的核心受众最关心的部分 */}
       <section className={CARD + ' p-5 mb-5 border-gold/30'}>
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-lg">🔷</span>
+          <PatchMark />
           <h3 className="text-base font-bold text-gold">{t('patch.mayhemTitle')}</h3>
         </div>
-        <p className="text-[13px] text-dim leading-relaxed mb-4">{pn.mayhem.summaryZh}</p>
+        <p className="text-[13px] text-dim leading-relaxed mb-4">
+          {lang === 'en' && pn.mayhem.summaryEn ? pn.mayhem.summaryEn : pn.mayhem.summaryZh}
+        </p>
         {pn.mayhem.augmentChanges.length > 0 && (
           <>
             <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.augmentChanges')}</div>
-            <div className="flex flex-col gap-1.5 mb-4">
+            <div className="flex flex-col rounded-lg border border-line/60 bg-ink/24 mb-4">
               {pn.mayhem.augmentChanges.map((a, i) => (
-                <div key={i} className="flex items-start gap-2 text-[13px]">
-                  <span className="text-cream font-medium shrink-0">{a.name}</span>
-                  <span className="text-dim">— {a.change}</span>
+                <div
+                  key={i}
+                  className="grid grid-cols-[44px_180px_minmax(0,1fr)] items-center gap-3 px-3 py-3 max-[760px]:grid-cols-[44px_minmax(0,1fr)]"
+                >
+                  <AugmentGlyph icon={a.icon} />
+                  <div className="truncate text-sm font-semibold text-cream">{a.name}</div>
+                  <div className="min-w-0 text-[12px] text-dim leading-snug max-[760px]:col-span-2">
+                    {lang === 'en' && a.changeEn ? a.changeEn : a.change}
+                  </div>
                 </div>
               ))}
             </div>
@@ -1574,7 +2517,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
           <>
             <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.bugfixes')}</div>
             <ul className="list-disc list-inside text-[13px] text-dim space-y-1">
-              {pn.mayhem.bugfixes.map((b, i) => (
+              {(lang === 'en' && pn.mayhem.bugfixesEn ? pn.mayhem.bugfixesEn : pn.mayhem.bugfixes).map((b, i) => (
                 <li key={i}>{b}</li>
               ))}
             </ul>
@@ -1584,26 +2527,28 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
 
       <section className={CARD + ' p-5 mb-5'}>
         <h3 className="text-base font-bold text-cream mb-3">{t('patch.championChanges')}</h3>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="flex flex-col divide-y divide-line/55 rounded-lg border border-line/60 bg-ink/24">
           {pn.championChanges.map((c) => {
             const champ = core.champions.find((ch) => ch.id === c.championId)
+            const lines = lang === 'en' && c.changesEn ? c.changesEn : c.changes
             return (
               <button
                 key={c.championId}
                 onClick={() => champ && onPick(champ.id)}
-                className="text-left flex gap-2.5 p-3 rounded-xl bg-panel2 border border-line hover:border-gold/40 transition cursor-pointer"
+                className="grid grid-cols-[44px_128px_minmax(0,1fr)] items-start gap-3 px-3 py-3 text-left transition hover:bg-panel2/45 cursor-pointer max-[840px]:grid-cols-[44px_minmax(0,1fr)]"
               >
                 {champ && (
-                  <img src={icon(champ.iconLocal)} alt={champ.name} className="w-9 h-9 rounded-md shrink-0" />
+                  <img src={icon(champ.iconLocal)} alt={champ.name} className="w-10 h-10 rounded-lg shrink-0 border border-line/70" />
                 )}
                 <div className="min-w-0">
-                  <div className="text-sm font-semibold mb-1">{c.championName}</div>
-                  <ul className="text-[11px] text-dim leading-snug space-y-0.5 list-disc list-inside">
-                    {c.changes.map((line, i) => (
-                      <li key={i}>{line}</li>
-                    ))}
-                  </ul>
+                  <div className="truncate text-sm font-semibold text-cream">{c.championName}</div>
+                  <div className="mt-1 text-[11px] text-dim">{t('patch.championChanges')}</div>
                 </div>
+                <ul className="min-w-0 text-[12px] text-dim leading-snug space-y-1 max-[840px]:col-span-2">
+                  {lines.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
               </button>
             )
           })}
@@ -1613,17 +2558,25 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       {pn.itemChanges.length > 0 && (
         <section className={CARD + ' p-5 mb-5'}>
           <h3 className="text-base font-bold text-cream mb-3">{t('patch.itemChanges')}</h3>
-          <div className="flex flex-col gap-3">
-            {pn.itemChanges.map((it, i) => (
-              <div key={i}>
-                <div className="text-sm font-semibold mb-1">{it.itemName}</div>
-                <ul className="text-[12px] text-dim leading-snug space-y-0.5 list-disc list-inside">
-                  {it.changes.map((line, j) => (
-                    <li key={j}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="flex flex-col divide-y divide-line/55 rounded-lg border border-line/60 bg-ink/24">
+            {pn.itemChanges.map((it, i) => {
+              const item = it.itemId != null ? core.itemById.get(it.itemId) : undefined
+              const name = item?.name ?? (lang === 'en' && it.itemNameEn ? it.itemNameEn : it.itemName)
+              const lines = lang === 'en' && it.changesEn ? it.changesEn : it.changes
+              return (
+                <div key={i} className="grid grid-cols-[44px_140px_minmax(0,1fr)] items-start gap-3 px-3 py-3 max-[760px]:grid-cols-[44px_minmax(0,1fr)]">
+                  {item && (
+                    <img src={icon(item.iconLocal)} alt={name} className="w-10 h-10 rounded-lg shrink-0 border border-line/70 bg-ink/40" />
+                  )}
+                  <div className="text-sm font-semibold text-cream">{name}</div>
+                  <ul className="min-w-0 text-[12px] text-dim leading-snug space-y-1 max-[760px]:col-span-2">
+                    {lines.map((line, j) => (
+                      <li key={j}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
           </div>
         </section>
       )}
@@ -1631,62 +2584,96 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       {pn.systemChanges.length > 0 && (
         <section className={CARD + ' p-5'}>
           <h3 className="text-base font-bold text-cream mb-3">{t('patch.systemChanges')}</h3>
-          <ul className="text-[13px] text-dim leading-relaxed space-y-1.5 list-disc list-inside">
-            {pn.systemChanges.map((s, i) => (
-              <li key={i}>{s}</li>
+          <div className="flex flex-col gap-2">
+            {(lang === 'en' && pn.systemChangesEn ? pn.systemChangesEn : pn.systemChanges).map((s, i) => (
+              <div key={i} className="rounded-lg border border-line/55 bg-panel2/32 px-3 py-2 text-[13px] leading-relaxed text-dim">
+                {s}
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
       )}
     </>
   )
 }
 
+/**
+ * 官方 patch notes 里"海克斯大乱斗专属改动"列出的这批增强(大魔导师/玻璃大炮等)是海克斯大乱斗
+ * 独有、不在竞技场增强池里的海克斯——CommunityDragon 的 cdragon/arena 接口不收录，这也是本App
+ * data/augments.json(抓取自那个接口)漏掉这批海克斯的原因。图标从 arammayhem.com 下载到本地
+ * (data/assets/mayhem-augments/)，查不到图标的条目才退回占位菱形。
+ */
+function AugmentGlyph({ icon: slug }: { icon?: string }) {
+  if (slug)
+    return (
+      <img
+        src={`/assets/mayhem-augments/${slug}.webp`}
+        alt=""
+        aria-hidden="true"
+        className="h-10 w-10 shrink-0 rounded-lg border border-gold/40 object-cover"
+      />
+    )
+  return (
+    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-gold/40 bg-gold/10" aria-hidden="true">
+      <span className="h-3.5 w-3.5 rotate-45 rounded-[3px] border border-gold/60 bg-gold/15" />
+    </span>
+  )
+}
+
 // 从 S 到 D 做真正的视觉重量递减：横幅底色由暖变暗、图标尺寸由大变小、
 // 发光强度由强变无——一眼"感受到"层级差，不是靠读文字/边框色才知道。
-const TIER_META: Record<
-  string,
-  { banner: string; badgeBg: string; badgeText: string; iconSize: string; glow: string; nameSize: string }
-> = {
+function PatchMark() {
+  return (
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-gold/35 bg-gold/10 text-gold">
+      <svg
+        width="19"
+        height="19"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 3l7 4v7c0 3.8-2.9 6.3-7 7-4.1-.7-7-3.2-7-7V7z" />
+        <path d="M8 12h8" />
+        <path d="M12 8v8" />
+      </svg>
+    </div>
+  )
+}
+
+const TIER_META: Record<string, { row: string; badge: string; bar: string; label: string }> = {
   S: {
-    banner: 'bg-gradient-to-r from-gold/25 via-gold/10 to-transparent border-gold/50',
-    badgeBg: 'bg-gradient-to-br from-[#f5dea0] to-gold',
-    badgeText: 'text-[#2b1e07]',
-    iconSize: 'w-16 h-16',
-    glow: 'shadow-[0_0_16px_rgba(226,178,78,0.45)] border-gold',
-    nameSize: 'text-[12px] text-cream font-medium',
+    row: 'border-gold/45 bg-gold/10',
+    badge: 'bg-gold text-[#1b1307]',
+    bar: 'bg-gold',
+    label: 'Priority routes',
   },
   A: {
-    banner: 'bg-gradient-to-r from-red/20 via-red/8 to-transparent border-red/40',
-    badgeBg: 'bg-gradient-to-br from-[#ff8a70] to-red',
-    badgeText: 'text-[#2b0f07]',
-    iconSize: 'w-14 h-14',
-    glow: 'shadow-[0_0_10px_rgba(224,70,63,0.35)] border-red/80',
-    nameSize: 'text-[11px] text-cream',
+    row: 'border-hex/35 bg-hex/8',
+    badge: 'bg-hex text-[#061117]',
+    bar: 'bg-hex',
+    label: 'Stable high value',
   },
   B: {
-    banner: 'bg-gradient-to-r from-[#57c3e8]/14 via-[#57c3e8]/5 to-transparent border-[#57c3e8]/30',
-    badgeBg: 'bg-[#3a5a66]',
-    badgeText: 'text-[#d8f3ff]',
-    iconSize: 'w-12 h-12',
-    glow: 'border-[#57c3e8]/60',
-    nameSize: 'text-[11px] text-dim',
+    row: 'border-line/80 bg-panel/70',
+    badge: 'bg-panel2 text-cream',
+    bar: 'bg-dim',
+    label: 'Playable picks',
   },
   C: {
-    banner: 'bg-panel border-line',
-    badgeBg: 'bg-panel2',
-    badgeText: 'text-dim',
-    iconSize: 'w-11 h-11',
-    glow: 'border-line',
-    nameSize: 'text-[10px] text-dim',
+    row: 'border-line/65 bg-panel/50',
+    badge: 'bg-[#202936] text-dim',
+    bar: 'bg-line',
+    label: 'Narrow use cases',
   },
   D: {
-    banner: 'bg-[#150b0d] border-[#2a1c1e]',
-    badgeBg: 'bg-[#1c1214]',
-    badgeText: 'text-[#6a5a5c]',
-    iconSize: 'w-9 h-9',
-    glow: 'border-[#2a1c1e] opacity-70',
-    nameSize: 'text-[10px] text-[#6a5a5c]',
+    row: 'border-red/20 bg-red/6 opacity-80',
+    badge: 'bg-[#251418] text-red',
+    bar: 'bg-red',
+    label: 'Low confidence routes',
   },
 }
 const TIER_ORDER = ['S', 'A', 'B', 'C', 'D']
@@ -1706,46 +2693,72 @@ function TierTab({ core, onPick }: { core: Core; onPick: (id: number) => void })
         title={t('nav.tier')}
         meta={t('tierTab.meta', { covered: core.heroTier.length, total: core.champions.length })}
       />
-      <div className="mb-5 text-xs text-dim leading-relaxed">
-        {t('tierTab.disclaimer')}
-      </div>
+      <section className="glass-control mb-5 rounded-[8px] border border-line/75 p-4">
+        <div className="grid grid-cols-[1fr_auto] gap-4 max-[780px]:grid-cols-1">
+          <div className="text-xs text-dim leading-relaxed">{t('tierTab.disclaimer')}</div>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="rounded-lg border border-line/60 bg-panel2/45 px-3 py-2">
+              <div className="text-dim">{t('tierTab.coveredLabel', '收录')}</div>
+              <div className="mt-1 font-extrabold text-cream">{core.heroTier.length}</div>
+            </div>
+            <div className="rounded-lg border border-line/60 bg-panel2/45 px-3 py-2">
+              <div className="text-dim">{t('tierTab.totalLabel', '英雄')}</div>
+              <div className="mt-1 font-extrabold text-cream">{core.champions.length}</div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="flex flex-col gap-3">
         {groups.map((g) => (
-          <div key={g.tier} className={'rounded-2xl border p-4 ' + g.meta.banner}>
-            <div className="flex items-start gap-4">
-              <div
-                className={
-                  'shrink-0 w-11 h-11 rounded-xl grid place-items-center text-xl font-extrabold ' +
-                  g.meta.badgeBg +
-                  ' ' +
-                  g.meta.badgeText
-                }
-              >
-                {g.tier}
+          <section key={g.tier} className={'relative overflow-hidden rounded-[8px] border p-3.5 ' + g.meta.row}>
+            <div className={'absolute inset-y-0 left-0 w-1 ' + g.meta.bar} />
+            <div className="grid grid-cols-[72px_minmax(0,1fr)] gap-4">
+              <div className="flex flex-col items-center gap-2 pt-1">
+                <div className={'grid h-12 w-12 place-items-center rounded-lg text-2xl font-extrabold ' + g.meta.badge}>
+                  {g.tier}
+                </div>
+                <div className="text-center text-[10px] font-bold uppercase tracking-[0.1em] text-dim">{g.entries.length}</div>
               </div>
-              <div className="flex flex-wrap gap-3 pt-1">
+              <div className="min-w-0">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-dim">{g.meta.label}</div>
+                  <div className="text-[11px] text-dim">{g.entries.length} champions</div>
+                </div>
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-2.5">
                 {g.entries.map((h) => {
                   const c = champById.get(h.id)
                   if (!c) return null
+                  const primaryRoleKey = ROLES.find((r) => c.roles.includes(r.key))
+                  const primaryRole = primaryRoleKey ? t(`role.${primaryRoleKey.key}`, primaryRoleKey.label) : c.roles[0]
+                  const hasBuild = !!core.buildIndex[h.id]
                   return (
                     <button
                       key={h.id}
                       onClick={() => onPick(h.id)}
                       title={c.name}
-                      className="flex flex-col items-center gap-1 cursor-pointer group"
+                      className="group grid grid-cols-[42px_minmax(0,1fr)_auto] items-center gap-2 rounded-lg border border-line/65 bg-ink/28 p-2 text-left transition hover:-translate-y-0.5 hover:border-gold/45 hover:bg-panel2/55 cursor-pointer"
                     >
                       <img
                         src={icon(c.iconLocal)}
                         alt={c.name}
-                        className={`${g.meta.iconSize} rounded-lg border-2 transition group-hover:-translate-y-0.5 ${g.meta.glow}`}
+                        className="h-10 w-10 rounded-lg border border-line/80 object-cover transition group-hover:border-gold/45"
                       />
-                      <span className={g.meta.nameSize}>{c.name}</span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-sm font-extrabold text-cream">{c.name}</span>
+                        <span className="mt-0.5 block truncate text-[11px] text-dim">{primaryRole}</span>
+                      </span>
+                      {!hasBuild && (
+                        <span className="rounded-md border border-line/60 bg-panel2/40 px-1.5 py-0.5 text-[10px] font-bold text-dim">
+                          {t('champGrid.cardMissing')}
+                        </span>
+                      )}
                     </button>
                   )
                 })}
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         ))}
       </div>
     </>
@@ -1760,6 +2773,7 @@ function Detail({
   onPick,
   selectedArchetypeKey,
   onArchetypePreference,
+  customRoutes,
 }: {
   core: Core
   championId: number
@@ -1767,6 +2781,7 @@ function Detail({
   onPick: (id: number) => void
   selectedArchetypeKey?: string
   onArchetypePreference: (championId: number, archetypeKey: string) => void
+  customRoutes: CustomRoute[]
 }) {
   const t = useT()
   const champ = core.champions.find((c) => c.id === championId)
@@ -1784,12 +2799,17 @@ function Detail({
   useEffect(() => {
     const file = core.buildIndex[championId]
     if (!file) {
-      setBuild(null)
+      setBuild(withCustomRoutes(null, championId, customRoutes, core))
       return
     }
     setBuild(undefined)
-    loadBuild(file).then(setBuild)
-  }, [championId, core])
+    loadBuild(file)
+      .then((loaded) => setBuild(withCustomRoutes(loaded, championId, customRoutes, core)))
+      // 没有 .catch 的话，loadBuild 一旦 reject(网络抖动/build json 损坏/打包路径问题)，build 会永远
+      // 卡在 undefined(加载中)，用户看到永久转圈还没报错。退回 null 走"无出装"空态，跟隔壁
+      // DetectedRouteCard 的处理保持一致。
+      .catch(() => setBuild(withCustomRoutes(null, championId, customRoutes, core)))
+  }, [championId, core, customRoutes])
 
   useEffect(() => {
     if (!build) return
@@ -1812,21 +2832,25 @@ function Detail({
 
   return (
     <>
-      <button className="text-hex text-sm cursor-pointer pb-3.5 hover:underline" onClick={onBack}>
-        {t('detail.back')}
+      <button
+        className="mb-3.5 inline-flex items-center gap-2 rounded-lg border border-line/70 bg-panel/55 px-3 py-2 text-sm font-bold text-hex cursor-pointer transition hover:-translate-y-0.5 hover:border-hex/55 hover:bg-hex/8"
+        onClick={onBack}
+      >
+        <span aria-hidden="true">←</span>
+        <span>{t('detail.back')}</span>
       </button>
       {champ && build && build.archetypes.length > 1 && (
-        <section className="mb-5 rounded-[28px] border border-gold/40 bg-[linear-gradient(135deg,rgba(200,170,110,0.16),rgba(41,211,255,0.08),rgba(10,20,40,0.92))] p-4 shadow-[0_18px_54px_rgba(0,0,0,0.26),0_0_44px_rgba(200,170,110,0.10)]">
+        <section className="glass-panel mb-5 rounded-[8px] border border-gold/35 p-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-gold">Pre-game route lock</div>
+              <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-gold">Pre-game route lock</div>
               <div className="mt-1 text-lg font-extrabold text-cream">{t('detail.chooseArchetype', { name: champ.name })}</div>
               <div className="mt-1 text-xs leading-relaxed text-dim">
                 {t('detail.chooseArchetypeDesc')}
               </div>
             </div>
             {active && (
-              <div className="rounded-2xl border border-hex/35 bg-hex/10 px-3 py-2 text-right">
+              <div className="rounded-lg border border-hex/35 bg-hex/10 px-3 py-2 text-right">
                 <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-hex">
                   {syncPulse ? 'Synced to overlay' : 'Overlay will show'}
                 </div>
@@ -1840,9 +2864,9 @@ function Detail({
                 key={a.key}
                 onClick={() => chooseArchetype(i)}
                 className={
-                  'flex min-h-[68px] items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
+                  'flex min-h-[68px] items-center justify-between gap-3 rounded-lg border px-4 py-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
                   (i === activeIdx
-                    ? 'border-gold/80 bg-gradient-to-br from-[#f0e6d2] to-gold text-[#1d1709] shadow-[0_16px_38px_rgba(200,170,110,0.22)]'
+                    ? 'border-gold/80 bg-gold text-[#1d1709] shadow-[0_14px_30px_rgba(208,173,104,0.18)]'
                     : 'border-line/70 bg-panel/78 text-dim hover:border-hex/50 hover:text-cream')
                 }
               >
@@ -1854,7 +2878,7 @@ function Detail({
                 </span>
                 <span
                   className={
-                    'shrink-0 rounded-xl px-2.5 py-1 text-[11px] font-extrabold ' +
+                    'shrink-0 rounded-lg px-2.5 py-1 text-[11px] font-extrabold ' +
                     (i === activeIdx
                       ? 'bg-[#2b1e07]/15 text-[#2b1e07]'
                       : a.damageType === 'AP'
@@ -1927,20 +2951,21 @@ function ChampionWarRoom({
   const coreAugs = active?.augments.core.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
   const goodAugs = active?.augments.good.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
   const trapAugs = active?.augments.trap.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
-  const firstItems = active?.items.map((ref) => core.itemById.get(ref.id)).filter((i): i is Item => !!i).slice(0, 4) ?? []
+  const starterItems = active?.starterItems?.map((ref) => core.itemById.get(ref.id)).filter((i): i is Item => !!i) ?? []
+  const firstItems = active?.items.map((ref) => core.itemById.get(ref.id)).filter((i): i is Item => !!i).slice(0, 6) ?? []
   const routeCount = build ? build.archetypes.length : 0
 
   return (
-    <section className="relative overflow-hidden rounded-[32px] border border-gold/30 bg-[linear-gradient(135deg,rgba(17,28,47,0.96),rgba(9,20,40,0.92))] p-6 shadow-[0_22px_68px_rgba(0,0,0,0.3),0_0_62px_rgba(200,170,110,0.08)]">
+    <section className="relative overflow-hidden rounded-[8px] border border-gold/30 bg-[linear-gradient(135deg,rgba(17,28,47,0.96),rgba(9,20,40,0.92))] p-6 shadow-[0_22px_68px_rgba(0,0,0,0.3),0_0_62px_rgba(200,170,110,0.08)]">
       <div className="pointer-events-none absolute -right-16 -top-20 h-60 w-60 rounded-full bg-gold/10 blur-3xl" />
       <div className="pointer-events-none absolute left-20 bottom-0 h-44 w-56 rounded-full bg-hex/8 blur-3xl" />
-      <div className="relative grid grid-cols-[minmax(0,1fr)_360px] gap-6 max-[1000px]:grid-cols-1">
+      <div className="relative grid grid-cols-[minmax(0,1fr)_340px] items-start gap-6 max-[1000px]:grid-cols-1">
         <div className="min-w-0">
           <div className="flex items-start gap-4">
             <img
               src={icon(champ.iconLocal)}
               alt={champ.name}
-              className="h-24 w-24 rounded-[28px] border border-gold/45 object-cover shadow-[0_0_34px_rgba(200,170,110,0.16)]"
+              className="h-24 w-24 rounded-[8px] border border-gold/45 object-cover shadow-[0_0_34px_rgba(200,170,110,0.16)]"
             />
             <div className="min-w-0">
               <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-gold">Mayhem combat file</div>
@@ -1969,7 +2994,7 @@ function ChampionWarRoom({
             </div>
           </div>
 
-          <div className="mt-6 rounded-[24px] border border-hex/25 bg-hex/8 p-4">
+          <div className="mt-6 rounded-[8px] border border-hex/25 bg-hex/8 p-4">
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-hex">Decision brief</div>
             <p className="mt-2 text-sm leading-7 text-cream">
               {active?.note || t('warRoom.noNote')}
@@ -1994,21 +3019,27 @@ function ChampionWarRoom({
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-line/70 bg-[#0a1428]/75 p-4 shadow-[inset_0_1px_0_rgba(240,230,210,0.06)]">
+        <div className="rounded-[8px] border border-line/70 bg-[#0a1428]/75 p-4 shadow-[inset_0_1px_0_rgba(240,230,210,0.06)]">
           <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">At a glance</div>
           <QuickAugLine label={t('warRoom.quick.core')} tone="core" items={coreAugs} />
           <QuickAugLine label={t('warRoom.quick.good')} tone="good" items={goodAugs} />
           <QuickAugLine label={t('warRoom.quick.trap')} tone="trap" items={trapAugs} />
           <div className="mt-4 border-t border-line/60 pt-4">
             <div className="mb-2 text-xs font-bold text-dim">{t('warRoom.itemOrder')}</div>
-            {firstItems.length > 0 ? (
-              <div className="flex flex-wrap items-center gap-2">
-                {firstItems.map((it, idx) => (
-                  <div key={it.id + '-' + idx} className="flex items-center gap-2">
-                    <img src={icon(it.iconLocal)} alt={it.name} title={it.name} className="h-9 w-9 rounded-xl border border-line/80" />
-                    {idx < firstItems.length - 1 && <span className="text-dim text-xs">→</span>}
+            {starterItems.length > 0 || firstItems.length > 0 ? (
+              <div className="space-y-3">
+                {starterItems.length > 0 && (
+                  <div>
+                    <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-gold">{t('warRoom.starterItems')}</div>
+                    <MiniItemLine items={starterItems} />
                   </div>
-                ))}
+                )}
+                {firstItems.length > 0 && (
+                  <div>
+                    <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-hex">{t('warRoom.finalItems')}</div>
+                    <MiniItemLine items={firstItems} />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="text-xs text-dim">{t('warRoom.itemOrderPending')}</div>
@@ -2020,9 +3051,42 @@ function ChampionWarRoom({
   )
 }
 
+type CountedItem = Item & { count: number }
+
+function stackItems(items: Item[]): CountedItem[] {
+  const stacked: CountedItem[] = []
+  for (const item of items) {
+    const existing = stacked.find((entry) => entry.id === item.id)
+    if (existing) existing.count += 1
+    else stacked.push({ ...item, count: 1 })
+  }
+  return stacked
+}
+
+function MiniItemLine({ items }: { items: Item[] }) {
+  const visibleItems = stackItems(items)
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {visibleItems.map((it, idx) => (
+        <div key={it.id + '-' + idx} className="flex items-center gap-2">
+          <span className="relative block">
+            <img src={icon(it.iconLocal)} alt={it.name} title={it.name} className="h-9 w-9 rounded-lg border border-line/80" />
+            {it.count > 1 && (
+              <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-panel bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                {it.count}
+              </span>
+            )}
+          </span>
+          {idx < visibleItems.length - 1 && <span className="text-dim text-xs">-&gt;</span>}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function CombatRule({ label, value, detail }: { label: string; value: string; detail: string }) {
   return (
-    <div className="rounded-[22px] border border-line/60 bg-panel/58 p-3">
+    <div className="rounded-[8px] border border-line/60 bg-panel/58 p-3">
       <div className="text-[11px] font-bold text-dim">{label}</div>
       <div className="mt-1 text-sm font-extrabold text-cream">{value}</div>
       <div className="mt-2 text-[11px] leading-relaxed text-dim">{detail}</div>
@@ -2096,7 +3160,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
           </div>
         </div>
 
-        <div className="relative rounded-[28px] border border-line/70 bg-[#0a1428]/70 p-4">
+        <div className="relative rounded-[8px] border border-line/70 bg-[#0a1428]/70 p-4">
           <div className="flex items-center justify-between gap-3">
             <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">Recommendation</div>
             <button onClick={clear} className="text-[11px] text-dim hover:text-cream cursor-pointer">
@@ -2113,7 +3177,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
               </div>
             </>
           ) : (
-            <div className="mt-4 rounded-2xl border border-line/60 bg-panel/50 p-4 text-sm leading-6 text-dim">
+            <div className="mt-4 rounded-lg border border-line/60 bg-panel/50 p-4 text-sm leading-6 text-dim">
               {t('lab.emptyRecommendation')}
             </div>
           )}
@@ -2121,6 +3185,26 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
       </div>
     </section>
   )
+}
+
+function preserveNearestScroll(target: HTMLElement, update: () => void) {
+  const scroller = target.closest('main')
+  if (!scroller) {
+    update()
+    return
+  }
+  const top = scroller.scrollTop
+  const left = scroller.scrollLeft
+  const restore = () => {
+    scroller.scrollTop = top
+    scroller.scrollLeft = left
+  }
+  update()
+  window.requestAnimationFrame(() => {
+    restore()
+    window.requestAnimationFrame(restore)
+    window.setTimeout(restore, 0)
+  })
 }
 
 function AugmentChoiceInput({
@@ -2148,17 +3232,17 @@ function AugmentChoiceInput({
   const picked = pickedId == null ? null : augments.find((a) => a.id === pickedId) ?? null
 
   return (
-    <div className="rounded-[22px] border border-line/70 bg-panel/70 p-3">
+    <div className="rounded-[8px] border border-line/70 bg-panel/70 p-3">
       <label className="text-[11px] font-extrabold text-dim">{t('lab.option', { n: idx + 1 })}</label>
       <input
         value={query}
-        onChange={(e) => onQuery(e.target.value)}
+        onChange={(e) => preserveNearestScroll(e.currentTarget, () => onQuery(e.currentTarget.value))}
         placeholder={t('lab.inputPlaceholder')}
-        className="mt-2 w-full rounded-2xl border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
+        className="mt-2 w-full rounded-lg border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {picked && (
-        <div className="mt-2 flex items-center gap-2 rounded-2xl border border-gold/25 bg-gold/8 p-2">
-          <img src={icon(picked.iconLargeLocal)} alt={picked.name} className="h-8 w-8 rounded-xl border border-line object-cover" />
+        <div className="mt-2 flex items-center gap-2 rounded-lg border border-gold/25 bg-gold/8 p-2">
+          <img src={icon(picked.iconLargeLocal)} alt={picked.name} className="h-8 w-8 rounded-lg border border-line object-cover" />
           <span className="min-w-0 truncate text-xs font-bold text-cream">{picked.name}</span>
         </div>
       )}
@@ -2167,8 +3251,8 @@ function AugmentChoiceInput({
           {suggestions.map((a) => (
             <button
               key={a.id}
-              onClick={() => onPick(a)}
-              className="flex items-center gap-2 rounded-2xl border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
+              onClick={(e) => preserveNearestScroll(e.currentTarget, () => onPick(a))}
+              className="flex items-center gap-2 rounded-lg border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
             >
               <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 rounded-lg border border-line object-cover" />
               <span className="min-w-0 truncate text-xs text-cream">{a.name}</span>
@@ -2209,7 +3293,7 @@ function OwnedAugmentsPanel({
     : []
 
   return (
-    <div className="mt-4 rounded-[24px] border border-hex/25 bg-hex/8 p-3">
+    <div className="mt-4 rounded-[8px] border border-hex/25 bg-hex/8 p-3">
       <div className="flex items-center justify-between gap-3">
         <div>
           <div className="text-xs font-extrabold text-hex">{t('lab.owned.title')}</div>
@@ -2223,17 +3307,17 @@ function OwnedAugmentsPanel({
       </div>
       <input
         value={query}
-        onChange={(e) => onQuery(e.target.value)}
+        onChange={(e) => preserveNearestScroll(e.currentTarget, () => onQuery(e.currentTarget.value))}
         placeholder={t('lab.owned.addPlaceholder')}
-        className="mt-3 w-full rounded-2xl border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
+        className="mt-3 w-full rounded-lg border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {suggestions.length > 0 && (
         <div className="mt-2 grid grid-cols-2 gap-1.5 max-[780px]:grid-cols-1">
           {suggestions.map((a) => (
             <button
               key={a.id}
-              onClick={() => onAdd(a)}
-              className="flex items-center gap-2 rounded-2xl border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
+              onClick={(e) => preserveNearestScroll(e.currentTarget, () => onAdd(a))}
+              className="flex items-center gap-2 rounded-lg border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
             >
               <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 rounded-lg border border-line object-cover" />
               <span className="min-w-0 truncate text-xs text-cream">{a.name}</span>
@@ -2246,7 +3330,7 @@ function OwnedAugmentsPanel({
           {ownedAugments.map((a) => (
             <button
               key={a.id}
-              onClick={() => onRemove(a.id)}
+              onClick={(e) => preserveNearestScroll(e.currentTarget, () => onRemove(a.id))}
               className="flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/8 px-2 py-1 text-xs text-cream transition hover:border-red/45 hover:text-red cursor-pointer"
               title={t('lab.owned.removeHint')}
             >
@@ -2257,7 +3341,7 @@ function OwnedAugmentsPanel({
           ))}
         </div>
       ) : (
-        <div className="mt-3 rounded-2xl border border-line/50 bg-panel/45 p-2 text-[11px] text-dim">
+        <div className="mt-3 rounded-lg border border-line/50 bg-panel/45 p-2 text-[11px] text-dim">
           {t('lab.owned.empty')}
         </div>
       )}
@@ -2277,12 +3361,12 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
           ? 'border-red/45 bg-red/10 text-red'
           : 'border-line/60 bg-panel/55 text-dim'
   return (
-    <div className={'rounded-[22px] border p-3 ' + tone}>
+    <div className={'rounded-[8px] border p-3 ' + tone}>
       <div className="flex items-center gap-3">
-        <div className="grid h-8 w-8 shrink-0 place-items-center rounded-2xl bg-[#091428]/65 text-xs font-extrabold">
+        <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#091428]/65 text-xs font-extrabold">
           #{rank}
         </div>
-        <img src={icon(pick.augment.iconLargeLocal)} alt={pick.augment.name} className="h-10 w-10 rounded-2xl border border-line/70 object-cover" />
+        <img src={icon(pick.augment.iconLargeLocal)} alt={pick.augment.name} className="h-10 w-10 rounded-lg border border-line/70 object-cover" />
         <div className="min-w-0 flex-1">
           <div className={(featured ? 'text-base' : 'text-sm') + ' truncate font-extrabold text-cream'}>{pick.augment.name}</div>
           <div className="mt-0.5 flex items-center gap-2">
@@ -2304,7 +3388,7 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
       </div>
       <div className="mt-2 text-[12px] leading-relaxed text-dim">{pick.reason}</div>
       {pick.comboNotes.length > 0 && (
-        <div className="mt-2 rounded-2xl border border-hex/20 bg-hex/8 px-2.5 py-2 text-[11px] leading-relaxed text-hex">
+        <div className="mt-2 rounded-lg border border-hex/20 bg-hex/8 px-2.5 py-2 text-[11px] leading-relaxed text-hex">
           {pick.comboNotes.join(' · ')}
         </div>
       )}
@@ -2326,21 +3410,21 @@ function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'g
         ? 'text-hex border-hex/25 bg-hex/8'
         : 'text-red border-red/25 bg-red/8'
   return (
-    <div className="mt-4">
-      <div className={'mb-2 inline-flex rounded-full border px-2.5 py-1 text-[11px] font-extrabold ' + toneClass}>
+    <div className="mt-3">
+      <div className={'mb-2 inline-flex rounded-md border px-2.5 py-1 text-[11px] font-extrabold ' + toneClass}>
         {label}
       </div>
       {items.length > 0 ? (
-        <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {items.slice(0, 3).map((a) => (
-            <div key={a.id} className="flex items-center gap-2 rounded-2xl border border-line/55 bg-panel/55 px-2.5 py-2">
-              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-8 w-8 shrink-0 rounded-xl border border-line/70 object-cover" />
+            <div key={a.id} className="flex min-w-0 items-center gap-2 rounded-lg border border-line/55 bg-panel/55 px-2 py-1.5">
+              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 shrink-0 rounded-lg border border-line/70 object-cover" />
               <span className="min-w-0 truncate text-xs font-bold text-cream">{a.name}</span>
             </div>
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-line/55 bg-panel/40 px-2.5 py-2 text-xs text-dim">{t('common.none')}</div>
+        <div className="rounded-lg border border-line/55 bg-panel/40 px-2.5 py-2 text-xs text-dim">{t('common.none')}</div>
       )}
     </div>
   )
@@ -2672,9 +3756,13 @@ function ArchetypeCard({
   itemById: Map<number, Item>
 }) {
   const t = useT()
+  const starterItems = arch.starterItems?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
+  const finalItems = arch.items.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it)
+  const boots = arch.boots?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
+  const optionalItems = arch.optionalItems?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   return (
     <section className={CARD + ' mt-[18px] p-5'}>
-      <div className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-hex/8 blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       <div className="relative flex items-center gap-2.5 mb-3.5">
         <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-dim">Full tactical readout</span>
       </div>
@@ -2682,7 +3770,7 @@ function ArchetypeCard({
         <span className="text-[22px] font-extrabold">{arch.name}</span>
         <span
           className={
-            'text-xs font-semibold px-2.5 py-1 rounded-full ' +
+            'text-xs font-semibold px-2.5 py-1 rounded-md ' +
             (arch.damageType === 'AP' ? 'text-[#c9a3f0] bg-[#9664dc]/18' : 'text-[#f0a97a] bg-[#dc8246]/18')
           }
         >
@@ -2701,20 +3789,15 @@ function ArchetypeCard({
       </div>
 
       <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">{t('archetypeCard.items')}</div>
-      <div className="relative flex flex-wrap items-center gap-2">
-        {arch.items.map((ref, idx) => {
-          const it = itemById.get(ref.id)
-          if (!it) return null
-          return (
-            <div key={ref.id} className="flex items-center gap-1.5">
-              <div className="w-[78px] rounded-2xl border border-line/60 bg-panel2/40 p-2 flex flex-col items-center" title={it.desc}>
-                <img src={icon(it.iconLocal)} alt={it.name} className="w-12 h-12 rounded-xl border border-line" />
-                <span className="mt-1.5 text-[11px] text-center leading-tight text-dim">{it.name}</span>
-              </div>
-              {idx < arch.items.length - 1 && <span className="text-dim text-[13px]">→</span>}
-            </div>
-          )
-        })}
+      <div className="relative space-y-4">
+        {starterItems.length > 0 && (
+          <ItemSequence label={t('archetypeCard.starterItems')} tone="starter" items={starterItems} />
+        )}
+        <ItemSequence label={t('archetypeCard.finalItems')} tone="final" items={finalItems} />
+        {boots.length > 0 && <ItemSequence label={t('archetypeCard.boots')} tone="boots" items={boots} />}
+        {optionalItems.length > 0 && (
+          <ItemSequence label={t('archetypeCard.optionalItems')} tone="optional" items={optionalItems} />
+        )}
       </div>
 
       {arch.sources && arch.sources.length > 0 && (
@@ -2723,6 +3806,53 @@ function ArchetypeCard({
         </div>
       )}
     </section>
+  )
+}
+
+function ItemSequence({
+  label,
+  tone,
+  items,
+}: {
+  label: string
+  tone: 'starter' | 'final' | 'boots' | 'optional'
+  items: Item[]
+}) {
+  if (items.length === 0) return null
+  const visibleItems = stackItems(items)
+  return (
+    <div className="rounded-[8px] border border-line/60 bg-panel/34 p-3">
+      <div
+        className={
+          (tone === 'starter' || tone === 'boots' ? 'text-gold' : tone === 'final' ? 'text-hex' : 'text-dim') +
+          ' mb-2 text-[11px] font-extrabold uppercase tracking-[0.14em]'
+        }
+      >
+        {label}
+      </div>
+      <div className="flex flex-wrap items-start justify-start gap-2">
+        {visibleItems.map((it, idx) => (
+          <div key={it.id + '-' + idx} className="flex h-[104px] items-center gap-1.5">
+            <ItemHoverCard item={it}>
+              <div className="flex h-[104px] w-[96px] flex-col items-center justify-center rounded-lg border border-line/60 bg-panel2/38 p-2">
+                <span className="relative block">
+                  <img src={icon(it.iconLocal)} alt={it.name} className="h-11 w-11 shrink-0 rounded-lg border border-line" />
+                  {it.count > 1 && (
+                    <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-panel bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                      {it.count}
+                    </span>
+                  )}
+                </span>
+                <span className="mt-1 line-clamp-3 h-[34px] text-center text-[11px] leading-[11px] text-dim">
+                  {it.name}
+                </span>
+              </div>
+            </ItemHoverCard>
+            {idx < visibleItems.length - 1 && <span className="grid h-[104px] place-items-center text-dim text-[13px]">-&gt;</span>}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -2745,30 +3875,122 @@ function AugTier({
 }) {
   if (refs.length === 0) return null
   return (
-    <div className="rounded-[22px] border border-line/60 bg-panel2/35 p-3">
+    <div className="rounded-[8px] border border-line/60 bg-panel2/35 p-3">
       <div className={'mb-3 text-[13px] font-extrabold ' + TONE_LABEL[tone]}>{label}</div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap items-start justify-start gap-3">
         {refs.map((ref) => {
           const a = getAugment(augById, ref.id)
           if (!a) return null
           const r = RARITY[a.rarity] ?? RARITY[0]
           return (
-            <div key={ref.id} title={a.desc} className="w-[92px] flex flex-col items-center">
-              <div
-                className={
-                  'w-[62px] h-[62px] rounded-2xl overflow-hidden border-2 shadow-[0_10px_24px_rgba(0,0,0,0.24)] ' +
-                  r.border +
-                  (tone === 'core' ? ' ring-2 ring-gold' : '') +
-                  (tone === 'trap' ? ' opacity-70' : '')
-                }
-              >
-                <img src={icon(a.iconLargeLocal)} alt={a.name} className="w-full h-full object-cover" />
+            <AugmentHoverCard key={ref.id} augment={a}>
+              <div className="flex h-[94px] w-[92px] flex-col items-center">
+                <div
+                  className={
+                    'w-[62px] h-[62px] rounded-lg overflow-hidden border-2 shadow-[0_10px_22px_rgba(0,0,0,0.22)] ' +
+                    r.border +
+                    (tone === 'core' ? ' ring-2 ring-gold' : '') +
+                    (tone === 'trap' ? ' opacity-70' : '')
+                  }
+                >
+                  <img src={icon(a.iconLargeLocal)} alt={a.name} className="w-full h-full object-cover" />
+                </div>
+                <span className="mt-1.5 line-clamp-2 h-[28px] text-center text-xs leading-[14px]">{a.name}</span>
               </div>
-              <span className="mt-1.5 text-xs text-center leading-tight">{a.name}</span>
-            </div>
+            </AugmentHoverCard>
           )
         })}
       </div>
     </div>
+  )
+}
+
+/**
+ * 悬浮卡片的通用底座：用 createPortal 把卡片挂到 document.body 上，脱离触发元素所在的
+ * 任何容器——之前直接用 CSS absolute+group-hover 挂在触发元素内部，只要祖先链上有一个
+ * overflow-hidden(这个App到处都是圆角卡片，几乎全带overflow-hidden)，卡片就会被咔掉一截。
+ * 位置用 getBoundingClientRect 实测算，不用CSS定位，天然不受任何祖先overflow影响。
+ */
+function HoverPortal({ content, children, className }: { content: ReactNode; children: ReactNode; className?: string }) {
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const [hovered, setHovered] = useState(false)
+  const [pos, setPos] = useState({ top: 0, left: 0 })
+
+  return (
+    <div
+      ref={triggerRef}
+      className={className}
+      onMouseEnter={() => {
+        const r = triggerRef.current?.getBoundingClientRect()
+        if (r) {
+          const CARD_HALF_WIDTH = 130
+          const left = Math.min(Math.max(r.left + r.width / 2, CARD_HALF_WIDTH + 8), window.innerWidth - CARD_HALF_WIDTH - 8)
+          setPos({ top: r.top, left })
+        }
+        setHovered(true)
+      }}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {children}
+      {createPortal(
+        <div
+          className={
+            'pointer-events-none fixed z-[9999] w-64 -translate-x-1/2 -translate-y-full transition-opacity duration-150 ' +
+            (hovered ? 'opacity-100' : 'opacity-0')
+          }
+          style={{ top: pos.top - 10, left: pos.left }}
+        >
+          {content}
+        </div>,
+        document.body,
+      )}
+    </div>
+  )
+}
+
+/** 自绘海克斯悬浮卡片，取代原生 title 属性的系统默认小黄条提示框。 */
+function AugmentHoverCard({ augment: a, children }: { augment: Augment; children: ReactNode }) {
+  const t = useT()
+  const r = RARITY[a.rarity] ?? RARITY[0]
+  return (
+    <HoverPortal
+      content={
+        <div className="relative rounded-[10px] border border-gold/35 bg-[#0a0f17]/98 p-3 shadow-[0_22px_54px_rgba(0,0,0,0.55),0_0_0_1px_rgba(0,0,0,0.4)] backdrop-blur-md">
+          <div className="flex items-center gap-2.5">
+            <img src={icon(a.iconSmallLocal)} alt="" className={'h-9 w-9 shrink-0 rounded-md border-2 object-cover ' + r.border} />
+            <div className="min-w-0">
+              <div className="truncate text-sm font-bold text-cream">{a.name}</div>
+              <div className={'text-[10px] font-bold uppercase tracking-wide ' + r.text}>
+                {t(`rarity.${RARITY_KEY[a.rarity]}`, r.label)}
+              </div>
+            </div>
+          </div>
+          <div className="mt-2.5 text-[12px] leading-relaxed text-dim">{a.desc}</div>
+          <div className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 border-b border-r border-gold/35 bg-[#0a0f17]" />
+        </div>
+      }
+    >
+      {children}
+    </HoverPortal>
+  )
+}
+
+/** 装备版悬浮卡片，跟海克斯那个是同一套底座，样式对称(图标+名字+完整描述)。 */
+function ItemHoverCard({ item: it, children }: { item: Item; children: ReactNode }) {
+  return (
+    <HoverPortal
+      content={
+        <div className="relative rounded-[10px] border border-line/70 bg-[#0a0f17]/98 p-3 shadow-[0_22px_54px_rgba(0,0,0,0.55),0_0_0_1px_rgba(0,0,0,0.4)] backdrop-blur-md">
+          <div className="flex items-center gap-2.5">
+            <img src={icon(it.iconLocal)} alt="" className="h-9 w-9 shrink-0 rounded-md border-2 border-line/70 object-cover" />
+            <div className="min-w-0 truncate text-sm font-bold text-cream">{it.name}</div>
+          </div>
+          <div className="mt-2.5 whitespace-pre-line text-[12px] leading-relaxed text-dim">{it.desc}</div>
+          <div className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 border-b border-r border-line/70 bg-[#0a0f17]" />
+        </div>
+      }
+    >
+      {children}
+    </HoverPortal>
   )
 }

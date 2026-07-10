@@ -124,6 +124,19 @@ export interface DashboardSections {
   recentMatches: boolean
   achievements: boolean
 }
+export interface CustomRoute {
+  id: string
+  championId: number
+  title: string
+  description: string
+  damageType: string
+  starterItemIds: number[]
+  itemIds: number[]
+  coreAugmentIds: number[]
+  goodAugmentIds: number[]
+  trapAugmentIds: number[]
+  updatedAt: string
+}
 export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
@@ -131,6 +144,7 @@ export interface Settings {
   overlay: OverlaySettings
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
 }
@@ -151,6 +165,8 @@ declare global {
       getMatchDetail: (gameId: number) => Promise<MatchFullDetail | null>
       getStoredAccounts: () => Promise<PersistedAccountSummary[]>
       forgetStoredAccount: (puuid: string) => Promise<PersistedAccountSummary[]>
+      minimizeWindow: () => Promise<void>
+      closeWindow: () => Promise<void>
     }
   }
 }

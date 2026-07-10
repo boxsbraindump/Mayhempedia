@@ -2,6 +2,7 @@
 // 主进程持有唯一的 Store 实例；渲染层通过 IPC(settings:get/settings:set) 读写，不直接碰文件。
 
 import Store from 'electron-store'
+import type { CustomRoute } from './custom-routes.js'
 
 export interface OverlaySettings {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
@@ -26,7 +27,7 @@ export interface Settings {
 
   // 启动/窗口类
   autoLaunch: boolean
-  zoomFactor: number // 0.8–1.4
+  zoomFactor: number // 0.5 / 0.75 / 1 / 1.25 / 1.5
 
   // Overlay 行为类
   overlay: OverlaySettings
@@ -34,6 +35,7 @@ export interface Settings {
   // 主页内容显示（内容开关类）
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  customRoutes: CustomRoute[]
 
   // 通知类
   notificationMode: 'inpage' | 'system'
@@ -60,11 +62,19 @@ export const DEFAULT_SETTINGS: Settings = {
     achievements: true,
   },
   selectedArchetypeByChampionId: {},
+  customRoutes: [],
   notificationMode: 'inpage',
   persistMatchHistory: true, // 默认开：这是产品核心卖点(长期攒Tier数据素材)，纯本地零风险；设置页要把这点说清楚，不能默默开
 }
 
 let store: Store<Settings> | null = null
+
+const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5] as const
+
+function normalizeZoom(value: unknown): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return DEFAULT_SETTINGS.zoomFactor
+  return ZOOM_PRESETS.includes(value as (typeof ZOOM_PRESETS)[number]) ? value : DEFAULT_SETTINGS.zoomFactor
+}
 
 function getStore(): Store<Settings> {
   if (!store) {
@@ -83,16 +93,18 @@ export function getSettings(): Settings {
   return {
     ...DEFAULT_SETTINGS,
     ...stored,
+    zoomFactor: normalizeZoom(stored.zoomFactor),
     overlay: { ...DEFAULT_SETTINGS.overlay, ...stored.overlay },
     dashboardSections: { ...DEFAULT_SETTINGS.dashboardSections, ...stored.dashboardSections },
     selectedArchetypeByChampionId: {
       ...DEFAULT_SETTINGS.selectedArchetypeByChampionId,
       ...stored.selectedArchetypeByChampionId,
     },
+    customRoutes: Array.isArray(stored.customRoutes) ? stored.customRoutes : [],
   }
 }
 
 export function setSetting<K extends keyof Settings>(key: K, value: Settings[K]): Settings {
-  getStore().set(key, value)
+  getStore().set(key, key === 'zoomFactor' ? normalizeZoom(value) : value)
   return getSettings()
 }
