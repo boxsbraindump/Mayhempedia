@@ -9,29 +9,88 @@
       "note": "主流打法：站桩输出+四阶暴击收割，走瞄准镜类海克斯拉伸射程再叠暴击/攻速。收集者/无尽之刃/多米尼克领主之致意是核心确认的三件套，轻灵之靴是常见鞋子选择。",
       "augments": {
         "core": [
-          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "good": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 103, "apiName": "BreadAndButter", "name": "面包和黄油" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "面包和黄油"
+          }
         ],
         "trap": [
-          { "id": 50, "apiName": "KeystoneConjurer", "name": "基石法师" }
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "基石法师"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3036, "name": "多米尼克领主的致意" },
-        { "id": 3009, "name": "轻灵之靴" },
-        { "id": 3085, "name": "卢安娜的飓风" },
-        { "id": 3072, "name": "饮血剑" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3009,
+          "name": "轻灵之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 3046,
+          "name": "幻影之舞"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     },
     {
       "key": "draw_your_sword_melee",
@@ -40,29 +99,88 @@
       "note": "非常规但确认有独立数据支撑的分支：抓取「亮出你的剑」海克斯变为近战(射程缩至200)，换取大量攻击力/攻速/生命/移速/生命偷取加成，配合火炮类装备的无限盈能贴脸收割。",
       "augments": {
         "core": [
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ],
         "good": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
-          { "id": 250, "apiName": "SlowAndSteady", "name": "一板一眼" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 9, "apiName": "BuffBuddies", "name": "霸符兄弟" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          },
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "一板一眼"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 9,
+            "apiName": "BuffBuddies",
+            "name": "霸符兄弟"
+          }
         ],
         "trap": [
-          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" }
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "穿针引线"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3009, "name": "轻灵之靴" },
-        { "id": 3085, "name": "卢安娜的飓风" },
-        { "id": 3046, "name": "幻影之舞" },
-        { "id": 3072, "name": "饮血剑" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3009,
+          "name": "轻灵之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3085,
+          "name": "卢安娜的飓风"
+        },
+        {
+          "id": 3046,
+          "name": "幻影之舞"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "dvg.cn"]
+      "sources": [
+        "arammayhem.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

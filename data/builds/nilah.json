@@ -9,27 +9,88 @@
       "note": "⚠️ 本档案经过重要修正：草稿最初主推的核心海克斯「裁决使」已被官方移除下架，游戏里根本选不到；引用的知乎文章经核实实际是2022年讨论无海克斯经典大乱斗的老文章，全文没有任何海克斯或裁决使的内容，属于张冠李戴。已改用arammayhem.com当前(26.13)真实确认的Prismatic档核心珠光护手/秒术冲拳/双刀流；秒术冲拳此前被误判为陷阱，实际是55.45%胜率的强势海克斯，已改列为核心。核心是靠E突进接W连续挥砍叠加吸血/护盾，出装收集者起手接无尽之刃/多米尼克领主的致意暴击链。",
       "augments": {
         "core": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          }
         ],
         "good": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3036, "name": "多米尼克领主的致意" },
-        { "id": 6333, "name": "死亡之舞" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "op.gg", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "op.gg",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

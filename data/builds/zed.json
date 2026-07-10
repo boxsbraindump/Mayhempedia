@@ -9,28 +9,85 @@
       "note": "唯一主流打法：物理爆发刺客，核心思路是靠技能急速快速循环＋致命节奏快速burst脆皮。经arammayhem.com直接确认循环往复(约62%)/虚幻武器(58.29%)为核心海克斯，朔极之矛(93.83%选用率)/公理圆弧(78.97%)为核心出装。⚠️ 引用的腾讯新闻文章经核实全文未提及劫，已剔除；残暴之力在所有可访问的资料中均未出现，已剔除。裁决使=陷阱这一具体机制说明「只能重置技能冷却、不能重置能量」在Mayhem连招页有几乎逐字对应的原文，可信度高。",
       "augments": {
         "core": [
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ],
         "good": [
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 53, "apiName": "MadScientist", "name": "科学狂人" }
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          }
         ],
         "trap": [
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" }
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "裁决使"
+          }
         ]
       },
       "items": [
-        { "id": 3161, "name": "朔极之矛" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 6696, "name": "公理圆弧" },
-        { "id": 6699, "name": "电震涡流剑" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3071, "name": "黑色切割者" }
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 6696,
+          "name": "公理圆弧"
+        },
+        {
+          "id": 6699,
+          "name": "电震涡流剑"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3071,
+          "name": "黑色切割者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

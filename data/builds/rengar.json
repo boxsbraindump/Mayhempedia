@@ -9,24 +9,72 @@
       "note": "不存在AP分支，纯物理爆发刺客打法：草丛跳跃切后排、叠满残暴值触发强化技能秒脆皮。⚠️ 出装/海克斯已按实测数据改正：草稿最初的「小丑学院」「残暴之力」在arammayhem.com真实榜单里完全查不到(只在搜索引擎AI摘要里出现，属于摘要幻觉)，已剔除；穿针引线/大力/渴血/魔法转物理是该站Silver/Gold档确认真实存在的海克斯。装备补上了两站都反复出现却被草稿遗漏的核心件狂妄(Hubris)。",
       "augments": {
         "core": [
-          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" }
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "穿针引线"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 206, "apiName": "escAPADe", "name": "魔法转物理" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "魔法转物理"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3134, "name": "锯齿短匕" },
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6699, "name": "电震涡流剑" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6699,
+          "name": "电震涡流剑"
+        },
+        {
+          "id": 3814,
+          "name": "夜之锋刃"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "op.gg"]
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

@@ -9,27 +9,87 @@
       "note": "唯一主流打法：法核爆发/持续消耗流，靠球的位移和范围技能打AP法伤。三个专项站(metasrc.com、arammayhem.com、blitz.gg)交叉一致：核心出装卢登的回声-影焰-灭世者的死亡之帽实测胜率50.06%；核心海克斯尤里卡(60.91%)/魔法飞弹(59.77%)均为独立确认的最高胜率强化。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ],
         "good": [
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" }
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "超强大脑"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3802, "name": "遗失的章节" },
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

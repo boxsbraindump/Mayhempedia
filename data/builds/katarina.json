@@ -9,26 +9,81 @@
       "note": "⚠️ 本档案经过大幅修正：草稿最初主推的「AP爆发流」核心海克斯(巫师式思考/杀戮时间到了/潘朵拉的盒子)在直接抓取的arammayhem.com与aramgg.com真实榜单里完全找不到，且aramgg.com原文明确写道AD特效流胜率52.4%显著高于AP流的43.6%——两者结论完全相反，AP档已整体剔除。真正验证有效的是这套利用大招多段攻击触发攻击特效的打法：虚幻武器把技能转化为可触发攻击特效的普攻，配合海妖杀手(Kraken Slayer)、破败王者之刃(BotRK)、界弓(Terminus)、死亡之舞在大招瞬间打出海量特效伤害，出装与aramgg.com/arammayhem.com的真实核心装备逐一对应。",
       "augments": {
         "core": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ],
         "good": [
-          { "id": 112, "apiName": "UltimateUnstoppable", "name": "终极不可阻挡" },
-          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 92, "apiName": "Vulnerability", "name": "易损" }
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "终极不可阻挡"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6672, "name": "海妖杀手" },
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 3302, "name": "界弓" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3748, "name": "巨型九头蛇" }
+        {
+          "id": 6672,
+          "name": "海妖杀手"
+        },
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3302,
+          "name": "界弓"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3748,
+          "name": "巨型九头蛇"
+        }
       ],
       "runes": null,
-      "sources": ["aramgg.com", "arammayhem.com"]
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "缚炉之斧"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

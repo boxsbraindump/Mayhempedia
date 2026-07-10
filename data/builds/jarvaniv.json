@@ -9,29 +9,93 @@
       "note": "前排指挥官/坦克斗士路线，靠R+E组合开团切后排。核心海克斯坦克引擎(67.40%)/重量级打击手(63.49%)/歌利亚巨人(60.87%)经WebSearch聚合的arammayhem.com/metasrc.com数据确认。⚠️ 出装已按实测数据改正：真实核心是焚天(Sundered Sky)+星蚀+死亡之舞+斯特拉克，草稿最初写的「命定灰烬」在任何来源都查不到出处，已替换为确认核心焚天。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          }
         ],
         "good": [
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "trap": [
-          { "id": 50, "apiName": "KeystoneConjurer", "name": "基石法师" }
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "基石法师"
+          }
         ]
       },
       "items": [
-        { "id": 6610, "name": "焚天" },
-        { "id": 6692, "name": "星蚀" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3053, "name": "斯特拉克的挑战护手" },
-        { "id": 6333, "name": "死亡之舞" }
+        {
+          "id": 6610,
+          "name": "焚天"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6692,
+          "name": "星蚀"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "mobalytics.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

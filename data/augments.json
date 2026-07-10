@@ -12817,5 +12817,57 @@
     "iconSmallUrl": "https://raw.communitydragon.org/latest/game/assets/ux/cherry/augments/icons/swindlers_orb_item_small.png",
     "iconLargeLocal": "icons/augments/GoHSwindlersOrb_large.png",
     "iconSmallLocal": "icons/augments/GoHSwindlersOrb_small.png"
+  },
+  {
+    "id": 900001,
+    "apiName": "MayhemArchmage",
+    "name": "大法师",
+    "rarity": 2,
+    "rarityLabel": "棱彩",
+    "desc": "施放技能时，会返还另一个随机技能的一部分冷却时间。",
+    "tooltip": "施放一个技能会按原技能冷却时间的一定比例，返还另一个随机技能的冷却时间。",
+    "iconLargeUrl": "https://arammayhem.com/augments/Archmage_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Archmage_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/archmage.webp",
+    "iconSmallLocal": "assets/mayhem-augments/archmage.webp"
+  },
+  {
+    "id": 900002,
+    "apiName": "MayhemPuristCaster",
+    "name": "纯粹主义者",
+    "rarity": 0,
+    "rarityLabel": "白银",
+    "desc": "将额外攻速转化为技能急速，并进一步缩短技能总冷却时间。",
+    "tooltip": "每1%额外攻速转化为0.65技能急速，并使技能总冷却时间额外缩短10%。",
+    "iconLargeUrl": "https://arammayhem.com/augments/Purist_-_Caster_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Purist_-_Caster_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/purist-caster.webp",
+    "iconSmallLocal": "assets/mayhem-augments/purist-caster.webp"
+  },
+  {
+    "id": 900003,
+    "apiName": "MayhemInfiniteRecursion",
+    "name": "无限循环往复",
+    "rarity": 2,
+    "rarityLabel": "棱彩",
+    "desc": "获得大量技能急速，每次参与击杀后继续提高。",
+    "tooltip": "获得60技能急速。每次参与击杀英雄后，额外获得3技能急速。",
+    "iconLargeUrl": "https://arammayhem.com/augments/Infinite_Recursion_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Infinite_Recursion_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/infinite-recursion.webp",
+    "iconSmallLocal": "assets/mayhem-augments/infinite-recursion.webp"
+  },
+  {
+    "id": 900004,
+    "apiName": "MayhemHighRoller",
+    "name": "掷筛狂人",
+    "rarity": 2,
+    "rarityLabel": "棱彩",
+    "desc": "附近敌人阵亡时，有机会掉落属性铁砧。",
+    "tooltip": "附近敌人阵亡时，有机会掉落属性铁砧。",
+    "iconLargeUrl": "https://arammayhem.com/augments/High_Roller_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/High_Roller_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/high-roller.webp",
+    "iconSmallLocal": "assets/mayhem-augments/high-roller.webp"
   }
 ]

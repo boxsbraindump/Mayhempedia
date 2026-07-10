@@ -9,29 +9,87 @@
       "note": "arammayhem.com给出的是后背刺+暴击流打法：收集者-无尽之刃-狂妄/电震涡流剑为出装曲线，配合W分身和Q反复入场收割。⚠️ 复核发现萨科在不同站点间的推荐打法分歧较大(另有站点给出完全不同的AP黏性出装)，本档案只采用了Mayhem专项站arammayhem.com这一条主线数据，不代表社区已有唯一公认打法，仅供参考。",
       "augments": {
         "core": [
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "裁决使"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 226, "apiName": "Stats", "name": "属性！" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 226,
+            "apiName": "Stats",
+            "name": "属性！"
+          }
         ],
         "trap": [
-          { "id": 250, "apiName": "SlowAndSteady", "name": "一板一眼" }
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "一板一眼"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6699, "name": "电震涡流剑" },
-        { "id": 3072, "name": "饮血剑" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6699,
+          "name": "电震涡流剑"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

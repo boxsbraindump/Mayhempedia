@@ -9,31 +9,103 @@
       "note": "库奇是纯AD暴击流ADC，没有可靠的AP分支：Q磷光炸弹消耗、W位移保命、R火箭弹幕远程poke收割，核心思路是叠暴击率+攻速把普攻和R都转化成高频爆发。珠光护手、亮出你的剑是多个专项数据站一致确认的高胜率组合。",
       "augments": {
         "core": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ],
         "good": [
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 80, "apiName": "TankItOrLeaveIt", "name": "会心防守" },
-          { "id": 92, "apiName": "Vulnerability", "name": "易损" }
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 80,
+            "apiName": "TankItOrLeaveIt",
+            "name": "会心防守"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          }
         ],
         "trap": [
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ]
       },
       "items": [
-        { "id": 3078, "name": "三相之力" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3036, "name": "多米尼克领主的致意" },
-        { "id": 3072, "name": "饮血剑" }
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

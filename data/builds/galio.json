@@ -9,27 +9,97 @@
       "note": "主流打法：W大招开团+叠命定石堆血量，利用被动魔抗盾和R大招沉默控场保护队友。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "巨像的勇气"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          }
         ],
-        "trap": [{ "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }]
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          }
+        ]
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3143, "name": "兰顿之兆" },
-        { "id": 3075, "name": "荆棘之甲" },
-        { "id": 3193, "name": "石像鬼石板甲" },
-        { "id": 3110, "name": "冰霜之心" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3143,
+          "name": "兰顿之兆"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        },
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        },
+        {
+          "id": 3110,
+          "name": "冰霜之心"
+        }
       ],
       "runes": null,
-      "sources": ["lolhaidou.cn", "arammayhem.com", "aramgg.com"]
+      "sources": [
+        "lolhaidou.cn",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     },
     {
       "key": "ap",
@@ -37,26 +107,93 @@
       "damageType": "AP",
       "note": "小众但胜率不低的爆发法核流，利用W普攻附加法术伤害+R范围沉默秒脆皮，选取率约5-9%。",
       "augments": {
-        "core": [{ "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }],
-        "good": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
-          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" },
-          { "id": 53, "apiName": "MadScientist", "name": "科学狂人" },
-          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" },
-          { "id": 96, "apiName": "WisdomofAges", "name": "时光之智慧" }
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
-        "trap": [{ "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }]
+        "good": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "巨像的勇气"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "叠角龙"
+          },
+          {
+            "id": 96,
+            "apiName": "WisdomofAges",
+            "name": "时光之智慧"
+          }
+        ],
+        "trap": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
+        ]
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 6657, "name": "时光之杖" },
-        { "id": 4005, "name": "帝国指令" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 4628, "name": "视界专注" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 4005,
+          "name": "帝国指令"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        }
       ],
       "runes": null,
-      "sources": ["lolhaidou.cn", "aramgg.com"]
+      "sources": [
+        "lolhaidou.cn",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

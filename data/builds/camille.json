@@ -9,27 +9,83 @@
       "note": "三相之力起手打二连击爆发，配合渴血/大力打输出，全凭身法或秘术冲拳强化连招突进能力。核心数据来自arammayhem.com的详细胜率表(全凭身法/渴血均为确认高胜率海克斯)，metasrc/blitz.gg因访问受限只能部分佐证，非三站完全一致。",
       "augments": {
         "core": [
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
-          { "id": 20, "apiName": "DawnbringersResolve", "name": "黎明使者的坚决" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          },
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "黎明使者的坚决"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3078, "name": "三相之力" },
-        { "id": 3074, "name": "贪欲九头蛇" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 6610, "name": "焚天" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3026, "name": "守护天使" }
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3074,
+          "name": "贪欲九头蛇"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 6610,
+          "name": "焚天"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3026,
+          "name": "守护天使"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        }
+      ]
     }
   ]
 }

@@ -9,28 +9,91 @@
       "note": "心之钢起手叠血量放大小纳尔百分比伤害和大招体型。⚠️ 本档案经过大幅修正：草稿最初的核心海克斯「叠角龙」查无实据，arammayhem.com真实Prismatic档核心其实是歌利亚巨人/连拨击锤，已替换；出装同样改正——真实最高协同出装是心之钢→巨型九头蛇→狂徒铠甲→霸王血铠(48.78%胜率)，草稿最初的三相之力/黑色切割者/智慧末刃/斯特拉克是套用召唤师峡谷老版本常见件，与Mayhem实测数据对不上，已替换。⚠️ 草稿另一个「AP法穿三环流」archetype经核实是彻底的方向错误：真正与连拨击锤配对的是靠暴击/普攻的AD连招(双刀流+卢安娜的飓风)，不是AP法穿爆发，该archetype已整体删除。",
       "augments": {
         "core": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "good": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          }
         ],
         "trap": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          }
         ]
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3748, "name": "巨型九头蛇" },
-        { "id": 3083, "name": "狂徒铠甲" },
-        { "id": 2501, "name": "霸王血铠" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3748,
+          "name": "巨型九头蛇"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 2501,
+          "name": "霸王血铠"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

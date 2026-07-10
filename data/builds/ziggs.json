@@ -9,27 +9,86 @@
       "note": "技能全是AOE消耗/爆发，核心思路是靠兰德里的折磨持续烧血、叠技能急速把冷却压到极限打出无限连炸——巫师式思考+尤里卡是招牌CDR连携组合，经metasrc.com与arammayhem.com两站数据确认。⚠️ 吉格斯整体胜率在不同版本快照间波动较大(约49%~53%)，不同信源分级不完全一致；莫雷洛秘典未被独立确认，仅作情况装参考。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "good": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 53, "apiName": "MadScientist", "name": "科学狂人" },
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 3165, "name": "莫雷洛秘典" },
-        { "id": 3089, "name": "灭世者的死亡之帽" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3165,
+          "name": "莫雷洛秘典"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

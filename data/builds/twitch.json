@@ -9,29 +9,89 @@
       "note": "主流打法：靠E中毒+被动隐身进场，堆暴击/攻速把普攻和R放大到极致。经直接抓取arammayhem.com/build/twitch/正文核实：核心装备收集者-卢安娜的飓风-无尽之刃-狂战士胫甲与海克斯连拨击锤/双刀流/灵巧/关键暴击/巨人杀手均逐字对应，可信度高。",
       "augments": {
         "core": [
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
         ],
         "good": [
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
+          }
         ],
         "trap": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ]
       },
       "items": [
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3085, "name": "卢安娜的飓风" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3032, "name": "育恩塔尔荒野箭" },
-        { "id": 3094, "name": "疾射火炮" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3085,
+          "name": "卢安娜的飓风"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        },
+        {
+          "id": 3094,
+          "name": "疾射火炮"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "op.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     },
     {
       "key": "ap",
@@ -40,27 +100,86 @@
       "note": "次要分支：靠神射法师把AP转化为普攻额外物理伤害，配合图奇被动叠毒和真实伤害打出持续输出+收割。arammayhem.com专设的「图奇+神射法师」连招页明确标注为A级组合，并原文点名虚幻武器/炼狱导管不适配(被动不叠加/减速不叠加)，已核实为真实页面内容，非编造。整体强度不及暴击AD路线。",
       "augments": {
         "core": [
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          }
         ],
         "good": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 51, "apiName": "LightemUp", "name": "点亮他们！" },
-          { "id": 87, "apiName": "Typhoon", "name": "台风" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "点亮他们！"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          }
         ],
         "trap": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
         ]
       },
       "items": [
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

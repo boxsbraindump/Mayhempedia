@@ -9,28 +9,90 @@
       "note": "物理转魔法+由心及物把法力/生命/攻击力互相转化，滚雪球堆天文数字法强。",
       "augments": {
         "core": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
-          { "id": 56, "apiName": "MindtoMatter", "name": "由心及物" }
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "由心及物"
+          }
         ],
         "good": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 311, "apiName": "Overflow", "name": "溢流" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "溢流"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6657, "name": "时光之杖" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 3040, "name": "炽天使之拥" },
-        { "id": 3004, "name": "魔宗" },
-        { "id": 3121, "name": "末日寒冬" },
-        { "id": 3089, "name": "灭世者的死亡之帽" }
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3040,
+          "name": "炽天使之拥"
+        },
+        {
+          "id": 3004,
+          "name": "魔宗"
+        },
+        {
+          "id": 3121,
+          "name": "末日寒冬"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 1026,
+          "name": "爆裂魔杖"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

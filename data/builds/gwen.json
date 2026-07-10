@@ -9,25 +9,87 @@
       "note": "利用双刀流/虚幻武器让Q的攻击特效更快叠满触发百分比真实伤害，配合秘术冲拳缩短技能循环，适合对线消耗和团战粘人。",
       "augments": {
         "core": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ],
         "good": [
-          { "id": 87, "apiName": "Typhoon", "name": "台风" },
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 4633, "name": "裂隙制造者" },
-        { "id": 3115, "name": "纳什之牙" },
-        { "id": 2510, "name": "黄昏与黎明" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 4633,
+          "name": "裂隙制造者"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "blitz.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

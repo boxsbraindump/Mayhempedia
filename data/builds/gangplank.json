@@ -9,29 +9,90 @@
       "note": "纯粹的后期暴击AD射手型打法，核心靠平A+E火药桶叠加伤害，装备走无尽之刃/收集者/以太精魂暴击核心。经metasrc.com、arammayhem.com、op.gg、blitz.gg四站交叉核对：巨人杀手/珠光护手为核心海克斯(棱彩机制允许技能触发暴击)，回归基本功被arammayhem.com的连招页确认为可对巴雷尔打出40%护甲穿透的S级组合。",
       "augments": {
         "core": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          }
         ],
         "good": [
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
-          { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          },
+          {
+            "id": 82,
+            "apiName": "TheBrutalizer",
+            "name": "残暴之力"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          }
         ],
         "trap": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3113, "name": "以太精魂" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 3156, "name": "玛莫提乌斯之噬" },
-        { "id": 3026, "name": "守护天使" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3156,
+          "name": "玛莫提乌斯之噬"
+        },
+        {
+          "id": 3026,
+          "name": "守护天使"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "op.gg", "blitz.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "op.gg",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

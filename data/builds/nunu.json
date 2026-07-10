@@ -9,28 +9,91 @@
       "note": "直接核对arammayhem.com(26.13版本)得到的当前实际主流构建：卢登的回声→影焰(Shadowflame)→灭世者的死亡之帽为确认核心出装，利用Q对非英雄目标的高额AP加成配合W畜力冲锋秒杀脆皮。尤里卡/巫师式思考为高胜率海克斯，果汁盒/星界躯体/魔法飞弹为契合备选。⚠️ 努努在当前ARAM Mayhem整体胜率约44%~46%(C~B档)，属中下游英雄，打法正确但不算强势。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "good": [
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "星界躯体"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ],
         "trap": [
-          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
         ]
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 4646, "name": "风暴狂涌" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 4646,
+          "name": "风暴狂涌"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     },
     {
       "key": "tank",
@@ -39,30 +102,93 @@
       "note": "靠W护体、E控制链接团，走坦度混合出装；坦克引擎(67.4%)/任务：钢化你心(65.3%)/歌利亚巨人(60.9%)在arammayhem.com海克斯榜单里排名靠前。⚠️ 这套具体六件套出装未能在任何Mayhem专项来源里找到直接印证(心之钢在该站数据里只是约33%选取率的次要选项，与Overlord's Bloodmail/Riftmaker类混合装搭配)，出装为按坦克逻辑做的合理搭配，比AP档的社区验证强度弱，仅作为备选打法参考。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 112, "apiName": "UltimateUnstoppable", "name": "终极不可阻挡" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "终极不可阻挡"
+          }
         ],
         "trap": [
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ]
       },
       "items": [
-        { "id": 1011, "name": "巨人腰带" },
-        { "id": 3084, "name": "心之钢" },
-        { "id": 2501, "name": "霸王血铠" },
-        { "id": 3068, "name": "日炎圣盾" },
-        { "id": 3075, "name": "荆棘之甲" },
-        { "id": 3047, "name": "铁板靴" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 2501,
+          "name": "霸王血铠"
+        },
+        {
+          "id": 3068,
+          "name": "日炎圣盾"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        },
+        {
+          "id": 3047,
+          "name": "铁板靴"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        }
+      ]
     }
   ]
 }

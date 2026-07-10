@@ -9,25 +9,81 @@
       "note": "⚠️ 复核发现孙悟空在不同数据站间的推荐出装/海克斯分歧很大，且英雄本身在当前版本评级偏低(C~T3档，胜率约46-50%，非热门选择)。本档案只保留了两站(arammayhem.com/aramgg.com)各自独立确认、彼此不冲突的部分：秘术冲拳是arammayhem实测的Prismatic档第一海克斯，心之钢/水银之靴/三相之力/无终恨意/狂徒铠甲是两站分别提到的真实出装元素。此前草稿把「重量级打击手」包装成'全网公认招牌增强'，但两个信源实际都不支持这个说法，已剔除。",
       "augments": {
         "core": [
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          }
         ],
         "good": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 2502, "name": "无终恨意" },
-        { "id": 3083, "name": "狂徒铠甲" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3078, "name": "三相之力" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

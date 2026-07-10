@@ -9,28 +9,82 @@
       "note": "巴德作为治疗/护盾型辅助，靠W频繁保护队友+靠鸟灵被动叠加海克斯回蓝续航。⚠️ 会心治疗已确认在补丁26.12下架，已剔除；op.gg的真实海克斯列表与草稿引用的不符(实际是Support Main/Marksmage/Protein Shake等，多数在我方数据表里查无id)，已只保留arammayhem.com直接确认的部分。巴德在当前版本整体是C~B档(约39-46%胜率)，偏弱/小众英雄。",
       "augments": {
         "core": [
-          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" },
-          { "id": 141, "apiName": "AllForYou", "name": "全心为你" }
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "急救用具"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "全心为你"
+          }
         ],
         "good": [
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 87, "apiName": "Typhoon", "name": "台风" },
-          { "id": 96, "apiName": "WisdomofAges", "name": "时光之智慧" }
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          },
+          {
+            "id": 96,
+            "apiName": "WisdomofAges",
+            "name": "时光之智慧"
+          }
         ],
         "trap": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ]
       },
       "items": [
-        { "id": 3222, "name": "米凯尔的祝福" },
-        { "id": 3107, "name": "救赎" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 3165, "name": "莫雷洛秘典" },
-        { "id": 3157, "name": "中娅沙漏" },
-        { "id": 3110, "name": "冰霜之心" }
+        {
+          "id": 3222,
+          "name": "米凯尔的祝福"
+        },
+        {
+          "id": 3107,
+          "name": "救赎"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3165,
+          "name": "莫雷洛秘典"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3110,
+          "name": "冰霜之心"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3067,
+          "name": "燃烧宝石"
+        },
+        {
+          "id": 3114,
+          "name": "禁忌雕像"
+        }
+      ]
     },
     {
       "key": "ap",
@@ -39,28 +93,83 @@
       "note": "利用巴德Q高额法术伤害进行远程消耗爆发，走法核输出路线。arammayhem.com确认循环往复(约62%胜率)是S级海克斯，卢登的回声→法师之靴→时光之杖为核心出装方向。",
       "augments": {
         "core": [
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" }
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          }
         ],
         "good": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          }
         ],
         "trap": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
         ]
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6657, "name": "时光之杖" },
-        { "id": 3165, "name": "莫雷洛秘典" },
-        { "id": 3157, "name": "中娅沙漏" },
-        { "id": 3135, "name": "虚空之杖" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 3165,
+          "name": "莫雷洛秘典"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3067,
+          "name": "燃烧宝石"
+        },
+        {
+          "id": 3114,
+          "name": "禁忌雕像"
+        }
+      ]
     }
   ]
 }

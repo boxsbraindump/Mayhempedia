@@ -8,23 +8,72 @@
       "damageType": "AP",
       "note": "被动灼烧+E大范围传导火焰，堆叠海克斯持续伤害/减CD效果实现技能无限连发。",
       "augments": {
-        "core": [{ "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }],
+        "core": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
+        ],
         "good": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 2503, "name": "黯炎火炬" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3135, "name": "虚空之杖" }
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

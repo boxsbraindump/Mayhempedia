@@ -9,26 +9,74 @@
       "note": "法术爆发刺客路线，靠W隐身+E突进反复切入切出收割残血。⚠️ 渴血(57.36%)是唯一被确认的真正核心海克斯；草稿最初把暗影疾奔和它并列为核心，但实际暗影疾奔与全凭身法/终极形态同属约52%的同一档，并非突出的第一梯队，已降级为好选择。阿卡丽在当前版本海克斯大乱斗整体是C档(约40.67%胜率)，属于打得比较吃力的英雄，这套只是相对最优解，不代表英雄本身强势。",
       "augments": {
         "core": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "good": [
-          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "暗影疾奔"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "穿针引线"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3146, "name": "海克斯科技枪刃" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3157, "name": "中娅沙漏" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3135, "name": "虚空之杖" }
+        {
+          "id": 3146,
+          "name": "海克斯科技枪刃"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3145,
+          "name": "海克斯科技发电机"
+        }
+      ]
     }
   ]
 }

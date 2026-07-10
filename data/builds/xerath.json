@@ -9,29 +9,96 @@
       "note": "纯远程法术消耗/爆发核心，走卢登回声起手叠法穿套件。直接核对arammayhem.com：尤里卡/循环往复/炼狱导管为棱彩档核心，魔法飞弹/超凡邪恶/果汁盒为金档好选择。⚠️ 引用来源已清理：9game.cn那篇实际讨论的是AD秒人出装、news.qq.com那篇讨论的是普通大乱斗而非海克斯大乱斗，均与本档结论无关，已剔除；老练狙神独立证据比尤里卡弱，已从核心降为好选择。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          }
         ],
         "good": [
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" }
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3802, "name": "遗失的章节" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 2503, "name": "黯炎火炬" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 3020, "name": "法师之靴" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

@@ -9,23 +9,68 @@
       "note": "辅助型法师，核心思路是靠护盾/治疗/减益反复救队友。⚠️ 本档案经过大幅精简：草稿最初声称三站一致的四个'核心'海克斯里，直接抓取arammayhem.com/aramgg.com后只有全心为你真正得到独立印证，其余三个(急救用具/会心治疗/神圣干预)在当前版本页面里都找不到对应位置，神圣干预尤其疑似张冠李戴，已大幅降级/剔除。出装保留aramgg.com直接确认的最高胜率路线：月石再生器→明朗之靴→耳语头环(50.8%)，补上metasrc提到的炽热香炉作为备选延伸。",
       "augments": {
         "core": [
-          { "id": 141, "apiName": "AllForYou", "name": "全心为你" }
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "全心为你"
+          }
         ],
         "good": [
-          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" },
-          { "id": 76, "apiName": "SonicBoom", "name": "天音爆" }
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "会心治疗"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "天音爆"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3070, "name": "女神之泪" },
-        { "id": 6617, "name": "月石再生器" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 222526, "name": "耳语头环" },
-        { "id": 323504, "name": "炽热香炉" }
+        {
+          "id": 6617,
+          "name": "月石再生器"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 222526,
+          "name": "耳语头环"
+        },
+        {
+          "id": 323504,
+          "name": "炽热香炉"
+        },
+        {
+          "id": 3107,
+          "name": "救赎"
+        },
+        {
+          "id": 2530,
+          "name": "歌之权冠"
+        }
       ],
       "runes": null,
-      "sources": ["aramgg.com", "metasrc.com", "arammayhem.com"]
+      "sources": [
+        "aramgg.com",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 4642,
+          "name": "班德尔玻璃镜"
+        }
+      ]
     }
   ]
 }

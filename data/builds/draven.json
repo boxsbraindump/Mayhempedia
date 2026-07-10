@@ -9,30 +9,93 @@
       "note": "接好双斧+暴击装叠爆发，核心增强旋转至胜让Q/E/R都吃到旋转加成——这一点经arammayhem.com专属连招页直接确认(德莱文的技能确实都算旋转类)。⚠️ 装备方向(收集者/无尽之刃/狂战士胫甲)在metasrc摘要有印证，但metasrc实际展示的Top强化其实是台风/去质/亮出你的剑，并非旋转至胜——此前草稿把两站不同的结论拼成'两站一致'，这里改为如实说明只有arammayhem.com独立确认了旋转至胜。",
       "augments": {
         "core": [
-          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" }
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          }
         ],
         "good": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          }
         ],
         "trap": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
-          { "id": 171, "apiName": "Dematerialize", "name": "去质" }
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          },
+          {
+            "id": 171,
+            "apiName": "Dematerialize",
+            "name": "去质"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3072, "name": "饮血剑" },
-        { "id": 3036, "name": "多米尼克领主的致意" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     },
     {
       "key": "draw-sword",
@@ -41,27 +104,77 @@
       "note": "拿到「亮出你的剑」棱彩增强后德莱文变为近战并获得大量属性加成，滚雪球能力极强。arammayhem.com直接确认该棱彩与德莱文搭配胜率约62.31%~62.43%，是独立可验证的高胜率替代路线。",
       "augments": {
         "core": [
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ],
         "good": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          }
         ],
         "trap": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3072, "name": "饮血剑" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 3036, "name": "多米尼克领主的致意" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

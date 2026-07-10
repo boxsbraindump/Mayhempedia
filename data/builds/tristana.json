@@ -9,30 +9,94 @@
       "note": "崔丝塔娜是纯AD暴击流赏金猎人打法，核心逻辑是靠E炮弹震荡的施法距离加成+暴击装备堆叠爆发，站桩输出。连拨击锤与E单体触发多次结算强协同；亮出你的剑让她变近战获得攻速/生命/生命偷取，是ADC里公认的高选取率海克斯。",
       "augments": {
         "core": [
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" },
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ],
         "good": [
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "trap": [
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" }
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "灵魂虹吸"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6675, "name": "纳沃利烁刃" },
-        { "id": 3032, "name": "育恩塔尔荒野箭" },
-        { "id": 3033, "name": "凡性的提醒" },
-        { "id": 3006, "name": "狂战士胫甲" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6675,
+          "name": "纳沃利烁刃"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        },
+        {
+          "id": 3033,
+          "name": "凡性的提醒"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "aramgg.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

@@ -9,29 +9,89 @@
       "note": "靠W护盾和大招开团反复贴脸，堆生命值把自己养成血牛坦克辅助，而非常规峡谷的法强魅惑辅助。op.gg与arammayhem.com交叉验证核心是心之钢吃击杀层数配合坦克引擎/任务钢化你心无限叠血量。⚠️ 装备表里的无终恨意/钢铁烈阳之匣/帝国指令属于同类防御装候选，未能在op.gg原文逐字对上(该站给出的是Fimbulwinter/守护者法球一类同方向装备)。洛在当前版本整体是C档，约46.36%胜率。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 321, "apiName": "Bodyguard", "name": "保镖" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "星界躯体"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 321,
+            "apiName": "Bodyguard",
+            "name": "保镖"
+          }
         ],
         "trap": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          }
         ]
       },
       "items": [
-        { "id": 3070, "name": "女神之泪" },
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 2502, "name": "无终恨意" },
-        { "id": 3190, "name": "钢铁烈阳之匣" },
-        { "id": 4005, "name": "帝国指令" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3190,
+          "name": "钢铁烈阳之匣"
+        },
+        {
+          "id": 4005,
+          "name": "帝国指令"
+        }
       ],
       "runes": null,
-      "sources": ["op.gg", "arammayhem.com", "metasrc.com"]
+      "sources": [
+        "op.gg",
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1052,
+          "name": "增幅典籍"
+        },
+        {
+          "id": 4642,
+          "name": "班德尔玻璃镜"
+        }
+      ]
     }
   ]
 }

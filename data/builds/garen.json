@@ -9,31 +9,103 @@
       "note": "⚠️ 本档案经过大幅修正：草稿最初核心的「一板一眼」海克斯已在补丁26.13从海克斯大乱斗中下架，且草稿引用的腾讯新闻《又被设计师忽悠了》一文实际内容是质疑/证伪攻速加圈数机制、明确反对以攻速为核心的思路，草稿却把它包装成支持性来源，与原文意思完全相反，均已剔除并重建。当前真实高胜率海克斯是旋转至胜/任务：钢化你心/歌利亚巨人/坦克引擎/重量级打击手，装备核心挺进破坏者→幻影之舞→无尽之刃/黑色切割者与真实数据一致。",
       "augments": {
         "core": [
-          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 6, "apiName": "BladeWaltz", "name": "利刃华尔兹" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "利刃华尔兹"
+          }
         ],
         "trap": [
-          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
-          { "id": 149, "apiName": "Impassable", "name": "不动如山" },
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
+          },
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "不动如山"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ]
       },
       "items": [
-        { "id": 6631, "name": "挺进破坏者" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3046, "name": "幻影之舞" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3071, "name": "黑色切割者" }
+        {
+          "id": 6631,
+          "name": "挺进破坏者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3046,
+          "name": "幻影之舞"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3071,
+          "name": "黑色切割者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

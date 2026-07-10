@@ -9,27 +9,82 @@
       "note": "利用Q基础技能连招快速秒杀脆皮，走暴击/致命节奏出装。核心装破败王者之刃+公理圆弧+收集者+赛瑞尔达的怨恨经arammayhem.com与metasrc.com两站确认。⚠️ 核心海克斯已按实测数据改正：真实Prismatic档核心其实是全凭身法，穿针引线只是Gold档众多可选项之一(约49%胜率)，已把全凭身法提升到核心、穿针引线降为好选择。",
       "augments": {
         "core": [
-          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "暗影疾奔"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          }
         ],
         "good": [
-          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "穿针引线"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 6696, "name": "公理圆弧" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 6696,
+          "name": "公理圆弧"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        }
+      ]
     },
     {
       "key": "ap-crit",
@@ -38,26 +93,83 @@
       "note": "中文社区特化打法：堆叠高暴击率与高暴击伤害并转化为技能爆发，靠珠光护手把奇亚娜本就极快的连招变成瞬间秒杀。游侠网攻略核实存在且内容吻合。⚠️ 终极刷新经核实是与真实推荐的「终极唤醒」名字相近但效果不同的另一个海克斯，已替换为游侠网原文列表里真实出现的循环往复/狂徒豪气。",
       "augments": {
         "core": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 310, "apiName": "ClownCollege", "name": "小丑学院" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          }
         ],
         "good": [
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" },
-          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" }
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "狂徒豪气"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 6696, "name": "公理圆弧" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3158, "name": "明朗之靴" }
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 6696,
+          "name": "公理圆弧"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 6698,
+          "name": "亵渎九头蛇"
+        }
       ],
       "runes": null,
-      "sources": ["gl.ali213.net", "metasrc.com", "arammayhem.com"]
+      "sources": [
+        "gl.ali213.net",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        }
+      ]
     }
   ]
 }

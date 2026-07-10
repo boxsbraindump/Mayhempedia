@@ -9,27 +9,91 @@
       "note": "E技能把最大生命值转化为真实伤害，出装堆血量再叠海克斯放大体型和生命上限。",
       "augments": {
         "core": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
         "good": [
-          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 18, "apiName": "CourageoftheColossus", "name": "巨像的勇气" }
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "叠角龙"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "巨像的勇气"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3083, "name": "狂徒铠甲" },
-        { "id": 2502, "name": "无终恨意" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3075, "name": "荆棘之甲" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "op.gg"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

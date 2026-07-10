@@ -9,29 +9,84 @@
       "note": "靠W偷取敌方大招、E突进、Q连击叠伤害，走法术穿透+续航法核出装。arammayhem.com确认「塞拉斯+全凭身法」组合为S级连携，核心装万世催化石→海克斯科技火箭腰带→振奋盔甲/中娅沙漏与该站及metasrc数据吻合。⚠️ 草稿另一个「AD/物转法」流派经核实是张冠李戴的产物——引用的腾讯新闻文章实际讨论的是完全不同方向的海克斯(物理转魔法/ADAPt)和不同出装，且把青龙刀(纳什之牙)误标成黑色切割者，整个archetype已删除。",
       "augments": {
         "core": [
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "good": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          }
         ],
         "trap": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ]
       },
       "items": [
-        { "id": 3803, "name": "万世催化石" },
-        { "id": 3152, "name": "海克斯科技火箭腰带" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 4633, "name": "裂隙制造者" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 3152,
+          "name": "海克斯科技火箭腰带"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 4633,
+          "name": "裂隙制造者"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "万世催化石"
+        }
+      ]
     }
   ]
 }

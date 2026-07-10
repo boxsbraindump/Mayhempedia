@@ -9,26 +9,83 @@
       "note": "物理续航型战士玩法，核心逻辑是靠E技能命中回血+海克斯全能吸血增强叠加生存。⚠️ 出装已按实测数据大幅改正：arammayhem.com/metasrc.com确认的真实核心是狂妄→焚天→死亡之舞，草稿最初的黑色切割者/斯特拉克/振奋盔甲/兰顿之兆是套用通用峡谷半肉战士模板，已剔除；重量级打击手最初被列为核心但该站Aatrox专属列表里并没有它，已从核心移除，只保留有独立数据支持的渴血。中文来源(腾讯新闻/红瀚达)找不到对应原文，已剔除。",
       "augments": {
         "core": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "good": [
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 70, "apiName": "RestlessRestoration", "name": "无休回复" }
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 70,
+            "apiName": "RestlessRestoration",
+            "name": "无休回复"
+          }
         ],
         "trap": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          }
         ]
       },
       "items": [
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6610, "name": "焚天" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6610,
+          "name": "焚天"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 2517,
+          "name": "无穷饥渴"
+        },
+        {
+          "id": 6692,
+          "name": "星蚀"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        }
+      ]
     }
   ]
 }

@@ -9,28 +9,91 @@
       "note": "靠W护盾/回血与双抗叠加续航过团，R孤立单点强敌收割；核心装备为裂隙制造者(Riftmaker)+坦度法伤(星界驱驰/水银之靴)，实测确认是莫德凯撒当前最高使用率/胜率的核心件。⚠️ 海克斯已按metasrc.com实测数据改正：真实首选是大力/坦克引擎/歌利亚巨人/重量级打击手/炼狱导管，草稿最初写的裁决使/不动如山/巨人杀手在该站数据里排不上号，已替换。",
       "augments": {
         "core": [
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 44, "apiName": "IceCold", "name": "冰寒" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 4633, "name": "裂隙制造者" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 4629, "name": "星界驱驰" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3102, "name": "女妖面纱" }
+        {
+          "id": 4633,
+          "name": "裂隙制造者"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 4629,
+          "name": "星界驱驰"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3102,
+          "name": "女妖面纱"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     },
     {
       "key": "cod-burst",
@@ -39,26 +102,77 @@
       "note": "小众但强势的爆发型打法：抽取「死亡之环」棱彩强化后，回复量的70%转化为对最近敌人的魔法伤害，此时必须避开渗透吸血类装备(裂隙制造者等)以免覆盖其独立伤害结算，转而堆纯法强+基础回复装备打出秒杀式爆发。arammayhem.com的专属连招页原文明确写道「Never build Rift Maker or any omnivamp item — they override Circle of Death damage」，与本档描述逐字对应。",
       "augments": {
         "core": [
-          { "id": 15, "apiName": "CircleofDeath", "name": "死亡之环" }
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "死亡之环"
+          }
         ],
         "good": [
-          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
-          { "id": 149, "apiName": "Impassable", "name": "不动如山" }
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          },
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "不动如山"
+          }
         ],
         "trap": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ]
       },
       "items": [
-        { "id": 3165, "name": "莫雷洛秘典" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 3157, "name": "中娅沙漏" },
-        { "id": 3102, "name": "女妖面纱" }
+        {
+          "id": 3165,
+          "name": "莫雷洛秘典"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3102,
+          "name": "女妖面纱"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "wiki.leagueoflegends.com"]
+      "sources": [
+        "arammayhem.com",
+        "wiki.leagueoflegends.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

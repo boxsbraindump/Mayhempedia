@@ -9,27 +9,98 @@
       "note": "叠加攻速与暴击触发次数(双刀流/连拨击锤让每次攻击拆分成多段伤害)，配合无尽之刃系暴击装备打出爆发。",
       "augments": {
         "core": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "good": [
-          { "id": 81, "apiName": "TapDancer", "name": "踢踏舞" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 92, "apiName": "Vulnerability", "name": "易损" }
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "踢踏舞"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          }
         ],
-        "trap": [{ "id": 87, "apiName": "Typhoon", "name": "台风" }]
+        "trap": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          }
+        ]
       },
       "items": [
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 6672, "name": "海妖杀手" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3085, "name": "卢安娜的飓风" },
-        { "id": 6676, "name": "收集者" }
+        {
+          "id": 6672,
+          "name": "海妖杀手"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3085,
+          "name": "卢安娜的飓风"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "缚炉之斧"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

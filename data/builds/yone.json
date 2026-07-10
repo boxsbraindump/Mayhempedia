@@ -9,29 +9,97 @@
       "note": "永恩主流打法：围绕Q技能高频触发叠加攻速/暴击/生命偷取，核心逻辑是用秘术冲拳把Q冷却压到极限形成无限Q循环，配合渴血/双刀流等海克斯把爆发转化为可持续输出与生存。",
       "augments": {
         "core": [
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" }
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          }
         ],
         "good": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 66, "apiName": "QuantumComputing", "name": "量子计算" },
-          { "id": 79, "apiName": "SymphonyofWar", "name": "战争交响乐" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "量子计算"
+          },
+          {
+            "id": 79,
+            "apiName": "SymphonyofWar",
+            "name": "战争交响乐"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6673, "name": "不朽盾弓" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3091, "name": "智慧末刃" }
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6673,
+          "name": "不朽盾弓"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3091,
+          "name": "智慧末刃"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "blitz.gg", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     },
     {
       "key": "ap-crit-shield",
@@ -40,23 +108,75 @@
       "note": "冷门分支：用会心治疗让Q/W/E频繁产生的护盾与治疗获得暴击加成，形成越打越肉的护盾循环，本质仍是暴击基础上叠生存。优先级低于AD暴击主流玩法，仅在对抗消耗型阵容时优先考虑。",
       "augments": {
         "core": [
-          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" }
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "会心治疗"
+          }
         ],
         "good": [
-          { "id": 77, "apiName": "SoulSiphon", "name": "灵魂虹吸" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "灵魂虹吸"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6333, "name": "死亡之舞" }
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6673,
+          "name": "不朽盾弓"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["aramgg.com"]
+      "sources": [
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

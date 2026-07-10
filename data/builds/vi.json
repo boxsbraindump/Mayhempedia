@@ -9,25 +9,76 @@
       "note": "⚠️ 本档案经过大幅修正：草稿最初声称arammayhem.com与aramgg.com两站'高度一致'，但实际核对后二者列出的海克斯与出装完全不重叠，aramgg的数据疑似串了其他英雄；标注为核心的利刃华尔兹/歌利亚巨人在arammayhem.com的蔚专页里都查无实据(歌利亚巨人官方推荐名单里甚至明确不含蔚)。已改为只采用arammayhem.com实测确认的坦克引擎(67.4%)/任务钢化你心(65.3%)为核心，出装改为该站确认的狂妄→收集者→无尽之刃/死亡之舞。蔚在当前版本整体是C~B档、约45%胜率，非强势英雄。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3071,
+          "name": "黑色切割者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

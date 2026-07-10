@@ -9,28 +9,83 @@
       "note": "纯AD暴击/惩戒流打法，核心逻辑是用海克斯增强让本来不能暴击的Q/R技能也能暴击，配合无尽之刃、猎魔人弩箭等爆发装备秒杀脆皮；放弃传统的狂妄因为佛耶戈附身击杀不算他本人的击杀因此拿不到叠加。经arammayhem.com直接确认珠光护手是S级combo(55.56%胜率)，与同站另一顶级选项Upgrade Infinity Edge(63.67%)并列为AD路线两大顶级海克斯之一，而非唯一核心。",
       "augments": {
         "core": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 87, "apiName": "Typhoon", "name": "台风" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          }
         ],
         "trap": [
-          { "id": 6, "apiName": "BladeWaltz", "name": "利刃华尔兹" }
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "利刃华尔兹"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 2512, "name": "猎魔人弩箭" },
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 3072, "name": "饮血剑" },
-        { "id": 3111, "name": "水银之靴" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 2512,
+          "name": "猎魔人弩箭"
+        },
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

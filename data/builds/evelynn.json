@@ -9,30 +9,97 @@
       "note": "只有AP法核一条主流路线：核心是叠加/换算法强类增强(尤里卡把法强转CD、超凡邪恶靠技能伤害叠加法强)配合影焰+灭世者的死亡之帽爆发斩杀残血目标。经arammayhem.com与metasrc.com两站直接核对(26.13版本)确认核心装备与增强推荐一致；卢登的回声/巫妖之祸为metasrc补充提及的次级件，可信度略低于影焰/死亡之帽/风暴狂涌这几件确认核心。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          }
         ],
         "good": [
-          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" }
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "任务：沃格勒特的巫师帽"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "超强大脑"
+          }
         ],
         "trap": [
-          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" }
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "暗影疾奔"
+          }
         ]
       },
       "items": [
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 4646, "name": "风暴狂涌" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3100, "name": "巫妖之祸" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 4646,
+          "name": "风暴狂涌"
+        },
+        {
+          "id": 3100,
+          "name": "巫妖之祸"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

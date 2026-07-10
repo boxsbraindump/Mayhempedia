@@ -9,27 +9,92 @@
       "note": "物理输出型前排/半肉战士，靠渴血/重量级打击手打出续航和最大生命值加成伤害。⚠️ 出装已按实测数据改正：三个独立信源一致指向焚天(Sundered Sky)→星蚀(Eclipse)→死亡之舞为真实核心路径，草稿最初漏掉了焚天，已补上；坦克引擎此前被误判为陷阱，实际在metasrc/op.gg等站点被列为推荐海克斯，已移到好选择。",
       "augments": {
         "core": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 20, "apiName": "DawnbringersResolve", "name": "黎明使者的坚决" },
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 226, "apiName": "Stats", "name": "属性！" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "黎明使者的坚决"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 226,
+            "apiName": "Stats",
+            "name": "属性！"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 6610, "name": "焚天" },
-        { "id": 6692, "name": "星蚀" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3071, "name": "黑色切割者" }
+        {
+          "id": 6610,
+          "name": "焚天"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6692,
+          "name": "星蚀"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3071,
+          "name": "黑色切割者"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

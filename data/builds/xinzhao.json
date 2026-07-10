@@ -9,27 +9,79 @@
       "note": "当前版本赵信的一条冷门但有数据支撑的打法：靠斯塔缇克电刃+黄昏与黎明的连锁闪电触发被动多次治疗，叠加物法皆修把普攻转化为AP再反哺回血与技能伤害，社区反馈选取率和评价都好于传统纯AD战士出装。",
       "augments": {
         "core": [
-          { "id": 54, "apiName": "MasterofDuality", "name": "物法皆修" },
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" }
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "物法皆修"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          }
         ],
         "good": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 87, "apiName": "Typhoon", "name": "台风" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3087, "name": "斯塔缇克电刃" },
-        { "id": 2510, "name": "黄昏与黎明" },
-        { "id": 3115, "name": "纳什之牙" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 6665, "name": "千变者贾修" }
+        {
+          "id": 3087,
+          "name": "斯塔缇克电刃"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 6670,
+          "name": "正午箭袋"
+        }
+      ]
     }
   ]
 }

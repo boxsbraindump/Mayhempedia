@@ -9,27 +9,87 @@
       "note": "核心思路是通过缩短大招（安魂曲）冷却来实现高频甚至双开大招，配合持续燃烧/DoT类法术伤害装备打消耗。循环往复、尤里卡是社区确认的招牌高选取率海克斯。",
       "augments": {
         "core": [
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" },
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          }
         ],
         "good": [
-          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "终极刷新"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 2503, "name": "黯炎火炬" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 3089, "name": "灭世者的死亡之帽" }
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

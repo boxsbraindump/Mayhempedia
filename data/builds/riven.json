@@ -9,30 +9,98 @@
       "note": "纯AD近战决斗/收割：Q三段位移打出爆发和护盾叠加，W眩晕开团。核心海克斯全凭身法大幅降低位移技能CD，狂徒豪气在频繁突进中叠加抗压——两者经metasrc.com与op.gg交叉确认为锐雯最高胜率海克斯。出装星蚀→岚切→死亡之舞→水银之靴与两站数据一致。",
       "augments": {
         "core": [
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" }
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "狂徒豪气"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 73, "apiName": "ShadowRunner", "name": "暗影疾奔" },
-          { "id": 214, "apiName": "SpinToWin", "name": "旋转至胜" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "暗影疾奔"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          }
         ],
         "trap": [
-          { "id": 149, "apiName": "Impassable", "name": "不动如山" },
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" }
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "不动如山"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          }
         ]
       },
       "items": [
-        { "id": 6692, "name": "星蚀" },
-        { "id": 3097, "name": "岚切" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3156, "name": "玛莫提乌斯之噬" },
-        { "id": 4005, "name": "帝国指令" }
+        {
+          "id": 6692,
+          "name": "星蚀"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3156,
+          "name": "玛莫提乌斯之噬"
+        },
+        {
+          "id": 4005,
+          "name": "帝国指令"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "op.gg", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "op.gg",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

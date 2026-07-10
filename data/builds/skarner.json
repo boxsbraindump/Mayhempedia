@@ -9,29 +9,89 @@
       "note": "叠血量/叠攻速的前排坦克体系，心之钢起手无限叠加生命上限，配合任务类/坦克类海克斯把体型和血量堆到极限。arammayhem.com与aramgg.com两站均将坦克引擎/钢化你心/歌利亚巨人列为高胜率海克斯，与召唤师峡谷常规出装明显不同(不会心之钢起手、不强调坦克引擎)，证实是大乱斗专属数据而非套用峡谷知识。⚠️ 凛冬之临是常见的后续抗性件，而非站上列出的最高使用率三件套之一(该站的实测最高使用率核心是心之钢+狂徒铠甲+无终恨意)，已在note中如实区分主次。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 204, "apiName": "StackosaurusRex", "name": "叠角龙" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "叠角龙"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "trap": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          }
         ]
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 2502, "name": "无终恨意" },
-        { "id": 3083, "name": "狂徒铠甲" },
-        { "id": 3119, "name": "凛冬之临" },
-        { "id": 3075, "name": "荆棘之甲" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 3119,
+          "name": "凛冬之临"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        }
+      ]
     }
   ]
 }

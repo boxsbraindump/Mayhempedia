@@ -9,24 +9,82 @@
       "note": "赛娜围绕被动灵魂叠层与暴击/攻速特效触发展开。双刀流+最万用的瞄准镜是公认T0组合，能让一次普攻触发两次特效，快速叠灵魂、放大电刀/飓风类装备收益。",
       "augments": {
         "core": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 115, "apiName": "ScopiestWeapons", "name": "最万用的瞄准镜" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
+          }
         ],
         "good": [
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 87, "apiName": "Typhoon", "name": "台风" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3087, "name": "斯塔缇克电刃" },
-        { "id": 6676, "name": "收集者" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3009,
+          "name": "轻灵之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3087,
+          "name": "斯塔缇克电刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "dvg.cn"]
+      "sources": [
+        "arammayhem.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

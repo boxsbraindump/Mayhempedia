@@ -9,28 +9,89 @@
       "note": "纯正的中单法师出装，核心思路是堆叠AP+法穿制造爆发伤害。arammayhem.com(26.13版本)确认卢登回声→影焰→死亡帽为核心三件套，尤里卡/魔法飞弹/巫师式思考为强势海克斯。⚠️ 炼狱导管归为陷阱有明确的梅尔专属机制原因：她的Q和E各自只能叠加一层炼狱导管，燃烧层数远低于持续多段攻击的英雄，这不是笼统的「评价分歧」而是真实的技能机制限制。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ],
         "good": [
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
-          { "id": 4, "apiName": "BacktoBasics", "name": "回归基本功" }
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          }
         ],
         "trap": [
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
         ]
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3135, "name": "虚空之杖" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

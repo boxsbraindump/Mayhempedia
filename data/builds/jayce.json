@@ -9,25 +9,77 @@
       "note": "⚠️ 本档案经过重要修正：草稿最初核心的「一板一眼」海克斯已在补丁26.13(2026年6月24日上线，早于本档案核实日期一周以上)被官方从ARAM Mayhem的海克斯池中彻底移除，游戏里现在根本选不到，草稿引用的中文攻略也普遍没跟上这个下架变化，围绕它设计的整套连招逻辑已失效，已完全剔除。装备核心狂妄→收集者→赛瑞尔达的怨恨在26.13版本的arammayhem.com/metasrc数据中仍确认有效，保留作为基础出装；海克斯改为老练狙神(远程poke)搭配珠光护手/巨人杀手这类未受影响的通用强力选择，仅供参考，建议后续重新核实26.13现版本杰斯的真正核心海克斯。",
       "augments": {
         "core": [
-          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" }
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          }
         ],
         "good": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
-          { "id": 67, "apiName": "RabbleRousing", "name": "古式佳酿" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 67,
+            "apiName": "RabbleRousing",
+            "name": "古式佳酿"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 3031, "name": "无尽之刃" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        }
+      ]
     }
   ]
 }

@@ -9,29 +9,89 @@
       "note": "标准附身回复辅助玩法：吸猫依附队友持续加护盾+治疗+移速，靠月石/圣杯类装备把治疗效果放大再叠加到队友身上。metasrc/arammayhem.com交叉验证核心装备为月石再生器/炽热香炉/米凯尔的祝福/救赎，全心为你/神圣干预经独立确认为真实海克斯选项。⚠️ 会心治疗有信号显示可能已在26.12/26.13版本被移除或重做，历史上确实与悠米/回复辅助阵容强绑定，若游戏内选不到请以急救用具/全心为你为准。",
       "augments": {
         "core": [
-          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" },
-          { "id": 141, "apiName": "AllForYou", "name": "全心为你" }
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "会心治疗"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "全心为你"
+          }
         ],
         "good": [
-          { "id": 301, "apiName": "DivineIntervention", "name": "神圣干预" },
-          { "id": 198, "apiName": "HolyFire", "name": "圣火" },
-          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" },
-          { "id": 231, "apiName": "LightWarden", "name": "光明守望者" }
+          {
+            "id": 301,
+            "apiName": "DivineIntervention",
+            "name": "神圣干预"
+          },
+          {
+            "id": 198,
+            "apiName": "HolyFire",
+            "name": "圣火"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "急救用具"
+          },
+          {
+            "id": 231,
+            "apiName": "LightWarden",
+            "name": "光明守望者"
+          }
         ],
         "trap": [
-          { "id": 194, "apiName": "FeyMagic", "name": "精怪魔法" }
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "精怪魔法"
+          }
         ]
       },
       "items": [
-        { "id": 6617, "name": "月石再生器" },
-        { "id": 3114, "name": "禁忌雕像" },
-        { "id": 3504, "name": "炽热香炉" },
-        { "id": 3222, "name": "米凯尔的祝福" },
-        { "id": 3107, "name": "救赎" },
-        { "id": 6616, "name": "流水法杖" }
+        {
+          "id": 6617,
+          "name": "月石再生器"
+        },
+        {
+          "id": 6621,
+          "name": "黎明核心"
+        },
+        {
+          "id": 3504,
+          "name": "炽热香炉"
+        },
+        {
+          "id": 3222,
+          "name": "米凯尔的祝福"
+        },
+        {
+          "id": 3107,
+          "name": "救赎"
+        },
+        {
+          "id": 6616,
+          "name": "流水法杖"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "17173.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "17173.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 4642,
+          "name": "班德尔玻璃镜"
+        }
+      ]
     },
     {
       "key": "cod-tank",
@@ -40,26 +100,80 @@
       "note": "抽到死亡之环后彻底转型：附身在一个能站桩扛伤害的坦克队友身上，靠给对方的持续治疗/回血触发死亡之环转化为魔法伤害，因此堆生命值和坦克引擎比常规辅助装更有性价比。arammayhem.com的Yuumi+死亡之环专属连招页与草稿描述的机制细节(月石翻倍治疗量、堆生命值、建议堆法穿)几乎逐字对应，是明显的模式专属打法，可信度高。",
       "augments": {
         "core": [
-          { "id": 15, "apiName": "CircleofDeath", "name": "死亡之环" },
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" }
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "死亡之环"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
         ],
         "good": [
-          { "id": 64, "apiName": "Perseverance", "name": "坚韧" },
-          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" },
-          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" }
+          {
+            "id": 64,
+            "apiName": "Perseverance",
+            "name": "坚韧"
+          },
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "会心治疗"
+          },
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "终极刷新"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6617, "name": "月石再生器" },
-        { "id": 3742, "name": "亡者的板甲" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3222, "name": "米凯尔的祝福" },
-        { "id": 3135, "name": "虚空之杖" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" }
+        {
+          "id": 6617,
+          "name": "月石再生器"
+        },
+        {
+          "id": 3742,
+          "name": "亡者的板甲"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3222,
+          "name": "米凯尔的祝福"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

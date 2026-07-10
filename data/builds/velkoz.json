@@ -9,27 +9,90 @@
       "note": "维克兹是纯远程炮台法师，靠三段普通技能(Q/W)持续消耗+终极E秒人，核心思路是叠爆发法强和技能急速把连招循环打满。尤里卡、炼狱导管是社区确认的棱彩档核心组合，果汁盒也是该英雄的高胜率强化符文。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
         ],
         "good": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

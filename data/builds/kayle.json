@@ -9,25 +9,86 @@
       "note": "普攻触发装备特效叠输出，前期苟发育，后期普攻+被动斩杀收割。",
       "augments": {
         "core": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 54, "apiName": "MasterofDuality", "name": "物法皆修" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "物法皆修"
+          }
         ],
         "good": [
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 2517, "name": "无穷饥渴" },
-        { "id": 3091, "name": "智慧末刃" },
-        { "id": 2510, "name": "黄昏与黎明" }
+        {
+          "id": 2517,
+          "name": "无穷饥渴"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3091,
+          "name": "智慧末刃"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3124,
+          "name": "鬼索的狂暴之刃"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "op.gg"]
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

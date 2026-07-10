@@ -9,30 +9,94 @@
       "note": "大招被动带暴击加成，普攻+Q骚扰触发被动、大招收割，双刀流/连拨击锤放大攻速与多重弹道输出。",
       "augments": {
         "core": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "good": [
-          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 6, "apiName": "BladeWaltz", "name": "利刃华尔兹" }
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "利刃华尔兹"
+          }
         ],
         "trap": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 174, "apiName": "LaserEyes", "name": "镭射眼" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 174,
+            "apiName": "LaserEyes",
+            "name": "镭射眼"
+          }
         ]
       },
       "items": [
-        { "id": 6676, "name": "收集者" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3036, "name": "多米尼克领主的致意" },
-        { "id": 3033, "name": "凡性的提醒" },
-        { "id": 3072, "name": "饮血剑" }
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 3033,
+          "name": "凡性的提醒"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "zhihu.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "zhihu.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

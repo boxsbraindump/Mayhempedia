@@ -9,27 +9,91 @@
       "note": "走AD暴击/攻速流，三相之力起手。「亮出你的剑」(62.43%)/珠光护手(55.56%)经arammayhem.com与aramgg.com独立确认为S级海克斯，这是海克斯大乱斗专属机制(远程转近战)不是套用峡谷知识。出装三相之力→魔宗(Manamune)→朔极之矛与真实来源一致；⚠️ 收尾件已改成两站共同确认的收集者，此前的破败王者之刃缺乏独立支持。目前没有独立成型的纯AP流派，AP更多是被动收益而非主线。",
       "augments": {
         "core": [
-          { "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" },
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          }
         ],
         "good": [
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          }
         ],
         "trap": [
-          { "id": 206, "apiName": "escAPADe", "name": "魔法转物理" }
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "魔法转物理"
+          }
         ]
       },
       "items": [
-        { "id": 3078, "name": "三相之力" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 3004, "name": "魔宗" },
-        { "id": 3161, "name": "朔极之矛" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 6676, "name": "收集者" }
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3004,
+          "name": "魔宗"
+        },
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com", "metasrc.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

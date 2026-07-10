@@ -12817,5 +12817,57 @@
     "iconSmallUrl": "https://raw.communitydragon.org/latest/game/assets/ux/cherry/augments/icons/wolf_small.arena_2026_s2.png",
     "iconLargeLocal": "icons/augments/GoHWolf_large.png",
     "iconSmallLocal": "icons/augments/GoHWolf_small.png"
+  },
+  {
+    "id": 900001,
+    "apiName": "MayhemArchmage",
+    "name": "Archmage",
+    "rarity": 2,
+    "rarityLabel": "Prismatic",
+    "desc": "Casting a spell refunds part of another random spell's cooldown.",
+    "tooltip": "Casting a spell refunds another random spell's cooldown based on a portion of the original spell's cooldown.",
+    "iconLargeUrl": "https://arammayhem.com/augments/Archmage_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Archmage_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/archmage.webp",
+    "iconSmallLocal": "assets/mayhem-augments/archmage.webp"
+  },
+  {
+    "id": 900002,
+    "apiName": "MayhemPuristCaster",
+    "name": "Purist - Caster",
+    "rarity": 0,
+    "rarityLabel": "Silver",
+    "desc": "Convert bonus attack speed into ability haste and reduce total ability cooldowns.",
+    "tooltip": "Convert all bonus attack speed into ability haste at 0.65 haste per 1% bonus attack speed. Total ability cooldowns are reduced by 10%.",
+    "iconLargeUrl": "https://arammayhem.com/augments/Purist_-_Caster_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Purist_-_Caster_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/purist-caster.webp",
+    "iconSmallLocal": "assets/mayhem-augments/purist-caster.webp"
+  },
+  {
+    "id": 900003,
+    "apiName": "MayhemInfiniteRecursion",
+    "name": "Infinite Recursion",
+    "rarity": 2,
+    "rarityLabel": "Prismatic",
+    "desc": "Gain a large amount of ability haste that increases with champion takedowns.",
+    "tooltip": "Gain 60 ability haste, increased by 3 each time you score a champion takedown.",
+    "iconLargeUrl": "https://arammayhem.com/augments/Infinite_Recursion_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/Infinite_Recursion_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/infinite-recursion.webp",
+    "iconSmallLocal": "assets/mayhem-augments/infinite-recursion.webp"
+  },
+  {
+    "id": 900004,
+    "apiName": "MayhemHighRoller",
+    "name": "High Roller",
+    "rarity": 2,
+    "rarityLabel": "Prismatic",
+    "desc": "Nearby enemies have a chance to drop Stat Anvils on death.",
+    "tooltip": "Nearby enemies have a chance to drop Stat Anvils on death.",
+    "iconLargeUrl": "https://arammayhem.com/augments/High_Roller_mayhem_augment.webp",
+    "iconSmallUrl": "https://arammayhem.com/augments/High_Roller_mayhem_augment.webp",
+    "iconLargeLocal": "assets/mayhem-augments/high-roller.webp",
+    "iconSmallLocal": "assets/mayhem-augments/high-roller.webp"
   }
 ]

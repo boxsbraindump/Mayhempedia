@@ -9,28 +9,83 @@
       "note": "刺客型，走致命节奏(Lethality)爆发出装，靠护甲穿透+爆发增强快速秒杀脆皮。核心装备顺序狂妄→公理圆弧→收集者经metasrc.com与arammayhem.com独立确认(23.26%选取率/50.15%胜率)，明朗之靴为鞋子首选。⚠️「瞄准脑袋」经三次针对性搜索均未找到任何独立来源支持，已剔除；核心增强大力/穿针引线在arammayhem.com的泰隆热门列表中得到确认。",
       "augments": {
         "core": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 84, "apiName": "ThreadtheNeedle", "name": "穿针引线" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "穿针引线"
+          }
         ],
         "good": [
-          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 211, "apiName": "ItsKillingTime", "name": "杀戮时间到了" }
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "终极刷新"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "杀戮时间到了"
+          }
         ],
         "trap": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          }
         ]
       },
       "items": [
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6696, "name": "公理圆弧" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 6694, "name": "赛瑞尔达的怨恨" },
-        { "id": 6692, "name": "星蚀" },
-        { "id": 3158, "name": "明朗之靴" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 6696,
+          "name": "公理圆弧"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 6692,
+          "name": "星蚀"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

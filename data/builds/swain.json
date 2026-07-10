@@ -9,29 +9,86 @@
       "note": "只有法强DPS/续航一条主流路线：靠W/Q的持续法术伤害和大招吸血打消耗和团战。核心海克斯炼狱导管(~58.93%)/循环往复(~62.10%)在metasrc/arammayhem/u.gg/blitz/aramgg多站交叉确认。出装万世催化石→水银之靴→瑞莱冰晶节杖→兰德里的折磨在多站反复出现。⚠️ 「大力」最初被误判为陷阱，实际在metasrc上是斯维因Silver档top pick，已改列为好选择；巫师式思考/冰寒/虚幻武器未找到独立数据支持已剔除，换上多站确认的高胜率果汁盒。",
       "augments": {
         "core": [
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
-          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          }
         ],
         "good": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
-          { "id": 49, "apiName": "JuiceBox", "name": "果汁盒" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "超凡邪恶"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "果汁盒"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          }
         ],
         "trap": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          }
         ]
       },
       "items": [
-        { "id": 3803, "name": "万世催化石" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3165, "name": "莫雷洛秘典" }
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3165,
+          "name": "莫雷洛秘典"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "u.gg", "blitz.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "u.gg",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "万世催化石"
+        }
+      ]
     }
   ]
 }

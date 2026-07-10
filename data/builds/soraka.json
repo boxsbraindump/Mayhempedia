@@ -9,25 +9,72 @@
       "note": "索拉卡走纯治疗强化流，核心逻辑是叠加治疗/护盾强度，把治疗转化为团队生存与消耗能力。急救用具、全心为你是这个流派公认的核心海克斯。",
       "augments": {
         "core": [
-          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" },
-          { "id": 141, "apiName": "AllForYou", "name": "全心为你" }
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "急救用具"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "全心为你"
+          }
         ],
         "good": [
-          { "id": 76, "apiName": "SonicBoom", "name": "天音爆" },
-          { "id": 301, "apiName": "DivineIntervention", "name": "神圣干预" }
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "天音爆"
+          },
+          {
+            "id": 301,
+            "apiName": "DivineIntervention",
+            "name": "神圣干预"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3070, "name": "女神之泪" },
-        { "id": 4642, "name": "班德尔玻璃镜" },
-        { "id": 6617, "name": "月石再生器" },
-        { "id": 3158, "name": "明朗之靴" },
-        { "id": 3083, "name": "狂徒铠甲" },
-        { "id": 3107, "name": "救赎" }
+        {
+          "id": 6617,
+          "name": "月石再生器"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 2530,
+          "name": "歌之权冠"
+        },
+        {
+          "id": 3504,
+          "name": "炽热香炉"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 3107,
+          "name": "救赎"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "mobalytics.gg"]
+      "sources": [
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 4642,
+          "name": "班德尔玻璃镜"
+        }
+      ]
     }
   ]
 }

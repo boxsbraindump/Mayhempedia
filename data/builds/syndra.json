@@ -9,25 +9,77 @@
       "note": "高爆发/强控法核，围绕EQ连招定身+法强堆叠展开，出装走卢登回声起手转灭世者死亡之帽的纯法核爆发路线。",
       "augments": {
         "core": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          }
         ],
         "good": [
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" }
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "超强大脑"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 4646, "name": "风暴狂涌" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3135, "name": "虚空之杖" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4646,
+          "name": "风暴狂涌"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "op.gg", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "op.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

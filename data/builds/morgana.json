@@ -9,29 +9,103 @@
       "note": "黑火炬+兰德里的持续灼烧伤害叠加Q/W的禁锢与减速，海克斯优先拿减CD/强化DOT效果的增强实现锁死单体+清线双重收益。",
       "augments": {
         "core": [
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" }
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
         ],
         "good": [
-          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 113, "apiName": "SkilledSniper", "name": "老练狙神" },
-          { "id": 136, "apiName": "SlapAround", "name": "扇巴掌" },
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
-          { "id": 60, "apiName": "OceanSoul", "name": "海洋龙魂" }
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "扇巴掌"
+          },
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "裁决使"
+          },
+          {
+            "id": 60,
+            "apiName": "OceanSoul",
+            "name": "海洋龙魂"
+          }
         ],
-        "trap": [{ "id": 112, "apiName": "UltimateUnstoppable", "name": "终极不可阻挡" }]
+        "trap": [
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "终极不可阻挡"
+          }
+        ]
       },
       "items": [
-        { "id": 2503, "name": "黯炎火炬" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 3116, "name": "瑞莱的冰晶节杖" },
-        { "id": 4010, "name": "放血者的诅咒" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 4010,
+          "name": "放血者的诅咒"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "mobalytics.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 128" role="img" aria-label="Mayhempedia logo">
+  <defs>
+    <linearGradient id="gold" x1="32" x2="96" y1="24" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2D28A"/>
+      <stop offset="0.54" stop-color="#D0AD68"/>
+      <stop offset="1" stop-color="#8C6A35"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="44" x2="88" y1="44" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8FEAF2"/>
+      <stop offset="1" stop-color="#5EC8D7"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M64 11 109 37v54l-45 26-45-26V37L64 11Z" fill="#101A27" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M64 25 96 44v39l-32 20-32-20V44l32-19Z" fill="#071018" stroke="#243246" stroke-width="2"/>
+    <path d="M35 82V48l15 10 14 25 14-25 15-10v34l-15 9V70L64 94 50 70v21l-15-9Z" fill="url(#gold)"/>
+    <path d="M39 46 64 32l25 14-25 15-25-15Z" fill="#172536" stroke="#D0AD68" stroke-width="3"/>
+    <path d="M48 46 64 37l16 9-16 9-16-9Z" fill="#071018"/>
+    <circle cx="64" cy="46" r="8" fill="url(#cyan)"/>
+    <circle cx="64" cy="46" r="3.5" fill="#F2E8D6"/>
+  </g>
+  <text x="154" y="78" fill="#F2E8D6" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="-1.2">
+    Mayhem<tspan fill="#D0AD68">pedia</tspan>
+  </text>
+  <text x="158" y="102" fill="#8EA0B8" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="2.6">SEE THE ROUTE</text>
+</svg>

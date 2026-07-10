@@ -9,30 +9,99 @@
       "note": "纯坦克辅助思路：靠Heartsteel系装备堆叠巨量生命，E眩晕控场、W群体护盾、R团队无敌。⚠️ 核心海克斯已按arammayhem.com实测数据改正：坦克引擎/任务：钢化你心是站上确认的最高胜率(约60%+)选择，草稿最初标的由心及物/循环往复在该站塔里克专属列表中并未出现，已替换。",
       "augments": {
         "core": [
-          { "id": 313, "apiName": "TankEngine", "name": "坦克引擎" },
-          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "任务：钢化你心" }
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          }
         ],
         "good": [
-          { "id": 41, "apiName": "Goliath", "name": "歌利亚巨人" },
-          { "id": 13, "apiName": "CelestialBody", "name": "星界躯体" },
-          { "id": 44, "apiName": "IceCold", "name": "冰寒" },
-          { "id": 118, "apiName": "CriticalHealing", "name": "会心治疗" },
-          { "id": 311, "apiName": "Overflow", "name": "溢流" }
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "星界躯体"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          },
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "会心治疗"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "溢流"
+          }
         ],
         "trap": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" },
-          { "id": 66, "apiName": "QuantumComputing", "name": "量子计算" }
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          },
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "量子计算"
+          }
         ]
       },
       "items": [
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3070, "name": "女神之泪" },
-        { "id": 223119, "name": "凛冬之临" },
-        { "id": 223118, "name": "残疫" },
-        { "id": 3075, "name": "荆棘之甲" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 223119,
+          "name": "凛冬之临"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 223118,
+          "name": "残疫"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        }
+      ]
     }
   ]
 }

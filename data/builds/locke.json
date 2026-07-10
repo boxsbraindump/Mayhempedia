@@ -9,30 +9,99 @@
       "note": "AP法刺/恶魔猎人，Q钉刺叠层+E突进重置+R处决对残血目标极其致命。metasrc.com确认巫师式思考/超强大脑/任务：沃格勒特的巫师帽为top augments，aramgg.com部分交叉印证(仅巫师帽重合，属正常的站点间胜率排名差异，非编造)。出装卢登起手→黄昏与黎明→法穿收尾。",
       "augments": {
         "core": [
-          { "id": 97, "apiName": "WitchfulThinking", "name": "巫师式思考" },
-          { "id": 180, "apiName": "BigBrain", "name": "超强大脑" }
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "超强大脑"
+          }
         ],
         "good": [
-          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" },
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" },
-          { "id": 217, "apiName": "Deathtouch", "name": "死亡触摸" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "任务：沃格勒特的巫师帽"
+          },
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "裁决使"
+          },
+          {
+            "id": 217,
+            "apiName": "Deathtouch",
+            "name": "死亡触摸"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          }
         ],
         "trap": [
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 47, "apiName": "ItsCritical", "name": "关键暴击" }
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          }
         ]
       },
       "items": [
-        { "id": 6655, "name": "卢登的回声" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 2510, "name": "黄昏与黎明" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["aramgg.com", "metasrc.com", "blitz.gg"]
+      "sources": [
+        "aramgg.com",
+        "metasrc.com",
+        "blitz.gg",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

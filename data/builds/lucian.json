@@ -9,27 +9,79 @@
       "note": "标准远程暴击ADC打法，珠光护手让技能也能暴击，配合易损/连拨击锤/灵巧堆叠攻速与爆发。",
       "augments": {
         "core": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 220, "apiName": "FanTheHammer", "name": "连拨击锤" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
         ],
         "good": [
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 88, "apiName": "UltimateRevolution", "name": "终极刷新" }
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "终极刷新"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3013, "name": "灵犀众魂" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 6675, "name": "纳沃利烁刃" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3032, "name": "育恩塔尔荒野箭" },
-        { "id": 6676, "name": "收集者" }
+        {
+          "id": 3508,
+          "name": "夺萃之镰"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 6675,
+          "name": "纳沃利烁刃"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        }
       ],
       "runes": null,
-      "sources": ["metasrc.com", "arammayhem.com", "mobalytics.gg"]
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "暴风之剑"
+        }
+      ]
     },
     {
       "key": "melee",
@@ -37,24 +89,81 @@
       "damageType": "AD",
       "note": "拿到「亮出你的剑」后转近战，换取大量AD/攻速/生命/生命偷取和移速，配合暴击装叠加输出与续航，高胜率但需要更贴脸打。",
       "augments": {
-        "core": [{ "id": 134, "apiName": "DrawYourSword", "name": "亮出你的剑" }],
-        "good": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" },
-          { "id": 103, "apiName": "BreadAndButter", "name": "面包和黄油" }
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
         ],
-        "trap": [{ "id": 87, "apiName": "Typhoon", "name": "台风" }]
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "面包和黄油"
+          }
+        ],
+        "trap": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          }
+        ]
       },
       "items": [
-        { "id": 3072, "name": "饮血剑" },
-        { "id": 3006, "name": "狂战士胫甲" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 6675, "name": "纳沃利烁刃" },
-        { "id": 3032, "name": "育恩塔尔荒野箭" }
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6675,
+          "name": "纳沃利烁刃"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "dvg.cn"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "暴风之剑"
+        }
+      ]
     }
   ]
 }

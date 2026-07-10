@@ -9,26 +9,76 @@
       "note": "高伤害战士刺客路线，靠狂妄+收集者+无尽的暴击/处决链条秒杀脆皮，死亡之舞和无穷饥渴续航。核心装出装顺序、秘术冲拳/全凭身法两个核心海克斯经arammayhem.com直接确认为Prismatic档top pick。⚠️ 巨人杀手最初被误判为陷阱，实际是全服榜单里62.82%胜率的强势海克斯，没有任何来源说明它对贝蕾亚不利，已剔除该判断；草稿另一个「半肉战士流」流派在所有主流Mayhem数据站均查无实据，更像是套用召唤师峡谷贝蕾亚出装的通用思路包装成专属流派，已整体删除。",
       "augments": {
         "core": [
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" }
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          }
         ],
         "good": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 225, "apiName": "DualWield", "name": "双刀流" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6697, "name": "狂妄" },
-        { "id": 6676, "name": "收集者" },
-        { "id": 2517, "name": "无穷饥渴" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3031, "name": "无尽之刃" },
-        { "id": 3036, "name": "多米尼克领主的致意" }
+        {
+          "id": 6697,
+          "name": "狂妄"
+        },
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 2517,
+          "name": "无穷饥渴"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com"]
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }

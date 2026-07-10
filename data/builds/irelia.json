@@ -9,29 +9,89 @@
       "note": "刀锋舞者靠Q平A减CD和被动斩杀打真实伤害，走AD攻速/吸血斗士流，核心装破败王者之刃打真实伤害续航。arammayhem.com直接确认秘术冲拳(55.45%，站点特别指出约300技能急速可打出近乎无限Q，是Mayhem专属机制理由)、渴血(57.36%)、大力(57.27%)、狂徒豪气为高胜率海克斯。⚠️ core/good的具体分级会随版本小幅波动，方向性结论稳定但不代表所有信源在细节分级上逐字一致。",
       "augments": {
         "core": [
-          { "id": 58, "apiName": "MysticPunch", "name": "秘术冲拳" },
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" }
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
         ],
         "good": [
-          { "id": 7, "apiName": "BluntForce", "name": "大力" },
-          { "id": 63, "apiName": "OutlawsGrit", "name": "狂徒豪气" },
-          { "id": 19, "apiName": "Dashing", "name": "全凭身法" },
-          { "id": 37, "apiName": "FirstAidKit", "name": "急救用具" }
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "大力"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "狂徒豪气"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "急救用具"
+          }
         ],
         "trap": [
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ]
       },
       "items": [
-        { "id": 3153, "name": "破败王者之刃" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 3181, "name": "破舰者" },
-        { "id": 6333, "name": "死亡之舞" },
-        { "id": 3053, "name": "斯特拉克的挑战护手" },
-        { "id": 3071, "name": "黑色切割者" }
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3181,
+          "name": "破舰者"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        },
+        {
+          "id": 3071,
+          "name": "黑色切割者"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "blitz.gg"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        }
+      ]
     }
   ]
 }

@@ -38,8 +38,11 @@ for (const f of files) {
     const w = `${b.championName}/${arch.name}`
     const augs = [...(arch.augments?.core ?? []), ...(arch.augments?.good ?? []), ...(arch.augments?.trap ?? [])]
     for (const a of augs) checkAug(a, w)
-    for (const it of arch.items ?? []) checkItem(it, w)
-    console.log(`  ✓ ${arch.name}: ${augs.length} 增强 (核心${arch.augments?.core?.length ?? 0}/备选${arch.augments?.good?.length ?? 0}/陷阱${arch.augments?.trap?.length ?? 0}) + ${arch.items?.length ?? 0} 装备`)
+    for (const it of arch.starterItems ?? []) checkItem(it, `${w}/starterItems`)
+    for (const it of arch.items ?? []) checkItem(it, `${w}/items`)
+    for (const it of arch.boots ?? []) checkItem(it, `${w}/boots`)
+    for (const it of arch.optionalItems ?? []) checkItem(it, `${w}/optionalItems`)
+    console.log(`  ✓ ${arch.name}: ${augs.length} 增强 (核心${arch.augments?.core?.length ?? 0}/备选${arch.augments?.good?.length ?? 0}/陷阱${arch.augments?.trap?.length ?? 0}) + ${arch.starterItems?.length ?? 0} 出门装 + ${arch.items?.length ?? 0} 六神装 + ${arch.boots?.length ?? 0} 鞋子 + ${arch.optionalItems?.length ?? 0} 备选装备`)
   }
 }
 

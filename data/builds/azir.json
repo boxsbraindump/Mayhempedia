@@ -9,28 +9,91 @@
       "note": "只有法核这一条主流路线，核心是纳什之牙+法穿装备叠加W鞭笞和沙兵普攻伤害。出装(纳什之牙/法师之靴/兰德里的折磨/影焰/死亡之帽/中娅沙漏)在arammayhem.com、aramgg.com、blitz.gg摘要多个独立源高度一致。⚠️ 叠角龙最初被列为「招牌核心海克斯」，但直接核对该增强自己的专属介绍页，推荐英雄列表根本不含阿兹尔(该海克斯真正契合Rell/Sejuani/Veigar这类角色)，纯属编造的化学反应，已剔除；替换为arammayhem.com真实Prismatic档确认的巨人杀手/尤里卡为核心。",
       "augments": {
         "core": [
-          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 30, "apiName": "Eureka", "name": "尤里卡" }
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          }
         ],
         "good": [
-          { "id": 129, "apiName": "Marksmage", "name": "神射法师" },
-          { "id": 22, "apiName": "Deft", "name": "灵巧" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
-          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" },
-          { "id": 156, "apiName": "Quest_WoogletsWitchcap", "name": "任务：沃格勒特的巫师帽" }
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "神射法师"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "任务：沃格勒特的巫师帽"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 3115, "name": "纳什之牙" },
-        { "id": 3020, "name": "法师之靴" },
-        { "id": 6653, "name": "兰德里的折磨" },
-        { "id": 4645, "name": "影焰" },
-        { "id": 3089, "name": "灭世者的死亡之帽" },
-        { "id": 3157, "name": "中娅沙漏" }
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "守护者法球"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

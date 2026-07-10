@@ -9,29 +9,93 @@
       "note": "靠鬼魂(Q召唤物)+被动普攻叠层的坦克型战士，走心之钢起手的肉装AA流，用鬼魂帮忙触发装备/增强效果打后期消耗战。arammayhem.com的build页与专属连招页两处都给出接近的胜率数字(重量级打击手63.49%、虚幻武器58.29%，连招页标注'Strong ↑5')，机制描述逐字对应；aramgg.com的部分海克斯(全能龙魂)也在推荐池中出现，但其头部推荐与本档不完全一致，未算作完整的第三方复现。",
       "augments": {
         "core": [
-          { "id": 181, "apiName": "HeavyHitter", "name": "重量级打击手" },
-          { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" }
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          }
         ],
         "good": [
-          { "id": 138, "apiName": "Goredrink", "name": "渴血" },
-          { "id": 62, "apiName": "OmniSoul", "name": "全能龙魂" },
-          { "id": 57, "apiName": "MountainSoul", "name": "山脉龙魂" },
-          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" }
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          },
+          {
+            "id": 62,
+            "apiName": "OmniSoul",
+            "name": "全能龙魂"
+          },
+          {
+            "id": 57,
+            "apiName": "MountainSoul",
+            "name": "山脉龙魂"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
         ],
         "trap": [
-          { "id": 205, "apiName": "ADAPt", "name": "物理转魔法" }
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          }
         ]
       },
       "items": [
-        { "id": 3084, "name": "心之钢" },
-        { "id": 3111, "name": "水银之靴" },
-        { "id": 6662, "name": "冰脉护手" },
-        { "id": 3065, "name": "振奋盔甲" },
-        { "id": 3075, "name": "荆棘之甲" },
-        { "id": 3143, "name": "兰顿之兆" }
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 6662,
+          "name": "冰脉护手"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        },
+        {
+          "id": 3143,
+          "name": "兰顿之兆"
+        }
       ],
       "runes": null,
-      "sources": ["arammayhem.com", "metasrc.com", "aramgg.com"]
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }
