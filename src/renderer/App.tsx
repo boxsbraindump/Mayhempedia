@@ -1274,7 +1274,7 @@ function OfficialDiscoveryRoutes({
         </div>
         <div className="flex items-center gap-2">
           <button type="button" onClick={onOpenChampions} className={BTN_TINY_SECONDARY}>
-            {lang === 'en' ? 'Hero index' : '英雄图鉴'}
+            {lang === 'en' ? 'Champion Codex' : '英雄图鉴'}
           </button>
         </div>
       </div>
