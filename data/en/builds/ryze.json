@@ -1,0 +1,100 @@
+{
+  "championId": 13,
+  "championName": "Ryze",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Ryze",
+      "damageType": "AP",
+      "note": "Ryze AP route for ARAM: Mayhem. Prioritize ADAPt / Mind to Matter as the main augment plan. Strong secondary hits include Eureka / Overflow / Witchful Thinking. Build toward Rod of Ages > Sorcerer's Shoes > Seraph's Embrace > Manamune > Fimbulwinter > Rabadon's Deathcap. Start with Tear of the Goddess + Blasting Wand + Health Potion. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "Overflow"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3040,
+          "name": "Seraph's Embrace"
+        },
+        {
+          "id": 3004,
+          "name": "Manamune"
+        },
+        {
+          "id": 3121,
+          "name": "Fimbulwinter"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 1026,
+          "name": "Blasting Wand"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

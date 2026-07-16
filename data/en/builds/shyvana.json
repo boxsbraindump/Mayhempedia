@@ -1,0 +1,190 @@
+{
+  "championId": 102,
+  "championName": "Shyvana",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Mystic Punch Shyvana",
+      "damageType": "AP",
+      "note": "Shyvana AP route for ARAM: Mayhem. Prioritize Mystic Punch / Ethereal Weapon as the main augment plan. Strong secondary hits include Giant Slayer / Executioner / Ice Cold. Build toward Dusk and Dawn > Riftmaker > Liandry's Torment > Mercury's Treads > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 4633,
+          "name": "Riftmaker"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ad",
+      "name": "AD Heavy Hitter Shyvana",
+      "damageType": "AD",
+      "note": "Shyvana AD route for ARAM: Mayhem. Prioritize Heavy Hitter as the main augment plan. Strong secondary hits include Goredrink / Giant Slayer / Ice Cold. Build toward Trinity Force > Mercury's Treads > Spear of Shojin > Heartsteel > Death's Dance > Sterak's Gage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against aramgg.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          }
+        ],
+        "trap": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

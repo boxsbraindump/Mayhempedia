@@ -11,14 +11,36 @@ export interface Augment {
   tooltip: string
   iconLargeLocal: string
   iconSmallLocal: string
+  availability?: 'live' | 'legacy'
+  source?: string
+  sourceUrl?: string
 }
 
 export interface Item {
   id: number
   name: string
+  price?: number
   priceTotal: number
+  categories?: string[]
+  from?: number[]
+  to?: number[]
+  inStore?: boolean
   desc: string
   iconLocal: string
+}
+
+/**
+ * Route data can reference an item that is created by an in-game transform
+ * (for example, Diadem of Songs). `inStore` only tells us whether that exact
+ * record can be bought directly, not whether the item exists in ARAM.
+ */
+export function isSupportedPlayerItem(item: Item): boolean {
+  return item.id < 100000
+}
+
+/** Keep custom-route search focused on directly purchasable player items. */
+export function isSelectableRouteItem(item: Item): boolean {
+  return isSupportedPlayerItem(item) && item.inStore !== false
 }
 
 export interface Champion {
@@ -89,23 +111,41 @@ export interface PatchNotes {
   theme: string
   releaseDate: string
   sourceUrl: string
-  championChanges: { championId: number; championName: string; changes: string[]; changesEn?: string[] }[]
+  championChanges: { championId: number; championName: string; championNameEn?: string; changes: string[]; changesEn?: string[] }[]
   itemChanges: { itemId?: number; itemName: string; itemNameEn?: string; changes: string[]; changesEn?: string[] }[]
   systemChanges: string[]
   systemChangesEn?: string[]
   mayhem: {
-    summaryZh: string
-    summaryEn: string
-    augmentChanges: { icon?: string; name: string; change: string; changeEn?: string }[]
+    summaryZh?: string
+    summaryEn?: string
+    augmentChanges: { icon?: string; name: string; nameEn?: string; change: string; changeEn?: string }[]
     bugfixes: string[]
     bugfixesEn?: string[]
   }
+}
+
+interface RuntimeAugmentAliasPayload {
+  aliases?: Record<string, number>
+}
+
+let runtimeAugmentIdAliases: Record<number, number> = {}
+
+function normalizeAliasPayload(payload: RuntimeAugmentAliasPayload): Record<number, number> {
+  return Object.fromEntries(
+    Object.entries(payload.aliases ?? {})
+      .map(([runtimeId, localId]) => [Number(runtimeId), localId] as const)
+      .filter(([runtimeId, localId]) => Number.isFinite(runtimeId) && Number.isFinite(localId)),
+  )
 }
 
 /** 一次加载：主数据 + 英雄列表 + 流派索引 */
 export interface Core {
   augById: Map<number, Augment>
   itemById: Map<number, Item>
+  altAugById: Map<number, Pick<Augment, 'id' | 'name' | 'desc' | 'tooltip'>>
+  altItemById: Map<number, Pick<Item, 'id' | 'name' | 'desc' | 'categories'>>
+  altChampionById: Map<number, Pick<Champion, 'id' | 'name' | 'title' | 'alias' | 'pinyin' | 'initials'>>
+  runtimeAugmentAliases: Record<number, number>
   augments: Augment[] // 全列表（海克斯一览用）
   champions: Champion[]
   buildIndex: Record<string, string> // championId -> 流派文件名
@@ -122,19 +162,43 @@ export interface Core {
  */
 export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
   const root = lang === 'en' ? '/en' : ''
-  const [aug, items, champions, buildIndex, aramBalance, heroTier, patchNotes] = await Promise.all([
+  const altRoot = lang === 'en' ? '' : '/en'
+  const [
+    aug,
+    items,
+    champions,
+    altAug,
+    altItems,
+    altChampions,
+    buildIndex,
+    aramBalance,
+    heroTier,
+    patchNotes,
+    augmentAliasPayload,
+  ] = await Promise.all([
     fetch(`${root}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
     fetch(`${root}/items.json`).then((r) => r.json() as Promise<Item[]>),
     fetch(`${root}/champions.json`).then((r) => r.json() as Promise<Champion[]>),
-    fetch('/builds/index.json').then((r) => r.json() as Promise<Record<string, string>>),
+    fetch(`${altRoot}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
+    fetch(`${altRoot}/items.json`).then((r) => r.json() as Promise<Item[]>),
+    fetch(`${altRoot}/champions.json`).then((r) => r.json() as Promise<Champion[]>),
+    fetch(`${root}/builds/index.json`).then((r) => r.json() as Promise<Record<string, string>>),
     fetch('/aram-balance.json').then((r) => r.json() as Promise<AramBalance[]>),
     fetch('/hero-tier.json').then((r) => r.json() as Promise<HeroTier[]>),
-    fetch('/patch-notes.json').then((r) => r.json() as Promise<PatchNotes>),
+    fetch(`${root}/patch-notes.json`).then((r) => r.json() as Promise<PatchNotes>),
+    fetch('/augment-runtime-aliases.json')
+      .then((r) => (r.ok ? (r.json() as Promise<RuntimeAugmentAliasPayload>) : { aliases: {} }))
+      .catch(() => ({ aliases: {} })),
   ])
+  runtimeAugmentIdAliases = normalizeAliasPayload(augmentAliasPayload)
   return {
     augById: new Map(aug.map((a) => [a.id, a])),
-    itemById: new Map(items.map((i) => [i.id, i])),
-    augments: aug,
+    itemById: new Map(items.filter(isSupportedPlayerItem).map((i) => [i.id, i])),
+    altAugById: new Map(altAug.map((a) => [a.id, a])),
+    altItemById: new Map(altItems.filter(isSupportedPlayerItem).map((i) => [i.id, i])),
+    altChampionById: new Map(altChampions.map((c) => [c.id, c])),
+    runtimeAugmentAliases: runtimeAugmentIdAliases,
+    augments: aug.filter((a) => a.availability !== 'legacy'),
     champions,
     buildIndex,
     aramBalance,
@@ -143,14 +207,36 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
   }
 }
 
-export async function loadBuild(file: string): Promise<Build> {
-  return fetch('/builds/' + file).then((r) => r.json())
+export async function loadBuild(file: string, lang: 'zh' | 'en' = 'zh'): Promise<Build> {
+  const root = lang === 'en' ? '/en' : ''
+  return fetch(`${root}/builds/${file}`).then((r) => r.json())
+}
+
+const MANUAL_RUNTIME_AUGMENT_ID_ALIASES: Record<number, number> = {
+  1071: 910008, // Scopier Weapons
+  1170: 910024, // Scoped Weapons
+  1349: 910052, // Ultimate Awakening
+  1353: 313, // Tank Engine
+  1379: 1379, // Upgrade Sword of Blossoming Dawn
+  1384: 910022, // Donation
+  1388: 900003, // Infinite Recursion
+  1390: 65, // Phenomenal Evil
+  1421: 910089, // Prom Queen
+  2083: 910006, // Tooth Fairy
+  2132: 910003, // Warlock Juicebox
 }
 
 /** Mayhem 模式部分海克斯用 base_id+1000 的变体编号（实测发现，非文档记录），查找时先按原 id 找，
  *  找不到且 id≥1000 时退化为 id-1000 再查一次。我们数据里增强最大 id 是 405，不会跟真实低位 id 撞车。 */
 export function getAugment(augById: Map<number, Augment>, id: number): Augment | undefined {
-  return augById.get(id) ?? (id >= 1000 ? augById.get(id - 1000) : undefined)
+  const alias = runtimeAugmentIdAliases[id] ?? MANUAL_RUNTIME_AUGMENT_ID_ALIASES[id]
+  return (
+    augById.get(id) ??
+    (alias ? augById.get(alias) : undefined) ??
+    (id >= 1000 ? augById.get(id - 1000) : undefined) ??
+    (id >= 2000 ? augById.get(id - 2000) : undefined) ??
+    (id >= 1000 ? augById.get(id % 1000) : undefined)
+  )
 }
 
 /** iconLocal("icons/items/2510.png") → 可访问 URL */
@@ -159,6 +245,7 @@ export const icon = (p: string): string => '/' + p
 export function refsFromIds<T extends { id: number; name: string }>(ids: number[], byId: Map<number, T>): Ref[] {
   return ids.flatMap((id) => {
     const value = byId.get(id)
+    if (value && 'availability' in value && value.availability === 'legacy') return []
     return value ? [{ id, name: value.name }] : []
   })
 }

@@ -1,0 +1,108 @@
+{
+  "championId": 92,
+  "championName": "Riven",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Riven",
+      "damageType": "AD",
+      "note": "Riven AD route for ARAM: Mayhem. Prioritize Dashing / Outlaw's Grit as the main augment plan. Strong secondary hits include Blunt Force / Shadow Runner / Spin To Win. Build toward Eclipse > Mercury's Treads > Death's Dance > Maw of Malmortius > Imperial Mandate > Sterak's Gage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and op.gg and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          }
+        ],
+        "trap": [
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "Impassable"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3156,
+          "name": "Maw of Malmortius"
+        },
+        {
+          "id": 4005,
+          "name": "Imperial Mandate"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "op.gg",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

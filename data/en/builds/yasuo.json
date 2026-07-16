@@ -1,0 +1,187 @@
+{
+  "championId": 157,
+  "championName": "Yasuo",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Mystic Punch Yasuo",
+      "damageType": "AD",
+      "note": "Yasuo AD route for ARAM: Mayhem. Prioritize Mystic Punch as the main augment plan. Strong secondary hits include Deft / Goredrink / Outlaw's Grit. Build toward Immortal Shieldbow > Blade of The Ruined King > Death's Dance > Berserker's Greaves > Infinity Edge > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6673,
+          "name": "Immortal Shieldbow"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "shield",
+      "name": "AD Critical Healing Yasuo",
+      "damageType": "AD",
+      "note": "Yasuo AD route for ARAM: Mayhem. Prioritize Critical Healing as the main augment plan. Strong secondary hits include Soul Siphon / Dual Wield / Symphony of War. Build toward Rite Of Ruin > Berserker's Greaves > Blade of The Ruined King > Infinity Edge > Death's Dance > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          }
+        ],
+        "good": [
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 79,
+            "apiName": "SymphonyofWar",
+            "name": "Symphony of War"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "trap": [
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "escAPADe"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3430,
+          "name": "Rite Of Ruin"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

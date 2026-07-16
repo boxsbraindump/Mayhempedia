@@ -1,0 +1,98 @@
+{
+  "championId": 64,
+  "championName": "Lee Sin",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Lee Sin",
+      "damageType": "AD",
+      "note": "Lee Sin AD route for ARAM: Mayhem. Prioritize Blunt Force / Mystic Punch as the main augment plan. Strong secondary hits include Outlaw's Grit / Clown College / Giant Slayer. Build toward Axiom Arc > Eclipse > Mercury's Treads > Black Cleaver > Death's Dance > The Collector. Start with Long Sword + Guardian's Blade. Cross-checked against aramgg.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "Keystone Conjurer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

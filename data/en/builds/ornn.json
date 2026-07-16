@@ -1,0 +1,187 @@
+{
+  "championId": 516,
+  "championName": "Ornn",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Ornn",
+      "damageType": "Tank",
+      "note": "Ornn TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Restless Restoration. Build toward Heartsteel > Spirit Visage > Unending Despair > Mercury's Treads > Thornmail > Jak'Sho, The Protean. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 70,
+            "apiName": "RestlessRestoration",
+            "name": "Restless Restoration"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          }
+        ],
+        "trap": [
+          {
+            "id": 234,
+            "apiName": "GambaAnvil",
+            "name": "Gamba Anvil"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap-burst",
+      "name": "AP Fey Magic Ornn",
+      "damageType": "AP",
+      "note": "Ornn AP route for ARAM: Mayhem. Prioritize Fey Magic as the main augment plan. Strong secondary hits include It's Killing Time / Tank Engine / With Haste. Build toward Heartsteel > Morellonomicon > Void Staff > Sunfire Aegis > Jak'Sho, The Protean > Rabadon's Deathcap. Start with Guardian's Horn + Boots + Health Potion. Cross-checked against arammayhem.com and zhihu.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "Fey Magic"
+          }
+        ],
+        "good": [
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "With Haste"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "zhihu.com"
+      ],
+      "starterItems": [
+        {
+          "id": 2051,
+          "name": "Guardian's Horn"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

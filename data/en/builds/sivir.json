@@ -1,0 +1,99 @@
+{
+  "championId": 15,
+  "championName": "Sivir",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Sivir",
+      "damageType": "AD",
+      "note": "Sivir AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include Fan The Hammer / It's Critical / Light 'em Up!. Build toward Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > The Collector. Start with Noonquiver. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "Light 'em Up!"
+          },
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          }
+        ],
+        "trap": [
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 6670,
+          "name": "Noonquiver"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

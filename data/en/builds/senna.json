@@ -1,0 +1,206 @@
+{
+  "championId": 235,
+  "championName": "Senna",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Dual Wield Senna",
+      "damageType": "AD",
+      "note": "Senna AD route for ARAM: Mayhem. Prioritize Dual Wield / Scopiest Weapons as the main augment plan. Strong secondary hits include Deft / Giant Slayer / Typhoon. Build toward The Collector > Boots of Swiftness > Infinity Edge > Statikk Shiv > Lord Dominik's Regards > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and dvg.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3009,
+          "name": "Boots of Swiftness"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3087,
+          "name": "Statikk Shiv"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "protect",
+      "name": "Support Upgrade Sword of Blossoming Dawn Senna",
+      "damageType": "Support",
+      "note": "Senna SUPPORT route for ARAM: Mayhem. Prioritize Upgrade Sword of Blossoming Dawn / Spirit Bomb as the main augment plan. Strong secondary hits include Tooth Fairy / Donation / Windspeaker's Blessing. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Diadem of Songs > Ardent Censer > Redemption > Dawncore. Start with Bandleglass Mirror + Forbidden Idol. Cross-checked against arammayhem.com and aramgg.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 1379,
+            "apiName": "ARAMMayhemUpgradeSwordOfBlossomingDawn",
+            "name": "Upgrade Sword of Blossoming Dawn"
+          },
+          {
+            "id": 910019,
+            "apiName": "ARAMMayhemSpiritBomb",
+            "name": "Spirit Bomb"
+          }
+        ],
+        "good": [
+          {
+            "id": 910006,
+            "apiName": "ARAMMayhemToothFairy",
+            "name": "Tooth Fairy"
+          },
+          {
+            "id": 910022,
+            "apiName": "ARAMMayhemDonation",
+            "name": "Donation"
+          },
+          {
+            "id": 910011,
+            "apiName": "ARAMMayhemWindspeakersBlessing",
+            "name": "Windspeaker's Blessing"
+          },
+          {
+            "id": 910012,
+            "apiName": "ARAMMayhemWeeWooWeeWoo",
+            "name": "Wee Woo Wee Woo"
+          },
+          {
+            "id": 910013,
+            "apiName": "ARAMMayhemSonata",
+            "name": "Sonata"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 2530,
+          "name": "Diadem of Songs"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 6621,
+          "name": "Dawncore"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        },
+        {
+          "id": 3114,
+          "name": "Forbidden Idol"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3009,
+          "name": "Boots of Swiftness"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6620,
+          "name": "Echoes of Helia"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        },
+        {
+          "id": 4005,
+          "name": "Imperial Mandate"
+        }
+      ]
+    }
+  ]
+}

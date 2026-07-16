@@ -1,0 +1,186 @@
+{
+  "championId": 122,
+  "championName": "Darius",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Heavy Hitter Darius",
+      "damageType": "AD",
+      "note": "Darius AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Mystic Punch as the main augment plan. Strong secondary hits include Dawnbringer's Resolve / Typhoon / Blunt Force. Build toward Trinity Force > Mercury's Treads > Sterak's Gage > Stridebreaker > Sundered Sky > Spirit Visage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "Dawnbringer's Resolve"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": [
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "Blade Waltz"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 6631,
+          "name": "Stridebreaker"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Darius",
+      "damageType": "Tank",
+      "note": "Darius TANK route for ARAM: Mayhem. Prioritize Tank Engine as the main augment plan. Strong secondary hits include Dawnbringer's Resolve / Heavy Hitter / Impassable. Build toward Heartsteel > Overlord's Bloodmail > Unending Despair > Sundered Sky > Warmog's Armor > Mercury's Treads. Start with Long Sword + Guardian's Blade. Cross-checked against aramonly.com and metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "Dawnbringer's Resolve"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "Impassable"
+          }
+        ],
+        "trap": [
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "Blade Waltz"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramonly.com",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -14,14 +14,18 @@
     "watch": "tsc -w",
     "dev": "vite",
     "build:renderer": "vite build",
-    "data": "node scripts/fetch-data.mjs && node scripts/download-icons.mjs && node scripts/fetch-aram-balance.mjs && node scripts/build-hero-tier.mjs",
+    "data": "node scripts/fetch-data.mjs && node scripts/download-icons.mjs && node scripts/fetch-arammayhem-augments.mjs && node scripts/fetch-communitydragon-augment-aliases.mjs && node scripts/fetch-aram-balance.mjs && node scripts/build-hero-tier.mjs && node scripts/generate-en-builds.mjs && node scripts/generate-en-patch-notes.mjs",
     "data:fetch": "node scripts/fetch-data.mjs",
+    "data:augments": "node scripts/fetch-arammayhem-augments.mjs",
+    "data:augment-aliases": "node scripts/fetch-communitydragon-augment-aliases.mjs",
     "data:icons": "node scripts/download-icons.mjs",
     "data:balance": "node scripts/fetch-aram-balance.mjs",
     "data:tier": "node scripts/build-hero-tier.mjs",
+    "data:en-builds": "node scripts/generate-en-builds.mjs",
+    "data:en-patch-notes": "node scripts/generate-en-patch-notes.mjs",
     "data:augments-lcu": "node scripts/fetch-augments-from-lcu.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
-    "validate": "node scripts/validate-builds.mjs"
+    "validate": "node scripts/validate-builds.mjs && node scripts/validate-localized-data.mjs"
   },
   "build": {
     "appId": "gg.mayhempedia.desktop",
@@ -40,6 +44,13 @@
     "asar": false,
     "asarUnpack": [
       "node_modules/uiohook-napi/**/*"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "boxsbraindump",
+        "repo": "Mayhempedia"
+      }
     ],
     "win": {
       "icon": "data/assets/brand/mayhempedia-icon.ico",
@@ -89,6 +100,7 @@
   },
   "dependencies": {
     "electron-store": "^11.0.2",
+    "electron-updater": "^6.8.9",
     "league-connect": "^6.0.0-rc13",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",

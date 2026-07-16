@@ -93,6 +93,123 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "pressure-cooker",
+      "name": "高压锅灼烧赛恩",
+      "damageType": "Tank",
+      "note": "高压锅将赛恩的高生命值、贴脸蓄Q和死后继续搅场全部转成持续灼烧收益。核心是先站住、再用护盾和控制拖长战斗，不是追求一套爆发。",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "高压锅"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          },
+          {
+            "id": 327,
+            "apiName": "UndyingGuard",
+            "name": "不灭守护"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3083,
+          "name": "狂徒铠甲"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3047,
+          "name": "铁板靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        },
+        {
+          "id": 4401,
+          "name": "自然之力"
+        },
+        {
+          "id": 6662,
+          "name": "冰脉护手"
+        }
+      ]
     }
   ]
 }

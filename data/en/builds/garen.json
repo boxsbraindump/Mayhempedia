@@ -1,0 +1,113 @@
+{
+  "championId": 86,
+  "championName": "Garen",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Garen",
+      "damageType": "AD",
+      "note": "Garen AD route for ARAM: Mayhem. Prioritize Spin To Win / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Tank Engine / Heavy Hitter. Build toward Stridebreaker > Berserker's Greaves > Phantom Dancer > Infinity Edge > Death's Dance > Black Cleaver. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "Blade Waltz"
+          }
+        ],
+        "trap": [
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          },
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "Impassable"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6631,
+          "name": "Stridebreaker"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3046,
+          "name": "Phantom Dancer"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

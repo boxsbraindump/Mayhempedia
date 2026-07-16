@@ -95,6 +95,89 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "shadow-runner-one-shot",
+      "name": "暗影疾奔一刀薇恩",
+      "damageType": "AD",
+      "note": "暗影疾奔才转这条。开R后用Q隐身寻找侧翼，靠咒刃、盈能和强化普攻把一次出手的伤害拉满；敌方前排很厚时回到常规特效三环流。",
+      "augments": {
+        "core": [
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "暗影疾奔"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "接二连三"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3094,
+          "name": "疾射火炮"
+        },
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6672,
+          "name": "海妖杀手"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

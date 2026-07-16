@@ -87,6 +87,114 @@
           "name": "耀光"
         }
       ]
+    },
+    {
+      "key": "bonk-q",
+      "name": "当头一棒叠Q内瑟斯",
+      "damageType": "AD/Tank",
+      "note": "当头一棒让Q的近战敲击更有团战存在感，适合已经能稳定摸到人的对局。三相之力保证Q节奏，朔极之矛与焚天补持续作战，后续转半坦避免只会叠层但进场蒸发。",
+      "augments": {
+        "core": [
+          {
+            "id": 910021,
+            "apiName": "ARAMMayhemBonk",
+            "name": "当头一棒！"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
+          }
+        ],
+        "good": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "任务：钢化你心"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 3057,
+          "name": "耀光"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "items": [
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        },
+        {
+          "id": 6610,
+          "name": "焚天"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        },
+        {
+          "id": 3065,
+          "name": "振奋盔甲"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3047,
+          "name": "铁板靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ]
     }
   ]
 }

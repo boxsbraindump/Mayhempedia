@@ -1,0 +1,103 @@
+{
+  "championId": 78,
+  "championName": "Poppy",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Poppy",
+      "damageType": "Tank",
+      "note": "Poppy TANK route for ARAM: Mayhem. Prioritize Goliath / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Tank Engine / Undying Guard. Build toward Heartsteel > Mercury's Treads > Unending Despair > Thornmail > Jak'Sho, The Protean > Sunfire Aegis. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 327,
+            "apiName": "UndyingGuard",
+            "name": "Undying Guard"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          }
+        ],
+        "trap": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

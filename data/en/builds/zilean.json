@@ -1,0 +1,113 @@
+{
+  "championId": 26,
+  "championName": "Zilean",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Zilean",
+      "damageType": "AP",
+      "note": "Zilean AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Mind to Matter / Magic Missile / Juice Box. Build toward Luden's Echo > Sorcerer's Shoes > Stormsurge > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          },
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

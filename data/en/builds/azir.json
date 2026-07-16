@@ -1,0 +1,101 @@
+{
+  "championId": 268,
+  "championName": "Azir",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Azir",
+      "damageType": "AP",
+      "note": "Azir AP route for ARAM: Mayhem. Prioritize Giant Slayer / Eureka as the main augment plan. Strong secondary hits include Marksmage / Deft / Magic Missile. Build toward Nashor's Tooth > Sorcerer's Shoes > Liandry's Torment > Shadowflame > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "championId": 202,
+  "championName": "Jhin",
+  "archetypes": [
+    {
+      "key": "ad_ranged_crit",
+      "name": "AD Scopiest Weapons Jhin",
+      "damageType": "AD",
+      "note": "Jhin AD route for ARAM: Mayhem. Prioritize Scopiest Weapons / Fan The Hammer as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Blunt Force. Build toward The Collector > Boots of Swiftness > Infinity Edge > Lord Dominik's Regards > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "Bread And Butter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "Keystone Conjurer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3009,
+          "name": "Boots of Swiftness"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3046,
+          "name": "Phantom Dancer"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "draw_your_sword_melee",
+      "name": "AD Draw Your Sword Jhin",
+      "damageType": "AD",
+      "note": "Jhin AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Giant Slayer / Fan The Hammer / Slow and Steady. Build toward The Collector > Boots of Swiftness > Infinity Edge > Runaan's Hurricane > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and dvg.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "Slow and Steady"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 9,
+            "apiName": "BuffBuddies",
+            "name": "Buff Buddies"
+          }
+        ],
+        "trap": [
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3009,
+          "name": "Boots of Swiftness"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3046,
+          "name": "Phantom Dancer"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

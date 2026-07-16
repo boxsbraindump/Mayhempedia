@@ -1,0 +1,99 @@
+{
+  "championId": 800,
+  "championName": "Mel",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Mel",
+      "damageType": "AP",
+      "note": "Mel AP route for ARAM: Mayhem. Prioritize Eureka / Magic Missile as the main augment plan. Strong secondary hits include Witchful Thinking / Skilled Sniper / Back To Basics. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Liandry's Torment > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          }
+        ],
+        "trap": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

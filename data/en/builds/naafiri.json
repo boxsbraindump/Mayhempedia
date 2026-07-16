@@ -1,0 +1,88 @@
+{
+  "championId": 950,
+  "championName": "Naafiri",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Naafiri",
+      "damageType": "AD",
+      "note": "Naafiri AD route for ARAM: Mayhem. Prioritize Dashing / Goredrink as the main augment plan. Strong secondary hits include Thread the Needle / Blunt Force / Ethereal Weapon. Build toward Hubris > The Collector > Mercury's Treads > Serylda's Grudge > Death's Dance > Axiom Arc. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

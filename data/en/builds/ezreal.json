@@ -1,0 +1,101 @@
+{
+  "championId": 81,
+  "championName": "Ezreal",
+  "archetypes": [
+    {
+      "key": "adcrit",
+      "name": "AD Crit Ezreal",
+      "damageType": "AD",
+      "note": "Ezreal AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Ethereal Weapon / Recursion. Build toward Trinity Force > Ionian Boots of Lucidity > Manamune > Spear of Shojin > Serylda's Grudge > The Collector. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ],
+        "good": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "trap": [
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "escAPADe"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3004,
+          "name": "Manamune"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

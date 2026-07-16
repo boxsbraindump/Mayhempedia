@@ -1,0 +1,217 @@
+{
+  "championId": 14,
+  "championName": "Sion",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Sion",
+      "damageType": "Tank",
+      "note": "Sion TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Undying Guard. Build toward Heartsteel > Unending Despair > Warmog's Armor > Mercury's Treads > Thornmail > Spirit Visage. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 327,
+            "apiName": "UndyingGuard",
+            "name": "Undying Guard"
+          },
+          {
+            "id": 314,
+            "apiName": "Unshackled",
+            "name": "Unshackled"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "pressure-cooker",
+      "name": "Tank Pressure Cooker Sion",
+      "damageType": "Tank",
+      "note": "Sion TANK route for ARAM: Mayhem. Prioritize Pressure Cooker / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Goliath / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Thornmail > Spirit Visage. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against bilibili.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "Pressure Cooker"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 327,
+            "apiName": "UndyingGuard",
+            "name": "Undying Guard"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        },
+        {
+          "id": 6662,
+          "name": "Iceborn Gauntlet"
+        }
+      ]
+    }
+  ]
+}

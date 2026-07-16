@@ -1,0 +1,179 @@
+{
+  "championId": 246,
+  "championName": "Qiyana",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Shadow Runner Qiyana",
+      "damageType": "AD",
+      "note": "Qiyana AD route for ARAM: Mayhem. Prioritize Shadow Runner / Dashing as the main augment plan. Strong secondary hits include Thread the Needle / Blunt Force / Slap Around. Build toward Blade of The Ruined King > Axiom Arc > Serylda's Grudge > The Collector > Ionian Boots of Lucidity > Mercury's Treads. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap-crit",
+      "name": "AP Jeweled Gauntlet Qiyana",
+      "damageType": "AP",
+      "note": "Qiyana AP route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Clown College as the main augment plan. Strong secondary hits include Dashing / Recursion / Back To Basics. Build toward Blade of The Ruined King > Axiom Arc > Serylda's Grudge > The Collector > Ionian Boots of Lucidity > Profane Hydra. Start with Long Sword + Guardian's Blade. Cross-checked against gl.ali213.net and metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          }
+        ],
+        "good": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6698,
+          "name": "Profane Hydra"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "gl.ali213.net",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

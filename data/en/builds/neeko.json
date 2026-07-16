@@ -1,0 +1,102 @@
+{
+  "championId": 518,
+  "championName": "Neeko",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Neeko",
+      "damageType": "AP",
+      "note": "Neeko AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Phenomenal Evil / Juice Box. Build toward Luden's Echo > Sorcerer's Shoes > Malignance > Stormsurge > Shadowflame > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

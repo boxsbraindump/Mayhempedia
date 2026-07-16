@@ -1,0 +1,87 @@
+{
+  "championId": 134,
+  "championName": "Syndra",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Syndra",
+      "damageType": "AP",
+      "note": "Syndra AP route for ARAM: Mayhem. Prioritize Magic Missile / Eureka as the main augment plan. Strong secondary hits include Witchful Thinking / Big Brain. Build toward Luden's Echo > Sorcerer's Shoes > Stormsurge > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and op.gg and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

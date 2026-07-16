@@ -1,0 +1,99 @@
+{
+  "championId": 897,
+  "championName": "K'Sante",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank K'Sante",
+      "damageType": "Tank",
+      "note": "K'Sante TANK route for ARAM: Mayhem. Prioritize Goliath / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Outlaw's Grit. Build toward Heartsteel > Iceborn Gauntlet > Mercury's Treads > Jak'Sho, The Protean > Thornmail > Randuin's Omen. Start with Giant's Belt + Ruby Crystal. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 6662,
+          "name": "Iceborn Gauntlet"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

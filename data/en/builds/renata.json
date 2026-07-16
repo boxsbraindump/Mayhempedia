@@ -1,0 +1,82 @@
+{
+  "championId": 888,
+  "championName": "Renata Glasc",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP/Support Renata Glasc",
+      "damageType": "AP/Support",
+      "note": "Renata Glasc AP/SUPPORT route for ARAM: Mayhem. Prioritize Slap Around as the main augment plan. Strong secondary hits include Ethereal Weapon / Ice Cold / First-Aid Kit. Build toward Malignance > Imperial Mandate > Ionian Boots of Lucidity > Shurelya's Battlesong > Liandry's Torment > Locket of the Iron Solari. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          }
+        ],
+        "good": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 4005,
+          "name": "Imperial Mandate"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 2065,
+          "name": "Shurelya's Battlesong"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3190,
+          "name": "Locket of the Iron Solari"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "championId": 799,
+  "championName": "Ambessa",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Ambessa",
+      "damageType": "AD",
+      "note": "Ambessa AD route for ARAM: Mayhem. Prioritize Back To Basics as the main augment plan. Strong secondary hits include Goredrink / Outlaw's Grit / Earthwake. Build toward Eclipse > Hubris > Mercury's Treads > Death's Dance > Spear of Shojin > Sterak's Gage. Start with Caulfield's Warhammer + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 27,
+            "apiName": "Earthwake",
+            "name": "Earthwake"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3133,
+          "name": "Caulfield's Warhammer"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

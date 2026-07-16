@@ -185,6 +185,119 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "archmage-infinite-r",
+      "name": "大法师无限R艾希",
+      "damageType": "AP",
+      "note": "把魔法水晶箭当作整条路线的核心循环。大法师与终极觉醒放大R的远距离开团和爆发，残疫、视界专注与法强装压缩大招空窗；比普通AP消耗流更专注找R的机会。",
+      "augments": {
+        "core": [
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "大法师"
+          },
+          {
+            "id": 910052,
+            "apiName": "ARAMMayhemUltimateAwakening",
+            "name": "终极觉醒"
+          }
+        ],
+        "good": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "终极刷新"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "老练狙神"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "残疫"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,102 @@
+{
+  "championId": 24,
+  "championName": "Jax",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Jax",
+      "damageType": "AD",
+      "note": "Jax AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / Mystic Punch. Build toward Trinity Force > Mercury's Treads > Sundered Sky > Death's Dance > Sterak's Gage > Blade of The Ruined King. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 28,
+            "apiName": "Erosion",
+            "name": "Erosion"
+          }
+        ],
+        "trap": [
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "Ultimate Unstoppable"
+          },
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "escAPADe"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

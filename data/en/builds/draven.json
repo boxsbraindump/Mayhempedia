@@ -1,0 +1,184 @@
+{
+  "championId": 119,
+  "championName": "Draven",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "AD Spin To Win Draven",
+      "damageType": "AD",
+      "note": "Draven AD route for ARAM: Mayhem. Prioritize Spin To Win as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Dual Wield / Giant Slayer. Build toward The Collector > Berserker's Greaves > Infinity Edge > Bloodthirster > Lord Dominik's Regards > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          }
+        ],
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 171,
+            "apiName": "Dematerialize",
+            "name": "Dematerialize"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "draw-sword",
+      "name": "AD Draw Your Sword Draven",
+      "damageType": "AD",
+      "note": "Draven AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Giant Slayer / Spin To Win / Deft. Build toward The Collector > Berserker's Greaves > Infinity Edge > Bloodthirster > Serylda's Grudge > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "trap": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

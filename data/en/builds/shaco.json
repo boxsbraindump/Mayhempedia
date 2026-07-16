@@ -1,0 +1,97 @@
+{
+  "championId": 35,
+  "championName": "Shaco",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Shaco",
+      "damageType": "AD",
+      "note": "Shaco AD route for ARAM: Mayhem. Prioritize Executioner / Eureka as the main augment plan. Strong secondary hits include Blunt Force / Recursion / Dashing. Build toward The Collector > Berserker's Greaves > Infinity Edge > Hubris > Voltaic Cyclosword > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 226,
+            "apiName": "Stats",
+            "name": "Stats!"
+          }
+        ],
+        "trap": [
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "Slow and Steady"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6699,
+          "name": "Voltaic Cyclosword"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "championId": 54,
+  "championName": "Malphite",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Malphite",
+      "damageType": "Tank",
+      "note": "Malphite TANK route for ARAM: Mayhem. Prioritize Goliath / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Celestial Body. Build toward Heartsteel > Plated Steelcaps > Spirit Visage > Unending Despair > Warmog's Armor > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

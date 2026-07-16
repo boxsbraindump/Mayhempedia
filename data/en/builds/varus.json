@@ -1,0 +1,272 @@
+{
+  "championId": 110,
+  "championName": "Varus",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Dual Wield Varus",
+      "damageType": "AD",
+      "note": "Varus AD route for ARAM: Mayhem. Prioritize Dual Wield / Skilled Sniper as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Tap Dancer. Build toward Blade of The Ruined King > Berserker's Greaves > The Collector > Infinity Edge > Lord Dominik's Regards > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "Tap Dancer"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "Bread And Butter"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap",
+      "name": "AP Master of Duality Varus",
+      "damageType": "AP",
+      "note": "Varus AP route for ARAM: Mayhem. Prioritize Master of Duality / ADAPt as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Marksmage / Eureka. Build toward Nashor's Tooth > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Void Staff > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "Master of Duality"
+          },
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ],
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "trap": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ethereal-w-execute",
+      "name": "AP Ethereal Weapon Varus",
+      "damageType": "AP",
+      "note": "Varus AP route for ARAM: Mayhem. Prioritize Ethereal Weapon as the main augment plan. Strong secondary hits include ADAPt / Eureka / Jeweled Gauntlet. Build toward Dusk and Dawn > Nashor's Tooth > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

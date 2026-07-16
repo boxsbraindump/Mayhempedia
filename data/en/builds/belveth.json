@@ -1,0 +1,98 @@
+{
+  "championId": 200,
+  "championName": "Bel'Veth",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Bel'Veth",
+      "damageType": "AD",
+      "note": "Bel'Veth AD route for ARAM: Mayhem. Prioritize Dual Wield / Mystic Punch as the main augment plan. Strong secondary hits include Outlaw's Grit / Goredrink / Blunt Force. Build toward Kraken Slayer > Mercury's Treads > Blade of The Ruined King > Black Cleaver > Death's Dance > Wit's End. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and op.gg and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "Tap Dancer"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "op.gg",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "Hearthbound Axe"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

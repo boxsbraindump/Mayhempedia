@@ -1,0 +1,108 @@
+{
+  "championId": 804,
+  "championName": "Yunara",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Yunara",
+      "damageType": "AD",
+      "note": "Yunara AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Scopiest Weapons. Build toward Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > The Collector > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "Tap Dancer"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          }
+        ],
+        "trap": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "Hearthbound Axe"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

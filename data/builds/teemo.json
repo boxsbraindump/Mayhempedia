@@ -191,6 +191,110 @@
       "sources": [
         "Community curated"
       ]
+    },
+    {
+      "key": "ethereal-shiv",
+      "name": "虚幻电刀提莫",
+      "damageType": "AP",
+      "note": "围绕虚幻武器把技能命中转成普攻特效触发，斯塔缇克电刃负责清线和连锁伤害，纳什之牙、巫妖之祸继续放大E毒与Q/R命中后的特效爆发。和无限蘑菇不同，这条路线更偏正面poke与团战溅射。",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 36,
+            "apiName": "Firebrand",
+            "name": "火上浇油"
+          },
+          {
+            "id": 910009,
+            "apiName": "ARAMMayhemTwinFire",
+            "name": "双生火力"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "items": [
+        {
+          "id": 3087,
+          "name": "斯塔缇克电刃"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        },
+        {
+          "id": 3100,
+          "name": "巫妖之祸"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ]
     }
   ]
 }

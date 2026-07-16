@@ -1,0 +1,98 @@
+{
+  "championId": 40,
+  "championName": "Janna",
+  "archetypes": [
+    {
+      "key": "enchanter",
+      "name": "Support Janna",
+      "damageType": "Support",
+      "note": "Janna SUPPORT route for ARAM: Mayhem. Prioritize Magic Missile as the main augment plan. Strong secondary hits include All For You / Sonic Boom / First-Aid Kit. Build toward Echoes of Helia > Moonstone Renewer > Ionian Boots of Lucidity > Ardent Censer > Redemption > Mikael's Blessing. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "good": [
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          },
+          {
+            "id": 231,
+            "apiName": "LightWarden",
+            "name": "Light Warden"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6620,
+          "name": "Echoes of Helia"
+        },
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

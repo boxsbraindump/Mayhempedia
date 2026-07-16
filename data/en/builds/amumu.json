@@ -1,0 +1,194 @@
+{
+  "championId": 32,
+  "championName": "Amumu",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Amumu",
+      "damageType": "Tank",
+      "note": "Amumu TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Celestial Body / Recursion / Courage of the Colossus. Build toward Heartsteel > Unending Despair > Mercury's Treads > Thornmail > Sunfire Aegis > Warmog's Armor. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap",
+      "name": "AP Phenomenal Evil Amumu",
+      "damageType": "AP",
+      "note": "Amumu AP route for ARAM: Mayhem. Prioritize Phenomenal Evil as the main augment plan. Strong secondary hits include Infernal Conduit / Wisdom of Ages / Courage of the Colossus. Build toward Liandry's Torment > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Zhonya's Hourglass > Rabadon's Deathcap. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramonly.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          }
+        ],
+        "good": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 96,
+            "apiName": "WisdomofAges",
+            "name": "Wisdom of Ages"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramonly.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

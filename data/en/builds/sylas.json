@@ -1,0 +1,94 @@
+{
+  "championId": 517,
+  "championName": "Sylas",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Sylas",
+      "damageType": "AP",
+      "note": "Sylas AP route for ARAM: Mayhem. Prioritize Dashing / Witchful Thinking as the main augment plan. Strong secondary hits include Eureka / Goredrink / Marksmage. Build toward Rod of Ages > Hextech Rocketbelt > Mercury's Treads > Riftmaker > Spirit Visage > Zhonya's Hourglass. Start with Catalyst of Aeons. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          }
+        ],
+        "trap": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 4633,
+          "name": "Riftmaker"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

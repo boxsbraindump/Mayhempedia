@@ -1,0 +1,94 @@
+{
+  "championId": 69,
+  "championName": "Cassiopeia",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Cassiopeia",
+      "damageType": "AP",
+      "note": "Cassiopeia AP route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Infernal Conduit / Phenomenal Evil / Magic Missile. Build toward Rod of Ages > Archangel's Staff > Sorcerer's Shoes > Liandry's Torment > Rylai's Crystal Scepter > Rabadon's Deathcap. Start with Catalyst of Aeons. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3003,
+          "name": "Archangel's Staff"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

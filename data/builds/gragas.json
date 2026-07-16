@@ -145,7 +145,7 @@
           "name": "兰德里的折磨"
         },
         {
-          "id": 228020,
+          "id": 8020,
           "name": "深渊面具"
         }
       ],
@@ -159,6 +159,89 @@
         {
           "id": 1058,
           "name": "无用大棒"
+        }
+      ]
+    },
+    {
+      "key": "adapt-w-invulnerable",
+      "name": "物转法无敌W酒桶",
+      "damageType": "AP",
+      "note": "只有物理转魔法时才走。用攻击力锻体转法强，靠W的法强减伤把短暂窗口拉到极限；需要在强化普攻打出后立刻准备下一次W，别把它当成无脑常驻无敌。",
+      "augments": {
+        "core": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "物理转魔法"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "无限循环往复"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "歌利亚巨人"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "由心及物"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "时光之杖"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
         }
       ]
     }

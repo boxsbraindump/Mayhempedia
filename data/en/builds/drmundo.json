@@ -1,0 +1,101 @@
+{
+  "championId": 36,
+  "championName": "Dr. Mundo",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Dr. Mundo",
+      "damageType": "Tank",
+      "note": "Dr. Mundo TANK route for ARAM: Mayhem. Prioritize Goliath / Tank Engine as the main augment plan. Strong secondary hits include Stackosaurus Rex / Quest: Steel Your Heart / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Spirit Visage > Thornmail. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and aramgg.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

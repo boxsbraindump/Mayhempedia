@@ -1,0 +1,96 @@
+{
+  "championId": 1,
+  "championName": "Annie",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Annie",
+      "damageType": "AP",
+      "note": "Annie AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Eureka / It's Killing Time as the main augment plan. Strong secondary hits include Phenomenal Evil / Juice Box / Magic Missile. Build toward Malignance > Sorcerer's Shoes > Liandry's Torment > Shadowflame > Rabadon's Deathcap > Stormsurge. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          }
+        ],
+        "good": [
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

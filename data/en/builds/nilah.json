@@ -1,0 +1,98 @@
+{
+  "championId": 895,
+  "championName": "Nilah",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Nilah",
+      "damageType": "AD",
+      "note": "Nilah AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Mystic Punch as the main augment plan. Strong secondary hits include Dual Wield / Juice Box / Goredrink. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Death's Dance > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and op.gg and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

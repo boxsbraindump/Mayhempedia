@@ -1,0 +1,216 @@
+{
+  "championId": 12,
+  "championName": "Alistar",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Alistar",
+      "damageType": "Tank",
+      "note": "Alistar TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Courage of the Colossus / Goliath / Celestial Body. Build toward Heartsteel > Mercury's Treads > Winter's Approach > Spirit Visage > Unending Despair > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": [
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3119,
+          "name": "Winter's Approach"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "pressure-cooker",
+      "name": "Tank Pressure Cooker Alistar",
+      "damageType": "Tank",
+      "note": "Alistar TANK route for ARAM: Mayhem. Prioritize Pressure Cooker / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Courage of the Colossus / Goliath. Build toward Heartsteel > Mercury's Treads > Winter's Approach > Spirit Visage > Unending Despair > Thornmail. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against aramgg.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "Pressure Cooker"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3119,
+          "name": "Winter's Approach"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "championId": 105,
+  "championName": "Fizz",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Fizz",
+      "damageType": "AP",
+      "note": "Fizz AP route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Infernal Conduit / Ethereal Weapon / Marksmage. Build toward Luden's Echo > Sorcerer's Shoes > Lich Bane > Shadowflame > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3100,
+          "name": "Lich Bane"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

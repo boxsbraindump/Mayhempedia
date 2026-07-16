@@ -1,0 +1,195 @@
+{
+  "championId": 77,
+  "championName": "Udyr",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "AD The Brutalizer Udyr",
+      "damageType": "AD",
+      "note": "Udyr AD route for ARAM: Mayhem. Prioritize The Brutalizer / Giant Slayer as the main augment plan. Strong secondary hits include Vulnerability / Ethereal Weapon / Jeweled Gauntlet. Build toward Hubris > The Collector > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 82,
+            "apiName": "TheBrutalizer",
+            "name": "The Brutalizer"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ],
+        "good": [
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "Quantum Computing"
+          }
+        ],
+        "trap": [
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3142,
+          "name": "Youmuu's Ghostblade"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "news.qq.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap-burst",
+      "name": "AP Quest: Wooglet's Witchcap Udyr",
+      "damageType": "AP",
+      "note": "Udyr AP route for ARAM: Mayhem. Prioritize Quest: Wooglet's Witchcap / Ice Cold as the main augment plan. Strong secondary hits include ADAPt / Witchful Thinking / It's Killing Time. Build toward Malignance > Sorcerer's Shoes > Liandry's Torment > Shadowflame > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and aramgg.com and news.qq.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          }
+        ],
+        "good": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 61,
+            "apiName": "OkBoomerang",
+            "name": "Ok Boomerang"
+          }
+        ],
+        "trap": [
+          {
+            "id": 28,
+            "apiName": "Erosion",
+            "name": "Erosion"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "aramgg.com",
+        "news.qq.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

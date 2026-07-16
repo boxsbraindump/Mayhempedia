@@ -1,0 +1,93 @@
+{
+  "championId": 498,
+  "championName": "Xayah",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "AD Crit Xayah",
+      "damageType": "AD",
+      "note": "Xayah AD route for ARAM: Mayhem. Prioritize Deft / Fan The Hammer as the main augment plan. Strong secondary hits include Giant Slayer / Dual Wield / It's Critical. Build toward The Collector > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > Runaan's Hurricane. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

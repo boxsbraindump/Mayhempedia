@@ -66,6 +66,13 @@ export interface AppNotice {
   tone: 'success' | 'warning' | 'info'
 }
 
+export interface UpdateStatus {
+  state: 'idle' | 'checking' | 'available' | 'not-available' | 'downloading' | 'downloaded' | 'error'
+  version?: string
+  percent?: number
+  message?: string
+}
+
 export interface PersistedAccountSummary {
   puuid: string
   gameName?: string
@@ -190,4 +197,11 @@ contextBridge.exposeInMainWorld('mayhem', {
     ipcRenderer.invoke('matchHistory:forgetAccount', puuid),
   minimizeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:minimize'),
   closeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:close'),
+  showOverlay: (): Promise<boolean> => ipcRenderer.invoke('overlay:show'),
+  getUpdateStatus: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:getStatus'),
+  checkForUpdates: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:check'),
+  installUpdate: (): Promise<boolean> => ipcRenderer.invoke('updates:install'),
+  onUpdateStatus: (cb: (s: UpdateStatus) => void) => {
+    ipcRenderer.on('updates:status', (_event, data: UpdateStatus) => cb(data))
+  },
 })

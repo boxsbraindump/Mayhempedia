@@ -1,0 +1,102 @@
+{
+  "championId": 127,
+  "championName": "Lissandra",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Lissandra",
+      "damageType": "AP",
+      "note": "Lissandra AP route for ARAM: Mayhem. Prioritize Eureka / Big Brain as the main augment plan. Strong secondary hits include Witchful Thinking / Phenomenal Evil / Ice Cold. Build toward Malignance > Sorcerer's Shoes > Zhonya's Hourglass > Liandry's Torment > Shadowflame > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

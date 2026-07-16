@@ -1,0 +1,108 @@
+{
+  "championId": 90,
+  "championName": "Malzahar",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Malzahar",
+      "damageType": "AP",
+      "note": "Malzahar AP route for ARAM: Mayhem. Prioritize Magic Missile / Infernal Conduit as the main augment plan. Strong secondary hits include Recursion / Eureka / Witchful Thinking. Build toward Blackfire Torch > Sorcerer's Shoes > Liandry's Torment > Rylai's Crystal Scepter > Shadowflame > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ],
+        "good": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 28,
+            "apiName": "Erosion",
+            "name": "Erosion"
+          }
+        ],
+        "trap": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "championId": 60,
+  "championName": "Elise",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Elise",
+      "damageType": "AP",
+      "note": "Elise AP route for ARAM: Mayhem. Prioritize Eureka / Juice Box as the main augment plan. Strong secondary hits include Witchful Thinking / Big Brain / Phenomenal Evil. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

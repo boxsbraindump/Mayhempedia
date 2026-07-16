@@ -1,0 +1,302 @@
+{
+  "championId": 17,
+  "championName": "Teemo",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Eureka Teemo",
+      "damageType": "AP",
+      "note": "Teemo AP route for ARAM: Mayhem. Prioritize Eureka / Magic Missile as the main augment plan. Strong secondary hits include Ethereal Weapon / Firebrand. Build toward Malignance > Sorcerer's Shoes > Liandry's Torment > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "good": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 36,
+            "apiName": "Firebrand",
+            "name": "Firebrand"
+          }
+        ],
+        "trap": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "infinite-shrooms",
+      "name": "AP Archmage Teemo",
+      "damageType": "AP",
+      "note": "Teemo AP route for ARAM: Mayhem. Prioritize Archmage / Purist - Caster as the main augment plan. Strong secondary hits include Eureka / Infinite Recursion / High Roller. Build toward Malignance > Nashor's Tooth > Lich Bane > Liandry's Torment > Shadowflame > Cryptbloom. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "Archmage"
+          },
+          {
+            "id": 900002,
+            "apiName": "MayhemPuristCaster",
+            "name": "Purist - Caster"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "Infinite Recursion"
+          },
+          {
+            "id": 900004,
+            "apiName": "MayhemHighRoller",
+            "name": "High Roller"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3100,
+          "name": "Lich Bane"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3137,
+          "name": "Cryptbloom"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "Community curated"
+      ]
+    },
+    {
+      "key": "ethereal-shiv",
+      "name": "AP Ethereal Weapon Teemo",
+      "damageType": "AP",
+      "note": "Teemo AP route for ARAM: Mayhem. Prioritize Ethereal Weapon / Magic Missile as the main augment plan. Strong secondary hits include Eureka / Firebrand / Twin Fire. Build toward Statikk Shiv > Nashor's Tooth > Lich Bane > Liandry's Torment > Shadowflame > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against aramgg.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 36,
+            "apiName": "Firebrand",
+            "name": "Firebrand"
+          },
+          {
+            "id": 910009,
+            "apiName": "ARAMMayhemTwinFire",
+            "name": "Twin Fire"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "items": [
+        {
+          "id": 3087,
+          "name": "Statikk Shiv"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3100,
+          "name": "Lich Bane"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ]
+    }
+  ]
+}

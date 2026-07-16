@@ -1,0 +1,191 @@
+{
+  "championId": 136,
+  "championName": "Aurelion Sol",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Infernal Conduit Aurelion Sol",
+      "damageType": "AP",
+      "note": "Aurelion Sol AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Eureka / Juice Box / Phenomenal Evil. Build toward Blackfire Torch > Sorcerer's Shoes > Rylai's Crystal Scepter > Liandry's Torment > Archangel's Staff > Shadowflame. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3003,
+          "name": "Archangel's Staff"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "shrink-execute",
+      "name": "AP Shrink Engine Aurelion Sol",
+      "damageType": "AP",
+      "note": "Aurelion Sol AP route for ARAM: Mayhem. Prioritize Shrink Engine as the main augment plan. Strong secondary hits include Ice Cold / Archmage / Infinite Recursion. Build toward Blackfire Torch > Sorcerer's Shoes > Rylai's Crystal Scepter > Liandry's Torment > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 910018,
+            "apiName": "ARAMMayhemShrinkEngine",
+            "name": "Shrink Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "Archmage"
+          },
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "Infinite Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

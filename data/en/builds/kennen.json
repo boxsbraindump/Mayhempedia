@@ -1,0 +1,95 @@
+{
+  "championId": 85,
+  "championName": "Kennen",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Kennen",
+      "damageType": "AP",
+      "note": "Kennen AP route for ARAM: Mayhem. Prioritize Eureka / Giant Slayer as the main augment plan. Strong secondary hits include Magic Missile / Witchful Thinking / Phenomenal Evil. Build toward Hextech Rocketbelt > Shadowflame > Rabadon's Deathcap > Sorcerer's Shoes > Stormsurge > Zhonya's Hourglass. Start with Hextech Alternator. Cross-checked against arammayhem.com and blitz.gg and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ],
+        "good": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          }
+        ],
+        "trap": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3145,
+          "name": "Hextech Alternator"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

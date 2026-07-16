@@ -1,0 +1,189 @@
+{
+  "championId": 29,
+  "championName": "Twitch",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Fan The Hammer Twitch",
+      "damageType": "AD",
+      "note": "Twitch AD route for ARAM: Mayhem. Prioritize Fan The Hammer / Dual Wield as the main augment plan. Strong secondary hits include Deft / It's Critical / Giant Slayer. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          }
+        ],
+        "trap": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 3094,
+          "name": "Rapid Firecannon"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap",
+      "name": "AP Marksmage Twitch",
+      "damageType": "AP",
+      "note": "Twitch AP route for ARAM: Mayhem. Prioritize Marksmage as the main augment plan. Strong secondary hits include Magic Missile / Light 'em Up! / Typhoon. Build toward Luden's Echo > Sorcerer's Shoes > Void Staff > Rabadon's Deathcap > Zhonya's Hourglass > Nashor's Tooth. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ],
+        "good": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "Light 'em Up!"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ],
+        "trap": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

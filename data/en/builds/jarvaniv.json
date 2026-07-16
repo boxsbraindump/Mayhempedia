@@ -1,0 +1,103 @@
+{
+  "championId": 59,
+  "championName": "Jarvan IV",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Jarvan IV",
+      "damageType": "AD",
+      "note": "Jarvan IV AD route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Goliath / Blunt Force. Build toward Sundered Sky > Mercury's Treads > Eclipse > The Collector > Sterak's Gage > Death's Dance. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "Keystone Conjurer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

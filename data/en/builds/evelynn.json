@@ -1,0 +1,107 @@
+{
+  "championId": 28,
+  "championName": "Evelynn",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Evelynn",
+      "damageType": "AP",
+      "note": "Evelynn AP route for ARAM: Mayhem. Prioritize Eureka / Phenomenal Evil as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Witchful Thinking / Magic Missile. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Stormsurge > Lich Bane. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          }
+        ],
+        "good": [
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          }
+        ],
+        "trap": [
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 3100,
+          "name": "Lich Bane"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "championId": 3,
+  "championName": "Galio",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Galio",
+      "damageType": "Tank",
+      "note": "Galio TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Courage of the Colossus / Goliath / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Randuin's Omen > Thornmail > Jak'Sho, The Protean > Frozen Heart. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against lolhaidou.cn and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 3110,
+          "name": "Frozen Heart"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "lolhaidou.cn",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap",
+      "name": "AP Tank Engine Galio",
+      "damageType": "AP",
+      "note": "Galio AP route for ARAM: Mayhem. Prioritize Tank Engine as the main augment plan. Strong secondary hits include ADAPt / Courage of the Colossus / Mad Scientist. Build toward Heartsteel > Rod of Ages > Imperial Mandate > Rabadon's Deathcap > Void Staff > Horizon Focus. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against lolhaidou.cn and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          },
+          {
+            "id": 96,
+            "apiName": "WisdomofAges",
+            "name": "Wisdom of Ages"
+          }
+        ],
+        "trap": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 4005,
+          "name": "Imperial Mandate"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "lolhaidou.cn",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

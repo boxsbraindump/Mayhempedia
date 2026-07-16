@@ -1,0 +1,94 @@
+{
+  "championId": 56,
+  "championName": "Nocturne",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Nocturne",
+      "damageType": "AD",
+      "note": "Nocturne AD route for ARAM: Mayhem. Prioritize Deft / Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force / The Brutalizer / Vanish. Build toward The Collector > Mercury's Treads > Axiom Arc > Experimental Hexplate > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 82,
+            "apiName": "TheBrutalizer",
+            "name": "The Brutalizer"
+          },
+          {
+            "id": 89,
+            "apiName": "Vanish",
+            "name": "Vanish"
+          }
+        ],
+        "trap": [
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 3073,
+          "name": "Experimental Hexplate"
+        },
+        {
+          "id": 3814,
+          "name": "Edge of Night"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

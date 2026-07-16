@@ -61,6 +61,13 @@ export interface AppNotice {
   tone: 'success' | 'warning' | 'info'
 }
 
+export interface UpdateStatus {
+  state: 'idle' | 'checking' | 'available' | 'not-available' | 'downloading' | 'downloaded' | 'error'
+  version?: string
+  percent?: number
+  message?: string
+}
+
 export interface PersistedAccountSummary {
   puuid: string
   gameName?: string
@@ -167,6 +174,11 @@ declare global {
       forgetStoredAccount: (puuid: string) => Promise<PersistedAccountSummary[]>
       minimizeWindow: () => Promise<void>
       closeWindow: () => Promise<void>
+      showOverlay: () => Promise<boolean>
+      getUpdateStatus: () => Promise<UpdateStatus>
+      checkForUpdates: () => Promise<UpdateStatus>
+      installUpdate: () => Promise<boolean>
+      onUpdateStatus: (cb: (s: UpdateStatus) => void) => void
     }
   }
 }

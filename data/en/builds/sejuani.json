@@ -1,0 +1,99 @@
+{
+  "championId": 113,
+  "championName": "Sejuani",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Sejuani",
+      "damageType": "Tank",
+      "note": "Sejuani TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Blunt Force / Goliath / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Frozen Heart > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3110,
+          "name": "Frozen Heart"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

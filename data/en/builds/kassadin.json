@@ -1,0 +1,88 @@
+{
+  "championId": 38,
+  "championName": "Kassadin",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Kassadin",
+      "damageType": "AP",
+      "note": "Kassadin AP route for ARAM: Mayhem. Prioritize Eureka / Mind to Matter / Dashing as the main augment plan. Strong secondary hits include It's Killing Time / Witchful Thinking / Goredrink. Build toward Rod of Ages > Archangel's Staff > Malignance > Sorcerer's Shoes > Zhonya's Hourglass > Rabadon's Deathcap. Start with Catalyst of Aeons. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3003,
+          "name": "Archangel's Staff"
+        },
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

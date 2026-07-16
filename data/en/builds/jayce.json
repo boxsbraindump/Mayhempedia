@@ -1,0 +1,87 @@
+{
+  "championId": 126,
+  "championName": "Jayce",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Jayce",
+      "damageType": "AD",
+      "note": "Jayce AD route for ARAM: Mayhem. Prioritize Skilled Sniper as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Giant Slayer / Ethereal Weapon. Build toward Hubris > The Collector > Serylda's Grudge > Ionian Boots of Lucidity > Infinity Edge > Spear of Shojin. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          }
+        ],
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 67,
+            "apiName": "RabbleRousing",
+            "name": "Rabble Rousing"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

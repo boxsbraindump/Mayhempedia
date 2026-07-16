@@ -93,6 +93,119 @@
           "name": "鞋子"
         }
       ]
+    },
+    {
+      "key": "back-to-basics-barrels",
+      "name": "基本功爆桶船长",
+      "damageType": "AD",
+      "note": "回归基本功用终极技能换取基础技能强化与高额急速，专注Q消耗和E连桶。唯快不破放大加速后的桶子爆发，适合能稳定预判桶位、愿意放弃大招支援的玩家。",
+      "augments": {
+        "core": [
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          },
+          {
+            "id": 26,
+            "apiName": "DontBlink",
+            "name": "唯快不破"
+          }
+        ],
+        "good": [
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "面包和黄油"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 82,
+            "apiName": "TheBrutalizer",
+            "name": "残暴之力"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3156,
+          "name": "玛莫提乌斯之噬"
+        },
+        {
+          "id": 3026,
+          "name": "守护天使"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3009,
+          "name": "轻灵之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        },
+        {
+          "id": 3033,
+          "name": "凡性的提醒"
+        }
+      ]
     }
   ]
 }

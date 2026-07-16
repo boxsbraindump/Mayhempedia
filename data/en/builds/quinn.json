@@ -1,0 +1,82 @@
+{
+  "championId": 133,
+  "championName": "Quinn",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Quinn",
+      "damageType": "AD",
+      "note": "Quinn AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Giant Slayer. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Bloodthirster > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        },
+        {
+          "id": 3094,
+          "name": "Rapid Firecannon"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "championId": 67,
+  "championName": "Vayne",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Dual Wield Vayne",
+      "damageType": "AD",
+      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Twice Thrice / Draw Your Sword / Deft. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Terminus > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "Twice Thrice"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "Master of Duality"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3124,
+          "name": "Guinsoo's Rageblade"
+        },
+        {
+          "id": 3302,
+          "name": "Terminus"
+        },
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "shadow-runner-one-shot",
+      "name": "AD Shadow Runner Vayne",
+      "damageType": "AD",
+      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Shadow Runner as the main augment plan. Strong secondary hits include Dual Wield / Typhoon / Twice Thrice. Build toward Trinity Force > Berserker's Greaves > Rapid Firecannon > Blade of The Ruined King > Infinity Edge > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "Twice Thrice"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3094,
+          "name": "Rapid Firecannon"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

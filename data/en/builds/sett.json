@@ -1,0 +1,208 @@
+{
+  "championId": 875,
+  "championName": "Sett",
+  "archetypes": [
+    {
+      "key": "tank-ad",
+      "name": "AD/Tank Goliath Sett",
+      "damageType": "AD/Tank",
+      "note": "Sett AD/TANK route for ARAM: Mayhem. Prioritize Goliath / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Tank Engine / Heavy Hitter / Blunt Force. Build toward Heartsteel > Warmog's Armor > Mercury's Treads > Overlord's Bloodmail > Sterak's Gage > Unending Despair. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and aramgg.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "pressure-cooker",
+      "name": "AD/Tank Pressure Cooker Sett",
+      "damageType": "AD/Tank",
+      "note": "Sett AD/TANK route for ARAM: Mayhem. Prioritize Pressure Cooker / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Tank Engine / Heavy Hitter. Build toward Heartsteel > Warmog's Armor > Mercury's Treads > Overlord's Bloodmail > Sterak's Gage > Sundered Sky. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against aramgg.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "Pressure Cooker"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ]
+    }
+  ]
+}

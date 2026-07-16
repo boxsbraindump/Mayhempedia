@@ -1,0 +1,98 @@
+{
+  "championId": 412,
+  "championName": "Thresh",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Thresh",
+      "damageType": "Tank",
+      "note": "Thresh TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Slap Around. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Thornmail > Fimbulwinter. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          }
+        ],
+        "trap": [
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "Fey Magic"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3121,
+          "name": "Fimbulwinter"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

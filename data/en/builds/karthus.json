@@ -1,0 +1,97 @@
+{
+  "championId": 30,
+  "championName": "Karthus",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Karthus",
+      "damageType": "AP",
+      "note": "Karthus AP route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Ultimate Revolution / Phenomenal Evil / Magic Missile. Build toward Blackfire Torch > Sorcerer's Shoes > Liandry's Torment > Shadowflame > Rylai's Crystal Scepter > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

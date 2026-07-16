@@ -1,0 +1,108 @@
+{
+  "championId": 8,
+  "championName": "Vladimir",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Vladimir",
+      "damageType": "AP",
+      "note": "Vladimir AP route for ARAM: Mayhem. Prioritize Eureka / Back To Basics as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Juice Box / Recursion. Build toward Haunting Guise > Liandry's Torment > Sorcerer's Shoes > Cosmic Drive > Rabadon's Deathcap > Void Staff. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and lolhaidou.cn and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          }
+        ],
+        "good": [
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          }
+        ],
+        "trap": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3147,
+          "name": "Haunting Guise"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4629,
+          "name": "Cosmic Drive"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "lolhaidou.cn",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

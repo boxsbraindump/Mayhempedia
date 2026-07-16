@@ -1,0 +1,100 @@
+{
+  "championId": 34,
+  "championName": "Anivia",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Anivia",
+      "damageType": "AP",
+      "note": "Anivia AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Magic Missile / Infernal Conduit / Witchful Thinking. Build toward Rod of Ages > Archangel's Staff > Sorcerer's Shoes > Liandry's Torment > Zhonya's Hourglass > Rylai's Crystal Scepter. Start with Catalyst of Aeons. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3003,
+          "name": "Archangel's Staff"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

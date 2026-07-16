@@ -1,0 +1,96 @@
+{
+  "championId": 50,
+  "championName": "Swain",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Swain",
+      "damageType": "AP",
+      "note": "Swain AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Magic Missile / Phenomenal Evil / Juice Box. Build toward Rod of Ages > Mercury's Treads > Rylai's Crystal Scepter > Liandry's Torment > Spirit Visage > Morellonomicon. Start with Catalyst of Aeons. Cross-checked against metasrc.com and arammayhem.com and u.gg and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "u.gg",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

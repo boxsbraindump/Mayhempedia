@@ -1,0 +1,185 @@
+{
+  "championId": 18,
+  "championName": "Tristana",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Fan The Hammer Tristana",
+      "damageType": "AD",
+      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Fan The Hammer / Draw Your Sword as the main augment plan. Strong secondary hits include Deft / Giant Slayer / Dual Wield. Build toward The Collector > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > Mortal Reminder. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 3033,
+          "name": "Mortal Reminder"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "hammer-e-bomb",
+      "name": "AD Fan The Hammer Tristana",
+      "damageType": "AD",
+      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Fan The Hammer as the main augment plan. Strong secondary hits include Dual Wield / Twice Thrice / Deft. Build toward Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "Twice Thrice"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

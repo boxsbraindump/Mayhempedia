@@ -1,0 +1,93 @@
+{
+  "championId": 154,
+  "championName": "Zac",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Zac",
+      "damageType": "Tank",
+      "note": "Zac TANK route for ARAM: Mayhem. Prioritize Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Goliath. Build toward Heartsteel > Mercury's Treads > Spirit Visage > Unending Despair > Thornmail > Warmog's Armor. Start with Ruby Crystal + Bami's Cinder. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "Circle of Death"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 6660,
+          "name": "Bami's Cinder"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

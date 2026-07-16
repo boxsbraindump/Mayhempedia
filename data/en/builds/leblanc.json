@@ -1,0 +1,93 @@
+{
+  "championId": 7,
+  "championName": "LeBlanc",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP LeBlanc",
+      "damageType": "AP",
+      "note": "LeBlanc AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Dashing as the main augment plan. Strong secondary hits include Big Brain / Eureka / Phenomenal Evil. Build toward Luden's Echo > Sorcerer's Shoes > Stormsurge > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Needlessly Large Rod. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1058,
+          "name": "Needlessly Large Rod"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

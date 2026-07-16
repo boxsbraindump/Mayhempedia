@@ -1,0 +1,86 @@
+{
+  "championId": 233,
+  "championName": "Briar",
+  "archetypes": [
+    {
+      "key": "ad-crit",
+      "name": "AD Crit Briar",
+      "damageType": "AD",
+      "note": "Briar AD route for ARAM: Mayhem. Prioritize Mystic Punch / Dashing as the main augment plan. Strong secondary hits include Goredrink / Blunt Force / Dual Wield. Build toward Hubris > The Collector > Endless Hunger > Death's Dance > Infinity Edge > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 2517,
+          "name": "Endless Hunger"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "championId": 147,
+  "championName": "Seraphine",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Seraphine",
+      "damageType": "AP",
+      "note": "Seraphine AP route for ARAM: Mayhem. Prioritize Eureka / Phenomenal Evil as the main augment plan. Strong secondary hits include Sonic Boom / Skilled Sniper / Magic Missile. Build toward Luden's Echo > Sorcerer's Shoes > Rylai's Crystal Scepter > Liandry's Torment > Shadowflame > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          }
+        ],
+        "good": [
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

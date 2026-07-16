@@ -1,0 +1,208 @@
+{
+  "championId": 55,
+  "championName": "Katarina",
+  "archetypes": [
+    {
+      "key": "ad-onhit",
+      "name": "AD Ethereal Weapon Katarina",
+      "damageType": "AD",
+      "note": "Katarina AD route for ARAM: Mayhem. Prioritize Ethereal Weapon as the main augment plan. Strong secondary hits include Ultimate Unstoppable / Spin To Win / Goredrink. Build toward Kraken Slayer > Blade of The Ruined King > Terminus > Mercury's Treads > Death's Dance > Titanic Hydra. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against aramgg.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "Ultimate Unstoppable"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3302,
+          "name": "Terminus"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "Hearthbound Axe"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "triple-burn-tank",
+      "name": "Tank Pressure Cooker Katarina",
+      "damageType": "Tank",
+      "note": "Katarina TANK route for ARAM: Mayhem. Prioritize Pressure Cooker / Firebrand as the main augment plan. Strong secondary hits include Ethereal Weapon / Vulnerability / Spin To Win. Build toward Heartsteel > Mercury's Treads > Sunfire Aegis > Overlord's Bloodmail > Unending Despair > Thornmail. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against bilibili.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "Pressure Cooker"
+          },
+          {
+            "id": 36,
+            "apiName": "Firebrand",
+            "name": "Firebrand"
+          }
+        ],
+        "good": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6662,
+          "name": "Iceborn Gauntlet"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        }
+      ]
+    }
+  ]
+}

@@ -83,6 +83,9 @@ const RARITY_BONUS: Record<number, number> = {
   4: 4,
 }
 
+const augmentTagCache = new WeakMap<Augment, AugmentTag[]>()
+const archetypeWeightCache = new WeakMap<Archetype, Partial<Record<AugmentTag, number>>>()
+
 function hasAny(text: string, needles: string[]): boolean {
   return needles.some((n) => text.includes(n.toLowerCase()))
 }
@@ -92,6 +95,9 @@ function addTag(tags: Set<AugmentTag>, text: string, tag: AugmentTag, needles: s
 }
 
 export function inferAugmentTags(augment: Augment): AugmentTag[] {
+  const cached = augmentTagCache.get(augment)
+  if (cached) return cached
+
   const text = `${augment.apiName} ${augment.name} ${augment.desc} ${augment.tooltip}`.toLowerCase()
   const tags = new Set<AugmentTag>()
 
@@ -117,7 +123,9 @@ export function inferAugmentTags(augment: Augment): AugmentTag[] {
   addTag(tags, text, 'marksman', ['射手', '远程'])
   addTag(tags, text, 'survival', ['即将阵亡', '不可被选取', '无敌', '保命', '复活', '免疫'])
 
-  return [...tags]
+  const result = [...tags]
+  augmentTagCache.set(augment, result)
+  return result
 }
 
 function bump(weights: Partial<Record<AugmentTag, number>>, tag: AugmentTag, value: number) {
@@ -125,6 +133,9 @@ function bump(weights: Partial<Record<AugmentTag, number>>, tag: AugmentTag, val
 }
 
 export function inferArchetypeWeights(arch: Archetype): Partial<Record<AugmentTag, number>> {
+  const cached = archetypeWeightCache.get(arch)
+  if (cached) return cached
+
   const text = `${arch.name} ${arch.damageType} ${arch.note} ${arch.items.map((i) => i.name).join(' ')}`.toLowerCase()
   const weights: Partial<Record<AugmentTag, number>> = { ...DEFAULT_WEIGHTS }
 
@@ -176,6 +187,7 @@ export function inferArchetypeWeights(arch: Archetype): Partial<Record<AugmentTa
     bump(weights, 'survival', 10)
   }
 
+  archetypeWeightCache.set(arch, weights)
   return weights
 }
 

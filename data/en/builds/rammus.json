@@ -1,0 +1,103 @@
+{
+  "championId": 33,
+  "championName": "Rammus",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Rammus",
+      "damageType": "Tank",
+      "note": "Rammus TANK route for ARAM: Mayhem. Prioritize Quest: Steel Your Heart / Tank Engine as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Courage of the Colossus. Build toward Heartsteel > Thornmail > Sterak's Gage > Mercury's Treads > Plated Steelcaps > Randuin's Omen. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 57,
+            "apiName": "MountainSoul",
+            "name": "Mountain Soul"
+          },
+          {
+            "id": 11,
+            "apiName": "CantTouchThis",
+            "name": "Cant Touch This"
+          }
+        ],
+        "trap": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

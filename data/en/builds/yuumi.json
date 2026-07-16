@@ -1,0 +1,183 @@
+{
+  "championId": 350,
+  "championName": "Yuumi",
+  "archetypes": [
+    {
+      "key": "enchanter",
+      "name": "Support Critical Healing Yuumi",
+      "damageType": "Support",
+      "note": "Yuumi SUPPORT route for ARAM: Mayhem. Prioritize Critical Healing / All For You as the main augment plan. Strong secondary hits include Divine Intervention / Holy Fire / First-Aid Kit. Build toward Moonstone Renewer > Dawncore > Ardent Censer > Mikael's Blessing > Redemption > Staff of Flowing Water. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against metasrc.com and arammayhem.com and 17173.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          }
+        ],
+        "good": [
+          {
+            "id": 301,
+            "apiName": "DivineIntervention",
+            "name": "Divine Intervention"
+          },
+          {
+            "id": 198,
+            "apiName": "HolyFire",
+            "name": "Holy Fire"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          },
+          {
+            "id": 231,
+            "apiName": "LightWarden",
+            "name": "Light Warden"
+          }
+        ],
+        "trap": [
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "Fey Magic"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 6621,
+          "name": "Dawncore"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 6616,
+          "name": "Staff of Flowing Water"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "17173.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "cod-tank",
+      "name": "AP Circle of Death Yuumi",
+      "damageType": "AP",
+      "note": "Yuumi AP route for ARAM: Mayhem. Prioritize Circle of Death / Tank Engine as the main augment plan. Strong secondary hits include Perseverance / Critical Healing / Ultimate Revolution. Build toward Moonstone Renewer > Dead Man's Plate > Spirit Visage > Mikael's Blessing > Void Staff > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "Circle of Death"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 64,
+            "apiName": "Perseverance",
+            "name": "Perseverance"
+          },
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          },
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3742,
+          "name": "Dead Man's Plate"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

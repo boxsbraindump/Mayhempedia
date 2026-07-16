@@ -1,0 +1,92 @@
+{
+  "championId": 37,
+  "championName": "Sona",
+  "archetypes": [
+    {
+      "key": "enchanter",
+      "name": "Support Sona",
+      "damageType": "Support",
+      "note": "Sona SUPPORT route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Witchful Thinking / Mind to Matter / Light Warden. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Whispering Circlet > Ardent Censer > Dawncore > Redemption. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 231,
+            "apiName": "LightWarden",
+            "name": "Light Warden"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 2526,
+          "name": "Whispering Circlet"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 6621,
+          "name": "Dawncore"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

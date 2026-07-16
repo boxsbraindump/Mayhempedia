@@ -1,0 +1,93 @@
+{
+  "championId": 91,
+  "championName": "Talon",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Talon",
+      "damageType": "AD",
+      "note": "Talon AD route for ARAM: Mayhem. Prioritize Blunt Force / Thread the Needle as the main augment plan. Strong secondary hits include Ultimate Revolution / Deft / It's Killing Time. Build toward Hubris > Ionian Boots of Lucidity > Axiom Arc > The Collector > Serylda's Grudge > Eclipse. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          }
+        ],
+        "good": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          }
+        ],
+        "trap": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

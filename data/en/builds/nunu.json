@@ -1,0 +1,198 @@
+{
+  "championId": 20,
+  "championName": "Nunu & Willump",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Eureka Nunu & Willump",
+      "damageType": "AP",
+      "note": "Nunu & Willump AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Juice Box / Celestial Body / Magic Missile. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "good": [
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "tank",
+      "name": "Tank Tank Engine Nunu & Willump",
+      "damageType": "Tank",
+      "note": "Nunu & Willump TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Blunt Force. Build toward Heartsteel > Unending Despair > Overlord's Bloodmail > Sunfire Aegis > Thornmail > Plated Steelcaps. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "Ultimate Unstoppable"
+          }
+        ],
+        "trap": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "championId": 9,
+  "championName": "Fiddlesticks",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Fiddlesticks",
+      "damageType": "AP",
+      "note": "Fiddlesticks AP route for ARAM: Mayhem. Prioritize It's Killing Time / Witchful Thinking as the main augment plan. Strong secondary hits include Eureka / Juice Box / Fey Magic. Build toward Liandry's Torment > Sorcerer's Shoes > Shadowflame > Zhonya's Hourglass > Rabadon's Deathcap > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "Fey Magic"
+          },
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "Ultimate Unstoppable"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

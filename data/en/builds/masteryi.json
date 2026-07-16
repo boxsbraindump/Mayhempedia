@@ -1,0 +1,226 @@
+{
+  "championId": 11,
+  "championName": "Master Yi",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Mystic Punch Master Yi",
+      "damageType": "AD",
+      "note": "Master Yi AD route for ARAM: Mayhem. Prioritize Mystic Punch / Dual Wield as the main augment plan. Strong secondary hits include Goredrink / It's Critical / Dashing. Build toward The Collector > Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Sundered Sky. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and op.gg and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "Light 'em Up!"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "infinite-q",
+      "name": "AD Mystic Punch Master Yi",
+      "damageType": "AD",
+      "note": "Master Yi AD route for ARAM: Mayhem. Prioritize Mystic Punch / Dual Wield as the main augment plan. Strong secondary hits include With Haste / Dashing / Light 'em Up!. Build toward Blade of The Ruined King > Berserker's Greaves > Kraken Slayer > Navori Flickerblade > Infinity Edge > Lord Dominik's Regards. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "With Haste"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "Light 'em Up!"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3033,
+          "name": "Mortal Reminder"
+        }
+      ]
+    }
+  ]
+}

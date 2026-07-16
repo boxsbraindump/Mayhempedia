@@ -1,0 +1,93 @@
+{
+  "championId": 266,
+  "championName": "Aatrox",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Aatrox",
+      "damageType": "AD",
+      "note": "Aatrox AD route for ARAM: Mayhem. Prioritize Goredrink as the main augment plan. Strong secondary hits include Juice Box / Blunt Force / Restless Restoration. Build toward Hubris > Sundered Sky > Death's Dance > Mercury's Treads > Endless Hunger > Eclipse. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 49,
+            "apiName": "JuiceBox",
+            "name": "Juice Box"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 70,
+            "apiName": "RestlessRestoration",
+            "name": "Restless Restoration"
+          }
+        ],
+        "trap": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 2517,
+          "name": "Endless Hunger"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

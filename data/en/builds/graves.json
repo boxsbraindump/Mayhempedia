@@ -1,0 +1,179 @@
+{
+  "championId": 104,
+  "championName": "Graves",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Giant Slayer Graves",
+      "damageType": "AD",
+      "note": "Graves AD route for ARAM: Mayhem. Prioritize Giant Slayer / Soul Siphon as the main augment plan. Strong secondary hits include Executioner / It's Killing Time / Bread And Butter. Build toward The Collector > Mercury's Treads > Infinity Edge > Lord Dominik's Regards > Youmuu's Ghostblade > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          }
+        ],
+        "good": [
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "Bread And Butter"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "trap": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3142,
+          "name": "Youmuu's Ghostblade"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "melee-sword",
+      "name": "AD Draw Your Sword Graves",
+      "damageType": "AD",
+      "note": "Graves AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Slow and Steady / Back To Basics / It's Killing Time. Build toward The Collector > Mercury's Treads > Infinity Edge > Youmuu's Ghostblade > Hubris > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "Slow and Steady"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 211,
+            "apiName": "ItsKillingTime",
+            "name": "It's Killing Time"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3142,
+          "name": "Youmuu's Ghostblade"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

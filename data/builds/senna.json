@@ -85,6 +85,120 @@
           "name": "鞋子"
         }
       ]
+    },
+    {
+      "key": "protect",
+      "name": "保护流赛娜",
+      "damageType": "Support",
+      "note": "放弃一部分个人爆发，围绕Q治疗、普攻补魂与保护型海克斯为队友持续续航。花晓之剑与元气弹让每次治疗和护盾都变成团队资源，适合有稳定输出核心的阵容。",
+      "augments": {
+        "core": [
+          {
+            "id": 1379,
+            "apiName": "ARAMMayhemUpgradeSwordOfBlossomingDawn",
+            "name": "升级：花晓之剑"
+          },
+          {
+            "id": 910019,
+            "apiName": "ARAMMayhemSpiritBomb",
+            "name": "元气弹"
+          }
+        ],
+        "good": [
+          {
+            "id": 910006,
+            "apiName": "ARAMMayhemToothFairy",
+            "name": "牙仙"
+          },
+          {
+            "id": 910022,
+            "apiName": "ARAMMayhemDonation",
+            "name": "捐赠"
+          },
+          {
+            "id": 910011,
+            "apiName": "ARAMMayhemWindspeakersBlessing",
+            "name": "风语者的祝福"
+          },
+          {
+            "id": 910012,
+            "apiName": "ARAMMayhemWeeWooWeeWoo",
+            "name": "急救鸣笛"
+          },
+          {
+            "id": 910013,
+            "apiName": "ARAMMayhemSonata",
+            "name": "奏鸣曲"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "月石再生器"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 2530,
+          "name": "歌之权冠"
+        },
+        {
+          "id": 3504,
+          "name": "炽热香炉"
+        },
+        {
+          "id": 3107,
+          "name": "救赎"
+        },
+        {
+          "id": 6621,
+          "name": "黎明核心"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 4642,
+          "name": "班德尔玻璃镜"
+        },
+        {
+          "id": 3114,
+          "name": "禁忌雕像"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3009,
+          "name": "轻灵之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6620,
+          "name": "海力亚的回响"
+        },
+        {
+          "id": 3222,
+          "name": "米凯尔的祝福"
+        },
+        {
+          "id": 4005,
+          "name": "帝国指令"
+        }
+      ]
     }
   ]
 }

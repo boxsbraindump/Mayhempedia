@@ -1,0 +1,101 @@
+{
+  "championId": 901,
+  "championName": "Smolder",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Smolder",
+      "damageType": "AD",
+      "note": "Smolder AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Stackosaurus Rex / Trueshot Prodigy / Giant Slayer. Build toward Essence Reaver > Ionian Boots of Lucidity > Spear of Shojin > Rapid Firecannon > Infinity Edge > Mortal Reminder. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and hupu.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          },
+          {
+            "id": 86,
+            "apiName": "TrueshotProdigy",
+            "name": "Trueshot Prodigy"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3508,
+          "name": "Essence Reaver"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 3094,
+          "name": "Rapid Firecannon"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3033,
+          "name": "Mortal Reminder"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "hupu.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "B. F. Sword"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

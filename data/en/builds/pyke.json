@@ -1,0 +1,93 @@
+{
+  "championId": 555,
+  "championName": "Pyke",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Pyke",
+      "damageType": "AD",
+      "note": "Pyke AD route for ARAM: Mayhem. Prioritize Dashing as the main augment plan. Strong secondary hits include Blunt Force / Shadow Runner / Mad Scientist. Build toward Hubris > Ionian Boots of Lucidity > The Collector > Axiom Arc > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 3814,
+          "name": "Edge of Night"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

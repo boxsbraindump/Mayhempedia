@@ -1,0 +1,93 @@
+{
+  "championId": 234,
+  "championName": "Viego",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Viego",
+      "damageType": "AD",
+      "note": "Viego AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet as the main augment plan. Strong secondary hits include Blunt Force / Deft / Dual Wield. Build toward The Collector > Mercury's Treads > Infinity Edge > Fiendhunter Bolts > Blade of The Ruined King > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ],
+        "trap": [
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "Blade Waltz"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 2512,
+          "name": "Fiendhunter Bolts"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

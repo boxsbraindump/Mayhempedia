@@ -1,0 +1,255 @@
+{
+  "championId": 236,
+  "championName": "Lucian",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Jeweled Gauntlet Lucian",
+      "damageType": "AD",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Vulnerability / Giant Slayer. Build toward Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > The Collector. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3508,
+          "name": "Essence Reaver"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "B. F. Sword"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "melee",
+      "name": "AD Draw Your Sword Lucian",
+      "damageType": "AD",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Vulnerability / Dual Wield. Build toward Bloodthirster > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > The Collector. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and dvg.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "Bread And Butter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "dvg.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "B. F. Sword"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "crit-ultimate-barrage",
+      "name": "AD Jeweled Gauntlet Lucian",
+      "damageType": "AD",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Vulnerability as the main augment plan. Strong secondary hits include It's Critical / Deft / Giant Slayer. Build toward The Collector > Berserker's Greaves > Infinity Edge > Serylda's Grudge > Navori Flickerblade > Bloodthirster. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          }
+        ],
+        "good": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "B. F. Sword"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

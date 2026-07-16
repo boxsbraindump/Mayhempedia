@@ -1,0 +1,95 @@
+{
+  "championId": 238,
+  "championName": "Zed",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Zed",
+      "damageType": "AD",
+      "note": "Zed AD route for ARAM: Mayhem. Prioritize Recursion / Ethereal Weapon as the main augment plan. Strong secondary hits include Dashing / Blunt Force / Mad Scientist. Build toward Spear of Shojin > Ionian Boots of Lucidity > Axiom Arc > Voltaic Cyclosword > The Collector > Black Cleaver. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and aramgg.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          }
+        ],
+        "trap": [
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 6699,
+          "name": "Voltaic Cyclosword"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

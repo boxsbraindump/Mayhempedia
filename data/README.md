@@ -15,7 +15,7 @@ npm run data:icons    # 只重下图标（读现有 JSON）
 
 | 文件 | 内容 |
 |---|---|
-| `augments.json` | **225** 个海克斯增强（斗魂竞技场/Cherry 增强库，大乱斗复用这套） |
+| `augments.json` | **199** 个 arammayhem.com live 海克斯增强 + 隐藏 legacy 兼容项 |
 | `items.json` | **706** 件装备 |
 | `icons/augments/{apiName}_large.png` / `_small.png` | 增强图标（450 张，git 忽略，可重下） |
 | `icons/items/{id}.png` | 装备图标（706 张，git 忽略，可重下） |
@@ -28,7 +28,7 @@ npm run data:icons    # 只重下图标（读现有 JSON）
   "id": 41,
   "apiName": "Goliath",           // 稳定标识（英文，不随语言变）；图标文件名 & CV 匹配都用它
   "name": "歌利亚巨人",             // 中文名
-  "rarity": 2,                    // 0银 1金 2棱彩 4特殊(待确认)
+  "rarity": 2,                    // 0银 1金 2棱彩
   "rarityLabel": "棱彩 Prismatic",
   "desc": "体型变大，获得15%生命值和10%自适应之力。",  // 清洗+占位符替换后的可读文本
   "tooltip": "...",               // 同上，更详细
@@ -62,8 +62,8 @@ npm run data:icons    # 只重下图标（读现有 JSON）
 ## 已知注意点 / TODO
 
 - **占位符替换取第 1 档近似值**：`desc`/`tooltip` 里的 `@Key@` 用 `dataValues[Key][0]` 替换，方便展示；**精确逐档数值以 `dataValues` 为准**。个别档位第 1 档为 0 时会显示 0（如"冰寒"），属已知近似。
-- **25/225 增强有残留占位符**：这些用 `@spell.X:Y@` / `{{模板}}` 引用技能计算值，静态 `dataValues` 拿不到 → `desc` 里保留原 token（如"@spell.Augment_ShadowRunner:BuffDuration@秒"）。其余 200 个是干净中文。`descRaw` 始终保留；做 UI/curate 时再处理这 25 个。
-- **rarity=4（25 个）含义待确认**：可能是当前赛季特殊档或棱彩变体（图标名带 `arena_2026_s2` 后缀）。
-- **大乱斗实际启用池可能是 225 的子集**：这里是完整的 Cherry 增强定义；哪些真在大乱斗出现，需后续 curate/过滤。
+- **部分增强有残留占位符**：这些用 `@spell.X:Y@` / `{{模板}}` 引用技能计算值，静态 `dataValues` 拿不到 → `desc` 里保留原 token（如"@spell.Augment_ShadowRunner:BuffDuration@秒"）。`descRaw` 始终保留；做 UI/curate 时再处理。
+- **可见海克斯池以 arammayhem.com/augments 为准**：`availability: "live"` 的 199 个会进入增强图鉴、选择器和推荐器。
+- **隐藏 legacy 兼容项**：`availability: "legacy"` 只用于解析旧官方路线里已经引用的历史 ID，不会展示给玩家选择。
 - **图标 CDN 分支不同**：增强图标在 `.../latest/game/`，装备图标在 `.../latest/plugins/rcp-be-lol-game-data/global/default/`（图标与语言无关，始终 `default`）。
 - **切语言**：改 `scripts/fetch-data.mjs` 顶部 `LANG`（`default`=英文 / `zh_cn` / `ko_kr` …）重跑 `npm run data:fetch` 即可，图标不用重下。

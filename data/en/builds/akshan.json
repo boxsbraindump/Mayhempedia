@@ -1,0 +1,104 @@
+{
+  "championId": 166,
+  "championName": "Akshan",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Akshan",
+      "damageType": "AD",
+      "note": "Akshan AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include It's Critical / Giant Slayer / Deft. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Mortal Reminder > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and zhihu.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ],
+        "good": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 6,
+            "apiName": "BladeWaltz",
+            "name": "Blade Waltz"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 174,
+            "apiName": "LaserEyes",
+            "name": "Laser Eyes"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 3033,
+          "name": "Mortal Reminder"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "zhihu.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

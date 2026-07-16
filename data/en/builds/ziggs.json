@@ -1,0 +1,209 @@
+{
+  "championId": 115,
+  "championName": "Ziggs",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Eureka Ziggs",
+      "damageType": "AP",
+      "note": "Ziggs AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Magic Missile / Phenomenal Evil / Mad Scientist. Build toward Luden's Echo > Sorcerer's Shoes > Liandry's Torment > Void Staff > Morellonomicon > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "good": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "chain-reaction-w",
+      "name": "AP Chain Reaction Ziggs",
+      "damageType": "AP",
+      "note": "Ziggs AP route for ARAM: Mayhem. Prioritize Chain Reaction / Bread And Jam as the main augment plan. Strong secondary hits include Eureka / Magic Missile / Jeweled Gauntlet. Build toward Luden's Echo > Ionian Boots of Lucidity > Shadowflame > Void Staff > Rabadon's Deathcap > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against bilibili.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910100,
+            "apiName": "ARAMMayhemChainReaction",
+            "name": "Chain Reaction"
+          },
+          {
+            "id": 150,
+            "apiName": "BreadAndJam",
+            "name": "Bread And Jam"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        }
+      ]
+    }
+  ]
+}

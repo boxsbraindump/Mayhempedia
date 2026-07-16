@@ -1,0 +1,91 @@
+{
+  "championId": 80,
+  "championName": "Pantheon",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Pantheon",
+      "damageType": "AD",
+      "note": "Pantheon AD route for ARAM: Mayhem. Prioritize Back To Basics / Mystic Punch as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / Thread the Needle. Build toward Hubris > Blade of The Ruined King > Mercury's Treads > Death's Dance > Black Cleaver > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

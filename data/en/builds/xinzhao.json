@@ -1,0 +1,89 @@
+{
+  "championId": 5,
+  "championName": "Xin Zhao",
+  "archetypes": [
+    {
+      "key": "ap-hybrid",
+      "name": "AP Xin Zhao",
+      "damageType": "AP",
+      "note": "Xin Zhao AP route for ARAM: Mayhem. Prioritize Master of Duality / Mystic Punch as the main augment plan. Strong secondary hits include Dual Wield / Goredrink / Typhoon. Build toward Statikk Shiv > Dusk and Dawn > Nashor's Tooth > Mercury's Treads > Death's Dance > Jak'Sho, The Protean. Start with Noonquiver. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "Master of Duality"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3087,
+          "name": "Statikk Shiv"
+        },
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 6670,
+          "name": "Noonquiver"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

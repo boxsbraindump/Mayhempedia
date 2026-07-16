@@ -164,6 +164,86 @@
           "name": "暴风之剑"
         }
       ]
+    },
+    {
+      "key": "crit-ultimate-barrage",
+      "name": "法爆易损圣枪游侠",
+      "damageType": "AD",
+      "note": "珠光护手和易损都拿到时再切。大招可同时吃技能暴击、持续伤害暴击和无尽的乘算收益；优先等队友控制或自己E调整射角后再开R。",
+      "augments": {
+        "core": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          }
+        ],
+        "good": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "关键暴击"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "巨人杀手"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "循环往复"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 6675,
+          "name": "纳沃利烁刃"
+        },
+        {
+          "id": 3072,
+          "name": "饮血剑"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1038,
+          "name": "暴风之剑"
+        }
+      ]
     }
   ]
 }

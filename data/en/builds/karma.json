@@ -1,0 +1,189 @@
+{
+  "championId": 43,
+  "championName": "Karma",
+  "archetypes": [
+    {
+      "key": "ap-burst",
+      "name": "AP Recursion Karma",
+      "damageType": "AP",
+      "note": "Karma AP route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Phenomenal Evil / Magic Missile / Circle of Death. Build toward Malignance > Ionian Boots of Lucidity > Luden's Echo > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "good": [
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "Circle of Death"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "Overflow"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "support-enchant",
+      "name": "Support Mind to Matter Karma",
+      "damageType": "Support",
+      "note": "Karma SUPPORT route for ARAM: Mayhem. Prioritize Mind to Matter / Recursion as the main augment plan. Strong secondary hits include Ice Cold / Tank Engine / Overflow. Build toward Malignance > Ionian Boots of Lucidity > Echoes of Helia > Moonstone Renewer > Locket of the Iron Solari > Mikael's Blessing. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against dvg.cn and metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          }
+        ],
+        "good": [
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "Overflow"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6620,
+          "name": "Echoes of Helia"
+        },
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3190,
+          "name": "Locket of the Iron Solari"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "dvg.cn",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

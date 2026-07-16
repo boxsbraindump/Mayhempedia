@@ -1,0 +1,91 @@
+{
+  "championId": 2,
+  "championName": "Olaf",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Olaf",
+      "damageType": "AD",
+      "note": "Olaf AD route for ARAM: Mayhem. Prioritize Mystic Punch / Heavy Hitter as the main augment plan. Strong secondary hits include Goredrink. Build toward Experimental Hexplate > Mercury's Treads > Stridebreaker > Death's Dance > Titanic Hydra > Sterak's Gage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3073,
+          "name": "Experimental Hexplate"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6631,
+          "name": "Stridebreaker"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

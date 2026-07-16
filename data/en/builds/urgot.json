@@ -1,0 +1,103 @@
+{
+  "championId": 6,
+  "championName": "Urgot",
+  "archetypes": [
+    {
+      "key": "adbruiser",
+      "name": "AD Urgot",
+      "damageType": "AD",
+      "note": "Urgot AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Heavy Hitter as the main augment plan. Strong secondary hits include Tap Dancer / Goredrink / Slow and Steady. Build toward Overlord's Bloodmail > Mercury's Treads > Titanic Hydra > Heartsteel > Warmog's Armor > Unending Despair. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "Tap Dancer"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 250,
+            "apiName": "SlowAndSteady",
+            "name": "Slow and Steady"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "Twice Thrice"
+          }
+        ],
+        "trap": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

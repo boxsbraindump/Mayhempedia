@@ -1,0 +1,307 @@
+{
+  "championId": 22,
+  "championName": "Ashe",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Deft Ashe",
+      "damageType": "AD",
+      "note": "Ashe AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Light 'em Up!. Build toward Immortal Shieldbow > Berserker's Greaves > Kraken Slayer > Runaan's Hurricane > Infinity Edge > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 81,
+            "apiName": "TapDancer",
+            "name": "Tap Dancer"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "Light 'em Up!"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          }
+        ],
+        "trap": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6673,
+          "name": "Immortal Shieldbow"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "poke-ap",
+      "name": "AP Skilled Sniper Ashe",
+      "damageType": "AP",
+      "note": "Ashe AP route for ARAM: Mayhem. Prioritize Skilled Sniper / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Bread And Butter / Giant Slayer / Vulnerability. Build toward Malignance > Sorcerer's Shoes > Liandry's Torment > Nashor's Tooth > Zhonya's Hourglass > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and ali213.net and 9game.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ],
+        "good": [
+          {
+            "id": 103,
+            "apiName": "BreadAndButter",
+            "name": "Bread And Butter"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "ali213.net",
+        "9game.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "archmage-infinite-r",
+      "name": "AP Archmage Ashe",
+      "damageType": "AP",
+      "note": "Ashe AP route for ARAM: Mayhem. Prioritize Archmage / Ultimate Awakening as the main augment plan. Strong secondary hits include Ultimate Revolution / Recursion / Eureka. Build toward Malignance > Ionian Boots of Lucidity > Horizon Focus > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "Archmage"
+          },
+          {
+            "id": 910052,
+            "apiName": "ARAMMayhemUltimateAwakening",
+            "name": "Ultimate Awakening"
+          }
+        ],
+        "good": [
+          {
+            "id": 88,
+            "apiName": "UltimateRevolution",
+            "name": "Ultimate Revolution"
+          },
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        }
+      ]
+    }
+  ]
+}

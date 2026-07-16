@@ -21,6 +21,7 @@ const HOWLING_ABYSS_MAP_ID = 12
 const PRISMATIC_RARITY = 2
 
 interface RawParticipantStats {
+  [key: string]: unknown
   win?: boolean
   kills: number
   deaths: number
@@ -52,6 +53,7 @@ interface RawParticipant {
   participantId: number
   championId: number
   stats: RawParticipantStats
+  challenges?: Record<string, unknown>
 }
 
 interface RawGame {
@@ -79,6 +81,7 @@ interface TimelineFrame {
 
 /** 增强 id → 稀有度，读本地 data/augments.json（一次性缓存，不联网） */
 let augmentRarityCache: Map<number, number> | null = null
+let runtimeAugmentAliasCache: Record<number, number> | null = null
 async function loadAugmentRarity(): Promise<Map<number, number>> {
   if (augmentRarityCache) return augmentRarityCache
   const raw = await readFile(path.join(__dirname, '..', 'data', 'augments.json'), 'utf-8')
@@ -87,11 +90,83 @@ async function loadAugmentRarity(): Promise<Map<number, number>> {
   return augmentRarityCache
 }
 
+async function loadRuntimeAugmentAliases(): Promise<Record<number, number>> {
+  if (runtimeAugmentAliasCache) return runtimeAugmentAliasCache
+  try {
+    const raw = await readFile(path.join(__dirname, '..', 'data', 'augment-runtime-aliases.json'), 'utf-8')
+    const payload = JSON.parse(raw) as { aliases?: Record<string, number> }
+    runtimeAugmentAliasCache = Object.fromEntries(
+      Object.entries(payload.aliases ?? {})
+        .map(([runtimeId, localId]) => [Number(runtimeId), localId] as const)
+        .filter(([runtimeId, localId]) => Number.isFinite(runtimeId) && Number.isFinite(localId)),
+    )
+  } catch {
+    runtimeAugmentAliasCache = {}
+  }
+  return runtimeAugmentAliasCache
+}
+
 /** Mayhem 模式部分海克斯用 base_id+1000 的变体编号（实测发现，非文档记录），查找时先按原 id 找，
  *  找不到且 id≥1000 时退化为 id-1000 再查一次。跟 src/renderer/data.ts 的 getAugment 是同一套逻辑
  *  （主进程/渲染进程各自独立的模块系统，没法共享一份实现，只能各写各的）。 */
-function getAugmentRarity(rarityById: Map<number, number>, id: number): number | undefined {
-  return rarityById.get(id) ?? (id >= 1000 ? rarityById.get(id - 1000) : undefined)
+const MANUAL_RUNTIME_AUGMENT_ID_ALIASES: Record<number, number> = {
+  1071: 910008,
+  1170: 910024,
+  1349: 910052,
+  1353: 313,
+  1379: 1379,
+  1384: 910022,
+  1388: 900003,
+  1390: 65,
+  1421: 910089,
+  2083: 910006,
+  2132: 910003,
+}
+
+function getAugmentRarity(
+  rarityById: Map<number, number>,
+  id: number,
+  runtimeAliases: Record<number, number>,
+): number | undefined {
+  const alias = runtimeAliases[id] ?? MANUAL_RUNTIME_AUGMENT_ID_ALIASES[id]
+  return (
+    rarityById.get(id) ??
+    (alias ? rarityById.get(alias) : undefined) ??
+    (id >= 1000 ? rarityById.get(id - 1000) : undefined) ??
+    (id >= 2000 ? rarityById.get(id - 2000) : undefined) ??
+    (id >= 1000 ? rarityById.get(id % 1000) : undefined)
+  )
+}
+
+function numericValue(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value) && value > 0) return value
+  if (typeof value === 'string') {
+    const parsed = Number(value)
+    if (Number.isFinite(parsed) && parsed > 0) return parsed
+  }
+  return null
+}
+
+function extractPlayerAugments(participant: RawParticipant): number[] {
+  const result: number[] = []
+  const seen = new Set<number>()
+  const add = (value: unknown) => {
+    const id = numericValue(value)
+    if (!id || seen.has(id)) return
+    seen.add(id)
+    result.push(id)
+  }
+  for (let i = 1; i <= 6; i += 1) {
+    add(participant.stats[`playerAugment${i}`])
+    add(participant.challenges?.[`playerAugment${i}`])
+  }
+  for (const [key, value] of Object.entries(participant.stats)) {
+    if (/augment/i.test(key)) add(value)
+  }
+  for (const [key, value] of Object.entries(participant.challenges ?? {})) {
+    if (/augment/i.test(key)) add(value)
+  }
+  return result
 }
 
 export interface Achievement {
@@ -220,6 +295,7 @@ export async function fetchMatchHistory(credentials: Credentials): Promise<Match
   const myPuuid = games[0].participantIdentities[0]?.player.puuid
   const aramGames = games.filter((g) => g.mapId === HOWLING_ABYSS_MAP_ID)
   const augmentRarity = await loadAugmentRarity()
+  const runtimeAugmentAliases = await loadRuntimeAugmentAliases()
 
   const matches: MatchSummary[] = []
   const achievements: Achievement[] = []
@@ -244,14 +320,7 @@ export async function fetchMatchHistory(credentials: Credentials): Promise<Match
 
     // 棱彩三连：本局选的海克斯里有 ≥3 个棱彩稀有度（读本地 augments.json，不联网、不算胜率聚合，
     // 只是"这局你选了什么"的事实陈述，合规——Riot 只禁止显示增强的"胜率"统计）
-    const myAugmentIds = [
-      me.stats.playerAugment1,
-      me.stats.playerAugment2,
-      me.stats.playerAugment3,
-      me.stats.playerAugment4,
-      me.stats.playerAugment5,
-      me.stats.playerAugment6,
-    ].filter((id): id is number => !!id && id > 0)
+    const myAugmentIds = extractPlayerAugments(me)
 
     matches.push({
       gameId: g.gameId,
@@ -264,7 +333,9 @@ export async function fetchMatchHistory(credentials: Credentials): Promise<Match
       gameCreationDate: g.gameCreationDate,
     })
 
-    const prismaticCount = myAugmentIds.filter((id) => getAugmentRarity(augmentRarity, id) === PRISMATIC_RARITY).length
+    const prismaticCount = myAugmentIds.filter(
+      (id) => getAugmentRarity(augmentRarity, id, runtimeAugmentAliases) === PRISMATIC_RARITY,
+    ).length
     if (prismaticCount >= 3) {
       achievements.push({
         key: 'triplePrismatic',
@@ -376,14 +447,7 @@ export async function fetchMatchFullDetail(credentials: Credentials, gameId: num
       const items = [p.stats.item0, p.stats.item1, p.stats.item2, p.stats.item3, p.stats.item4, p.stats.item5].filter(
         (id): id is number => !!id && id > 0,
       )
-      const augments = [
-        p.stats.playerAugment1,
-        p.stats.playerAugment2,
-        p.stats.playerAugment3,
-        p.stats.playerAugment4,
-        p.stats.playerAugment5,
-        p.stats.playerAugment6,
-      ].filter((id): id is number => !!id && id > 0)
+      const augments = extractPlayerAugments(p)
       return {
         participantId: p.participantId,
         championId: p.championId,

@@ -1,0 +1,102 @@
+{
+  "championId": 245,
+  "championName": "Ekko",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Ekko",
+      "damageType": "AP",
+      "note": "Ekko AP route for ARAM: Mayhem. Prioritize Eureka / Dashing as the main augment plan. Strong secondary hits include Witchful Thinking / Ethereal Weapon / Goredrink. Build toward Dusk and Dawn > Shadowflame > Rabadon's Deathcap > Sorcerer's Shoes > Hextech Rocketbelt > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

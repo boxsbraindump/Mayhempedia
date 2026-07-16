@@ -1,0 +1,84 @@
+{
+  "championId": 84,
+  "championName": "Akali",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Akali",
+      "damageType": "AP",
+      "note": "Akali AP route for ARAM: Mayhem. Prioritize Goredrink as the main augment plan. Strong secondary hits include Shadow Runner / Dashing / Thread the Needle. Build toward Hextech Gunblade > Sorcerer's Shoes > Shadowflame > Zhonya's Hourglass > Rabadon's Deathcap > Void Staff. Start with Hextech Alternator. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3146,
+          "name": "Hextech Gunblade"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3145,
+          "name": "Hextech Alternator"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

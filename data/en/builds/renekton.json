@@ -1,0 +1,102 @@
+{
+  "championId": 58,
+  "championName": "Renekton",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Renekton",
+      "damageType": "AD",
+      "note": "Renekton AD route for ARAM: Mayhem. Prioritize Goredrink / Heavy Hitter as the main augment plan. Strong secondary hits include Blunt Force / Dawnbringer's Resolve / Mystic Punch. Build toward Sundered Sky > Mercury's Treads > Eclipse > Death's Dance > Black Cleaver > Sterak's Gage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "Dawnbringer's Resolve"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 226,
+            "apiName": "Stats",
+            "name": "Stats!"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

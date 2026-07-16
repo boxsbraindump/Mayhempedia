@@ -101,6 +101,124 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "infinite-q",
+      "name": "无限Q剑圣",
+      "damageType": "AD",
+      "note": "秘术冲拳是无缝阿尔法突袭的启动器。破败与海妖保证普攻收益，纳沃利进一步压缩技能空窗；进场前留好Q，靠普攻刷新后连续收割。",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
+        ],
+        "good": [
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "急急小子"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 51,
+            "apiName": "LightemUp",
+            "name": "点亮他们！"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "破败王者之刃"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 6672,
+          "name": "海妖杀手"
+        },
+        {
+          "id": 6675,
+          "name": "纳沃利烁刃"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "守护者战锤"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6676,
+          "name": "收集者"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3033,
+          "name": "凡性的提醒"
+        }
+      ]
     }
   ]
 }

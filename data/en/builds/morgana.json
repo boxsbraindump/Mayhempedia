@@ -1,0 +1,113 @@
+{
+  "championId": 25,
+  "championName": "Morgana",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Morgana",
+      "damageType": "AP",
+      "note": "Morgana AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Ice Cold / Magic Missile / Skilled Sniper. Build toward Blackfire Torch > Sorcerer's Shoes > Liandry's Torment > Rylai's Crystal Scepter > Bloodletter's Curse > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "good": [
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 113,
+            "apiName": "SkilledSniper",
+            "name": "Skilled Sniper"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          },
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          },
+          {
+            "id": 60,
+            "apiName": "OceanSoul",
+            "name": "Ocean Soul"
+          }
+        ],
+        "trap": [
+          {
+            "id": 112,
+            "apiName": "UltimateUnstoppable",
+            "name": "Ultimate Unstoppable"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 4010,
+          "name": "Bloodletter's Curse"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

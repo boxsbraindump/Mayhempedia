@@ -2,6 +2,7 @@
 // M1 只在控制台打印；这一步把同一份 LCU 逻辑接上真正的窗口。
 
 import { app, BrowserWindow, ipcMain, Notification, screen } from 'electron'
+import electronUpdater from 'electron-updater'
 import { authenticate, createWebSocketConnection, createHttp1Request } from 'league-connect'
 import type { Credentials } from 'league-connect'
 import uiohook from 'uiohook-napi'
@@ -23,6 +24,7 @@ import {
 import { getSettings, setSetting, type Settings, type OverlaySettings } from './settings.js'
 
 const { uIOhook, UiohookKey } = uiohook
+const { autoUpdater } = electronUpdater
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const APP_ICON = path.join(__dirname, '..', 'data', 'assets', 'brand', 'mayhempedia-icon.ico')
@@ -89,8 +91,8 @@ let currentPuuid: string | null = null
 let buildChampionIds = new Set<number>()
 let championAliasToId = new Map<string, number>()
 let lastNotifiedChampionId: number | null = null
-const OVERLAY_WIDTH = 392
-const OVERLAY_HEIGHT = 430
+const OVERLAY_WIDTH = 456
+const OVERLAY_HEIGHT = 424
 const overlayCollapseHotkey: OverlaySettings['hotkey'] = { ctrl: true, shift: true, alt: false, key: 'C' }
 
 /** 推给"两个"窗口——主 companion 窗口 + M2 overlay 探针都订阅同一批 LCU 事件 */
@@ -104,6 +106,21 @@ interface AppNotice {
   title: string
   body: string
   tone: 'success' | 'warning' | 'info'
+}
+
+interface UpdateStatus {
+  state: 'idle' | 'checking' | 'available' | 'not-available' | 'downloading' | 'downloaded' | 'error'
+  version?: string
+  percent?: number
+  message?: string
+}
+
+let updateStatus: UpdateStatus = { state: 'idle', version: app.getVersion() }
+
+function sendUpdateStatus(status: UpdateStatus): UpdateStatus {
+  updateStatus = status
+  mainWindow?.webContents.send('updates:status', status)
+  return status
 }
 
 async function loadBuildChampionIds(): Promise<void> {
@@ -245,16 +262,30 @@ async function createWindow(port: number): Promise<void> {
  * 没拖过就按锚点(左上/右上/左下/右下)算默认位置，留 20px 边距。
  */
 function overlayPosition(overlay: OverlaySettings, w: number, h: number): { x: number; y: number } {
-  const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize
+  const {
+    x: ax,
+    y: ay,
+    width: sw,
+    height: sh,
+  } = screen.getPrimaryDisplay().workArea
   const MARGIN = 20
-  if (overlay.customPos) {
+  const minX = ax + MARGIN
+  const minY = ay + MARGIN
+  const maxX = ax + Math.max(MARGIN, sw - w - MARGIN)
+  const maxY = ay + Math.max(MARGIN, sh - h - MARGIN)
+
+  if (
+    overlay.customPos &&
+    Number.isFinite(overlay.customPos.x) &&
+    Number.isFinite(overlay.customPos.y)
+  ) {
     return {
-      x: Math.max(MARGIN, Math.min(overlay.customPos.x, sw - w - MARGIN)),
-      y: Math.max(MARGIN, Math.min(overlay.customPos.y, sh - h - MARGIN)),
+      x: Math.max(minX, Math.min(overlay.customPos.x, maxX)),
+      y: Math.max(minY, Math.min(overlay.customPos.y, maxY)),
     }
   }
-  const x = overlay.position.includes('right') ? sw - w - MARGIN : MARGIN
-  const y = overlay.position.includes('bottom') ? sh - h - MARGIN : MARGIN
+  const x = overlay.position.includes('right') ? maxX : minX
+  const y = overlay.position.includes('bottom') ? maxY : minY
   return { x, y }
 }
 
@@ -303,6 +334,12 @@ function createOverlayWindow(port: number): void {
   overlayWindow.setIgnoreMouseEvents(true, { forward: true })
   overlayWindow.webContents.on('console-message', (_e, _level, message) => {
     console.log('[overlay]', message)
+  })
+  overlayWindow.webContents.on('did-fail-load', (_e, code, desc, url) => {
+    console.error('[ARAM Copilot] overlay 加载失败:', code, desc, url)
+  })
+  overlayWindow.webContents.on('did-finish-load', () => {
+    console.log('[ARAM Copilot] ✅ overlay 渲染层已加载')
   })
   overlayWindow.loadURL(`http://127.0.0.1:${port}/overlay.html`)
 }
@@ -375,7 +412,9 @@ function notifyChampionDetected(myChampionId: number): void {
   const hasBuild = buildChampionIds.has(myChampionId)
   // 只呼出 overlay(showInactive，不抢焦点)——主窗口的英雄详情页照常在后台跟着 champId 同步更新，
   // 但不强制 restore/show/focus 抢占 OS 窗口焦点，用户在忙别的窗口时不会被硬拉走。
-  showOverlay(`检测到 ${name}`)
+  // Do not surface an empty panel. A missing build is a data issue, not an
+  // in-game state the player needs to decode.
+  if (hasBuild) showOverlay(`检测到 ${name}`)
   notifyUser({
     id: `champ-${myChampionId}-${Date.now()}`,
     title: hasBuild ? 'Overlay 已准备好' : '暂无流派数据',
@@ -594,6 +633,73 @@ function registerWindowIpc(): void {
   ipcMain.handle('appWindow:close', () => {
     mainWindow?.close()
   })
+  ipcMain.handle('overlay:show', () => {
+    if (!overlayWindow) return false
+    const overlay = getSettings().overlay
+    applyOverlaySettings(overlay)
+    overlayVisible = true
+    overlayWindow.showInactive()
+    overlayWindow.setAlwaysOnTop(true, 'screen-saver')
+    console.log('[ARAM Copilot] overlay 已通过主窗口手动呼出')
+    return true
+  })
+}
+
+function registerUpdateIpc(): void {
+  autoUpdater.autoDownload = true
+  autoUpdater.autoInstallOnAppQuit = true
+
+  autoUpdater.on('checking-for-update', () => {
+    sendUpdateStatus({ state: 'checking', version: app.getVersion() })
+  })
+  autoUpdater.on('update-available', (info) => {
+    sendUpdateStatus({ state: 'available', version: info.version })
+  })
+  autoUpdater.on('update-not-available', (info) => {
+    sendUpdateStatus({ state: 'not-available', version: info.version })
+  })
+  autoUpdater.on('download-progress', (progress) => {
+    sendUpdateStatus({ state: 'downloading', version: updateStatus.version, percent: Math.round(progress.percent) })
+  })
+  autoUpdater.on('update-downloaded', (info) => {
+    sendUpdateStatus({ state: 'downloaded', version: info.version })
+    notifyUser({
+      id: `update-${info.version}`,
+      title: 'Mayhempedia update ready',
+      body: 'Restart Mayhempedia to install the new version.',
+      tone: 'success',
+    })
+  })
+  autoUpdater.on('error', (error) => {
+    sendUpdateStatus({ state: 'error', version: app.getVersion(), message: error.message })
+  })
+
+  ipcMain.handle('updates:getStatus', () => updateStatus)
+  ipcMain.handle('updates:check', async () => {
+    if (!app.isPackaged) {
+      return sendUpdateStatus({
+        state: 'not-available',
+        version: app.getVersion(),
+        message: 'Updates are available after packaging the Windows app.',
+      })
+    }
+    sendUpdateStatus({ state: 'checking', version: app.getVersion() })
+    try {
+      await autoUpdater.checkForUpdates()
+    } catch (error) {
+      return sendUpdateStatus({
+        state: 'error',
+        version: app.getVersion(),
+        message: error instanceof Error ? error.message : String(error),
+      })
+    }
+    return updateStatus
+  })
+  ipcMain.handle('updates:install', () => {
+    if (updateStatus.state !== 'downloaded') return false
+    autoUpdater.quitAndInstall(false, true)
+    return true
+  })
 }
 
 function registerMatchDetailIpc(): void {
@@ -624,6 +730,7 @@ function registerAccountHistoryIpc(): void {
 app.whenReady().then(async () => {
   registerSettingsIpc()
   registerWindowIpc()
+  registerUpdateIpc()
   registerMatchDetailIpc()
   registerAccountHistoryIpc()
   applyAutoLaunch(getSettings().autoLaunch)
@@ -635,6 +742,13 @@ app.whenReady().then(async () => {
   await createWindow(port)
   createOverlayWindow(port)
   registerHotkey()
+  if (app.isPackaged) {
+    setTimeout(() => {
+      void autoUpdater.checkForUpdates().catch((error) => {
+        sendUpdateStatus({ state: 'error', version: app.getVersion(), message: error.message })
+      })
+    }, 4500)
+  }
 
   connectLcu().catch((err) => {
     console.error('[ARAM Copilot] LCU 连接失败:', err)

@@ -1,0 +1,97 @@
+{
+  "championId": 887,
+  "championName": "Gwen",
+  "archetypes": [
+    {
+      "key": "onhit",
+      "name": "AP On-Hit Gwen",
+      "damageType": "AP",
+      "note": "Gwen AP route for ARAM: Mayhem. Prioritize Dual Wield / Ethereal Weapon as the main augment plan. Strong secondary hits include Typhoon / Marksmage / Mystic Punch. Build toward Riftmaker > Nashor's Tooth > Dusk and Dawn > Mercury's Treads > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 4633,
+          "name": "Riftmaker"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

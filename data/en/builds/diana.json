@@ -1,0 +1,97 @@
+{
+  "championId": 131,
+  "championName": "Diana",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Diana",
+      "damageType": "AP",
+      "note": "Diana AP route for ARAM: Mayhem. Prioritize Eureka / Ethereal Weapon as the main augment plan. Strong secondary hits include Phenomenal Evil / Goredrink / Witchful Thinking. Build toward Stormsurge > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Zhonya's Hourglass > Lich Bane. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 4646,
+          "name": "Stormsurge"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3100,
+          "name": "Lich Bane"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

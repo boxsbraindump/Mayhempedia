@@ -1,0 +1,103 @@
+{
+  "championId": 96,
+  "championName": "Kog'Maw",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Kog'Maw",
+      "damageType": "AD",
+      "note": "Kog'Maw AD route for ARAM: Mayhem. Prioritize Dual Wield / Deft as the main augment plan. Strong secondary hits include Lightning Strikes / Scopiest Weapons / It's Critical. Build toward Blade of The Ruined King > Berserker's Greaves > Guinsoo's Rageblade > Runaan's Hurricane > Infinity Edge > Terminus. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "good": [
+          {
+            "id": 52,
+            "apiName": "LightningStrikes",
+            "name": "Lightning Strikes"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 195,
+            "apiName": "GiantSlayer",
+            "name": "Giant Slayer"
+          }
+        ],
+        "trap": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3124,
+          "name": "Guinsoo's Rageblade"
+        },
+        {
+          "id": 3085,
+          "name": "Runaan's Hurricane"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3302,
+          "name": "Terminus"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

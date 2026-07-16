@@ -1,0 +1,202 @@
+{
+  "championId": 75,
+  "championName": "Nasus",
+  "archetypes": [
+    {
+      "key": "onhit-tank",
+      "name": "AD/Tank Tank Engine Nasus",
+      "damageType": "AD/Tank",
+      "note": "Nasus AD/TANK route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Goliath / Goredrink / Quest: Steel Your Heart. Build toward Trinity Force > Mercury's Treads > Spirit Visage > Heartsteel > Liandry's Torment > Blackfire Torch. Start with Ruby Crystal + Sheen. Cross-checked against op.gg and aramgg.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "trap": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "op.gg",
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 3057,
+          "name": "Sheen"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "bonk-q",
+      "name": "AD/Tank BONK! Nasus",
+      "damageType": "AD/Tank",
+      "note": "Nasus AD/TANK route for ARAM: Mayhem. Prioritize BONK! / Heavy Hitter as the main augment plan. Strong secondary hits include Tank Engine / Quest: Steel Your Heart / Goredrink. Build toward Trinity Force > Mercury's Treads > Spear of Shojin > Sundered Sky > Sterak's Gage > Spirit Visage. Start with Sheen + Boots + Health Potion. Cross-checked against aramgg.com and arammayhem.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 910021,
+            "apiName": "ARAMMayhemBonk",
+            "name": "BONK!"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": []
+      },
+      "starterItems": [
+        {
+          "id": 3057,
+          "name": "Sheen"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com",
+        "Community curated"
+      ]
+    }
+  ]
+}

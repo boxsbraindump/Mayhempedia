@@ -1,0 +1,108 @@
+{
+  "championId": 23,
+  "championName": "Tryndamere",
+  "archetypes": [
+    {
+      "key": "adcrit",
+      "name": "AD Crit Tryndamere",
+      "damageType": "AD",
+      "note": "Tryndamere AD route for ARAM: Mayhem. Prioritize Dual Wield / Goredrink as the main augment plan. Strong secondary hits include Deft / Heavy Hitter / Blunt Force. Build toward Blade of The Ruined King > Berserker's Greaves > Phantom Dancer > Infinity Edge > Navori Flickerblade > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
+          },
+          {
+            "id": 238,
+            "apiName": "TransmutePrismatic",
+            "name": "Transmute: Prismatic"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3046,
+          "name": "Phantom Dancer"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "aramgg.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -74,6 +74,89 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "passive-magic-missile",
+      "name": "被动飞弹布兰德",
+      "damageType": "AP",
+      "note": "魔法飞弹是这条路线的启动器：火男被动也能触发飞弹，第一段技能命中后可快速叠出额外真伤。炼狱导管与持续灼烧装是最稳定的补强，不需要硬追单点爆发。",
+      "augments": {
+        "core": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
+        ],
+        "good": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "无限循环往复"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

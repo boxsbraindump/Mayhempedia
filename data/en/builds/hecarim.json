@@ -1,0 +1,346 @@
+{
+  "championId": 120,
+  "championName": "Hecarim",
+  "archetypes": [
+    {
+      "key": "onhit",
+      "name": "AD Tank Engine Hecarim",
+      "damageType": "AD",
+      "note": "Hecarim AD route for ARAM: Mayhem. Prioritize Tank Engine / Celestial Body as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Goredrink. Build toward Spear of Shojin > Manamune > Death's Dance > Mercury's Treads > Trinity Force > Sterak's Gage. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 3004,
+          "name": "Manamune"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "infinite-q",
+      "name": "AD Mystic Punch Hecarim",
+      "damageType": "AD",
+      "note": "Hecarim AD route for ARAM: Mayhem. Prioritize Mystic Punch / Pursuit of Haste as the main augment plan. Strong secondary hits include With Haste / Quickstep / Dashing. Build toward Manamune > Ionian Boots of Lucidity > Trinity Force > Spear of Shojin > Death's Dance > Sterak's Gage. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against arammayhem.com and aramgg.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "Pursuit of Haste"
+          }
+        ],
+        "good": [
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "With Haste"
+          },
+          {
+            "id": 910096,
+            "apiName": "ARAMMayhemQuickstep",
+            "name": "Quickstep"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3004,
+          "name": "Manamune"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3742,
+          "name": "Dead Man's Plate"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        }
+      ]
+    },
+    {
+      "key": "basics-shark-bait",
+      "name": "AD Back To Basics Hecarim",
+      "damageType": "AD",
+      "note": "Hecarim AD route for ARAM: Mayhem. Prioritize Back To Basics / Shark Bait as the main augment plan. Strong secondary hits include Mystic Punch / With Haste / Don't Blink. Build toward Manamune > Ionian Boots of Lucidity > Trinity Force > Spear of Shojin > Death's Dance > Sterak's Gage. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against bilibili.com and aramgg.com and Community curated.",
+      "augments": {
+        "core": [
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 910079,
+            "apiName": "ARAMMayhemSharkBait",
+            "name": "Shark Bait"
+          }
+        ],
+        "good": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "With Haste"
+          },
+          {
+            "id": 26,
+            "apiName": "DontBlink",
+            "name": "Don't Blink"
+          },
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "Pursuit of Haste"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3004,
+          "name": "Manamune"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3161,
+          "name": "Spear of Shojin"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3742,
+          "name": "Dead Man's Plate"
+        },
+        {
+          "id": 6694,
+          "name": "Serylda's Grudge"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        }
+      ]
+    }
+  ]
+}

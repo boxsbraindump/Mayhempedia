@@ -1,0 +1,100 @@
+{
+  "championId": 27,
+  "championName": "Singed",
+  "archetypes": [
+    {
+      "key": "tank-poison",
+      "name": "AP Tank Singed",
+      "damageType": "AP",
+      "note": "Singed AP route for ARAM: Mayhem. Prioritize Tank Engine / Infernal Conduit as the main augment plan. Strong secondary hits include Blunt Force / Goliath / Ice Cold. Build toward Rod of Ages > Boots of Swiftness > Liandry's Torment > Rylai's Crystal Scepter > Thornmail > Spirit Visage. Start with Catalyst of Aeons. Cross-checked against arammayhem.com and metasrc.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "trap": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3009,
+          "name": "Boots of Swiftness"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3803,
+          "name": "Catalyst of Aeons"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

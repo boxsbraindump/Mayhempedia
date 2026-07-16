@@ -91,6 +91,90 @@
           "name": "明朗之靴"
         }
       ]
+    },
+    {
+      "key": "ethereal-perma-knockup",
+      "name": "虚幻武器无限击飞布里茨",
+      "damageType": "AP",
+      "note": "抽到虚幻武器和双生火力再转。保留R的被动，不要主动开R；被动电击、虚幻武器和双生火力可持续触发攻击特效。E好了就按，技能急速足够高时能连续击飞。",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 910009,
+            "apiName": "ARAMMayhemTwinFire",
+            "name": "双生火力"
+          }
+        ],
+        "good": [
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "无限循环往复"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
+        },
+        {
+          "id": 3115,
+          "name": "纳什之牙"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3124,
+          "name": "鬼索的狂暴之刃"
+        },
+        {
+          "id": 3091,
+          "name": "智慧末刃"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        }
+      ]
     }
   ]
 }

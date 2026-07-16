@@ -1,0 +1,182 @@
+{
+  "championId": 82,
+  "championName": "Mordekaiser",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Infernal Conduit Mordekaiser",
+      "damageType": "AP",
+      "note": "Mordekaiser AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Tank Engine as the main augment plan. Strong secondary hits include Blunt Force / Goliath / Heavy Hitter. Build toward Riftmaker > Mercury's Treads > Cosmic Drive > Spirit Visage > Heartsteel > Banshee's Veil. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 4633,
+          "name": "Riftmaker"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 4629,
+          "name": "Cosmic Drive"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3102,
+          "name": "Banshee's Veil"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "cod-burst",
+      "name": "AP Circle of Death Mordekaiser",
+      "damageType": "AP",
+      "note": "Mordekaiser AP route for ARAM: Mayhem. Prioritize Circle of Death as the main augment plan. Strong secondary hits include Ice Cold / Impassable. Build toward Morellonomicon > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Zhonya's Hourglass > Banshee's Veil. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and wiki.leagueoflegends.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 15,
+            "apiName": "CircleofDeath",
+            "name": "Circle of Death"
+          }
+        ],
+        "good": [
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 149,
+            "apiName": "Impassable",
+            "name": "Impassable"
+          }
+        ],
+        "trap": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3102,
+          "name": "Banshee's Veil"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "wiki.leagueoflegends.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3112,
+          "name": "Guardian's Orb"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

@@ -89,6 +89,119 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "chain-reaction-w",
+      "name": "连锁反应W炸弹人",
+      "damageType": "AP",
+      "note": "选定W后，连锁反应把爆破雷区的击退变成撞人、撞墙后的连环击飞。优先压W冷却和法强，在狭窄地形用W先手制造群体控制，再接Q、E和大招收场。",
+      "augments": {
+        "core": [
+          {
+            "id": 910100,
+            "apiName": "ARAMMayhemChainReaction",
+            "name": "连锁反应"
+          },
+          {
+            "id": 150,
+            "apiName": "BreadAndJam",
+            "name": "面包和果酱"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "巫师式思考"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        }
+      ]
     }
   ]
 }

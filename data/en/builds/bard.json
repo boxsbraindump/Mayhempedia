@@ -1,0 +1,179 @@
+{
+  "championId": 432,
+  "championName": "Bard",
+  "archetypes": [
+    {
+      "key": "support",
+      "name": "Support First-Aid Kit Bard",
+      "damageType": "Support",
+      "note": "Bard SUPPORT route for ARAM: Mayhem. Prioritize First-Aid Kit / All For You as the main augment plan. Strong secondary hits include Recursion / Typhoon / Wisdom of Ages. Build toward Mikael's Blessing > Redemption > Sorcerer's Shoes > Morellonomicon > Zhonya's Hourglass > Frozen Heart. Start with Kindlegem + Forbidden Idol. Cross-checked against arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          }
+        ],
+        "good": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          },
+          {
+            "id": 96,
+            "apiName": "WisdomofAges",
+            "name": "Wisdom of Ages"
+          }
+        ],
+        "trap": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3110,
+          "name": "Frozen Heart"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3067,
+          "name": "Kindlegem"
+        },
+        {
+          "id": 3114,
+          "name": "Forbidden Idol"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap",
+      "name": "AP Recursion Bard",
+      "damageType": "AP",
+      "note": "Bard AP route for ARAM: Mayhem. Prioritize Recursion / Marksmage as the main augment plan. Strong secondary hits include Eureka / Ice Cold / Slap Around. Build toward Luden's Echo > Sorcerer's Shoes > Rod of Ages > Morellonomicon > Zhonya's Hourglass > Void Staff. Start with Kindlegem + Forbidden Idol. Cross-checked against metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          }
+        ],
+        "good": [
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          }
+        ],
+        "trap": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6657,
+          "name": "Rod of Ages"
+        },
+        {
+          "id": 3165,
+          "name": "Morellonomicon"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3067,
+          "name": "Kindlegem"
+        },
+        {
+          "id": 3114,
+          "name": "Forbidden Idol"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

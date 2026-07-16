@@ -84,6 +84,123 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "triple-burn-tank",
+      "name": "三重灼烧特效卡特",
+      "damageType": "Tank",
+      "note": "高压锅负责贴身站场灼烧，火上浇油让攻击和特效不断叠火，日炎补上第三层持续伤害。用E切入后开R持续触发特效，目标不是秒人，而是在混战中把近身范围变成灼烧区。",
+      "augments": {
+        "core": [
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "高压锅"
+          },
+          {
+            "id": 36,
+            "apiName": "Firebrand",
+            "name": "火上浇油"
+          }
+        ],
+        "good": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
+          },
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "旋转至胜"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "心之钢"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3068,
+          "name": "日炎圣盾"
+        },
+        {
+          "id": 2501,
+          "name": "霸王血铠"
+        },
+        {
+          "id": 2502,
+          "name": "无终恨意"
+        },
+        {
+          "id": 3075,
+          "name": "荆棘之甲"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "arammayhem.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "巨人腰带"
+        },
+        {
+          "id": 1028,
+          "name": "红水晶"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        },
+        {
+          "id": 3047,
+          "name": "铁板靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 6662,
+          "name": "冰脉护手"
+        },
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        },
+        {
+          "id": 4401,
+          "name": "自然之力"
+        }
+      ]
     }
   ]
 }

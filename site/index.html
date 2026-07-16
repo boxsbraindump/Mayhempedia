@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mayhempedia is a Windows desktop companion for ARAM Mayhem: Champion Codex, Combat Files, augment priorities, match review, and custom route capture."
+    />
+    <meta property="og:title" content="Mayhempedia | ARAM Mayhem Combat Files" />
+    <meta
+      property="og:description"
+      content="A local-first Windows companion that turns ARAM Mayhem champion select and match history into playable build decisions."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/app-dashboard-en.png" />
+    <link rel="icon" href="assets/mayhempedia-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Mayhempedia | ARAM Mayhem Combat Files</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Mayhempedia home">
+          <img src="assets/mayhempedia-icon.svg" alt="Mayhempedia logo" />
+          <span>Mayhem<span class="brand-pedia">pedia</span></span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#product">Codex</a>
+          <a href="#workflow">Routes</a>
+          <a href="#product">Augments</a>
+          <a href="#download">Download</a>
+        </nav>
+        <a class="nav-download" href="#download">Download</a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="launch-pill">Windows test build 0.1.0</div>
+            <h1 id="hero-title">ARAM Mayhem routes for the lobby timer.</h1>
+            <p>
+              Open a champion, scan the core augments and final items, then save the builds that actually worked.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="https://github.com/boxsbraindump/Mayhempedia/releases/download/v0.1.0/Mayhempedia-0.1.0-setup-x64.exe">Download Windows build</a>
+              <a class="secondary-button" href="#product">View Combat Files</a>
+            </div>
+            <div class="hero-meta" aria-label="Mayhempedia coverage">
+              <span>173 champions</span>
+              <span>223 playstyles</span>
+              <span>local-first desktop app</span>
+            </div>
+          </div>
+
+          <div class="hero-product hero-build" aria-label="Xayah Combat File preview">
+            <article class="build-card">
+              <div class="build-card-top">
+                <div class="champion-portrait">
+                  <img src="assets/hero/xayah.png" alt="Xayah champion icon" />
+                </div>
+                <div>
+                  <span>Champion Codex</span>
+                  <h2>Xayah</h2>
+                  <p>AD Crit route</p>
+                </div>
+                <strong>S</strong>
+              </div>
+
+              <div class="build-section">
+                <div class="build-label">Core Augments</div>
+                <div class="augment-row">
+                  <figure>
+                    <img src="assets/hero/augment-deft.png" alt="Deft augment icon" />
+                    <figcaption>Deft</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/hero/augment-fan-the-hammer.png" alt="Fan The Hammer augment icon" />
+                    <figcaption>Fan The Hammer</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/hero/augment-giant-slayer.png" alt="Giant Slayer augment icon" />
+                    <figcaption>Giant Slayer</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="build-section">
+                <div class="build-label">Final Items</div>
+                <div class="item-row">
+                  <img src="assets/hero/item-collector.png" alt="The Collector item icon" />
+                  <img src="assets/hero/item-berserkers.png" alt="Berserker's Greaves item icon" />
+                  <img src="assets/hero/item-navori.png" alt="Navori Flickerblade item icon" />
+                  <img src="assets/hero/item-infinity-edge.png" alt="Infinity Edge item icon" />
+                  <img src="assets/hero/item-yun-tal.png" alt="Yun Tal Wildarrows item icon" />
+                  <img src="assets/hero/item-runaans.png" alt="Runaan's Hurricane item icon" />
+                </div>
+              </div>
+
+              <div class="route-note">
+                <span>Route intent</span>
+                <p>Feather uptime, crit tempo, and clean front-to-back damage for ARAM Mayhem fights.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="positioning" id="why" aria-labelledby="positioning-title">
+          <div class="positioning-copy">
+            <span class="section-label">Why Mayhempedia</span>
+            <h2 id="positioning-title">Built for ARAM Mayhem decisions, not post-game statistics.</h2>
+            <p>
+              OP.GG helps you understand the match. Mayhempedia helps you decide what to build before the first fight, then saves what actually worked after the game.
+            </p>
+          </div>
+          <div class="edge-list">
+            <article>
+              <strong>Champion select first</strong>
+              <p>Open the right Combat File when the League client enters ARAM Mayhem champion select.</p>
+            </article>
+            <article>
+              <strong>Route identity, not item spam</strong>
+              <p>Each build is framed by its core augment idea, so two AP routes do not feel identical.</p>
+            </article>
+            <article>
+              <strong>Local match intelligence</strong>
+              <p>Recent history highlights high-impact games and capture-ready player loadouts.</p>
+            </article>
+            <article>
+              <strong>Personal route capture</strong>
+              <p>Save the strongest player build into your custom route library after reviewing a match.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="metrics-strip" aria-label="Product coverage">
+          <div>
+            <strong>173</strong>
+            <span>champions with routes</span>
+          </div>
+          <div>
+            <strong>223</strong>
+            <span>playstyles indexed</span>
+          </div>
+          <div>
+            <strong>199</strong>
+            <span>Mayhem augments mapped</span>
+          </div>
+          <div>
+            <strong>Local</strong>
+            <span>runs beside your League client</span>
+          </div>
+        </section>
+
+        <section class="product-stage" id="product">
+          <div class="section-heading">
+            <span class="section-label">Inside the app</span>
+            <h2>Champion Codex, Combat Files, and match capture.</h2>
+            <p>
+              Champion Codex for discovery, Combat Files for lobby pressure, and match review for building your own route memory.
+            </p>
+          </div>
+
+          <div class="showcase-grid">
+            <article class="showcase-card showcase-wide">
+              <div class="showcase-copy">
+                <span>Command Center</span>
+                <h3>Start from the next useful action.</h3>
+                <p>
+                  The home screen keeps champion discovery, recent history, route coverage, and app status in one quiet workspace.
+                </p>
+              </div>
+              <figure class="screenshot-frame">
+                <img src="assets/app-dashboard-en-16x9.png" alt="Command Center showing Champion Codex and local status" />
+              </figure>
+            </article>
+
+            <article class="showcase-card">
+              <div class="showcase-copy">
+                <span>Combat File</span>
+                <h3>Read the route before the first fight.</h3>
+                <p>
+                  Item order, core augments, traps, and route notes stay compact enough for champion select.
+                </p>
+              </div>
+              <figure class="screenshot-frame">
+                <img src="assets/app-combat-file-en-16x9.png" alt="Combat File screenshot with item order and augment priorities" />
+              </figure>
+            </article>
+
+            <article class="showcase-card">
+              <div class="showcase-copy">
+                <span>Match review</span>
+                <h3>Know which games deserve a second look.</h3>
+                <p>
+                  Lightweight labels point to high-impact, capture-ready, and complete-build matches.
+                </p>
+              </div>
+              <figure class="screenshot-frame">
+                <img src="assets/app-history-en-16x9.png" alt="Match history screenshot with judgement labels" />
+              </figure>
+            </article>
+          </div>
+        </section>
+
+        <section class="workflow" id="workflow">
+          <div class="workflow-copy">
+            <span class="section-label">From match history to routes</span>
+            <h2>Turn good games into your own build library.</h2>
+          </div>
+          <div class="workflow-rail">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>Browse the Champion Codex</h3>
+                <p>Find every covered champion and understand how many playstyles are available.</p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>Open the Combat File</h3>
+                <p>Use the route sheet for augment choices, item sequencing, and build intent.</p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>Review recent history</h3>
+                <p>Open games with strong performance signals instead of scrolling raw match rows.</p>
+              </div>
+            </article>
+            <article>
+              <span>04</span>
+              <div>
+                <h3>Capture what worked</h3>
+                <p>Turn a good player loadout into a route draft you can reuse later.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="download-panel" id="download" aria-labelledby="download-title">
+          <div class="download-copy">
+            <span class="section-label">Download</span>
+            <h2 id="download-title">Get the 0.1.0 Windows test build.</h2>
+            <p>
+              Built for friends and early testers. Start with the installer for the clean app experience, or use the portable build when you just want to try it without changing your system.
+            </p>
+            <div class="download-notes" aria-label="Download notes">
+              <span>Windows x64</span>
+              <span>Local-first desktop app</span>
+              <span>No Riot account login</span>
+            </div>
+          </div>
+          <div class="download-options">
+            <article class="download-card download-card-primary">
+              <div>
+                <span class="download-badge">Recommended</span>
+                <h3>Windows installer</h3>
+                <p>Best for normal testing. Installs Mayhempedia like a regular desktop app.</p>
+              </div>
+              <div class="download-meta">
+                <span>0.1.0</span>
+                <span>128 MB</span>
+                <span>.exe</span>
+              </div>
+              <a class="primary-button" href="https://github.com/boxsbraindump/Mayhempedia/releases/download/v0.1.0/Mayhempedia-0.1.0-setup-x64.exe">Download setup</a>
+            </article>
+            <article class="download-card">
+              <div>
+                <span class="download-badge muted">No install</span>
+                <h3>Portable build</h3>
+                <p>Use this if Windows install permissions get in the way, or you want a quick trial.</p>
+              </div>
+              <div class="download-meta">
+                <span>0.1.0</span>
+                <span>128 MB</span>
+                <span>.exe</span>
+              </div>
+              <a class="secondary-button" href="https://github.com/boxsbraindump/Mayhempedia/releases/download/v0.1.0/Mayhempedia-0.1.0-portable-x64.exe">Download portable</a>
+            </article>
+            <div class="install-steps">
+              <span>01 Download</span>
+              <span>02 Open Mayhempedia</span>
+              <span>03 Start League client</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-brand">
+          <img src="assets/mayhempedia-icon.svg" alt="" />
+          <span>Mayhem<span class="brand-pedia">pedia</span></span>
+        </div>
+        <p>
+          Mayhempedia is a fan-made desktop companion. It is not endorsed by Riot Games and does not reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

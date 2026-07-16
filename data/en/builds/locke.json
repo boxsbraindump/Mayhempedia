@@ -1,0 +1,109 @@
+{
+  "championId": 805,
+  "championName": "Locke",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Locke",
+      "damageType": "AP",
+      "note": "Locke AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Big Brain as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Executioner / Deathtouch. Build toward Luden's Echo > Sorcerer's Shoes > Dusk and Dawn > Rabadon's Deathcap > Shadowflame > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against aramgg.com and metasrc.com and blitz.gg and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          },
+          {
+            "id": 180,
+            "apiName": "BigBrain",
+            "name": "Big Brain"
+          }
+        ],
+        "good": [
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          },
+          {
+            "id": 32,
+            "apiName": "Executioner",
+            "name": "Executioner"
+          },
+          {
+            "id": 217,
+            "apiName": "Deathtouch",
+            "name": "Deathtouch"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "trap": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "metasrc.com",
+        "blitz.gg",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

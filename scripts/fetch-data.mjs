@@ -27,7 +27,9 @@ const AUG_URL = `https://raw.communitydragon.org/latest/cdragon/arena/${AUG_LANG
 const ITEMS_URL = `${GD}/${LANG}/v1/items.json`
 
 // 斗魂竞技场稀有度（4 档待进一步确认，见下方 note）
-const RARITY = { 0: '银 Silver', 1: '金 Gold', 2: '棱彩 Prismatic', 4: '特殊 Special?' }
+const RARITY_ZH = { 0: '银 Silver', 1: '金 Gold', 2: '棱彩 Prismatic' }
+const RARITY_EN = { 0: 'Silver', 1: 'Gold', 2: 'Prismatic' }
+const RARITY = LANG === 'default' ? RARITY_EN : RARITY_ZH
 
 /** 去掉富文本标签 → 纯文本 */
 function stripTags(s) {
@@ -80,6 +82,7 @@ async function main() {
   const augRaw = (await (await fetch(AUG_URL)).json()).augments
   const augments = augRaw
     .filter((a) => a.apiName !== 'Augment404' && a.id !== 404) // 开发者占位彩蛋，剔除
+    .filter((a) => a.rarity !== 4)
     .map((a) => ({
       id: a.id,
       apiName: a.apiName,
@@ -179,7 +182,7 @@ async function main() {
 
   console.log(`\n增强样例:`)
   console.log(`  [${sampleAug.rarityLabel}] ${sampleAug.name} — ${sampleAug.desc.replace(/\n/g, ' ')}`)
-  console.log(`\nnote: rarity=4（${rar['特殊 Special?'] || 0} 个）稀有度含义待确认；大乱斗实际启用的增强池可能是这 226 的子集，后续 curate 时再过滤。`)
+  console.log('\nnote: rarity=4 special/meta entries are excluded from the selectable ARAM Mayhem augment pool.')
 }
 
 main().catch((e) => {

@@ -1,0 +1,101 @@
+{
+  "championId": 876,
+  "championName": "Lillia",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Lillia",
+      "damageType": "AP",
+      "note": "Lillia AP route for ARAM: Mayhem. Prioritize Phenomenal Evil / Stackosaurus Rex as the main augment plan. Strong secondary hits include Infernal Conduit / Eureka / Transmute: Prismatic. Build toward Blackfire Torch > Sorcerer's Shoes > Liandry's Torment > Rylai's Crystal Scepter > Shadowflame > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 65,
+            "apiName": "PhenomenalEvil",
+            "name": "Phenomenal Evil"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          }
+        ],
+        "good": [
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 238,
+            "apiName": "TransmutePrismatic",
+            "name": "Transmute: Prismatic"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 97,
+            "apiName": "WitchfulThinking",
+            "name": "Witchful Thinking"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "Blackfire Torch"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 6653,
+          "name": "Liandry's Torment"
+        },
+        {
+          "id": 3116,
+          "name": "Rylai's Crystal Scepter"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

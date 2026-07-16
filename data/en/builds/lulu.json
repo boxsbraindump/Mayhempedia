@@ -1,0 +1,78 @@
+{
+  "championId": 117,
+  "championName": "Lulu",
+  "archetypes": [
+    {
+      "key": "support",
+      "name": "Support Support Lulu",
+      "damageType": "Support",
+      "note": "Lulu SUPPORT route for ARAM: Mayhem. Prioritize All For You as the main augment plan. Strong secondary hits include Critical Healing / Sonic Boom. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Staff of Flowing Water > Ardent Censer > Redemption > Dawncore. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against aramgg.com and metasrc.com and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          }
+        ],
+        "good": [
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6616,
+          "name": "Staff of Flowing Water"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 6621,
+          "name": "Dawncore"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "metasrc.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

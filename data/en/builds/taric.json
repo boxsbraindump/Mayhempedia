@@ -1,0 +1,109 @@
+{
+  "championId": 44,
+  "championName": "Taric",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Taric",
+      "damageType": "Tank",
+      "note": "Taric TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Celestial Body / Ice Cold. Build toward Heartsteel > Mercury's Treads > Winter's Approach > Unending Despair > Malignance > Thornmail. Start with Giant's Belt + Tear of the Goddess. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "Ice Cold"
+          },
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          },
+          {
+            "id": 311,
+            "apiName": "Overflow",
+            "name": "Overflow"
+          }
+        ],
+        "trap": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "Quantum Computing"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3119,
+          "name": "Winter's Approach"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

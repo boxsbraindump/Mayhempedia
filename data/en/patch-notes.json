@@ -1,0 +1,238 @@
+{
+  "patch": "26.13",
+  "theme": "Absolutely no demons allowed",
+  "releaseDate": "2026-06-23",
+  "sourceUrl": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-13-notes/",
+  "championChanges": [
+    {
+      "championId": 523,
+      "championName": "Aphelios",
+      "changes": [
+        "Moonlight Vigil mark damage: 15 (10% bonus AD) → 15 (15% bonus AD)",
+        "Calibrum Q volley damage: 19/24.25/29.5/34.75/40% total AD → 20/25.25/30.5/35.75/41% total AD",
+        "Severum Q shadow crescent damage: 20-110 (10-16% bonus AD) → 20-110 (15-21% bonus AD)",
+        "Gravitum Q sentry damage: 35-125 (30-48% bonus AD) → 35-125 (34-52% bonus AD)"
+      ]
+    },
+    {
+      "championId": 432,
+      "championName": "Bard",
+      "changes": [
+        "Passive - Traveler's Call spirit damage: 35 (+10 per 5 chimes)(+40% AP) → 30 (+6 per 5 chimes)(+40% AP)"
+      ]
+    },
+    {
+      "championId": 63,
+      "championName": "Brand",
+      "changes": [
+        "Base mana regen: 9 → 11",
+        "Passive - Blaze detonation damage: 8-12% (levels 1-17) → 6-12% (levels 1-18, keeps scaling past 18)",
+        "E - Conflagration mana cost: 70/75/80/85/90 → 90 (flat)"
+      ]
+    },
+    {
+      "championId": 69,
+      "championName": "Cassiopeia",
+      "changes": [
+        "Health growth per level: 104 → 98"
+      ]
+    },
+    {
+      "championId": 119,
+      "championName": "Draven",
+      "changes": [
+        "E - Stand Aside cooldown: 18/17/16/15/14s → 16/15/14/13/12s",
+        "R - Whirling Death damage falloff vs champions: -8% per hit (min 40%) → -5% per hit (min 50%)"
+      ]
+    },
+    {
+      "championId": 145,
+      "championName": "Kai'Sa",
+      "changes": [
+        "W - Void Seeker cooldown: 22/20/18/16/14 → 20/18.5/17/15.5/14",
+        "R - Killer Instinct shield: 70/90/110 (+90/135/180% AD)(+120% AP) → 100/150/200 (+90/135/180% AD)(+120% AP)"
+      ]
+    },
+    {
+      "championId": 897,
+      "championName": "K'Sante",
+      "changes": [
+        "E - Path Carver shield: (80/120/160/200/240)(+15% bonus health) → (70/112.5/155/197.5/240)(+13.5% bonus health)"
+      ]
+    },
+    {
+      "championId": 7,
+      "championName": "LeBlanc",
+      "changes": [
+        "R - Mirror Image (RQ1/RE1) damage: 70/140/210 → 70/150/230",
+        "R - Mirror Image (mark/root) damage: 140/280/420 → 140/300/460",
+        "R - Mirror Image (RW) damage: 150/300/450 → 150/315/480"
+      ]
+    },
+    {
+      "championId": 2,
+      "championName": "Olaf",
+      "changes": [
+        "Q - Undertow bonus damage to monsters: 20/35/50/65/80 → 20/45/70/95/120"
+      ]
+    },
+    {
+      "championId": 78,
+      "championName": "Poppy",
+      "changes": [
+        "Q - Hammer Shock max damage to monsters: 50/80/110/140/170 → 75/105/135/165/195"
+      ]
+    },
+    {
+      "championId": 246,
+      "championName": "Qiyana",
+      "changes": [
+        "Q - Elemental Wrath damage to monsters: 155% → 175%"
+      ]
+    },
+    {
+      "championId": 421,
+      "championName": "Rek'Sai",
+      "changes": [
+        "E - Furious Bite/Unburrow physical damage: 80/108/136/164/192 (64% bonus AD) → 70/95/120/145/170 (60% bonus AD)",
+        "E - Furious Bite/Unburrow bonus true damage: 125% → 120%"
+      ]
+    },
+    {
+      "championId": 68,
+      "championName": "Rumble",
+      "changes": [
+        "Q - Flamespitter damage: 60/85/110/135/160 (100% AP) → 50/75/100/125/150 (105% AP)"
+      ]
+    },
+    {
+      "championId": 235,
+      "championName": "Senna",
+      "changes": [
+        "Passive - Absolution drop chance (Senna kill): 10% → 5%",
+        "Passive - Absolution drop chance (ally kill): 28% → 32%",
+        "Passive - Absolution crit damage penalty: -10% → -15%",
+        "Q - Piercing Darkness cooldown refund trigger: on cast hit → on basic attack hit"
+      ]
+    },
+    {
+      "championId": 14,
+      "championName": "Sion",
+      "changes": [
+        "Q - Decimating Smash minimum damage: 40/60/80/100/120 → 30/45/60/75/90",
+        "W - Soul Furnace mana cost: 65/70/75/80/85 → 75/80/85/90/95"
+      ]
+    },
+    {
+      "championId": 711,
+      "championName": "Vex",
+      "changes": [
+        "E - Personal Space cooldown: 13s → 12s",
+        "R - Shadow Surge takedown reset window: 6s → 8s"
+      ]
+    },
+    {
+      "championId": 904,
+      "championName": "Zaahen",
+      "changes": [
+        "W - Dire Return cooldown: 16/15/14/13/12 → 14/13.5/13/12.5/12"
+      ]
+    }
+  ],
+  "itemChanges": [
+    {
+      "itemId": 1120,
+      "itemName": "Doran's Helm",
+      "changes": [
+        "Armor and Magic Resist: 10 → 8",
+        "Health: 140 → 150"
+      ]
+    },
+    {
+      "itemId": 4005,
+      "itemName": "Imperial Mandate",
+      "changes": [
+        "Build path: Blasting Wand (850g) + Bandleglass Mirror (900g) + 650g → Amplifying Tome (400g) + Bandleglass Mirror (900g) + Amplifying Tome (400g) + 700g",
+        "Ability Power: 65 → 60",
+        "Unique - Coordinate: immobilizing spells grant +15 ability haste → +20 ability haste",
+        "Unique - Command: takedowns apply 6% Vulnerable → 7% Vulnerable"
+      ]
+    }
+  ],
+  "systemChanges": [
+    "CS ping: enabled in Normal Draft and Ranked (off by default in Ranked, can be turned on manually)",
+    "5v5 Ranked: returns June 26 at 8pm, with Clash-style team sign-ups, double LP gains, and exclusive rewards",
+    "DM reporting: added a report button in direct-message chat to handle DM harassment",
+    "Discord account linking: supported regions can link accounts to speed up grouping"
+  ],
+  "mayhem": {
+    "summaryEn": "Hello ARAMers! In this patch, along with several recent hotfixes, we're continuing our work to create a healthier balance between new and existing Augments. Recent hotfixes already improved how skill-based Augments get distributed — they now only show up on abilities they actually synergize with, and we fixed cases where the wrong ability could roll an incompatible Augment. We also fixed crit-related Augments like Jeweled Gauntlet and It's Critical showing up less often than intended, and fixed skill-based Augments being under-weighted in the third and fourth Augment slots. Over the past week we kept tuning individual Augment strength — overperformers like Archmage and Tooth Fairy got toned down, while underperformers like Glass Cannon and Pin Cushion got buffed and had their feel polished. The ARAM Mayhem team will keep watching Augment power levels and player feedback to keep Mayhem fresh, balanced, and fun.",
+    "augmentChanges": [
+      {
+        "icon": "archmage",
+        "name": "Archmage",
+        "change": "Rarity: Gold → Prismatic"
+      },
+      {
+        "icon": "combusting-interest",
+        "name": "Combusting Interest",
+        "change": "Damage-to-gold conversion: 1% → 0.75%"
+      },
+      {
+        "icon": "from-downtown",
+        "name": "From Down Town",
+        "change": "Capped the max cast range"
+      },
+      {
+        "icon": "glass-cannon",
+        "name": "Glass Cannon",
+        "change": "True damage share: 15% → 25% (melee) / 15% (ranged, unchanged)"
+      },
+      {
+        "icon": "pin-cushion",
+        "name": "Pin Cushion",
+        "change": "Damage per needle: 20-30 → 20-60"
+      },
+      {
+        "icon": "pressure-cooker",
+        "name": "Pressure Cooker",
+        "change": "Total burn damage: 2% max health → 1.5% max health"
+      },
+      {
+        "icon": "quickstep",
+        "name": "Quickstep",
+        "change": "Rarity: Prismatic → Gold"
+      },
+      {
+        "icon": "spirit-bomb",
+        "name": "Spirit Bomb",
+        "change": "Shield duration: 4s → 2s"
+      },
+      {
+        "icon": "tooth-fairy",
+        "name": "Tooth Fairy",
+        "change": "Burst threshold: 20% → 25%; Armor/Magic Pen: 5 → 4"
+      },
+      {
+        "icon": "twin-fire",
+        "name": "Twin Fire",
+        "change": "Crit chance: 15% → 25%"
+      },
+      {
+        "icon": "void-immolation",
+        "name": "Void Immolation",
+        "change": "New passive \"Desolation\": takedowns burn the area around the target for magic damage"
+      },
+      {
+        "icon": "yowch-my-coins",
+        "name": "Yowch, My Coins!",
+        "change": "Coins dropped: 16 → 9"
+      }
+    ],
+    "bugfixes": [
+      "Fixed Biggest Snowball Ever dealing double damage to its target",
+      "Fixed a bug in how low-health damage was calculated",
+      "Fixed two players Pat Pat-ing each other, which could stack shields infinitely"
+    ]
+  }
+}

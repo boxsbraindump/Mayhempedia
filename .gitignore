@@ -13,3 +13,9 @@ data/icons/
 scratchpad/
 .agents/
 skills-lock.json
+
+# Local QA captures and release binaries. Keep installers on GitHub Releases, not in git.
+HANDOFF.md
+app-audit*/
+site/audit/
+site/downloads/

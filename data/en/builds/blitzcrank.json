@@ -1,0 +1,184 @@
+{
+  "championId": 53,
+  "championName": "Blitzcrank",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Recursion Blitzcrank",
+      "damageType": "Tank",
+      "note": "Blitzcrank TANK route for ARAM: Mayhem. Prioritize Recursion / Ethereal Weapon as the main augment plan. Strong secondary hits include Mind to Matter / Quest: Steel Your Heart / Tank Engine. Build toward Heartsteel > Mercury's Treads > Unending Despair > Overlord's Bloodmail > Thornmail > Randuin's Omen. Start with Tear of the Goddess + Ionian Boots of Lucidity. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 68,
+            "apiName": "Recursion",
+            "name": "Recursion"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 56,
+            "apiName": "MindtoMatter",
+            "name": "Mind to Matter"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          }
+        ],
+        "trap": [
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "Quantum Computing"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ethereal-perma-knockup",
+      "name": "AP Ethereal Weapon Blitzcrank",
+      "damageType": "AP",
+      "note": "Blitzcrank AP route for ARAM: Mayhem. Prioritize Ethereal Weapon / Twin Fire as the main augment plan. Strong secondary hits include Infinite Recursion / Dual Wield / Eureka. Build toward Dusk and Dawn > Nashor's Tooth > Ionian Boots of Lucidity > Guinsoo's Rageblade > Wit's End > Rabadon's Deathcap. Start with Tear of the Goddess + Ionian Boots of Lucidity. Cross-checked against arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 910009,
+            "apiName": "ARAMMayhemTwinFire",
+            "name": "Twin Fire"
+          }
+        ],
+        "good": [
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "Infinite Recursion"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "Eureka"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3124,
+          "name": "Guinsoo's Rageblade"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

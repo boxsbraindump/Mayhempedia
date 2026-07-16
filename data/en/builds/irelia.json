@@ -1,0 +1,99 @@
+{
+  "championId": 39,
+  "championName": "Irelia",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Irelia",
+      "damageType": "AD",
+      "note": "Irelia AD route for ARAM: Mayhem. Prioritize Mystic Punch / Goredrink as the main augment plan. Strong secondary hits include Blunt Force / Outlaw's Grit / Dashing. Build toward Blade of The Ruined King > Mercury's Treads > Hullbreaker > Death's Dance > Sterak's Gage > Black Cleaver. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3181,
+          "name": "Hullbreaker"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

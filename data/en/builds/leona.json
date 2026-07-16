@@ -1,0 +1,106 @@
+{
+  "championId": 89,
+  "championName": "Leona",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Tank Tank Leona",
+      "damageType": "Tank",
+      "note": "Leona TANK route for ARAM: Mayhem. Prioritize Courage of the Colossus / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Tank Engine / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Thornmail > Sunfire Aegis > Unending Despair > Locket of the Iron Solari. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3190,
+          "name": "Locket of the Iron Solari"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

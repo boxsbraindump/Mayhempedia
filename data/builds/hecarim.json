@@ -97,6 +97,248 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "infinite-q",
+      "name": "无限Q赫卡里姆",
+      "damageType": "AD",
+      "note": "秘术冲拳和急速追猎围绕Q频率滚雪球。魔宗、朔极与三相补足蓝量、技能急速和穿插普攻的伤害，让人马持续搅场而不是打一轮就撤。",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "急速追猎"
+          }
+        ],
+        "good": [
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "急急小子"
+          },
+          {
+            "id": 910096,
+            "apiName": "ARAMMayhemQuickstep",
+            "name": "轻快步伐"
+          },
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "全凭身法"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "渴血"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3004,
+          "name": "魔宗"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3742,
+          "name": "亡者的板甲"
+        },
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        },
+        {
+          "id": 4401,
+          "name": "自然之力"
+        }
+      ]
+    },
+    {
+      "key": "basics-shark-bait",
+      "name": "基本功鲨鱼人马",
+      "damageType": "AD",
+      "note": "回归基本功封印大招，换来Q、W、E的高额强化和技能急速；鲨鱼诱饵补足冲阵后倒地时的二次威胁。靠Q频率、移速与穿插普攻不断搅场，是偏整活但有明确实战组合支撑的分支。",
+      "augments": {
+        "core": [
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          },
+          {
+            "id": 910079,
+            "apiName": "ARAMMayhemSharkBait",
+            "name": "鲨鱼诱饵"
+          }
+        ],
+        "good": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "秘术冲拳"
+          },
+          {
+            "id": 98,
+            "apiName": "WithHaste",
+            "name": "急急小子"
+          },
+          {
+            "id": 26,
+            "apiName": "DontBlink",
+            "name": "唯快不破"
+          },
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "急速追猎"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3004,
+          "name": "魔宗"
+        },
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3078,
+          "name": "三相之力"
+        },
+        {
+          "id": 3161,
+          "name": "朔极之矛"
+        },
+        {
+          "id": 6333,
+          "name": "死亡之舞"
+        },
+        {
+          "id": 3053,
+          "name": "斯特拉克的挑战护手"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "bilibili.com",
+        "aramgg.com",
+        "Community curated"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "女神之泪"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 1036,
+          "name": "长剑"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "boots": [
+        {
+          "id": 3158,
+          "name": "明朗之靴"
+        },
+        {
+          "id": 3111,
+          "name": "水银之靴"
+        }
+      ],
+      "optionalItems": [
+        {
+          "id": 3742,
+          "name": "亡者的板甲"
+        },
+        {
+          "id": 6694,
+          "name": "赛瑞尔达的怨恨"
+        },
+        {
+          "id": 4401,
+          "name": "自然之力"
+        }
+      ]
     }
   ]
 }

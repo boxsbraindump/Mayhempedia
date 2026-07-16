@@ -1,0 +1,96 @@
+{
+  "championId": 10,
+  "championName": "Kayle",
+  "archetypes": [
+    {
+      "key": "hybrid",
+      "name": "AP Kayle",
+      "damageType": "AP",
+      "note": "Kayle AP route for ARAM: Mayhem. Prioritize Dual Wield / Master of Duality as the main augment plan. Strong secondary hits include Marksmage / Ethereal Weapon / Deft. Build toward Endless Hunger > Berserker's Greaves > Wit's End > Dusk and Dawn > Guinsoo's Rageblade > Nashor's Tooth. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 54,
+            "apiName": "MasterofDuality",
+            "name": "Master of Duality"
+          }
+        ],
+        "good": [
+          {
+            "id": 129,
+            "apiName": "Marksmage",
+            "name": "Marksmage"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2517,
+          "name": "Endless Hunger"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End"
+        },
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3124,
+          "name": "Guinsoo's Rageblade"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

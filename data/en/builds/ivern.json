@@ -1,0 +1,82 @@
+{
+  "championId": 427,
+  "championName": "Ivern",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "Support Ivern",
+      "damageType": "Support",
+      "note": "Ivern SUPPORT route for ARAM: Mayhem. Prioritize All For You as the main augment plan. Strong secondary hits include First-Aid Kit / Sonic Boom / Homeguard. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Ardent Censer > Redemption > Staff of Flowing Water > Mikael's Blessing. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          }
+        ],
+        "good": [
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          },
+          {
+            "id": 105,
+            "apiName": "Homeguard",
+            "name": "Homeguard"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        },
+        {
+          "id": 6616,
+          "name": "Staff of Flowing Water"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

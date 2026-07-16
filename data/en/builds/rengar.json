@@ -1,0 +1,82 @@
+{
+  "championId": 107,
+  "championName": "Rengar",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Rengar",
+      "damageType": "AD",
+      "note": "Rengar AD route for ARAM: Mayhem. Prioritize Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / escAPADe. Build toward Hubris > The Collector > Infinity Edge > Voltaic Cyclosword > Edge of Night > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 84,
+            "apiName": "ThreadtheNeedle",
+            "name": "Thread the Needle"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 206,
+            "apiName": "escAPADe",
+            "name": "escAPADe"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6699,
+          "name": "Voltaic Cyclosword"
+        },
+        {
+          "id": 3814,
+          "name": "Edge of Night"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

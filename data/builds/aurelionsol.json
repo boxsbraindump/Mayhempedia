@@ -99,6 +99,89 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "shrink-execute",
+      "name": "缩小引擎斩杀奥瑞利安·索尔",
+      "damageType": "AP",
+      "note": "高难度成型路线。缩小引擎的参与击杀层数提供移速与急速，持续叠被动星尘会不断抬高E的斩杀线；前中期仍按正常灼烧消耗打，别为了堆层硬送。",
+      "augments": {
+        "core": [
+          {
+            "id": 910018,
+            "apiName": "ARAMMayhemShrinkEngine",
+            "name": "缩小引擎"
+          }
+        ],
+        "good": [
+          {
+            "id": 44,
+            "apiName": "IceCold",
+            "name": "冰寒"
+          },
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "大法师"
+          },
+          {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "无限循环往复"
+          },
+          {
+            "id": 30,
+            "apiName": "Eureka",
+            "name": "尤里卡"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 2503,
+          "name": "黯炎火炬"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3116,
+          "name": "瑞莱的冰晶节杖"
+        },
+        {
+          "id": 6653,
+          "name": "兰德里的折磨"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ]
     }
   ]
 }

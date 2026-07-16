@@ -1,0 +1,158 @@
+{
+  "championId": 145,
+  "championName": "Kai'Sa",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "AP Ethereal Weapon Kai'Sa",
+      "damageType": "AP",
+      "note": "Kai'Sa AP route for ARAM: Mayhem. Prioritize Ethereal Weapon as the main augment plan. Strong secondary hits include ADAPt / Quest: Wooglet's Witchcap / Jeweled Gauntlet. Build toward Luden's Echo > Horizon Focus > Shadowflame > Dusk and Dawn > Nashor's Tooth > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion.",
+      "augments": {
+        "core": [
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          },
+          {
+            "id": 156,
+            "apiName": "Quest_WoogletsWitchcap",
+            "name": "Quest: Wooglet's Witchcap"
+          },
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 2510,
+          "name": "Dusk and Dawn"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ad",
+      "name": "AD Dual Wield Kai'Sa",
+      "damageType": "AD",
+      "note": "Kai'Sa AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include It's Critical / Fan The Hammer / Ethereal Weapon. Build toward Kraken Slayer > Berserker's Greaves > Guinsoo's Rageblade > Blade of The Ruined King > Statikk Shiv > Nashor's Tooth. Start with Hearthbound Axe + Health Potion + Health Potion.",
+      "augments": {
+        "core": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 47,
+            "apiName": "ItsCritical",
+            "name": "It's Critical"
+          },
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "Fan The Hammer"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3124,
+          "name": "Guinsoo's Rageblade"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3087,
+          "name": "Statikk Shiv"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth"
+        }
+      ],
+      "runes": null,
+      "starterItems": [
+        {
+          "id": 3051,
+          "name": "Hearthbound Axe"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

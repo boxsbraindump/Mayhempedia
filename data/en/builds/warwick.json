@@ -1,0 +1,104 @@
+{
+  "championId": 19,
+  "championName": "Warwick",
+  "archetypes": [
+    {
+      "key": "tank-fighter",
+      "name": "AD/Tank Tank Warwick",
+      "damageType": "AD/Tank",
+      "note": "Warwick AD/TANK route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Goliath / Goredrink / Quest: Steel Your Heart. Build toward Blade of The Ruined King > Heartsteel > Mercury's Treads > Spirit Visage > Thornmail > Death's Dance. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com and lolhaidou.cn.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 52,
+            "apiName": "LightningStrikes",
+            "name": "Lightning Strikes"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 50,
+            "apiName": "KeystoneConjurer",
+            "name": "Keystone Conjurer"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "aramgg.com",
+        "lolhaidou.cn"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

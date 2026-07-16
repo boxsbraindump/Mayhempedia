@@ -1,0 +1,103 @@
+{
+  "championId": 83,
+  "championName": "Yorick",
+  "archetypes": [
+    {
+      "key": "tank-bruiser",
+      "name": "AD Tank Yorick",
+      "damageType": "AD",
+      "note": "Yorick AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Ethereal Weapon as the main augment plan. Strong secondary hits include Goredrink / Omni Soul / Mountain Soul. Build toward Heartsteel > Mercury's Treads > Iceborn Gauntlet > Spirit Visage > Thornmail > Randuin's Omen. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "Ethereal Weapon"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 62,
+            "apiName": "OmniSoul",
+            "name": "Omni Soul"
+          },
+          {
+            "id": 57,
+            "apiName": "MountainSoul",
+            "name": "Mountain Soul"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          }
+        ],
+        "trap": [
+          {
+            "id": 205,
+            "apiName": "ADAPt",
+            "name": "ADAPt"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6662,
+          "name": "Iceborn Gauntlet"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

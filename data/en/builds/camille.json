@@ -1,0 +1,93 @@
+{
+  "championId": 164,
+  "championName": "Camille",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Camille",
+      "damageType": "AD",
+      "note": "Camille AD route for ARAM: Mayhem. Prioritize Dashing / Goredrink as the main augment plan. Strong secondary hits include Blunt Force / Mystic Punch / Slap Around. Build toward Trinity Force > Ravenous Hydra > Death's Dance > Sundered Sky > Mercury's Treads > Guardian Angel. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          }
+        ],
+        "good": [
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          },
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "Dawnbringer's Resolve"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3078,
+          "name": "Trinity Force"
+        },
+        {
+          "id": 3074,
+          "name": "Ravenous Hydra"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3026,
+          "name": "Guardian Angel"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 1036,
+          "name": "Long Sword"
+        },
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

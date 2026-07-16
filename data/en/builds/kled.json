@@ -1,0 +1,103 @@
+{
+  "championId": 240,
+  "championName": "Kled",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Kled",
+      "damageType": "AD",
+      "note": "Kled AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Clown College / Deft / Twice Thrice. Build toward Heartsteel > Mercury's Treads > Titanic Hydra > Overlord's Bloodmail > Death's Dance > Profane Hydra. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and blitz.gg and arammayhem.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "Twice Thrice"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          }
+        ],
+        "trap": [
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "Typhoon"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra"
+        },
+        {
+          "id": 2501,
+          "name": "Overlord's Bloodmail"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 6698,
+          "name": "Profane Hydra"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "blitz.gg",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

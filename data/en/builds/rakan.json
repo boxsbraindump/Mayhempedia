@@ -1,0 +1,99 @@
+{
+  "championId": 497,
+  "championName": "Rakan",
+  "archetypes": [
+    {
+      "key": "tank",
+      "name": "Support Tank Rakan",
+      "damageType": "Support",
+      "note": "Rakan SUPPORT route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Celestial Body / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Locket of the Iron Solari > Imperial Mandate. Start with Amplifying Tome + Bandleglass Mirror. Cross-checked against op.gg and arammayhem.com and metasrc.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          },
+          {
+            "id": 13,
+            "apiName": "CelestialBody",
+            "name": "Celestial Body"
+          },
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 321,
+            "apiName": "Bodyguard",
+            "name": "Bodyguard"
+          }
+        ],
+        "trap": [
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3190,
+          "name": "Locket of the Iron Solari"
+        },
+        {
+          "id": 4005,
+          "name": "Imperial Mandate"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "op.gg",
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1052,
+          "name": "Amplifying Tome"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

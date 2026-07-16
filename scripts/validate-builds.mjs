@@ -12,6 +12,7 @@ const augById = new Map()
 const itemById = new Map()
 for (const a of JSON.parse(await readFile(join(DATA, 'augments.json')))) augById.set(a.id, a)
 for (const i of JSON.parse(await readFile(join(DATA, 'items.json')))) itemById.set(i.id, i)
+const champions = JSON.parse(await readFile(join(DATA, 'champions.json')))
 
 const files = (await readdir(BUILDS)).filter((f) => f.endsWith('.json') && f !== 'index.json')
 const index = {} // championId -> 文件名，供首页判断哪些英雄有数据
@@ -42,7 +43,28 @@ for (const f of files) {
     for (const it of arch.items ?? []) checkItem(it, `${w}/items`)
     for (const it of arch.boots ?? []) checkItem(it, `${w}/boots`)
     for (const it of arch.optionalItems ?? []) checkItem(it, `${w}/optionalItems`)
+    if (!arch.starterItems?.length) {
+      console.log(`  ❌ [${w}] 缺出门装`)
+      errors++
+    }
+    if ((arch.items?.length ?? 0) !== 6) {
+      console.log(`  ❌ [${w}] 六神装必须恰好为 6 件，当前 ${arch.items?.length ?? 0} 件`)
+      errors++
+    }
     console.log(`  ✓ ${arch.name}: ${augs.length} 增强 (核心${arch.augments?.core?.length ?? 0}/备选${arch.augments?.good?.length ?? 0}/陷阱${arch.augments?.trap?.length ?? 0}) + ${arch.starterItems?.length ?? 0} 出门装 + ${arch.items?.length ?? 0} 六神装 + ${arch.boots?.length ?? 0} 鞋子 + ${arch.optionalItems?.length ?? 0} 备选装备`)
+  }
+}
+
+for (const champion of champions) {
+  if (!index[champion.id]) {
+    console.log(`  ❌ [${champion.name}] 缺少流派文件`)
+    errors++
+  }
+}
+for (const championId of Object.keys(index)) {
+  if (!champions.some((champion) => String(champion.id) === championId)) {
+    console.log(`  ❌ [builds/index] 存在未知英雄 id=${championId}`)
+    errors++
   }
 }
 

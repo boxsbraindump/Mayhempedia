@@ -1,0 +1,186 @@
+{
+  "championId": 777,
+  "championName": "Yone",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Mystic Punch Yone",
+      "damageType": "AD",
+      "note": "Yone AD route for ARAM: Mayhem. Prioritize Mystic Punch / Deft as the main augment plan. Strong secondary hits include Dual Wield / Goredrink / Quantum Computing. Build toward Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Immortal Shieldbow > Death's Dance > Wit's End. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 58,
+            "apiName": "MysticPunch",
+            "name": "Mystic Punch"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 66,
+            "apiName": "QuantumComputing",
+            "name": "Quantum Computing"
+          },
+          {
+            "id": 79,
+            "apiName": "SymphonyofWar",
+            "name": "Symphony of War"
+          },
+          {
+            "id": 136,
+            "apiName": "SlapAround",
+            "name": "Slap Around"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6673,
+          "name": "Immortal Shieldbow"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "blitz.gg",
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    },
+    {
+      "key": "ap-crit-shield",
+      "name": "AD Critical Healing Yone",
+      "damageType": "AD",
+      "note": "Yone AD route for ARAM: Mayhem. Prioritize Critical Healing as the main augment plan. Strong secondary hits include Soul Siphon / Goredrink / Dual Wield. Build toward Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Immortal Shieldbow > Death's Dance > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against aramgg.com.",
+      "augments": {
+        "core": [
+          {
+            "id": 118,
+            "apiName": "CriticalHealing",
+            "name": "Critical Healing"
+          }
+        ],
+        "good": [
+          {
+            "id": 77,
+            "apiName": "SoulSiphon",
+            "name": "Soul Siphon"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 6673,
+          "name": "Immortal Shieldbow"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3072,
+          "name": "Bloodthirster"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3184,
+          "name": "Guardian's Hammer"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

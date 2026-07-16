@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type DragEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import {
   loadCore,
   loadBuild,
   withCustomRoutes,
+  customRouteToArchetype,
   icon,
   getAugment,
+  isSelectableRouteItem,
   type Augment,
   type Item,
   type Champion,
@@ -32,24 +34,45 @@ import {
   type MatchFullDetail,
   type PlayerMatchStats,
   type CustomRoute,
+  type UpdateStatus,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
 import { LangProvider, useT, useLang, t, type Lang } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
 const CARD =
-  'glass-panel relative overflow-hidden rounded-[8px] border border-line/75 transition-colors hover:border-gold/30'
+  'glass-panel relative overflow-hidden rounded-[8px] border border-line/70 transition-colors hover:border-hex/35'
 const SEARCH_INLINE =
-  'bg-panel w-full px-4 py-3 border border-line/80 rounded-lg text-cream text-sm outline-none focus:border-gold/70 focus:shadow-[0_0_0_4px_rgba(208,173,104,0.08)] placeholder:text-dim/55 transition'
+  'bg-panel/85 w-full px-3 py-2 border border-line/75 rounded-md text-cream text-[12px] outline-none focus:border-hex/70 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.09)] placeholder:text-dim/55 transition'
 const TOOLBAR =
-  'bg-panel sticky top-4 z-20 mb-5 rounded-[8px] border border-line/75 p-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)]'
+  'bg-panel/88 sticky top-4 z-20 mb-5 rounded-[8px] border border-line/70 p-3 shadow-[0_12px_34px_rgba(0,0,0,0.20)]'
 const CHIP =
   'px-3.5 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition border'
+const BTN_PRIMARY =
+  'rounded-md border border-hex bg-hex px-3 py-1.5 text-[11px] font-black text-[#041017] transition hover:bg-[#45dff0] active:translate-y-px'
+const BTN_SECONDARY =
+  'rounded-md border border-line/70 bg-panel2/70 px-3 py-1.5 text-[11px] font-black text-dim transition hover:border-line hover:bg-panel2 hover:text-cream active:translate-y-px'
+const BTN_TINY_SECONDARY =
+  'rounded-md border border-line/70 bg-panel2/70 px-2.5 py-1 text-[10px] font-black text-dim transition hover:border-line hover:bg-panel2 hover:text-cream active:translate-y-px'
+const BTN_DANGER =
+  'rounded-md border border-red/50 bg-transparent px-3 py-1.5 text-[11px] font-black text-red transition hover:bg-red/10 active:translate-y-px'
+const PAGE_HEADER =
+  'glass-panel-strong relative mb-3 overflow-hidden rounded-[8px] border p-3 shadow-[0_14px_34px_rgba(0,0,0,0.16)]'
+const SURFACE =
+  'rounded-[8px] border border-line/70 bg-panel/78 shadow-[0_12px_30px_rgba(0,0,0,0.14)]'
+const PANEL_INSET =
+  'rounded-[7px] border border-line/60 bg-[#07101b]/46'
+const ICON_ASSET =
+  'shrink-0 rounded-[6px] border border-line/70 object-cover'
 
 const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5] as const
 const APP_BASE_WIDTH = 1280
 const APP_BASE_HEIGHT = 720
-const CUSTOM_ROUTES_ENABLED = false
+const CUSTOM_ROUTES_ENABLED = true
+const EMPTY_CUSTOM_ROUTES: CustomRoute[] = []
+const CUSTOM_ROUTE_DRAFT_STORAGE_KEY = 'mayhempedia.customRouteDraft'
+const CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY = 'mayhempedia.customRouteSubpage'
+const CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY = 'mayhempedia.customRouteLibrarySelection'
 
 const RARITY_KEY: Record<number, string> = { 0: 'silver', 1: 'gold', 2: 'prismatic', 4: 'special' }
 const RARITY: Record<number, { label: string; text: string; border: string; bg: string }> = {
@@ -58,7 +81,7 @@ const RARITY: Record<number, { label: string; text: string; border: string; bg: 
   2: { label: '棱彩', text: 'text-hex', border: 'border-hex', bg: 'bg-hex' },
   4: { label: '特殊', text: 'text-[#b98cf0]', border: 'border-[#b98cf0]', bg: 'bg-[#b98cf0]' },
 }
-const RARITY_ORDER = [2, 1, 0, 4]
+const RARITY_ORDER = [2, 1, 0]
 
 const ROLES: { key: string; label: string }[] = [
   { key: 'fighter', label: '战士' },
@@ -69,70 +92,98 @@ const ROLES: { key: string; label: string }[] = [
   { key: 'support', label: '辅助' },
 ]
 
-type Tab = 'dash' | 'champ' | 'builder' | 'tier' | 'aug' | 'patch' | 'settings'
+type Tab = 'dash' | 'champ' | 'history' | 'builder' | 'tier' | 'aug' | 'patch' | 'settings'
 const NAV: { key: Tab; label: string }[] = [
-  { key: 'dash', label: '副官状态' },
+  { key: 'dash', label: '作战总览' },
   { key: 'champ', label: '英雄图鉴' },
+  { key: 'history', label: '对局记录' },
   { key: 'builder', label: '自定义路线' },
-  { key: 'aug', label: '增强图鉴' },
+  { key: 'aug', label: '海克斯图鉴' },
   { key: 'patch', label: '战术更新' },
   { key: 'settings', label: '设置' },
 ].filter((item) => CUSTOM_ROUTES_ENABLED || item.key !== 'builder') as { key: Tab; label: string }[]
 
 function NavIcon({ k }: { k: Tab }) {
   const p = {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
     viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 2,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
   }
+  const main = 'var(--nav-icon-main)'
+  const soft = 'var(--nav-icon-soft)'
   if (k === 'dash')
     return (
       <svg {...p}>
-        <path d="M3 11l9-8 9 8" />
-        <path d="M5 9.5V20h14V9.5" />
+        <rect x="5" y="5" width="5" height="5" rx="1.2" fill={soft} />
+        <rect x="14" y="5" width="5" height="5" rx="1.2" fill={main} />
+        <rect x="5" y="14" width="5" height="5" rx="1.2" fill={main} />
+        <rect x="14" y="14" width="5" height="5" rx="1.2" fill={main} opacity="0.62" />
       </svg>
     )
   if (k === 'champ')
     return (
       <svg {...p}>
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+        <path d="M12 4 18.8 7.8v8.4L12 20 5.2 16.2V7.8z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M8.8 9.2h6.4v2.7L12 14.5l-3.2-2.6z" fill={main} />
+        <circle cx="12" cy="17" r="1.35" fill={soft} />
+      </svg>
+    )
+  if (k === 'history')
+    return (
+      <svg {...p}>
+        <rect x="6" y="5" width="12" height="14" rx="2" fill="none" stroke={main} strokeWidth="2" />
+        <rect x="8.5" y="8" width="3.6" height="3.6" rx="0.9" fill={main} />
+        <path d="M13.7 9.2h2" stroke={main} strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="14.7" cy="15.3" r="1.3" fill={soft} />
       </svg>
     )
   if (k === 'tier')
     return (
       <svg {...p}>
-        <path d="M7 4h10v5a5 5 0 0 1-10 0V4z" />
-        <path d="M7 6H4v1.5A3.5 3.5 0 0 0 7.5 11" />
-        <path d="M17 6h3v1.5A3.5 3.5 0 0 1 16.5 11" />
-        <path d="M12 14v3" />
-        <path d="M8.5 20h7l-.7-3h-5.6z" />
+        <path d="M7.4 5.3h9.2v4.8a4.6 4.6 0 0 1-9.2 0z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M12 14.8v3.2M9 19h6" stroke={main} strokeWidth="2" strokeLinecap="round" />
+        <circle cx="12" cy="9" r="1.3" fill={soft} />
+      </svg>
+    )
+  if (k === 'builder')
+    return (
+      <svg {...p}>
+        <path d="M7 8h10M7 16h10M12 8v8" stroke={main} strokeWidth="1.8" strokeLinecap="round" />
+        <rect x="4.8" y="5.8" width="4.4" height="4.4" rx="1.3" fill={soft} />
+        <rect x="14.8" y="5.8" width="4.4" height="4.4" rx="1.3" fill={main} />
+        <rect x="4.8" y="13.8" width="4.4" height="4.4" rx="1.3" fill={main} />
+        <rect x="14.8" y="13.8" width="4.4" height="4.4" rx="1.3" fill={main} />
+      </svg>
+    )
+  if (k === 'aug')
+    return (
+      <svg {...p}>
+        <path d="M12 4.5 19.5 12 12 19.5 4.5 12z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M12 8.4 14.1 12 12 15.6 9.9 12z" fill={main} />
+        <circle cx="12" cy="12" r="1.4" fill={soft} />
       </svg>
     )
   if (k === 'patch')
     return (
       <svg {...p}>
-        <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-        <path d="M14 3v6h6" />
-        <path d="M8 13h8" />
-        <path d="M8 17h5" />
+        <path d="M7 4.5h6.8L18 8.7v10.8H7z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M14 4.8V9h4" fill="none" stroke={soft} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9.6 13.7h5.2" stroke={main} strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     )
   if (k === 'settings')
     return (
       <svg {...p}>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1z" />
+        <path d="M5 7h14M5 12h14M5 17h14" stroke={main} strokeWidth="1.8" strokeLinecap="round" opacity="0.72" />
+        <circle cx="9" cy="7" r="2.05" fill={main} />
+        <circle cx="15.2" cy="12" r="2.05" fill={soft} />
+        <circle cx="11.2" cy="17" r="2.05" fill={main} />
       </svg>
     )
   return (
     <svg {...p}>
-      <path d="M12 2.5l8.5 4.9v9.2L12 21.5 3.5 16.6V7.4z" />
+      <path d="M12 3.5 19.5 8v8L12 20.5 4.5 16V8z" fill={main} />
     </svg>
   )
 }
@@ -149,6 +200,10 @@ export default function App() {
   const [notice, setNotice] = useState<AppNotice | null>(null)
   const [matchDetailId, setMatchDetailId] = useState<number | null>(null) // 查看的是"近期对局"里某一局的真实出装/海克斯
   const [settings, setSettings] = useState<Settings | null>(null)
+  const [previewLanguage] = useState<Lang>(() => {
+    if (typeof window === 'undefined' || isElectron()) return 'zh'
+    return window.localStorage.getItem('mayhempedia.previewLanguage') === 'en' ? 'en' : 'zh'
+  })
   const [customRoutes, setCustomRoutes] = useState<CustomRoute[]>(() => {
     if (typeof window === 'undefined') return []
     try {
@@ -163,15 +218,21 @@ export default function App() {
   const mainScrollTimer = useRef<number | null>(null)
 
   useEffect(() => {
-    loadCore(settings?.language ?? 'zh').then(setCore).catch((e) => setErr(String(e)))
-  }, [settings?.language])
+    loadCore(settings?.language ?? previewLanguage).then(setCore).catch((e) => setErr(String(e)))
+  }, [previewLanguage, settings?.language])
 
   // 只在真正的 Electron 窗口里生效；浏览器预览下 window.mayhem 不存在，安全跳过。
   useEffect(() => {
     if (!isElectron()) return
     window.mayhem!.onLcuStatus(setLcuStatus)
     window.mayhem!.onChampSelect((s) => {
-      if (s.myChampionId) setActiveChampionId(s.myChampionId)
+      if (!s.myChampionId) return
+      // Champion detection is the primary job: leave library views and open
+      // the current champion's Combat File immediately.
+      setActiveChampionId(s.myChampionId)
+      setMatchDetailId(null)
+      setTab('champ')
+      setChampId(s.myChampionId)
     })
     window.mayhem!.onSummoner(setSummoner)
     window.mayhem!.onNotification((n) => {
@@ -221,15 +282,30 @@ export default function App() {
     setSettings(updated)
   }
 
+  async function saveMatchPlayerRoute(route: CustomRoute) {
+    const next = [...customRoutes.filter((existing) => existing.id !== route.id), route]
+    window.localStorage.setItem(CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY, 'library')
+    window.localStorage.setItem(CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY, route.id)
+    await saveCustomRoutes(next)
+    await setArchetypePreference(route.championId, customRouteKey(route.id))
+    setChampId(null)
+    setMatchDetailId(null)
+    setTab('builder')
+  }
+
   const detectedChamp =
     core && activeChampionId ? core.champions.find((c) => c.id === activeChampionId) : null
-  const visibleCustomRoutes = CUSTOM_ROUTES_ENABLED ? customRoutes : []
+  const visibleCustomRoutes = CUSTOM_ROUTES_ENABLED ? customRoutes : EMPTY_CUSTOM_ROUTES
   const detectedHasBuild = !!(
     detectedChamp &&
     (core?.buildIndex[detectedChamp.id] || visibleCustomRoutes.some((route) => route.championId === detectedChamp.id))
   )
-  const appLang: Lang = settings?.language ?? 'zh'
+  const appLang: Lang = settings?.language ?? previewLanguage
   const appZoom = settings?.zoomFactor ?? 1
+  const previewMatchHistory = useMemo(
+    () => (core && !isElectron() && !matchHistory ? createPreviewMatchHistory(core) : matchHistory),
+    [core, matchHistory],
+  )
 
   useEffect(() => {
     if (!detectedChamp) return
@@ -255,7 +331,7 @@ export default function App() {
   }
 
   return (
-    <LangProvider value={settings?.language ?? 'zh'}>
+    <LangProvider value={settings?.language ?? previewLanguage}>
     <div className="fixed inset-0 overflow-hidden bg-ink">
     <div
       className="mayhem-scale-stage"
@@ -265,14 +341,10 @@ export default function App() {
         transform: `scale(${appZoom})`,
       }}
     >
-    <div data-lang={appLang} className="relative h-full w-full overflow-hidden rounded-none bg-ink text-cream shadow-[inset_0_0_38px_rgba(208,173,104,0.1)]">
+    <div data-lang={appLang} className="density-compact relative h-full w-full overflow-hidden rounded-none bg-ink text-cream shadow-[inset_0_1px_0_rgba(244,241,232,0.05)]">
       <WindowTitleBar />
       <div className="relative flex h-[calc(100%-36px)] min-h-0 min-w-0 overflow-hidden bg-ink">
-      <div className="pointer-events-none absolute inset-0 opacity-95">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_10%,rgba(208,173,104,0.13),transparent_28%),radial-gradient(circle_at_88%_2%,rgba(94,200,215,0.1),transparent_24%),linear-gradient(135deg,#080d14_0%,#0d1521_48%,#111b29_100%)]" />
-        <div className="noise-field absolute inset-0 opacity-55 [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
-        <div className="absolute inset-y-0 left-[250px] w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent" />
-      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[#0a1018]" />
       {notice && <NoticeToast notice={notice} onClose={() => setNotice(null)} />}
       <Sidebar
         tab={tab}
@@ -294,15 +366,15 @@ export default function App() {
               setMatchDetailId(null)
               setChampId(detectedChamp.id)
             }}
-            className="group w-full mb-5 flex items-center gap-3 px-4 py-3 rounded-[8px] bg-[#111a27]/88 border border-gold/35 text-left cursor-pointer hover:border-gold/70 hover:-translate-y-0.5 transition shadow-[0_14px_34px_rgba(0,0,0,0.24)]"
+            className="group w-full mb-5 flex items-center gap-3 px-4 py-3 rounded-[8px] bg-[#101a28]/88 border border-hex/30 text-left cursor-pointer hover:border-hex/65 hover:-translate-y-0.5 transition shadow-[0_14px_34px_rgba(0,0,0,0.22)]"
           >
             <img
               src={icon(detectedChamp.iconLocal)}
               alt={detectedChamp.name}
-              className="w-10 h-10 rounded-lg border border-gold/40 shadow-[0_0_24px_rgba(200,170,110,0.16)]"
+              className="w-10 h-10 rounded-lg border border-hex/35"
             />
             <span className="text-sm">
-              {t(appLang, 'app.detectedPrefix')} <b className="text-gold">{detectedChamp.name}</b>
+              {t(appLang, 'app.detectedPrefix')} <b className="text-hex">{detectedChamp.name}</b>
               {detectedHasBuild ? t(appLang, 'app.hasBuild') : t(appLang, 'app.noBuild')}
             </span>
           </button>
@@ -312,8 +384,9 @@ export default function App() {
         {core && matchDetailId != null && (
           <MatchDetail
             core={core}
-            match={matchHistory?.matches.find((m) => m.gameId === matchDetailId) ?? null}
+            match={previewMatchHistory?.matches.find((m) => m.gameId === matchDetailId) ?? null}
             onBack={() => setMatchDetailId(null)}
+            onSavePlayerRoute={saveMatchPlayerRoute}
           />
         )}
         {core && matchDetailId == null && champId != null && (
@@ -332,11 +405,14 @@ export default function App() {
             core={core}
             onPick={setChampId}
             onPickMatch={setMatchDetailId}
-            matchHistory={matchHistory}
+            matchHistory={previewMatchHistory}
             summoner={summoner}
             onOpenPatchNotes={() => setTab('patch')}
             onGoChamp={() => setTab('champ')}
             onGoTier={() => setTab('champ')}
+            onGoHistory={() => setTab('history')}
+            onGoBuilder={() => setTab('builder')}
+            onGoAug={() => setTab('aug')}
             sections={dashboardSections}
             lcuStatus={lcuStatus}
             detectedChamp={detectedChamp}
@@ -353,12 +429,20 @@ export default function App() {
             detectedHasBuild={detectedHasBuild}
           />
         )}
+        {core && matchDetailId == null && champId == null && tab === 'history' && (
+          <MatchHistoryTab
+            core={core}
+            matchHistory={previewMatchHistory}
+            onPickMatch={setMatchDetailId}
+          />
+        )}
         {CUSTOM_ROUTES_ENABLED && core && matchDetailId == null && champId == null && tab === 'builder' && (
           <CustomRouteBuilder
             core={core}
             routes={customRoutes}
             onChange={saveCustomRoutes}
             onActivate={setArchetypePreference}
+            onOpenHistory={() => setTab('history')}
             onOpenChampion={(id) => {
               setChampId(id)
               setMatchDetailId(null)
@@ -379,6 +463,98 @@ export default function App() {
     </div>
     </LangProvider>
   )
+}
+
+function createPreviewMatchHistory(core: Core): MatchHistoryResult {
+  const tierIds = core.heroTier.map((entry) => entry.id)
+  const championIds = [...tierIds, ...core.champions.map((champion) => champion.id)]
+    .filter((id, index, array) => array.indexOf(id) === index)
+    .slice(0, 24)
+  const now = Date.now()
+  const matches: MatchSummary[] = Array.from({ length: 20 }, (_, index) => {
+    const championId = championIds[index % Math.max(1, championIds.length)] ?? core.champions[index % core.champions.length]?.id ?? 1
+    const win = index % 3 !== 1
+    return {
+      gameId: 900000 + index,
+      championId,
+      win,
+      kills: 5 + ((index * 4) % 18),
+      deaths: 3 + ((index * 2) % 12),
+      assists: 12 + ((index * 5) % 28),
+      impactPercentile: Math.min(96, 38 + ((index * 13) % 59)),
+      gameCreationDate: new Date(now - index * 46 * 60 * 1000).toISOString(),
+    }
+  })
+  return {
+    matches,
+    arp: {
+      score: 78,
+      winRateScore: 74,
+      impactScore: 82,
+      stateScore: 77,
+      wins: matches.filter((match) => match.win).length,
+      losses: matches.filter((match) => !match.win).length,
+      winRatePct: Math.round((matches.filter((match) => match.win).length / Math.max(1, matches.length)) * 100),
+      rankName: 'Demo Scout',
+    },
+    achievements: [],
+  }
+}
+
+function createPreviewMatchDetail(core: Core, match: MatchSummary): MatchFullDetail {
+  const championPool = [...core.heroTier.map((entry) => entry.id), ...core.champions.map((champion) => champion.id)]
+    .filter((id, index, array) => array.indexOf(id) === index)
+  const championIndex = Math.max(0, championPool.indexOf(match.championId))
+  const itemIds = [...core.itemById.keys()]
+  const augmentIds = core.augments.map((augment) => augment.id)
+  const pickIds = (ids: number[], start: number, count: number) =>
+    Array.from({ length: count }, (_, index) => ids[(start + index * 3) % Math.max(1, ids.length)]).filter((id): id is number => typeof id === 'number')
+
+  const players: PlayerMatchStats[] = Array.from({ length: 10 }, (_, index) => {
+    const ally = index < 5
+    const base = index + (match.gameId % 11)
+    const championId = index === 0 ? match.championId : championPool[(championIndex + index * 3) % Math.max(1, championPool.length)] ?? match.championId
+    return {
+      participantId: index + 1,
+      championId,
+      summonerName: ['MayhemPilot', 'RiverWard', 'HexSmith', 'SnowballLab', 'ForgeTheory', 'PoroScout', 'ARAMChef', 'SideQuestor', 'QuietCarry', 'DataMiner'][index] ?? `Player ${index + 1}`,
+      isMe: index === 0,
+      team: ally ? 'ally' : 'enemy',
+      win: ally ? match.win : !match.win,
+      kills: index === 0 ? match.kills : 3 + ((base * 5) % 22),
+      deaths: index === 0 ? match.deaths : 2 + ((base * 3) % 13),
+      assists: index === 0 ? match.assists : 8 + ((base * 7) % 31),
+      champLevel: 18,
+      goldEarned: 12800 + base * 427,
+      totalDamageDealtToChampions: 14500 + base * 1380,
+      totalDamageTaken: 18500 + base * 960,
+      totalHeal: 1200 + base * 280,
+      totalMinionsKilled: 22 + ((base * 4) % 47),
+      visionScore: 0,
+      items: pickIds(itemIds, base * 5, 6),
+      augments: pickIds(augmentIds, base * 7, 4),
+    }
+  })
+
+  const goldGraph = Array.from({ length: 9 }, (_, index) => {
+    const t = index / 8
+    const swing = Math.sin(t * Math.PI * 1.4 + (match.win ? 0.4 : 2.2)) * 2400
+    const allyLead = (match.win ? 1 : -1) * t * 4600 + swing
+    const total = 19000 + index * 7600
+    return {
+      timestampMs: index * 180000,
+      allyGold: Math.round(total / 2 + allyLead / 2),
+      enemyGold: Math.round(total / 2 - allyLead / 2),
+    }
+  })
+
+  return {
+    gameId: match.gameId,
+    gameDurationSec: 1488,
+    win: match.win,
+    players,
+    goldGraph,
+  }
 }
 
 const LCU_BADGE: Record<LcuStatus['state'], { label: string; dot: string }> = {
@@ -421,12 +597,23 @@ function NoticeToast({ notice, onClose }: { notice: AppNotice; onClose: () => vo
   )
 }
 
+function BrandWordmark({ className = '' }: { className?: string }) {
+  return (
+    <span className={className}>
+      <span className="text-cream">Mayhem</span><span className="text-hex">pedia</span>
+    </span>
+  )
+}
+
 function WindowTitleBar() {
   return (
-    <header className="window-drag-region relative z-50 flex h-9 shrink-0 items-center justify-between border-b border-gold/20 bg-[linear-gradient(180deg,rgba(18,26,38,0.95),rgba(8,13,20,0.72))] px-3">
+    <header className="window-drag-region relative z-50 flex h-9 shrink-0 items-center justify-between border-b border-line/55 bg-[#0a111c] px-3">
       <div className="flex items-center gap-2 text-[12px] font-extrabold tracking-tight text-cream">
-        <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-4 w-4 rounded-[4px]" />
-        <span>Mayhem<span className="text-gold">pedia</span></span>
+        <span className="grid h-5 w-5 place-items-center rounded-[5px] bg-[#0b1320] shadow-[inset_0_1px_0_rgba(244,241,232,0.08)]">
+          <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-4 w-4 rounded-[3px]" />
+        </span>
+        <BrandWordmark />
+        <span className="h-1.5 w-1.5 rounded-full bg-hex" />
       </div>
       <WindowControls />
     </header>
@@ -473,8 +660,8 @@ function WindowButton({
       className={
         'window-no-drag grid h-full w-11 place-items-center text-dim transition active:translate-y-px ' +
         (danger
-          ? 'hover:bg-[#e81123] hover:text-white'
-          : 'hover:bg-white/18 hover:text-cream')
+          ? 'hover:bg-[#d95b5b] hover:text-white'
+          : 'hover:bg-hex/10 hover:text-cream')
       }
     >
       <svg
@@ -505,45 +692,164 @@ function Sidebar({
 }) {
   const t = useT()
   const lcuBadge = lcuStatus ? LCU_BADGE[lcuStatus.state] : DEFAULT_LCU_BADGE
+  const [expanded, setExpanded] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.localStorage.getItem('mayhempedia.sidebarExpanded') === '1'
+  })
+  const [visualExpanded, setVisualExpanded] = useState(expanded)
+
+  useEffect(() => {
+    if (expanded) {
+      setVisualExpanded(true)
+      return
+    }
+    const timer = window.setTimeout(() => setVisualExpanded(false), 160)
+    return () => window.clearTimeout(timer)
+  }, [expanded])
+
+  useEffect(() => {
+    window.localStorage.setItem('mayhempedia.sidebarExpanded', expanded ? '1' : '0')
+  }, [expanded])
+
+  const open = visualExpanded
+  const labelsVisible = expanded && visualExpanded
+  const toggleSidebar = () => {
+    if (!expanded) setVisualExpanded(true)
+    setExpanded((value) => !value)
+  }
+
+  const expandLabel = expanded ? t('nav.collapse', '收起菜单') : t('nav.expand', '展开菜单')
+
   return (
-    <aside className="relative z-10 w-[250px] shrink-0 border-r border-line/70 bg-[#080d14]/82 px-4 py-5 sticky top-0 h-full flex flex-col shadow-[18px_0_44px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
-      <div className="mb-7 px-2">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gold/35 bg-[#151d27] shadow-[inset_0_1px_0_rgba(242,234,216,0.08),0_12px_28px_rgba(0,0,0,0.24)]">
-          <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-8 w-8 rounded-md" />
+    <aside
+      className={
+        'relative z-40 shrink-0 border-r border-line/55 bg-panel py-3 sticky top-0 h-full flex flex-col shadow-[10px_0_24px_rgba(0,0,0,0.14)] transition-[width,padding] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
+        (open ? 'w-[208px] px-3' : 'w-[72px] px-2')
+      }
+    >
+      <div className={'mb-4 border-b border-line/35 pb-3 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ' + (open ? 'flex items-center gap-2' : 'flex flex-col items-center')}>
+        <div className="inline-flex h-10 w-10 items-center justify-center rounded-[10px]">
+          <img src="/assets/brand/mayhempedia-icon.svg" alt="" className="h-10 w-10 rounded-[10px]" />
         </div>
-        <div className="mt-4 text-[22px] font-extrabold tracking-tight">
-          Mayhem<span className="text-gold">pedia</span>
-        </div>
-        <div className="mt-1 text-[11px] text-dim tracking-[0.12em] uppercase">ARAM route desk</div>
+        {open && (
+          <div className={'min-w-0 flex-1 transition duration-150 ease-out ' + (labelsVisible ? 'translate-x-0 opacity-100 delay-75' : '-translate-x-1 opacity-0')}>
+            <BrandWordmark className="block truncate text-[13px] font-black leading-tight" />
+            <div className="mt-0.5 truncate text-[9px] font-black tracking-[0.16em] text-hex">ARAM DESK</div>
+          </div>
+        )}
       </div>
-      <nav className="flex flex-col gap-1.5">
+      <nav className={open ? 'flex flex-col gap-1.5' : 'flex flex-col items-center gap-2'}>
         {NAV.map((n) => {
           const on = tab === n.key
+          const label = t(`nav.${n.key}`, n.label)
           return (
             <button
               key={n.key}
+              title={label}
+              aria-label={label}
               onClick={() => onTab(n.key)}
               className={
-                'flex items-center gap-2.5 px-3.5 py-3 rounded-lg text-sm font-bold text-left cursor-pointer transition border ' +
+                'group relative border border-transparent text-left cursor-pointer transition duration-200 ease-out ' +
+                (open
+                  ? 'flex h-[38px] w-full items-center gap-2.5 rounded-[8px] px-2.5'
+                  : 'grid h-[42px] w-[42px] place-items-center rounded-[8px]') +
+                ' ' +
                 (on
-                  ? 'border-transparent bg-white/10 text-cream shadow-[0_10px_24px_rgba(0,0,0,0.16)]'
-                  : 'border-transparent text-dim hover:bg-white/10 hover:text-cream hover:translate-x-0.5')
+                  ? 'bg-panel2/82 text-cream [--nav-icon-main:#fff9ec] [--nav-icon-soft:#39e6f2] shadow-[0_8px_18px_rgba(0,0,0,0.12)]'
+                  : 'text-cream [--nav-icon-main:#fff9ec] [--nav-icon-soft:#39e6f2] hover:bg-panel2 hover:text-cream')
               }
             >
-              <span className="w-[18px] inline-flex items-center justify-center">
+              {on && (
+                <span
+                  className={
+                    open
+                      ? 'absolute bottom-[5px] left-[21px] h-0.5 w-3.5 -translate-x-1/2 rounded-full bg-hex/75'
+                      : 'absolute bottom-[5px] left-1/2 h-0.5 w-3.5 -translate-x-1/2 rounded-full bg-hex/75'
+                  }
+                />
+              )}
+              <span className="inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center">
                 <NavIcon k={n.key} />
               </span>
-              {t(`nav.${n.key}`, n.label)}
+              {open && (
+                <span
+                  className={
+                    'truncate text-[12px] transition duration-150 ease-out ' +
+                    (labelsVisible ? 'translate-x-0 opacity-100 delay-75 ' : '-translate-x-1 opacity-0 ') +
+                    (on ? 'font-black text-cream' : 'font-semibold text-cream/68')
+                  }
+                >
+                  {label}
+                </span>
+              )}
+              {!open && (
+                <span className="pointer-events-none absolute left-[54px] top-1/2 z-50 -translate-y-1/2 whitespace-nowrap rounded border border-line/55 bg-[#0d1723] px-2 py-1 text-[10px] font-bold text-cream/95 opacity-0 shadow-[0_8px_18px_rgba(0,0,0,0.26)] transition duration-150 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-visible:translate-x-0.5 group-focus-visible:opacity-100">
+                  {label}
+                </span>
+              )}
             </button>
           )
         })}
       </nav>
-      <div className="glass-control mt-auto rounded-[8px] border border-line/70 px-3.5 py-3.5 text-xs text-dim">
-        <div className="flex items-center gap-2">
-          <span className={'w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_14px_currentColor] ' + lcuBadge.dot} />
-          <span className="font-semibold">{t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}</span>
+      <div className={open ? 'mt-auto flex flex-col gap-2' : 'mt-auto flex flex-col items-center gap-2'}>
+        <button
+          type="button"
+          title={expandLabel}
+          aria-label={expandLabel}
+          aria-expanded={expanded}
+          onClick={toggleSidebar}
+          className={
+            'group relative border border-transparent text-left cursor-pointer transition duration-200 ease-out [--nav-icon-main:#fff9ec] [--nav-icon-soft:#39e6f2] hover:bg-panel2 hover:text-cream ' +
+            (open
+              ? 'flex h-[38px] w-full items-center gap-2.5 rounded-[8px] px-2.5 text-cream'
+              : 'grid h-[42px] w-[42px] place-items-center rounded-[8px] text-cream')
+          }
+        >
+          <span className="inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--nav-icon-main)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d={open ? 'M15 6l-6 6 6 6' : 'M9 6l6 6-6 6'} />
+              <path d="M5 5v14" stroke="var(--nav-icon-soft)" />
+            </svg>
+          </span>
+          {open && <span className={'truncate text-[12px] font-semibold text-cream/68 transition duration-150 ease-out ' + (labelsVisible ? 'translate-x-0 opacity-100 delay-75' : '-translate-x-1 opacity-0')}>{expandLabel}</span>}
+          {!open && (
+            <span className="pointer-events-none absolute left-[54px] top-1/2 z-50 -translate-y-1/2 whitespace-nowrap rounded border border-line/55 bg-[#0d1723] px-2 py-1 text-[10px] font-bold text-cream/95 opacity-0 shadow-[0_8px_18px_rgba(0,0,0,0.26)] transition duration-150 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-visible:translate-x-0.5 group-focus-visible:opacity-100">
+              {expandLabel}
+            </span>
+          )}
+        </button>
+        <div className="mb-1 h-px w-8 self-center bg-line/40" />
+      </div>
+      <div
+        className={
+          'glass-control rounded-[8px] border border-line/55 px-2 py-2 text-xs text-dim ' +
+          (open ? 'flex items-center gap-2' : '')
+        }
+        title={t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}
+      >
+        <div className="flex shrink-0 items-center justify-center">
+          <span className={'h-2.5 w-2.5 rounded-full shrink-0 ' + lcuBadge.dot} />
         </div>
-        <div className="mt-2 text-[11px] text-dim/70">Overlay: Ctrl+Shift+X</div>
+        <div className={(open ? 'mt-0 min-w-0 text-left' : 'mt-1 text-center') + ' text-[9px] font-black text-dim/70'}>
+          {open ? (
+            <div className={'transition duration-150 ease-out ' + (labelsVisible ? 'translate-x-0 opacity-100 delay-75' : '-translate-x-1 opacity-0')}>
+              <div className="text-[9px] leading-tight text-dim/80">LCU</div>
+              <div className="truncate text-[10px] leading-tight text-cream/72">{t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}</div>
+            </div>
+          ) : (
+            'LCU'
+          )}
+        </div>
       </div>
     </aside>
   )
@@ -564,6 +870,9 @@ function Dashboard({
   onOpenPatchNotes,
   onGoChamp,
   onGoTier,
+  onGoHistory,
+  onGoBuilder,
+  onGoAug,
   sections,
   lcuStatus,
   detectedChamp,
@@ -579,6 +888,9 @@ function Dashboard({
   onOpenPatchNotes: () => void
   onGoChamp: () => void
   onGoTier: () => void
+  onGoHistory: () => void
+  onGoBuilder: () => void
+  onGoAug: () => void
   sections: DashboardSections | null
   lcuStatus: LcuStatus | null
   detectedChamp: Champion | null
@@ -586,39 +898,695 @@ function Dashboard({
   selectedArchetypeByChampionId: Record<string, string>
   customRoutes: CustomRoute[]
 }) {
+  void summoner
+  void sections
+  void selectedArchetypeByChampionId
   const champById = useMemo(() => new Map(core.champions.map((c) => [c.id, c])), [core])
-  // 还没读到设置(浏览器预览/尚未连上)时全部显示，不能因为空指针就把主页显示成空的
-  const show = (key: keyof DashboardSections) => sections?.[key] ?? true
+  const lcuBadge = lcuStatus ? LCU_BADGE[lcuStatus.state] : DEFAULT_LCU_BADGE
+  const recentMatches = matchHistory?.matches ?? null
+  const coveredCount = Object.keys(core.buildIndex).length
+  const tieredCount = core.heroTier.length
+  const rarityCounts = RARITY_ORDER.map((rarity) => ({
+    rarity,
+    count: core.augments.filter((augment) => augment.rarity === rarity).length,
+  }))
+  const recentChampionIds = useMemo(() => {
+    if (!recentMatches?.length) return []
+    const stats = new Map<number, { count: number; firstSeen: number }>()
+    recentMatches.forEach((match, index) => {
+      const current = stats.get(match.championId) ?? { count: 0, firstSeen: index }
+      stats.set(match.championId, { count: current.count + 1, firstSeen: Math.min(current.firstSeen, index) })
+    })
+    return [...stats.entries()]
+      .sort((a, b) => b[1].count - a[1].count || a[1].firstSeen - b[1].firstSeen)
+      .map(([championId]) => championId)
+  }, [recentMatches])
+  const featuredChampionIds = [
+    detectedChamp?.id,
+    ...recentChampionIds,
+    ...core.heroTier.filter((entry) => ['S', 'A'].includes(entry.tier)).map((entry) => entry.id),
+  ].filter((id): id is number => typeof id === 'number')
+  const featuredChampions = [...new Set(featuredChampionIds)]
+    .map((id) => champById.get(id))
+    .filter((champion): champion is Champion => !!champion)
+    .slice(0, 12)
+  const customPreview = [...customRoutes].slice(-4).reverse()
+  const [officialDiscoveries, setOfficialDiscoveries] = useState<OfficialDiscovery[]>([])
+  const officialDiscoveryKey = useMemo(
+    () =>
+      core.heroTier
+        .filter((entry) => ['S', 'A', 'B'].includes(entry.tier) && core.buildIndex[entry.id])
+        .slice(0, 4)
+        .map((entry) => `${entry.id}:${core.buildIndex[entry.id]}`)
+        .join('|'),
+    [core.buildIndex, core.heroTier],
+  )
+  const lang = useLang()
+  useEffect(() => {
+    let cancelled = false
+    const targets = core.heroTier
+      .filter((entry) => ['S', 'A', 'B'].includes(entry.tier) && core.buildIndex[entry.id])
+      .slice(0, 4)
+    Promise.all(
+      targets.map(async (entry) => {
+        const champion = champById.get(entry.id)
+        const file = core.buildIndex[entry.id]
+        if (!champion || !file) return null
+        try {
+          const build = await loadBuild(file, lang)
+          const archetype = build.archetypes[0]
+          if (!archetype) return null
+          return { champion, archetype, tier: entry.tier }
+        } catch {
+          return null
+        }
+      }),
+    ).then((items) => {
+      if (!cancelled) setOfficialDiscoveries(items.filter((item): item is OfficialDiscovery => !!item))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [champById, core, officialDiscoveryKey, lang])
+  const patch = core.patchNotes
+  const [championQuery, setChampionQuery] = useState('')
+  const [quickTier, setQuickTier] = useState<string>('all')
+  const tierById = useMemo(() => new Map(core.heroTier.map((entry) => [entry.id, entry.tier])), [core.heroTier])
+  const normalizedChampionQuery = championQuery.trim().toLocaleLowerCase()
+  const championResults = useMemo(() => {
+    const base = normalizedChampionQuery || quickTier !== 'all'
+      ? core.champions.filter((champion) => {
+          const alt = core.altChampionById.get(champion.id)
+          return normalizedChampionQuery
+            ? normalizedSearchText(champion.name, champion.title, champion.alias, champion.pinyin, champion.initials, alt?.name, alt?.title, alt?.alias, alt?.pinyin, alt?.initials).includes(normalizedChampionQuery)
+            : true
+        })
+      : featuredChampions.length > 0
+        ? featuredChampions
+        : core.champions
+    return base
+      .filter((champion) => quickTier === 'all' || tierById.get(champion.id) === quickTier)
+      .slice(0, normalizedChampionQuery ? 30 : 18)
+  }, [core.altChampionById, core.champions, featuredChampions, normalizedChampionQuery, quickTier, tierById])
+  const topChanges = core.aramBalance.slice(0, 6).map((entry) => champById.get(entry.id)).filter((champion): champion is Champion => !!champion)
+  const title = lang === 'en' ? 'Command Center' : '作战大厅'
+  const lcuReady = lcuStatus?.state === 'connected'
+  const localMatchCount = recentMatches?.length ?? 0
+  const heroHeadline = detectedChamp
+    ? (lang === 'en' ? `${detectedChamp.name} Combat File` : `${detectedChamp.name} Combat File`)
+    : title
+  const heroDetail = detectedChamp
+    ? (detectedHasBuild
+        ? (lang === 'en' ? 'Route, augment priorities, and item order are ready.' : '路线、海克斯优先级、出装顺序已经准备好。')
+        : (lang === 'en' ? 'This champion is detected, but still needs a usable route.' : '已经识别到英雄，但还缺一条可启用路线。'))
+    : (lang === 'en'
+        ? 'Waiting for League client and ARAM champion select.'
+        : '等待客户端连接与大乱斗选人。')
+  const primaryAction = detectedChamp ? () => onPick(detectedChamp.id) : onGoChamp
+  const primaryActionLabel = detectedChamp
+    ? (lang === 'en' ? 'Open Combat File' : '打开 Combat File')
+    : (lang === 'en' ? 'Browse champions' : '浏览英雄图鉴')
   return (
     <>
-      <DashboardHero
-        core={core}
-        lcuStatus={lcuStatus}
-        detectedChamp={detectedChamp}
-        detectedHasBuild={detectedHasBuild}
-        matchHistory={matchHistory}
-        onPick={onPick}
-        onGoChamp={onGoChamp}
-        onGoTier={onGoTier}
-        onOpenPatchNotes={onOpenPatchNotes}
-        selectedArchetypeByChampionId={selectedArchetypeByChampionId}
-        customRoutes={customRoutes}
-      />
-      <div className="grid grid-cols-[minmax(0,1fr)_320px] gap-5 items-start max-[900px]:grid-cols-1">
-        <div className="flex flex-col gap-4 min-w-0">
-          {show('recentMatches') && (
-            <RecentMatches matches={matchHistory?.matches ?? null} champById={champById} onPick={onPickMatch} />
-          )}
-          {show('versionChanges') && (
-            <VersionChanges core={core} champById={champById} onPick={onPick} onOpenPatchNotes={onOpenPatchNotes} />
-          )}
+      <section className="glass-panel-strong relative mb-3 overflow-hidden rounded-[8px] border p-3.5">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/45" />
+        <div className="relative grid grid-cols-[minmax(0,1fr)_360px] gap-3 max-[920px]:grid-cols-1">
+          <div className="min-w-0">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">Mayhempedia</div>
+            <h1 className="mt-1 text-[23px] font-black leading-tight text-cream">{heroHeadline}</h1>
+            <p className="mt-1 max-w-[760px] text-[11px] leading-4 text-dim">{heroDetail}</p>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <button type="button" onClick={primaryAction} className={BTN_PRIMARY}>
+                {primaryActionLabel}
+              </button>
+              <button type="button" onClick={onGoHistory} className={BTN_SECONDARY}>
+                {lang === 'en' ? 'Review matches' : '查看对局记录'}
+              </button>
+              <button type="button" onClick={onGoBuilder} className="rounded-md px-2.5 py-1.5 text-[11px] font-black text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px">
+                {lang === 'en' ? 'Route workshop' : '路线工作台'}
+              </button>
+            </div>
+          </div>
+          <div className="rounded-[7px] border border-line/60 bg-[#07101b]/50 p-2.5">
+            <div className="mb-2 flex items-center justify-between gap-2 border-b border-line/45 pb-2">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Live status' : '实时状态'}</div>
+                <div className="mt-0.5 text-[14px] font-black text-cream">{title}</div>
+              </div>
+              <div className="flex items-center gap-1.5 rounded border border-line/55 bg-[#050a11]/36 px-2 py-1">
+                <span className={'h-2 w-2 rounded-full ' + lcuBadge.dot} />
+                <span className="text-[10px] font-extrabold text-dim">{lcuBadge.label}</span>
+              </div>
+            </div>
+            <div className="grid gap-1.5">
+              <DashboardReadoutRow
+                label={lang === 'en' ? 'Champion lock' : '英雄锁定'}
+                value={detectedChamp?.name ?? (lang === 'en' ? 'Waiting' : '等待中')}
+                tone={detectedChamp ? 'ready' : lcuReady ? 'active' : 'idle'}
+              />
+              <DashboardReadoutRow
+                label={lang === 'en' ? 'Combat File' : '作战档案'}
+                value={detectedHasBuild ? (lang === 'en' ? 'Ready' : '已就绪') : (lang === 'en' ? 'Needs route' : '缺路线')}
+                tone={detectedHasBuild ? 'ready' : detectedChamp ? 'warning' : 'idle'}
+              />
+              <DashboardReadoutRow
+                label={lang === 'en' ? 'Local matches' : '本地对局'}
+                value={localMatchCount > 0 ? `${localMatchCount}` : (lang === 'en' ? 'Not yet' : '暂无')}
+                tone={localMatchCount > 0 ? 'active' : 'idle'}
+              />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 min-w-0">
-          {show('identityCard') && <IdentityCard arp={matchHistory?.arp ?? null} summoner={summoner} />}
-          {show('achievements') && <Achievements achievements={matchHistory?.achievements ?? null} />}
-          {!matchHistory && <DashboardOnboarding onGoChamp={onGoChamp} onGoTier={onGoTier} />}
+      </section>
+
+      <OfficialDiscoveryRoutes
+        discoveries={officialDiscoveries}
+        core={core}
+        onPick={onPick}
+        onOpenChampions={onGoChamp}
+      />
+
+      <div className="grid grid-cols-[minmax(0,1.38fr)_minmax(300px,.72fr)] gap-3 max-[980px]:grid-cols-1">
+        <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-hex/35" />
+          <div className="mb-2 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-line/50 pb-2">
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Champion library' : '英雄图鉴'}</div>
+              <h2 className="mt-0.5 text-[15px] font-black text-cream">{coveredCount}/{core.champions.length} {lang === 'en' ? 'champions covered' : '英雄已有路线'}</h2>
+            </div>
+            <button type="button" onClick={onGoChamp} className={BTN_TINY_SECONDARY}>{lang === 'en' ? 'All' : '全部'}</button>
+          </div>
+
+          <div className="grid grid-cols-[minmax(0,1fr)_132px] gap-2 max-[760px]:grid-cols-1">
+            <div className="min-w-0">
+              <div className="flex gap-2">
+                <input
+                  value={championQuery}
+                  onChange={(event) => setChampionQuery(event.target.value)}
+                  placeholder={lang === 'en' ? 'Search champion, pinyin, initials...' : '搜索英雄、拼音或首字母...'}
+                  className={SEARCH_INLINE + ' h-8 py-1.5'}
+                />
+                <button type="button" onClick={onGoTier} className={BTN_TINY_SECONDARY + ' h-8 shrink-0 py-0'}>{lang === 'en' ? 'Tier' : '强度'}</button>
+              </div>
+              <div className="mt-1.5 flex flex-wrap gap-1">
+                {['all', 'S', 'A', 'B', 'C', 'D'].map((tier) => (
+                  <button
+                    key={tier}
+                    type="button"
+                    onClick={() => setQuickTier(tier)}
+                    className={
+                      'rounded border px-1.5 py-0.5 text-[9px] font-black transition active:translate-y-px ' +
+                      (quickTier === tier ? 'border-hex bg-hex text-[#041017]' : 'border-line/60 bg-panel2/45 text-dim hover:border-line hover:bg-panel2/70 hover:text-cream')
+                    }
+                  >
+                    {tier === 'all' ? (lang === 'en' ? 'All' : '全部') : tier}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-[6px] border border-line/55 bg-[#07101b]/46 p-1.5">
+              <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Coverage' : '覆盖状态'}</div>
+              <div className="mt-1 grid grid-cols-2 gap-1">
+                <div className="text-[13px] font-black text-cream">{coveredCount}</div>
+                <div className="text-[13px] font-black text-cream">{tieredCount}</div>
+              </div>
+              <div className="mt-1 h-1 overflow-hidden rounded-full bg-[#050b12]">
+                <div className="h-full rounded-full bg-hex" style={{ width: `${Math.min(100, Math.round((coveredCount / Math.max(1, core.champions.length)) * 100))}%` }} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-2">
+            <div className="mb-1.5 flex items-center justify-between">
+              <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">
+                {championQuery
+                  ? (lang === 'en' ? 'Search results' : '搜索结果')
+                  : quickTier !== 'all'
+                    ? `${quickTier} ${lang === 'en' ? 'tier champions' : '级英雄'}`
+                    : recentChampionIds.length > 0
+                      ? (lang === 'en' ? 'Recently played' : '最近常用')
+                      : (lang === 'en' ? 'Priority champions' : '优先入口')}
+              </div>
+              <div className="text-[10px] font-black tabular-nums text-dim">{championResults.length}</div>
+            </div>
+            <div className="grid grid-cols-12 gap-1 max-[1120px]:grid-cols-8 max-[760px]:grid-cols-6">
+              {championResults.slice(0, 12).map((champion) => {
+                const tier = tierById.get(champion.id)
+                return (
+                  <button key={champion.id} type="button" onClick={() => onPick(champion.id)} className="group min-w-0 rounded-[5px] border border-line/50 bg-[#07101b]/48 p-1 text-center transition hover:border-hex/40 hover:bg-white/5 active:translate-y-px">
+                    <span className="relative mx-auto block h-7 w-7">
+                      <img src={icon(champion.iconLocal)} alt={champion.name} className="h-7 w-7 rounded border border-line/70 object-cover group-hover:border-hex/45" />
+                      {tier && <span className="absolute -right-1 -top-1 rounded border border-panel bg-hex px-1 text-[8px] font-black leading-3 text-[#041017]">{tier}</span>}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <aside className="grid gap-3">
+          <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
+            <div className="mb-2 flex items-center justify-between gap-2 border-b border-line/45 pb-2">
+              <div className="min-w-0">
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Recent history' : '最近对局'}</div>
+                <div className="mt-0.5 text-[15px] font-black text-cream">
+                  {localMatchCount > 0
+                    ? (lang === 'en' ? `${localMatchCount} local games` : `${localMatchCount} 场本地记录`)
+                    : (lang === 'en' ? 'No games yet' : '还没有对局')}
+                </div>
+              </div>
+              <button type="button" onClick={onGoHistory} className={BTN_TINY_SECONDARY}>
+                {lang === 'en' ? 'All' : '全部'}
+              </button>
+            </div>
+            <div className="grid gap-1.5">
+              {(recentMatches ?? []).slice(0, 3).map((match) => {
+                const champion = champById.get(match.championId)
+                return (
+                  <button
+                    key={match.gameId}
+                    type="button"
+                    onClick={() => onPickMatch(match.gameId)}
+                    className="group grid grid-cols-[30px_minmax(0,1fr)_auto] items-center gap-2 rounded-[6px] border border-line/45 bg-[#07101b]/38 px-2 py-1.5 text-left transition hover:border-hex/35 hover:bg-panel2/45 active:translate-y-px"
+                  >
+                    {champion ? (
+                      <img src={icon(champion.iconLocal)} alt={champion.name} className="h-7 w-7 rounded border border-line/65 object-cover group-hover:border-hex/45" />
+                    ) : (
+                      <span className="h-7 w-7 rounded border border-line/65 bg-panel/60" />
+                    )}
+                    <span className="min-w-0">
+                      <span className="block truncate text-[11px] font-black text-cream">{champion?.name ?? `#${match.championId}`}</span>
+                      <span className="block text-[9px] font-bold tabular-nums text-dim">{match.kills}/{match.deaths}/{match.assists} · P{match.impactPercentile}</span>
+                    </span>
+                    <span className={'rounded border px-1.5 py-0.5 text-[9px] font-black ' + (match.win ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8fd69d]' : 'border-red/35 bg-red/10 text-red')}>
+                      {match.win ? (lang === 'en' ? 'W' : '胜') : (lang === 'en' ? 'L' : '负')}
+                    </span>
+                  </button>
+                )
+              })}
+              {(!recentMatches || recentMatches.length === 0) && (
+                <EmptyState
+                  compact
+                  title={lang === 'en' ? 'No local match history' : '暂无本地对局'}
+                  description={lang === 'en' ? 'Recent ARAM Mayhem games will appear here.' : '最近的海克斯大乱斗对局会显示在这里。'}
+                />
+              )}
+            </div>
+          </section>
+
+          <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
+            <div className="grid grid-cols-2 gap-2">
+              <button type="button" onClick={onGoBuilder} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2 text-left transition hover:border-hex/35">
+                <div className="text-[9px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Routes' : '自定义路线'}</div>
+                <div className="mt-1 text-[15px] font-black text-cream">{customRoutes.length}</div>
+              </button>
+              <button type="button" onClick={onGoAug} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2 text-left transition hover:border-hex/35">
+                <div className="text-[9px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Augments' : '海克斯'}</div>
+                <div className="mt-1 text-[15px] font-black text-cream">{core.augments.length}</div>
+              </button>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border px-3 py-2">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 max-[760px]:grid-cols-1">
+          <div className="min-w-0 flex items-center gap-2">
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-red">{lang === 'en' ? 'Patch intelligence' : '战术更新'}</div>
+              <div className="mt-0.5 truncate text-[13px] font-black text-cream">{patch.patch} · {patch.theme}</div>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-2 max-[760px]:justify-start">
+            {topChanges.slice(0, 5).map((champion) => (
+              <button key={champion.id} type="button" onClick={() => onPick(champion.id)} className="rounded border border-line/50 bg-panel/50 p-1 transition hover:border-hex/40">
+                <img src={icon(champion.iconLocal)} alt={champion.name} className="h-6 w-6 rounded object-cover" />
+              </button>
+            ))}
+            <button type="button" onClick={onOpenPatchNotes} className={BTN_TINY_SECONDARY}>{lang === 'en' ? 'Open' : '打开'}</button>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+function DashboardMiniStat({ label, value, suffix = '' }: { label: string; value: number; suffix?: string }) {
+  return (
+    <div className="rounded-[5px] border border-line/50 bg-panel/42 p-1.5">
+      <div className="text-[9px] font-black uppercase tracking-[0.1em] text-dim">{label}</div>
+      <div className="mt-0.5 text-[15px] font-black tabular-nums text-cream">{value}{suffix}</div>
+    </div>
+  )
+}
+
+type OfficialDiscovery = {
+  champion: Champion
+  archetype: Archetype
+  tier?: string
+}
+
+function OfficialDiscoveryRoutes({
+  discoveries,
+  core,
+  onPick,
+  onOpenChampions,
+}: {
+  discoveries: OfficialDiscovery[]
+  core: Core
+  onPick: (id: number) => void
+  onOpenChampions: () => void
+}) {
+  const lang = useLang()
+  return (
+    <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border p-2.5">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-3 border-b border-line/50 pb-1.5">
+        <div className="min-w-0">
+          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">
+            {lang === 'en' ? 'Mayhempedia picks' : '官方新发现玩法'}
+          </div>
+          <p className="mt-0.5 max-w-[760px] text-[11px] leading-4 text-dim">
+            {lang === 'en'
+              ? 'A few editorial builds worth trying this patch.'
+              : '这版本值得试的几条编辑精选小玩法。'}
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={onOpenChampions} className={BTN_TINY_SECONDARY}>
+            {lang === 'en' ? 'Hero index' : '英雄图鉴'}
+          </button>
         </div>
       </div>
+
+      {discoveries.length > 0 ? (
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-1.5">
+          {discoveries.map(({ champion, archetype, tier }) => {
+            const items = archetype.items.map((ref) => core.itemById.get(ref.id)).filter((item): item is Item => !!item).slice(0, 3)
+            const augments = [...archetype.augments.core, ...archetype.augments.good]
+              .map((ref) => getAugment(core.augById, ref.id))
+              .filter((augment): augment is Augment => !!augment)
+              .slice(0, 2)
+            return (
+              <button
+                key={`${champion.id}-${archetype.key}`}
+                type="button"
+                onClick={() => onPick(champion.id)}
+                className="group min-w-0 rounded-[6px] border border-line/58 bg-[#07101b]/42 px-2 py-1.5 text-left transition hover:-translate-y-0.5 hover:border-hex/38 hover:bg-white/[0.03] active:translate-y-px"
+              >
+                <div className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-1.5">
+                  <img src={icon(champion.iconLocal)} alt={champion.name} className={ICON_ASSET + ' h-7 w-7 group-hover:border-hex/45'} />
+                  <div className="min-w-0">
+                    <div className="truncate text-[11px] font-black text-cream">{champion.name}</div>
+                    <div className="mt-0.5 truncate text-[9px] font-bold text-dim">{archetype.name}</div>
+                  </div>
+                  <span className="rounded border border-hex/35 bg-hex/10 px-1.5 py-0.5 text-[8px] font-black text-hex">
+                    {tier ?? archetype.damageType}
+                  </span>
+                </div>
+                <div className="mt-1 flex min-h-5 items-center gap-1">
+                  {items.map((item) => (
+                    <img key={item.id} src={icon(item.iconLocal)} alt={item.name} title={item.name} className={ICON_ASSET + ' h-5 w-5'} />
+                  ))}
+                  <span className="h-4 w-px bg-line/45" />
+                  {augments.map((augment) => (
+                    <img key={augment.id} src={icon(augment.iconLargeLocal)} alt={augment.name} title={augment.name} className={'h-5 w-5 shrink-0 rounded border object-cover ' + (RARITY[augment.rarity] ?? RARITY[0]).border} />
+                  ))}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      ) : (
+        <EmptyState
+          compact
+          title={lang === 'en' ? 'Curated picks are loading' : '正在整理新玩法'}
+          description={lang === 'en'
+            ? 'Once hero files are available, Mayhempedia will surface a few builds worth trying.'
+            : '英雄档案加载完成后，这里会展示几条值得试的官方精选玩法。'}
+        />
+      )}
+    </section>
+  )
+}
+
+function PageHeader({
+  eyebrow,
+  title,
+  description,
+  metrics,
+  action,
+}: {
+  eyebrow?: string
+  title: string
+  description?: ReactNode
+  metrics?: { label: string; value: ReactNode; tone?: 'accent' | 'muted' }[]
+  action?: ReactNode
+}) {
+  return (
+    <section className={PAGE_HEADER}>
+      <div className="relative grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 max-[900px]:grid-cols-1">
+        <div className="min-w-0">
+          {eyebrow && <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">{eyebrow}</div>}
+          <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">{title}</h2>
+          {description && <div className="mt-1 max-w-[760px] text-[11px] leading-4 text-dim">{description}</div>}
+        </div>
+        {(metrics?.length || action) && (
+          <div className="flex min-w-[260px] flex-wrap items-stretch justify-end gap-1.5 max-[900px]:justify-start">
+            {metrics?.map((metric) => (
+              <div key={metric.label} className="min-w-[104px] rounded-[6px] border border-line/60 bg-[#07101b]/45 px-2.5 py-2">
+                <div className="text-[10px] font-black text-dim">{metric.label}</div>
+                <div className={'mt-0.5 text-[15px] font-black tabular-nums ' + (metric.tone === 'accent' ? 'text-hex' : 'text-cream')}>{metric.value}</div>
+              </div>
+            ))}
+            {action}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+function EmptyState({
+  title,
+  description,
+  action,
+  compact = false,
+}: {
+  title: ReactNode
+  description?: ReactNode
+  action?: ReactNode
+  compact?: boolean
+}) {
+  return (
+    <div className={(compact ? 'p-3 text-left' : 'p-6 text-center') + ' rounded-[7px] border border-dashed border-line/60 bg-[#07101b]/34'}>
+      <div className="text-[12px] font-black text-cream">{title}</div>
+      {description && <div className={(compact ? 'mt-1 text-[10px] leading-4' : 'mx-auto mt-2 max-w-[540px] text-[12px] leading-5') + ' text-dim'}>{description}</div>}
+      {action && <div className={compact ? 'mt-2' : 'mt-4'}>{action}</div>}
+    </div>
+  )
+}
+
+function DashboardReadoutRow({
+  label,
+  value,
+  tone,
+}: {
+  label: string
+  value: string
+  tone: 'ready' | 'active' | 'warning' | 'idle'
+}) {
+  const toneClass =
+    tone === 'ready'
+      ? 'text-[#8bd99e]'
+      : tone === 'active'
+        ? 'text-hex'
+        : tone === 'warning'
+          ? 'text-gold'
+          : 'text-dim'
+  return (
+    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-line/30 pb-1.5 last:border-b-0 last:pb-0">
+      <span className="truncate text-[10px] font-bold text-dim">{label}</span>
+      <span className={'max-w-[170px] truncate text-[11px] font-black ' + toneClass}>{value}</span>
+    </div>
+  )
+}
+
+function matchJudgementTags(match: MatchSummary, lang: Lang): { label: string; className: string }[] {
+  const tags: { label: string; className: string }[] = []
+  const kdaWeight = match.deaths === 0 ? match.kills + match.assists : (match.kills + match.assists) / match.deaths
+  if (match.impactPercentile >= 75) {
+    tags.push({
+      label: lang === 'en' ? 'High impact' : '高表现',
+      className: 'border-gold/35 bg-gold/10 text-gold',
+    })
+  }
+  if (match.win && (match.impactPercentile >= 60 || kdaWeight >= 3.2)) {
+    tags.push({
+      label: lang === 'en' ? 'Capture-ready' : '可采集',
+      className: 'border-hex/35 bg-hex/10 text-hex',
+    })
+  }
+  if (match.impactPercentile >= 70 && kdaWeight >= 2.4) {
+    tags.push({
+      label: lang === 'en' ? 'Full build' : '装备完整',
+      className: 'border-[#8d6cf0]/35 bg-[#8d6cf0]/10 text-[#c6b0ff]',
+    })
+  }
+  if (!match.win && match.impactPercentile >= 55) {
+    tags.push({
+      label: lang === 'en' ? 'Review loss' : '失败可复盘',
+      className: 'border-red/35 bg-red/10 text-red',
+    })
+  }
+  if (tags.length === 0) {
+    tags.push({
+      label: lang === 'en' ? 'Archive' : '普通记录',
+      className: 'border-line/45 bg-panel/45 text-dim',
+    })
+  }
+  return tags.slice(0, 3)
+}
+
+function MatchHistoryTab({
+  core,
+  matchHistory,
+  onPickMatch,
+}: {
+  core: Core
+  matchHistory: MatchHistoryResult | null
+  onPickMatch: (gameId: number) => void
+}) {
+  const lang = useLang()
+  const champById = useMemo(() => new Map(core.champions.map((champion) => [champion.id, champion])), [core.champions])
+  const matches = (matchHistory?.matches ?? []).slice(0, 20)
+  const wins = matches.filter((match) => match.win).length
+  const winRate = matches.length > 0 ? Math.round((wins / matches.length) * 100) : 0
+  const avgImpact =
+    matches.length > 0
+      ? Math.round(matches.reduce((sum, match) => sum + match.impactPercentile, 0) / matches.length)
+      : 0
+  const title = lang === 'en' ? 'Match history' : '对局记录'
+  const formatDate = (value: string) => {
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return value
+    return date.toLocaleString(lang === 'en' ? 'en-US' : 'zh-CN', {
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  }
+
+  return (
+    <>
+      <section className={PAGE_HEADER}>
+        <div className="grid grid-cols-[minmax(0,1fr)_320px] gap-3 max-[880px]:grid-cols-1">
+          <div className="min-w-0">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">{lang === 'en' ? 'Match center' : '对局中心'}</div>
+            <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">{title}</h2>
+            <p className="mt-1 max-w-[720px] text-[11px] leading-4 text-dim">
+              {lang === 'en'
+                ? 'Use this as the route-capture workspace. Open a game, inspect all 10 players, then save only the player build you want.'
+                : '这里作为出装采集工作区。打开一局，看 10 个人的装备和海克斯，再只保存你想要的那个玩家路线。'}
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            <DashboardMiniStat label={lang === 'en' ? 'Games' : '对局'} value={matches.length} />
+            <DashboardMiniStat label={lang === 'en' ? 'Win rate' : '胜率'} value={winRate} suffix="%" />
+            <DashboardMiniStat label={lang === 'en' ? 'Impact' : '表现'} value={avgImpact} />
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden rounded-[8px] border border-line/70 bg-panel/78 p-2 shadow-[0_12px_30px_rgba(0,0,0,0.14)]">
+        <div className="grid grid-cols-[44px_minmax(180px,1fr)_76px_92px_minmax(160px,0.7fr)_116px_58px] gap-2 rounded-[6px] border border-line/45 bg-[#07101b]/50 px-2 py-1.5 text-[9px] font-black uppercase tracking-[0.14em] text-dim max-[900px]:grid-cols-[44px_minmax(0,1fr)_76px_92px_58px]">
+          <div />
+          <div>{lang === 'en' ? 'Champion' : '英雄'}</div>
+          <div className="text-right">{lang === 'en' ? 'Result' : '结果'}</div>
+          <div className="text-right">KDA</div>
+          <div className="text-right max-[900px]:hidden">{lang === 'en' ? 'Impact' : '表现'}</div>
+          <div className="text-right max-[900px]:hidden">{lang === 'en' ? 'Time' : '时间'}</div>
+          <div className="text-right" />
+        </div>
+        <div className="mt-1.5 space-y-1">
+          {matches.map((match) => {
+            const champion = champById.get(match.championId)
+            const tags = matchJudgementTags(match, lang)
+            return (
+              <button
+                key={match.gameId}
+                type="button"
+                onClick={() => onPickMatch(match.gameId)}
+                className={
+                  'group relative grid w-full grid-cols-[44px_minmax(180px,1fr)_76px_92px_minmax(160px,0.7fr)_116px_58px] items-center gap-2 rounded-[6px] border px-2 py-2 text-left transition hover:border-hex/35 hover:bg-panel2/45 active:translate-y-px max-[900px]:grid-cols-[44px_minmax(0,1fr)_76px_92px_58px] ' +
+                  (match.win ? 'border-line/55 bg-[#07101b]/45' : 'border-line/45 bg-[#07101b]/34')
+                }
+              >
+                <span className={'absolute bottom-2 left-0 top-2 w-0.5 rounded-full ' + (match.win ? 'bg-[#63c07a]' : 'bg-red/85')} />
+                {champion ? (
+                  <img src={icon(champion.iconLocal)} alt={champion.name} className="h-9 w-9 rounded border border-line/70 object-cover" />
+                ) : (
+                  <div className="h-9 w-9 rounded border border-line/70 bg-panel/60" />
+                )}
+                <div className="min-w-0">
+                  <div className="truncate text-[12px] font-black text-cream">{champion?.name ?? `#${match.championId}`}</div>
+                  <div className="mt-0.5 flex min-w-0 flex-wrap items-center gap-1">
+                    <span className="truncate text-[10px] text-dim">Game {match.gameId}</span>
+                    {tags.map((tag) => (
+                      <span key={tag.label} className={'rounded border px-1.5 py-px text-[9px] font-black ' + tag.className}>
+                        {tag.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <span
+                    className={
+                      'inline-flex min-w-[48px] justify-center rounded border px-2 py-0.5 text-[10px] font-black ' +
+                      (match.win
+                        ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8fd69d]'
+                        : 'border-red/35 bg-red/10 text-red')
+                    }
+                  >
+                    {match.win ? (lang === 'en' ? 'Win' : '胜利') : (lang === 'en' ? 'Loss' : '失败')}
+                  </span>
+                </div>
+                <div className="text-right text-[12px] font-black tabular-nums text-cream">
+                  {match.kills}/{match.deaths}/{match.assists}
+                </div>
+                <div className="max-[900px]:hidden">
+                  <div className="flex items-center gap-2">
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#050b12]">
+                      <div
+                        className={'h-full rounded-full ' + (match.impactPercentile >= 70 ? 'bg-gold' : match.impactPercentile >= 45 ? 'bg-hex' : 'bg-line')}
+                        style={{ width: `${Math.max(4, Math.min(100, match.impactPercentile))}%` }}
+                      />
+                    </div>
+                    <span className="w-8 text-right text-[11px] font-black tabular-nums text-dim">P{match.impactPercentile}</span>
+                  </div>
+                </div>
+                <div className="text-right text-[10px] font-bold tabular-nums text-dim max-[900px]:hidden">
+                  {formatDate(match.gameCreationDate)}
+                </div>
+                <span className="justify-self-end rounded border border-line/55 bg-panel/45 px-2 py-1 text-[10px] font-black text-dim transition group-hover:border-hex/40 group-hover:text-hex">
+                  {lang === 'en' ? 'Open' : '查看'}
+                </span>
+              </button>
+            )
+          })}
+          {!matchHistory && (
+            <div className="rounded-[8px] border border-dashed border-line/55 bg-[#07101b]/40 px-3 py-10 text-center text-[12px] leading-5 text-dim">
+              {lang === 'en' ? 'Match history is available inside the desktop app after connecting to League Client.' : '连接 League 客户端后，桌面应用内会显示本地对局记录。'}
+            </div>
+          )}
+          {matchHistory && matches.length === 0 && (
+            <div className="rounded-[8px] border border-dashed border-line/55 bg-[#07101b]/40 px-3 py-10 text-center text-[12px] leading-5 text-dim">
+              {lang === 'en' ? 'No ARAM Mayhem games captured yet.' : '还没有采集到海克斯大乱斗对局。'}
+            </div>
+          )}
+        </div>
+      </section>
     </>
   )
 }
@@ -631,7 +1599,7 @@ function RoleIcon({ role, active = false }: { role: string | null; active?: bool
       aria-hidden="true"
       className={
         'h-[17px] w-[17px] object-contain transition ' +
-        (active ? 'brightness-[0.38] saturate-75 contrast-150' : 'opacity-85 drop-shadow-[0_0_8px_rgba(201,169,92,0.25)] group-hover:opacity-100')
+        (active ? 'brightness-[0.38] saturate-75 contrast-150' : 'opacity-85 group-hover:opacity-100')
       }
     />
   )
@@ -647,6 +1615,7 @@ function DashboardHero({
   onGoChamp,
   onGoTier,
   onOpenPatchNotes,
+  onShowOverlay,
   selectedArchetypeByChampionId,
   customRoutes,
 }: {
@@ -659,6 +1628,7 @@ function DashboardHero({
   onGoChamp: () => void
   onGoTier: () => void
   onOpenPatchNotes: () => void
+  onShowOverlay: () => void | Promise<unknown>
   selectedArchetypeByChampionId: Record<string, string>
   customRoutes: CustomRoute[]
 }) {
@@ -714,11 +1684,10 @@ function DashboardHero({
 
   return (
     <section className="glass-panel-strong relative overflow-hidden rounded-[8px] border p-6 mb-5">
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-gold/80 via-gold/25 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 h-40 w-72 bg-[radial-gradient(circle_at_top_right,rgba(94,200,215,0.12),transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-hex/45" />
       <div className="relative grid grid-cols-[minmax(0,1fr)_340px] gap-6 items-start max-[1000px]:grid-cols-1">
         <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 rounded-md border border-gold/35 bg-gold/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gold">
+          <div className="inline-flex items-center gap-2 rounded-md border border-hex/35 bg-hex/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-hex">
             {t('dash.hero.live', 'Live companion')}
           </div>
           <h1 className="mt-4 max-w-[720px] text-[34px] leading-[1.04] font-extrabold tracking-tight text-cream">
@@ -756,19 +1725,19 @@ function DashboardHero({
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <button
               onClick={() => (detectedChamp && detectedHasBuild ? onPick(detectedChamp.id) : onGoChamp())}
-              className="rounded-lg bg-gold px-5 py-2.5 text-sm font-extrabold text-[#161006] shadow-[0_12px_28px_rgba(208,173,104,0.2)] transition hover:-translate-y-0.5 hover:bg-[#dec07a] cursor-pointer"
+              className="rounded-md border border-hex bg-hex px-5 py-2.5 text-sm font-extrabold text-[#041017] shadow-[0_12px_28px_rgba(34,211,238,0.12)] transition hover:-translate-y-0.5 hover:bg-[#45dff0] cursor-pointer"
             >
               {primaryLabel}
             </button>
             <button
               onClick={onGoTier}
-              className="rounded-lg border border-hex/35 bg-hex/8 px-5 py-2.5 text-sm font-bold text-hex transition hover:-translate-y-0.5 hover:border-hex/70 hover:bg-hex/12 cursor-pointer"
+              className="rounded-md border border-line/70 bg-panel2/60 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:border-hex/45 hover:text-cream cursor-pointer"
             >
               {t('dash.hero.viewTier')}
             </button>
             <button
               onClick={onOpenPatchNotes}
-              className="rounded-lg border border-line/80 bg-panel2/55 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:text-cream hover:border-gold/45 cursor-pointer"
+              className="rounded-md border border-line/80 bg-panel2/55 px-5 py-2.5 text-sm font-bold text-dim transition hover:-translate-y-0.5 hover:text-cream hover:border-hex/45 cursor-pointer"
             >
               {t('dash.hero.patchNotes')}
             </button>
@@ -785,6 +1754,15 @@ function DashboardHero({
           <div className="mt-3 rounded-lg border border-line/65 bg-panel/45 p-3">
             <div className="text-[11px] font-bold text-dim">{t('dash.hero.overlayHotkey', 'Overlay hotkey')}</div>
             <div className="mt-1 text-sm font-extrabold text-cream">Ctrl+Shift+X</div>
+            {isElectron() && (
+              <button
+                type="button"
+                onClick={onShowOverlay}
+                className="mt-3 w-full rounded-md border border-hex/45 bg-hex/10 px-3 py-2 text-xs font-extrabold text-hex transition hover:bg-hex/15 cursor-pointer"
+              >
+                {t('dash.hero.showOverlay', 'Show overlay')}
+              </button>
+            )}
           </div>
           {detectedChamp && (
             <DetectedRouteCard
@@ -824,7 +1802,7 @@ function StatusStep({
     <div className={'min-h-[68px] rounded-lg border px-3 py-2.5 ' + tone}>
       <div className="flex items-center justify-between gap-2">
         <div className="text-[10px] font-extrabold tracking-[0.14em] opacity-80">{index}</div>
-        <span className="h-2 w-2 rounded-full bg-current shadow-[0_0_14px_currentColor]" />
+        <span className="h-2 w-2 rounded-full bg-current" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="mt-1 text-xs font-extrabold text-cream">{label}</div>
@@ -848,6 +1826,7 @@ function DetectedRouteCard({
   customRoutes: CustomRoute[]
 }) {
   const t = useT()
+  const lang = useLang()
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
 
   useEffect(() => {
@@ -857,10 +1836,10 @@ function DetectedRouteCard({
       return
     }
     setBuild(undefined)
-    loadBuild(file)
+    loadBuild(file, lang)
       .then((loaded) => setBuild(withCustomRoutes(loaded, champion.id, customRoutes, core)))
       .catch(() => setBuild(withCustomRoutes(null, champion.id, customRoutes, core)))
-  }, [core, champion.id, customRoutes])
+  }, [core, champion.id, customRoutes, lang])
 
   const route = build?.archetypes.find((a) => a.key === selectedArchetypeKey) ?? build?.archetypes[0]
   const previewItems = route?.items
@@ -868,12 +1847,12 @@ function DetectedRouteCard({
     .filter((item): item is Item => !!item)
     .slice(0, 3) ?? []
   return (
-    <div className="glass-control mt-4 rounded-[8px] border border-gold/30 p-3">
+    <div className="glass-control mt-4 rounded-[8px] border border-line/65 p-3">
       <div className="flex items-center gap-3">
         <img
           src={icon(champion.iconLocal)}
           alt={champion.name}
-          className="h-12 w-12 rounded-lg border border-gold/45 object-cover shadow-[0_0_22px_rgba(200,170,110,0.12)]"
+          className="h-12 w-12 rounded-lg border border-line/70 object-cover"
         />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -945,7 +1924,7 @@ function DashboardOnboarding({ onGoChamp, onGoTier }: { onGoChamp: () => void; o
   ]
   return (
     <section className={CARD + ' p-4'}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-hex/35 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/30" />
       <div className="relative mb-4">
         <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-hex">{t('dash.onboarding.kicker', 'Setup checklist')}</div>
         <h3 className="mt-1 text-base font-extrabold text-cream">{t('dash.onboarding.title')}</h3>
@@ -967,13 +1946,13 @@ function DashboardOnboarding({ onGoChamp, onGoTier }: { onGoChamp: () => void; o
         <span className="text-xs text-dim">{t('dash.onboarding.meanwhile')}</span>
         <button
           onClick={onGoChamp}
-          className="text-xs px-3 py-1.5 rounded-lg bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
+          className="rounded-md border border-line/65 bg-panel2/70 px-3 py-1.5 text-xs text-dim transition hover:border-hex/45 hover:text-cream cursor-pointer"
         >
           {t('dash.onboarding.goChamp')}
         </button>
         <button
           onClick={onGoTier}
-          className="text-xs px-3 py-1.5 rounded-lg bg-panel2/80 hover:bg-gold/15 hover:text-gold transition cursor-pointer"
+          className="rounded-md border border-line/65 bg-panel2/70 px-3 py-1.5 text-xs text-dim transition hover:border-hex/45 hover:text-cream cursor-pointer"
         >
           {t('dash.onboarding.goTier')}
         </button>
@@ -1045,12 +2024,12 @@ function IdentityCard({ arp, summoner }: { arp: ArpResult | null; summoner: Summ
         </div>
         <div className="mt-3 h-2 max-w-[360px] bg-[#0a1428] rounded-full overflow-hidden border border-line/40">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-gold to-[#f5dea0] shadow-[0_0_18px_rgba(200,170,110,0.42)]"
+            className="h-full rounded-full bg-gold"
             style={{ width: `${arp.score}%` }}
           />
         </div>
         <div className="mt-3 text-[13px] italic text-[#d7bfa0]">{t('dash.identity.quote', { score: arp.score })}</div>
-        <button className="mt-3.5 px-4 py-2 bg-gold text-[#1d1709] rounded-lg font-extrabold text-[13px] cursor-pointer hover:bg-[#dec07a] transition">
+        <button className="mt-3.5 rounded-md border border-line/70 bg-panel2/70 px-4 py-2 text-[13px] font-extrabold text-dim transition hover:border-hex/45 hover:text-cream cursor-pointer">
           {t('dash.identity.share')}
         </button>
       </div>
@@ -1113,7 +2092,7 @@ function VersionChanges({
         title={t('dash.versionChanges.title', '本版本变动')}
         meta={t('dash.versionChanges.meta', 'ARAM 平衡数值 · 只显示修正最大的')}
         action={
-          <button onClick={onOpenPatchNotes} className="text-xs text-red hover:underline cursor-pointer shrink-0">
+          <button onClick={onOpenPatchNotes} className="shrink-0 rounded-md border border-line/65 bg-panel2/60 px-2.5 py-1 text-[11px] font-bold text-dim transition hover:border-hex/45 hover:text-cream cursor-pointer">
             {t('dash.versionChanges.full')}
           </button>
         }
@@ -1165,8 +2144,8 @@ function RecentMatches({
   return (
     <section className={CARD + ' p-4'}>
       <PanelHead title={t('dash.recentMatches.title', '近期对局')} />
-      {!matches && <div className="text-xs text-dim py-2">{t('dash.emptyNeedElectron')}</div>}
-      {matches && matches.length === 0 && <div className="text-xs text-dim py-2">{t('dash.recentMatches.empty')}</div>}
+      {!matches && <EmptyState compact title={t('dash.emptyNeedElectron')} description={t('dash.recentMatches.empty')} />}
+      {matches && matches.length === 0 && <EmptyState compact title={t('dash.recentMatches.empty')} />}
       <div className="flex flex-col gap-2">
         {(matches ?? []).slice(0, 8).map((m) => {
           const c = champById.get(m.championId)
@@ -1202,9 +2181,9 @@ function Achievements({ achievements }: { achievements: Achievement[] | null }) 
   return (
     <section className={CARD + ' p-4'}>
       <PanelHead title={t('dash.achievements.title', '新解锁')} />
-      {!achievements && <div className="text-xs text-dim py-2">{t('dash.emptyNeedElectron')}</div>}
+      {!achievements && <EmptyState compact title={t('dash.emptyNeedElectron')} />}
       {achievements && achievements.length === 0 && (
-        <div className="text-xs text-dim py-2">{t('dash.achievements.empty')}</div>
+        <EmptyState compact title={t('dash.achievements.empty')} />
       )}
       <div className="flex flex-col gap-2.5">
         {(achievements ?? []).map((a, index) => (
@@ -1217,7 +2196,7 @@ function Achievements({ achievements }: { achievements: Achievement[] | null }) 
               <div className="text-sm font-bold text-[#f6e9cb]">{a.name}</div>
               <div className="text-[11px] text-dim mt-0.5 leading-snug">{a.desc}</div>
             </div>
-            <button className="px-3 py-1.5 bg-gold text-[#2b1e07] rounded-lg font-bold text-xs cursor-pointer hover:bg-[#dec07a] transition">
+            <button className="rounded-md border border-line/65 bg-panel2/70 px-3 py-1.5 text-xs font-bold text-dim transition hover:border-hex/45 hover:text-cream cursor-pointer">
               {t('dash.achievements.share')}
             </button>
           </div>
@@ -1274,6 +2253,67 @@ type PickerEntry = {
   name: string
   desc: string
   iconLocal: string
+  search?: string
+  tags?: string[]
+  meta?: string
+  priceTotal?: number
+}
+
+type SearchableChampion = Champion & { searchExtra?: string }
+
+function normalizedSearchText(...parts: Array<string | number | null | undefined>): string {
+  return parts.filter((part) => part != null && String(part).trim().length > 0).join(' ').toLocaleLowerCase()
+}
+
+function cleanGameText(value?: string): string {
+  if (!value) return ''
+  return value
+    .replace(/\[br\/?\]/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?[^>]+>/g, '')
+    .replace(/\[\/?[a-zA-Z]+(?::[^\]]+)?\]/g, '')
+    .replace(/\{\{[^}]+\}\}/g, '')
+    .replace(/%i:[A-Za-z0-9_]+%/g, '')
+    .replace(/@[A-Za-z0-9_.:+*%/-]+@/g, '')
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0 && !/@f\d+@/.test(line))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([,.，。；;:%）)\]])/g, '$1')
+    .replace(/([（([])\s+/g, '$1')
+    .replace(/。\./g, '。')
+    .replace(/\.\./g, '.')
+    .trim()
+}
+
+function augmentDisplayText(augment: Augment): string {
+  return cleanGameText(augment.desc) || cleanGameText(augment.tooltip)
+}
+
+type PickerFilter = {
+  key: string
+  label: string
+  match: (entry: PickerEntry) => boolean
+}
+
+const ITEM_FILTERS: PickerFilter[] = [
+  { key: 'all', label: '全部', match: () => true },
+  { key: 'ap', label: 'AP', match: (entry) => entry.tags?.some((tag) => ['SpellDamage', 'MagicPenetration', 'Mana', 'ManaRegen'].includes(tag)) ?? false },
+  { key: 'ad', label: 'AD', match: (entry) => entry.tags?.some((tag) => ['Damage', 'AttackSpeed', 'CriticalStrike', 'ArmorPenetration', 'LifeSteal'].includes(tag)) ?? false },
+  { key: 'tank', label: '坦克', match: (entry) => entry.tags?.some((tag) => ['Health', 'Armor', 'SpellBlock', 'HealthRegen'].includes(tag)) ?? false },
+  { key: 'support', label: '辅助', match: (entry) => entry.tags?.some((tag) => ['ManaRegen', 'HealAndShieldPower'].includes(tag)) ?? false },
+  { key: 'boots', label: '鞋子', match: (entry) => entry.tags?.includes('Boots') ?? false },
+]
+
+function isFinalRouteItem(item: Item): boolean {
+  const tags = item.categories ?? []
+  if (tags.some((tag) => ['Consumable', 'Trinket'].includes(tag))) return false
+  if (!isSelectableRouteItem(item)) return false
+  if (tags.includes('Boots')) return item.priceTotal >= 900
+  if ((item.to?.length ?? 0) > 0) return false
+  if (tags.includes('Lane') || tags.includes('Jungle')) return false
+  return item.priceTotal >= 1600
 }
 
 function AssetPicker({
@@ -1283,6 +2323,8 @@ function AssetPicker({
   selectedIds,
   max,
   allowDuplicates = false,
+  filters,
+  variant = 'sequence',
   onChange,
 }: {
   label: string
@@ -1291,68 +2333,133 @@ function AssetPicker({
   selectedIds: number[]
   max: number
   allowDuplicates?: boolean
+  filters?: PickerFilter[]
+  variant?: 'sequence' | 'pool'
   onChange: (ids: number[]) => void
 }) {
   const [query, setQuery] = useState('')
+  const [activeFilter, setActiveFilter] = useState(filters?.[0]?.key ?? 'all')
+  const [resultsDismissed, setResultsDismissed] = useState(false)
+  const [dragIndex, setDragIndex] = useState<number | null>(null)
+  const [dropIndex, setDropIndex] = useState<number | null>(null)
   const byId = useMemo(() => new Map(entries.map((entry) => [entry.id, entry])), [entries])
-  const selected = selectedIds.flatMap((id, index) => {
-    const entry = byId.get(id)
-    return entry ? [{ entry, index }] : []
-  })
+  const selected = useMemo(
+    () =>
+      selectedIds.flatMap((id, index) => {
+        const entry = byId.get(id)
+        return entry ? [{ entry, index }] : []
+      }),
+    [byId, selectedIds],
+  )
   const normalized = query.trim().toLocaleLowerCase()
-  const results = normalized
-    ? entries
-        .filter((entry) => entry.name.toLocaleLowerCase().includes(normalized))
-        .filter((entry) => allowDuplicates || !selectedIds.includes(entry.id))
-        .slice(0, 24)
-    : []
+  const selectedSet = useMemo(() => new Set(selectedIds), [selectedIds])
+  const filter = filters?.find((entry) => entry.key === activeFilter) ?? filters?.[0]
+  const results = useMemo(
+    () =>
+      entries
+        .filter((entry) => (filter ? filter.match(entry) : true))
+        .filter((entry) => {
+          if (!normalized) return true
+          return normalizedSearchText(entry.name, entry.search, entry.desc).includes(normalized)
+        })
+        .filter((entry) => allowDuplicates || !selectedSet.has(entry.id))
+        .slice(0, 72),
+    [allowDuplicates, entries, filter, normalized, selectedSet],
+  )
   const full = selectedIds.length >= max
+  const showResults = !resultsDismissed && !full && (normalized.length > 0 || (!!filters?.length && activeFilter !== (filters[0]?.key ?? 'all')))
+  const isPool = variant === 'pool'
+  const actionLabel = isPool ? '添加海克斯' : '添加装备'
+  const removeAt = (index: number) => onChange(selectedIds.filter((_, itemIndex) => itemIndex !== index))
+  const clearDragState = () => {
+    setDragIndex(null)
+    setDropIndex(null)
+  }
+  const updateDropIndex = (index: number, event: DragEvent<HTMLElement>) => {
+    if (dragIndex == null) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    const next = event.clientX < rect.left + rect.width / 2 ? index : index + 1
+    setDropIndex(next)
+  }
+  const reorderByDrop = () => {
+    if (dragIndex == null || dropIndex == null) {
+      clearDragState()
+      return
+    }
+    const next = [...selectedIds]
+    const [moved] = next.splice(dragIndex, 1)
+    let target = dropIndex
+    if (target > dragIndex) target -= 1
+    target = Math.max(0, Math.min(next.length, target))
+    if (target === dragIndex) {
+      clearDragState()
+      return
+    }
+    next.splice(target, 0, moved)
+    onChange(next)
+    clearDragState()
+  }
 
   return (
-    <div>
-      <div className="mb-2 flex items-end justify-between gap-3">
+    <div className="asset-picker flex min-w-0 flex-col">
+      <div className="order-1 mb-1 flex items-start justify-between gap-2">
         <div>
-          <div className="text-sm font-extrabold text-cream">{label}</div>
-          <div className="mt-0.5 text-[11px] text-dim">{hint}</div>
+          <div className="text-[11px] font-extrabold text-cream">{label}</div>
+          {hint && <div className="mt-0.5 max-w-[560px] text-[9px] leading-3 text-dim/75">{hint}</div>}
         </div>
-        <span className={'text-xs font-extrabold ' + (full ? 'text-gold' : 'text-dim')}>
+        <span className={'shrink-0 rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold ' + (full ? 'border-hex/45 bg-hex/10 text-hex' : 'border-line/60 bg-[#07101b]/55 text-dim')}>
           {selectedIds.length}/{max}
         </span>
       </div>
-      <div className="min-h-[72px] rounded-[8px] border border-line/70 bg-[#09121f]/65 p-2.5">
-        {selected.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {selected.map(({ entry, index }) => (
+      <div className="relative order-2 mb-2 rounded-[6px] border border-line/55 bg-[#08131f] p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_8px_20px_rgba(0,0,0,0.14)]">
+        <div className="mb-1.5 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.14em] text-hex">
+            <span className="grid h-4 w-4 place-items-center rounded border border-hex/45 bg-hex/10">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <path d="M6 2v8" />
+                <path d="M2 6h8" />
+              </svg>
+            </span>
+            {actionLabel}
+          </div>
+          <div className="text-[9px] font-bold text-dim">{full ? '已满' : '搜索后点击结果加入'}</div>
+        </div>
+        <input
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value)
+            setResultsDismissed(false)
+          }}
+          disabled={full}
+          placeholder={full ? '已达到数量上限' : `搜索${label}名称，然后点击添加`}
+          className={SEARCH_INLINE + ' border-line/65 bg-[#050a11]/72 py-2 text-[12px] placeholder:text-dim/45 disabled:cursor-not-allowed disabled:opacity-50'}
+        />
+        {filters && filters.length > 0 && (
+          <div className="mt-1.5 flex flex-wrap gap-1">
+            {filters.map((entry) => (
               <button
-                key={`${entry.id}-${index}`}
+                key={entry.key}
                 type="button"
-                title={`移除 ${entry.name}`}
-                onClick={() => onChange(selectedIds.filter((_, itemIndex) => itemIndex !== index))}
-                className="group flex w-[92px] flex-col items-center gap-1.5 rounded-lg border border-line/70 bg-panel/75 p-2 text-center transition hover:border-red/60 hover:bg-red/8"
+                onClick={() => {
+                  setActiveFilter(entry.key)
+                  setResultsDismissed(false)
+                }}
+                className={
+                  'rounded-md border px-2 py-1 text-[10px] font-extrabold transition ' +
+                  (activeFilter === entry.key
+                    ? 'border-hex/55 bg-hex text-[#041017]'
+                    : 'border-line/70 bg-panel/55 text-dim hover:border-hex/35 hover:text-cream')
+                }
               >
-                <img src={icon(entry.iconLocal)} alt="" className="h-9 w-9 rounded-lg border border-line object-cover" />
-                <span className="line-clamp-2 min-h-[28px] text-[11px] font-bold leading-[14px] text-cream group-hover:text-red">
-                  {entry.name}
-                </span>
+                {entry.label}
               </button>
             ))}
           </div>
-        ) : (
-          <div className="grid min-h-[50px] place-items-center text-xs text-dim">搜索并添加内容</div>
         )}
-      </div>
-      <div className="relative mt-2">
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          disabled={full}
-          placeholder={full ? '已达到数量上限' : `搜索${label}`}
-          className={SEARCH_INLINE + ' py-2.5 disabled:cursor-not-allowed disabled:opacity-50'}
-        />
-        {query && !full && (
-          <div className="absolute inset-x-0 top-[calc(100%+6px)] z-30 max-h-56 overflow-y-auto rounded-[8px] border border-gold/30 bg-[#0b1421]/98 p-2 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+        {showResults && (
+          <div className="mt-1.5 max-h-[156px] overflow-y-auto rounded-[6px] border border-line/70 bg-[#07101b]/72 p-1.5">
             {results.length > 0 ? (
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(62px,1fr))] gap-1">
                 {results.map((entry) => (
                   <button
                     key={entry.id}
@@ -1360,11 +2467,13 @@ function AssetPicker({
                     onClick={() => {
                       onChange([...selectedIds, entry.id])
                       setQuery('')
+                      setResultsDismissed(true)
                     }}
-                    className="flex min-w-0 items-center gap-2 rounded-lg border border-transparent p-2 text-left transition hover:border-gold/35 hover:bg-white/5"
+                    className="group flex min-w-0 flex-col items-center rounded-md border border-line/60 bg-panel/58 p-1 text-center transition hover:-translate-y-0.5 hover:border-hex/45 hover:bg-hex/8 active:translate-y-px"
                   >
-                    <img src={icon(entry.iconLocal)} alt="" className="h-8 w-8 shrink-0 rounded-lg object-cover" />
-                    <span className="truncate text-xs font-bold text-cream">{entry.name}</span>
+                    <img src={icon(entry.iconLocal)} alt={entry.name} className="h-7 w-7 shrink-0 rounded border border-line object-cover group-hover:border-hex/40" />
+                    <span className="mt-0.5 line-clamp-2 min-h-[22px] text-[9px] font-extrabold leading-[11px] text-cream">{entry.name}</span>
+                    {entry.meta && <span className="mt-1 text-[10px] font-bold text-dim">{entry.meta}</span>}
                   </button>
                 ))}
               </div>
@@ -1374,6 +2483,392 @@ function AssetPicker({
           </div>
         )}
       </div>
+      <div className="order-3 min-h-[50px] rounded-[5px] border border-line/55 bg-[#08111d]/42 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.026)]">
+        <div className="mb-1.5 flex items-center justify-between gap-2 px-0.5">
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">已选顺序</div>
+          <div className="text-[9px] text-dim/70">可拖拽调整</div>
+        </div>
+        {selected.length > 0 ? (
+          <div
+              className={isPool ? 'grid grid-cols-[repeat(auto-fill,minmax(138px,1fr))] gap-1.5' : 'grid grid-cols-6 gap-1.5'}
+            onDragOver={(event) => {
+              if (dragIndex == null) return
+              event.preventDefault()
+            }}
+            onDrop={(event) => {
+              event.preventDefault()
+              reorderByDrop()
+            }}
+            onDragLeave={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropIndex(null)
+            }}
+          >
+            {selected.map(({ entry, index }) => (
+              <div
+                key={`${entry.id}-${index}`}
+                draggable
+                onDragStart={(event) => {
+                  setDragIndex(index)
+                  setDropIndex(index)
+                  event.dataTransfer.effectAllowed = 'move'
+                  event.dataTransfer.setData('text/plain', `${index}`)
+                }}
+                onDragOver={(event) => {
+                  event.preventDefault()
+                  updateDropIndex(index, event)
+                }}
+                onDrop={(event) => {
+                  event.preventDefault()
+                  reorderByDrop()
+                }}
+                onDragEnd={clearDragState}
+                className={
+                  'group relative flex min-w-0 cursor-grab items-center gap-1.5 overflow-hidden rounded-[5px] border bg-[#0b1624]/78 px-1.5 py-1 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition active:cursor-grabbing ' +
+                  (isPool ? 'h-[50px] ' : 'h-[64px] ') +
+                  (dragIndex === index
+                    ? 'scale-[0.98] border-hex/70 opacity-45'
+                    : dropIndex === index || dropIndex === index + 1
+                      ? 'border-hex/65 shadow-[inset_3px_0_0_rgba(34,211,238,0.55)]'
+                      : 'border-line/62 hover:-translate-y-0.5 hover:border-hex/42 hover:bg-[#101d2e]/86')
+                }
+              >
+                {!isPool && (
+                  <span className="absolute left-1 top-1 grid h-3.5 min-w-3.5 place-items-center rounded border border-line/60 bg-[#050a11]/70 px-0.5 text-[8px] font-extrabold text-dim">
+                    {index + 1}
+                  </span>
+                )}
+                <span className="absolute right-1 top-1 text-[9px] font-extrabold leading-none text-dim/70 opacity-35 transition group-hover:opacity-100">
+                  ⋮⋮
+                </span>
+                <button
+                  type="button"
+                  draggable={false}
+                  title={`移除 ${entry.name}`}
+                  onMouseDown={(event) => event.stopPropagation()}
+                  onClick={() => removeAt(index)}
+                  className="absolute right-1 bottom-1 translate-y-1 rounded border border-line/70 bg-[#050a11]/94 px-1 py-0.5 text-[7px] font-extrabold text-dim opacity-0 shadow-[0_10px_22px_rgba(0,0,0,0.28)] transition group-hover:translate-y-0 group-hover:opacity-100 hover:border-red/42 hover:text-red"
+                >
+                  移除
+                </button>
+                <img draggable={false} src={icon(entry.iconLocal)} alt={entry.name} className={(isPool ? 'h-9 w-9' : 'h-11 w-11') + ' shrink-0 rounded border border-line object-cover shadow-[0_8px_18px_rgba(0,0,0,0.24)] group-hover:border-hex/40'} />
+                <span className={(isPool ? 'text-[9px] leading-[11px]' : 'text-[10px] leading-[12px]') + ' line-clamp-2 pr-1 font-extrabold text-cream'}>
+                  {entry.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid min-h-[56px] place-items-center rounded-[6px] border border-dashed border-line/35 bg-transparent px-3 text-center text-[10px] leading-4 text-dim">先搜索添加内容。更推荐从对局记录采集一名玩家路线，再回来微调。</div>
+        )}
+      </div>
+      <div className="relative order-4 hidden">
+        <input
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value)
+            setResultsDismissed(false)
+          }}
+          disabled={full}
+          placeholder={full ? '已达到数量上限' : `搜索${label}`}
+          className={SEARCH_INLINE + ' py-1.5 text-[12px] disabled:cursor-not-allowed disabled:opacity-50'}
+        />
+        {filters && filters.length > 0 && (
+          <div className="mt-1.5 flex flex-wrap gap-1">
+            {filters.map((entry) => (
+              <button
+                key={entry.key}
+                type="button"
+                onClick={() => {
+                  setActiveFilter(entry.key)
+                  setResultsDismissed(false)
+                }}
+                className={
+                  'rounded-md border px-2 py-1 text-[10px] font-extrabold transition ' +
+                  (activeFilter === entry.key
+                    ? 'border-hex/55 bg-hex text-[#041017]'
+                    : 'border-line/70 bg-panel/55 text-dim hover:border-hex/35 hover:text-cream')
+                }
+              >
+                {entry.label}
+              </button>
+            ))}
+          </div>
+        )}
+        {showResults && (
+          <div className="mt-1.5 max-h-[156px] overflow-y-auto rounded-[6px] border border-line/70 bg-[#07101b]/72 p-1.5">
+            {results.length > 0 ? (
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(62px,1fr))] gap-1">
+                {results.map((entry) => (
+                  <button
+                    key={entry.id}
+                    type="button"
+                    onClick={() => {
+                      onChange([...selectedIds, entry.id])
+                      setQuery('')
+                      setResultsDismissed(true)
+                    }}
+                    className="group flex min-w-0 flex-col items-center rounded-md border border-line/60 bg-panel/58 p-1 text-center transition hover:-translate-y-0.5 hover:border-hex/45 hover:bg-hex/8 active:translate-y-px"
+                  >
+                    <img src={icon(entry.iconLocal)} alt={entry.name} className="h-7 w-7 shrink-0 rounded border border-line object-cover group-hover:border-hex/40" />
+                    <span className="mt-0.5 line-clamp-2 min-h-[22px] text-[9px] font-extrabold leading-[11px] text-cream">{entry.name}</span>
+                    {entry.meta && <span className="mt-1 text-[10px] font-bold text-dim">{entry.meta}</span>}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="p-3 text-center text-xs text-dim">没有找到匹配内容</div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ChampionInlinePicker({
+  champions,
+  selectedId,
+  onChange,
+}: {
+  champions: SearchableChampion[]
+  selectedId: number
+  onChange: (id: number) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [open, setOpen] = useState(false)
+  const selected = champions.find((entry) => entry.id === selectedId) ?? champions[0]
+  const normalized = query.trim().toLocaleLowerCase()
+  const results = useMemo(
+    () =>
+      champions
+        .filter((entry) => {
+          if (!normalized) return true
+          return normalizedSearchText(entry.name, entry.title, entry.alias, entry.pinyin, entry.initials, entry.searchExtra).includes(normalized)
+        })
+        .slice(0, 48),
+    [champions, normalized],
+  )
+
+  return (
+    <div
+      className="relative"
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') setOpen(false)
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className="flex h-[58px] w-full min-w-0 items-center gap-2 rounded-[6px] border border-line/65 bg-[#050a11]/45 px-2 text-left transition hover:border-hex/42 hover:bg-[#0b1624]/68 active:translate-y-px"
+      >
+        {selected && <img src={icon(selected.iconLocal)} alt={selected.name} className={ICON_ASSET + ' h-10 w-10'} />}
+        <span className="min-w-0 flex-1">
+          <span className="block text-[9px] font-black uppercase tracking-[0.14em] text-hex">Champion</span>
+          <span className="mt-0.5 block truncate text-[15px] font-black text-cream">{selected?.name ?? '选择英雄'}</span>
+          <span className="block truncate text-[10px] font-bold text-dim">{selected?.title ?? '搜索英雄并选择'}</span>
+        </span>
+      </button>
+      {open && (
+        <div className="absolute left-0 top-[calc(100%+6px)] z-50 w-[330px] max-w-[calc(100vw-40px)] rounded-[6px] border border-line/70 bg-[#07101b]/98 p-1.5 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+          <input
+            value={query}
+            autoFocus
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="搜索英雄：中文 / English / 拼音"
+            className={SEARCH_INLINE + ' mb-1.5'}
+          />
+          <div className="max-h-[238px] overflow-y-auto pr-0.5">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-1.5">
+              {results.map((entry) => (
+                <button
+                  key={entry.id}
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    onChange(entry.id)
+                    setQuery('')
+                    setOpen(false)
+                  }}
+                  className={
+                    'group flex min-w-0 flex-col items-center rounded-md border p-1.5 text-center transition hover:-translate-y-0.5 active:translate-y-px ' +
+                    (entry.id === selectedId
+                      ? 'border-hex/70 bg-hex/10'
+                      : 'border-line/55 bg-[#08111d]/70 hover:border-hex/40 hover:bg-hex/8')
+                  }
+                >
+                  <img src={icon(entry.iconLocal)} alt={entry.name} className="h-8 w-8 rounded-md border border-line object-cover group-hover:border-hex/40" />
+                  <span className="mt-1 w-full truncate text-[10px] font-extrabold text-cream">{entry.name}</span>
+                  <span className="mt-0.5 w-full truncate text-[9px] text-dim">{entry.alias}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function DamageTypeDropdown({
+  value,
+  onChange,
+}: {
+  value: string
+  onChange: (value: string) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const options = ['AP', 'AD', 'Tank', 'Support', 'Hybrid']
+  const toneByType: Record<string, string> = {
+    AP: 'bg-[#9664dc]',
+    AD: 'bg-[#dc8246]',
+    Tank: 'bg-[#63c07a]',
+    Support: 'bg-hex',
+    Hybrid: 'bg-gold',
+  }
+
+  return (
+    <div
+      className="relative min-w-0"
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') setOpen(false)
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className={
+          'flex h-[58px] w-full min-w-0 flex-col justify-between rounded-[6px] border px-2 py-1.5 text-left transition active:translate-y-px ' +
+          (open
+            ? 'border-hex/55 bg-[#0b1624]/82'
+            : 'border-line/55 bg-[#050a11]/38 hover:border-hex/38 hover:bg-[#0b1624]/64')
+        }
+      >
+        <span className="flex items-center justify-between gap-1">
+          <span className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">Type</span>
+          <span className={'h-1.5 w-1.5 rounded-full ' + (toneByType[value] ?? 'bg-dim')} />
+        </span>
+        <span className="flex items-end justify-between gap-1">
+          <span className="truncate text-[13px] font-black text-cream">{value}</span>
+          <span className={'mb-0.5 text-[10px] font-black text-dim transition-transform ' + (open ? 'rotate-180' : '')}>⌄</span>
+        </span>
+      </button>
+      {open && (
+        <div className="absolute right-0 top-[calc(100%+6px)] z-50 w-[154px] rounded-[6px] border border-line/70 bg-[#07101b]/98 p-1.5 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+          <div className="grid gap-1">
+            {options.map((type) => (
+              <button
+                key={type}
+                type="button"
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => {
+                  onChange(type)
+                  setOpen(false)
+                }}
+                className={
+                  'flex items-center justify-between gap-2 rounded-md border px-2 py-1.5 text-left text-[11px] font-black transition active:translate-y-px ' +
+                  (type === value
+                    ? 'border-hex/62 bg-hex/10 text-cream'
+                    : 'border-line/55 bg-[#08111d]/70 text-dim hover:border-hex/40 hover:bg-hex/8 hover:text-cream')
+                }
+              >
+                <span className="flex items-center gap-2">
+                  <span className={'h-1.5 w-1.5 rounded-full ' + (toneByType[type] ?? 'bg-dim')} />
+                  {type}
+                </span>
+                {type === value && <span className="text-[10px] text-hex">✓</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ChampionImagePicker({
+  champions,
+  selectedId,
+  onChange,
+}: {
+  champions: SearchableChampion[]
+  selectedId: number
+  onChange: (id: number) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [open, setOpen] = useState(false)
+  const selected = champions.find((entry) => entry.id === selectedId) ?? champions[0]
+  const normalized = query.trim().toLocaleLowerCase()
+  const results = useMemo(
+    () =>
+      champions
+        .filter((entry) => {
+          if (!normalized) return true
+          return normalizedSearchText(entry.name, entry.title, entry.alias, entry.pinyin, entry.initials, entry.searchExtra).includes(normalized)
+        })
+        .slice(0, 48),
+    [champions, normalized],
+  )
+
+  return (
+    <div
+      className="relative rounded-[6px] border border-line/75 bg-[#07101b]/72 p-2"
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') setOpen(false)
+      }}
+    >
+      <div className="flex items-center gap-2 max-[900px]:flex-wrap">
+        {selected && <img src={icon(selected.iconLocal)} alt={selected.name} className={ICON_ASSET + ' h-10 w-10'} />}
+        <div className="min-w-0 flex-1">
+          <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">英雄</div>
+          <div className="mt-0.5 truncate text-[14px] font-extrabold text-cream">{selected?.name ?? '选择英雄'}</div>
+          <div className="truncate text-[10px] text-dim">{selected?.title ?? '搜索英雄并点头像选择'}</div>
+        </div>
+      </div>
+      <input
+        value={query}
+        onFocus={() => setOpen(true)}
+        onChange={(event) => {
+          setQuery(event.target.value)
+          setOpen(true)
+        }}
+        placeholder="搜索英雄：中文 / English / 拼音 / 首字母"
+        className={SEARCH_INLINE + ' mt-2'}
+      />
+      {open && <div className="absolute inset-x-2 top-[calc(100%+6px)] z-50 max-h-[250px] overflow-y-auto rounded-[6px] border border-line/70 bg-[#07101b]/98 p-1.5 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-1.5">
+          {results.map((entry) => (
+            <button
+              key={entry.id}
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => {
+                onChange(entry.id)
+                setQuery('')
+                setOpen(false)
+              }}
+              className={
+                'group flex min-w-0 flex-col items-center rounded-md border p-1.5 text-center transition hover:-translate-y-0.5 active:translate-y-px ' +
+                (entry.id === selectedId
+                  ? 'border-hex/70 bg-hex/10'
+                  : 'border-line/55 bg-[#08111d]/70 hover:border-hex/40 hover:bg-hex/8')
+              }
+            >
+              <img src={icon(entry.iconLocal)} alt={entry.name} className="h-8 w-8 rounded-md border border-line object-cover group-hover:border-hex/40" />
+              <span className="mt-1 w-full truncate text-[10px] font-extrabold text-cream">{entry.name}</span>
+              <span className="mt-0.5 w-full truncate text-[9px] text-dim">{entry.alias}</span>
+            </button>
+          ))}
+        </div>
+      </div>}
     </div>
   )
 }
@@ -1394,309 +2889,786 @@ function createEmptyCustomRoute(championId: number): CustomRoute {
   }
 }
 
+function readCustomRouteDraft(fallbackChampionId: number): CustomRoute | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = window.localStorage.getItem(CUSTOM_ROUTE_DRAFT_STORAGE_KEY)
+    if (!raw) return null
+    const draft = JSON.parse(raw) as CustomRoute
+    return { ...createEmptyCustomRoute(fallbackChampionId), ...draft, championId: draft.championId || fallbackChampionId }
+  } catch {
+    return null
+  }
+}
+
+function RouteRailStep({
+  index,
+  title,
+  done,
+  active = false,
+}: {
+  index: number
+  title: string
+  done: boolean
+  active?: boolean
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className={
+          'grid h-5 w-5 shrink-0 place-items-center rounded-[4px] border text-[9px] font-black transition ' +
+          (done
+            ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8bd99e]'
+            : active
+              ? 'border-hex/45 bg-hex/10 text-hex'
+              : 'border-line/50 bg-[#050a11]/32 text-dim')
+        }
+      >
+        {done ? '✓' : index}
+      </span>
+      <span className={'whitespace-nowrap text-[11px] font-extrabold transition ' + (active ? 'text-cream' : done ? 'text-[#cfd8ce]' : 'text-dim')}>
+        {title}
+      </span>
+    </div>
+  )
+}
+
+function RouteQualityRow({ label, detail, done }: { label: string; detail: string; done: boolean }) {
+  return (
+    <div className="flex items-start gap-2 border-b border-line/35 py-1.5 last:border-b-0">
+      <span
+        className={
+          'mt-1 h-1.5 w-1.5 shrink-0 rounded-full ' +
+          (done ? 'bg-[#8bd99e]' : 'bg-line')
+        }
+      />
+      <span className="min-w-0">
+        <span className={'block text-[11px] font-black ' + (done ? 'text-cream' : 'text-dim')}>{label}</span>
+        <span className="mt-0.5 block text-[9px] font-bold leading-3 text-dim">{detail}</span>
+      </span>
+    </div>
+  )
+}
+
+function RouteCompletionMeter({ value }: { value: number }) {
+  return (
+    <div>
+      <div className="mb-1 flex items-center justify-between text-[10px] font-black text-dim">
+        <span>完成度</span>
+        <span className="tabular-nums text-cream">{value}%</span>
+      </div>
+      <div className="h-1.5 overflow-hidden rounded-full bg-[#050a11]">
+        <div
+          className={'h-full rounded-full ' + (value >= 100 ? 'bg-[#63c07a]' : value >= 60 ? 'bg-hex' : value > 0 ? 'bg-gold/80' : 'bg-line')}
+          style={{ width: `${Math.max(6, Math.min(100, value))}%` }}
+        />
+      </div>
+    </div>
+  )
+}
+
 function CustomRouteBuilder({
   core,
   routes,
   onChange,
   onActivate,
+  onOpenHistory,
   onOpenChampion,
 }: {
   core: Core
   routes: CustomRoute[]
   onChange: (routes: CustomRoute[]) => void | Promise<void>
   onActivate: (championId: number, archetypeKey: string) => void | Promise<void>
+  onOpenHistory: () => void
   onOpenChampion: (championId: number) => void
 }) {
+  const lang = useLang()
   const firstChampionId = core.champions[0]?.id ?? 0
-  const [editingId, setEditingId] = useState<string | null>(routes[0]?.id ?? null)
-  const [draft, setDraft] = useState<CustomRoute>(() => routes[0] ?? createEmptyCustomRoute(firstChampionId))
+  const [subpage, setSubpage] = useState<'editor' | 'library'>(() =>
+    window.localStorage.getItem(CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY) === 'library' ? 'library' : 'editor',
+  )
+  const [draft, setDraft] = useState<CustomRoute>(() => readCustomRouteDraft(firstChampionId) ?? createEmptyCustomRoute(firstChampionId))
+  const [editingId, setEditingId] = useState<string | null>(() => {
+    const savedDraft = readCustomRouteDraft(firstChampionId)
+    return savedDraft?.id || null
+  })
+  const [libraryRouteId, setLibraryRouteId] = useState<string | null>(
+    () => window.localStorage.getItem(CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY) ?? routes[0]?.id ?? null,
+  )
   const [message, setMessage] = useState('')
-  const champions = useMemo(() => [...core.champions].sort((a, b) => a.name.localeCompare(b.name)), [core.champions])
-  const items: PickerEntry[] = useMemo(
+  const champions = useMemo<SearchableChampion[]>(
     () =>
-      [...core.itemById.values()]
-        .filter((item) => item.priceTotal > 0)
+      [...core.champions]
+        .map((champion) => {
+          const alt = core.altChampionById.get(champion.id)
+          return {
+            ...champion,
+            searchExtra: normalizedSearchText(alt?.name, alt?.title, alt?.alias, alt?.pinyin, alt?.initials),
+          }
+        })
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    [core.altChampionById, core.champions],
+  )
+  const items: PickerEntry[] = useMemo(
+    () => {
+      const uniqueByName = new Map<string, Item>()
+      for (const item of core.itemById.values()) {
+        if (!isFinalRouteItem(item)) continue
+        if (!uniqueByName.has(item.name)) uniqueByName.set(item.name, item)
+      }
+      return [...uniqueByName.values()]
         .sort((a, b) => a.name.localeCompare(b.name))
-        .map((item) => ({ id: item.id, name: item.name, desc: item.desc, iconLocal: item.iconLocal })),
-    [core.itemById],
+        .map((item) => ({
+          id: item.id,
+          name: item.name,
+          desc: item.desc,
+          iconLocal: item.iconLocal,
+          search: normalizedSearchText(
+            item.name,
+            item.desc,
+            item.categories?.join(' '),
+            core.altItemById.get(item.id)?.name,
+            core.altItemById.get(item.id)?.desc,
+            core.altItemById.get(item.id)?.categories?.join(' '),
+          ),
+          tags: item.categories ?? [],
+          priceTotal: item.priceTotal,
+        }))
+    },
+    [core.altItemById, core.itemById],
   )
   const augments: PickerEntry[] = useMemo(
     () =>
       [...core.augments]
         .sort((a, b) => a.name.localeCompare(b.name))
-        .map((augment) => ({
-          id: augment.id,
-          name: augment.name,
-          desc: augment.desc,
-          iconLocal: augment.iconLargeLocal,
-        })),
-    [core.augments],
+        .map((augment) => {
+          const alt = core.altAugById.get(augment.id)
+          return {
+            id: augment.id,
+            name: augment.name,
+            desc: augment.desc,
+            iconLocal: augment.iconLargeLocal,
+            search: normalizedSearchText(augment.name, augment.desc, augment.tooltip, alt?.name, alt?.desc, alt?.tooltip),
+          }
+        }),
+    [core.altAugById, core.augments],
   )
-  const champion = core.champions.find((entry) => entry.id === draft.championId)
-  const starterItems = draft.starterItemIds.flatMap((id) => {
-    const item = core.itemById.get(id)
-    return item ? [item] : []
-  })
-  const finalItems = draft.itemIds.flatMap((id) => {
-    const item = core.itemById.get(id)
-    return item ? [item] : []
-  })
+  useEffect(() => {
+    window.localStorage.setItem(CUSTOM_ROUTE_DRAFT_STORAGE_KEY, JSON.stringify(draft))
+  }, [draft])
+  useEffect(() => {
+    window.localStorage.setItem(CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY, subpage)
+  }, [subpage])
+  useEffect(() => {
+    if (libraryRouteId) window.localStorage.setItem(CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY, libraryRouteId)
+  }, [libraryRouteId])
+  useEffect(() => {
+    if (routes.length === 0) {
+      setLibraryRouteId(null)
+      return
+    }
+    if (!libraryRouteId || !routes.some((route) => route.id === libraryRouteId)) {
+      setLibraryRouteId(routes[0].id)
+    }
+  }, [libraryRouteId, routes])
 
   const edit = (route: CustomRoute) => {
     setEditingId(route.id)
     setDraft({ ...route })
     setMessage('')
+    setSubpage('editor')
   }
   const startNew = () => {
     setEditingId(null)
     setDraft(createEmptyCustomRoute(firstChampionId))
     setMessage('')
+    setSubpage('editor')
   }
   const patch = <K extends keyof CustomRoute>(key: K, value: CustomRoute[K]) =>
     setDraft((current) => ({ ...current, [key]: value }))
 
+  const seedFromOfficialRoute = async () => {
+    const file = core.buildIndex[draft.championId]
+    if (!file) {
+      setMessage('当前英雄还没有内置路线，可以从对局记录采集或手动添加。')
+      return
+    }
+    try {
+      const build = await loadBuild(file, lang)
+      const route = build.archetypes[0]
+      if (!route) {
+        setMessage('没有找到可用的内置路线。')
+        return
+      }
+      setDraft((current) => ({
+        ...current,
+        title: current.title.trim() || route.name,
+        description: current.description.trim() || route.note || current.description,
+        damageType: route.damageType,
+        itemIds: route.items.map((ref) => ref.id).slice(0, 6),
+        coreAugmentIds: route.augments.core.map((ref) => ref.id).slice(0, 6),
+        goodAugmentIds: route.augments.good.map((ref) => ref.id).slice(0, 6),
+      }))
+      setMessage('已用内置路线填充草稿，可以继续微调。')
+    } catch {
+      setMessage('内置路线读取失败，可以从对局记录采集或手动添加。')
+    }
+  }
+
   const save = async () => {
-    if (!draft.championId || !draft.title.trim()) {
-      setMessage('请选择英雄并填写路线标题。')
+    if (!draft.championId) {
+      setMessage('请先选择英雄。')
       return
     }
-    if (draft.starterItemIds.length === 0 || draft.itemIds.length !== 6) {
-      setMessage('请至少添加一件出门装，并补齐六神装。')
-      return
-    }
-    if (draft.coreAugmentIds.length === 0) {
-      setMessage('请至少添加一个核心海克斯。')
-      return
-    }
+    const champion = core.champions.find((entry) => entry.id === draft.championId)
     const id = draft.id || (globalThis.crypto?.randomUUID?.() ?? `${Date.now()}`)
     const saved: CustomRoute = {
       ...draft,
       id,
-      title: draft.title.trim(),
+      title: draft.title.trim() || `${champion?.name ?? '未命名'} 草稿路线`,
       description: draft.description.trim(),
+      trapAugmentIds: [],
       updatedAt: new Date().toISOString(),
     }
-    const next = editingId ? routes.map((route) => (route.id === editingId ? saved : route)) : [...routes, saved]
+    const isExistingRoute = editingId && routes.some((route) => route.id === editingId)
+    const next = isExistingRoute ? routes.map((route) => (route.id === editingId ? saved : route)) : [...routes, saved]
     await onChange(next)
-    await onActivate(saved.championId, customRouteKey(saved.id))
+    if (readyToSave) await onActivate(saved.championId, customRouteKey(saved.id))
     setEditingId(saved.id)
     setDraft(saved)
-    setMessage('已保存，并设为该英雄当前路线。')
+    setMessage(readyToSave ? '已保存，并设为该英雄当前路线。' : '已保存为草稿。补齐六神装和增强后再启用。')
+  }
+
+  const removeRoute = async (route: CustomRoute) => {
+    if (!window.confirm(`删除「${route.title || '未命名路线'}」？此操作无法撤销。`)) return
+    const next = routes.filter((entry) => entry.id !== route.id)
+    await onChange(next)
+    if (libraryRouteId === route.id) {
+      setLibraryRouteId(next[0]?.id ?? null)
+    }
+    if (editingId === route.id) {
+      startNew()
+    }
+    setMessage('已删除路线。')
   }
 
   const remove = async () => {
-    if (!editingId || !window.confirm('删除这条自定义路线？此操作无法撤销。')) return
-    await onChange(routes.filter((route) => route.id !== editingId))
-    startNew()
+    const route = editingId ? routes.find((entry) => entry.id === editingId) : null
+    if (!route) return
+    await removeRoute(route)
   }
+
+  const identityDone = !!draft.championId && !!draft.title.trim()
+  const itemsDone = draft.itemIds.length === 6
+  const coreAugmentsDone = draft.coreAugmentIds.length > 0
+  const goodAugmentsDone = draft.goodAugmentIds.length > 0
+  const notesDone = draft.description.trim().length >= 18
+  const readyToSave = identityDone && itemsDone && coreAugmentsDone && goodAugmentsDone
+  const completionItems = [
+    { label: '路线身份', detail: identityDone ? '英雄和标题已完成' : '选择英雄，并给路线一个可识别标题', done: identityDone },
+    { label: '核心出装', detail: itemsDone ? '6 件装备已排好顺序' : `还需要 ${Math.max(0, 6 - draft.itemIds.length)} 件装备`, done: itemsDone },
+    { label: '核心海克斯', detail: coreAugmentsDone ? `${draft.coreAugmentIds.length} 个核心选择` : '至少添加 1 个最想拿的海克斯', done: coreAugmentsDone },
+    { label: '备选海克斯', detail: goodAugmentsDone ? `${draft.goodAugmentIds.length} 个备选选择` : '至少添加 1 个核心没来时的备选', done: goodAugmentsDone },
+    { label: '玩法说明', detail: notesDone ? '已有可读说明' : '写一句适用场景或关键玩法', done: notesDone },
+  ]
+  const requiredDoneCount = completionItems.filter((entry) => entry.done).length
+  const completionPct = Math.round((requiredDoneCount / completionItems.length) * 100)
+  const qualityLabel = readyToSave ? '可启用' : completionPct >= 60 ? '需要打磨' : '草稿'
+  const qualityTone = readyToSave ? 'text-[#8bd99e]' : completionPct >= 60 ? 'text-gold' : 'text-dim'
+  const missingHints = [
+    !identityDone ? '缺标题' : null,
+    !itemsDone ? `缺 ${Math.max(0, 6 - draft.itemIds.length)} 件装备` : null,
+    !coreAugmentsDone ? '缺核心海克斯' : null,
+    !goodAugmentsDone ? '缺备选海克斯' : null,
+  ].filter((entry): entry is string => !!entry)
+  const routeStatus = readyToSave ? 'Ready' : 'Draft'
+  const routeStatusDetail = readyToSave ? '完整，可启用' : missingHints.join(' · ')
+  const stepFrame = (_step: number, tone: 'side' | 'primary' | 'support' = 'support') => {
+    const base = 'relative overflow-visible rounded-[6px] border p-2.5 transition-colors '
+    if (tone === 'primary') return base + 'border-hex/32 bg-[#0b1624]/62'
+    return base + 'border-line/60 bg-[#07101b]/48'
+  }
+  const selectedLibraryRoute = routes.find((route) => route.id === libraryRouteId) ?? routes[0] ?? null
+  const selectedLibraryArchetype = selectedLibraryRoute ? customRouteToArchetype(selectedLibraryRoute, core) : null
+  const draftChampion = champions.find((entry) => entry.id === draft.championId)
 
   return (
     <>
-      <ViewHead title="自定义路线" meta={`${routes.length} 条本地路线`} />
-      <div className="grid grid-cols-[220px_minmax(0,1fr)] items-start gap-4 max-[900px]:grid-cols-1">
-        <aside className="glass-control sticky top-4 rounded-[8px] border border-line/75 p-3">
+      <section className={PAGE_HEADER}>
+        <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-3 max-[900px]:grid-cols-1">
+          <div className="min-w-0">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">Route workshop</div>
+            <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">自定义路线</h2>
+            <p className="mt-1 max-w-[760px] text-[11px] leading-4 text-dim">
+              把高表现对局里的玩家出装，整理成英雄选择时可直接启用的路线。优先从对局记录采集，再补充说明和备选海克斯。
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-1.5">
+            <DashboardMiniStat label="本地路线" value={routes.length} />
+            <DashboardMiniStat label="完成度" value={completionPct} suffix="%" />
+          </div>
+        </div>
+      </section>
+      <div className="glass-control mb-3 flex flex-wrap items-center justify-between gap-2 rounded-[6px] border border-line/75 p-2 shadow-[0_12px_34px_rgba(0,0,0,0.18)]">
+        <div className="inline-flex rounded-[6px] border border-line/70 bg-[#07101b]/58 p-0.5">
+          {[
+            ['editor', '自定义路线'],
+            ['library', '路线库'],
+          ].map(([key, label]) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setSubpage(key as 'editor' | 'library')}
+              className={
+                'rounded-md border px-3 py-1.5 text-[12px] font-extrabold transition ' +
+                (subpage === key
+                  ? 'border-hex/55 bg-hex text-[#041017]'
+                  : 'border-transparent bg-transparent text-dim hover:bg-white/5 hover:text-cream')
+              }
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={onOpenHistory}
+            className="rounded-md border border-hex/45 bg-hex/10 px-3 py-1.5 text-[12px] font-extrabold text-hex transition hover:bg-hex/15 active:translate-y-px"
+          >
+            从对局记录采集
+          </button>
           <button
             type="button"
             onClick={startNew}
-            className="w-full rounded-lg bg-gold px-3 py-2.5 text-sm font-extrabold text-[#171006] transition hover:bg-[#dec07a] active:translate-y-px"
+            className="rounded-md border border-line/70 bg-panel2/60 px-3 py-1.5 text-[12px] font-extrabold text-dim transition hover:border-hex/35 hover:bg-panel2 hover:text-cream active:translate-y-px"
           >
-            新建路线
+            新建空白路线
           </button>
-          <div className="mt-3 text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">我的路线</div>
-          <div className="mt-2 flex max-h-[520px] flex-col gap-1.5 overflow-y-auto">
-            {routes.length > 0 ? (
-              routes.map((route) => {
-                const routeChampion = core.champions.find((entry) => entry.id === route.championId)
-                return (
-                  <button
-                    type="button"
-                    key={route.id}
-                    onClick={() => edit(route)}
-                    className={
-                      'flex items-center gap-2 rounded-lg border p-2 text-left transition ' +
-                      (editingId === route.id
-                        ? 'border-gold/55 bg-gold/10'
-                        : 'border-transparent hover:border-line hover:bg-white/5')
-                    }
-                  >
-                    {routeChampion && (
-                      <img src={icon(routeChampion.iconLocal)} alt="" className="h-9 w-9 shrink-0 rounded-lg object-cover" />
-                    )}
-                    <span className="min-w-0">
-                      <span className="block truncate text-xs font-extrabold text-cream">{route.title}</span>
-                      <span className="mt-0.5 block truncate text-[11px] text-dim">{routeChampion?.name}</span>
-                    </span>
-                  </button>
-                )
-              })
-            ) : (
-              <div className="rounded-lg border border-dashed border-line p-4 text-center text-xs leading-5 text-dim">
-                还没有自定义路线
-              </div>
-            )}
+        </div>
+      </div>
+      {subpage === 'editor' && (
+        <section className="mb-2.5 flex flex-wrap items-center justify-between gap-2 border-y border-line/50 bg-[#07101b]/32 px-2.5 py-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <RouteRailStep index={1} title="路线身份" done={identityDone} active={!identityDone} />
+            <span className="h-px w-8 bg-line/45 max-[640px]:hidden" />
+            <RouteRailStep index={2} title="构建内容" done={itemsDone && coreAugmentsDone && goodAugmentsDone} active={identityDone && !(itemsDone && coreAugmentsDone && goodAugmentsDone)} />
+            <span className="h-px w-8 bg-line/45 max-[640px]:hidden" />
+            <RouteRailStep index={3} title="发布检查" done={readyToSave} active={identityDone && itemsDone && coreAugmentsDone && goodAugmentsDone && !readyToSave} />
           </div>
-        </aside>
+          <div className={'text-[10px] font-black tabular-nums ' + qualityTone}>{qualityLabel} · {completionPct}%</div>
+        </section>
+      )}
+      {subpage === 'editor' && (
+        <section className="mb-2.5 rounded-[6px] border border-line/70 bg-[#07101b]/58 p-2">
+          <div className="grid grid-cols-[260px_minmax(0,1fr)_230px] items-center gap-2 max-[1040px]:grid-cols-[240px_minmax(0,1fr)] max-[760px]:grid-cols-1">
+            <ChampionInlinePicker champions={champions} selectedId={draft.championId} onChange={(id) => patch('championId', id)} />
 
-        <div className="space-y-4">
-          <section className="glass-panel relative overflow-visible rounded-[8px] border border-gold/30 p-5">
-            <div className="mb-5 flex items-start justify-between gap-4">
-              <div>
-                <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-gold">Route editor</div>
-                <h2 className="mt-1 text-xl font-extrabold text-cream">{editingId ? '编辑路线' : '创建新路线'}</h2>
-                <p className="mt-1 text-xs text-dim">内容只保存在本机，并会同步到你的游戏内 Overlay。</p>
-              </div>
-              {editingId && (
-                <button type="button" onClick={remove} className="rounded-lg border border-red/40 px-3 py-2 text-xs font-bold text-red hover:bg-red/10">
-                  删除
-                </button>
-              )}
-            </div>
-
-            <div className="grid grid-cols-[minmax(0,1fr)_180px] gap-3">
-              <label>
-                <span className="mb-1.5 block text-xs font-bold text-dim">英雄</span>
-                <select
-                  value={draft.championId}
-                  onChange={(event) => patch('championId', Number(event.target.value))}
-                  className={SEARCH_INLINE + ' appearance-none'}
-                >
-                  {champions.map((entry) => (
-                    <option key={entry.id} value={entry.id}>{entry.name}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <span className="mb-1.5 block text-xs font-bold text-dim">伤害类型</span>
-                <select
-                  value={draft.damageType}
-                  onChange={(event) => patch('damageType', event.target.value)}
-                  className={SEARCH_INLINE + ' appearance-none'}
-                >
-                  {['AP', 'AD', 'Tank', 'Support', 'Hybrid'].map((type) => <option key={type}>{type}</option>)}
-                </select>
-              </label>
-            </div>
-            <label className="mt-3 block">
-              <span className="mb-1.5 flex justify-between text-xs font-bold text-dim">
-                <span>路线标题</span><span>{draft.title.length}/32</span>
+            <label className="min-w-0 rounded-[6px] border border-line/55 bg-[#050a11]/38 px-2 py-1.5 transition-colors focus-within:border-hex/45 focus-within:bg-panel/26">
+              <span className="mb-1 flex items-center justify-between gap-2 text-[9px] font-black uppercase tracking-[0.12em] text-dim">
+                <span>Route title</span>
+                <span className={draft.title.trim() ? 'text-dim' : 'text-red/80'}>{draft.title.length}/32</span>
               </span>
               <input
                 value={draft.title}
                 maxLength={32}
                 onChange={(event) => patch('title', event.target.value)}
-                placeholder="例如：持续灼烧控制流"
-                className={SEARCH_INLINE}
+                placeholder={draftChampion ? `${draftChampion.name} 新玩法` : '例如：无限蘑菇提莫'}
+                className="h-7 w-full bg-transparent text-[18px] font-black leading-none text-cream outline-none placeholder:text-dim/50"
               />
             </label>
-            <label className="mt-3 block">
-              <span className="mb-1.5 flex justify-between text-xs font-bold text-dim">
-                <span>玩法介绍</span><span>{draft.description.length}/240</span>
-              </span>
-              <textarea
-                value={draft.description}
-                maxLength={240}
-                rows={3}
-                onChange={(event) => patch('description', event.target.value)}
-                placeholder="写下核心思路、适用场景和需要避开的陷阱。"
-                className={SEARCH_INLINE + ' resize-none leading-6'}
-              />
-            </label>
-          </section>
 
-          <section className="glass-panel relative overflow-visible rounded-[8px] border border-line/75 p-5 focus-within:z-40">
-            <div className="grid grid-cols-2 gap-5 max-[920px]:grid-cols-1">
+            <div className="grid grid-cols-[100px_minmax(0,1fr)] gap-2 max-[1040px]:col-span-2 max-[760px]:col-span-1">
+              <DamageTypeDropdown value={draft.damageType} onChange={(type) => patch('damageType', type)} />
+              <div className={'min-w-0 rounded-[6px] border px-2 py-1.5 ' + (readyToSave ? 'border-[#63c07a]/30 bg-[#63c07a]/8' : 'border-line/60 bg-[#050a11]/45')}>
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">Status</span>
+                  <span className={'text-[12px] font-black ' + (readyToSave ? 'text-[#8bd99e]' : 'text-dim')}>
+                    {routeStatus}
+                  </span>
+                </div>
+                <div className="truncate text-[10px] font-bold text-dim" title={routeStatusDetail}>{routeStatusDetail}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+      {subpage === 'editor' ? (
+        <div className="grid grid-cols-[minmax(0,1fr)_330px] gap-2.5 max-[1120px]:grid-cols-1">
+          <aside className="order-2 space-y-2.5 max-[1120px]:contents">
+            <section className="sticky top-3 rounded-[7px] border border-line/55 bg-[#07101b]/46 p-2.5 max-[1120px]:static max-[1120px]:order-1">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Route score</div>
+                  <div className="mt-0.5 text-[14px] font-black text-cream">路线评分</div>
+                </div>
+                <div className={'border-b px-0.5 pb-0.5 text-[10px] font-extrabold ' + (readyToSave ? 'border-[#63c07a]/45' : completionPct >= 60 ? 'border-gold/45' : 'border-line/60') + ' ' + qualityTone}>
+                  {qualityLabel}
+                </div>
+              </div>
+              <RouteCompletionMeter value={completionPct} />
+              <div className="mt-2 grid grid-cols-3 gap-2 border-y border-line/35 py-2">
+                <div>
+                  <div className="text-[9px] font-black text-dim">内容</div>
+                  <div className="mt-0.5 text-[13px] font-black text-cream">{draft.itemIds.length + draft.coreAugmentIds.length + draft.goodAugmentIds.length}</div>
+                </div>
+                <div>
+                  <div className="text-[9px] font-black text-dim">出装</div>
+                  <div className="mt-0.5 text-[13px] font-black text-cream">{draft.itemIds.length}/6</div>
+                </div>
+                <div>
+                  <div className="text-[9px] font-black text-dim">海克斯</div>
+                  <div className="mt-0.5 text-[13px] font-black text-cream">{draft.coreAugmentIds.length + draft.goodAugmentIds.length}</div>
+                </div>
+              </div>
+              <div className="mt-2">
+                {completionItems.map((entry) => (
+                  <RouteQualityRow key={entry.label} label={entry.label} detail={entry.detail} done={entry.done} />
+                ))}
+              </div>
+              <div className={'mt-2 border-t border-line/35 pt-2 text-[10px] leading-4 ' + (message.startsWith('已保存') ? 'text-[#8bd99e]' : 'text-dim')}>
+                {message || (readyToSave ? '路线完整，保存后会设为该英雄当前路线。' : '补齐必需项后，路线才能在英雄页启用。')}
+              </div>
+              <div className="mt-2 grid gap-2">
+                <button
+                  type="button"
+                  onClick={save}
+                  className={BTN_PRIMARY + ' py-2'}
+                >
+                  {readyToSave ? '保存并启用' : '保存草稿'}
+                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  {editingId ? (
+                    <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/45 hover:text-cream">
+                      查看英雄页
+                    </button>
+                  ) : (
+                    <button type="button" onClick={startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/35 hover:text-cream">
+                      清空草稿
+                    </button>
+                  )}
+                  <button type="button" onClick={editingId ? remove : startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-red/42 hover:text-red">
+                    {editingId ? '删除路线' : '重新开始'}
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section className={stepFrame(1, 'side') + ' max-[1120px]:order-2'}>
+              <div className="mb-2 flex items-start gap-2">
+                <div className="min-w-0">
+                  <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">Creator notes</div>
+                  <h2 className="mt-0.5 text-[14px] font-extrabold text-cream">玩法备注</h2>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block">
+                  <span className="mb-1 flex justify-between text-[10px] font-bold text-dim">
+                    <span>玩法介绍</span><span>{draft.description.length}/240</span>
+                  </span>
+                  <textarea
+                    value={draft.description}
+                    maxLength={240}
+                    rows={4}
+                    onChange={(event) => patch('description', event.target.value)}
+                    placeholder="写核心思路、适用场景、容易踩的坑。"
+                    className={SEARCH_INLINE + ' resize-none leading-5'}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="hidden">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <div className="text-[12px] font-extrabold text-cream">保存</div>
+                <div className={'rounded border px-2 py-0.5 text-[10px] font-extrabold ' + (readyToSave ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/60 bg-[#050a11]/55 text-dim')}>
+                  {readyToSave ? 'Ready' : 'Draft'}
+                </div>
+              </div>
+              <div className={'rounded-[5px] border px-2 py-1.5 text-[10px] leading-4 ' + (message.startsWith('已保存') ? 'border-[#63c07a]/30 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/50 bg-[#050a11]/38 text-dim')}>
+                {message || routeStatusDetail}
+              </div>
+
+              <div className="mt-2 grid gap-2">
+                <button
+                  type="button"
+                  onClick={save}
+                  className={BTN_PRIMARY + ' py-2'}
+                >
+                  {readyToSave ? '保存并启用' : '保存草稿'}
+                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  {editingId ? (
+                    <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/45 hover:text-cream">
+                      查看英雄页
+                    </button>
+                  ) : (
+                    <button type="button" onClick={startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/35 hover:text-cream">
+                      清空草稿
+                    </button>
+                  )}
+                  <button type="button" onClick={editingId ? remove : startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-red/42 hover:text-red">
+                    {editingId ? '删除路线' : '重新开始'}
+                  </button>
+                </div>
+              </div>
+            </section>
+          </aside>
+
+          <div className="order-1 grid grid-cols-2 gap-2.5 max-[900px]:grid-cols-1 max-[1120px]:order-2">
+            <section className={stepFrame(2, 'primary') + ' col-span-2 focus-within:z-40 max-[900px]:col-span-1'}>
+              <div className="mb-2 flex items-start justify-between gap-2 border-b border-line/45 pb-2">
+                <div className="flex items-start gap-2">
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Build board</div>
+                    <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">六神装顺序</h3>
+                  </div>
+                </div>
+              </div>
+              {draft.itemIds.length === 0 && (
+                <div className="mb-2 flex flex-wrap items-center gap-2 rounded-[6px] border border-line/45 bg-[#07101b]/36 px-2 py-1.5">
+                  <span className="mr-1 text-[10px] font-black uppercase tracking-[0.14em] text-dim">Start</span>
+                  <button
+                    type="button"
+                    onClick={onOpenHistory}
+                    className="rounded-md border border-hex/45 bg-hex/10 px-2.5 py-1.5 text-[11px] font-black text-hex transition hover:bg-hex/15 active:translate-y-px"
+                  >
+                    从对局导入
+                  </button>
+                  <button
+                    type="button"
+                    onClick={seedFromOfficialRoute}
+                    className="rounded-md px-2 py-1.5 text-[11px] font-bold text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px"
+                  >
+                    使用内置路线
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMessage('从下方搜索装备名称，点击结果即可加入路线。')}
+                    className="rounded-md px-2 py-1.5 text-[11px] font-bold text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px"
+                  >
+                    手动添加
+                  </button>
+                  <span className="ml-auto text-[9px] font-bold text-dim/75 max-[720px]:ml-0">建议先采集真实路线</span>
+                </div>
+              )}
               <AssetPicker
-                label="出门装"
-                hint="按实际购买顺序添加，允许重复药水"
-                entries={items}
-                selectedIds={draft.starterItemIds}
-                max={6}
-                allowDuplicates
-                onChange={(ids) => patch('starterItemIds', ids)}
-              />
-              <AssetPicker
-                label="六神装"
-                hint="第一件成装放在最前，必须正好六件"
+                label="装备"
+                hint="拖拽调整顺序。"
                 entries={items}
                 selectedIds={draft.itemIds}
                 max={6}
+                filters={ITEM_FILTERS}
                 onChange={(ids) => patch('itemIds', ids)}
               />
-            </div>
-          </section>
+            </section>
 
-          <section className="glass-panel relative overflow-visible rounded-[8px] border border-line/75 p-5 focus-within:z-40">
-            <div className="grid grid-cols-3 gap-4 max-[980px]:grid-cols-1">
-              <AssetPicker label="核心海克斯" hint="拿到时优先选择" entries={augments} selectedIds={draft.coreAugmentIds} max={6} onChange={(ids) => patch('coreAugmentIds', ids)} />
-              <AssetPicker label="备选海克斯" hint="稳定、泛用的选择" entries={augments} selectedIds={draft.goodAugmentIds} max={6} onChange={(ids) => patch('goodAugmentIds', ids)} />
-              <AssetPicker label="避开海克斯" hint="容易误导这套路线" entries={augments} selectedIds={draft.trapAugmentIds} max={4} onChange={(ids) => patch('trapAugmentIds', ids)} />
-            </div>
-          </section>
-
-          <section className="rounded-[8px] border border-hex/30 bg-[#0a1524]/85 p-5">
-            <div className="flex items-start gap-4">
-              {champion && <img src={icon(champion.iconLocal)} alt="" className="h-16 w-16 rounded-[8px] border border-gold/45 object-cover" />}
-              <div className="min-w-0 flex-1">
-                <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-hex">Overlay preview</div>
-                <div className="mt-1 flex items-center gap-2">
-                  <h3 className="truncate text-lg font-extrabold text-cream">{draft.title || '未命名路线'}</h3>
-                  <span className="rounded-md bg-white/8 px-2 py-0.5 text-[10px] font-bold text-dim">{draft.damageType}</span>
+            <section className={stepFrame(3, 'support') + ' focus-within:z-40'}>
+              <div className="mb-2 flex items-start justify-between gap-2 border-b border-line/45 pb-2">
+                <div className="flex items-start gap-2">
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.14em] text-gold/85">Hextech pool</div>
+                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">核心海克斯</h3>
+                  </div>
                 </div>
-                <p className="mt-1 line-clamp-2 text-xs leading-5 text-dim">{draft.description || '路线介绍会显示在这里。'}</p>
               </div>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div>
-                <div className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.12em] text-gold">出门装</div>
-                <MiniItemLine items={starterItems} />
-              </div>
-              <div>
-                <div className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.12em] text-hex">六神装</div>
-                <MiniItemLine items={finalItems} />
-              </div>
-            </div>
-          </section>
+              <AssetPicker label="核心海克斯" hint="优先拿。" entries={augments} selectedIds={draft.coreAugmentIds} max={6} variant="pool" onChange={(ids) => patch('coreAugmentIds', ids)} />
+            </section>
 
-          <div className="sticky bottom-0 z-20 flex items-center justify-between gap-4 rounded-[8px] border border-gold/30 bg-[#0a111b]/95 p-3 shadow-[0_-12px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-            <div className={'text-xs ' + (message.startsWith('已保存') ? 'text-[#63c07a]' : 'text-dim')}>
-              {message || '保存后会自动设为该英雄当前使用的路线。'}
-            </div>
-            <div className="flex gap-2">
-              {editingId && (
-                <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-4 py-2.5 text-sm font-bold text-dim hover:border-hex/45 hover:text-cream">
-                  查看英雄页
-                </button>
-              )}
-              <button type="button" onClick={save} className="rounded-lg bg-gold px-5 py-2.5 text-sm font-extrabold text-[#171006] hover:bg-[#dec07a] active:translate-y-px">
-                保存并启用
-              </button>
-            </div>
+            <section className={stepFrame(4, 'support') + ' focus-within:z-40'}>
+              <div className="mb-2 flex items-start justify-between gap-2 border-b border-line/45 pb-2">
+                <div className="flex items-start gap-2">
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">Fallback pool</div>
+                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">备选海克斯</h3>
+                  </div>
+                </div>
+              </div>
+              <AssetPicker label="备选海克斯" hint="核心没来时选。" entries={augments} selectedIds={draft.goodAugmentIds} max={6} variant="pool" onChange={(ids) => patch('goodAugmentIds', ids)} />
+            </section>
           </div>
         </div>
-      </div>
+      ) : (
+        <section className="relative overflow-hidden rounded-[6px] border border-line/75 bg-[#0b1421] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-line/70" />
+          <div className="mb-3 flex items-center justify-between gap-2 border-b border-line/55 pb-2.5">
+            <div>
+              <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">路线库</div>
+              <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">所有自定义路线</h3>
+              <p className="mt-0.5 text-[10px] text-dim">点开任意路线会在下方预览装备和增强，需要修改时再进入编辑。</p>
+            </div>
+            <div className="rounded-lg border border-line/70 bg-[#07101b]/62 px-3 py-2 text-xs font-extrabold text-cream">{routes.length} 条</div>
+          </div>
+          {routes.length > 0 ? (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-2">
+              {routes.map((route) => {
+                const routeChampion = core.champions.find((entry) => entry.id === route.championId)
+                const routeDoneCount =
+                  (route.title.trim() ? 1 : 0) +
+                  (route.itemIds.length === 6 ? 1 : 0) +
+                  (route.coreAugmentIds.length > 0 ? 1 : 0) +
+                  (route.goodAugmentIds.length > 0 ? 1 : 0) +
+                  (route.description.trim().length >= 18 ? 1 : 0)
+                const routePct = Math.round((routeDoneCount / 5) * 100)
+                const updatedLabel = route.updatedAt ? new Date(route.updatedAt).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }) : '未保存'
+                return (
+                  <button
+                    type="button"
+                    key={route.id}
+                    onClick={() => setLibraryRouteId(route.id)}
+                    className={
+                      'group flex min-w-0 items-center gap-2 rounded-[7px] border p-2 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition hover:-translate-y-0.5 ' +
+                      (selectedLibraryRoute?.id === route.id
+                        ? 'border-hex/45 bg-hex/8'
+                        : 'border-line/55 bg-[#09121f]/58 hover:border-hex/35 hover:bg-white/5')
+                    }
+                  >
+                    {routeChampion && (
+                      <img src={icon(routeChampion.iconLocal)} alt={routeChampion.name} className="h-10 w-10 shrink-0 rounded-md border border-line/70 object-cover group-hover:border-hex/40" />
+                    )}
+                    <span className="min-w-0 flex-1">
+                      <span className="flex min-w-0 items-center justify-between gap-2">
+                        <span className="truncate text-[12px] font-extrabold text-cream">{route.title || '未命名路线'}</span>
+                        <span className={'shrink-0 rounded border px-1.5 py-px text-[9px] font-black ' + (routePct >= 80 ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/55 bg-[#07101b]/70 text-dim')}>
+                          {routePct}%
+                        </span>
+                      </span>
+                      <span className="mt-1 flex min-w-0 flex-wrap items-center gap-1">
+                        <span className="inline-flex rounded-md border border-line/60 bg-[#07101b]/70 px-2 py-0.5 text-[10px] font-extrabold text-dim">{routeChampion?.name} · {route.damageType}</span>
+                        <span className="text-[9px] font-bold text-dim">编辑 {updatedLabel}</span>
+                      </span>
+                      <span className="mt-1 block truncate text-[11px] text-dim">{route.description || '无介绍'}</span>
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="rounded-[8px] border border-dashed border-line/70 bg-[#07101b]/42 p-8 text-center">
+              <div className="text-sm font-extrabold text-cream">还没有自定义路线</div>
+              <div className="mx-auto mt-2 max-w-[520px] text-xs leading-5 text-dim">
+                最快的方式是从对局记录采集一名玩家路线，再回来补标题、说明和备选海克斯。
+              </div>
+              <div className="mx-auto mt-4 max-w-[360px] rounded-[8px] border border-line/55 bg-[#09121f]/70 p-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]">
+                <div className="grid grid-cols-[42px_minmax(0,1fr)_auto] items-center gap-2">
+                  {draftChampion ? (
+                    <img src={icon(draftChampion.iconLocal)} alt={draftChampion.name} className="h-10 w-10 rounded-[6px] border border-line/70 object-cover opacity-75" />
+                  ) : (
+                    <div className="h-10 w-10 rounded-[6px] border border-dashed border-line/55 bg-panel/45" />
+                  )}
+                  <div className="min-w-0">
+                    <div className="truncate text-[12px] font-black text-cream">{draftChampion?.name ?? '英雄'} 实战路线</div>
+                    <div className="mt-1 inline-flex rounded border border-line/55 bg-[#07101b]/70 px-2 py-px text-[9px] font-black text-dim">AP · 示例预览</div>
+                  </div>
+                  <div className="rounded border border-[#63c07a]/35 bg-[#63c07a]/10 px-2 py-1 text-[9px] font-black text-[#8bd99e]">预览</div>
+                </div>
+                <div className="mt-3 flex gap-1.5">
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <div key={index} className="h-7 w-7 rounded border border-line/45 bg-panel/55" />
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap justify-center gap-2">
+                <button
+                  type="button"
+                  onClick={onOpenHistory}
+                  className="rounded-md border border-hex/45 bg-hex/10 px-3 py-2 text-[12px] font-extrabold text-hex transition hover:bg-hex/15 active:translate-y-px"
+                >
+                  从对局记录采集
+                </button>
+                <button
+                  type="button"
+                  onClick={startNew}
+                  className="rounded-md border border-line/70 bg-panel2/60 px-3 py-2 text-[12px] font-extrabold text-dim transition hover:border-hex/35 hover:bg-panel2 hover:text-cream active:translate-y-px"
+                >
+                  新建空白路线
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSubpage('editor')}
+                  className="rounded-md border border-line/65 bg-panel/45 px-3 py-2 text-[12px] font-extrabold text-dim transition hover:border-line hover:text-cream active:translate-y-px"
+                >
+                  查看编辑器
+                </button>
+              </div>
+            </div>
+          )}
+          {selectedLibraryRoute && selectedLibraryArchetype && (
+            <div className="mt-5 border-t border-line/60 pt-5">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">路线预览</div>
+                  <div className="mt-1 text-sm text-dim">这里直接查看出装和增强，不会打断当前草稿。</div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onActivate(selectedLibraryRoute.championId, customRouteKey(selectedLibraryRoute.id))}
+                    className={BTN_PRIMARY}
+                  >
+                    启用这条路线
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => edit(selectedLibraryRoute)}
+                    className="rounded-lg border border-line/70 bg-[#07101b]/65 px-3 py-2 text-xs font-extrabold text-dim transition hover:border-hex/45 hover:text-cream active:translate-y-px"
+                  >
+                    编辑这条路线
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => removeRoute(selectedLibraryRoute)}
+                    className="rounded-lg border border-red/45 bg-red/8 px-3 py-2 text-xs font-extrabold text-red transition hover:bg-red/12 active:translate-y-px"
+                  >
+                    删除路线
+                  </button>
+                </div>
+              </div>
+              <ArchetypeCard arch={selectedLibraryArchetype} augById={core.augById} itemById={core.itemById} />
+            </div>
+          )}
+        </section>
+      )}
     </>
   )
 }
 
 function SettingsSection({ title, children, className = '' }: { title: string; children: ReactNode; className?: string }) {
   return (
-    <section className={CARD + ' p-5 ' + className}>
-      <h3 className="text-sm font-bold text-cream mb-4">{title}</h3>
+    <section className={SURFACE + ' p-3.5 ' + className}>
+      <h3 className="mb-3 text-[13px] font-black text-cream">{title}</h3>
       {children}
     </section>
   )
 }
 
-function SettingsNavItem({ label, active = false }: { label: string; active?: boolean }) {
+type SettingsPage = 'overlay' | 'app' | 'account' | 'updates'
+
+function SettingsNavItem({
+  label,
+  desc,
+  active = false,
+  onClick,
+}: {
+  label: string
+  desc?: string
+  active?: boolean
+  onClick: () => void
+}) {
   return (
-    <div
+    <button
+      type="button"
+      onClick={onClick}
       className={
-        'rounded-lg border px-3 py-2 text-xs font-bold ' +
-        (active ? 'border-gold/45 bg-gold/12 text-gold' : 'border-transparent text-dim')
+        'w-full rounded-[6px] border px-3 py-2 text-left transition active:translate-y-px ' +
+        (active
+          ? 'border-hex/45 bg-hex/10 text-hex shadow-[inset_0_-2px_0_rgba(34,211,238,0.75)]'
+          : 'border-transparent text-dim hover:border-line/55 hover:bg-white/[0.035] hover:text-cream')
       }
     >
-      {label}
-    </div>
+      <span className="block text-[12px] font-black">{label}</span>
+      {desc && <span className="mt-0.5 block text-[10px] font-semibold leading-snug text-dim/80">{desc}</span>}
+    </button>
   )
 }
 
@@ -1723,17 +3695,32 @@ function fmtAccountDate(value: string | undefined, lang: Lang): string {
   return new Date(value).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN', { month: '2-digit', day: '2-digit' })
 }
 
+function updateStatusText(status: UpdateStatus | null): string {
+  if (!status) return '尚未检查更新'
+  if (status.state === 'checking') return '正在检查更新...'
+  if (status.state === 'available') return `发现新版本 ${status.version ?? ''}，正在下载`
+  if (status.state === 'downloading') return `正在下载 ${status.percent ?? 0}%`
+  if (status.state === 'downloaded') return `新版本 ${status.version ?? ''} 已下载，重启后安装`
+  if (status.state === 'not-available') return status.message ?? `当前已是最新版本 ${status.version ?? ''}`
+  if (status.state === 'error') return status.message ?? '检查更新失败'
+  return `当前版本 ${status.version ?? ''}`
+}
+
 function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
   const t = useT()
   const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
   const [accounts, setAccounts] = useState<PersistedAccountSummary[] | null>(null)
+  const [updateStatus, setUpdateStatus] = useState<UpdateStatus | null>(null)
+  const [settingsPage, setSettingsPage] = useState<SettingsPage>('overlay')
 
   useEffect(() => {
     if (!isElectron()) return
     window.mayhem!.getSettings().then(setSettings)
     window.mayhem!.getStoredAccounts().then(setAccounts)
+    window.mayhem!.getUpdateStatus().then(setUpdateStatus)
     window.mayhem!.onSettingsChanged(setSettings)
+    window.mayhem!.onUpdateStatus(setUpdateStatus)
   }, [])
 
   useEffect(() => {
@@ -1753,38 +3740,122 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
     setAccounts(updated)
   }
 
+  async function checkUpdates() {
+    if (!isElectron()) return
+    const status = await window.mayhem!.checkForUpdates()
+    setUpdateStatus(status)
+  }
+
+  async function installUpdate() {
+    if (!isElectron()) return
+    await window.mayhem!.installUpdate()
+  }
+
   if (!isElectron()) {
     return (
       <>
-        <ViewHead title={t('settings.title', '设置')} />
-        <div className="p-11 text-center text-dim text-sm">{t('settings.electronOnly')}</div>
+        <PageHeader
+          eyebrow={lang === 'en' ? 'Desktop settings' : '桌面端设置'}
+          title={t('settings.title', '设置')}
+          description={
+            lang === 'en'
+              ? 'Settings are available in the real Mayhempedia desktop window. Browser preview shows the access requirements and setting groups.'
+              : '设置需要在真正的 Mayhempedia 客户端窗口里读取。浏览器预览会展示设置入口和权限说明。'
+          }
+          metrics={[
+            { label: lang === 'en' ? 'Runtime' : '运行环境', value: lang === 'en' ? 'Browser' : '浏览器' },
+            { label: lang === 'en' ? 'Client API' : '客户端接口', value: lang === 'en' ? 'Missing' : '未连接' },
+          ]}
+        />
+        <section className={SURFACE + ' p-5'}>
+          <div className="grid grid-cols-[minmax(0,1fr)_320px] gap-4 max-[900px]:grid-cols-1">
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">
+                {lang === 'en' ? 'Preview mode' : '预览模式'}
+              </div>
+              <h3 className="mt-1 text-[18px] font-black text-cream">
+                {lang === 'en' ? 'Open the desktop app to edit settings.' : '打开桌面客户端后即可编辑设置。'}
+              </h3>
+              <p className="mt-2 max-w-[680px] text-[12px] leading-5 text-dim">{t('settings.electronOnly')}</p>
+              <div className="mt-4 grid grid-cols-2 gap-2 max-[760px]:grid-cols-1">
+                {[
+                  [lang === 'en' ? 'Overlay behavior' : 'Overlay 行为', lang === 'en' ? 'Position, opacity, move hotkey' : '位置、透明度、移动快捷键'],
+                  [lang === 'en' ? 'App preferences' : '应用偏好', lang === 'en' ? 'Startup, zoom, language' : '启动、缩放、语言'],
+                  [lang === 'en' ? 'Account and data' : '账号与数据', lang === 'en' ? 'Stored accounts and local match history' : '已保存账号与本地对局记录'],
+                  [lang === 'en' ? 'Updates' : '应用更新', lang === 'en' ? 'Version check and installer state' : '版本检查与安装状态'],
+                ].map(([label, desc]) => (
+                  <div key={label} className="rounded-[7px] border border-line/60 bg-[#07101b]/46 p-3">
+                    <div className="text-[12px] font-black text-cream">{label}</div>
+                    <div className="mt-1 text-[11px] leading-4 text-dim">{desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-[8px] border border-line/65 bg-[#07101b]/58 p-4">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-dim">
+                {lang === 'en' ? 'Why locked' : '为什么不可编辑'}
+              </div>
+              <div className="mt-3 space-y-3 text-[12px] leading-5 text-dim">
+                <p>{lang === 'en' ? 'Browser preview does not expose window.mayhem, so it cannot read or save local client settings.' : '浏览器预览没有 window.mayhem，因此无法读取或保存本地客户端设置。'}</p>
+                <p>{lang === 'en' ? 'In the packaged app, this page becomes the control room for overlay behavior, local data, account memory, and updates.' : '在打包后的客户端里，这里会成为 Overlay、本地数据、账号记忆和更新的控制室。'}</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </>
     )
   }
   if (!settings) {
     return (
       <>
-        <ViewHead title={t('settings.title', '设置')} />
-        <div className="p-11 text-center text-dim text-sm">{t('settings.loading')}</div>
+        <PageHeader eyebrow={lang === 'en' ? 'Desktop settings' : '桌面端设置'} title={t('settings.title', '设置')} />
+        <EmptyState title={t('settings.loading')} description={lang === 'en' ? 'Loading local preferences and client state.' : '正在读取本地偏好和客户端状态。'} />
       </>
     )
   }
 
   return (
     <>
-      <ViewHead title={t('settings.title', '设置')} />
+      <PageHeader
+        eyebrow={lang === 'en' ? 'Desktop settings' : '桌面端设置'}
+        title={t('settings.title', '设置')}
+        description={lang === 'en' ? 'Control overlay behavior, local data, account memory, and update flow from one place.' : '集中管理 Overlay 行为、本地数据、账号记忆和应用更新。'}
+        metrics={[
+          { label: lang === 'en' ? 'Account' : '账号', value: summoner ? summoner.gameName : t('settings.account.none') },
+          { label: lang === 'en' ? 'Stored' : '已保存', value: accounts?.length ?? 0, tone: 'accent' },
+        ]}
+      />
 
-      <div className="grid grid-cols-[250px_minmax(0,1fr)] gap-5 items-start max-[980px]:grid-cols-1">
-        <aside className="glass-panel sticky top-6 rounded-[8px] border border-line/75 p-4 max-[980px]:static">
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-dim">Control stack</div>
+      <div className="grid grid-cols-[210px_minmax(0,1fr)] gap-3 items-start max-[900px]:grid-cols-1">
+        <aside className={SURFACE + ' sticky top-6 p-3 max-[900px]:static'}>
+          <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">Settings</div>
           <div className="mt-3 flex flex-col gap-1">
-            <SettingsNavItem label={t('settings.startup.title', '启动与窗口')} active />
-            <SettingsNavItem label={t('settings.overlay.title', 'Overlay 行为')} />
-            <SettingsNavItem label={t('settings.dashboard.title', '主页内容显示')} />
-            <SettingsNavItem label={t('settings.account.title', '账号')} />
-            <SettingsNavItem label={t('settings.privacy.title', '数据与隐私')} />
+            <SettingsNavItem
+              label={t('settings.overlay.title', 'Overlay 行为')}
+              desc={lang === 'en' ? 'Position, opacity, hotkeys' : '位置、透明度、快捷键'}
+              active={settingsPage === 'overlay'}
+              onClick={() => setSettingsPage('overlay')}
+            />
+            <SettingsNavItem
+              label={lang === 'en' ? 'App' : '应用'}
+              desc={lang === 'en' ? 'Startup, zoom, language' : '启动、缩放、语言'}
+              active={settingsPage === 'app'}
+              onClick={() => setSettingsPage('app')}
+            />
+            <SettingsNavItem
+              label={lang === 'en' ? 'Account & Data' : '账号与数据'}
+              desc={lang === 'en' ? 'Local history and privacy' : '本地记录与隐私'}
+              active={settingsPage === 'account'}
+              onClick={() => setSettingsPage('account')}
+            />
+            <SettingsNavItem
+              label={lang === 'en' ? 'Updates' : '应用更新'}
+              desc={lang === 'en' ? 'Version and installer' : '版本检查与安装'}
+              active={settingsPage === 'updates'}
+              onClick={() => setSettingsPage('updates')}
+            />
           </div>
-          <div className="mt-5 rounded-lg border border-line/65 bg-panel2/38 p-3">
+          <div className="mt-4 rounded-[6px] border border-line/65 bg-panel2/30 p-3">
             <div className="text-[11px] font-bold text-dim">{t('settings.account.title', '账号')}</div>
             <div className="mt-1 truncate text-sm font-extrabold text-cream">
               {summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}
@@ -1793,231 +3864,277 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
           </div>
         </aside>
 
-        <div className="grid grid-cols-2 gap-4 max-[1180px]:grid-cols-1">
-      <SettingsSection title={t('settings.startup.title', '启动与窗口')}>
-        <div className="flex items-center justify-between py-2">
-          <div>
-            <div className="text-sm">{t('settings.startup.autoLaunch')}</div>
-            <div className="text-xs text-dim mt-0.5">{t('settings.startup.autoLaunchDesc')}</div>
-          </div>
-          <Toggle on={settings.autoLaunch} onClick={() => update('autoLaunch', !settings.autoLaunch)} />
-        </div>
-        <div className="py-2">
-          <div className="flex items-center justify-between">
-            <div className="text-sm">{t('settings.startup.zoom')}</div>
-            <span className="text-xs text-dim">{Math.round(settings.zoomFactor * 100)}%</span>
-          </div>
-          <div className="mt-2 grid grid-cols-5 gap-1.5 rounded-lg border border-line/60 bg-ink/30 p-1.5">
-            {ZOOM_PRESETS.map((zoom) => (
-              <button
-                key={zoom}
-                onClick={() => update('zoomFactor', zoom)}
-                className={
-                  'rounded-lg px-2 py-1.5 text-xs font-extrabold transition cursor-pointer ' +
-                  (settings.zoomFactor === zoom
-                    ? 'bg-gold text-[#1d1709]'
-                    : 'bg-panel2/45 text-dim hover:bg-panel2/80 hover:text-cream')
-                }
-              >
-                {Math.round(zoom * 100)}%
-              </button>
-            ))}
-          </div>
-        </div>
-      </SettingsSection>
-
-      <SettingsSection title={t('settings.overlay.title', 'Overlay 行为')}>
-        <div className="py-2">
-          <div className="text-sm mb-2">{t('settings.overlay.position')}</div>
-          <div className="flex gap-2">
-            {(Object.keys(POSITION_LABEL) as OverlaySettings['position'][]).map((pos) => (
-              <button
-                key={pos}
-                onClick={() => update('overlay', { ...settings.overlay, position: pos })}
-                className={
-                  'px-3 py-1.5 rounded-lg text-xs cursor-pointer transition ' +
-                  (settings.overlay.position === pos
-                    ? 'bg-gold text-[#2b1e07] font-bold'
-                    : 'bg-panel2 text-dim hover:text-cream')
-                }
-              >
-                {t(`settings.overlay.pos.${POSITION_KEY[pos]}`, POSITION_LABEL[pos])}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="py-2">
-          <div className="flex items-center justify-between">
-            <div className="text-sm">{t('settings.overlay.opacity')}</div>
-            <span className="text-xs text-dim">{Math.round(settings.overlay.opacity * 100)}%</span>
-          </div>
-          <input
-            type="range"
-            min={0.3}
-            max={1}
-            step={0.05}
-            value={settings.overlay.opacity}
-            onChange={(e) => update('overlay', { ...settings.overlay, opacity: parseFloat(e.target.value) })}
-            className="w-full mt-2 accent-gold"
-          />
-        </div>
-        <div className="py-2">
-          <div className="text-sm">{t('settings.overlay.hotkey')}</div>
-          <div className="text-xs text-dim mt-1">
-            {settings.overlay.hotkey.ctrl && 'Ctrl+'}
-            {settings.overlay.hotkey.shift && 'Shift+'}
-            {settings.overlay.hotkey.alt && 'Alt+'}
-            {settings.overlay.hotkey.key}
-            <span className="ml-2 opacity-70">{t('settings.overlay.hotkeyNote')}</span>
-          </div>
-        </div>
-        <div className="py-2">
-          <div className="text-sm">{t('settings.overlay.moveHotkey')}</div>
-          <div className="text-xs text-dim mt-1">
-            {settings.overlay.moveHotkey.ctrl && 'Ctrl+'}
-            {settings.overlay.moveHotkey.shift && 'Shift+'}
-            {settings.overlay.moveHotkey.alt && 'Alt+'}
-            {settings.overlay.moveHotkey.key}
-            <span className="ml-2 opacity-70">{t('settings.overlay.moveHotkeyNote')}</span>
-          </div>
-        </div>
-        {settings.overlay.customPos && (
-          <div className="py-2 flex items-center justify-between">
-            <div className="text-xs text-dim">
-              {t('settings.overlay.customPos')} ({settings.overlay.customPos.x}, {settings.overlay.customPos.y})
-            </div>
-            <button
-              onClick={() => update('overlay', { ...settings.overlay, customPos: null })}
-              className="px-2.5 py-1 rounded-lg text-xs cursor-pointer bg-panel2 text-dim hover:text-cream transition"
-            >
-              {t('settings.overlay.resetPos')}
-            </button>
-          </div>
-        )}
-      </SettingsSection>
-
-      <SettingsSection title={t('settings.dashboard.title', '主页内容显示')}>
-        {(
-          [
-            ['identityCard', 'settings.dashboard.identityCard', '身份卡'],
-            ['versionChanges', 'settings.dashboard.versionChanges', '本版本变动'],
-            ['recentMatches', 'settings.dashboard.recentMatches', '近期对局'],
-            ['achievements', 'settings.dashboard.achievements', '新解锁'],
-          ] as [keyof DashboardSections, string, string][]
-        ).map(([key, tkey, fallback]) => (
-          <div key={key} className="flex items-center justify-between py-2">
-            <div className="text-sm">{t(tkey, fallback)}</div>
-            <Toggle
-              on={settings.dashboardSections[key]}
-              onClick={() =>
-                update('dashboardSections', { ...settings.dashboardSections, [key]: !settings.dashboardSections[key] })
-              }
-            />
-          </div>
-        ))}
-      </SettingsSection>
-
-      <SettingsSection title={t('settings.account.title', '账号')} className="col-span-2 max-[1180px]:col-span-1">
-        <div className="flex items-center justify-between gap-3 pb-3 border-b border-line">
-          <div>
-            <div className="text-sm">{summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}</div>
-            <div className="text-xs text-dim mt-1">{t('settings.account.desc')}</div>
-          </div>
-          <button
-            onClick={() => window.mayhem!.getStoredAccounts().then(setAccounts)}
-            className="px-2.5 py-1 rounded-lg text-xs cursor-pointer bg-panel2 text-dim hover:text-cream transition shrink-0"
-          >
-            {t('settings.account.refresh')}
-          </button>
-        </div>
-        <div className="pt-3">
-          {!accounts && <div className="text-xs text-dim py-2">{t('settings.account.loading')}</div>}
-          {accounts && accounts.length === 0 && (
-            <div className="text-xs text-dim py-2">{t('settings.account.empty')}</div>
-          )}
-          {accounts && accounts.length > 0 && (
-            <div className="flex flex-col">
-              {accounts.map((account) => (
-                <div key={account.puuid} className="flex items-center justify-between gap-3 py-2 border-b border-line/60 last:border-b-0">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm truncate">{accountName(account, lang)}</span>
-                      {account.isCurrent && (
-                        <span className="text-[10px] px-1.5 py-px rounded bg-gold/15 text-gold shrink-0">{t('settings.account.current')}</span>
-                      )}
-                    </div>
-                    <div className="text-xs text-dim mt-0.5">
-                      {t('settings.account.matches', '{n} 场').replace('{n}', String(account.matchCount))} ·{' '}
-                      {t('settings.account.detailsCached', '{n} 场详情缓存').replace('{n}', String(account.detailCount))} ·{' '}
-                      {t('settings.account.lastMatch', '最近对局')} {fmtAccountDate(account.latestGameCreationDate, lang)}
+        <div className="min-w-0">
+          {settingsPage === 'overlay' && (
+            <div className="grid gap-3">
+              <SettingsSection title={t('settings.overlay.title', 'Overlay 行为')}>
+                <div className="grid gap-3">
+                  <div>
+                    <div className="mb-2 text-sm">{t('settings.overlay.position')}</div>
+                    <div className="flex flex-wrap gap-2">
+                      {(Object.keys(POSITION_LABEL) as OverlaySettings['position'][]).map((pos) => (
+                        <button
+                          key={pos}
+                          onClick={() => update('overlay', { ...settings.overlay, position: pos })}
+                        className={
+                          'px-3 py-1.5 rounded-[6px] text-xs cursor-pointer transition ' +
+                          (settings.overlay.position === pos
+                              ? 'bg-hex text-[#041017] font-bold'
+                              : 'border border-line/60 bg-panel2/55 text-dim hover:border-hex/35 hover:text-cream')
+                        }
+                        >
+                          {t(`settings.overlay.pos.${POSITION_KEY[pos]}`, POSITION_LABEL[pos])}
+                        </button>
+                      ))}
                     </div>
                   </div>
-                  <button
-                    onClick={() => forgetAccount(account.puuid)}
-                    className="text-xs text-dim hover:text-red transition cursor-pointer shrink-0"
-                  >
-                    {t('settings.account.forget')}
-                  </button>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm">{t('settings.overlay.opacity')}</div>
+                      <span className="text-xs text-dim">{Math.round(settings.overlay.opacity * 100)}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0.3}
+                      max={1}
+                      step={0.05}
+                      value={settings.overlay.opacity}
+                      onChange={(e) => update('overlay', { ...settings.overlay, opacity: parseFloat(e.target.value) })}
+                      className="mt-2 w-full accent-hex"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 max-[760px]:grid-cols-1">
+                    <div className="rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
+                      <div className="text-sm">{t('settings.overlay.hotkey')}</div>
+                      <div className="mt-1 text-xs text-dim">
+                        {settings.overlay.hotkey.ctrl && 'Ctrl+'}
+                        {settings.overlay.hotkey.shift && 'Shift+'}
+                        {settings.overlay.hotkey.alt && 'Alt+'}
+                        {settings.overlay.hotkey.key}
+                        <span className="ml-2 opacity-70">{t('settings.overlay.hotkeyNote')}</span>
+                      </div>
+                    </div>
+                    <div className="rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
+                      <div className="text-sm">{t('settings.overlay.moveHotkey')}</div>
+                      <div className="mt-1 text-xs text-dim">
+                        {settings.overlay.moveHotkey.ctrl && 'Ctrl+'}
+                        {settings.overlay.moveHotkey.shift && 'Shift+'}
+                        {settings.overlay.moveHotkey.alt && 'Alt+'}
+                        {settings.overlay.moveHotkey.key}
+                      </div>
+                      <div className="mt-1 text-[11px] leading-relaxed text-dim/80">{t('settings.overlay.moveHotkeyNote')}</div>
+                    </div>
+                  </div>
+                  {settings.overlay.customPos && (
+                    <div className="flex items-center justify-between rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
+                      <div className="text-xs text-dim">
+                        {t('settings.overlay.customPos')} ({settings.overlay.customPos.x}, {settings.overlay.customPos.y})
+                      </div>
+                      <button
+                        onClick={() => update('overlay', { ...settings.overlay, customPos: null })}
+                        className="rounded-[6px] bg-panel2 px-2.5 py-1 text-xs text-dim transition hover:text-cream"
+                      >
+                        {t('settings.overlay.resetPos')}
+                      </button>
+                    </div>
+                  )}
                 </div>
-              ))}
+              </SettingsSection>
             </div>
           )}
-        </div>
-      </SettingsSection>
 
-      <SettingsSection title={t('settings.notification.title', '通知')}>
-        <div className="flex gap-2">
-          {(['inpage', 'system'] as const).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => update('notificationMode', mode)}
-              className={
-                'px-3 py-1.5 rounded-lg text-xs cursor-pointer transition ' +
-                (settings.notificationMode === mode
-                  ? 'bg-gold text-[#2b1e07] font-bold'
-                  : 'bg-panel2 text-dim hover:text-cream')
-              }
-            >
-              {mode === 'inpage' ? t('settings.notification.inpage') : t('settings.notification.system')}
-            </button>
-          ))}
-        </div>
-      </SettingsSection>
+          {settingsPage === 'app' && (
+            <div className="grid grid-cols-2 gap-3 max-[1180px]:grid-cols-1">
+              <SettingsSection title={t('settings.startup.title', '启动与窗口')}>
+                <div className="flex items-center justify-between py-2">
+                  <div>
+                    <div className="text-sm">{t('settings.startup.autoLaunch')}</div>
+                    <div className="mt-0.5 text-xs text-dim">{t('settings.startup.autoLaunchDesc')}</div>
+                  </div>
+                  <Toggle on={settings.autoLaunch} onClick={() => update('autoLaunch', !settings.autoLaunch)} />
+                </div>
+                <div className="py-2">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm">{t('settings.startup.zoom')}</div>
+                    <span className="text-xs text-dim">{Math.round(settings.zoomFactor * 100)}%</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-5 gap-1.5 rounded-[6px] border border-line/60 bg-ink/30 p-1.5">
+                    {ZOOM_PRESETS.map((zoom) => (
+                      <button
+                        key={zoom}
+                        onClick={() => update('zoomFactor', zoom)}
+                        className={
+                          'rounded-[5px] px-2 py-1.5 text-xs font-extrabold transition cursor-pointer ' +
+                          (settings.zoomFactor === zoom
+                            ? 'bg-hex text-[#041017]'
+                            : 'border border-line/55 bg-panel2/45 text-dim hover:border-hex/35 hover:bg-panel2/80 hover:text-cream')
+                        }
+                      >
+                        {Math.round(zoom * 100)}%
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </SettingsSection>
 
-      <SettingsSection title={t('settings.language.title', '语言')}>
-        <div className="flex gap-2">
-          {(['zh', 'en'] as const).map((lang) => (
-            <button
-              key={lang}
-              onClick={() => update('language', lang)}
-              className={
-                'px-3 py-1.5 rounded-lg text-xs cursor-pointer transition ' +
-                (settings.language === lang
-                  ? 'bg-gold text-[#2b1e07] font-bold'
-                  : 'bg-panel2 text-dim hover:text-cream')
-              }
-            >
-              {t(`settings.language.${lang}`, lang === 'zh' ? '中文' : 'English')}
-            </button>
-          ))}
-        </div>
-        <div className="mt-2 text-xs text-dim">{t('settings.language.note')}</div>
-      </SettingsSection>
+              <SettingsSection title={t('settings.language.title', '语言')}>
+                <div className="flex gap-2">
+                  {(['zh', 'en'] as const).map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => update('language', lang)}
+                        className={
+                          'px-3 py-1.5 rounded-[6px] text-xs cursor-pointer transition ' +
+                          (settings.language === lang
+                          ? 'bg-hex text-[#041017] font-bold'
+                          : 'border border-line/60 bg-panel2/55 text-dim hover:border-hex/35 hover:text-cream')
+                      }
+                    >
+                      {t(`settings.language.${lang}`, lang === 'zh' ? '中文' : 'English')}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-2 text-xs text-dim">{t('settings.language.note')}</div>
+              </SettingsSection>
 
-      <SettingsSection title={t('settings.privacy.title', '数据与隐私')}>
-        <div className="flex items-center justify-between py-2">
-          <div>
-            <div className="text-sm">{t('settings.privacy.persist')}</div>
-            <div className="text-xs text-dim mt-0.5 max-w-md">
-              {t('settings.privacy.persistDesc')}
+              <SettingsSection title={t('settings.notification.title', '通知')}>
+                <div className="flex gap-2">
+                  {(['inpage', 'system'] as const).map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => update('notificationMode', mode)}
+                        className={
+                          'px-3 py-1.5 rounded-[6px] text-xs cursor-pointer transition ' +
+                          (settings.notificationMode === mode
+                          ? 'bg-hex text-[#041017] font-bold'
+                          : 'border border-line/60 bg-panel2/55 text-dim hover:border-hex/35 hover:text-cream')
+                      }
+                    >
+                      {mode === 'inpage' ? t('settings.notification.inpage') : t('settings.notification.system')}
+                    </button>
+                  ))}
+                </div>
+              </SettingsSection>
+
+              <SettingsSection title={t('settings.dashboard.title', '主页内容显示')}>
+                {(
+                  [
+                    ['identityCard', 'settings.dashboard.identityCard', '身份卡'],
+                    ['versionChanges', 'settings.dashboard.versionChanges', '本版本变动'],
+                    ['recentMatches', 'settings.dashboard.recentMatches', '近期对局'],
+                    ['achievements', 'settings.dashboard.achievements', '新解锁'],
+                  ] as [keyof DashboardSections, string, string][]
+                ).map(([key, tkey, fallback]) => (
+                  <div key={key} className="flex items-center justify-between py-2">
+                    <div className="text-sm">{t(tkey, fallback)}</div>
+                    <Toggle
+                      on={settings.dashboardSections[key]}
+                      onClick={() =>
+                        update('dashboardSections', { ...settings.dashboardSections, [key]: !settings.dashboardSections[key] })
+                      }
+                    />
+                  </div>
+                ))}
+              </SettingsSection>
             </div>
-          </div>
-          <Toggle
-            on={settings.persistMatchHistory}
-            onClick={() => update('persistMatchHistory', !settings.persistMatchHistory)}
-          />
-        </div>
-      </SettingsSection>
+          )}
+
+          {settingsPage === 'account' && (
+            <div className="grid gap-3">
+              <SettingsSection title={t('settings.account.title', '账号')}>
+                <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
+                  <div>
+                    <div className="text-sm">{summoner ? `${summoner.gameName}#${summoner.tagLine}` : t('settings.account.none')}</div>
+                    <div className="mt-1 text-xs text-dim">{t('settings.account.desc')}</div>
+                  </div>
+                  <button
+                    onClick={() => window.mayhem!.getStoredAccounts().then(setAccounts)}
+                    className="shrink-0 rounded-[6px] bg-panel2 px-2.5 py-1 text-xs text-dim transition hover:text-cream"
+                  >
+                    {t('settings.account.refresh')}
+                  </button>
+                </div>
+                <div className="pt-3">
+                  {!accounts && <div className="py-2 text-xs text-dim">{t('settings.account.loading')}</div>}
+                  {accounts && accounts.length === 0 && (
+                    <EmptyState
+                      compact
+                      title={t('settings.account.empty')}
+                      description={lang === 'en' ? 'Connect the client once to let Mayhempedia remember account history locally.' : '连接一次客户端后，Mayhempedia 会在本地记住账号和对局记录。'}
+                    />
+                  )}
+                  {accounts && accounts.length > 0 && (
+                    <div className="flex flex-col">
+                      {accounts.map((account) => (
+                        <div key={account.puuid} className="flex items-center justify-between gap-3 border-b border-line/60 py-2 last:border-b-0">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="truncate text-sm">{accountName(account, lang)}</span>
+                              {account.isCurrent && (
+                                <span className="shrink-0 rounded bg-hex/10 px-1.5 py-px text-[10px] text-hex">{t('settings.account.current')}</span>
+                              )}
+                            </div>
+                            <div className="mt-0.5 text-xs text-dim">
+                              {t('settings.account.matches', '{n} 场').replace('{n}', String(account.matchCount))} ·{' '}
+                              {t('settings.account.detailsCached', '{n} 场详情缓存').replace('{n}', String(account.detailCount))} ·{' '}
+                              {t('settings.account.lastMatch', '最近对局')} {fmtAccountDate(account.latestGameCreationDate, lang)}
+                            </div>
+                          </div>
+                          <button onClick={() => forgetAccount(account.puuid)} className="shrink-0 text-xs text-dim transition hover:text-red">
+                            {t('settings.account.forget')}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </SettingsSection>
+
+              <SettingsSection title={t('settings.privacy.title', '数据与隐私')}>
+                <div className="flex items-center justify-between py-2">
+                  <div>
+                    <div className="text-sm">{t('settings.privacy.persist')}</div>
+                    <div className="mt-0.5 max-w-xl text-xs text-dim">{t('settings.privacy.persistDesc')}</div>
+                  </div>
+                  <Toggle
+                    on={settings.persistMatchHistory}
+                    onClick={() => update('persistMatchHistory', !settings.persistMatchHistory)}
+                  />
+                </div>
+              </SettingsSection>
+            </div>
+          )}
+
+          {settingsPage === 'updates' && (
+            <div className="grid gap-3">
+              <SettingsSection title={lang === 'en' ? 'Application updates' : '应用更新'}>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-sm">{lang === 'en' ? 'Update status' : '更新状态'}</div>
+                    <div className="mt-0.5 truncate text-xs text-dim">{updateStatusText(updateStatus)}</div>
+                  </div>
+                  {updateStatus?.state === 'downloaded' ? (
+                    <button
+                      type="button"
+                      onClick={installUpdate}
+                      className={BTN_PRIMARY + ' py-2'}
+                    >
+                      {lang === 'en' ? 'Restart to install' : '重启安装'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={checkUpdates}
+                      disabled={updateStatus?.state === 'checking' || updateStatus?.state === 'downloading'}
+                      className="shrink-0 rounded-[6px] border border-line px-3 py-2 text-xs font-extrabold text-dim transition hover:border-hex/45 hover:text-cream disabled:cursor-not-allowed disabled:opacity-55"
+                    >
+                      {lang === 'en' ? 'Check for updates' : '检查更新'}
+                    </button>
+                  )}
+                </div>
+              </SettingsSection>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -2027,14 +4144,483 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
 /* ---------------- 视图标题 / 英雄网格 / 海克斯 / Tier ---------------- */
 function ViewHead({ title, meta }: { title: string; meta?: string }) {
   return (
-    <div className="flex items-baseline gap-3 mb-4">
-      <h2 className="text-[22px] font-bold">{title}</h2>
-      {meta && <span className="text-[13px] text-dim">{meta}</span>}
-    </div>
+    <PageHeader eyebrow="Mayhempedia" title={title} description={meta} />
   )
 }
 
+interface ChampionRouteSummary {
+  count: number
+  names: string[]
+  damageTypes: string[]
+}
+
 function ChampionGrid({
+  core,
+  onPick,
+  detectedChamp,
+  detectedHasBuild,
+}: {
+  core: Core
+  onPick: (id: number) => void
+  detectedChamp: Champion | null
+  detectedHasBuild: boolean
+}) {
+  const t = useT()
+  const lang = useLang()
+  const [q, setQ] = useState('')
+  const [role, setRole] = useState<string | null>(null)
+  const [tierFilter, setTierFilter] = useState<string | null>(null)
+  const [view, setView] = useState<'tier' | 'grid'>('tier')
+  const [routeSummaries, setRouteSummaries] = useState<Record<number, ChampionRouteSummary>>({})
+  const hasBuild = (id: number) => !!core.buildIndex[id]
+  const done = Object.keys(core.buildIndex).length
+  const tiered = core.heroTier.length
+  const readyPct = Math.round((done / Math.max(core.champions.length, 1)) * 100)
+  const totalRouteCount = useMemo(
+    () => Object.values(routeSummaries).reduce((sum, summary) => sum + summary.count, 0),
+    [routeSummaries],
+  )
+  const routeSummaryKey = useMemo(
+    () =>
+      Object.entries(core.buildIndex)
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([id, file]) => `${id}:${file}`)
+        .join('|'),
+    [core.buildIndex],
+  )
+  useEffect(() => {
+    let cancelled = false
+    const entries = Object.entries(core.buildIndex)
+    setRouteSummaries({})
+    Promise.all(
+      entries.map(async ([id, file]) => {
+        try {
+          const build = await loadBuild(file, lang)
+          const archetypes = build.archetypes ?? []
+          return [
+            Number(id),
+            {
+              count: archetypes.length,
+              names: archetypes.map((route) => route.name).filter(Boolean).slice(0, 3),
+              damageTypes: [...new Set(archetypes.map((route) => route.damageType).filter(Boolean))].slice(0, 3),
+            },
+          ] as const
+        } catch {
+          return [Number(id), { count: 0, names: [], damageTypes: [] }] as const
+        }
+      }),
+    ).then((pairs) => {
+      if (!cancelled) setRouteSummaries(Object.fromEntries(pairs))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [lang, routeSummaryKey])
+  const tierById = useMemo(() => new Map(core.heroTier.map((h) => [h.id, h.tier])), [core.heroTier])
+  const roleCounts = useMemo(
+    () =>
+      ROLES.map((entry) => ({
+        ...entry,
+        count: core.champions.filter((champion) => champion.roles.includes(entry.key)).length,
+      })),
+    [core.champions],
+  )
+  const tierCounts = useMemo(
+    () =>
+      TIER_ORDER.map((tier) => ({
+        tier,
+        count: core.heroTier.filter((entry) => entry.tier === tier).length,
+      })),
+    [core.heroTier],
+  )
+  const list = useMemo(() => {
+    const s = q.trim().toLowerCase()
+    let filtered = s
+      ? core.champions.filter((c) => {
+          const alt = core.altChampionById.get(c.id)
+          return normalizedSearchText(
+            c.name,
+            c.title,
+            c.alias,
+            c.pinyin,
+            c.initials,
+            alt?.name,
+            alt?.title,
+            alt?.alias,
+            alt?.pinyin,
+            alt?.initials,
+          ).includes(s)
+        })
+      : core.champions
+    if (role) filtered = filtered.filter((c) => c.roles.includes(role))
+    if (tierFilter) filtered = filtered.filter((c) => tierById.get(c.id) === tierFilter)
+    return [...filtered].sort((a, b) => {
+      if (detectedChamp?.id === a.id) return -1
+      if (detectedChamp?.id === b.id) return 1
+      const tierA = tierById.get(a.id)
+      const tierB = tierById.get(b.id)
+      const tierDelta = (tierA ? TIER_ORDER.indexOf(tierA) : 99) - (tierB ? TIER_ORDER.indexOf(tierB) : 99)
+      if (tierDelta !== 0) return tierDelta
+      return (hasBuild(b.id) ? 1 : 0) - (hasBuild(a.id) ? 1 : 0)
+    })
+  }, [q, role, tierFilter, tierById, core.champions, core.altChampionById, detectedChamp?.id])
+  const tierGroups = useMemo(
+    () =>
+      TIER_ORDER.map((tier) => ({
+        tier,
+        meta: TIER_META[tier],
+        entries: list.filter((c) => tierById.get(c.id) === tier),
+      })).filter((g) => g.entries.length > 0),
+    [list, tierById],
+  )
+  const title = lang === 'en' ? 'Champion index' : '英雄图鉴'
+  const subtitle =
+    lang === 'en'
+      ? 'Find the champion first, then jump straight into Combat File. Built for champ select speed, not browsing slowly.'
+      : '先找到英雄，再直接进入 Combat File。这里按选人阶段的速度设计，不做慢慢逛的大首页。'
+
+  return (
+    <>
+      <section className={PAGE_HEADER}>
+        <div className="relative grid grid-cols-[minmax(0,1fr)_minmax(236px,330px)] gap-3 max-[880px]:grid-cols-1">
+          <div className="min-w-0">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">Champion index</div>
+            <h2 className="mt-0.5 text-[20px] font-black leading-tight text-cream">{title}</h2>
+            <p className="mt-1.5 max-w-[650px] text-[11px] leading-4 text-dim">{subtitle}</p>
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+              <span className="rounded border border-hex/35 bg-hex/8 px-2 py-0.5 text-[10px] font-black text-hex">
+                {done}/{core.champions.length} {lang === 'en' ? 'routes' : '路线'}
+              </span>
+              <span className="rounded border border-line/60 bg-panel/45 px-2 py-0.5 text-[10px] font-black text-dim">
+                {tiered} {lang === 'en' ? 'tiered' : '已评级'}
+              </span>
+              <span className="rounded border border-line/60 bg-panel/45 px-2 py-0.5 text-[10px] font-black text-dim">
+                {readyPct}% {lang === 'en' ? 'ready' : '就绪'}
+              </span>
+              <span className="rounded border border-line/60 bg-panel/45 px-2 py-0.5 text-[10px] font-black text-dim">
+                {totalRouteCount || '...'} {lang === 'en' ? 'playstyles' : '套玩法'}
+              </span>
+            </div>
+          </div>
+          <div className="rounded-[8px] border border-line/65 bg-[#0a1421]/72 p-2">
+            {detectedChamp ? (
+              <button
+                onClick={() => onPick(detectedChamp.id)}
+                className={
+                  'grid w-full grid-cols-[36px_minmax(0,1fr)_auto] items-center gap-2 rounded-[6px] border px-2 py-1.5 text-left transition hover:bg-panel2/45 active:translate-y-px ' +
+                  (detectedHasBuild ? 'border-hex/45 bg-hex/8' : 'border-red/45 bg-red/10')
+                }
+              >
+                <img src={icon(detectedChamp.iconLocal)} alt={detectedChamp.name} className="h-9 w-9 rounded border border-hex/35 object-cover" />
+                <span className="min-w-0">
+                  <span className="block truncate text-[12px] font-black text-cream">{detectedChamp.name}</span>
+                  <span className="block truncate text-[10px] text-dim">
+                    {detectedHasBuild ? t('champGrid.buildReady') : t('champGrid.buildMissing')}
+                  </span>
+                </span>
+                <span
+                  className={
+                    'rounded border px-1.5 py-0.5 text-[10px] font-black ' +
+                    (detectedHasBuild ? 'border-hex/35 bg-hex/8 text-hex' : 'border-red/35 bg-red/10 text-red')
+                  }
+                >
+                  {detectedHasBuild ? t('routeLibrary.status.ready', 'Ready') : t('routeLibrary.status.missing', 'Missing')}
+                </span>
+              </button>
+            ) : (
+              <div className="rounded-[6px] border border-line/65 bg-panel/45 px-2 py-2 text-[11px] leading-4 text-dim">
+                {t('champGrid.hint')}
+              </div>
+            )}
+            <div className="mt-2 h-1 overflow-hidden rounded-full bg-panel2">
+              <div className="h-full rounded-full bg-hex/85" style={{ width: `${readyPct}%` }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sticky top-4 z-20 mb-3 rounded-[8px] border border-line/75 bg-panel/95 p-2 shadow-[0_12px_34px_rgba(0,0,0,0.20)]">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 max-[760px]:grid-cols-1">
+          <input
+            className={SEARCH_INLINE + ' h-9 rounded-[6px]'}
+            placeholder={t('champGrid.search')}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            autoFocus
+          />
+          <div className="shrink-0 rounded-[6px] border border-line/65 bg-[#0a1421]/65 px-3 py-2 text-[11px] text-dim">
+            <span className="font-extrabold text-cream">{list.length}</span> / {core.champions.length}
+          </div>
+          <div className="flex rounded-[6px] border border-line/65 bg-[#0a1421]/65 p-0.5">
+            <button
+              onClick={() => setView('tier')}
+              className={'rounded px-2.5 py-1 text-[10px] font-black transition ' + (view === 'tier' ? 'bg-hex text-[#041017]' : 'text-dim hover:text-cream')}
+            >
+              {t('routeLibrary.tierView', 'Tier')}
+            </button>
+            <button
+              onClick={() => setView('grid')}
+              className={'rounded px-2.5 py-1 text-[10px] font-black transition ' + (view === 'grid' ? 'bg-hex text-[#041017]' : 'text-dim hover:text-cream')}
+            >
+              {t('routeLibrary.archiveView', 'Archive')}
+            </button>
+          </div>
+        </div>
+        <div className="mt-2 grid gap-1.5">
+          <div className="grid grid-cols-[52px_minmax(0,1fr)] items-center gap-2 rounded-[6px] border border-line/55 bg-[#07101b]/35 px-2 py-1.5 max-[620px]:grid-cols-1">
+            <div className="text-[9px] font-black uppercase tracking-[0.16em] text-dim">{lang === 'en' ? 'Tier' : '强度'}</div>
+            <div className="flex min-w-0 flex-wrap gap-1.5">
+              {tierCounts.map(({ tier, count }) => (
+                <button
+                  key={tier}
+                  onClick={() => setTierFilter((current) => (current === tier ? null : tier))}
+                  className={
+                    'rounded border px-2 py-1 text-[10px] font-black transition ' +
+                    (tierFilter === tier ? 'border-hex/45 bg-hex text-[#041017]' : 'border-line/70 bg-panel/80 text-dim hover:border-hex/35 hover:text-cream')
+                  }
+                >
+                  {tier} <span className="font-bold opacity-65">{count}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-[52px_minmax(0,1fr)_auto] items-center gap-2 rounded-[6px] border border-line/55 bg-[#07101b]/35 px-2 py-1.5 max-[760px]:grid-cols-[52px_minmax(0,1fr)] max-[620px]:grid-cols-1">
+            <div className="text-[9px] font-black uppercase tracking-[0.16em] text-dim">{lang === 'en' ? 'Role' : '位置'}</div>
+            <div className="flex min-w-0 flex-wrap gap-1.5">
+              <button
+                onClick={() => setRole(null)}
+                className={
+                  'group inline-flex items-center gap-1.5 rounded border px-2 py-1 text-[10px] font-black transition ' +
+                  (role === null ? 'border-hex/45 bg-hex text-[#041017]' : 'border-line/70 bg-panel/80 text-dim hover:border-hex/35 hover:text-cream')
+                }
+              >
+                <RoleIcon role={null} active={role === null} />
+                <span>{t('champGrid.all')}</span>
+              </button>
+              {roleCounts.map((r) => (
+                <button
+                  key={r.key}
+                  onClick={() => setRole((prev) => (prev === r.key ? null : r.key))}
+                  className={
+                    'group inline-flex items-center gap-1.5 rounded border px-2 py-1 text-[10px] font-black transition ' +
+                    (role === r.key ? 'border-hex/45 bg-hex text-[#041017]' : 'border-line/70 bg-panel/80 text-dim hover:border-hex/35 hover:text-cream')
+                  }
+                >
+                  <RoleIcon role={r.key} active={role === r.key} />
+                  <span>{t(`role.${r.key}`, r.label)}</span>
+                  <span className="font-bold opacity-60">{r.count}</span>
+                </button>
+              ))}
+            </div>
+            {(role || tierFilter || q.trim()) && (
+              <button
+                onClick={() => {
+                  setQ('')
+                  setRole(null)
+                  setTierFilter(null)
+                }}
+                className="justify-self-end rounded border border-line/70 bg-panel/65 px-2 py-1 text-[10px] font-black text-dim transition hover:border-hex/45 hover:text-cream max-[760px]:col-start-2 max-[620px]:col-start-auto max-[620px]:justify-self-start"
+              >
+                {t('routeLibrary.clearFilters', 'Clear filters')}
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {view === 'tier' ? (
+        <div className="flex flex-col gap-2">
+          {tierGroups.map((g) => (
+            <section key={g.tier} className={'relative overflow-hidden rounded-[8px] border p-2 ' + g.meta.row}>
+              <div className={'absolute inset-y-0 left-0 w-px opacity-70 ' + g.meta.bar} />
+              <div className="grid grid-cols-[44px_minmax(0,1fr)] gap-2.5">
+                <div className="flex flex-col items-center gap-1 pt-0.5">
+                  <div className={'grid h-8 w-8 place-items-center rounded-[6px] text-[16px] font-black ' + g.meta.badge}>{g.tier}</div>
+                  <div className="text-center text-[10px] font-black uppercase tracking-[0.08em] text-dim">{g.entries.length}</div>
+                </div>
+                <div className="min-w-0">
+                  <div className="mb-1.5 flex items-center justify-between gap-2">
+                    <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">{g.meta.label}</div>
+                    <div className="text-[10px] text-dim">{g.entries.length} {lang === 'en' ? 'champions' : '英雄'}</div>
+                  </div>
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(176px,1fr))] gap-1.5">
+                    {g.entries.map((c) => (
+                      <ChampionIndexRow
+                        key={c.id}
+                        champion={c}
+                        hasBuild={hasBuild(c.id)}
+                        routeSummary={routeSummaries[c.id]}
+                        isDetected={detectedChamp?.id === c.id}
+                        tier={tierById.get(c.id)}
+                        primaryRole={roleLabel(c, t)}
+                        onPick={onPick}
+                        t={t}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          ))}
+          {tierGroups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
+        </div>
+      ) : (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(118px,1fr))] gap-2">
+          {list.map((c) => (
+            <ChampionIndexCard
+              key={c.id}
+              champion={c}
+              hasBuild={hasBuild(c.id)}
+              routeSummary={routeSummaries[c.id]}
+              isDetected={detectedChamp?.id === c.id}
+              tier={tierById.get(c.id)}
+              primaryRole={roleLabel(c, t)}
+              onPick={onPick}
+              t={t}
+            />
+          ))}
+          {list.length === 0 && <div className="col-span-full p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
+        </div>
+      )}
+    </>
+  )
+}
+
+function roleLabel(champion: Champion, translate: ReturnType<typeof useT>) {
+  const primaryRoleKey = ROLES.find((r) => champion.roles.includes(r.key))
+  return primaryRoleKey ? translate(`role.${primaryRoleKey.key}`, primaryRoleKey.label) : champion.roles[0]
+}
+
+function ChampionIndexRow({
+  champion,
+  hasBuild,
+  routeSummary,
+  isDetected,
+  tier,
+  primaryRole,
+  onPick,
+  t,
+}: {
+  champion: Champion
+  hasBuild: boolean
+  routeSummary?: ChampionRouteSummary
+  isDetected: boolean
+  tier?: string
+  primaryRole: string
+  onPick: (id: number) => void
+  t: ReturnType<typeof useT>
+}) {
+  const lang = useLang()
+  const routeCount = routeSummary?.count ?? 0
+  const routeNames = routeSummary?.names ?? []
+  const routeCountText = lang === 'en'
+    ? `${routeCount} ${routeCount === 1 ? 'route' : 'routes'}`
+    : `${routeCount} 套玩法`
+  return (
+    <button
+      type="button"
+      onClick={() => onPick(champion.id)}
+      title={hasBuild ? champion.name : t('champGrid.noData', { name: champion.name })}
+      className={
+        'group grid h-11 grid-cols-[34px_minmax(0,1fr)_auto] items-center gap-2 rounded-[6px] border px-1.5 py-1 text-left transition hover:border-hex/45 hover:bg-panel2/55 active:translate-y-px ' +
+        (isDetected ? 'border-hex/60 bg-hex/8' : hasBuild ? 'border-line/65 bg-ink/28' : 'border-line/45 bg-ink/20 opacity-65')
+      }
+    >
+      <img src={icon(champion.iconLocal)} alt={champion.name} loading="lazy" className="h-8 w-8 rounded border border-line/80 object-cover transition group-hover:border-hex/45" />
+      <span className="min-w-0">
+        <span className="block truncate text-[12px] font-black text-cream">{champion.name}</span>
+        <span className="mt-0.5 block truncate text-[9px] font-bold text-dim">
+          {routeCount > 0 ? `${routeCountText} · ${routeNames.join(' / ')}` : primaryRole}
+        </span>
+      </span>
+      <span className="flex items-center gap-1 justify-self-end">
+        {tier && <span className="rounded border border-line/55 bg-panel2/55 px-1 py-0.5 text-[9px] font-black text-dim">{tier}</span>}
+        {!hasBuild && <span className="h-1.5 w-1.5 rounded-full bg-red" title={t('champGrid.cardMissing')} />}
+        {isDetected && <span className="h-1.5 w-1.5 rounded-full bg-hex" title={t('champGrid.current')} />}
+      </span>
+    </button>
+  )
+}
+
+function ChampionIndexCard({
+  champion,
+  hasBuild,
+  routeSummary,
+  isDetected,
+  tier,
+  primaryRole,
+  onPick,
+  t,
+}: {
+  champion: Champion
+  hasBuild: boolean
+  routeSummary?: ChampionRouteSummary
+  isDetected: boolean
+  tier?: string
+  primaryRole: string
+  onPick: (id: number) => void
+  t: ReturnType<typeof useT>
+}) {
+  const lang = useLang()
+  const routeCount = routeSummary?.count ?? 0
+  const routeNames = routeSummary?.names ?? []
+  const damageTypes = routeSummary?.damageTypes ?? []
+  return (
+    <button
+      type="button"
+      onClick={() => onPick(champion.id)}
+      title={hasBuild ? champion.name : t('champGrid.noData', { name: champion.name })}
+      className={
+        'group relative overflow-hidden rounded-[8px] border p-2 text-left transition hover:border-hex/45 hover:bg-panel2/50 active:translate-y-px ' +
+        (isDetected ? 'bg-hex/8 border-hex/65' : hasBuild ? 'bg-panel/74 border-line/65' : 'bg-panel/45 border-line/45 opacity-65')
+      }
+    >
+      <div className="relative flex items-center gap-2">
+        <div className="relative shrink-0">
+          <img src={icon(champion.iconLocal)} alt={champion.name} loading="lazy" className="h-9 w-9 rounded border border-line/70 object-cover transition group-hover:border-hex/45" />
+          {hasBuild && (
+            <span className="absolute -right-1 -bottom-1 grid h-3.5 w-3.5 place-items-center rounded bg-hex ring-2 ring-panel">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#061117" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </span>
+          )}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className={'truncate text-[11px] font-black ' + (hasBuild ? 'text-cream' : 'text-dim')}>{champion.name}</div>
+          <div className="mt-0.5 flex items-center gap-1 truncate text-[9px] font-bold text-dim">
+            {tier && <span className="text-dim">{tier}</span>}
+            <span className="truncate">{primaryRole}</span>
+          </div>
+        </div>
+      </div>
+      {routeCount > 0 ? (
+        <div className="mt-2 space-y-1">
+          <div className="flex items-center justify-between gap-2 rounded border border-hex/25 bg-hex/7 px-1.5 py-1">
+            <span className="text-[9px] font-black uppercase tracking-[0.08em] text-hex">{lang === 'en' ? 'Playstyles' : '玩法'}</span>
+            <span className="text-[11px] font-black text-cream">{routeCount}</span>
+          </div>
+          <div className="flex min-h-[18px] flex-wrap gap-1">
+            {damageTypes.map((type) => (
+              <span key={type} className="rounded border border-line/45 bg-[#050a11]/42 px-1.5 py-0.5 text-[8px] font-black text-dim">
+                {type}
+              </span>
+            ))}
+          </div>
+          <div className="line-clamp-2 min-h-[22px] text-[9px] font-bold leading-[11px] text-dim">
+            {routeNames.join(' / ')}
+          </div>
+        </div>
+      ) : (
+        <div className="mt-2 rounded border border-line/45 bg-[#050a11]/30 px-1.5 py-1 text-[9px] font-bold text-dim">
+          {t('champGrid.cardMissing')}
+        </div>
+      )}
+    </button>
+  )
+}
+
+function LegacyChampionGrid({
   core,
   onPick,
   detectedChamp,
@@ -2056,11 +4642,10 @@ function ChampionGrid({
     const s = q.trim().toLowerCase()
     let filtered = s
       ? core.champions.filter(
-          (c) =>
-            c.name.includes(q.trim()) ||
-            c.pinyin.includes(s) ||
-            c.initials.includes(s) ||
-            c.alias.toLowerCase().includes(s),
+          (c) => {
+            const alt = core.altChampionById.get(c.id)
+            return normalizedSearchText(c.name, c.title, c.alias, c.pinyin, c.initials, alt?.name, alt?.title, alt?.alias, alt?.pinyin, alt?.initials).includes(s)
+          },
         )
       : core.champions
     if (role) filtered = filtered.filter((c) => c.roles.includes(role))
@@ -2102,8 +4687,7 @@ function ChampionGrid({
     <>
       <ViewHead title={t('nav.champ')} meta={t('champGrid.coverage', { done, total: core.champions.length })} />
       <section className="glass-panel-strong relative mb-5 overflow-hidden rounded-[8px] border p-5">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-hex/80 via-hex/25 to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 h-40 w-72 bg-[radial-gradient(circle_at_top_right,rgba(208,173,104,0.12),transparent_62%)]" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-hex/45" />
         <div className="relative grid grid-cols-[minmax(0,1fr)_340px] gap-5 items-start max-[980px]:grid-cols-1">
           <div className="min-w-0">
             <div className="inline-flex items-center gap-2 rounded-md border border-hex/35 bg-hex/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-hex">
@@ -2131,7 +4715,7 @@ function ChampionGrid({
                 className={
                   'mt-3 flex w-full items-center gap-3 rounded-[8px] border p-3 text-left transition hover:-translate-y-0.5 cursor-pointer ' +
                   (detectedHasBuild
-                    ? 'border-gold/45 bg-gold/10 shadow-[0_0_34px_rgba(200,170,110,0.1)]'
+                    ? 'border-gold/45 bg-gold/10'
                     : 'border-red/45 bg-red/10')
                 }
               >
@@ -2362,7 +4946,6 @@ function ChampionGrid({
                     : 'bg-panel/55 border-line/60 hover:border-red/50 opacity-75')
               }
             >
-              <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-hex/0 blur-2xl transition group-hover:bg-hex/10" />
               <div className="relative flex items-start gap-3">
                 <div className="relative shrink-0">
                   <img
@@ -2405,52 +4988,121 @@ function ChampionGrid({
 
 function AugmentBrowser({ core }: { core: Core }) {
   const t = useT()
+  const lang = useLang()
   const [q, setQ] = useState('')
+  const [rarityFilter, setRarityFilter] = useState<number | 'all'>('all')
   const groups = useMemo(() => {
-    const s = q.trim()
-    const filtered = s ? core.augments.filter((a) => a.name.includes(s) || a.desc.includes(s)) : core.augments
+    const s = q.trim().toLocaleLowerCase()
+    let filtered = s
+      ? core.augments.filter((a) => {
+          const alt = core.altAugById.get(a.id)
+          return normalizedSearchText(a.name, a.desc, a.tooltip, alt?.name, alt?.desc, alt?.tooltip).includes(s)
+        })
+      : core.augments
+    if (rarityFilter !== 'all') filtered = filtered.filter((a) => a.rarity === rarityFilter)
     return RARITY_ORDER.map((r) => ({ rarity: r, meta: RARITY[r], items: filtered.filter((a) => a.rarity === r) })).filter(
       (g) => g.items.length > 0,
     )
-  }, [q, core])
+  }, [q, rarityFilter, core])
+  const shownCount = groups.reduce((sum, g) => sum + g.items.length, 0)
+  const raritySummary = RARITY_ORDER.map((rarity) => ({
+    rarity,
+    meta: RARITY[rarity],
+    count: core.augments.filter((a) => a.rarity === rarity).length,
+  }))
 
   return (
     <>
-      <ViewHead title={t('nav.aug')} meta={t('augBrowser.meta', { count: core.augments.length })} />
-      <section className={TOOLBAR}>
-        <div className="flex items-center gap-3 max-[760px]:flex-col max-[760px]:items-stretch">
-          <input
-            className={SEARCH_INLINE}
-            placeholder={t('augBrowser.search')}
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
-          <div className="shrink-0 rounded-lg border border-line/65 bg-panel2/45 px-3 py-2 text-xs text-dim">
-            <span className="font-extrabold text-cream">{groups.reduce((sum, g) => sum + g.items.length, 0)}</span> /{' '}
-            {core.augments.length}
+      <PageHeader
+        eyebrow={lang === 'en' ? 'Augment atlas' : '海克斯图鉴'}
+        title={t('nav.aug')}
+        description={lang === 'en'
+          ? 'Search the augment pool by name or effect. Rarity groups stay visible so the page reads like a decision library, not a raw asset grid.'
+          : '按名称或效果搜索海克斯。保留棱彩、黄金、白银分组，让这里更像决策图鉴，而不是单纯素材列表。'}
+        metrics={[
+          { label: lang === 'en' ? 'Shown' : '当前显示', value: `${shownCount}/${core.augments.length}`, tone: 'accent' },
+          ...raritySummary.map((entry) => ({
+            label: t(`rarity.${RARITY_KEY[entry.rarity]}`, entry.meta.label),
+            value: entry.count,
+            tone: entry.rarity === 2 ? 'accent' as const : 'muted' as const,
+          })),
+        ]}
+      />
+      <section className="glass-control sticky top-0 z-20 mb-2.5 rounded-[6px] border border-line/70 p-2.5 shadow-[0_12px_30px_rgba(0,0,0,0.20)]">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 max-[760px]:grid-cols-1">
+          <input className={SEARCH_INLINE} placeholder={t('augBrowser.search')} value={q} onChange={(e) => setQ(e.target.value)} />
+          <div className="flex items-center gap-1.5 max-[760px]:flex-wrap">
+            <div className="rounded-[5px] border border-line/55 bg-[#050a11]/40 px-2 py-1.5 text-[11px] font-bold text-dim">
+              <span className="font-black text-cream">{shownCount}</span> / {core.augments.length}
+            </div>
+            {raritySummary.map((entry) => (
+              <div key={entry.rarity} className="flex items-center gap-1.5 rounded-[5px] border border-line/45 bg-[#050a11]/28 px-2 py-1.5 text-[10px] font-black text-dim">
+                <span className={'h-2 w-2 rounded-full ' + entry.meta.bg} />
+                <span className={entry.meta.text}>{entry.count}</span>
+              </div>
+            ))}
           </div>
+        </div>
+        <div className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-line/45 pt-2">
+          <span className="mr-1 text-[9px] font-black uppercase tracking-[0.14em] text-dim">
+            {lang === 'en' ? 'Rarity' : '稀有度'}
+          </span>
+          <button
+            type="button"
+            onClick={() => setRarityFilter('all')}
+            className={
+              'rounded border px-2 py-1 text-[10px] font-black transition active:translate-y-px ' +
+              (rarityFilter === 'all'
+                ? 'border-hex/45 bg-hex text-[#041017]'
+                : 'border-line/60 bg-[#07101b]/52 text-dim hover:border-hex/35 hover:text-cream')
+            }
+          >
+            {lang === 'en' ? 'All' : '全部'}
+          </button>
+          {raritySummary.map((entry) => (
+            <button
+              key={entry.rarity}
+              type="button"
+              onClick={() => setRarityFilter((current) => (current === entry.rarity ? 'all' : entry.rarity))}
+              className={
+                'inline-flex items-center gap-1.5 rounded border px-2 py-1 text-[10px] font-black transition active:translate-y-px ' +
+                (rarityFilter === entry.rarity
+                  ? entry.meta.border + ' bg-panel2 text-cream'
+                  : 'border-line/60 bg-[#07101b]/52 text-dim hover:border-line hover:text-cream')
+              }
+            >
+              <span className={'h-1.5 w-1.5 rounded-full ' + entry.meta.bg} />
+              <span>{t(`rarity.${RARITY_KEY[entry.rarity]}`, entry.meta.label)}</span>
+              <span className="opacity-55">{entry.count}</span>
+            </button>
+          ))}
         </div>
       </section>
       {groups.map((g) => (
-        <div key={g.rarity} className="mb-6">
-          <div className="sticky top-[94px] z-10 mb-3 flex items-center gap-2 rounded-lg border border-line/60 bg-ink/82 px-3 py-2 text-sm font-semibold backdrop-blur-xl">
-            <span className={'w-2.5 h-2.5 rounded-full ' + g.meta.bg} />
-            <span className={g.meta.text}>{t(`rarity.${RARITY_KEY[g.rarity]}`, g.meta.label)}</span>
-            <span className="text-xs text-dim font-normal">{g.items.length}</span>
+        <section key={g.rarity} className="mb-3 overflow-hidden rounded-[6px] border border-line/65 bg-panel/35">
+          <div className="flex items-center justify-between gap-3 border-b border-line/55 bg-[#0a111b]/78 px-2.5 py-1.5">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className={'h-2.5 w-2.5 rounded-full ' + g.meta.bg} />
+              <span className={'text-[11px] font-black uppercase tracking-[0.14em] ' + g.meta.text}>
+                {t(`rarity.${RARITY_KEY[g.rarity]}`, g.meta.label)}
+              </span>
+              <span className="text-[10px] font-bold text-dim">{lang === 'en' ? 'Decision pool' : '决策池'}</span>
+            </div>
+            <span className="rounded border border-line/45 bg-[#050a11]/40 px-1.5 py-0.5 text-[10px] font-bold text-dim">{g.items.length}</span>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-2.5">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(82px,1fr))] gap-1.5 bg-[#07101b]/55 p-1.5">
             {g.items.map((a) => (
               <AugmentHoverCard key={a.id} augment={a}>
-                <div className="flex flex-col items-center gap-1.5 p-2.5 rounded-lg bg-panel border border-line transition hover:-translate-y-0.5">
-                  <div className={'w-14 h-14 rounded-md overflow-hidden border-2 ' + g.meta.border}>
-                    <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="w-full h-full object-cover" />
+                <div className="group flex h-[86px] min-w-0 flex-col items-center justify-start gap-1 rounded-[6px] border border-line/45 bg-[#0b121d]/78 px-1.5 py-2 text-center transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-panel2/62">
+                  <div className={'h-11 w-11 shrink-0 overflow-hidden rounded-[6px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.20)] transition group-hover:scale-[1.03] ' + g.meta.border}>
+                    <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="h-full w-full object-cover" />
                   </div>
-                  <span className="text-xs text-center leading-tight">{a.name}</span>
+                  <div className="line-clamp-2 min-h-[24px] w-full text-[11px] font-bold leading-[12px] text-cream">{a.name}</div>
                 </div>
               </AugmentHoverCard>
             ))}
           </div>
-        </div>
+        </section>
       ))}
       {groups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
     </>
@@ -2464,13 +5116,24 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
   const pn = core.patchNotes
   return (
     <>
-      <ViewHead title={t('nav.patch')} meta={t('patch.meta', { patch: pn.patch, date: pn.releaseDate })} />
+      <PageHeader
+        eyebrow={lang === 'en' ? 'Patch intelligence' : '战术更新'}
+        title={t('nav.patch')}
+        description={lang === 'en'
+          ? 'Mayhem-specific changes are surfaced first, with official patch context kept nearby for route review.'
+          : '优先展示海克斯大乱斗相关改动，再把官方补丁上下文放在旁边，方便回看路线是否需要调整。'}
+        metrics={[
+          { label: lang === 'en' ? 'Patch' : '补丁', value: pn.patch, tone: 'accent' },
+          { label: lang === 'en' ? 'Date' : '日期', value: pn.releaseDate },
+          { label: lang === 'en' ? 'Mayhem changes' : '专属改动', value: pn.mayhem.augmentChanges.length + pn.mayhem.bugfixes.length },
+        ]}
+      />
 
-      <section className={CARD + ' p-5 mb-5'}>
+      <section className={SURFACE + ' mb-3 p-3.5'}>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <div className="text-xs text-dim mb-1">{t('patch.theme')}</div>
-            <div className="text-lg font-bold text-cream">{pn.theme}</div>
+            <div className="mb-1 text-[10px] font-black uppercase tracking-[0.14em] text-dim">{t('patch.theme')}</div>
+            <div className="text-[16px] font-black text-cream">{pn.theme}</div>
             <div className="mt-2 text-xs text-dim">{pn.patch} / {pn.releaseDate}</div>
           </div>
           <PatchMark />
@@ -2479,57 +5142,65 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
           href={pn.sourceUrl}
           target="_blank"
           rel="noreferrer"
-          className="text-xs text-red hover:underline mt-1 inline-block"
+          className="mt-3 inline-flex rounded-md border border-line/65 bg-panel2/60 px-3 py-1.5 text-[11px] font-black text-dim transition hover:border-hex/45 hover:text-cream"
         >
           {t('patch.sourceLink')}
         </a>
       </section>
 
       {/* 海克斯大乱斗专属改动放最前面——这是这个 App 的核心受众最关心的部分 */}
-      <section className={CARD + ' p-5 mb-5 border-gold/30'}>
-        <div className="flex items-center gap-2 mb-3">
+      <section className={SURFACE + ' mb-3 p-3.5'}>
+        <div className="mb-3 flex items-center gap-2 border-b border-line/45 pb-2">
           <PatchMark />
-          <h3 className="text-base font-bold text-gold">{t('patch.mayhemTitle')}</h3>
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Mayhem focus</div>
+            <h3 className="mt-0.5 text-[15px] font-black text-cream">{t('patch.mayhemTitle')}</h3>
+          </div>
         </div>
-        <p className="text-[13px] text-dim leading-relaxed mb-4">
+        <p className="mb-4 text-[12px] leading-5 text-dim">
           {lang === 'en' && pn.mayhem.summaryEn ? pn.mayhem.summaryEn : pn.mayhem.summaryZh}
         </p>
         {pn.mayhem.augmentChanges.length > 0 && (
           <>
-            <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.augmentChanges')}</div>
-            <div className="flex flex-col rounded-lg border border-line/60 bg-ink/24 mb-4">
-              {pn.mayhem.augmentChanges.map((a, i) => (
-                <div
-                  key={i}
-                  className="grid grid-cols-[44px_180px_minmax(0,1fr)] items-center gap-3 px-3 py-3 max-[760px]:grid-cols-[44px_minmax(0,1fr)]"
-                >
-                  <AugmentGlyph icon={a.icon} />
-                  <div className="truncate text-sm font-semibold text-cream">{a.name}</div>
-                  <div className="min-w-0 text-[12px] text-dim leading-snug max-[760px]:col-span-2">
-                    {lang === 'en' && a.changeEn ? a.changeEn : a.change}
+            <div className="mb-2 text-[12px] font-black text-cream">{t('patch.augmentChanges')}</div>
+            <div className="mb-4 flex flex-col overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42">
+              {pn.mayhem.augmentChanges.map((a, i) => {
+                const name = lang === 'en' && a.nameEn ? a.nameEn : a.name
+                const change = lang === 'en' && a.changeEn ? a.changeEn : a.change
+                return (
+                  <div
+                    key={i}
+                    className="grid grid-cols-[44px_180px_minmax(0,1fr)] items-center gap-3 px-3 py-3 max-[760px]:grid-cols-[44px_minmax(0,1fr)]"
+                  >
+                    <AugmentGlyph icon={a.icon} />
+                    <div className="truncate text-sm font-semibold text-cream">{name}</div>
+                    <div className="min-w-0 text-[12px] text-dim leading-snug max-[760px]:col-span-2">
+                      {change}
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </>
         )}
         {pn.mayhem.bugfixes.length > 0 && (
           <>
-            <div className="text-[13px] font-semibold text-cream mb-2">{t('patch.bugfixes')}</div>
-            <ul className="list-disc list-inside text-[13px] text-dim space-y-1">
+            <div className="mb-2 text-[12px] font-black text-cream">{t('patch.bugfixes')}</div>
+            <ul className="space-y-1 text-[12px] leading-5 text-dim">
               {(lang === 'en' && pn.mayhem.bugfixesEn ? pn.mayhem.bugfixesEn : pn.mayhem.bugfixes).map((b, i) => (
-                <li key={i}>{b}</li>
+                <li key={i} className="rounded-[6px] border border-line/45 bg-[#07101b]/36 px-2.5 py-1.5">{b}</li>
               ))}
             </ul>
           </>
         )}
       </section>
 
-      <section className={CARD + ' p-5 mb-5'}>
-        <h3 className="text-base font-bold text-cream mb-3">{t('patch.championChanges')}</h3>
-        <div className="flex flex-col divide-y divide-line/55 rounded-lg border border-line/60 bg-ink/24">
+      <section className={SURFACE + ' mb-3 p-3.5'}>
+        <h3 className="mb-3 text-[14px] font-black text-cream">{t('patch.championChanges')}</h3>
+        <div className="flex flex-col divide-y divide-line/55 overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42">
           {pn.championChanges.map((c) => {
             const champ = core.champions.find((ch) => ch.id === c.championId)
+            const name = lang === 'en' ? (c.championNameEn ?? champ?.name ?? c.championName) : c.championName
             const lines = lang === 'en' && c.changesEn ? c.changesEn : c.changes
             return (
               <button
@@ -2538,10 +5209,10 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
                 className="grid grid-cols-[44px_128px_minmax(0,1fr)] items-start gap-3 px-3 py-3 text-left transition hover:bg-panel2/45 cursor-pointer max-[840px]:grid-cols-[44px_minmax(0,1fr)]"
               >
                 {champ && (
-                  <img src={icon(champ.iconLocal)} alt={champ.name} className="w-10 h-10 rounded-lg shrink-0 border border-line/70" />
+                  <img src={icon(champ.iconLocal)} alt={name} className={ICON_ASSET + ' h-10 w-10'} />
                 )}
                 <div className="min-w-0">
-                  <div className="truncate text-sm font-semibold text-cream">{c.championName}</div>
+                  <div className="truncate text-sm font-semibold text-cream">{name}</div>
                   <div className="mt-1 text-[11px] text-dim">{t('patch.championChanges')}</div>
                 </div>
                 <ul className="min-w-0 text-[12px] text-dim leading-snug space-y-1 max-[840px]:col-span-2">
@@ -2556,9 +5227,9 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       </section>
 
       {pn.itemChanges.length > 0 && (
-        <section className={CARD + ' p-5 mb-5'}>
-          <h3 className="text-base font-bold text-cream mb-3">{t('patch.itemChanges')}</h3>
-          <div className="flex flex-col divide-y divide-line/55 rounded-lg border border-line/60 bg-ink/24">
+        <section className={SURFACE + ' mb-3 p-3.5'}>
+          <h3 className="mb-3 text-[14px] font-black text-cream">{t('patch.itemChanges')}</h3>
+          <div className="flex flex-col divide-y divide-line/55 overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42">
             {pn.itemChanges.map((it, i) => {
               const item = it.itemId != null ? core.itemById.get(it.itemId) : undefined
               const name = item?.name ?? (lang === 'en' && it.itemNameEn ? it.itemNameEn : it.itemName)
@@ -2566,7 +5237,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
               return (
                 <div key={i} className="grid grid-cols-[44px_140px_minmax(0,1fr)] items-start gap-3 px-3 py-3 max-[760px]:grid-cols-[44px_minmax(0,1fr)]">
                   {item && (
-                    <img src={icon(item.iconLocal)} alt={name} className="w-10 h-10 rounded-lg shrink-0 border border-line/70 bg-ink/40" />
+                    <img src={icon(item.iconLocal)} alt={name} className={ICON_ASSET + ' h-10 w-10 bg-ink/40'} />
                   )}
                   <div className="text-sm font-semibold text-cream">{name}</div>
                   <ul className="min-w-0 text-[12px] text-dim leading-snug space-y-1 max-[760px]:col-span-2">
@@ -2582,11 +5253,11 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
       )}
 
       {pn.systemChanges.length > 0 && (
-        <section className={CARD + ' p-5'}>
-          <h3 className="text-base font-bold text-cream mb-3">{t('patch.systemChanges')}</h3>
+        <section className={SURFACE + ' p-3.5'}>
+          <h3 className="mb-3 text-[14px] font-black text-cream">{t('patch.systemChanges')}</h3>
           <div className="flex flex-col gap-2">
             {(lang === 'en' && pn.systemChangesEn ? pn.systemChangesEn : pn.systemChanges).map((s, i) => (
-              <div key={i} className="rounded-lg border border-line/55 bg-panel2/32 px-3 py-2 text-[13px] leading-relaxed text-dim">
+              <div key={i} className="rounded-[6px] border border-line/55 bg-[#07101b]/42 px-3 py-2 text-[12px] leading-5 text-dim">
                 {s}
               </div>
             ))}
@@ -2610,12 +5281,12 @@ function AugmentGlyph({ icon: slug }: { icon?: string }) {
         src={`/assets/mayhem-augments/${slug}.webp`}
         alt=""
         aria-hidden="true"
-        className="h-10 w-10 shrink-0 rounded-lg border border-gold/40 object-cover"
+        className={ICON_ASSET + ' h-10 w-10'}
       />
     )
   return (
-    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-gold/40 bg-gold/10" aria-hidden="true">
-      <span className="h-3.5 w-3.5 rotate-45 rounded-[3px] border border-gold/60 bg-gold/15" />
+    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[6px] border border-line/70 bg-[#07101b]/52" aria-hidden="true">
+      <span className="h-3.5 w-3.5 rotate-45 rounded-[3px] border border-hex/55 bg-hex/10" />
     </span>
   )
 }
@@ -2624,7 +5295,7 @@ function AugmentGlyph({ icon: slug }: { icon?: string }) {
 // 发光强度由强变无——一眼"感受到"层级差，不是靠读文字/边框色才知道。
 function PatchMark() {
   return (
-    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-gold/35 bg-gold/10 text-gold">
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-[6px] border border-hex/35 bg-hex/10 text-hex">
       <svg
         width="19"
         height="19"
@@ -2646,33 +5317,33 @@ function PatchMark() {
 
 const TIER_META: Record<string, { row: string; badge: string; bar: string; label: string }> = {
   S: {
-    row: 'border-gold/45 bg-gold/10',
-    badge: 'bg-gold text-[#1b1307]',
-    bar: 'bg-gold',
+    row: 'border-line/80 bg-panel/72',
+    badge: 'border border-gold/45 bg-[#16140f] text-gold',
+    bar: 'bg-gold/75',
     label: 'Priority routes',
   },
   A: {
-    row: 'border-hex/35 bg-hex/8',
-    badge: 'bg-hex text-[#061117]',
-    bar: 'bg-hex',
+    row: 'border-line/75 bg-panel/64',
+    badge: 'border border-hex/45 bg-[#0b1822] text-hex',
+    bar: 'bg-hex/70',
     label: 'Stable high value',
   },
   B: {
-    row: 'border-line/80 bg-panel/70',
-    badge: 'bg-panel2 text-cream',
-    bar: 'bg-dim',
+    row: 'border-line/70 bg-panel/56',
+    badge: 'border border-line/60 bg-panel2 text-cream',
+    bar: 'bg-dim/70',
     label: 'Playable picks',
   },
   C: {
-    row: 'border-line/65 bg-panel/50',
-    badge: 'bg-[#202936] text-dim',
-    bar: 'bg-line',
+    row: 'border-line/60 bg-panel/44',
+    badge: 'border border-line/55 bg-[#202936] text-dim',
+    bar: 'bg-line/80',
     label: 'Narrow use cases',
   },
   D: {
-    row: 'border-red/20 bg-red/6 opacity-80',
-    badge: 'bg-[#251418] text-red',
-    bar: 'bg-red',
+    row: 'border-red/18 bg-panel/36 opacity-85',
+    badge: 'border border-red/35 bg-[#251418] text-red',
+    bar: 'bg-red/65',
     label: 'Low confidence routes',
   },
 }
@@ -2784,10 +5455,12 @@ function Detail({
   customRoutes: CustomRoute[]
 }) {
   const t = useT()
+  const lang = useLang()
   const champ = core.champions.find((c) => c.id === championId)
   const [build, setBuild] = useState<Build | null | undefined>(undefined)
   const [activeIdx, setActiveIdx] = useState(0)
   const [syncPulse, setSyncPulse] = useState(false)
+  const lastLoadedChampionId = useRef<number | null>(null)
   const covered = useMemo(
     () =>
       Object.keys(core.buildIndex)
@@ -2798,18 +5471,20 @@ function Detail({
 
   useEffect(() => {
     const file = core.buildIndex[championId]
+    const championChanged = lastLoadedChampionId.current !== championId
+    lastLoadedChampionId.current = championId
     if (!file) {
       setBuild(withCustomRoutes(null, championId, customRoutes, core))
       return
     }
-    setBuild(undefined)
-    loadBuild(file)
+    if (championChanged) setBuild(undefined)
+    loadBuild(file, lang)
       .then((loaded) => setBuild(withCustomRoutes(loaded, championId, customRoutes, core)))
       // 没有 .catch 的话，loadBuild 一旦 reject(网络抖动/build json 损坏/打包路径问题)，build 会永远
       // 卡在 undefined(加载中)，用户看到永久转圈还没报错。退回 null 走"无出装"空态，跟隔壁
       // DetectedRouteCard 的处理保持一致。
       .catch(() => setBuild(withCustomRoutes(null, championId, customRoutes, core)))
-  }, [championId, core, customRoutes])
+  }, [championId, core, customRoutes, lang])
 
   useEffect(() => {
     if (!build) return
@@ -2833,63 +5508,67 @@ function Detail({
   return (
     <>
       <button
-        className="mb-3.5 inline-flex items-center gap-2 rounded-lg border border-line/70 bg-panel/55 px-3 py-2 text-sm font-bold text-hex cursor-pointer transition hover:-translate-y-0.5 hover:border-hex/55 hover:bg-hex/8"
+        className="group mb-2.5 inline-flex h-8 items-center gap-1.5 rounded-md border border-line/45 bg-transparent px-2 text-[12px] font-bold text-dim cursor-pointer transition hover:border-hex/35 hover:bg-white/[0.04] hover:text-cream active:scale-[0.98]"
         onClick={onBack}
       >
-        <span aria-hidden="true">←</span>
+        <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded border border-line/40 bg-[#050a11]/45 text-[13px] leading-none text-hex/85 transition group-hover:border-hex/45 group-hover:text-hex">←</span>
         <span>{t('detail.back')}</span>
       </button>
       {champ && build && build.archetypes.length > 1 && (
-        <section className="glass-panel mb-5 rounded-[8px] border border-gold/35 p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-gold">Pre-game route lock</div>
-              <div className="mt-1 text-lg font-extrabold text-cream">{t('detail.chooseArchetype', { name: champ.name })}</div>
-              <div className="mt-1 text-xs leading-relaxed text-dim">
-                {t('detail.chooseArchetypeDesc')}
-              </div>
+        <section className="glass-panel mb-3 rounded-[8px] border border-line/70 p-2.5">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/35" />
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Route switcher</div>
+              <div className="mt-0.5 truncate text-[12px] font-bold text-dim">{champ.name} · {active?.name ?? t('detail.chooseArchetype', { name: champ.name })}</div>
             </div>
-            {active && (
-              <div className="rounded-lg border border-hex/35 bg-hex/10 px-3 py-2 text-right">
-                <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-hex">
-                  {syncPulse ? 'Synced to overlay' : 'Overlay will show'}
-                </div>
-                <div className="mt-0.5 text-sm font-extrabold text-cream">{active.name}</div>
-              </div>
-            )}
+            <div className="rounded border border-hex/30 bg-hex/8 px-2 py-1 text-[10px] font-black text-hex">
+              {syncPulse ? 'Synced' : 'Current route'}
+            </div>
           </div>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            {build.archetypes.map((a, i) => (
-              <button
-                key={a.key}
-                onClick={() => chooseArchetype(i)}
-                className={
-                  'flex min-h-[68px] items-center justify-between gap-3 rounded-lg border px-4 py-3 text-left cursor-pointer transition hover:-translate-y-0.5 ' +
-                  (i === activeIdx
-                    ? 'border-gold/80 bg-gold text-[#1d1709] shadow-[0_14px_30px_rgba(208,173,104,0.18)]'
-                    : 'border-line/70 bg-panel/78 text-dim hover:border-hex/50 hover:text-cream')
-                }
-              >
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-extrabold">{a.name}</span>
-                  <span className={i === activeIdx ? 'mt-1 block text-[11px] text-[#2b1e07]/75' : 'mt-1 block text-[11px] text-dim'}>
-                    {i === activeIdx ? t('detail.archetypeLocked') : t('detail.archetypeSetActive')}
-                  </span>
-                </span>
-                <span
+            <div className="grid gap-1.5 sm:grid-cols-2">
+            {build.archetypes.map((a, i) => {
+              const coreAugments = a.augments.core
+                .map((ref) => getAugment(core.augById, ref.id)?.name ?? ref.name)
+                .filter(Boolean)
+                .slice(0, 2)
+              return (
+                <button
+                  key={a.key}
+                  onClick={() => chooseArchetype(i)}
                   className={
-                    'shrink-0 rounded-lg px-2.5 py-1 text-[11px] font-extrabold ' +
+                    'flex min-h-[58px] cursor-pointer items-center justify-between gap-2 rounded-md border px-2.5 py-2 text-left transition hover:-translate-y-0.5 ' +
                     (i === activeIdx
-                      ? 'bg-[#2b1e07]/15 text-[#2b1e07]'
-                      : a.damageType === 'AP'
-                        ? 'bg-[#9664dc]/18 text-[#c9a3f0]'
-                        : 'bg-[#dc8246]/18 text-[#f0a97a]')
+                      ? 'border-hex/70 bg-hex text-[#041017] shadow-[0_10px_22px_rgba(34,211,238,0.14)]'
+                      : 'border-line/70 bg-panel/78 text-dim hover:border-hex/50 hover:text-cream')
                   }
                 >
-                  {a.damageType}
-                </span>
-              </button>
-            ))}
+                  <span className="min-w-0">
+                    <span className="block truncate text-[12px] font-extrabold">{a.name}</span>
+                    <span className={i === activeIdx ? 'mt-0.5 block truncate text-[10px] font-bold text-[#041017]/75' : 'mt-0.5 block truncate text-[10px] font-bold text-hex/85'}>
+                      {coreAugments.length > 0
+                        ? `${lang === 'en' ? 'Core' : '核心'}: ${coreAugments.join(' / ')}`
+                        : i === activeIdx ? t('detail.archetypeLocked') : t('detail.archetypeSetActive')}
+                    </span>
+                    <span className={i === activeIdx ? 'mt-0.5 block text-[9px] text-[#041017]/65' : 'mt-0.5 block text-[9px] text-dim'}>
+                      {i === activeIdx ? t('detail.archetypeLocked') : t('detail.archetypeSetActive')}
+                    </span>
+                  </span>
+                  <span
+                    className={
+                      'shrink-0 rounded px-2 py-0.5 text-[10px] font-extrabold ' +
+                      (i === activeIdx
+                        ? 'bg-[#041017]/15 text-[#041017]'
+                        : a.damageType === 'AP'
+                          ? 'bg-[#9664dc]/18 text-[#c9a3f0]'
+                          : 'bg-[#dc8246]/18 text-[#f0a97a]')
+                    }
+                  >
+                    {a.damageType}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </section>
       )}
@@ -2930,8 +5609,8 @@ function Detail({
           )}
         </div>
       )}
-      {active && <AugmentDecisionLab arch={active} core={core} />}
       {active && <ArchetypeCard key={active.key} arch={active} augById={core.augById} itemById={core.itemById} />}
+      {active && <AugmentDecisionLab arch={active} core={core} />}
     </>
   )
 }
@@ -2947,104 +5626,52 @@ function ChampionWarRoom({
   active: Archetype | undefined
   core: Core
 }) {
-  const t = useT()
-  const coreAugs = active?.augments.core.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
-  const goodAugs = active?.augments.good.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
-  const trapAugs = active?.augments.trap.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
-  const starterItems = active?.starterItems?.map((ref) => core.itemById.get(ref.id)).filter((i): i is Item => !!i) ?? []
-  const firstItems = active?.items.map((ref) => core.itemById.get(ref.id)).filter((i): i is Item => !!i).slice(0, 6) ?? []
-  const routeCount = build ? build.archetypes.length : 0
+  const routeCount = build?.archetypes.length ?? 0
+  const coveredCount = Object.keys(core.buildIndex).length
+  const typeTone =
+    !active
+      ? 'border-line/55 bg-[#050a11]/48 text-dim'
+      : active.damageType === 'AP'
+      ? 'border-[#9664dc]/35 bg-[#9664dc]/14 text-[#c9a3f0]'
+      : active.damageType === 'Tank'
+        ? 'border-[#63c07a]/35 bg-[#63c07a]/12 text-[#8bd99e]'
+        : 'border-[#dc8246]/35 bg-[#dc8246]/14 text-[#f0a97a]'
 
   return (
-    <section className="relative overflow-hidden rounded-[8px] border border-gold/30 bg-[linear-gradient(135deg,rgba(17,28,47,0.96),rgba(9,20,40,0.92))] p-6 shadow-[0_22px_68px_rgba(0,0,0,0.3),0_0_62px_rgba(200,170,110,0.08)]">
-      <div className="pointer-events-none absolute -right-16 -top-20 h-60 w-60 rounded-full bg-gold/10 blur-3xl" />
-      <div className="pointer-events-none absolute left-20 bottom-0 h-44 w-56 rounded-full bg-hex/8 blur-3xl" />
-      <div className="relative grid grid-cols-[minmax(0,1fr)_340px] items-start gap-6 max-[1000px]:grid-cols-1">
-        <div className="min-w-0">
-          <div className="flex items-start gap-4">
-            <img
-              src={icon(champ.iconLocal)}
-              alt={champ.name}
-              className="h-24 w-24 rounded-[8px] border border-gold/45 object-cover shadow-[0_0_34px_rgba(200,170,110,0.16)]"
-            />
-            <div className="min-w-0">
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-gold">Mayhem combat file</div>
-              <h1 className="mt-2 text-[38px] leading-none font-extrabold text-cream">{champ.name}</h1>
-              <div className="mt-2 text-sm text-dim">{champ.title}</div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-full border border-line/70 bg-panel/70 px-3 py-1 text-xs text-dim">
-                  {routeCount ? t('warRoom.routeCount', { n: routeCount }) : t('warRoom.routePending')}
-                </span>
-                {active && (
-                  <span className="rounded-full border border-hex/35 bg-hex/10 px-3 py-1 text-xs font-bold text-hex">
-                    {t('warRoom.current', { name: active.name })}
-                  </span>
-                )}
-                {active && (
-                  <span
-                    className={
-                      'rounded-full px-3 py-1 text-xs font-bold ' +
-                      (active.damageType === 'AP' ? 'bg-[#9664dc]/18 text-[#c9a3f0]' : 'bg-[#dc8246]/18 text-[#f0a97a]')
-                    }
-                  >
-                    {active.damageType}
-                  </span>
-                )}
-              </div>
+    <section className="relative mb-3 overflow-hidden rounded-[8px] border border-hex/24 bg-[#0b1421] p-3 shadow-[0_12px_28px_rgba(0,0,0,0.22)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/45" />
+      <div className="relative flex flex-wrap items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <img
+            src={icon(champ.iconLocal)}
+            alt={champ.name}
+            className="h-12 w-12 shrink-0 rounded-[6px] border border-hex/45 object-cover"
+          />
+          <div className="min-w-0">
+            <div className="text-[9px] font-black uppercase tracking-[0.16em] text-hex">Mayhem combat file</div>
+            <div className="mt-0.5 flex min-w-0 flex-wrap items-center gap-2">
+              <h1 className="truncate text-[21px] font-black leading-none text-cream">{champ.name}</h1>
+              <span className="truncate text-[11px] font-bold text-dim">{champ.title}</span>
             </div>
-          </div>
-
-          <div className="mt-6 rounded-[8px] border border-hex/25 bg-hex/8 p-4">
-            <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-hex">Decision brief</div>
-            <p className="mt-2 text-sm leading-7 text-cream">
-              {active?.note || t('warRoom.noNote')}
-            </p>
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-3 max-[900px]:grid-cols-1">
-            <CombatRule
-              label={t('warRoom.rule.core')}
-              value={coreAugs.length > 0 ? t('warRoom.rule.core.value.has') : t('warRoom.rule.core.value.none')}
-              detail={coreAugs[0] ? t('warRoom.rule.core.detail.has', { name: coreAugs[0].name }) : t('warRoom.rule.core.detail.none')}
-            />
-            <CombatRule
-              label={t('warRoom.rule.good')}
-              value={goodAugs.length > 0 ? t('warRoom.rule.good.value.has') : t('warRoom.rule.good.value.none')}
-              detail={goodAugs[0] ? t('warRoom.rule.good.detail.has', { name: goodAugs[0].name }) : t('warRoom.rule.good.detail.none')}
-            />
-            <CombatRule
-              label={t('warRoom.rule.trap')}
-              value={trapAugs.length > 0 ? t('warRoom.rule.trap.value.has') : t('warRoom.rule.trap.value.none')}
-              detail={trapAugs[0] ? t('warRoom.rule.trap.detail.has', { name: trapAugs[0].name }) : t('warRoom.rule.trap.detail.none')}
-            />
+            <div className="mt-1 truncate text-[12px] font-black text-hex">{active?.name ?? 'Route pending'}</div>
           </div>
         </div>
-
-        <div className="rounded-[8px] border border-line/70 bg-[#0a1428]/75 p-4 shadow-[inset_0_1px_0_rgba(240,230,210,0.06)]">
-          <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">At a glance</div>
-          <QuickAugLine label={t('warRoom.quick.core')} tone="core" items={coreAugs} />
-          <QuickAugLine label={t('warRoom.quick.good')} tone="good" items={goodAugs} />
-          <QuickAugLine label={t('warRoom.quick.trap')} tone="trap" items={trapAugs} />
-          <div className="mt-4 border-t border-line/60 pt-4">
-            <div className="mb-2 text-xs font-bold text-dim">{t('warRoom.itemOrder')}</div>
-            {starterItems.length > 0 || firstItems.length > 0 ? (
-              <div className="space-y-3">
-                {starterItems.length > 0 && (
-                  <div>
-                    <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-gold">{t('warRoom.starterItems')}</div>
-                    <MiniItemLine items={starterItems} />
-                  </div>
-                )}
-                {firstItems.length > 0 && (
-                  <div>
-                    <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-hex">{t('warRoom.finalItems')}</div>
-                    <MiniItemLine items={firstItems} />
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="text-xs text-dim">{t('warRoom.itemOrderPending')}</div>
-            )}
-          </div>
+        <div className={'grid h-9 min-w-9 place-items-center rounded-md border px-2 text-[11px] font-black ' + typeTone}>
+          {active?.damageType ?? '-'}
+        </div>
+      </div>
+      <div className="relative mt-2 grid grid-cols-3 gap-1.5 max-[620px]:grid-cols-1">
+        <div className="rounded-[5px] border border-line/45 bg-[#050a11]/34 px-2 py-1.5">
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">Routes</div>
+          <div className="mt-0.5 text-[14px] font-black text-cream">{routeCount || '-'}</div>
+        </div>
+        <div className="rounded-[5px] border border-line/45 bg-[#050a11]/34 px-2 py-1.5">
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">Library</div>
+          <div className="mt-0.5 text-[14px] font-black text-cream">{coveredCount}</div>
+        </div>
+        <div className="rounded-[5px] border border-line/45 bg-[#050a11]/34 px-2 py-1.5">
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">Status</div>
+          <div className="mt-0.5 text-[14px] font-black text-hex">{active ? 'Ready' : 'Pending'}</div>
         </div>
       </div>
     </section>
@@ -3063,8 +5690,32 @@ function stackItems(items: Item[]): CountedItem[] {
   return stacked
 }
 
-function MiniItemLine({ items }: { items: Item[] }) {
+function MiniItemLine({ items, showNames = false }: { items: Item[]; showNames?: boolean }) {
   const visibleItems = stackItems(items)
+  if (showNames) {
+    return (
+      <div className="grid grid-cols-6 gap-2 max-[980px]:grid-cols-3">
+        {visibleItems.map((it, idx) => (
+          <div key={it.id + '-' + idx} className="min-w-0 rounded-lg border border-line/70 bg-panel/65 p-2 text-center">
+            <span className="relative mx-auto block w-fit">
+              <img src={icon(it.iconLocal)} alt={it.name} title={it.name} className="h-10 w-10 rounded-lg border border-line/80" />
+              {it.count > 1 && (
+                <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-panel bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                  {it.count}
+                </span>
+              )}
+            </span>
+            <div className="mt-1.5 line-clamp-2 min-h-[28px] text-[11px] font-bold leading-[14px] text-cream">{it.name}</div>
+          </div>
+        ))}
+        {Array.from({ length: Math.max(0, 6 - visibleItems.length) }).map((_, idx) => (
+          <div key={`empty-${idx}`} className="grid min-h-[80px] place-items-center rounded-lg border border-dashed border-line/55 bg-panel/35 text-[11px] font-bold text-dim">
+            空
+          </div>
+        ))}
+      </div>
+    )
+  }
   return (
     <div className="flex flex-wrap items-center gap-2">
       {visibleItems.map((it, idx) => (
@@ -3084,16 +5735,6 @@ function MiniItemLine({ items }: { items: Item[] }) {
   )
 }
 
-function CombatRule({ label, value, detail }: { label: string; value: string; detail: string }) {
-  return (
-    <div className="rounded-[8px] border border-line/60 bg-panel/58 p-3">
-      <div className="text-[11px] font-bold text-dim">{label}</div>
-      <div className="mt-1 text-sm font-extrabold text-cream">{value}</div>
-      <div className="mt-2 text-[11px] leading-relaxed text-dim">{detail}</div>
-    </div>
-  )
-}
-
 function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
   const t = useT()
   const lang = useLang()
@@ -3101,12 +5742,22 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
   const [pickedIds, setPickedIds] = useState<Array<number | null>>([null, null, null])
   const [ownedQuery, setOwnedQuery] = useState('')
   const [ownedIds, setOwnedIds] = useState<number[]>([])
-  const selected = pickedIds.map((id) => (id == null ? null : getAugment(core.augById, id)))
-  const ownedAugments = ownedIds.map((id) => getAugment(core.augById, id)).filter((a): a is Augment => !!a)
-  const decisions = selected
-    .filter((a): a is Augment => !!a)
-    .map((augment) => scoreAugmentPick(augment, arch, ownedAugments, lang))
-    .sort((a, b) => b.score - a.score)
+  const selected = useMemo(
+    () => pickedIds.map((id) => (id == null ? null : getAugment(core.augById, id))),
+    [core.augById, pickedIds],
+  )
+  const ownedAugments = useMemo(
+    () => ownedIds.map((id) => getAugment(core.augById, id)).filter((a): a is Augment => !!a),
+    [core.augById, ownedIds],
+  )
+  const decisions = useMemo(
+    () =>
+      selected
+        .filter((a): a is Augment => !!a)
+        .map((augment) => scoreAugmentPick(augment, arch, ownedAugments, lang))
+        .sort((a, b) => b.score - a.score),
+    [arch, lang, ownedAugments, selected],
+  )
   const winner = decisions[0]
 
   const updateQuery = (idx: number, value: string) => {
@@ -3128,15 +5779,18 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
   const removeOwned = (id: number) => setOwnedIds((current) => current.filter((ownedId) => ownedId !== id))
 
   return (
-    <section className={CARD + ' mt-5 p-5'}>
-      <div className="pointer-events-none absolute -right-12 -top-16 h-44 w-44 rounded-full bg-hex/10 blur-3xl" />
-      <div className="relative grid grid-cols-[minmax(0,1fr)_320px] gap-5 max-[1000px]:grid-cols-1">
+    <section className={CARD + ' mt-3 p-3'}>
+      <div className="relative grid grid-cols-[minmax(0,1fr)_300px] gap-3 max-[1000px]:grid-cols-1">
         <div className="min-w-0">
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-hex">Augment decision lab</div>
-          <h3 className="mt-1 text-xl font-extrabold text-cream">{t('lab.title')}</h3>
-          <p className="mt-2 text-sm leading-6 text-dim">
-            {t('lab.subtitle')}
-          </p>
+          <div className="mb-2 flex items-end justify-between gap-3 border-b border-line/50 pb-2">
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Augment decision lab</div>
+              <h3 className="mt-0.5 truncate text-[16px] font-black text-cream">{t('lab.title')}</h3>
+            </div>
+            <div className="shrink-0 rounded border border-line/55 bg-[#050a11]/48 px-2 py-1 text-[10px] font-black text-dim">
+              3 choices
+            </div>
+          </div>
           <OwnedAugmentsPanel
             query={ownedQuery}
             ownedAugments={ownedAugments}
@@ -3145,7 +5799,7 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
             onAdd={addOwned}
             onRemove={removeOwned}
           />
-          <div className="mt-4 grid grid-cols-3 gap-3 max-[820px]:grid-cols-1">
+          <div className="mt-2 grid grid-cols-3 gap-2 max-[820px]:grid-cols-1">
             {[0, 1, 2].map((idx) => (
               <AugmentChoiceInput
                 key={idx}
@@ -3160,24 +5814,24 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
           </div>
         </div>
 
-        <div className="relative rounded-[8px] border border-line/70 bg-[#0a1428]/70 p-4">
+        <div className="relative rounded-[6px] border border-line/65 bg-[#07101b]/64 p-2.5">
           <div className="flex items-center justify-between gap-3">
-            <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-dim">Recommendation</div>
-            <button onClick={clear} className="text-[11px] text-dim hover:text-cream cursor-pointer">
+            <div className="text-[10px] font-black uppercase tracking-[0.16em] text-dim">Recommendation</div>
+            <button onClick={clear} className="cursor-pointer rounded border border-line/55 bg-[#050a11]/42 px-2 py-1 text-[10px] font-bold text-dim transition hover:border-hex/35 hover:text-cream">
               {t('lab.clear')}
             </button>
           </div>
           {winner ? (
             <>
               <DecisionResult pick={winner} rank={1} featured />
-              <div className="mt-3 flex flex-col gap-2">
+              <div className="mt-2 flex flex-col gap-1.5">
                 {decisions.slice(1).map((pick, idx) => (
                   <DecisionResult key={pick.augment.id} pick={pick} rank={idx + 2} />
                 ))}
               </div>
             </>
           ) : (
-            <div className="mt-4 rounded-lg border border-line/60 bg-panel/50 p-4 text-sm leading-6 text-dim">
+            <div className="mt-2 rounded-[5px] border border-line/55 bg-[#050a11]/38 p-3 text-[11px] leading-4 text-dim">
               {t('lab.emptyRecommendation')}
             </div>
           )}
@@ -3224,38 +5878,46 @@ function AugmentChoiceInput({
 }) {
   const t = useT()
   const needle = query.trim().toLowerCase()
-  const suggestions = needle
-    ? augments
-        .filter((a) => a.name.includes(query.trim()) || a.apiName.toLowerCase().includes(needle) || a.desc.includes(query.trim()))
-        .slice(0, 5)
-    : []
-  const picked = pickedId == null ? null : augments.find((a) => a.id === pickedId) ?? null
+  const trimmedQuery = query.trim()
+  const suggestions = useMemo(
+    () =>
+      needle
+        ? augments
+            .filter((a) => a.name.includes(trimmedQuery) || a.apiName.toLowerCase().includes(needle) || a.desc.includes(trimmedQuery))
+            .slice(0, 5)
+        : [],
+    [augments, needle, trimmedQuery],
+  )
+  const picked = useMemo(
+    () => (pickedId == null ? null : augments.find((a) => a.id === pickedId) ?? null),
+    [augments, pickedId],
+  )
 
   return (
-    <div className="rounded-[8px] border border-line/70 bg-panel/70 p-3">
-      <label className="text-[11px] font-extrabold text-dim">{t('lab.option', { n: idx + 1 })}</label>
+    <div className="rounded-[6px] border border-line/62 bg-[#07101b]/55 p-2">
+      <label className="text-[10px] font-black uppercase tracking-[0.12em] text-dim">{t('lab.option', { n: idx + 1 })}</label>
       <input
         value={query}
         onChange={(e) => preserveNearestScroll(e.currentTarget, () => onQuery(e.currentTarget.value))}
         placeholder={t('lab.inputPlaceholder')}
-        className="mt-2 w-full rounded-lg border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
+        className="mt-1.5 w-full rounded-md border border-line/65 bg-[#050a11]/48 px-2 py-1.5 text-[12px] text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {picked && (
-        <div className="mt-2 flex items-center gap-2 rounded-lg border border-gold/25 bg-gold/8 p-2">
-          <img src={icon(picked.iconLargeLocal)} alt={picked.name} className="h-8 w-8 rounded-lg border border-line object-cover" />
-          <span className="min-w-0 truncate text-xs font-bold text-cream">{picked.name}</span>
+        <div className="mt-1.5 flex items-center gap-1.5 rounded-md border border-hex/25 bg-hex/8 p-1.5">
+          <img src={icon(picked.iconLargeLocal)} alt={picked.name} className="h-7 w-7 rounded border border-line object-cover" />
+          <span className="min-w-0 truncate text-[11px] font-bold text-cream">{picked.name}</span>
         </div>
       )}
       {!picked && suggestions.length > 0 && (
-        <div className="mt-2 flex flex-col gap-1.5">
+        <div className="mt-1.5 flex flex-col gap-1">
           {suggestions.map((a) => (
             <button
               key={a.id}
               onClick={(e) => preserveNearestScroll(e.currentTarget, () => onPick(a))}
-              className="flex items-center gap-2 rounded-lg border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
+              className="flex cursor-pointer items-center gap-1.5 rounded-md border border-line/50 bg-panel2/45 p-1.5 text-left transition hover:border-hex/50"
             >
-              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 rounded-lg border border-line object-cover" />
-              <span className="min-w-0 truncate text-xs text-cream">{a.name}</span>
+              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-6 w-6 rounded border border-line object-cover" />
+              <span className="min-w-0 truncate text-[11px] text-cream">{a.name}</span>
             </button>
           ))}
         </div>
@@ -3281,26 +5943,31 @@ function OwnedAugmentsPanel({
 }) {
   const t = useT()
   const needle = query.trim().toLowerCase()
-  const ownedIds = new Set(ownedAugments.map((a) => a.id))
-  const suggestions = needle
-    ? augments
-        .filter(
-          (a) =>
-            !ownedIds.has(a.id) &&
-            (a.name.includes(query.trim()) || a.apiName.toLowerCase().includes(needle) || a.desc.includes(query.trim())),
-        )
-        .slice(0, 5)
-    : []
+  const trimmedQuery = query.trim()
+  const ownedIdSet = useMemo(() => new Set(ownedAugments.map((a) => a.id)), [ownedAugments])
+  const suggestions = useMemo(
+    () =>
+      needle
+        ? augments
+            .filter(
+              (a) =>
+                !ownedIdSet.has(a.id) &&
+                (a.name.includes(trimmedQuery) || a.apiName.toLowerCase().includes(needle) || a.desc.includes(trimmedQuery)),
+            )
+            .slice(0, 5)
+        : [],
+    [augments, needle, ownedIdSet, trimmedQuery],
+  )
 
   return (
-    <div className="mt-4 rounded-[8px] border border-hex/25 bg-hex/8 p-3">
+    <div className="rounded-[6px] border border-hex/22 bg-hex/7 p-2">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <div className="text-xs font-extrabold text-hex">{t('lab.owned.title')}</div>
-          <div className="mt-1 text-[11px] text-dim">{t('lab.owned.desc')}</div>
+          <div className="text-[11px] font-black text-hex">{t('lab.owned.title')}</div>
+          <div className="mt-0.5 text-[10px] text-dim">{t('lab.owned.desc')}</div>
         </div>
         {ownedAugments.length > 0 && (
-          <span className="rounded-full border border-line/60 bg-panel/55 px-2 py-1 text-[10px] text-dim">
+          <span className="rounded border border-line/60 bg-panel/55 px-2 py-0.5 text-[10px] text-dim">
             {t('lab.owned.count', { n: ownedAugments.length })}
           </span>
         )}
@@ -3309,29 +5976,29 @@ function OwnedAugmentsPanel({
         value={query}
         onChange={(e) => preserveNearestScroll(e.currentTarget, () => onQuery(e.currentTarget.value))}
         placeholder={t('lab.owned.addPlaceholder')}
-        className="mt-3 w-full rounded-lg border border-line/70 bg-[#091428]/75 px-3 py-2 text-sm text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
+        className="mt-2 w-full rounded-md border border-line/65 bg-[#050a11]/48 px-2 py-1.5 text-[12px] text-cream outline-none transition placeholder:text-dim/55 focus:border-hex/70"
       />
       {suggestions.length > 0 && (
-        <div className="mt-2 grid grid-cols-2 gap-1.5 max-[780px]:grid-cols-1">
+        <div className="mt-1.5 grid grid-cols-2 gap-1 max-[780px]:grid-cols-1">
           {suggestions.map((a) => (
             <button
               key={a.id}
               onClick={(e) => preserveNearestScroll(e.currentTarget, () => onAdd(a))}
-              className="flex items-center gap-2 rounded-lg border border-line/50 bg-panel2/45 p-2 text-left transition hover:border-hex/50 cursor-pointer"
+              className="flex cursor-pointer items-center gap-1.5 rounded-md border border-line/50 bg-panel2/45 p-1.5 text-left transition hover:border-hex/50"
             >
-              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 rounded-lg border border-line object-cover" />
-              <span className="min-w-0 truncate text-xs text-cream">{a.name}</span>
+              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-6 w-6 rounded border border-line object-cover" />
+              <span className="min-w-0 truncate text-[11px] text-cream">{a.name}</span>
             </button>
           ))}
         </div>
       )}
       {ownedAugments.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-1.5">
           {ownedAugments.map((a) => (
             <button
               key={a.id}
               onClick={(e) => preserveNearestScroll(e.currentTarget, () => onRemove(a.id))}
-              className="flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/8 px-2 py-1 text-xs text-cream transition hover:border-red/45 hover:text-red cursor-pointer"
+              className="flex cursor-pointer items-center gap-1.5 rounded-md border border-line/45 bg-[#050a11]/38 px-1.5 py-1 text-[11px] text-cream transition hover:border-red/45 hover:text-red"
               title={t('lab.owned.removeHint')}
             >
               <img src={icon(a.iconSmallLocal)} alt={a.name} className="h-4 w-4 rounded-full" />
@@ -3341,7 +6008,7 @@ function OwnedAugmentsPanel({
           ))}
         </div>
       ) : (
-        <div className="mt-3 rounded-lg border border-line/50 bg-panel/45 p-2 text-[11px] text-dim">
+        <div className="mt-2 rounded-md border border-line/50 bg-panel/45 p-1.5 text-[10px] text-dim">
           {t('lab.owned.empty')}
         </div>
       )}
@@ -3354,46 +6021,46 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
   const lang = useLang()
   const tone =
     pick.tone === 'recommend'
-      ? 'border-gold/45 bg-gold/10 text-gold'
+      ? 'border-hex/45 bg-hex/10 text-hex'
       : pick.tone === 'good'
-        ? 'border-hex/45 bg-hex/10 text-hex'
+        ? 'border-cream/30 bg-cream/8 text-cream'
         : pick.tone === 'avoid'
           ? 'border-red/45 bg-red/10 text-red'
           : 'border-line/60 bg-panel/55 text-dim'
   return (
-    <div className={'rounded-[8px] border p-3 ' + tone}>
-      <div className="flex items-center gap-3">
-        <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#091428]/65 text-xs font-extrabold">
+    <div className={'rounded-[6px] border p-2 ' + tone}>
+      <div className="flex items-center gap-2">
+        <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-[#091428]/65 text-[11px] font-extrabold">
           #{rank}
         </div>
-        <img src={icon(pick.augment.iconLargeLocal)} alt={pick.augment.name} className="h-10 w-10 rounded-lg border border-line/70 object-cover" />
+        <img src={icon(pick.augment.iconLargeLocal)} alt={pick.augment.name} className={(featured ? 'h-9 w-9' : 'h-8 w-8') + ' rounded-md border border-line/70 object-cover'} />
         <div className="min-w-0 flex-1">
-          <div className={(featured ? 'text-base' : 'text-sm') + ' truncate font-extrabold text-cream'}>{pick.augment.name}</div>
-          <div className="mt-0.5 flex items-center gap-2">
-            <span className="rounded-full border border-current/35 bg-[#091428]/45 px-2 py-px text-[10px] font-extrabold">
+          <div className={(featured ? 'text-[13px]' : 'text-[12px]') + ' truncate font-extrabold text-cream'}>{pick.augment.name}</div>
+          <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
+            <span className="rounded border border-current/35 bg-[#091428]/45 px-1.5 py-px text-[9px] font-extrabold">
               {pick.grade}
             </span>
-            <span className="text-xs font-bold">{pick.label}</span>
+            <span className="text-[10px] font-bold">{pick.label}</span>
             {pick.verified ? (
-              <span className="rounded-full border border-[#3fb950]/40 bg-[#3fb950]/10 px-1.5 py-px text-[9px] font-bold text-[#3fb950]">
+              <span className="rounded border border-[#3fb950]/40 bg-[#3fb950]/10 px-1 py-px text-[8px] font-bold text-[#3fb950]">
                 {t('lab.verified')}
               </span>
             ) : (
-              <span className="rounded-full border border-line/60 bg-panel/55 px-1.5 py-px text-[9px] font-bold text-dim">
+              <span className="rounded border border-line/60 bg-panel/55 px-1 py-px text-[8px] font-bold text-dim">
                 {t('lab.unverified')}
               </span>
             )}
           </div>
         </div>
       </div>
-      <div className="mt-2 text-[12px] leading-relaxed text-dim">{pick.reason}</div>
+      <div className="mt-2 line-clamp-2 text-[10px] leading-4 text-dim">{pick.reason}</div>
       {pick.comboNotes.length > 0 && (
-        <div className="mt-2 rounded-lg border border-hex/20 bg-hex/8 px-2.5 py-2 text-[11px] leading-relaxed text-hex">
+        <div className="mt-1.5 line-clamp-2 rounded-md border border-hex/20 bg-hex/8 px-2 py-1.5 text-[10px] leading-4 text-hex">
           {pick.comboNotes.join(' · ')}
         </div>
       )}
       {pick.tags.length > 0 && (
-        <div className="mt-2 text-[10px] text-dim/70">
+        <div className="mt-1.5 truncate text-[9px] text-dim/70">
           {t('lab.tagsHit')}{pick.tags.slice(0, 4).map((tag) => augmentTagLabel(tag, lang)).join(' · ')}
         </div>
       )}
@@ -3405,102 +6072,666 @@ function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'g
   const t = useT()
   const toneClass =
     tone === 'core'
-      ? 'text-gold border-gold/25 bg-gold/8'
+      ? 'text-gold border-gold/28 bg-gold/8'
       : tone === 'good'
-        ? 'text-hex border-hex/25 bg-hex/8'
-        : 'text-red border-red/25 bg-red/8'
+        ? 'text-hex border-hex/28 bg-hex/8'
+        : 'text-red border-red/28 bg-red/8'
   return (
-    <div className="mt-3">
-      <div className={'mb-2 inline-flex rounded-md border px-2.5 py-1 text-[11px] font-extrabold ' + toneClass}>
-        {label}
+    <div className={'min-w-0 rounded-[6px] border p-2 ' + toneClass}>
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <div className="truncate text-[10px] font-black uppercase tracking-[0.12em]">{label}</div>
+        <div className="text-[10px] font-black opacity-70">{items.length}</div>
       </div>
       {items.length > 0 ? (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(128px,1fr))] gap-1.5">
           {items.slice(0, 3).map((a) => (
-            <div key={a.id} className="flex min-w-0 items-center gap-2 rounded-lg border border-line/55 bg-panel/55 px-2 py-1.5">
-              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 shrink-0 rounded-lg border border-line/70 object-cover" />
-              <span className="min-w-0 truncate text-xs font-bold text-cream">{a.name}</span>
+            <div key={a.id} className="flex min-w-0 items-center gap-1.5 rounded-[5px] border border-line/50 bg-[#050a11]/45 px-1.5 py-1">
+              <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 shrink-0 rounded border border-line/70 object-cover" />
+              <span className="min-w-0 truncate text-[11px] font-extrabold text-cream">{a.name}</span>
             </div>
           ))}
         </div>
       ) : (
-        <div className="rounded-lg border border-line/55 bg-panel/40 px-2.5 py-2 text-xs text-dim">{t('common.none')}</div>
+        <div className="rounded-[5px] border border-line/45 bg-[#050a11]/35 px-2 py-2 text-[11px] text-dim">{t('common.none')}</div>
       )}
     </div>
   )
 }
 
-function PlayerRow({ p, core, maxDamage }: { p: PlayerMatchStats; core: Core; maxDamage: number }) {
+function AugmentMiniIcon({ id, core, size = 'h-8 w-8' }: { id: number; core: Core; size?: string }) {
+  const augment = getAugment(core.augById, id)
+  if (!augment) {
+    return (
+      <div
+        title={`Unknown augment #${id}`}
+        className={size + ' grid shrink-0 place-items-center rounded-lg border border-line/70 bg-[#050a11]/75 text-[10px] font-extrabold text-dim'}
+      >
+        ?
+      </div>
+    )
+  }
+  return (
+    <img
+      src={icon(augment.iconLargeLocal)}
+      alt={augment.name}
+      title={augment.name}
+      className={size + ' shrink-0 rounded-lg border-2 object-cover ' + (RARITY[augment.rarity] ?? RARITY[0]).border}
+    />
+  )
+}
+
+function inferDamageTypeFromItems(items: Item[]): string {
+  let apScore = 0
+  let adScore = 0
+  let tankScore = 0
+  for (const item of items) {
+    const categories = item.categories ?? []
+    if (categories.some((category) => ['SpellDamage', 'MagicPenetration'].includes(category))) apScore += 2
+    if (categories.some((category) => ['Damage', 'CriticalStrike', 'ArmorPenetration'].includes(category))) adScore += 2
+    if (categories.some((category) => ['Health', 'Armor', 'SpellBlock'].includes(category))) tankScore += 1
+  }
+  if (tankScore > apScore && tankScore > adScore) return 'Tank'
+  return apScore >= adScore ? 'AP' : 'AD'
+}
+
+function buildCustomRouteFromPlayer(p: PlayerMatchStats, core: Core, lang: Lang): CustomRoute {
+  const champion = core.champions.find((c) => c.id === p.championId)
+  const items = p.items.map((id) => core.itemById.get(id)).filter((item): item is Item => !!item).slice(0, 6)
+  const augmentIds = p.augments
+    .map((id) => getAugment(core.augById, id)?.id)
+    .filter((id): id is number => typeof id === 'number')
+  const championName = champion?.name ?? (lang === 'en' ? 'Unknown champion' : '未知英雄')
+  return {
+    id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}`,
+    championId: p.championId,
+    title: lang === 'en' ? `${championName} copied route` : `${championName} 复制路线`,
+    description:
+      lang === 'en'
+        ? `Captured from ${p.summonerName}'s ARAM: Mayhem match. KDA ${p.kills}/${p.deaths}/${p.assists}, damage ${p.totalDamageDealtToChampions.toLocaleString()}.`
+        : `从 ${p.summonerName} 的海克斯大乱斗对局复制。KDA ${p.kills}/${p.deaths}/${p.assists}，伤害 ${p.totalDamageDealtToChampions.toLocaleString()}。`,
+    damageType: inferDamageTypeFromItems(items),
+    starterItemIds: [],
+    itemIds: items.map((item) => item.id),
+    coreAugmentIds: augmentIds.slice(0, 2),
+    goodAugmentIds: augmentIds.slice(2),
+    trapAugmentIds: [],
+    updatedAt: new Date().toISOString(),
+  }
+}
+
+function PlayerLoadoutPanel({
+  p,
+  core,
+  onSaveRoute,
+}: {
+  p: PlayerMatchStats
+  core: Core
+  onSaveRoute: (route: CustomRoute) => void | Promise<void>
+}) {
+  const lang = useLang()
+  const [copied, setCopied] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const items = p.items.map((id) => core.itemById.get(id)).filter((x): x is Item => !!x)
+  const copyPlayer = async () => {
+    await copyText(buildPlayerCopyText(p, core, lang))
+    setCopied(true)
+    window.setTimeout(() => setCopied(false), 1600)
+  }
+  const savePlayer = async () => {
+    await onSaveRoute(buildCustomRouteFromPlayer(p, core, lang))
+    setSaved(true)
+    window.setTimeout(() => setSaved(false), 1600)
+  }
+  return (
+    <div className="border-x border-b border-line/55 bg-[#07101b]/45 px-3 pb-3 pt-1">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+        <div className="text-[11px] font-semibold text-dim">
+          {lang === 'en' ? 'Capture this player as a route draft.' : '把这个玩家的出装和增强复制成路线草稿。'}
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={copyPlayer}
+            className="rounded-md border border-line/65 bg-panel/55 px-3 py-1.5 text-[11px] font-extrabold text-cream transition hover:border-hex/45 hover:bg-hex/8 active:translate-y-px"
+          >
+            {copied ? (lang === 'en' ? 'Text copied' : '\u6587\u672c\u5df2\u590d\u5236') : (lang === 'en' ? 'Copy text' : '\u590d\u5236\u6587\u672c')}
+          </button>
+          <button
+            type="button"
+            onClick={savePlayer}
+            className={BTN_PRIMARY}
+          >
+            {saved ? (lang === 'en' ? 'Saved' : '\u5df2\u4fdd\u5b58') : (lang === 'en' ? 'Save to library' : '\u4fdd\u5b58\u5230\u8def\u7ebf\u5e93')}
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 max-[920px]:grid-cols-1">
+        <div className="rounded-[8px] border border-line/60 bg-panel/45 p-3">
+          <div className="mb-2 text-[11px] font-extrabold tracking-[0.08em] text-dim">FINAL ITEMS</div>
+          <div className="grid grid-cols-6 gap-2 max-[760px]:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, index) => {
+              const item = items[index]
+              return item ? (
+                <div key={`${item.id}-${index}`} className="min-w-0 text-center">
+                  <img src={icon(item.iconLocal)} alt={item.name} title={item.name} className="mx-auto h-10 w-10 rounded-lg border border-line object-cover" />
+                  <div className="mt-1 line-clamp-2 min-h-[26px] text-[10px] font-bold leading-[13px] text-cream">{item.name}</div>
+                </div>
+              ) : (
+                <div key={`empty-item-${index}`} className="grid min-h-[72px] place-items-center rounded-lg border border-dashed border-line/45 text-[10px] font-bold text-dim">
+                  Empty
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <div className="rounded-[8px] border border-line/60 bg-panel/45 p-3">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <div className="text-[11px] font-extrabold tracking-[0.08em] text-dim">AUGMENTS</div>
+            <div className="rounded-md border border-line/60 bg-[#050a11]/60 px-2 py-0.5 text-[10px] font-extrabold text-gold">
+              {p.augments.length}/4
+            </div>
+          </div>
+          <div className="grid grid-cols-4 gap-2 max-[760px]:grid-cols-2">
+            {Array.from({ length: Math.max(4, p.augments.length) }).map((_, index) => {
+              const augmentId = p.augments[index]
+              const augment = augmentId ? getAugment(core.augById, augmentId) : null
+              return augmentId ? (
+                <div key={`${augmentId}-${index}`} className="min-w-0 text-center">
+                  <AugmentMiniIcon id={augmentId} core={core} size="mx-auto h-10 w-10" />
+                  <div className="mt-1 line-clamp-2 min-h-[26px] text-[10px] font-bold leading-[13px] text-cream">
+                    {augment?.name ?? `Unknown #${augmentId}`}
+                  </div>
+                </div>
+              ) : (
+                <div key={`empty-augment-${index}`} className="grid min-h-[72px] place-items-center rounded-lg border border-dashed border-line/45 text-[10px] font-bold text-dim">
+                  Empty
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PlayerRow({
+  p,
+  core,
+  maxDamage,
+  expanded,
+  onToggle,
+  onSaveRoute,
+}: {
+  p: PlayerMatchStats
+  core: Core
+  maxDamage: number
+  expanded: boolean
+  onToggle: () => void
+  onSaveRoute: (route: CustomRoute) => void | Promise<void>
+}) {
   const t = useT()
   const champ = core.champions.find((c) => c.id === p.championId)
   const items = p.items.map((id) => core.itemById.get(id)).filter((x): x is Item => !!x)
-  const augments = p.augments.map((id) => getAugment(core.augById, id)).filter((x): x is Augment => !!x)
   const dmgPct = maxDamage > 0 ? Math.round((p.totalDamageDealtToChampions / maxDamage) * 100) : 0
   return (
-    <div
-      className={
-        'flex flex-wrap items-center gap-3 py-2.5 px-3 rounded-lg border ' +
-        (p.isMe ? 'bg-gold/10 border-gold/30' : 'border-transparent')
-      }
-    >
-      {champ && (
-        <img src={icon(champ.iconLocal)} alt={champ.name} className="w-9 h-9 rounded-md border border-line shrink-0" />
-      )}
-      <div className="w-[112px] shrink-0 min-w-0">
-        <div className="text-[13px] truncate">{champ?.name ?? t('match.unknownChamp')}</div>
-        <div className="text-[11px] text-dim truncate">{p.summonerName}</div>
-      </div>
-      <div className="w-16 shrink-0 text-xs text-center">
-        {p.kills} / {p.deaths} / {p.assists}
-      </div>
-      <div className="flex-1 min-w-[100px]">
-        <div className="flex items-center justify-between text-[11px] text-dim mb-0.5">
-          <span>{t('match.damage')}</span>
-          <span>{p.totalDamageDealtToChampions.toLocaleString()}</span>
+    <div className="overflow-hidden rounded-[8px]">
+      <button
+        type="button"
+        onClick={onToggle}
+        className={
+          'grid w-full grid-cols-[44px_minmax(120px,1fr)_84px_minmax(160px,1.1fr)_190px_72px] items-center gap-3 border px-3 py-2.5 text-left transition hover:border-gold/35 hover:bg-white/[0.03] max-[1100px]:grid-cols-[44px_minmax(120px,1fr)_84px_minmax(150px,1fr)_72px] max-[820px]:grid-cols-[44px_minmax(0,1fr)_72px] ' +
+          (expanded
+            ? 'border-gold/45 bg-gold/10'
+            : p.isMe
+              ? 'border-gold/30 bg-gold/8'
+              : 'border-line/45 bg-panel/35')
+        }
+      >
+        {champ ? (
+          <img src={icon(champ.iconLocal)} alt={champ.name} className="h-10 w-10 rounded-lg border border-line shrink-0" />
+        ) : (
+          <div className="h-10 w-10 rounded-lg border border-dashed border-line/55 bg-panel/45" />
+        )}
+        <div className="min-w-0">
+          <div className="truncate text-[13px] font-extrabold text-cream">{champ?.name ?? t('match.unknownChamp')}</div>
+          <div className="truncate text-[11px] text-dim">{p.summonerName}</div>
         </div>
-        <div className="h-1.5 rounded-full bg-panel2 overflow-hidden">
-          <div className="h-full bg-red" style={{ width: dmgPct + '%' }} />
+        <div className="text-center text-xs font-extrabold text-cream">
+          {p.kills} / {p.deaths} / {p.assists}
         </div>
-      </div>
-      <div className="w-16 shrink-0 text-xs text-center text-dim">{p.goldEarned.toLocaleString()}g</div>
-      <div className="flex items-center gap-1 shrink-0">
-        {items.map((it, i) => (
-          <img
-            key={it.id + '-' + i}
-            src={icon(it.iconLocal)}
-            alt={it.name}
-            title={it.name}
-            className="w-6 h-6 rounded border border-line"
-          />
-        ))}
-        {augments.map((a) => (
-          <img
-            key={a.id}
-            src={icon(a.iconLargeLocal)}
-            alt={a.name}
-            title={a.name}
-            className={'w-6 h-6 rounded border-2 ' + (RARITY[a.rarity] ?? RARITY[0]).border}
-          />
-        ))}
-      </div>
+        <div className="min-w-0">
+          <div className="mb-0.5 flex items-center justify-between text-[11px] text-dim">
+            <span>{t('match.damage')}</span>
+            <span>{p.totalDamageDealtToChampions.toLocaleString()}</span>
+          </div>
+          <div className="h-1.5 overflow-hidden rounded-full bg-panel2">
+            <div className="h-full bg-red" style={{ width: dmgPct + '%' }} />
+          </div>
+        </div>
+        <div className="flex min-w-0 items-center gap-1 max-[1100px]:hidden">
+          {Array.from({ length: 6 }).map((_, index) => {
+            const item = items[index]
+            return item ? (
+              <img key={`${item.id}-${index}`} src={icon(item.iconLocal)} alt={item.name} title={item.name} className="h-7 w-7 rounded border border-line object-cover" />
+            ) : (
+              <span key={`empty-${index}`} className="h-7 w-7 rounded border border-dashed border-line/45" />
+            )
+          })}
+        </div>
+        <div className="justify-self-end rounded-md border border-line/60 bg-[#050a11]/60 px-2 py-1 text-[11px] font-extrabold text-gold">
+          {p.augments.length}/4
+        </div>
+      </button>
+      {expanded && <PlayerLoadoutPanel p={p} core={core} onSaveRoute={onSaveRoute} />}
     </div>
   )
 }
 
-function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }) {
+function matchCopyLine(p: PlayerMatchStats, core: Core): string {
+  const champ = core.champions.find((c) => c.id === p.championId)
+  const items = p.items.map((id) => core.itemById.get(id)?.name).filter((name): name is string => !!name)
+  const augments = p.augments.map((id) => getAugment(core.augById, id)?.name ?? `Unknown #${id}`)
+  return [
+    `${champ?.name ?? 'Unknown'} (${p.summonerName})`,
+    `KDA ${p.kills}/${p.deaths}/${p.assists}`,
+    `Items: ${items.length > 0 ? items.join(' > ') : 'None'}`,
+    `Augments: ${augments.length > 0 ? augments.join(' / ') : 'None'}`,
+  ].join(' | ')
+}
+
+function buildPlayerCopyText(p: PlayerMatchStats, core: Core, lang: Lang): string {
+  const champ = core.champions.find((c) => c.id === p.championId)
+  const championName = champ?.name ?? (lang === 'en' ? 'Unknown champion' : '未知英雄')
+  const items = p.items.map((id) => core.itemById.get(id)?.name ?? `Unknown item #${id}`)
+  const augments = p.augments.map((id) => getAugment(core.augById, id)?.name ?? `Unknown augment #${id}`)
+
+  if (lang === 'en') {
+    return [
+      'Mayhempedia single-player route capture',
+      `Champion: ${championName}`,
+      `Player: ${p.summonerName}`,
+      `KDA: ${p.kills}/${p.deaths}/${p.assists}`,
+      `Damage: ${p.totalDamageDealtToChampions.toLocaleString()}`,
+      `Route title: ${championName} match-tested route`,
+      `Playstyle notes: Captured from a real ARAM: Mayhem match. Review and polish before publishing.`,
+      `Final items: ${items.length > 0 ? items.join(' > ') : 'None'}`,
+      `Augments: ${augments.length > 0 ? augments.join(' / ') : 'None'}`,
+    ].join('\n')
+  }
+
+  return [
+    'Mayhempedia 单人路线采集',
+    `英雄：${championName}`,
+    `玩家：${p.summonerName}`,
+    `KDA：${p.kills}/${p.deaths}/${p.assists}`,
+    `伤害：${p.totalDamageDealtToChampions.toLocaleString()}`,
+    `路线标题：${championName} 实战路线`,
+    '玩法介绍：来自一局真实海克斯大乱斗对局，发布前需要再确认强度和适配英雄。',
+    `六神装：${items.length > 0 ? items.join(' > ') : '暂无'}`,
+    `增强：${augments.length > 0 ? augments.join(' / ') : '暂无'}`,
+  ].join('\n')
+}
+
+function buildMatchCopyText(detail: MatchFullDetail, core: Core, lang: Lang): string {
+  const ally = detail.players.filter((p) => p.team === 'ally')
+  const enemy = detail.players.filter((p) => p.team === 'enemy')
+  const title = lang === 'en' ? 'Mayhempedia match capture' : 'Mayhempedia 对局采集'
+  const allyTitle = lang === 'en' ? 'Ally team' : '己方'
+  const enemyTitle = lang === 'en' ? 'Enemy team' : '敌方'
+  return [
+    `${title} #${detail.gameId}`,
+    '',
+    `[${allyTitle}]`,
+    ...ally.map((p) => matchCopyLine(p, core)),
+    '',
+    `[${enemyTitle}]`,
+    ...enemy.map((p) => matchCopyLine(p, core)),
+  ].join('\n')
+}
+
+async function copyText(text: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text)
+    return
+  } catch {
+    const node = document.createElement('textarea')
+    node.value = text
+    node.setAttribute('readonly', 'true')
+    node.style.position = 'fixed'
+    node.style.left = '-9999px'
+    document.body.appendChild(node)
+    node.select()
+    document.execCommand('copy')
+    document.body.removeChild(node)
+  }
+}
+
+function TeamIconSlot({
+  children,
+  title,
+  tone = 'neutral',
+}: {
+  children?: ReactNode
+  title?: string
+  tone?: 'neutral' | 'augment' | 'empty'
+}) {
+  const toneClass =
+    tone === 'augment'
+      ? 'border-[#8d6cf0]/45 bg-[#100f1a]'
+      : tone === 'empty'
+        ? 'border-line/35 bg-[#10151b]/55'
+        : 'border-line/55 bg-[#07101b]/70'
+  return (
+    <div
+      title={title}
+      className={'grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-[5px] border ' + toneClass}
+    >
+      {children}
+    </div>
+  )
+}
+
+function captureScore(player: PlayerMatchStats, maxDamage: number): number {
+  const damageScore = maxDamage > 0 ? (player.totalDamageDealtToChampions / maxDamage) * 42 : 0
+  const itemScore = Math.min(6, player.items.length) * 4.5
+  const augmentScore = Math.min(4, player.augments.length) * 5
+  const kdaScore = Math.min(18, ((player.kills + player.assists) / Math.max(1, player.deaths)) * 4)
+  return damageScore + itemScore + augmentScore + kdaScore + (player.win ? 4 : 0)
+}
+
+function getCaptureCandidate(detail: MatchFullDetail): PlayerMatchStats | null {
+  const maxDamage = Math.max(...detail.players.map((player) => player.totalDamageDealtToChampions), 1)
+  return [...detail.players].sort((a, b) => captureScore(b, maxDamage) - captureScore(a, maxDamage))[0] ?? null
+}
+
+function TeamLoadoutRow({
+  p,
+  core,
+  lang,
+  suggested = false,
+  onSaveRoute,
+}: {
+  p: PlayerMatchStats
+  core: Core
+  lang: Lang
+  suggested?: boolean
+  onSaveRoute: (route: CustomRoute) => void | Promise<void>
+}) {
+  const champion = core.champions.find((c) => c.id === p.championId)
+  const items = p.items.map((id) => core.itemById.get(id)).filter((item): item is Item => !!item)
+  const augments = p.augments.map((id) => getAugment(core.augById, id))
+  return (
+    <div
+      className={
+        'group grid w-full grid-cols-[58px_minmax(150px,0.9fr)_180px_230px_86px_104px_62px] items-center gap-2 rounded-[7px] border px-2 py-2 transition hover:border-hex/25 hover:bg-panel2/32 ' +
+        (suggested
+          ? 'border-hex/45 bg-hex/10 shadow-[inset_2px_0_0_rgba(34,211,238,0.72)]'
+          : p.isMe
+            ? 'border-hex/30 bg-hex/7'
+            : 'border-line/35 bg-[#07101b]/34')
+      }
+    >
+      <div className="flex items-center justify-end gap-2">
+        <span className="text-[15px] font-black tabular-nums text-cream">{p.champLevel || 18}</span>
+        {champion ? (
+          <img
+            src={icon(champion.iconLocal)}
+            alt={champion.name}
+            className={'h-8 w-8 rounded-[6px] border object-cover ' + (p.isMe ? 'border-hex/70' : 'border-line/70')}
+          />
+        ) : (
+          <div className="h-8 w-8 rounded-[6px] border border-line bg-panel" />
+        )}
+      </div>
+      <div className="min-w-0">
+        <div className={'truncate text-[12px] font-black ' + (p.isMe ? 'text-hex' : 'text-cream/85')}>
+          {p.summonerName}
+        </div>
+        <div className="mt-0.5 flex min-w-0 items-center gap-1">
+          <span className="truncate text-[9px] font-bold text-dim">{champion?.name ?? 'Unknown'}</span>
+          {suggested && (
+            <span className="shrink-0 rounded border border-hex/35 bg-hex/10 px-1.5 py-px text-[8px] font-black text-hex">
+              {lang === 'en' ? 'Pick' : '推荐'}
+            </span>
+          )}
+        </div>
+      </div>
+      <div className="flex items-center gap-1">
+        {Array.from({ length: 5 }).map((_, index) => {
+          const augment = augments[index]
+          return augment ? (
+            <TeamIconSlot key={`${augment.id}-${index}`} title={augment.name} tone="augment">
+              <img src={icon(augment.iconLargeLocal)} alt={augment.name} className="h-full w-full object-cover" />
+            </TeamIconSlot>
+          ) : (
+            <TeamIconSlot key={`empty-augment-${index}`} tone="empty" />
+          )
+        })}
+      </div>
+      <div className="flex items-center gap-1">
+        {Array.from({ length: 6 }).map((_, index) => {
+          const item = items[index]
+          return item ? (
+            <TeamIconSlot key={`${item.id}-${index}`} title={item.name}>
+              <img src={icon(item.iconLocal)} alt={item.name} className="h-full w-full object-cover" />
+            </TeamIconSlot>
+          ) : (
+            <TeamIconSlot key={`empty-item-${index}`} tone="empty" />
+          )
+        })}
+      </div>
+      <div className="text-right text-[14px] font-black tabular-nums text-cream">
+        {p.kills} <span className="text-dim">/</span> {p.deaths} <span className="text-dim">/</span> {p.assists}
+      </div>
+      <div className="text-right text-[14px] font-black tabular-nums text-cream">
+        {p.totalDamageDealtToChampions.toLocaleString()}
+      </div>
+      <button
+        type="button"
+        title={lang === 'en' ? 'Save this player route' : '保存这个玩家路线'}
+        onClick={() => onSaveRoute(buildCustomRouteFromPlayer(p, core, lang))}
+        className="inline-flex h-8 items-center justify-center gap-1 justify-self-end rounded-[5px] border border-line/55 bg-panel/50 px-2 text-[10px] font-black text-dim opacity-78 transition hover:border-hex/45 hover:bg-hex/10 hover:text-hex hover:opacity-100 active:translate-y-px"
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="6" cy="6" r="2.4" />
+          <circle cx="18" cy="18" r="2.4" />
+          <path d="M8 6h3.5A3.5 3.5 0 0 1 15 9.5v5" />
+          <path d="m12.5 12 2.5 2.5 2.5-2.5" />
+        </svg>
+        {lang === 'en' ? 'Save' : '采集'}
+      </button>
+    </div>
+  )
+}
+
+function TeamLoadoutBoard({
+  label,
+  players,
+  core,
+  lang,
+  tone,
+  suggestedParticipantId,
+  onSaveRoute,
+}: {
+  label: string
+  players: PlayerMatchStats[]
+  core: Core
+  lang: Lang
+  tone: 'ally' | 'enemy'
+  suggestedParticipantId?: number | null
+  onSaveRoute: (route: CustomRoute) => void | Promise<void>
+}) {
+  const kills = players.reduce((sum, player) => sum + player.kills, 0)
+  const deaths = players.reduce((sum, player) => sum + player.deaths, 0)
+  const assists = players.reduce((sum, player) => sum + player.assists, 0)
+  const damage = players.reduce((sum, player) => sum + player.totalDamageDealtToChampions, 0)
+  const color = tone === 'ally' ? 'text-hex' : 'text-red'
+  const labelText =
+    label === 'TEAM 1'
+      ? lang === 'en'
+        ? 'Team 1'
+        : '队伍 1'
+      : lang === 'en'
+        ? 'Team 2'
+        : '队伍 2'
+  const orderedPlayers = suggestedParticipantId
+    ? [...players].sort((a, b) => {
+        if (a.participantId === suggestedParticipantId) return -1
+        if (b.participantId === suggestedParticipantId) return 1
+        return 0
+      })
+    : players
+  return (
+    <section className="w-full rounded-[8px] border border-line/45 bg-[#07101b]/38 p-2">
+      <div className="mb-1.5 flex items-center justify-between gap-3 px-1">
+        <div>
+          <div className={'text-[12px] font-black uppercase tracking-[0.14em] ' + color}>{labelText}</div>
+          <div className="mt-0.5 text-[10px] font-bold text-dim">{lang === 'en' ? 'Loadout strips' : '阵容出装条'}</div>
+        </div>
+        <div className="flex items-center gap-3 text-right">
+          <div className={'text-[14px] font-black tabular-nums tracking-[0.08em] ' + color}>
+            {kills} <span className="text-dim">/</span> {deaths} <span className="text-dim">/</span> {assists}
+          </div>
+          <div className="text-[13px] font-black tabular-nums text-cream/75">{damage.toLocaleString()}</div>
+        </div>
+      </div>
+      <div className="space-y-1">
+        {orderedPlayers.map((player) => (
+          <TeamLoadoutRow
+            key={player.participantId}
+            p={player}
+            core={core}
+            lang={lang}
+            suggested={player.participantId === suggestedParticipantId}
+            onSaveRoute={onSaveRoute}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function CompactMatchOverview({
+  detail,
+  core,
+  onSavePlayerRoute,
+}: {
+  detail: MatchFullDetail
+  core: Core
+  onSavePlayerRoute: (route: CustomRoute) => void | Promise<void>
+}) {
+  const lang = useLang()
+  const ally = detail.players.filter((p) => p.team === 'ally')
+  const enemy = detail.players.filter((p) => p.team === 'enemy')
+  const captureCandidate = getCaptureCandidate(detail)
+  const candidateChampion = captureCandidate ? core.champions.find((champion) => champion.id === captureCandidate.championId) : null
+  const damageRank = captureCandidate
+    ? [...detail.players].sort((a, b) => b.totalDamageDealtToChampions - a.totalDamageDealtToChampions).findIndex((player) => player.participantId === captureCandidate.participantId) + 1
+    : 0
+  return (
+    <section className="overview-board rounded-[8px] border border-line/70 bg-panel/78 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_12px_28px_rgba(0,0,0,0.18)]">
+      <div className="w-full">
+        <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">{lang === 'en' ? 'Loadout board' : '出装面板'}</div>
+            <div className="mt-0.5 text-[15px] font-black text-cream">{lang === 'en' ? '10-player route capture' : '10 人路线采集'}</div>
+          </div>
+          <div className="text-[10px] font-bold text-dim">{lang === 'en' ? 'Use Capture to save one player route' : '点击采集按钮，只保存单个玩家路线'}</div>
+        </div>
+        {captureCandidate && (
+          <div className="mb-2 grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-2 rounded-[7px] border border-hex/35 bg-hex/8 px-2.5 py-2">
+            {candidateChampion ? (
+              <img src={icon(candidateChampion.iconLocal)} alt={candidateChampion.name} className="h-10 w-10 rounded-[6px] border border-hex/45 object-cover" />
+            ) : (
+              <div className="h-10 w-10 rounded-[6px] border border-hex/35 bg-panel/55" />
+            )}
+            <div className="min-w-0">
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Recommended capture' : '推荐采集'}</div>
+              <div className="mt-0.5 truncate text-[13px] font-black text-cream">
+                {captureCandidate.summonerName} · {candidateChampion?.name ?? 'Unknown'}
+              </div>
+            </div>
+            <div className="text-right text-[10px] font-bold text-dim">
+              {lang === 'en'
+                ? `Damage rank #${damageRank} · ${captureCandidate.items.length}/6 items · ${captureCandidate.augments.length}/4 augments`
+                : `伤害第 ${damageRank} · ${captureCandidate.items.length}/6 装备 · ${captureCandidate.augments.length}/4 增强`}
+            </div>
+          </div>
+        )}
+        <TeamLoadoutBoard
+          label="TEAM 1"
+          players={ally}
+          core={core}
+          lang={lang}
+          tone="ally"
+          suggestedParticipantId={captureCandidate?.participantId}
+          onSaveRoute={onSavePlayerRoute}
+        />
+        <div className="my-2 h-px bg-line/55" />
+        <TeamLoadoutBoard
+          label="TEAM 2"
+          players={enemy}
+          core={core}
+          lang={lang}
+          tone="enemy"
+          suggestedParticipantId={captureCandidate?.participantId}
+          onSaveRoute={onSavePlayerRoute}
+        />
+      </div>
+    </section>
+  )
+}
+
+function MatchOverview({
+  detail,
+  core,
+  onSavePlayerRoute,
+}: {
+  detail: MatchFullDetail
+  core: Core
+  onSavePlayerRoute: (route: CustomRoute) => void | Promise<void>
+}) {
   const t = useT()
+  const lang = useLang()
+  const [expandedPlayerId, setExpandedPlayerId] = useState<number | null>(
+    detail.players.find((p) => p.isMe)?.participantId ?? null,
+  )
   const maxDamage = Math.max(...detail.players.map((p) => p.totalDamageDealtToChampions), 1)
   const ally = detail.players.filter((p) => p.team === 'ally')
   const enemy = detail.players.filter((p) => p.team === 'enemy')
   return (
     <>
+      <section className={CARD + ' mb-3 p-4'}>
+        <div>
+          <div className="text-sm font-extrabold text-cream">{lang === 'en' ? 'Single-player route capture' : '单人路线采集'}</div>
+          <div className="mt-1 text-xs leading-5 text-dim">
+            {lang === 'en'
+              ? 'Open a player, then copy only that player’s items and augments into your route library draft.'
+              : '点开你觉得厉害的玩家，只复制这个人的出装和增强，再贴到路线库草稿里。'}
+          </div>
+        </div>
+      </section>
       <section className={CARD + ' p-4'}>
-        <div className={'text-xs font-semibold mb-2 ' + (detail.win ? 'text-[#63c07a]' : 'text-red')}>
-          {t('match.ally')} · {detail.win ? t('match.win') : t('match.loss')}
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <div className={'text-xs font-semibold ' + (detail.win ? 'text-[#63c07a]' : 'text-red')}>
+            {t('match.ally')} · {detail.win ? t('match.win') : t('match.loss')}
+          </div>
+          <div className="text-[11px] font-semibold text-dim">
+            {lang === 'en' ? 'Click a player for full items and augments' : '点击玩家查看完整出装和增强'}
+          </div>
         </div>
         <div className="flex flex-col gap-1.5">
           {ally.map((p) => (
-            <PlayerRow key={p.participantId} p={p} core={core} maxDamage={maxDamage} />
+            <PlayerRow
+              key={p.participantId}
+              p={p}
+              core={core}
+            maxDamage={maxDamage}
+            expanded={expandedPlayerId === p.participantId}
+            onToggle={() => setExpandedPlayerId((current) => (current === p.participantId ? null : p.participantId))}
+            onSaveRoute={onSavePlayerRoute}
+          />
           ))}
         </div>
       </section>
@@ -3510,7 +6741,15 @@ function MatchOverview({ detail, core }: { detail: MatchFullDetail; core: Core }
         </div>
         <div className="flex flex-col gap-1.5">
           {enemy.map((p) => (
-            <PlayerRow key={p.participantId} p={p} core={core} maxDamage={maxDamage} />
+            <PlayerRow
+              key={p.participantId}
+              p={p}
+              core={core}
+            maxDamage={maxDamage}
+            expanded={expandedPlayerId === p.participantId}
+            onToggle={() => setExpandedPlayerId((current) => (current === p.participantId ? null : p.participantId))}
+            onSaveRoute={onSavePlayerRoute}
+          />
           ))}
         </div>
       </section>
@@ -3642,28 +6881,34 @@ function MatchGraph({ detail }: { detail: MatchFullDetail }) {
   )
 }
 
-const MATCH_TABS: { key: 'overview' | 'stats' | 'graph'; label: string }[] = [
-  { key: 'overview', label: 'Overview' },
-  { key: 'stats', label: 'Stats' },
-  { key: 'graph', label: 'Graph' },
-]
-
 /** 「近期对局」点进去看的：比分/双方阵容/每人伤害经济KDA/每人出装海克斯（事实记录，不是流派推荐）。 */
-function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary | null; onBack: () => void }) {
+function MatchDetail({
+  core,
+  match,
+  onBack,
+  onSavePlayerRoute,
+}: {
+  core: Core
+  match: MatchSummary | null
+  onBack: () => void
+  onSavePlayerRoute: (route: CustomRoute) => void | Promise<void>
+}) {
   const t = useT()
   const lang = useLang()
   const [detail, setDetail] = useState<MatchFullDetail | null | undefined>(undefined) // undefined=加载中，null=拿不到
-  const [matchTab, setMatchTab] = useState<'overview' | 'stats' | 'graph'>('overview')
 
   useEffect(() => {
     setDetail(undefined)
-    setMatchTab('overview')
-    if (!match || !isElectron()) {
+    if (!match) {
       setDetail(null)
       return
     }
+    if (!isElectron()) {
+      setDetail(createPreviewMatchDetail(core, match))
+      return
+    }
     window.mayhem!.getMatchDetail(match.gameId).then(setDetail)
-  }, [match?.gameId])
+  }, [core, match?.gameId])
 
   if (!match) {
     return (
@@ -3678,32 +6923,48 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
   const champ = core.champions.find((c) => c.id === match.championId)
   const allyScore = detail ? detail.players.filter((p) => p.team === 'ally').reduce((s, p) => s + p.kills, 0) : null
   const enemyScore = detail ? detail.players.filter((p) => p.team === 'enemy').reduce((s, p) => s + p.kills, 0) : null
+  const matchDate = new Date(match.gameCreationDate).toLocaleString(lang === 'en' ? 'en-US' : 'zh-CN', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+  const durationText = detail
+    ? `${Math.floor(detail.gameDurationSec / 60)}:${String(detail.gameDurationSec % 60).padStart(2, '0')}`
+    : '--'
+  const scoreValue = allyScore != null && enemyScore != null ? allyScore : 0
+  const scoreSuffix = allyScore != null && enemyScore != null ? `:${enemyScore}` : ''
+  const durationParts = durationText.split(':')
 
   return (
     <>
-      <button className="text-red text-sm cursor-pointer pb-3.5 hover:underline" onClick={onBack}>
+      <button
+        className="mb-2 inline-flex items-center gap-1.5 rounded-[6px] border border-line/55 bg-panel/45 px-2.5 py-1.5 text-[11px] font-black text-dim transition hover:border-hex/35 hover:text-hex active:translate-y-px"
+        onClick={onBack}
+      >
         {t('match.back')}
       </button>
       {champ && (
-        <header className="flex items-center gap-3.5 pb-4 mb-1 border-b border-line">
+        <header className="mb-3 grid grid-cols-[64px_minmax(0,1fr)_360px] items-center gap-3 rounded-[8px] border border-line/70 bg-panel/78 p-3 shadow-[0_12px_30px_rgba(0,0,0,0.15)] max-[980px]:grid-cols-[64px_minmax(0,1fr)]">
           <img
             src={icon(champ.iconLocal)}
             alt={champ.name}
-            className="w-16 h-16 rounded-[10px] object-cover border border-line"
+            className="h-16 w-16 rounded-[8px] border border-line/70 object-cover"
           />
-          <div className="flex-1">
+          <div className="min-w-0">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">{lang === 'en' ? 'Match detail' : '对局详情'}</div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-[26px] font-bold">{champ.name}</h1>
+              <h1 className="truncate text-[23px] font-black leading-tight text-cream">{champ.name}</h1>
               <span
                 className={
-                  'text-xs font-bold px-2 py-0.5 rounded ' +
-                  (match.win ? 'text-[#63c07a] bg-[#63c07a]/15' : 'text-red bg-red/15')
+                  'rounded border px-2 py-0.5 text-[10px] font-black ' +
+                  (match.win ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8fd69d]' : 'border-red/35 bg-red/10 text-red')
                 }
               >
                 {match.win ? t('match.win') : t('match.loss')}
               </span>
               {allyScore != null && enemyScore != null && (
-                <span className="text-sm font-bold text-dim">
+                <span className="hidden text-sm font-bold text-dim">
                   {allyScore} : {enemyScore}
                 </span>
               )}
@@ -3711,27 +6972,17 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
             <p className="text-[13px] text-dim mt-1">
               {match.kills} / {match.deaths} / {match.assists} · {t('match.impact', { pct: match.impactPercentile })}
               {' · '}
-              {new Date(match.gameCreationDate).toLocaleString(lang === 'en' ? 'en-US' : 'zh-CN')}
+              {matchDate}
             </p>
+          </div>
+          <div className="grid grid-cols-4 gap-1.5 max-[980px]:col-span-2">
+            <DashboardMiniStat label={lang === 'en' ? 'Score' : '比分'} value={scoreValue} suffix={scoreSuffix} />
+            <DashboardMiniStat label="KDA" value={match.kills} suffix={`/${match.deaths}/${match.assists}`} />
+            <DashboardMiniStat label={lang === 'en' ? 'Impact' : '表现'} value={match.impactPercentile} />
+            <DashboardMiniStat label={lang === 'en' ? 'Time' : '时间'} value={Number(durationParts[0]) || 0} suffix={durationParts.length > 1 ? `:${durationParts[1]}` : ''} />
           </div>
         </header>
       )}
-
-      <div className="flex gap-1.5 mt-4 mb-3">
-        {MATCH_TABS.map((t) => (
-          <button
-            key={t.key}
-            onClick={() => setMatchTab(t.key)}
-            disabled={!detail}
-            className={
-              'px-3.5 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition disabled:cursor-default disabled:opacity-40 ' +
-              (matchTab === t.key ? 'bg-gold text-[#2b1e07]' : 'bg-panel2 text-dim hover:text-cream')
-            }
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
 
       {detail === undefined && <div className="p-11 text-center text-dim text-sm">{t('match.loadingDetail')}</div>}
       {detail === null && (
@@ -3739,9 +6990,7 @@ function MatchDetail({ core, match, onBack }: { core: Core; match: MatchSummary 
           {t('match.needElectron')}
         </div>
       )}
-      {detail && matchTab === 'overview' && <MatchOverview detail={detail} core={core} />}
-      {detail && matchTab === 'stats' && <MatchStats detail={detail} core={core} />}
-      {detail && matchTab === 'graph' && <MatchGraph detail={detail} />}
+      {detail && <CompactMatchOverview detail={detail} core={core} onSavePlayerRoute={onSavePlayerRoute} />}
     </>
   )
 }
@@ -3758,53 +7007,39 @@ function ArchetypeCard({
   const t = useT()
   const starterItems = arch.starterItems?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   const finalItems = arch.items.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it)
-  const boots = arch.boots?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
-  const optionalItems = arch.optionalItems?.map((ref) => itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   return (
-    <section className={CARD + ' mt-[18px] p-5'}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-      <div className="relative flex items-center gap-2.5 mb-3.5">
-        <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-dim">Full tactical readout</span>
-      </div>
-      <div className="relative flex flex-wrap items-center gap-2.5">
-        <span className="text-[22px] font-extrabold">{arch.name}</span>
+    <section className={CARD + ' mt-3 p-3'}>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/35" />
+      <div className="relative mb-1.5 flex flex-wrap items-center justify-between gap-2 pb-1.5">
+        <div className="min-w-0">
+          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Route sheet</div>
+          <div className="mt-0.5 flex min-w-0 flex-wrap items-center gap-2">
+            <span className="truncate text-[18px] font-black text-cream">{arch.name}</span>
+            <span
+              className={
+                'rounded px-2 py-0.5 text-[10px] font-black ' +
+                (arch.damageType === 'AP' ? 'text-[#c9a3f0] bg-[#9664dc]/18' : 'text-[#f0a97a] bg-[#dc8246]/18')
+              }
+            >
+              {arch.damageType}
+            </span>
+          </div>
+        </div>
         <span
-          className={
-            'text-xs font-semibold px-2.5 py-1 rounded-md ' +
-            (arch.damageType === 'AP' ? 'text-[#c9a3f0] bg-[#9664dc]/18' : 'text-[#f0a97a] bg-[#dc8246]/18')
-          }
+          className="rounded border border-line/55 bg-[#050a11]/45 px-2 py-1 text-[10px] font-bold text-dim"
         >
-          {arch.damageType}
+          {finalItems.length}/6 items
         </span>
       </div>
-      {arch.note && <p className="relative mt-2 max-w-3xl text-[13px] text-dim leading-relaxed">{arch.note}</p>}
+      {arch.note && <p className="relative max-w-5xl line-clamp-2 border-t border-line/45 pt-2 text-[11px] leading-4 text-dim">{arch.note}</p>}
 
-      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">{t('archetypeCard.augments')}</div>
-      <div className="relative flex flex-col gap-3">
+      <div className="relative mt-2 divide-y divide-line/42 rounded-[6px] border border-line/45 bg-[#050a11]/22 px-2">
         <AugTier label={t('archetypeCard.core')} tone="core" refs={arch.augments.core} augById={augById} />
         <AugTier label={t('archetypeCard.good')} tone="good" refs={arch.augments.good} augById={augById} />
-        {arch.augments.trap.length > 0 && (
-          <AugTier label={t('archetypeCard.trap')} tone="trap" refs={arch.augments.trap} augById={augById} />
-        )}
+        <ItemSequence label={t('archetypeCard.starterItems')} tone="starter" items={starterItems} />
+        <ItemSequence label={t('archetypeCard.finalItems')} tone="final" items={finalItems} slots={6} numbered />
       </div>
 
-      <div className="relative text-[13px] font-semibold text-dim mb-2.5 mt-5">{t('archetypeCard.items')}</div>
-      <div className="relative space-y-4">
-        {starterItems.length > 0 && (
-          <ItemSequence label={t('archetypeCard.starterItems')} tone="starter" items={starterItems} />
-        )}
-        <ItemSequence label={t('archetypeCard.finalItems')} tone="final" items={finalItems} />
-        {boots.length > 0 && <ItemSequence label={t('archetypeCard.boots')} tone="boots" items={boots} />}
-        {optionalItems.length > 0 && (
-          <ItemSequence label={t('archetypeCard.optionalItems')} tone="optional" items={optionalItems} />
-        )}
-      </div>
-
-      {arch.sources && arch.sources.length > 0 && (
-        <div className="relative mt-5 pt-3 border-t border-line/70 text-[11px] text-dim/70">
-          {t('archetypeCard.sources', { sources: arch.sources.join(' · ') })}
-        </div>
-      )}
     </section>
   )
 }
@@ -3813,44 +7048,63 @@ function ItemSequence({
   label,
   tone,
   items,
+  slots = 0,
+  numbered = false,
 }: {
   label: string
   tone: 'starter' | 'final' | 'boots' | 'optional'
   items: Item[]
+  slots?: number
+  numbered?: boolean
 }) {
-  if (items.length === 0) return null
   const visibleItems = stackItems(items)
+  const emptySlots = Math.max(0, slots - visibleItems.length)
   return (
-    <div className="rounded-[8px] border border-line/60 bg-panel/34 p-3">
+    <div className="grid grid-cols-[110px_minmax(0,1fr)] items-center gap-2 py-2 max-[760px]:grid-cols-1">
       <div
         className={
           (tone === 'starter' || tone === 'boots' ? 'text-gold' : tone === 'final' ? 'text-hex' : 'text-dim') +
-          ' mb-2 text-[11px] font-extrabold uppercase tracking-[0.14em]'
+          ' text-[10px] font-black uppercase tracking-[0.14em]'
         }
       >
         {label}
       </div>
-      <div className="flex flex-wrap items-start justify-start gap-2">
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5">
         {visibleItems.map((it, idx) => (
-          <div key={it.id + '-' + idx} className="flex h-[104px] items-center gap-1.5">
+          <div key={it.id + '-' + idx} className="flex h-[48px] items-center gap-1">
             <ItemHoverCard item={it}>
-              <div className="flex h-[104px] w-[96px] flex-col items-center justify-center rounded-lg border border-line/60 bg-panel2/38 p-2">
-                <span className="relative block">
-                  <img src={icon(it.iconLocal)} alt={it.name} className="h-11 w-11 shrink-0 rounded-lg border border-line" />
+                <div className="relative flex h-[46px] w-[92px] items-center gap-1.5 rounded-[5px] border border-line/38 bg-[#050a11]/28 px-1.5 py-1 transition hover:border-hex/38 hover:bg-panel2/38">
+                {numbered && (
+                  <span className="absolute left-1 top-1 grid h-3.5 min-w-3.5 place-items-center rounded border border-line/45 bg-[#050a11]/78 px-0.5 text-[8px] font-black text-hex">
+                    {idx + 1}
+                  </span>
+                )}
+                <span className="relative block h-8 w-8 shrink-0 overflow-hidden rounded-[5px] border border-line/70">
+                  <img src={icon(it.iconLocal)} alt={it.name} className="h-full w-full object-cover" />
                   {it.count > 1 && (
-                    <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-panel bg-gold px-1 text-[9px] font-extrabold leading-none text-[#091428]">
+                    <span className="absolute -bottom-1 -right-1 grid h-4 min-w-4 place-items-center rounded-full border border-panel bg-hex px-1 text-[9px] font-extrabold leading-none text-[#041017]">
                       {it.count}
                     </span>
                   )}
                 </span>
-                <span className="mt-1 line-clamp-3 h-[34px] text-center text-[11px] leading-[11px] text-dim">
+                <span className="line-clamp-2 min-w-0 text-[9px] font-bold leading-[11px] text-dim">
                   {it.name}
                 </span>
               </div>
             </ItemHoverCard>
-            {idx < visibleItems.length - 1 && <span className="grid h-[104px] place-items-center text-dim text-[13px]">-&gt;</span>}
+            {idx < visibleItems.length - 1 && <span className="grid h-[48px] place-items-center text-dim/55 text-[10px]">-&gt;</span>}
           </div>
         ))}
+        {emptySlots > 0 && Array.from({ length: emptySlots }).map((_, idx) => (
+          <div key={`empty-${idx}`} className="grid h-[46px] w-[92px] place-items-center rounded-[5px] border border-dashed border-line/35 bg-[#050a11]/20 text-[9px] font-bold text-dim/60">
+            {numbered ? visibleItems.length + idx + 1 : '—'}
+          </div>
+        ))}
+        {visibleItems.length === 0 && emptySlots === 0 && (
+          <div className="rounded-[5px] border border-dashed border-line/35 bg-[#050a11]/20 px-3 py-2 text-[11px] text-dim">
+            暂无
+          </div>
+        )}
       </div>
     </div>
   )
@@ -3873,21 +7127,20 @@ function AugTier({
   refs: Ref[]
   augById: Map<number, Augment>
 }) {
-  if (refs.length === 0) return null
   return (
-    <div className="rounded-[8px] border border-line/60 bg-panel2/35 p-3">
-      <div className={'mb-3 text-[13px] font-extrabold ' + TONE_LABEL[tone]}>{label}</div>
-      <div className="flex flex-wrap items-start justify-start gap-3">
-        {refs.map((ref) => {
+    <div className="grid grid-cols-[110px_minmax(0,1fr)] items-center gap-2 py-2 max-[760px]:grid-cols-1">
+      <div className={'text-[10px] font-black uppercase tracking-[0.14em] ' + TONE_LABEL[tone]}>{label}</div>
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+        {refs.length > 0 ? refs.map((ref) => {
           const a = getAugment(augById, ref.id)
           if (!a) return null
           const r = RARITY[a.rarity] ?? RARITY[0]
           return (
             <AugmentHoverCard key={ref.id} augment={a}>
-              <div className="flex h-[94px] w-[92px] flex-col items-center">
+              <div className="flex h-[42px] w-[112px] items-center gap-1.5 rounded-[5px] border border-line/35 bg-[#050a11]/24 px-1.5 py-1 transition hover:border-hex/36 hover:bg-panel2/34">
                 <div
                   className={
-                    'w-[62px] h-[62px] rounded-lg overflow-hidden border-2 shadow-[0_10px_22px_rgba(0,0,0,0.22)] ' +
+                    'h-8 w-8 shrink-0 overflow-hidden rounded-[5px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.18)] ' +
                     r.border +
                     (tone === 'core' ? ' ring-2 ring-gold' : '') +
                     (tone === 'trap' ? ' opacity-70' : '')
@@ -3895,11 +7148,15 @@ function AugTier({
                 >
                   <img src={icon(a.iconLargeLocal)} alt={a.name} className="w-full h-full object-cover" />
                 </div>
-                <span className="mt-1.5 line-clamp-2 h-[28px] text-center text-xs leading-[14px]">{a.name}</span>
+                <span className="line-clamp-2 min-w-0 text-[9px] font-bold leading-[11px] text-cream">{a.name}</span>
               </div>
             </AugmentHoverCard>
           )
-        })}
+        }) : (
+          <div className="rounded-[5px] border border-dashed border-line/35 bg-[#050a11]/20 px-3 py-2 text-[11px] text-dim">
+            暂无
+          </div>
+        )}
       </div>
     </div>
   )
@@ -3952,6 +7209,7 @@ function HoverPortal({ content, children, className }: { content: ReactNode; chi
 function AugmentHoverCard({ augment: a, children }: { augment: Augment; children: ReactNode }) {
   const t = useT()
   const r = RARITY[a.rarity] ?? RARITY[0]
+  const displayText = augmentDisplayText(a)
   return (
     <HoverPortal
       content={
@@ -3965,7 +7223,7 @@ function AugmentHoverCard({ augment: a, children }: { augment: Augment; children
               </div>
             </div>
           </div>
-          <div className="mt-2.5 text-[12px] leading-relaxed text-dim">{a.desc}</div>
+          <div className="mt-2.5 text-[12px] leading-relaxed text-dim">{displayText || t('common.none')}</div>
           <div className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 border-b border-r border-gold/35 bg-[#0a0f17]" />
         </div>
       }

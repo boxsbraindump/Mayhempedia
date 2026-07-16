@@ -1,0 +1,88 @@
+{
+  "championId": 141,
+  "championName": "Kayn",
+  "archetypes": [
+    {
+      "key": "ad",
+      "name": "AD Kayn",
+      "damageType": "AD",
+      "note": "Kayn AD route for ARAM: Mayhem. Prioritize Dashing as the main augment plan. Strong secondary hits include Spin To Win / Outlaw's Grit / Goredrink. Build toward Hubris > Eclipse > Black Cleaver > Mercury's Treads > Death's Dance > Spirit Visage. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 19,
+            "apiName": "Dashing",
+            "name": "Dashing"
+          }
+        ],
+        "good": [
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 63,
+            "apiName": "OutlawsGrit",
+            "name": "Outlaw's Grit"
+          },
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6697,
+          "name": "Hubris"
+        },
+        {
+          "id": 6692,
+          "name": "Eclipse"
+        },
+        {
+          "id": 3071,
+          "name": "Black Cleaver"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 6333,
+          "name": "Death's Dance"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

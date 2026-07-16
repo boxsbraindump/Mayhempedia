@@ -1,0 +1,119 @@
+{
+  "championId": 421,
+  "championName": "Rek'Sai",
+  "archetypes": [
+    {
+      "key": "tank_ad",
+      "name": "AD Tank Rek'Sai",
+      "damageType": "AD",
+      "note": "Rek'Sai AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goredrink / Dawnbringer's Resolve / Spin To Win. Build toward Heartsteel > Mercury's Treads > Titanic Hydra > Sundered Sky > Spirit Visage > Unending Despair. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg and op.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "Heavy Hitter"
+          },
+          {
+            "id": 152,
+            "apiName": "Quest_SteelYourHeart",
+            "name": "Quest: Steel Your Heart"
+          }
+        ],
+        "good": [
+          {
+            "id": 138,
+            "apiName": "Goredrink",
+            "name": "Goredrink"
+          },
+          {
+            "id": 20,
+            "apiName": "DawnbringersResolve",
+            "name": "Dawnbringer's Resolve"
+          },
+          {
+            "id": 214,
+            "apiName": "SpinToWin",
+            "name": "Spin To Win"
+          },
+          {
+            "id": 57,
+            "apiName": "MountainSoul",
+            "name": "Mountain Soul"
+          },
+          {
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": [
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 174,
+            "apiName": "LaserEyes",
+            "name": "Laser Eyes"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "metasrc.com",
+        "arammayhem.com",
+        "blitz.gg",
+        "op.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

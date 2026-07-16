@@ -1,0 +1,1799 @@
+{
+  "source": "https://arammayhem.com/augments/",
+  "fetchedAt": "2026-07-11T19:22:24.037Z",
+  "total": 199,
+  "matchedLocal": 199,
+  "augments": [
+    {
+      "id": 313,
+      "apiName": "TankEngine",
+      "name": "Tank Engine",
+      "rarity": "gold",
+      "liveRank": 1,
+      "slug": "tank-engine",
+      "matchedLocal": true
+    },
+    {
+      "id": 152,
+      "apiName": "Quest_SteelYourHeart",
+      "name": "Quest: Steel Your Heart",
+      "rarity": "gold",
+      "liveRank": 2,
+      "slug": "quest-steel-your-heart",
+      "matchedLocal": true
+    },
+    {
+      "id": 910000,
+      "apiName": "ARAMMayhemCriticalMissile",
+      "name": "Critical Missile",
+      "rarity": "gold",
+      "liveRank": 3,
+      "slug": "critical-missile",
+      "matchedLocal": true
+    },
+    {
+      "id": 910001,
+      "apiName": "ARAMMayhemUpgradeInfinityEdge",
+      "name": "Upgrade Infinity Edge",
+      "rarity": "gold",
+      "liveRank": 4,
+      "slug": "upgrade-infinity-edge",
+      "matchedLocal": true
+    },
+    {
+      "id": 181,
+      "apiName": "HeavyHitter",
+      "name": "Heavy Hitter",
+      "rarity": "silver",
+      "liveRank": 5,
+      "slug": "heavy-hitter",
+      "matchedLocal": true
+    },
+    {
+      "id": 910002,
+      "apiName": "ARAMMayhemDropkick",
+      "name": "Dropkick",
+      "rarity": "prismatic",
+      "liveRank": 6,
+      "slug": "dropkick",
+      "matchedLocal": true
+    },
+    {
+      "id": 134,
+      "apiName": "DrawYourSword",
+      "name": "Draw Your Sword",
+      "rarity": "prismatic",
+      "liveRank": 7,
+      "slug": "draw-your-sword",
+      "matchedLocal": true
+    },
+    {
+      "id": 900003,
+      "apiName": "MayhemInfiniteRecursion",
+      "name": "Infinite Recursion",
+      "rarity": "prismatic",
+      "liveRank": 8,
+      "slug": "infinite-recursion",
+      "matchedLocal": true
+    },
+    {
+      "id": 910003,
+      "apiName": "ARAMMayhemWarlockJuicebox",
+      "name": "Warlock Juicebox",
+      "rarity": "gold",
+      "liveRank": 9,
+      "slug": "warlock-juicebox",
+      "matchedLocal": true
+    },
+    {
+      "id": 65,
+      "apiName": "PhenomenalEvil",
+      "name": "Phenomenal Evil",
+      "rarity": "gold",
+      "liveRank": 10,
+      "slug": "phenomenal-evil",
+      "matchedLocal": true
+    },
+    {
+      "id": 41,
+      "apiName": "Goliath",
+      "name": "Goliath",
+      "rarity": "prismatic",
+      "liveRank": 11,
+      "slug": "goliath",
+      "matchedLocal": true
+    },
+    {
+      "id": 30,
+      "apiName": "Eureka",
+      "name": "Eureka",
+      "rarity": "prismatic",
+      "liveRank": 12,
+      "slug": "eureka",
+      "matchedLocal": true
+    },
+    {
+      "id": 225,
+      "apiName": "DualWield",
+      "name": "Dual Wield",
+      "rarity": "prismatic",
+      "liveRank": 13,
+      "slug": "dual-wield",
+      "matchedLocal": true
+    },
+    {
+      "id": 133,
+      "apiName": "MagicMissile",
+      "name": "Magic Missile",
+      "rarity": "gold",
+      "liveRank": 14,
+      "slug": "magic-missile",
+      "matchedLocal": true
+    },
+    {
+      "id": 910004,
+      "apiName": "ARAMMayhemDoubleTap",
+      "name": "Double Tap",
+      "rarity": "gold",
+      "liveRank": 15,
+      "slug": "double-tap",
+      "matchedLocal": true
+    },
+    {
+      "id": 910005,
+      "apiName": "ARAMMayhemVoidImmolation",
+      "name": "Void Immolation",
+      "rarity": "prismatic",
+      "liveRank": 16,
+      "slug": "void-immolation",
+      "matchedLocal": true
+    },
+    {
+      "id": 45,
+      "apiName": "InfernalConduit",
+      "name": "Infernal Conduit",
+      "rarity": "prismatic",
+      "liveRank": 17,
+      "slug": "infernal-conduit",
+      "matchedLocal": true
+    },
+    {
+      "id": 29,
+      "apiName": "EtherealWeapon",
+      "name": "Ethereal Weapon",
+      "rarity": "gold",
+      "liveRank": 18,
+      "slug": "ethereal-weapon",
+      "matchedLocal": true
+    },
+    {
+      "id": 910006,
+      "apiName": "ARAMMayhemToothFairy",
+      "name": "Tooth Fairy",
+      "rarity": "gold",
+      "liveRank": 19,
+      "slug": "tooth-fairy",
+      "matchedLocal": true
+    },
+    {
+      "id": 22,
+      "apiName": "Deft",
+      "name": "Deft",
+      "rarity": "silver",
+      "liveRank": 20,
+      "slug": "deft",
+      "matchedLocal": true
+    },
+    {
+      "id": 195,
+      "apiName": "GiantSlayer",
+      "name": "Giant Slayer",
+      "rarity": "prismatic",
+      "liveRank": 21,
+      "slug": "giant-slayer",
+      "matchedLocal": true
+    },
+    {
+      "id": 238,
+      "apiName": "TransmutePrismatic",
+      "name": "Transmute: Prismatic",
+      "rarity": "gold",
+      "liveRank": 22,
+      "slug": "transmute-prismatic",
+      "matchedLocal": true
+    },
+    {
+      "id": 910007,
+      "apiName": "ARAMMayhemUpgradeImmolate",
+      "name": "Upgrade Immolate",
+      "rarity": "silver",
+      "liveRank": 23,
+      "slug": "upgrade-immolate",
+      "matchedLocal": true
+    },
+    {
+      "id": 77,
+      "apiName": "SoulSiphon",
+      "name": "Soul Siphon",
+      "rarity": "gold",
+      "liveRank": 24,
+      "slug": "soul-siphon",
+      "matchedLocal": true
+    },
+    {
+      "id": 138,
+      "apiName": "Goredrink",
+      "name": "Goredrink",
+      "rarity": "silver",
+      "liveRank": 25,
+      "slug": "goredrink",
+      "matchedLocal": true
+    },
+    {
+      "id": 7,
+      "apiName": "BluntForce",
+      "name": "Blunt Force",
+      "rarity": "silver",
+      "liveRank": 26,
+      "slug": "blunt-force",
+      "matchedLocal": true
+    },
+    {
+      "id": 910008,
+      "apiName": "ARAMMayhemScopierWeapons",
+      "name": "Scopier Weapons",
+      "rarity": "gold",
+      "liveRank": 27,
+      "slug": "scopier-weapons",
+      "matchedLocal": true
+    },
+    {
+      "id": 13,
+      "apiName": "CelestialBody",
+      "name": "Celestial Body",
+      "rarity": "gold",
+      "liveRank": 28,
+      "slug": "celestial-body",
+      "matchedLocal": true
+    },
+    {
+      "id": 204,
+      "apiName": "StackosaurusRex",
+      "name": "Stackosaurus Rex",
+      "rarity": "silver",
+      "liveRank": 29,
+      "slug": "stackosaurusrex",
+      "matchedLocal": true
+    },
+    {
+      "id": 4,
+      "apiName": "BacktoBasics",
+      "name": "Back To Basics",
+      "rarity": "prismatic",
+      "liveRank": 30,
+      "slug": "back-to-basics",
+      "matchedLocal": true
+    },
+    {
+      "id": 220,
+      "apiName": "FanTheHammer",
+      "name": "Fan The Hammer",
+      "rarity": "prismatic",
+      "liveRank": 31,
+      "slug": "fan-the-hammer",
+      "matchedLocal": true
+    },
+    {
+      "id": 48,
+      "apiName": "JeweledGauntlet",
+      "name": "Jeweled Gauntlet",
+      "rarity": "prismatic",
+      "liveRank": 32,
+      "slug": "jeweled-gauntlet",
+      "matchedLocal": true
+    },
+    {
+      "id": 910009,
+      "apiName": "ARAMMayhemTwinFire",
+      "name": "Twin Fire",
+      "rarity": "silver",
+      "liveRank": 33,
+      "slug": "twin-fire",
+      "matchedLocal": true
+    },
+    {
+      "id": 80,
+      "apiName": "TankItOrLeaveIt",
+      "name": "Tank It Or Leave It",
+      "rarity": "silver",
+      "liveRank": 34,
+      "slug": "tank-it-or-leave-it",
+      "matchedLocal": true
+    },
+    {
+      "id": 910010,
+      "apiName": "ARAMMayhemUpgradeCollector",
+      "name": "Upgrade Collector",
+      "rarity": "silver",
+      "liveRank": 35,
+      "slug": "upgrade-collector",
+      "matchedLocal": true
+    },
+    {
+      "id": 156,
+      "apiName": "Quest_WoogletsWitchcap",
+      "name": "Quest: Wooglet's Witchcap",
+      "rarity": "prismatic",
+      "liveRank": 36,
+      "slug": "quest-wooglets-witchcap",
+      "matchedLocal": true
+    },
+    {
+      "id": 910011,
+      "apiName": "ARAMMayhemWindspeakersBlessing",
+      "name": "Windspeaker's Blessing",
+      "rarity": "prismatic",
+      "liveRank": 37,
+      "slug": "windspeakers-blessing",
+      "matchedLocal": true
+    },
+    {
+      "id": 910012,
+      "apiName": "ARAMMayhemWeeWooWeeWoo",
+      "name": "Wee Woo Wee Woo",
+      "rarity": "gold",
+      "liveRank": 38,
+      "slug": "wee-woo-wee-woo",
+      "matchedLocal": true
+    },
+    {
+      "id": 97,
+      "apiName": "WitchfulThinking",
+      "name": "Witchful Thinking",
+      "rarity": "silver",
+      "liveRank": 39,
+      "slug": "witchful-thinking",
+      "matchedLocal": true
+    },
+    {
+      "id": 58,
+      "apiName": "MysticPunch",
+      "name": "Mystic Punch",
+      "rarity": "prismatic",
+      "liveRank": 40,
+      "slug": "mystic-punch",
+      "matchedLocal": true
+    },
+    {
+      "id": 910013,
+      "apiName": "ARAMMayhemSonata",
+      "name": "Sonata",
+      "rarity": "gold",
+      "liveRank": 41,
+      "slug": "sonata",
+      "matchedLocal": true
+    },
+    {
+      "id": 44,
+      "apiName": "IceCold",
+      "name": "Ice Cold",
+      "rarity": "silver",
+      "liveRank": 42,
+      "slug": "ice-cold",
+      "matchedLocal": true
+    },
+    {
+      "id": 910014,
+      "apiName": "ARAMMayhemForgedByTheMaster",
+      "name": "Forged By The Master",
+      "rarity": "silver",
+      "liveRank": 43,
+      "slug": "forged-by-the-master",
+      "matchedLocal": true
+    },
+    {
+      "id": 910015,
+      "apiName": "ARAMMayhemCriticalRhythm",
+      "name": "Critical Rhythm",
+      "rarity": "gold",
+      "liveRank": 44,
+      "slug": "critical-rhythm",
+      "matchedLocal": true
+    },
+    {
+      "id": 910016,
+      "apiName": "ARAMMayhemEscapePlan",
+      "name": "Escape Plan",
+      "rarity": "silver",
+      "liveRank": 45,
+      "slug": "escape-plan",
+      "matchedLocal": true
+    },
+    {
+      "id": 113,
+      "apiName": "SkilledSniper",
+      "name": "Skilled Sniper",
+      "rarity": "gold",
+      "liveRank": 46,
+      "slug": "skilled-sniper",
+      "matchedLocal": true
+    },
+    {
+      "id": 900002,
+      "apiName": "MayhemPuristCaster",
+      "name": "Purist - Caster",
+      "rarity": "silver",
+      "liveRank": 47,
+      "slug": "purist-caster",
+      "matchedLocal": true
+    },
+    {
+      "id": 81,
+      "apiName": "TapDancer",
+      "name": "Tap Dancer",
+      "rarity": "prismatic",
+      "liveRank": 48,
+      "slug": "tap-dancer",
+      "matchedLocal": true
+    },
+    {
+      "id": 910017,
+      "apiName": "ARAMMayhemUpgradeZhonyas",
+      "name": "Upgrade Zhonya's",
+      "rarity": "silver",
+      "liveRank": 49,
+      "slug": "upgrade-zhonyas",
+      "matchedLocal": true
+    },
+    {
+      "id": 136,
+      "apiName": "SlapAround",
+      "name": "Slap Around",
+      "rarity": "silver",
+      "liveRank": 50,
+      "slug": "slap-around",
+      "matchedLocal": true
+    },
+    {
+      "id": 56,
+      "apiName": "MindtoMatter",
+      "name": "Mind to Matter",
+      "rarity": "silver",
+      "liveRank": 51,
+      "slug": "mind-to-matter",
+      "matchedLocal": true
+    },
+    {
+      "id": 900004,
+      "apiName": "MayhemHighRoller",
+      "name": "High Roller",
+      "rarity": "prismatic",
+      "liveRank": 52,
+      "slug": "high-roller",
+      "matchedLocal": true
+    },
+    {
+      "id": 115,
+      "apiName": "ScopiestWeapons",
+      "name": "Scopiest Weapons",
+      "rarity": "prismatic",
+      "liveRank": 53,
+      "slug": "scopiest-weapons",
+      "matchedLocal": true
+    },
+    {
+      "id": 98,
+      "apiName": "WithHaste",
+      "name": "With Haste",
+      "rarity": "gold",
+      "liveRank": 54,
+      "slug": "with-haste",
+      "matchedLocal": true
+    },
+    {
+      "id": 910018,
+      "apiName": "ARAMMayhemShrinkEngine",
+      "name": "Shrink Engine",
+      "rarity": "gold",
+      "liveRank": 55,
+      "slug": "shrink-engine",
+      "matchedLocal": true
+    },
+    {
+      "id": 910019,
+      "apiName": "ARAMMayhemSpiritBomb",
+      "name": "Spirit Bomb",
+      "rarity": "prismatic",
+      "liveRank": 56,
+      "slug": "spirit-bomb",
+      "matchedLocal": true
+    },
+    {
+      "id": 900001,
+      "apiName": "MayhemArchmage",
+      "name": "Archmage",
+      "rarity": "prismatic",
+      "liveRank": 57,
+      "slug": "archmage",
+      "matchedLocal": true
+    },
+    {
+      "id": 910020,
+      "apiName": "ARAMMayhemTerraind",
+      "name": "Terrain'd",
+      "rarity": "gold",
+      "liveRank": 58,
+      "slug": "terraind",
+      "matchedLocal": true
+    },
+    {
+      "id": 910021,
+      "apiName": "ARAMMayhemBonk",
+      "name": "BONK!",
+      "rarity": "gold",
+      "liveRank": 59,
+      "slug": "bonk",
+      "matchedLocal": true
+    },
+    {
+      "id": 51,
+      "apiName": "LightemUp",
+      "name": "Light 'em Up!",
+      "rarity": "silver",
+      "liveRank": 60,
+      "slug": "light-em-up",
+      "matchedLocal": true
+    },
+    {
+      "id": 910022,
+      "apiName": "ARAMMayhemDonation",
+      "name": "Donation",
+      "rarity": "gold",
+      "liveRank": 61,
+      "slug": "donation",
+      "matchedLocal": true
+    },
+    {
+      "id": 53,
+      "apiName": "MadScientist",
+      "name": "Mad Scientist",
+      "rarity": "prismatic",
+      "liveRank": 62,
+      "slug": "mad-scientist",
+      "matchedLocal": true
+    },
+    {
+      "id": 180,
+      "apiName": "BigBrain",
+      "name": "Big Brain",
+      "rarity": "gold",
+      "liveRank": 63,
+      "slug": "big-brain",
+      "matchedLocal": true
+    },
+    {
+      "id": 206,
+      "apiName": "escAPADe",
+      "name": "escAPADe",
+      "rarity": "silver",
+      "liveRank": 64,
+      "slug": "escapade",
+      "matchedLocal": true
+    },
+    {
+      "id": 105,
+      "apiName": "Homeguard",
+      "name": "Homeguard",
+      "rarity": "silver",
+      "liveRank": 65,
+      "slug": "homeguard",
+      "matchedLocal": true
+    },
+    {
+      "id": 63,
+      "apiName": "OutlawsGrit",
+      "name": "Outlaw's Grit",
+      "rarity": "gold",
+      "liveRank": 66,
+      "slug": "outlaws-grit",
+      "matchedLocal": true
+    },
+    {
+      "id": 68,
+      "apiName": "Recursion",
+      "name": "Recursion",
+      "rarity": "gold",
+      "liveRank": 67,
+      "slug": "recursion",
+      "matchedLocal": true
+    },
+    {
+      "id": 910023,
+      "apiName": "ARAMMayhemFinalForm",
+      "name": "Final Form",
+      "rarity": "prismatic",
+      "liveRank": 68,
+      "slug": "final-form",
+      "matchedLocal": true
+    },
+    {
+      "id": 910024,
+      "apiName": "ARAMMayhemScopedWeapons",
+      "name": "Scoped Weapons",
+      "rarity": "silver",
+      "liveRank": 69,
+      "slug": "scoped-weapons",
+      "matchedLocal": true
+    },
+    {
+      "id": 87,
+      "apiName": "Typhoon",
+      "name": "Typhoon",
+      "rarity": "silver",
+      "liveRank": 70,
+      "slug": "typhoon",
+      "matchedLocal": true
+    },
+    {
+      "id": 92,
+      "apiName": "Vulnerability",
+      "name": "Vulnerability",
+      "rarity": "gold",
+      "liveRank": 71,
+      "slug": "vulnerability",
+      "matchedLocal": true
+    },
+    {
+      "id": 37,
+      "apiName": "FirstAidKit",
+      "name": "First-Aid Kit",
+      "rarity": "silver",
+      "liveRank": 72,
+      "slug": "first-aid-kit",
+      "matchedLocal": true
+    },
+    {
+      "id": 60,
+      "apiName": "OceanSoul",
+      "name": "Ocean Soul",
+      "rarity": "silver",
+      "liveRank": 73,
+      "slug": "ocean-soul",
+      "matchedLocal": true
+    },
+    {
+      "id": 227,
+      "apiName": "StatsOnStats",
+      "name": "Stats on Stats!",
+      "rarity": "gold",
+      "liveRank": 74,
+      "slug": "stats-on-stats",
+      "matchedLocal": true
+    },
+    {
+      "id": 73,
+      "apiName": "ShadowRunner",
+      "name": "Shadow Runner",
+      "rarity": "silver",
+      "liveRank": 75,
+      "slug": "shadow-runner",
+      "matchedLocal": true
+    },
+    {
+      "id": 910025,
+      "apiName": "ARAMMayhemZealot",
+      "name": "Zealot",
+      "rarity": "silver",
+      "liveRank": 76,
+      "slug": "zealot",
+      "matchedLocal": true
+    },
+    {
+      "id": 910026,
+      "apiName": "ARAMMayhemPursuitOfHaste",
+      "name": "Pursuit of Haste",
+      "rarity": "gold",
+      "liveRank": 77,
+      "slug": "pursuit-of-haste",
+      "matchedLocal": true
+    },
+    {
+      "id": 910027,
+      "apiName": "ARAMMayhemFromDowntown",
+      "name": "From Downtown",
+      "rarity": "gold",
+      "liveRank": 78,
+      "slug": "from-downtown",
+      "matchedLocal": true
+    },
+    {
+      "id": 129,
+      "apiName": "Marksmage",
+      "name": "Marksmage",
+      "rarity": "gold",
+      "liveRank": 79,
+      "slug": "marksmage",
+      "matchedLocal": true
+    },
+    {
+      "id": 305,
+      "apiName": "LegDay",
+      "name": "Leg Day",
+      "rarity": "silver",
+      "liveRank": 80,
+      "slug": "leg-day",
+      "matchedLocal": true
+    },
+    {
+      "id": 910028,
+      "apiName": "ARAMMayhemSoulEater",
+      "name": "Soul Eater",
+      "rarity": "gold",
+      "liveRank": 81,
+      "slug": "soul-eater",
+      "matchedLocal": true
+    },
+    {
+      "id": 38,
+      "apiName": "FromBeginningToEnd",
+      "name": "From Beginning To End",
+      "rarity": "gold",
+      "liveRank": 82,
+      "slug": "from-beginning-to-end",
+      "matchedLocal": true
+    },
+    {
+      "id": 28,
+      "apiName": "Erosion",
+      "name": "Erosion",
+      "rarity": "silver",
+      "liveRank": 83,
+      "slug": "erosion",
+      "matchedLocal": true
+    },
+    {
+      "id": 76,
+      "apiName": "SonicBoom",
+      "name": "Sonic Boom",
+      "rarity": "silver",
+      "liveRank": 84,
+      "slug": "sonic-boom",
+      "matchedLocal": true
+    },
+    {
+      "id": 910029,
+      "apiName": "ARAMMayhemCombustingInterest",
+      "name": "Combusting Interest",
+      "rarity": "gold",
+      "liveRank": 85,
+      "slug": "combusting-interest",
+      "matchedLocal": true
+    },
+    {
+      "id": 910030,
+      "apiName": "ARAMMayhemDropbear",
+      "name": "DropBear",
+      "rarity": "prismatic",
+      "liveRank": 86,
+      "slug": "dropbear",
+      "matchedLocal": true
+    },
+    {
+      "id": 214,
+      "apiName": "SpinToWin",
+      "name": "Spin To Win",
+      "rarity": "silver",
+      "liveRank": 87,
+      "slug": "spin-to-win",
+      "matchedLocal": true
+    },
+    {
+      "id": 311,
+      "apiName": "Overflow",
+      "name": "Overflow",
+      "rarity": "gold",
+      "liveRank": 88,
+      "slug": "overflow",
+      "matchedLocal": true
+    },
+    {
+      "id": 20,
+      "apiName": "DawnbringersResolve",
+      "name": "Dawnbringer's Resolve",
+      "rarity": "gold",
+      "liveRank": 89,
+      "slug": "dawnbringers-resolve",
+      "matchedLocal": true
+    },
+    {
+      "id": 910031,
+      "apiName": "ARAMMayhemUpgradeSheen",
+      "name": "Upgrade Sheen",
+      "rarity": "gold",
+      "liveRank": 90,
+      "slug": "upgrade-sheen",
+      "matchedLocal": true
+    },
+    {
+      "id": 62,
+      "apiName": "OmniSoul",
+      "name": "Omni Soul",
+      "rarity": "prismatic",
+      "liveRank": 91,
+      "slug": "omni-soul",
+      "matchedLocal": true
+    },
+    {
+      "id": 205,
+      "apiName": "ADAPt",
+      "name": "ADAPt",
+      "rarity": "silver",
+      "liveRank": 92,
+      "slug": "adapt",
+      "matchedLocal": true
+    },
+    {
+      "id": 910032,
+      "apiName": "ARAMMayhemStayResolute",
+      "name": "Stay Resolute",
+      "rarity": "silver",
+      "liveRank": 93,
+      "slug": "stay-resolute",
+      "matchedLocal": true
+    },
+    {
+      "id": 910033,
+      "apiName": "ARAMMayhemGetExcited",
+      "name": "Get Excited!",
+      "rarity": "gold",
+      "liveRank": 94,
+      "slug": "get-excited",
+      "matchedLocal": true
+    },
+    {
+      "id": 910034,
+      "apiName": "ARAMMayhemLilExtraHelp",
+      "name": "Lil' Extra Help",
+      "rarity": "gold",
+      "liveRank": 95,
+      "slug": "lil-extra-help",
+      "matchedLocal": true
+    },
+    {
+      "id": 910035,
+      "apiName": "ARAMMayhemHandOfBaron",
+      "name": "Hand of Baron",
+      "rarity": "prismatic",
+      "liveRank": 96,
+      "slug": "hand-of-baron",
+      "matchedLocal": true
+    },
+    {
+      "id": 910036,
+      "apiName": "ARAMMayhemKingMe",
+      "name": "King Me",
+      "rarity": "prismatic",
+      "liveRank": 97,
+      "slug": "king-me",
+      "matchedLocal": true
+    },
+    {
+      "id": 141,
+      "apiName": "AllForYou",
+      "name": "All For You",
+      "rarity": "gold",
+      "liveRank": 98,
+      "slug": "all-for-you",
+      "matchedLocal": true
+    },
+    {
+      "id": 910037,
+      "apiName": "ARAMMayhemPressureCooker",
+      "name": "Pressure Cooker",
+      "rarity": "gold",
+      "liveRank": 99,
+      "slug": "pressure-cooker",
+      "matchedLocal": true
+    },
+    {
+      "id": 47,
+      "apiName": "ItsCritical",
+      "name": "It's Critical",
+      "rarity": "gold",
+      "liveRank": 100,
+      "slug": "its-critical",
+      "matchedLocal": true
+    },
+    {
+      "id": 910038,
+      "apiName": "ARAMMayhemSwiftAndSafe",
+      "name": "Swift and Safe",
+      "rarity": "silver",
+      "liveRank": 101,
+      "slug": "swift-and-safe",
+      "matchedLocal": true
+    },
+    {
+      "id": 243,
+      "apiName": "TransmuteChaos",
+      "name": "Transmute: Chaos",
+      "rarity": "prismatic",
+      "liveRank": 102,
+      "slug": "transmute-chaos",
+      "matchedLocal": true
+    },
+    {
+      "id": 26,
+      "apiName": "DontBlink",
+      "name": "Don't Blink",
+      "rarity": "silver",
+      "liveRank": 103,
+      "slug": "dont-blink",
+      "matchedLocal": true
+    },
+    {
+      "id": 910039,
+      "apiName": "ARAMMayhemOverextender",
+      "name": "Overextender",
+      "rarity": "gold",
+      "liveRank": 104,
+      "slug": "overextender",
+      "matchedLocal": true
+    },
+    {
+      "id": 910040,
+      "apiName": "ARAMMayhemGrowthSpurt",
+      "name": "Growth Spurt",
+      "rarity": "gold",
+      "liveRank": 105,
+      "slug": "growth-spurt",
+      "matchedLocal": true
+    },
+    {
+      "id": 910041,
+      "apiName": "ARAMMayhemCruelty",
+      "name": "Cruelty",
+      "rarity": "prismatic",
+      "liveRank": 106,
+      "slug": "cruelty",
+      "matchedLocal": true
+    },
+    {
+      "id": 910042,
+      "apiName": "ARAMMayhemEndlessDecimation",
+      "name": "Endless Decimation",
+      "rarity": "gold",
+      "liveRank": 107,
+      "slug": "endless-decimation",
+      "matchedLocal": true
+    },
+    {
+      "id": 54,
+      "apiName": "MasterofDuality",
+      "name": "Master of Duality",
+      "rarity": "prismatic",
+      "liveRank": 108,
+      "slug": "master-of-duality",
+      "matchedLocal": true
+    },
+    {
+      "id": 910043,
+      "apiName": "ARAMMayhemRavenousBind",
+      "name": "Ravenous Bind",
+      "rarity": "gold",
+      "liveRank": 109,
+      "slug": "ravenous-bind",
+      "matchedLocal": true
+    },
+    {
+      "id": 308,
+      "apiName": "Firefox",
+      "name": "FireFox",
+      "rarity": "silver",
+      "liveRank": 110,
+      "slug": "firefox",
+      "matchedLocal": true
+    },
+    {
+      "id": 19,
+      "apiName": "Dashing",
+      "name": "Dashing",
+      "rarity": "prismatic",
+      "liveRank": 111,
+      "slug": "dashing",
+      "matchedLocal": true
+    },
+    {
+      "id": 910044,
+      "apiName": "ARAMMayhemSiphon",
+      "name": "Siphon",
+      "rarity": "silver",
+      "liveRank": 112,
+      "slug": "siphon",
+      "matchedLocal": true
+    },
+    {
+      "id": 104,
+      "apiName": "Minionmancer",
+      "name": "Minionmancer",
+      "rarity": "gold",
+      "liveRank": 113,
+      "slug": "minionmancer",
+      "matchedLocal": true
+    },
+    {
+      "id": 910045,
+      "apiName": "ARAMMayhemEmpoweredByTheFaithful",
+      "name": "Empowered By The Faithful",
+      "rarity": "prismatic",
+      "liveRank": 114,
+      "slug": "empowered-by-the-faithful",
+      "matchedLocal": true
+    },
+    {
+      "id": 910046,
+      "apiName": "ARAMMayhemDontChangeTheChannel",
+      "name": "Don't Change the Channel",
+      "rarity": "silver",
+      "liveRank": 115,
+      "slug": "dont-change-the-channel",
+      "matchedLocal": true
+    },
+    {
+      "id": 910047,
+      "apiName": "ARAMMayhemHextechSoul",
+      "name": "Hextech Soul",
+      "rarity": "silver",
+      "liveRank": 116,
+      "slug": "hextech-soul",
+      "matchedLocal": true
+    },
+    {
+      "id": 910048,
+      "apiName": "ARAMMayhemOminousPact",
+      "name": "Ominous Pact",
+      "rarity": "prismatic",
+      "liveRank": 117,
+      "slug": "ominous-pact",
+      "matchedLocal": true
+    },
+    {
+      "id": 910049,
+      "apiName": "ARAMMayhemEnPassant",
+      "name": "En Passant",
+      "rarity": "prismatic",
+      "liveRank": 118,
+      "slug": "en-passant",
+      "matchedLocal": true
+    },
+    {
+      "id": 910050,
+      "apiName": "ARAMMayhemGoldrend",
+      "name": "Goldrend",
+      "rarity": "prismatic",
+      "liveRank": 119,
+      "slug": "goldrend",
+      "matchedLocal": true
+    },
+    {
+      "id": 211,
+      "apiName": "ItsKillingTime",
+      "name": "It's Killing Time",
+      "rarity": "gold",
+      "liveRank": 120,
+      "slug": "its-killing-time",
+      "matchedLocal": true
+    },
+    {
+      "id": 2,
+      "apiName": "ApexInventor",
+      "name": "Apex Inventor",
+      "rarity": "gold",
+      "liveRank": 121,
+      "slug": "apex-inventor",
+      "matchedLocal": true
+    },
+    {
+      "id": 910051,
+      "apiName": "ARAMMayhemEchoCast",
+      "name": "Echo Cast",
+      "rarity": "prismatic",
+      "liveRank": 122,
+      "slug": "echo-cast",
+      "matchedLocal": true
+    },
+    {
+      "id": 910052,
+      "apiName": "ARAMMayhemUltimateAwakening",
+      "name": "Ultimate Awakening",
+      "rarity": "prismatic",
+      "liveRank": 123,
+      "slug": "ultimate-awakening",
+      "matchedLocal": true
+    },
+    {
+      "id": 226,
+      "apiName": "Stats",
+      "name": "Stats!",
+      "rarity": "silver",
+      "liveRank": 124,
+      "slug": "stats",
+      "matchedLocal": true
+    },
+    {
+      "id": 103,
+      "apiName": "BreadAndButter",
+      "name": "Bread And Butter",
+      "rarity": "gold",
+      "liveRank": 125,
+      "slug": "bread-and-butter",
+      "matchedLocal": true
+    },
+    {
+      "id": 46,
+      "apiName": "InfernalSoul",
+      "name": "Infernal Soul",
+      "rarity": "silver",
+      "liveRank": 126,
+      "slug": "infernal-soul",
+      "matchedLocal": true
+    },
+    {
+      "id": 151,
+      "apiName": "BreadAndCheese",
+      "name": "Bread and Cheese",
+      "rarity": "gold",
+      "liveRank": 127,
+      "slug": "bread-and-cheese",
+      "matchedLocal": true
+    },
+    {
+      "id": 154,
+      "apiName": "Quest_UrfsChampion",
+      "name": "Quest: Urf's Champion",
+      "rarity": "prismatic",
+      "liveRank": 128,
+      "slug": "quest-urfs-champion",
+      "matchedLocal": true
+    },
+    {
+      "id": 84,
+      "apiName": "ThreadtheNeedle",
+      "name": "Thread the Needle",
+      "rarity": "gold",
+      "liveRank": 129,
+      "slug": "thread-the-needle",
+      "matchedLocal": true
+    },
+    {
+      "id": 18,
+      "apiName": "CourageoftheColossus",
+      "name": "Courage of the Colossus",
+      "rarity": "prismatic",
+      "liveRank": 130,
+      "slug": "courage-of-the-colossus",
+      "matchedLocal": true
+    },
+    {
+      "id": 910053,
+      "apiName": "ARAMMayhemDoubleDefense",
+      "name": "Double Defense",
+      "rarity": "silver",
+      "liveRank": 131,
+      "slug": "double-defense",
+      "matchedLocal": true
+    },
+    {
+      "id": 910054,
+      "apiName": "ARAMMayhemEmpyreanPromise",
+      "name": "Empyrean Promise",
+      "rarity": "prismatic",
+      "liveRank": 132,
+      "slug": "empyrean-promise",
+      "matchedLocal": true
+    },
+    {
+      "id": 910055,
+      "apiName": "ARAMMayhemCritNCast",
+      "name": "Crit 'n Cast",
+      "rarity": "silver",
+      "liveRank": 133,
+      "slug": "crit-n-cast",
+      "matchedLocal": true
+    },
+    {
+      "id": 61,
+      "apiName": "OkBoomerang",
+      "name": "Ok Boomerang",
+      "rarity": "gold",
+      "liveRank": 134,
+      "slug": "ok-boomerang",
+      "matchedLocal": true
+    },
+    {
+      "id": 228,
+      "apiName": "StatsOnStatsOnStats",
+      "name": "Stats on Stats on Stats!",
+      "rarity": "prismatic",
+      "liveRank": 135,
+      "slug": "stats-on-stats-on-stats",
+      "matchedLocal": true
+    },
+    {
+      "id": 301,
+      "apiName": "DivineIntervention",
+      "name": "Divine Intervention",
+      "rarity": "gold",
+      "liveRank": 136,
+      "slug": "divine-intervention",
+      "matchedLocal": true
+    },
+    {
+      "id": 910056,
+      "apiName": "ARAMMayhemTrustyWeapon",
+      "name": "Trusty Weapon",
+      "rarity": "silver",
+      "liveRank": 137,
+      "slug": "trusty-weapon",
+      "matchedLocal": true
+    },
+    {
+      "id": 15,
+      "apiName": "CircleofDeath",
+      "name": "Circle of Death",
+      "rarity": "prismatic",
+      "liveRank": 138,
+      "slug": "circle-of-death",
+      "matchedLocal": true
+    },
+    {
+      "id": 910057,
+      "apiName": "ARAMMayhemYowchMyCoins",
+      "name": "Yowch, My Coins!",
+      "rarity": "gold",
+      "liveRank": 139,
+      "slug": "yowch-my-coins",
+      "matchedLocal": true
+    },
+    {
+      "id": 72,
+      "apiName": "SearingDawn",
+      "name": "Searing Dawn",
+      "rarity": "gold",
+      "liveRank": 140,
+      "slug": "searing-dawn",
+      "matchedLocal": true
+    },
+    {
+      "id": 910058,
+      "apiName": "ARAMMayhemOverloaded",
+      "name": "Overloaded",
+      "rarity": "prismatic",
+      "liveRank": 141,
+      "slug": "overloaded",
+      "matchedLocal": true
+    },
+    {
+      "id": 150,
+      "apiName": "BreadAndJam",
+      "name": "Bread And Jam",
+      "rarity": "gold",
+      "liveRank": 142,
+      "slug": "bread-and-jam",
+      "matchedLocal": true
+    },
+    {
+      "id": 36,
+      "apiName": "Firebrand",
+      "name": "Firebrand",
+      "rarity": "gold",
+      "liveRank": 143,
+      "slug": "firebrand",
+      "matchedLocal": true
+    },
+    {
+      "id": 194,
+      "apiName": "FeyMagic",
+      "name": "Fey Magic",
+      "rarity": "prismatic",
+      "liveRank": 144,
+      "slug": "fey-magic",
+      "matchedLocal": true
+    },
+    {
+      "id": 910059,
+      "apiName": "ARAMMayhemMercysStrike",
+      "name": "Mercy's Strike",
+      "rarity": "gold",
+      "liveRank": 145,
+      "slug": "mercys-strike",
+      "matchedLocal": true
+    },
+    {
+      "id": 910060,
+      "apiName": "ARAMMayhemItsGoTime",
+      "name": "It's Go Time",
+      "rarity": "silver",
+      "liveRank": 146,
+      "slug": "its-go-time",
+      "matchedLocal": true
+    },
+    {
+      "id": 88,
+      "apiName": "UltimateRevolution",
+      "name": "Ultimate Revolution",
+      "rarity": "prismatic",
+      "liveRank": 147,
+      "slug": "ultimate-revolution",
+      "matchedLocal": true
+    },
+    {
+      "id": 910061,
+      "apiName": "ARAMMayhemBiggestSnowballEver",
+      "name": "Biggest Snowball Ever",
+      "rarity": "prismatic",
+      "liveRank": 148,
+      "slug": "biggest-snowball-ever",
+      "matchedLocal": true
+    },
+    {
+      "id": 79,
+      "apiName": "SymphonyofWar",
+      "name": "Symphony of War",
+      "rarity": "prismatic",
+      "liveRank": 149,
+      "slug": "symphony-of-war",
+      "matchedLocal": true
+    },
+    {
+      "id": 25,
+      "apiName": "DiveBomber",
+      "name": "Dive Bomber",
+      "rarity": "silver",
+      "liveRank": 150,
+      "slug": "dive-bomber",
+      "matchedLocal": true
+    },
+    {
+      "id": 910062,
+      "apiName": "ARAMMayhemMountainsoul",
+      "name": "MountainSoul",
+      "rarity": "silver",
+      "liveRank": 151,
+      "slug": "mountainsoul",
+      "matchedLocal": true
+    },
+    {
+      "id": 910063,
+      "apiName": "ARAMMayhemJuiced",
+      "name": "Juiced",
+      "rarity": "silver",
+      "liveRank": 152,
+      "slug": "juiced",
+      "matchedLocal": true
+    },
+    {
+      "id": 910064,
+      "apiName": "ARAMMayhemAdaptiveWard",
+      "name": "Adaptive Ward",
+      "rarity": "silver",
+      "liveRank": 153,
+      "slug": "adaptive-ward",
+      "matchedLocal": true
+    },
+    {
+      "id": 910065,
+      "apiName": "ARAMMayhemSpiritualPurification",
+      "name": "Spiritual Purification",
+      "rarity": "gold",
+      "liveRank": 154,
+      "slug": "spiritual-purification",
+      "matchedLocal": true
+    },
+    {
+      "id": 910066,
+      "apiName": "ARAMMayhemFlashbang",
+      "name": "Flashbang",
+      "rarity": "silver",
+      "liveRank": 155,
+      "slug": "flashbang",
+      "matchedLocal": true
+    },
+    {
+      "id": 112,
+      "apiName": "UltimateUnstoppable",
+      "name": "Ultimate Unstoppable",
+      "rarity": "silver",
+      "liveRank": 156,
+      "slug": "ultimate-unstoppable",
+      "matchedLocal": true
+    },
+    {
+      "id": 910067,
+      "apiName": "ARAMMayhemNightstalking",
+      "name": "Nightstalking",
+      "rarity": "gold",
+      "liveRank": 157,
+      "slug": "nightstalking",
+      "matchedLocal": true
+    },
+    {
+      "id": 149,
+      "apiName": "Impassable",
+      "name": "Impassable",
+      "rarity": "gold",
+      "liveRank": 158,
+      "slug": "impassable",
+      "matchedLocal": true
+    },
+    {
+      "id": 6,
+      "apiName": "BladeWaltz",
+      "name": "Blade Waltz",
+      "rarity": "prismatic",
+      "liveRank": 159,
+      "slug": "blade-waltz",
+      "matchedLocal": true
+    },
+    {
+      "id": 910068,
+      "apiName": "ARAMMayhemNatureIsHealing",
+      "name": "Nature is Healing",
+      "rarity": "gold",
+      "liveRank": 160,
+      "slug": "nature-is-healing",
+      "matchedLocal": true
+    },
+    {
+      "id": 910069,
+      "apiName": "ARAMMayhemSpellSplit",
+      "name": "Spellsplit",
+      "rarity": "prismatic",
+      "liveRank": 161,
+      "slug": "spell-split",
+      "matchedLocal": true
+    },
+    {
+      "id": 910070,
+      "apiName": "ARAMMayhemProteinShake",
+      "name": "Protein Shake",
+      "rarity": "prismatic",
+      "liveRank": 162,
+      "slug": "protein-shake",
+      "matchedLocal": true
+    },
+    {
+      "id": 910071,
+      "apiName": "ARAMMayhemKillSecured",
+      "name": "Kill Secured",
+      "rarity": "silver",
+      "liveRank": 163,
+      "slug": "kill-secured",
+      "matchedLocal": true
+    },
+    {
+      "id": 910072,
+      "apiName": "ARAMMayhemPoltergeist",
+      "name": "Poltergeist",
+      "rarity": "silver",
+      "liveRank": 164,
+      "slug": "poltergeist",
+      "matchedLocal": true
+    },
+    {
+      "id": 910073,
+      "apiName": "ARAMMayhemPorcupine",
+      "name": "Porcupine",
+      "rarity": "gold",
+      "liveRank": 165,
+      "slug": "porcupine",
+      "matchedLocal": true
+    },
+    {
+      "id": 910074,
+      "apiName": "ARAMMayhemTripleshot",
+      "name": "Tripleshot",
+      "rarity": "prismatic",
+      "liveRank": 166,
+      "slug": "tripleshot",
+      "matchedLocal": true
+    },
+    {
+      "id": 910075,
+      "apiName": "ARAMMayhemStuckInHereWithMe",
+      "name": "Stuck In Here With Me",
+      "rarity": "prismatic",
+      "liveRank": 167,
+      "slug": "stuck-in-here-with-me",
+      "matchedLocal": true
+    },
+    {
+      "id": 910076,
+      "apiName": "ARAMMayhemHellbent",
+      "name": "Hellbent",
+      "rarity": "prismatic",
+      "liveRank": 168,
+      "slug": "hellbent",
+      "matchedLocal": true
+    },
+    {
+      "id": 11,
+      "apiName": "CantTouchThis",
+      "name": "Cant Touch This",
+      "rarity": "prismatic",
+      "liveRank": 169,
+      "slug": "cant-touch-this",
+      "matchedLocal": true
+    },
+    {
+      "id": 910077,
+      "apiName": "ARAMMayhemMultishot",
+      "name": "Multishot",
+      "rarity": "prismatic",
+      "liveRank": 170,
+      "slug": "multishot",
+      "matchedLocal": true
+    },
+    {
+      "id": 910078,
+      "apiName": "ARAMMayhemTriggeredInferno",
+      "name": "Triggered Inferno",
+      "rarity": "prismatic",
+      "liveRank": 171,
+      "slug": "triggered-inferno",
+      "matchedLocal": true
+    },
+    {
+      "id": 74,
+      "apiName": "ShrinkRay",
+      "name": "Shrink Ray",
+      "rarity": "gold",
+      "liveRank": 172,
+      "slug": "shrink-ray",
+      "matchedLocal": true
+    },
+    {
+      "id": 910079,
+      "apiName": "ARAMMayhemSharkBait",
+      "name": "Shark Bait",
+      "rarity": "gold",
+      "liveRank": 173,
+      "slug": "shark-bait",
+      "matchedLocal": true
+    },
+    {
+      "id": 910080,
+      "apiName": "ARAMMayhemPandorasbox",
+      "name": "PandorasBox",
+      "rarity": "prismatic",
+      "liveRank": 174,
+      "slug": "pandorasbox",
+      "matchedLocal": true
+    },
+    {
+      "id": 910081,
+      "apiName": "ARAMMayhemSharkTempest",
+      "name": "Shark Tempest",
+      "rarity": "gold",
+      "liveRank": 175,
+      "slug": "shark-tempest",
+      "matchedLocal": true
+    },
+    {
+      "id": 910082,
+      "apiName": "ARAMMayhemSnowday",
+      "name": "Snowday",
+      "rarity": "silver",
+      "liveRank": 176,
+      "slug": "snowday",
+      "matchedLocal": true
+    },
+    {
+      "id": 910083,
+      "apiName": "ARAMMayhemOurHealing",
+      "name": "Our Healing",
+      "rarity": "gold",
+      "liveRank": 177,
+      "slug": "our-healing",
+      "matchedLocal": true
+    },
+    {
+      "id": 910084,
+      "apiName": "ARAMMayhemFlash2",
+      "name": "Flash 2",
+      "rarity": "silver",
+      "liveRank": 178,
+      "slug": "flash-2",
+      "matchedLocal": true
+    },
+    {
+      "id": 910085,
+      "apiName": "ARAMMayhemMightyShield",
+      "name": "Mighty Shield",
+      "rarity": "silver",
+      "liveRank": 179,
+      "slug": "mighty-shield",
+      "matchedLocal": true
+    },
+    {
+      "id": 910086,
+      "apiName": "ARAMMayhemHideOnBush",
+      "name": "Hide on Bush",
+      "rarity": "gold",
+      "liveRank": 180,
+      "slug": "hide-on-bush",
+      "matchedLocal": true
+    },
+    {
+      "id": 910087,
+      "apiName": "ARAMMayhemSpinMeRightRound",
+      "name": "Spin Me Right Round",
+      "rarity": "silver",
+      "liveRank": 181,
+      "slug": "spin-me-right-round",
+      "matchedLocal": true
+    },
+    {
+      "id": 910088,
+      "apiName": "ARAMMayhemTerror",
+      "name": "Terror",
+      "rarity": "prismatic",
+      "liveRank": 182,
+      "slug": "terror",
+      "matchedLocal": true
+    },
+    {
+      "id": 910089,
+      "apiName": "ARAMMayhemPromQueen",
+      "name": "Prom Queen",
+      "rarity": "prismatic",
+      "liveRank": 183,
+      "slug": "prom-queen",
+      "matchedLocal": true
+    },
+    {
+      "id": 118,
+      "apiName": "CriticalHealing",
+      "name": "Critical Healing",
+      "rarity": "gold",
+      "liveRank": 184,
+      "slug": "critical-healing",
+      "matchedLocal": true
+    },
+    {
+      "id": 910090,
+      "apiName": "ARAMMayhemTitansResolve",
+      "name": "Titan's Resolve",
+      "rarity": "prismatic",
+      "liveRank": 185,
+      "slug": "titans-resolve",
+      "matchedLocal": true
+    },
+    {
+      "id": 910091,
+      "apiName": "ARAMMayhemPinCushion",
+      "name": "Pin Cushion",
+      "rarity": "prismatic",
+      "liveRank": 186,
+      "slug": "pin-cushion",
+      "matchedLocal": true
+    },
+    {
+      "id": 910092,
+      "apiName": "ARAMMayhemRiteOfAscension",
+      "name": "Rite of Ascension",
+      "rarity": "prismatic",
+      "liveRank": 187,
+      "slug": "rite-of-ascension",
+      "matchedLocal": true
+    },
+    {
+      "id": 910093,
+      "apiName": "ARAMMayhemPinball",
+      "name": "Pinball",
+      "rarity": "gold",
+      "liveRank": 188,
+      "slug": "pinball",
+      "matchedLocal": true
+    },
+    {
+      "id": 910094,
+      "apiName": "ARAMMayhemSurgeField",
+      "name": "Surge Field",
+      "rarity": "prismatic",
+      "liveRank": 189,
+      "slug": "surge-field",
+      "matchedLocal": true
+    },
+    {
+      "id": 910095,
+      "apiName": "ARAMMayhemSnowblast",
+      "name": "Snowblast",
+      "rarity": "gold",
+      "liveRank": 190,
+      "slug": "snowblast",
+      "matchedLocal": true
+    },
+    {
+      "id": 910096,
+      "apiName": "ARAMMayhemQuickstep",
+      "name": "Quickstep",
+      "rarity": "gold",
+      "liveRank": 191,
+      "slug": "quickstep",
+      "matchedLocal": true
+    },
+    {
+      "id": 910097,
+      "apiName": "ARAMMayhemHolySnowball",
+      "name": "Holy Snowball",
+      "rarity": "prismatic",
+      "liveRank": 192,
+      "slug": "holy-snowball",
+      "matchedLocal": true
+    },
+    {
+      "id": 910098,
+      "apiName": "ARAMMayhemGlassCannon",
+      "name": "Glass Cannon",
+      "rarity": "prismatic",
+      "liveRank": 193,
+      "slug": "glass-cannon",
+      "matchedLocal": true
+    },
+    {
+      "id": 910099,
+      "apiName": "ARAMMayhemSquishySlappyGrab",
+      "name": "Squishy Slappy Grab",
+      "rarity": "prismatic",
+      "liveRank": 194,
+      "slug": "squishy-slappy-grab",
+      "matchedLocal": true
+    },
+    {
+      "id": 910100,
+      "apiName": "ARAMMayhemChainReaction",
+      "name": "Chain Reaction",
+      "rarity": "prismatic",
+      "liveRank": 195,
+      "slug": "chain-reaction",
+      "matchedLocal": true
+    },
+    {
+      "id": 910101,
+      "apiName": "ARAMMayhemDimensionShift",
+      "name": "Dimension Shift",
+      "rarity": "prismatic",
+      "liveRank": 196,
+      "slug": "dimension-shift",
+      "matchedLocal": true
+    },
+    {
+      "id": 910102,
+      "apiName": "ARAMMayhemPoroStampede",
+      "name": "Poro Stampede",
+      "rarity": "prismatic",
+      "liveRank": 197,
+      "slug": "poro-stampede",
+      "matchedLocal": true
+    },
+    {
+      "id": 910103,
+      "apiName": "ARAMMayhemOneTrickPony",
+      "name": "One Trick Pony",
+      "rarity": "prismatic",
+      "liveRank": 198,
+      "slug": "one-trick-pony",
+      "matchedLocal": true
+    },
+    {
+      "id": 910104,
+      "apiName": "ARAMMayhemRejuvenation",
+      "name": "Rejuvenation",
+      "rarity": "gold",
+      "liveRank": 199,
+      "slug": "rejuvenation",
+      "matchedLocal": true
+    }
+  ]
+}

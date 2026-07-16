@@ -1,0 +1,90 @@
+{
+  "championId": 16,
+  "championName": "Soraka",
+  "archetypes": [
+    {
+      "key": "ap",
+      "name": "Support Soraka",
+      "damageType": "Support",
+      "note": "Soraka SUPPORT route for ARAM: Mayhem. Prioritize First-Aid Kit / All For You as the main augment plan. Strong secondary hits include Sonic Boom / Divine Intervention. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Dawncore > Ardent Censer > Mikael's Blessing > Redemption. Start with Tear of the Goddess + Bandleglass Mirror + Health Potion. Cross-checked against arammayhem.com and mobalytics.gg.",
+      "augments": {
+        "core": [
+          {
+            "id": 37,
+            "apiName": "FirstAidKit",
+            "name": "First-Aid Kit"
+          },
+          {
+            "id": 141,
+            "apiName": "AllForYou",
+            "name": "All For You"
+          }
+        ],
+        "good": [
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          },
+          {
+            "id": 301,
+            "apiName": "DivineIntervention",
+            "name": "Divine Intervention"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6617,
+          "name": "Moonstone Renewer"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity"
+        },
+        {
+          "id": 6621,
+          "name": "Dawncore"
+        },
+        {
+          "id": 3504,
+          "name": "Ardent Censer"
+        },
+        {
+          "id": 3222,
+          "name": "Mikael's Blessing"
+        },
+        {
+          "id": 3107,
+          "name": "Redemption"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "mobalytics.gg"
+      ],
+      "starterItems": [
+        {
+          "id": 3070,
+          "name": "Tear of the Goddess"
+        },
+        {
+          "id": 4642,
+          "name": "Bandleglass Mirror"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
+    }
+  ]
+}

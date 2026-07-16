@@ -97,6 +97,85 @@
           "name": "鞋子"
         }
       ]
+    },
+    {
+      "key": "hammer-e-bomb",
+      "name": "连拨击锤E爆弹崔丝塔娜",
+      "damageType": "AD",
+      "note": "抽到连拨击锤时转入。对带E炸弹的目标普攻，单次攻击能快速叠层并提前引爆；优先找能安全A到人的站位，再用R把贴脸目标推开。",
+      "augments": {
+        "core": [
+          {
+            "id": 220,
+            "apiName": "FanTheHammer",
+            "name": "连拨击锤"
+          }
+        ],
+        "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 107,
+            "apiName": "TwiceThrice",
+            "name": "接二连三"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
+          },
+          {
+            "id": 87,
+            "apiName": "Typhoon",
+            "name": "台风"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6672,
+          "name": "海妖杀手"
+        },
+        {
+          "id": 3006,
+          "name": "狂战士胫甲"
+        },
+        {
+          "id": 3085,
+          "name": "卢安娜的飓风"
+        },
+        {
+          "id": 3031,
+          "name": "无尽之刃"
+        },
+        {
+          "id": 3032,
+          "name": "育恩塔尔荒野箭"
+        },
+        {
+          "id": 3036,
+          "name": "多米尼克领主的致意"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com",
+        "metasrc.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3134,
+          "name": "锯齿短匕"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        }
+      ]
     }
   ]
 }
