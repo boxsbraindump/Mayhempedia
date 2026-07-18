@@ -21,7 +21,7 @@ import {
   mergePersistedMatchHistory,
   savePersistedMatchDetail,
 } from './match-history-store.js'
-import { getSettings, setSetting, type Settings, type OverlaySettings } from './settings.js'
+import { getSettings, setSetting, type Settings, type OverlaySettings, type Hotkey } from './settings.js'
 
 const { uIOhook, UiohookKey } = uiohook
 const { autoUpdater } = electronUpdater
@@ -362,6 +362,21 @@ function toggleOverlay(): void {
 }
 
 /**
+ * The companion stays out of the way while playing, but a global hotkey can
+ * bring the current champion's Combat File forward for route switching.
+ */
+function toggleMainWindow(): void {
+  if (!mainWindow) return
+  if (mainWindow.isVisible() && mainWindow.isFocused()) {
+    mainWindow.hide()
+    return
+  }
+  if (mainWindow.isMinimized()) mainWindow.restore()
+  mainWindow.show()
+  mainWindow.focus()
+}
+
+/**
  * 手动拖动定位：默认 overlay 是点击穿透的(setIgnoreMouseEvents true)，鼠标事件根本落不到
  * 这个窗口上，没法拖。解锁模式下关掉穿透，渲染层给个 -webkit-app-region:drag 的拖拽区，
  * 就能像 TFT 那类叠加插件一样手动拖窗口；再按一次锁定，把最终坐标存进 customPos。
@@ -419,7 +434,7 @@ function notifyChampionDetected(myChampionId: number): void {
     id: `champ-${myChampionId}-${Date.now()}`,
     title: hasBuild ? 'Overlay 已准备好' : '暂无流派数据',
     body: hasBuild
-      ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().overlay.hotkey)} 可隐藏。`
+      ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().mainWindowHotkey)} 可打开完整路线并切换打法。`
       : `${name} 还没收录流派数据，可以先看英雄 Tier 或海克斯一览。`,
     tone: hasBuild ? 'success' : 'warning',
   })
@@ -553,12 +568,12 @@ async function connectLcu(): Promise<void> {
  * 组合键读自设置(overlay.hotkey)，不是写死的——虽然设置页目前还没有"按键捕获"UI改不了它，
  * 但运行时是真的按配置值判断，不是摆设，以后加上捕获UI就能直接生效。
  */
-function hotkeyMatches(hk: OverlaySettings['hotkey'], e: { ctrlKey: boolean; shiftKey: boolean; altKey: boolean; keycode: number }): boolean {
+function hotkeyMatches(hk: Hotkey, e: { ctrlKey: boolean; shiftKey: boolean; altKey: boolean; keycode: number }): boolean {
   const keycode = (UiohookKey as unknown as Record<string, number>)[hk.key]
   return e.ctrlKey === hk.ctrl && e.shiftKey === hk.shift && e.altKey === hk.alt && keycode != null && e.keycode === keycode
 }
 
-function comboLabel(hk: OverlaySettings['hotkey']): string {
+function comboLabel(hk: Hotkey): string {
   return `${hk.ctrl ? 'Ctrl+' : ''}${hk.shift ? 'Shift+' : ''}${hk.alt ? 'Alt+' : ''}${hk.key}`
 }
 
@@ -567,12 +582,14 @@ function registerHotkey(): void {
     const overlay = getSettings().overlay
     if (hotkeyMatches(overlay.hotkey, e)) toggleOverlay()
     else if (hotkeyMatches(overlay.moveHotkey, e)) toggleOverlayLock()
+    else if (hotkeyMatches(getSettings().mainWindowHotkey, e)) toggleMainWindow()
     else if (hotkeyMatches(overlayCollapseHotkey, e)) toggleOverlayCollapsed()
   })
   uIOhook.start()
-  const overlay = getSettings().overlay
+  const settings = getSettings()
+  const overlay = settings.overlay
   console.log(
-    `[ARAM Copilot] 全局快捷键 ${comboLabel(overlay.hotkey)}(呼出/隐藏) / ${comboLabel(overlay.moveHotkey)}(解锁拖动) 已注册（底层钩子，穿透游戏独占输入）`,
+    `[ARAM Copilot] 全局快捷键 ${comboLabel(overlay.hotkey)}(呼出/隐藏) / ${comboLabel(settings.mainWindowHotkey)}(主窗口) / ${comboLabel(overlay.moveHotkey)}(解锁拖动) 已注册（底层钩子，穿透游戏独占输入）`,
   )
 }
 

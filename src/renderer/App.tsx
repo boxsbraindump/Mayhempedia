@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type DragEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type DragEvent, type KeyboardEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import {
   loadCore,
@@ -30,6 +30,7 @@ import {
   type PersistedAccountSummary,
   type Settings,
   type OverlaySettings,
+  type Hotkey,
   type DashboardSections,
   type MatchFullDetail,
   type PlayerMatchStats,
@@ -2248,6 +2249,98 @@ function Toggle({ on, onClick }: { on: boolean; onClick?: () => void }) {
   )
 }
 
+function hotkeyLabel(hotkey: Hotkey): string {
+  return `${hotkey.ctrl ? 'Ctrl+' : ''}${hotkey.shift ? 'Shift+' : ''}${hotkey.alt ? 'Alt+' : ''}${hotkey.key}`
+}
+
+function browserKeyToHotkey(key: string): string | null {
+  if (/^[a-z]$/i.test(key)) return key.toUpperCase()
+  if (/^[0-9]$/.test(key)) return key
+  if (/^F(?:[1-9]|1[0-9]|2[0-4])$/i.test(key)) return key.toUpperCase()
+  const aliases: Record<string, string> = {
+    ' ': 'Space',
+    Escape: 'Escape',
+    Enter: 'Enter',
+    Tab: 'Tab',
+    Backspace: 'Backspace',
+    Delete: 'Delete',
+    ArrowUp: 'ArrowUp',
+    ArrowDown: 'ArrowDown',
+    ArrowLeft: 'ArrowLeft',
+    ArrowRight: 'ArrowRight',
+  }
+  return aliases[key] ?? null
+}
+
+function hotkeySignature(hotkey: Hotkey): string {
+  return `${hotkey.ctrl ? '1' : '0'}${hotkey.shift ? '1' : '0'}${hotkey.alt ? '1' : '0'}:${hotkey.key}`
+}
+
+function HotkeyRecorder({
+  label,
+  description,
+  value,
+  reserved,
+  onChange,
+  recordingText,
+  invalidText,
+  conflictText,
+}: {
+  label: string
+  description: string
+  value: Hotkey
+  reserved: Hotkey[]
+  onChange: (hotkey: Hotkey) => void
+  recordingText: string
+  invalidText: string
+  conflictText: string
+}) {
+  const [recording, setRecording] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const capture = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (!recording) return
+    event.preventDefault()
+    event.stopPropagation()
+    const key = browserKeyToHotkey(event.key)
+    if (!key) return
+    const next: Hotkey = { ctrl: event.ctrlKey, shift: event.shiftKey, alt: event.altKey, key }
+    if (!next.ctrl && !next.shift && !next.alt) {
+      setMessage(invalidText)
+      return
+    }
+    if (reserved.some((hotkey) => hotkeySignature(hotkey) === hotkeySignature(next))) {
+      setMessage(conflictText)
+      return
+    }
+    onChange(next)
+    setMessage('')
+    setRecording(false)
+  }
+
+  return (
+    <div className="rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
+      <div className="text-sm font-bold text-cream">{label}</div>
+      <div className="mt-1 min-h-7 text-[11px] leading-relaxed text-dim/80">{description}</div>
+      <button
+        type="button"
+        onClick={() => {
+          setRecording(true)
+          setMessage('')
+        }}
+        onKeyDown={capture}
+        className={
+          'mt-2 flex h-8 w-full items-center justify-center rounded-md border text-[11px] font-black transition focus:outline-none ' +
+          (recording ? 'border-hex bg-hex/12 text-hex' : 'border-line/70 bg-panel2/70 text-cream hover:border-hex/50')
+        }
+      >
+        {recording ? recordingText : hotkeyLabel(value)}
+      </button>
+      {message && <div className="mt-1.5 text-[10px] font-semibold text-red">{message}</div>}
+    </div>
+  )
+}
+
 type PickerEntry = {
   id: number
   name: string
@@ -3903,27 +3996,37 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                       className="mt-2 w-full accent-hex"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-2 max-[760px]:grid-cols-1">
-                    <div className="rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
-                      <div className="text-sm">{t('settings.overlay.hotkey')}</div>
-                      <div className="mt-1 text-xs text-dim">
-                        {settings.overlay.hotkey.ctrl && 'Ctrl+'}
-                        {settings.overlay.hotkey.shift && 'Shift+'}
-                        {settings.overlay.hotkey.alt && 'Alt+'}
-                        {settings.overlay.hotkey.key}
-                        <span className="ml-2 opacity-70">{t('settings.overlay.hotkeyNote')}</span>
-                      </div>
-                    </div>
-                    <div className="rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">
-                      <div className="text-sm">{t('settings.overlay.moveHotkey')}</div>
-                      <div className="mt-1 text-xs text-dim">
-                        {settings.overlay.moveHotkey.ctrl && 'Ctrl+'}
-                        {settings.overlay.moveHotkey.shift && 'Shift+'}
-                        {settings.overlay.moveHotkey.alt && 'Alt+'}
-                        {settings.overlay.moveHotkey.key}
-                      </div>
-                      <div className="mt-1 text-[11px] leading-relaxed text-dim/80">{t('settings.overlay.moveHotkeyNote')}</div>
-                    </div>
+                  <div className="grid grid-cols-3 gap-2 max-[980px]:grid-cols-1">
+                    <HotkeyRecorder
+                      label={t('settings.overlay.hotkey')}
+                      description={t('settings.overlay.hotkeyNote')}
+                      value={settings.overlay.hotkey}
+                      reserved={[settings.overlay.moveHotkey, settings.mainWindowHotkey, { ctrl: true, shift: true, alt: false, key: 'C' }]}
+                      onChange={(hotkey) => update('overlay', { ...settings.overlay, hotkey })}
+                      recordingText={t('settings.hotkey.recording')}
+                      invalidText={t('settings.hotkey.requiresModifier')}
+                      conflictText={t('settings.hotkey.conflict')}
+                    />
+                    <HotkeyRecorder
+                      label={t('settings.mainWindow.hotkey')}
+                      description={t('settings.mainWindow.hotkeyNote')}
+                      value={settings.mainWindowHotkey}
+                      reserved={[settings.overlay.hotkey, settings.overlay.moveHotkey, { ctrl: true, shift: true, alt: false, key: 'C' }]}
+                      onChange={(hotkey) => update('mainWindowHotkey', hotkey)}
+                      recordingText={t('settings.hotkey.recording')}
+                      invalidText={t('settings.hotkey.requiresModifier')}
+                      conflictText={t('settings.hotkey.conflict')}
+                    />
+                    <HotkeyRecorder
+                      label={t('settings.overlay.moveHotkey')}
+                      description={t('settings.overlay.moveHotkeyNote')}
+                      value={settings.overlay.moveHotkey}
+                      reserved={[settings.overlay.hotkey, settings.mainWindowHotkey, { ctrl: true, shift: true, alt: false, key: 'C' }]}
+                      onChange={(hotkey) => update('overlay', { ...settings.overlay, moveHotkey: hotkey })}
+                      recordingText={t('settings.hotkey.recording')}
+                      invalidText={t('settings.hotkey.requiresModifier')}
+                      conflictText={t('settings.hotkey.conflict')}
+                    />
                   </div>
                   {settings.overlay.customPos && (
                     <div className="flex items-center justify-between rounded-[6px] border border-line/60 bg-[#050a11]/30 p-3">

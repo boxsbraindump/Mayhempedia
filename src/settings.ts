@@ -4,12 +4,19 @@
 import Store from 'electron-store'
 import type { CustomRoute } from './custom-routes.js'
 
+export interface Hotkey {
+  ctrl: boolean
+  shift: boolean
+  alt: boolean
+  key: string
+}
+
 export interface OverlaySettings {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   opacity: number // 0.3–1
-  hotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string } // key 是 UiohookKey 的键名，如 "X"
+  hotkey: Hotkey // key 是 UiohookKey 的键名，如 "X"
   /** 拖动解锁/锁定的快捷键——解锁后才能像 TFT 插件那样手动拖窗口。 */
-  moveHotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string }
+  moveHotkey: Hotkey
   /** 手动拖动后落盘的实际坐标；null = 还没拖过，用 position 锚点算默认位置。 */
   customPos: { x: number; y: number } | null
 }
@@ -28,6 +35,8 @@ export interface Settings {
   // 启动/窗口类
   autoLaunch: boolean
   zoomFactor: number // 0.5 / 0.75 / 1 / 1.25 / 1.5
+  /** 游戏中快速调出当前英雄的完整 Combat File。 */
+  mainWindowHotkey: Hotkey
 
   // Overlay 行为类
   overlay: OverlaySettings
@@ -48,6 +57,7 @@ export const DEFAULT_SETTINGS: Settings = {
   language: 'zh',
   autoLaunch: false,
   zoomFactor: 1,
+  mainWindowHotkey: { ctrl: true, shift: true, alt: false, key: 'M' },
   overlay: {
     position: 'top-left',
     opacity: 0.85,
