@@ -2430,6 +2430,7 @@ function AssetPicker({
   variant?: 'sequence' | 'pool'
   onChange: (ids: number[]) => void
 }) {
+  const lang = useLang()
   const [query, setQuery] = useState('')
   const [activeFilter, setActiveFilter] = useState(filters?.[0]?.key ?? 'all')
   const [resultsDismissed, setResultsDismissed] = useState(false)
@@ -2462,7 +2463,17 @@ function AssetPicker({
   const full = selectedIds.length >= max
   const showResults = !resultsDismissed && !full && (normalized.length > 0 || (!!filters?.length && activeFilter !== (filters[0]?.key ?? 'all')))
   const isPool = variant === 'pool'
-  const actionLabel = isPool ? '添加海克斯' : '添加装备'
+  const actionLabel = isPool
+    ? (lang === 'en' ? 'Add augments' : '添加海克斯')
+    : (lang === 'en' ? 'Add items' : '添加装备')
+  const filterLabel = (entry: PickerFilter) => {
+    if (lang !== 'en') return entry.label
+    if (entry.key === 'all') return 'All'
+    if (entry.key === 'tank') return 'Tank'
+    if (entry.key === 'support') return 'Support'
+    if (entry.key === 'boots') return 'Boots'
+    return entry.label
+  }
   const removeAt = (index: number) => onChange(selectedIds.filter((_, itemIndex) => itemIndex !== index))
   const clearDragState = () => {
     setDragIndex(null)
@@ -2515,7 +2526,7 @@ function AssetPicker({
             </span>
             {actionLabel}
           </div>
-          <div className="text-[9px] font-bold text-dim">{full ? '已满' : '搜索后点击结果加入'}</div>
+          <div className="text-[9px] font-bold text-dim">{full ? (lang === 'en' ? 'Full' : '已满') : (lang === 'en' ? 'Search, then click a result to add it' : '搜索后点击结果加入')}</div>
         </div>
         <input
           value={query}
@@ -2524,7 +2535,7 @@ function AssetPicker({
             setResultsDismissed(false)
           }}
           disabled={full}
-          placeholder={full ? '已达到数量上限' : `搜索${label}名称，然后点击添加`}
+          placeholder={full ? (lang === 'en' ? 'Limit reached' : '已达到数量上限') : (lang === 'en' ? `Search ${label}, then click to add` : `搜索${label}名称，然后点击添加`)}
           className={SEARCH_INLINE + ' border-line/65 bg-[#050a11]/72 py-2 text-[12px] placeholder:text-dim/45 disabled:cursor-not-allowed disabled:opacity-50'}
         />
         {filters && filters.length > 0 && (
@@ -2544,7 +2555,7 @@ function AssetPicker({
                     : 'border-line/70 bg-panel/55 text-dim hover:border-hex/35 hover:text-cream')
                 }
               >
-                {entry.label}
+                {filterLabel(entry)}
               </button>
             ))}
           </div>
@@ -2571,15 +2582,15 @@ function AssetPicker({
                 ))}
               </div>
             ) : (
-              <div className="p-3 text-center text-xs text-dim">没有找到匹配内容</div>
+              <div className="p-3 text-center text-xs text-dim">{lang === 'en' ? 'No matching content found' : '没有找到匹配内容'}</div>
             )}
           </div>
         )}
       </div>
       <div className="order-3 min-h-[50px] rounded-[5px] border border-line/55 bg-[#08111d]/42 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.026)]">
         <div className="mb-1.5 flex items-center justify-between gap-2 px-0.5">
-          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">已选顺序</div>
-          <div className="text-[9px] text-dim/70">可拖拽调整</div>
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">{lang === 'en' ? 'Selected order' : '已选顺序'}</div>
+          <div className="text-[9px] text-dim/70">{lang === 'en' ? 'Drag to adjust' : '可拖拽调整'}</div>
         </div>
         {selected.length > 0 ? (
           <div
@@ -2636,12 +2647,12 @@ function AssetPicker({
                 <button
                   type="button"
                   draggable={false}
-                  title={`移除 ${entry.name}`}
+                  title={lang === 'en' ? `Remove ${entry.name}` : `移除 ${entry.name}`}
                   onMouseDown={(event) => event.stopPropagation()}
                   onClick={() => removeAt(index)}
                   className="absolute right-1 bottom-1 translate-y-1 rounded border border-line/70 bg-[#050a11]/94 px-1 py-0.5 text-[7px] font-extrabold text-dim opacity-0 shadow-[0_10px_22px_rgba(0,0,0,0.28)] transition group-hover:translate-y-0 group-hover:opacity-100 hover:border-red/42 hover:text-red"
                 >
-                  移除
+                  {lang === 'en' ? 'Remove' : '移除'}
                 </button>
                 <img draggable={false} src={icon(entry.iconLocal)} alt={entry.name} className={(isPool ? 'h-9 w-9' : 'h-11 w-11') + ' shrink-0 rounded border border-line object-cover shadow-[0_8px_18px_rgba(0,0,0,0.24)] group-hover:border-hex/40'} />
                 <span className={(isPool ? 'text-[9px] leading-[11px]' : 'text-[10px] leading-[12px]') + ' line-clamp-2 pr-1 font-extrabold text-cream'}>
@@ -2651,7 +2662,11 @@ function AssetPicker({
             ))}
           </div>
         ) : (
-          <div className="grid min-h-[56px] place-items-center rounded-[6px] border border-dashed border-line/35 bg-transparent px-3 text-center text-[10px] leading-4 text-dim">先搜索添加内容。更推荐从对局记录采集一名玩家路线，再回来微调。</div>
+          <div className="grid min-h-[56px] place-items-center rounded-[6px] border border-dashed border-line/35 bg-transparent px-3 text-center text-[10px] leading-4 text-dim">
+            {lang === 'en'
+              ? 'Search to add content. For best results, capture one player route from match history first, then fine-tune it here.'
+              : '先搜索添加内容。更推荐从对局记录采集一名玩家路线，再回来微调。'}
+          </div>
         )}
       </div>
       <div className="relative order-4 hidden">
@@ -2662,7 +2677,7 @@ function AssetPicker({
             setResultsDismissed(false)
           }}
           disabled={full}
-          placeholder={full ? '已达到数量上限' : `搜索${label}`}
+          placeholder={full ? (lang === 'en' ? 'Limit reached' : '已达到数量上限') : (lang === 'en' ? `Search ${label}` : `搜索${label}`)}
           className={SEARCH_INLINE + ' py-1.5 text-[12px] disabled:cursor-not-allowed disabled:opacity-50'}
         />
         {filters && filters.length > 0 && (
@@ -2682,7 +2697,7 @@ function AssetPicker({
                     : 'border-line/70 bg-panel/55 text-dim hover:border-hex/35 hover:text-cream')
                 }
               >
-                {entry.label}
+                {filterLabel(entry)}
               </button>
             ))}
           </div>
@@ -2709,7 +2724,7 @@ function AssetPicker({
                 ))}
               </div>
             ) : (
-              <div className="p-3 text-center text-xs text-dim">没有找到匹配内容</div>
+              <div className="p-3 text-center text-xs text-dim">{lang === 'en' ? 'No matching content found' : '没有找到匹配内容'}</div>
             )}
           </div>
         )}
@@ -2727,6 +2742,7 @@ function ChampionInlinePicker({
   selectedId: number
   onChange: (id: number) => void
 }) {
+  const lang = useLang()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const selected = champions.find((entry) => entry.id === selectedId) ?? champions[0]
@@ -2760,8 +2776,8 @@ function ChampionInlinePicker({
         {selected && <img src={icon(selected.iconLocal)} alt={selected.name} className={ICON_ASSET + ' h-10 w-10'} />}
         <span className="min-w-0 flex-1">
           <span className="block text-[9px] font-black uppercase tracking-[0.14em] text-hex">Champion</span>
-          <span className="mt-0.5 block truncate text-[15px] font-black text-cream">{selected?.name ?? '选择英雄'}</span>
-          <span className="block truncate text-[10px] font-bold text-dim">{selected?.title ?? '搜索英雄并选择'}</span>
+          <span className="mt-0.5 block truncate text-[15px] font-black text-cream">{selected?.name ?? (lang === 'en' ? 'Choose champion' : '选择英雄')}</span>
+          <span className="block truncate text-[10px] font-bold text-dim">{selected?.title ?? (lang === 'en' ? 'Search and choose a champion' : '搜索英雄并选择')}</span>
         </span>
       </button>
       {open && (
@@ -2770,7 +2786,7 @@ function ChampionInlinePicker({
             value={query}
             autoFocus
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="搜索英雄：中文 / English / 拼音"
+            placeholder={lang === 'en' ? 'Search champion: English / Chinese / pinyin' : '搜索英雄：中文 / English / 拼音'}
             className={SEARCH_INLINE + ' mb-1.5'}
           />
           <div className="max-h-[238px] overflow-y-auto pr-0.5">
@@ -3044,10 +3060,11 @@ function RouteQualityRow({ label, detail, done }: { label: string; detail: strin
 }
 
 function RouteCompletionMeter({ value }: { value: number }) {
+  const lang = useLang()
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-[10px] font-black text-dim">
-        <span>完成度</span>
+        <span>{lang === 'en' ? 'Completion' : '完成度'}</span>
         <span className="tabular-nums text-cream">{value}%</span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-[#050a11]">
@@ -3076,6 +3093,8 @@ function CustomRouteBuilder({
   onOpenChampion: (championId: number) => void
 }) {
   const lang = useLang()
+  const isEn = lang === 'en'
+  const savedMessagePrefix = isEn ? 'Saved' : '已保存'
   const firstChampionId = core.champions[0]?.id ?? 0
   const [subpage, setSubpage] = useState<'editor' | 'library'>(() =>
     window.localStorage.getItem(CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY) === 'library' ? 'library' : 'editor',
@@ -3183,14 +3202,14 @@ function CustomRouteBuilder({
   const seedFromOfficialRoute = async () => {
     const file = core.buildIndex[draft.championId]
     if (!file) {
-      setMessage('当前英雄还没有内置路线，可以从对局记录采集或手动添加。')
+      setMessage(isEn ? 'This champion has no built-in route yet. Capture one from match history or add it manually.' : '当前英雄还没有内置路线，可以从对局记录采集或手动添加。')
       return
     }
     try {
       const build = await loadBuild(file, lang)
       const route = build.archetypes[0]
       if (!route) {
-        setMessage('没有找到可用的内置路线。')
+        setMessage(isEn ? 'No usable built-in route was found.' : '没有找到可用的内置路线。')
         return
       }
       setDraft((current) => ({
@@ -3202,15 +3221,15 @@ function CustomRouteBuilder({
         coreAugmentIds: route.augments.core.map((ref) => ref.id).slice(0, 6),
         goodAugmentIds: route.augments.good.map((ref) => ref.id).slice(0, 6),
       }))
-      setMessage('已用内置路线填充草稿，可以继续微调。')
+      setMessage(isEn ? 'Filled the draft from the built-in route. You can keep fine-tuning it.' : '已用内置路线填充草稿，可以继续微调。')
     } catch {
-      setMessage('内置路线读取失败，可以从对局记录采集或手动添加。')
+      setMessage(isEn ? 'Failed to load the built-in route. Capture one from match history or add it manually.' : '内置路线读取失败，可以从对局记录采集或手动添加。')
     }
   }
 
   const save = async () => {
     if (!draft.championId) {
-      setMessage('请先选择英雄。')
+      setMessage(isEn ? 'Choose a champion first.' : '请先选择英雄。')
       return
     }
     const champion = core.champions.find((entry) => entry.id === draft.championId)
@@ -3218,7 +3237,7 @@ function CustomRouteBuilder({
     const saved: CustomRoute = {
       ...draft,
       id,
-      title: draft.title.trim() || `${champion?.name ?? '未命名'} 草稿路线`,
+      title: draft.title.trim() || `${champion?.name ?? (isEn ? 'Unnamed' : '未命名')} ${isEn ? 'draft route' : '草稿路线'}`,
       description: draft.description.trim(),
       trapAugmentIds: [],
       updatedAt: new Date().toISOString(),
@@ -3229,11 +3248,11 @@ function CustomRouteBuilder({
     if (readyToSave) await onActivate(saved.championId, customRouteKey(saved.id))
     setEditingId(saved.id)
     setDraft(saved)
-    setMessage(readyToSave ? '已保存，并设为该英雄当前路线。' : '已保存为草稿。补齐六神装和增强后再启用。')
+    setMessage(readyToSave ? (isEn ? 'Saved and set as this champion\'s active route.' : '已保存，并设为该英雄当前路线。') : (isEn ? 'Saved as a draft. Add a full build and augments before enabling it.' : '已保存为草稿。补齐六神装和增强后再启用。'))
   }
 
   const removeRoute = async (route: CustomRoute) => {
-    if (!window.confirm(`删除「${route.title || '未命名路线'}」？此操作无法撤销。`)) return
+    if (!window.confirm(isEn ? `Delete "${route.title || 'Unnamed route'}"? This cannot be undone.` : `删除「${route.title || '未命名路线'}」？此操作无法撤销。`)) return
     const next = routes.filter((entry) => entry.id !== route.id)
     await onChange(next)
     if (libraryRouteId === route.id) {
@@ -3242,7 +3261,7 @@ function CustomRouteBuilder({
     if (editingId === route.id) {
       startNew()
     }
-    setMessage('已删除路线。')
+    setMessage(isEn ? 'Route deleted.' : '已删除路线。')
   }
 
   const remove = async () => {
@@ -3258,24 +3277,44 @@ function CustomRouteBuilder({
   const notesDone = draft.description.trim().length >= 18
   const readyToSave = identityDone && itemsDone && coreAugmentsDone && goodAugmentsDone
   const completionItems = [
-    { label: '路线身份', detail: identityDone ? '英雄和标题已完成' : '选择英雄，并给路线一个可识别标题', done: identityDone },
-    { label: '核心出装', detail: itemsDone ? '6 件装备已排好顺序' : `还需要 ${Math.max(0, 6 - draft.itemIds.length)} 件装备`, done: itemsDone },
-    { label: '核心海克斯', detail: coreAugmentsDone ? `${draft.coreAugmentIds.length} 个核心选择` : '至少添加 1 个最想拿的海克斯', done: coreAugmentsDone },
-    { label: '备选海克斯', detail: goodAugmentsDone ? `${draft.goodAugmentIds.length} 个备选选择` : '至少添加 1 个核心没来时的备选', done: goodAugmentsDone },
-    { label: '玩法说明', detail: notesDone ? '已有可读说明' : '写一句适用场景或关键玩法', done: notesDone },
+    {
+      label: isEn ? 'Route identity' : '路线身份',
+      detail: identityDone ? (isEn ? 'Champion and title are set' : '英雄和标题已完成') : (isEn ? 'Choose a champion and give the route a clear title' : '选择英雄，并给路线一个可识别标题'),
+      done: identityDone,
+    },
+    {
+      label: isEn ? 'Core build' : '核心出装',
+      detail: itemsDone ? (isEn ? '6 items ordered' : '6 件装备已排好顺序') : (isEn ? `${Math.max(0, 6 - draft.itemIds.length)} items still needed` : `还需要 ${Math.max(0, 6 - draft.itemIds.length)} 件装备`),
+      done: itemsDone,
+    },
+    {
+      label: isEn ? 'Core augments' : '核心海克斯',
+      detail: coreAugmentsDone ? (isEn ? `${draft.coreAugmentIds.length} core picks` : `${draft.coreAugmentIds.length} 个核心选择`) : (isEn ? 'Add at least 1 must-take augment' : '至少添加 1 个最想拿的海克斯'),
+      done: coreAugmentsDone,
+    },
+    {
+      label: isEn ? 'Backup augments' : '备选海克斯',
+      detail: goodAugmentsDone ? (isEn ? `${draft.goodAugmentIds.length} backup picks` : `${draft.goodAugmentIds.length} 个备选选择`) : (isEn ? 'Add at least 1 backup if the core is not offered' : '至少添加 1 个核心没来时的备选'),
+      done: goodAugmentsDone,
+    },
+    {
+      label: isEn ? 'Playstyle notes' : '玩法说明',
+      detail: notesDone ? (isEn ? 'Readable notes added' : '已有可读说明') : (isEn ? 'Write one line about when or how to play it' : '写一句适用场景或关键玩法'),
+      done: notesDone,
+    },
   ]
   const requiredDoneCount = completionItems.filter((entry) => entry.done).length
   const completionPct = Math.round((requiredDoneCount / completionItems.length) * 100)
-  const qualityLabel = readyToSave ? '可启用' : completionPct >= 60 ? '需要打磨' : '草稿'
+  const qualityLabel = readyToSave ? (isEn ? 'Ready' : '可启用') : completionPct >= 60 ? (isEn ? 'Needs polish' : '需要打磨') : (isEn ? 'Draft' : '草稿')
   const qualityTone = readyToSave ? 'text-[#8bd99e]' : completionPct >= 60 ? 'text-gold' : 'text-dim'
   const missingHints = [
-    !identityDone ? '缺标题' : null,
-    !itemsDone ? `缺 ${Math.max(0, 6 - draft.itemIds.length)} 件装备` : null,
-    !coreAugmentsDone ? '缺核心海克斯' : null,
-    !goodAugmentsDone ? '缺备选海克斯' : null,
+    !identityDone ? (isEn ? 'missing title' : '缺标题') : null,
+    !itemsDone ? (isEn ? `missing ${Math.max(0, 6 - draft.itemIds.length)} items` : `缺 ${Math.max(0, 6 - draft.itemIds.length)} 件装备`) : null,
+    !coreAugmentsDone ? (isEn ? 'missing core augments' : '缺核心海克斯') : null,
+    !goodAugmentsDone ? (isEn ? 'missing backup augments' : '缺备选海克斯') : null,
   ].filter((entry): entry is string => !!entry)
   const routeStatus = readyToSave ? 'Ready' : 'Draft'
-  const routeStatusDetail = readyToSave ? '完整，可启用' : missingHints.join(' · ')
+  const routeStatusDetail = readyToSave ? (isEn ? 'Complete and ready to enable' : '完整，可启用') : missingHints.join(' · ')
   const stepFrame = (_step: number, tone: 'side' | 'primary' | 'support' = 'support') => {
     const base = 'relative overflow-visible rounded-[6px] border p-2.5 transition-colors '
     if (tone === 'primary') return base + 'border-hex/32 bg-[#0b1624]/62'
@@ -3291,22 +3330,24 @@ function CustomRouteBuilder({
         <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-3 max-[900px]:grid-cols-1">
           <div className="min-w-0">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">Route workshop</div>
-            <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">自定义路线</h2>
+            <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">{isEn ? 'Custom Routes' : '自定义路线'}</h2>
             <p className="mt-1 max-w-[760px] text-[11px] leading-4 text-dim">
-              把高表现对局里的玩家出装，整理成英雄选择时可直接启用的路线。优先从对局记录采集，再补充说明和备选海克斯。
+              {isEn
+                ? 'Turn high-performing player loadouts into routes you can enable during champion select. Start from match history, then add notes and backup augments.'
+                : '把高表现对局里的玩家出装，整理成英雄选择时可直接启用的路线。优先从对局记录采集，再补充说明和备选海克斯。'}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-1.5">
-            <DashboardMiniStat label="本地路线" value={routes.length} />
-            <DashboardMiniStat label="完成度" value={completionPct} suffix="%" />
+            <DashboardMiniStat label={isEn ? 'Local routes' : '本地路线'} value={routes.length} />
+            <DashboardMiniStat label={isEn ? 'Completion' : '完成度'} value={completionPct} suffix="%" />
           </div>
         </div>
       </section>
       <div className="glass-control mb-3 flex flex-wrap items-center justify-between gap-2 rounded-[6px] border border-line/75 p-2 shadow-[0_12px_34px_rgba(0,0,0,0.18)]">
         <div className="inline-flex rounded-[6px] border border-line/70 bg-[#07101b]/58 p-0.5">
           {[
-            ['editor', '自定义路线'],
-            ['library', '路线库'],
+            ['editor', isEn ? 'Custom route' : '自定义路线'],
+            ['library', isEn ? 'Route library' : '路线库'],
           ].map(([key, label]) => (
             <button
               key={key}
@@ -3329,25 +3370,25 @@ function CustomRouteBuilder({
             onClick={onOpenHistory}
             className="rounded-md border border-hex/45 bg-hex/10 px-3 py-1.5 text-[12px] font-extrabold text-hex transition hover:bg-hex/15 active:translate-y-px"
           >
-            从对局记录采集
+            {isEn ? 'Capture from match history' : '从对局记录采集'}
           </button>
           <button
             type="button"
             onClick={startNew}
             className="rounded-md border border-line/70 bg-panel2/60 px-3 py-1.5 text-[12px] font-extrabold text-dim transition hover:border-hex/35 hover:bg-panel2 hover:text-cream active:translate-y-px"
           >
-            新建空白路线
+            {isEn ? 'New blank route' : '新建空白路线'}
           </button>
         </div>
       </div>
       {subpage === 'editor' && (
         <section className="mb-2.5 flex flex-wrap items-center justify-between gap-2 border-y border-line/50 bg-[#07101b]/32 px-2.5 py-2">
           <div className="flex flex-wrap items-center gap-2">
-            <RouteRailStep index={1} title="路线身份" done={identityDone} active={!identityDone} />
+            <RouteRailStep index={1} title={isEn ? 'Route identity' : '路线身份'} done={identityDone} active={!identityDone} />
             <span className="h-px w-8 bg-line/45 max-[640px]:hidden" />
-            <RouteRailStep index={2} title="构建内容" done={itemsDone && coreAugmentsDone && goodAugmentsDone} active={identityDone && !(itemsDone && coreAugmentsDone && goodAugmentsDone)} />
+            <RouteRailStep index={2} title={isEn ? 'Build content' : '构建内容'} done={itemsDone && coreAugmentsDone && goodAugmentsDone} active={identityDone && !(itemsDone && coreAugmentsDone && goodAugmentsDone)} />
             <span className="h-px w-8 bg-line/45 max-[640px]:hidden" />
-            <RouteRailStep index={3} title="发布检查" done={readyToSave} active={identityDone && itemsDone && coreAugmentsDone && goodAugmentsDone && !readyToSave} />
+            <RouteRailStep index={3} title={isEn ? 'Publish check' : '发布检查'} done={readyToSave} active={identityDone && itemsDone && coreAugmentsDone && goodAugmentsDone && !readyToSave} />
           </div>
           <div className={'text-[10px] font-black tabular-nums ' + qualityTone}>{qualityLabel} · {completionPct}%</div>
         </section>
@@ -3366,7 +3407,7 @@ function CustomRouteBuilder({
                 value={draft.title}
                 maxLength={32}
                 onChange={(event) => patch('title', event.target.value)}
-                placeholder={draftChampion ? `${draftChampion.name} 新玩法` : '例如：无限蘑菇提莫'}
+                placeholder={draftChampion ? `${draftChampion.name} ${isEn ? 'new route' : '新玩法'}` : (isEn ? 'Example: Infinite Mushroom Teemo' : '例如：无限蘑菇提莫')}
                 className="h-7 w-full bg-transparent text-[18px] font-black leading-none text-cream outline-none placeholder:text-dim/50"
               />
             </label>
@@ -3393,7 +3434,7 @@ function CustomRouteBuilder({
               <div className="mb-2 flex items-center justify-between gap-2">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Route score</div>
-                  <div className="mt-0.5 text-[14px] font-black text-cream">路线评分</div>
+                  <div className="mt-0.5 text-[14px] font-black text-cream">{isEn ? 'Route score' : '路线评分'}</div>
                 </div>
                 <div className={'border-b px-0.5 pb-0.5 text-[10px] font-extrabold ' + (readyToSave ? 'border-[#63c07a]/45' : completionPct >= 60 ? 'border-gold/45' : 'border-line/60') + ' ' + qualityTone}>
                   {qualityLabel}
@@ -3402,15 +3443,15 @@ function CustomRouteBuilder({
               <RouteCompletionMeter value={completionPct} />
               <div className="mt-2 grid grid-cols-3 gap-2 border-y border-line/35 py-2">
                 <div>
-                  <div className="text-[9px] font-black text-dim">内容</div>
+                  <div className="text-[9px] font-black text-dim">{isEn ? 'Content' : '内容'}</div>
                   <div className="mt-0.5 text-[13px] font-black text-cream">{draft.itemIds.length + draft.coreAugmentIds.length + draft.goodAugmentIds.length}</div>
                 </div>
                 <div>
-                  <div className="text-[9px] font-black text-dim">出装</div>
+                  <div className="text-[9px] font-black text-dim">{isEn ? 'Items' : '出装'}</div>
                   <div className="mt-0.5 text-[13px] font-black text-cream">{draft.itemIds.length}/6</div>
                 </div>
                 <div>
-                  <div className="text-[9px] font-black text-dim">海克斯</div>
+                  <div className="text-[9px] font-black text-dim">{isEn ? 'Augments' : '海克斯'}</div>
                   <div className="mt-0.5 text-[13px] font-black text-cream">{draft.coreAugmentIds.length + draft.goodAugmentIds.length}</div>
                 </div>
               </div>
@@ -3419,8 +3460,8 @@ function CustomRouteBuilder({
                   <RouteQualityRow key={entry.label} label={entry.label} detail={entry.detail} done={entry.done} />
                 ))}
               </div>
-              <div className={'mt-2 border-t border-line/35 pt-2 text-[10px] leading-4 ' + (message.startsWith('已保存') ? 'text-[#8bd99e]' : 'text-dim')}>
-                {message || (readyToSave ? '路线完整，保存后会设为该英雄当前路线。' : '补齐必需项后，路线才能在英雄页启用。')}
+              <div className={'mt-2 border-t border-line/35 pt-2 text-[10px] leading-4 ' + (message.startsWith(savedMessagePrefix) ? 'text-[#8bd99e]' : 'text-dim')}>
+                {message || (readyToSave ? (isEn ? 'Route complete. Saving will set it as this champion\'s active route.' : '路线完整，保存后会设为该英雄当前路线。') : (isEn ? 'Complete the required items before this route can be enabled on the champion page.' : '补齐必需项后，路线才能在英雄页启用。'))}
               </div>
               <div className="mt-2 grid gap-2">
                 <button
@@ -3428,20 +3469,20 @@ function CustomRouteBuilder({
                   onClick={save}
                   className={BTN_PRIMARY + ' py-2'}
                 >
-                  {readyToSave ? '保存并启用' : '保存草稿'}
+                  {readyToSave ? (isEn ? 'Save and enable' : '保存并启用') : (isEn ? 'Save draft' : '保存草稿')}
                 </button>
                 <div className="grid grid-cols-2 gap-2">
                   {editingId ? (
                     <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/45 hover:text-cream">
-                      查看英雄页
+                      {isEn ? 'View champion page' : '查看英雄页'}
                     </button>
                   ) : (
                     <button type="button" onClick={startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/35 hover:text-cream">
-                      清空草稿
+                      {isEn ? 'Clear draft' : '清空草稿'}
                     </button>
                   )}
                   <button type="button" onClick={editingId ? remove : startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-red/42 hover:text-red">
-                    {editingId ? '删除路线' : '重新开始'}
+                    {editingId ? (isEn ? 'Delete route' : '删除路线') : (isEn ? 'Start over' : '重新开始')}
                   </button>
                 </div>
               </div>
@@ -3450,21 +3491,21 @@ function CustomRouteBuilder({
               <div className="mb-2 flex items-start gap-2">
                 <div className="min-w-0">
                   <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">Creator notes</div>
-                  <h2 className="mt-0.5 text-[14px] font-extrabold text-cream">玩法备注</h2>
+                  <h2 className="mt-0.5 text-[14px] font-extrabold text-cream">{isEn ? 'Playstyle notes' : '玩法备注'}</h2>
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="block">
                   <span className="mb-1 flex justify-between text-[10px] font-bold text-dim">
-                    <span>玩法介绍</span><span>{draft.description.length}/240</span>
+                    <span>{isEn ? 'Playstyle intro' : '玩法介绍'}</span><span>{draft.description.length}/240</span>
                   </span>
                   <textarea
                     value={draft.description}
                     maxLength={240}
                     rows={4}
                     onChange={(event) => patch('description', event.target.value)}
-                    placeholder="写核心思路、适用场景、容易踩的坑。"
+                    placeholder={isEn ? 'Write the core idea, when to use it, and common traps.' : '写核心思路、适用场景、容易踩的坑。'}
                     className={SEARCH_INLINE + ' resize-none leading-5'}
                   />
                 </label>
@@ -3473,12 +3514,12 @@ function CustomRouteBuilder({
 
             <section className="hidden">
               <div className="mb-2 flex items-center justify-between gap-2">
-                <div className="text-[12px] font-extrabold text-cream">保存</div>
+                <div className="text-[12px] font-extrabold text-cream">{isEn ? 'Save' : '保存'}</div>
                 <div className={'rounded border px-2 py-0.5 text-[10px] font-extrabold ' + (readyToSave ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/60 bg-[#050a11]/55 text-dim')}>
                   {readyToSave ? 'Ready' : 'Draft'}
                 </div>
               </div>
-              <div className={'rounded-[5px] border px-2 py-1.5 text-[10px] leading-4 ' + (message.startsWith('已保存') ? 'border-[#63c07a]/30 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/50 bg-[#050a11]/38 text-dim')}>
+              <div className={'rounded-[5px] border px-2 py-1.5 text-[10px] leading-4 ' + (message.startsWith(savedMessagePrefix) ? 'border-[#63c07a]/30 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/50 bg-[#050a11]/38 text-dim')}>
                 {message || routeStatusDetail}
               </div>
 
@@ -3488,20 +3529,20 @@ function CustomRouteBuilder({
                   onClick={save}
                   className={BTN_PRIMARY + ' py-2'}
                 >
-                  {readyToSave ? '保存并启用' : '保存草稿'}
+                  {readyToSave ? (isEn ? 'Save and enable' : '保存并启用') : (isEn ? 'Save draft' : '保存草稿')}
                 </button>
                 <div className="grid grid-cols-2 gap-2">
                   {editingId ? (
                     <button type="button" onClick={() => onOpenChampion(draft.championId)} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/45 hover:text-cream">
-                      查看英雄页
+                      {isEn ? 'View champion page' : '查看英雄页'}
                     </button>
                   ) : (
                     <button type="button" onClick={startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-hex/35 hover:text-cream">
-                      清空草稿
+                      {isEn ? 'Clear draft' : '清空草稿'}
                     </button>
                   )}
                   <button type="button" onClick={editingId ? remove : startNew} className="rounded-lg border border-line px-3 py-2 text-xs font-bold text-dim transition hover:border-red/42 hover:text-red">
-                    {editingId ? '删除路线' : '重新开始'}
+                    {editingId ? (isEn ? 'Delete route' : '删除路线') : (isEn ? 'Start over' : '重新开始')}
                   </button>
                 </div>
               </div>
@@ -3514,7 +3555,7 @@ function CustomRouteBuilder({
                 <div className="flex items-start gap-2">
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">Build board</div>
-                    <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">六神装顺序</h3>
+                    <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">{isEn ? 'Full build order' : '六神装顺序'}</h3>
                   </div>
                 </div>
               </div>
@@ -3526,28 +3567,28 @@ function CustomRouteBuilder({
                     onClick={onOpenHistory}
                     className="rounded-md border border-hex/45 bg-hex/10 px-2.5 py-1.5 text-[11px] font-black text-hex transition hover:bg-hex/15 active:translate-y-px"
                   >
-                    从对局导入
+                    {isEn ? 'Import from match' : '从对局导入'}
                   </button>
                   <button
                     type="button"
                     onClick={seedFromOfficialRoute}
                     className="rounded-md px-2 py-1.5 text-[11px] font-bold text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px"
                   >
-                    使用内置路线
+                    {isEn ? 'Use built-in route' : '使用内置路线'}
                   </button>
                   <button
                     type="button"
-                    onClick={() => setMessage('从下方搜索装备名称，点击结果即可加入路线。')}
+                    onClick={() => setMessage(isEn ? 'Search item names below, then click a result to add it to the route.' : '从下方搜索装备名称，点击结果即可加入路线。')}
                     className="rounded-md px-2 py-1.5 text-[11px] font-bold text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px"
                   >
-                    手动添加
+                    {isEn ? 'Add manually' : '手动添加'}
                   </button>
-                  <span className="ml-auto text-[9px] font-bold text-dim/75 max-[720px]:ml-0">建议先采集真实路线</span>
+                  <span className="ml-auto text-[9px] font-bold text-dim/75 max-[720px]:ml-0">{isEn ? 'Recommended: capture a real route first' : '建议先采集真实路线'}</span>
                 </div>
               )}
               <AssetPicker
-                label="装备"
-                hint="拖拽调整顺序。"
+                label={isEn ? 'Items' : '装备'}
+                hint={isEn ? 'Drag to reorder.' : '拖拽调整顺序。'}
                 entries={items}
                 selectedIds={draft.itemIds}
                 max={6}
@@ -3561,11 +3602,11 @@ function CustomRouteBuilder({
                 <div className="flex items-start gap-2">
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-[0.14em] text-gold/85">Hextech pool</div>
-                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">核心海克斯</h3>
+                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">{isEn ? 'Core augments' : '核心海克斯'}</h3>
                   </div>
                 </div>
               </div>
-              <AssetPicker label="核心海克斯" hint="优先拿。" entries={augments} selectedIds={draft.coreAugmentIds} max={6} variant="pool" onChange={(ids) => patch('coreAugmentIds', ids)} />
+              <AssetPicker label={isEn ? 'Core augments' : '核心海克斯'} hint={isEn ? 'Prioritize these.' : '优先拿。'} entries={augments} selectedIds={draft.coreAugmentIds} max={6} variant="pool" onChange={(ids) => patch('coreAugmentIds', ids)} />
             </section>
 
             <section className={stepFrame(4, 'support') + ' focus-within:z-40'}>
@@ -3573,11 +3614,11 @@ function CustomRouteBuilder({
                 <div className="flex items-start gap-2">
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">Fallback pool</div>
-                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">备选海克斯</h3>
+                    <h3 className="mt-0.5 text-[14px] font-extrabold text-cream">{isEn ? 'Backup augments' : '备选海克斯'}</h3>
                   </div>
                 </div>
               </div>
-              <AssetPicker label="备选海克斯" hint="核心没来时选。" entries={augments} selectedIds={draft.goodAugmentIds} max={6} variant="pool" onChange={(ids) => patch('goodAugmentIds', ids)} />
+              <AssetPicker label={isEn ? 'Backup augments' : '备选海克斯'} hint={isEn ? 'Pick these when the core is not offered.' : '核心没来时选。'} entries={augments} selectedIds={draft.goodAugmentIds} max={6} variant="pool" onChange={(ids) => patch('goodAugmentIds', ids)} />
             </section>
           </div>
         </div>
@@ -3586,11 +3627,15 @@ function CustomRouteBuilder({
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-line/70" />
           <div className="mb-3 flex items-center justify-between gap-2 border-b border-line/55 pb-2.5">
             <div>
-              <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">路线库</div>
-              <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">所有自定义路线</h3>
-              <p className="mt-0.5 text-[10px] text-dim">点开任意路线会在下方预览装备和增强，需要修改时再进入编辑。</p>
+              <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">{isEn ? 'Route library' : '路线库'}</div>
+              <h3 className="mt-0.5 text-[16px] font-extrabold text-cream">{isEn ? 'All custom routes' : '所有自定义路线'}</h3>
+              <p className="mt-0.5 text-[10px] text-dim">
+                {isEn
+                  ? 'Open any route to preview items and augments below. Edit only when you need changes.'
+                  : '点开任意路线会在下方预览装备和增强，需要修改时再进入编辑。'}
+              </p>
             </div>
-            <div className="rounded-lg border border-line/70 bg-[#07101b]/62 px-3 py-2 text-xs font-extrabold text-cream">{routes.length} 条</div>
+            <div className="rounded-lg border border-line/70 bg-[#07101b]/62 px-3 py-2 text-xs font-extrabold text-cream">{routes.length} {isEn ? 'routes' : '条'}</div>
           </div>
           {routes.length > 0 ? (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-2">
@@ -3603,7 +3648,7 @@ function CustomRouteBuilder({
                   (route.goodAugmentIds.length > 0 ? 1 : 0) +
                   (route.description.trim().length >= 18 ? 1 : 0)
                 const routePct = Math.round((routeDoneCount / 5) * 100)
-                const updatedLabel = route.updatedAt ? new Date(route.updatedAt).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }) : '未保存'
+                const updatedLabel = route.updatedAt ? new Date(route.updatedAt).toLocaleDateString(isEn ? 'en-US' : 'zh-CN', { month: '2-digit', day: '2-digit' }) : (isEn ? 'Unsaved' : '未保存')
                 return (
                   <button
                     type="button"
@@ -3621,16 +3666,16 @@ function CustomRouteBuilder({
                     )}
                     <span className="min-w-0 flex-1">
                       <span className="flex min-w-0 items-center justify-between gap-2">
-                        <span className="truncate text-[12px] font-extrabold text-cream">{route.title || '未命名路线'}</span>
+                        <span className="truncate text-[12px] font-extrabold text-cream">{route.title || (isEn ? 'Unnamed route' : '未命名路线')}</span>
                         <span className={'shrink-0 rounded border px-1.5 py-px text-[9px] font-black ' + (routePct >= 80 ? 'border-[#63c07a]/35 bg-[#63c07a]/10 text-[#8bd99e]' : 'border-line/55 bg-[#07101b]/70 text-dim')}>
                           {routePct}%
                         </span>
                       </span>
                       <span className="mt-1 flex min-w-0 flex-wrap items-center gap-1">
                         <span className="inline-flex rounded-md border border-line/60 bg-[#07101b]/70 px-2 py-0.5 text-[10px] font-extrabold text-dim">{routeChampion?.name} · {route.damageType}</span>
-                        <span className="text-[9px] font-bold text-dim">编辑 {updatedLabel}</span>
+                        <span className="text-[9px] font-bold text-dim">{isEn ? 'Edited' : '编辑'} {updatedLabel}</span>
                       </span>
-                      <span className="mt-1 block truncate text-[11px] text-dim">{route.description || '无介绍'}</span>
+                      <span className="mt-1 block truncate text-[11px] text-dim">{route.description || (isEn ? 'No notes yet' : '无介绍')}</span>
                     </span>
                   </button>
                 )
@@ -3638,9 +3683,11 @@ function CustomRouteBuilder({
             </div>
           ) : (
             <div className="rounded-[8px] border border-dashed border-line/70 bg-[#07101b]/42 p-8 text-center">
-              <div className="text-sm font-extrabold text-cream">还没有自定义路线</div>
+              <div className="text-sm font-extrabold text-cream">{isEn ? 'No custom routes yet' : '还没有自定义路线'}</div>
               <div className="mx-auto mt-2 max-w-[520px] text-xs leading-5 text-dim">
-                最快的方式是从对局记录采集一名玩家路线，再回来补标题、说明和备选海克斯。
+                {isEn
+                  ? 'The fastest path is to capture one player route from match history, then come back to add a title, notes, and backup augments.'
+                  : '最快的方式是从对局记录采集一名玩家路线，再回来补标题、说明和备选海克斯。'}
               </div>
               <div className="mx-auto mt-4 max-w-[360px] rounded-[8px] border border-line/55 bg-[#09121f]/70 p-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]">
                 <div className="grid grid-cols-[42px_minmax(0,1fr)_auto] items-center gap-2">
@@ -3650,10 +3697,10 @@ function CustomRouteBuilder({
                     <div className="h-10 w-10 rounded-[6px] border border-dashed border-line/55 bg-panel/45" />
                   )}
                   <div className="min-w-0">
-                    <div className="truncate text-[12px] font-black text-cream">{draftChampion?.name ?? '英雄'} 实战路线</div>
-                    <div className="mt-1 inline-flex rounded border border-line/55 bg-[#07101b]/70 px-2 py-px text-[9px] font-black text-dim">AP · 示例预览</div>
+                    <div className="truncate text-[12px] font-black text-cream">{draftChampion?.name ?? (isEn ? 'Champion' : '英雄')} {isEn ? 'live route' : '实战路线'}</div>
+                    <div className="mt-1 inline-flex rounded border border-line/55 bg-[#07101b]/70 px-2 py-px text-[9px] font-black text-dim">AP · {isEn ? 'example preview' : '示例预览'}</div>
                   </div>
-                  <div className="rounded border border-[#63c07a]/35 bg-[#63c07a]/10 px-2 py-1 text-[9px] font-black text-[#8bd99e]">预览</div>
+                  <div className="rounded border border-[#63c07a]/35 bg-[#63c07a]/10 px-2 py-1 text-[9px] font-black text-[#8bd99e]">{isEn ? 'Preview' : '预览'}</div>
                 </div>
                 <div className="mt-3 flex gap-1.5">
                   {Array.from({ length: 6 }).map((_, index) => (
@@ -3667,21 +3714,21 @@ function CustomRouteBuilder({
                   onClick={onOpenHistory}
                   className="rounded-md border border-hex/45 bg-hex/10 px-3 py-2 text-[12px] font-extrabold text-hex transition hover:bg-hex/15 active:translate-y-px"
                 >
-                  从对局记录采集
+                  {isEn ? 'Capture from match history' : '从对局记录采集'}
                 </button>
                 <button
                   type="button"
                   onClick={startNew}
                   className="rounded-md border border-line/70 bg-panel2/60 px-3 py-2 text-[12px] font-extrabold text-dim transition hover:border-hex/35 hover:bg-panel2 hover:text-cream active:translate-y-px"
                 >
-                  新建空白路线
+                  {isEn ? 'New blank route' : '新建空白路线'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setSubpage('editor')}
                   className="rounded-md border border-line/65 bg-panel/45 px-3 py-2 text-[12px] font-extrabold text-dim transition hover:border-line hover:text-cream active:translate-y-px"
                 >
-                  查看编辑器
+                  {isEn ? 'Open editor' : '查看编辑器'}
                 </button>
               </div>
             </div>
@@ -3690,8 +3737,10 @@ function CustomRouteBuilder({
             <div className="mt-5 border-t border-line/60 pt-5">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">路线预览</div>
-                  <div className="mt-1 text-sm text-dim">这里直接查看出装和增强，不会打断当前草稿。</div>
+                  <div className="text-[11px] font-extrabold tracking-[0.08em] text-hex">{isEn ? 'Route preview' : '路线预览'}</div>
+                  <div className="mt-1 text-sm text-dim">
+                    {isEn ? 'Preview items and augments here without interrupting the current draft.' : '这里直接查看出装和增强，不会打断当前草稿。'}
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <button
@@ -3699,21 +3748,21 @@ function CustomRouteBuilder({
                     onClick={() => onActivate(selectedLibraryRoute.championId, customRouteKey(selectedLibraryRoute.id))}
                     className={BTN_PRIMARY}
                   >
-                    启用这条路线
+                    {isEn ? 'Enable this route' : '启用这条路线'}
                   </button>
                   <button
                     type="button"
                     onClick={() => edit(selectedLibraryRoute)}
                     className="rounded-lg border border-line/70 bg-[#07101b]/65 px-3 py-2 text-xs font-extrabold text-dim transition hover:border-hex/45 hover:text-cream active:translate-y-px"
                   >
-                    编辑这条路线
+                    {isEn ? 'Edit this route' : '编辑这条路线'}
                   </button>
                   <button
                     type="button"
                     onClick={() => removeRoute(selectedLibraryRoute)}
                     className="rounded-lg border border-red/45 bg-red/8 px-3 py-2 text-xs font-extrabold text-red transition hover:bg-red/12 active:translate-y-px"
                   >
-                    删除路线
+                    {isEn ? 'Delete route' : '删除路线'}
                   </button>
                 </div>
               </div>

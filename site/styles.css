@@ -837,10 +837,10 @@ h1 {
 
 .download-panel {
   display: grid;
-  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
-  gap: 30px;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+  gap: 34px;
   align-items: stretch;
-  padding: 28px;
+  padding: 36px;
   border: 1px solid var(--line-strong);
   border-radius: 18px;
   background:
@@ -852,7 +852,8 @@ h1 {
 
 .download-copy {
   align-self: center;
-  padding: 10px 8px;
+  max-width: 610px;
+  padding: 10px 8px 10px 0;
 }
 
 .download-notes {
@@ -879,16 +880,18 @@ h1 {
 
 .download-options {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr;
+  align-content: center;
+  gap: 14px;
+  min-width: 0;
 }
 
 .download-card {
   display: grid;
   align-content: space-between;
   gap: 20px;
-  min-height: 286px;
-  padding: 22px;
+  min-height: 0;
+  padding: 26px;
   border: 1px solid rgba(158, 179, 198, 0.18);
   border-radius: 14px;
   background:
@@ -901,6 +904,9 @@ h1 {
   background:
     linear-gradient(180deg, rgba(34, 211, 238, 0.12), rgba(255, 255, 255, 0.012)),
     rgba(6, 16, 27, 0.82);
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(34, 211, 238, 0.05) inset;
 }
 
 .download-badge {
@@ -945,18 +951,18 @@ h1 {
 }
 
 .install-steps {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  grid-column: 1 / -1;
-  padding: 4px 2px 0;
 }
 
 .install-steps span {
-  min-height: 30px;
-  border-radius: 8px;
-  color: var(--dim);
-  background: transparent;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 10px;
+  color: var(--muted);
+  background: rgba(5, 12, 21, 0.44);
+  text-align: center;
 }
 
 .footer {
