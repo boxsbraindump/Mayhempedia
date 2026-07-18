@@ -837,7 +837,7 @@ h1 {
 
 .download-panel {
   display: grid;
-  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(320px, 1fr) minmax(250px, 0.52fr);
   gap: 30px;
   align-items: stretch;
   padding: 28px;
@@ -877,10 +877,14 @@ h1 {
   font-weight: 850;
 }
 
-.download-options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+.download-action {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-left: 30px;
+  border-left: 1px solid rgba(145, 178, 204, 0.2);
 }
 
 .download-card {
@@ -944,12 +948,14 @@ h1 {
   gap: 7px;
 }
 
+.download-primary {
+  min-height: 48px;
+  justify-content: center;
+}
+
 .install-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  grid-column: 1 / -1;
-  padding: 4px 2px 0;
+  display: grid;
+  gap: 7px;
 }
 
 .install-steps span {
@@ -1062,12 +1068,11 @@ h1 {
     border-top: 1px solid rgba(34, 211, 238, 0.18);
   }
 
-  .download-options {
-    grid-template-columns: 1fr;
-  }
-
-  .download-card {
+  .download-action {
     min-height: 0;
+    padding: 22px 8px 0;
+    border-top: 1px solid rgba(145, 178, 204, 0.2);
+    border-left: 0;
   }
 
   .metrics-strip {
