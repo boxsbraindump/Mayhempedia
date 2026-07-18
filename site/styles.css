@@ -711,6 +711,7 @@ h1 {
 .showcase-card {
   display: grid;
   gap: 22px;
+  align-content: start;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -733,6 +734,10 @@ h1 {
   padding: 28px 28px 0;
 }
 
+.showcase-card:not(.showcase-wide) .showcase-copy {
+  min-height: 206px;
+}
+
 .showcase-wide .showcase-copy {
   padding: 34px 0 34px 34px;
 }
@@ -748,6 +753,7 @@ h1 {
 
 .screenshot-frame {
   position: relative;
+  align-self: start;
   margin: 0;
   overflow: hidden;
   aspect-ratio: 16 / 9;
@@ -1003,6 +1009,10 @@ h1 {
   .showcase-wide .showcase-copy,
   .showcase-copy {
     padding: 24px 24px 0;
+  }
+
+  .showcase-card:not(.showcase-wide) .showcase-copy {
+    min-height: 0;
   }
 
   .showcase-wide .screenshot-frame,
