@@ -28,6 +28,12 @@ export interface DashboardSections {
   achievements: boolean
 }
 
+export interface FeedbackSettings {
+  state: 'unasked' | 'later' | 'completed' | 'disabled'
+  lastPromptedAt: string | null
+  rating: number | null
+}
+
 export interface Settings {
   // 语言
   language: 'zh' | 'en'
@@ -51,6 +57,9 @@ export interface Settings {
 
   // 数据/隐私类
   persistMatchHistory: boolean // 本地积累对局记录，供未来长期战力分析；只落本地盘，不上传
+
+  // Beta 反馈。评论不存入设置；这里只记录是否需要再次提示与可选评分。
+  feedback: FeedbackSettings
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -75,6 +84,11 @@ export const DEFAULT_SETTINGS: Settings = {
   customRoutes: [],
   notificationMode: 'inpage',
   persistMatchHistory: true, // 默认开：这是产品核心卖点(长期攒Tier数据素材)，纯本地零风险；设置页要把这点说清楚，不能默默开
+  feedback: {
+    state: 'unasked',
+    lastPromptedAt: null,
+    rating: null,
+  },
 }
 
 let store: Store<Settings> | null = null
@@ -106,6 +120,10 @@ export function getSettings(): Settings {
     zoomFactor: normalizeZoom(stored.zoomFactor),
     overlay: { ...DEFAULT_SETTINGS.overlay, ...stored.overlay },
     dashboardSections: { ...DEFAULT_SETTINGS.dashboardSections, ...stored.dashboardSections },
+    feedback: {
+      ...DEFAULT_SETTINGS.feedback,
+      ...(stored.feedback && typeof stored.feedback === 'object' ? stored.feedback : {}),
+    },
     selectedArchetypeByChampionId: {
       ...DEFAULT_SETTINGS.selectedArchetypeByChampionId,
       ...stored.selectedArchetypeByChampionId,

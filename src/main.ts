@@ -1,7 +1,7 @@
 // 主进程：建窗口 + 连 LCU，把选人/换将数据通过 IPC 推给 React 渲染层。
 // M1 只在控制台打印；这一步把同一份 LCU 逻辑接上真正的窗口。
 
-import { app, BrowserWindow, ipcMain, Notification, screen } from 'electron'
+import { app, BrowserWindow, ipcMain, Notification, screen, shell } from 'electron'
 import electronUpdater from 'electron-updater'
 import { authenticate, createWebSocketConnection, createHttp1Request } from 'league-connect'
 import type { Credentials } from 'league-connect'
@@ -106,6 +106,11 @@ interface AppNotice {
   title: string
   body: string
   tone: 'success' | 'warning' | 'info'
+}
+
+interface FeedbackPayload {
+  rating?: unknown
+  comment?: unknown
 }
 
 interface UpdateStatus {
@@ -719,6 +724,32 @@ function registerUpdateIpc(): void {
   })
 }
 
+function registerFeedbackIpc(): void {
+  ipcMain.handle('feedback:open', async (_event, payload: FeedbackPayload): Promise<boolean> => {
+    const rating = typeof payload?.rating === 'number' ? Math.max(1, Math.min(5, Math.round(payload.rating))) : 0
+    const comment = typeof payload?.comment === 'string' ? payload.comment.trim().slice(0, 700) : ''
+    const title = encodeURIComponent(`Beta feedback: ${rating ? `${rating}/5` : 'General'}`)
+    const body = encodeURIComponent(
+      [
+        '## What happened?',
+        comment || '_No written comment provided._',
+        '',
+        '## Context',
+        `- Mayhempedia version: ${app.getVersion()}`,
+        `- Rating: ${rating || 'Not provided'}/5`,
+        '- The app reads local League Client state only; no gameplay automation.',
+      ].join('\n'),
+    )
+    try {
+      await shell.openExternal(`https://github.com/boxsbraindump/Mayhempedia/issues/new?title=${title}&body=${body}`)
+      return true
+    } catch (error) {
+      console.error('[Mayhempedia] 打开反馈页面失败:', error)
+      return false
+    }
+  })
+}
+
 function registerMatchDetailIpc(): void {
   ipcMain.handle('lcu:getMatchDetail', async (_e, gameId: number) => {
     const shouldPersist = getSettings().persistMatchHistory
@@ -748,6 +779,7 @@ app.whenReady().then(async () => {
   registerSettingsIpc()
   registerWindowIpc()
   registerUpdateIpc()
+  registerFeedbackIpc()
   registerMatchDetailIpc()
   registerAccountHistoryIpc()
   applyAutoLaunch(getSettings().autoLaunch)

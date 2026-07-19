@@ -32,6 +32,7 @@ import {
   type OverlaySettings,
   type Hotkey,
   type DashboardSections,
+  type FeedbackSettings,
   type MatchFullDetail,
   type PlayerMatchStats,
   type CustomRoute,
@@ -201,6 +202,7 @@ export default function App() {
   const [notice, setNotice] = useState<AppNotice | null>(null)
   const [matchDetailId, setMatchDetailId] = useState<number | null>(null) // 查看的是"近期对局"里某一局的真实出装/海克斯
   const [settings, setSettings] = useState<Settings | null>(null)
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [previewLanguage] = useState<Lang>(() => {
     if (typeof window === 'undefined' || isElectron()) return 'zh'
     return window.localStorage.getItem('mayhempedia.previewLanguage') === 'en' ? 'en' : 'zh'
@@ -315,6 +317,34 @@ export default function App() {
   }, [detectedChamp?.id])
 
   useEffect(() => {
+    if (!isElectron() || !settings || feedbackOpen || tab !== 'dash' || activeChampionId) return
+    const feedback = settings.feedback
+    const matchCount = matchHistory?.matches.length ?? 0
+    const lastPrompted = feedback.lastPromptedAt ? Date.parse(feedback.lastPromptedAt) : 0
+    const canAskAgain = feedback.state === 'unasked' || (feedback.state === 'later' && Date.now() - lastPrompted > 7 * 24 * 60 * 60 * 1000)
+    if (!canAskAgain || matchCount < 3) return
+    const timer = window.setTimeout(() => setFeedbackOpen(true), 1100)
+    return () => window.clearTimeout(timer)
+  }, [activeChampionId, feedbackOpen, matchHistory?.matches.length, settings, tab])
+
+  async function saveFeedback(feedback: FeedbackSettings) {
+    if (!isElectron()) return
+    const updated = await window.mayhem!.setSetting('feedback', feedback)
+    setSettings(updated)
+  }
+
+  async function submitFeedback(rating: number, comment: string): Promise<boolean> {
+    const opened = await window.mayhem!.openFeedback({ rating, comment })
+    if (!opened) {
+      setNotice({ text: appLang === 'en' ? 'Could not open the feedback form. Please try again.' : '暂时无法打开反馈表单，请稍后重试。', tone: 'warning' })
+      return false
+    }
+    await saveFeedback({ state: 'completed', lastPromptedAt: new Date().toISOString(), rating })
+    setFeedbackOpen(false)
+    return true
+  }
+
+  useEffect(() => {
     return () => {
       if (mainScrollTimer.current != null) window.clearTimeout(mainScrollTimer.current)
     }
@@ -347,6 +377,20 @@ export default function App() {
       <div className="relative flex h-[calc(100%-36px)] min-h-0 min-w-0 overflow-hidden bg-ink">
       <div className="pointer-events-none absolute inset-0 bg-[#0a1018]" />
       {notice && <NoticeToast notice={notice} onClose={() => setNotice(null)} />}
+      {feedbackOpen && (
+        <FeedbackPrompt
+          lang={appLang}
+          onLater={() => {
+            void saveFeedback({ state: 'later', lastPromptedAt: new Date().toISOString(), rating: settings?.feedback.rating ?? null })
+            setFeedbackOpen(false)
+          }}
+          onDisable={() => {
+            void saveFeedback({ state: 'disabled', lastPromptedAt: new Date().toISOString(), rating: settings?.feedback.rating ?? null })
+            setFeedbackOpen(false)
+          }}
+          onSubmit={submitFeedback}
+        />
+      )}
       <Sidebar
         tab={tab}
         onTab={(t) => {
@@ -455,7 +499,7 @@ export default function App() {
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
         {core && matchDetailId == null && champId == null && tab === 'settings' && (
-          <SettingsTab summoner={summoner} />
+          <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackOpen(true)} />
         )}
       </main>
       </div>
@@ -594,6 +638,90 @@ function NoticeToast({ notice, onClose }: { notice: AppNotice; onClose: () => vo
           </button>
         </div>
       </div>
+    </div>
+  )
+}
+
+function FeedbackPrompt({
+  lang,
+  onLater,
+  onDisable,
+  onSubmit,
+}: {
+  lang: Lang
+  onLater: () => void
+  onDisable: () => void
+  onSubmit: (rating: number, comment: string) => Promise<boolean>
+}) {
+  const [rating, setRating] = useState<number | null>(null)
+  const [comment, setComment] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const isEn = lang === 'en'
+
+  async function submit() {
+    if (!rating || submitting) return
+    setSubmitting(true)
+    const opened = await onSubmit(rating, comment)
+    if (!opened) setSubmitting(false)
+  }
+
+  return (
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#03070c]/58 px-5 backdrop-blur-[2px]">
+      <section className="w-full max-w-[470px] rounded-[8px] border border-line/80 bg-[#0b1420] p-5 shadow-[0_24px_72px_rgba(0,0,0,0.5)]">
+        <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Mayhempedia Beta</div>
+        <h2 className="mt-1 text-[19px] font-black text-cream">
+          {isEn ? 'Did Mayhempedia help this game?' : 'Mayhempedia 这局有帮到你吗？'}
+        </h2>
+        <p className="mt-2 text-[12px] leading-5 text-dim">
+          {isEn
+            ? 'A quick rating helps us decide what to fix next. Your note is only sent after you choose to continue to the feedback form.'
+            : '一个简单评分就能帮助我们决定下一步修什么。只有你点击继续到反馈表单后，评论才会离开应用。'}
+        </p>
+
+        <div className="mt-4 grid grid-cols-5 gap-1.5" aria-label={isEn ? 'Rate Mayhempedia from 1 to 5' : '为 Mayhempedia 评分，1 到 5 分'}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => setRating(value)}
+              className={
+                'h-10 rounded-[6px] border text-sm font-black transition ' +
+                (rating === value
+                  ? 'border-hex bg-hex text-[#041017]'
+                  : 'border-line/70 bg-panel2/65 text-dim hover:border-hex/45 hover:text-cream')
+              }
+              aria-pressed={rating === value}
+            >
+              {value}
+            </button>
+          ))}
+        </div>
+
+        <label className="mt-4 block">
+          <span className="text-[11px] font-bold text-cream">{isEn ? 'Anything we should fix or keep?' : '有什么该修，或值得保留？'}</span>
+          <textarea
+            value={comment}
+            onChange={(event) => setComment(event.target.value.slice(0, 700))}
+            maxLength={700}
+            placeholder={isEn ? 'Optional. A sentence is enough.' : '选填，一句话就够。'}
+            className="mt-2 min-h-24 w-full resize-none rounded-[6px] border border-line/70 bg-[#07101b]/70 px-3 py-2 text-[12px] leading-5 text-cream outline-none transition placeholder:text-dim/60 focus:border-hex/65"
+          />
+        </label>
+
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <button type="button" onClick={onDisable} className="text-[11px] font-bold text-dim transition hover:text-cream">
+            {isEn ? "Don't ask again" : '不再提示'}
+          </button>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={onLater} className={BTN_SECONDARY}>
+              {isEn ? 'Later' : '以后再说'}
+            </button>
+            <button type="button" disabled={!rating || submitting} onClick={() => void submit()} className={BTN_PRIMARY + ' disabled:cursor-not-allowed disabled:opacity-45'}>
+              {submitting ? (isEn ? 'Opening...' : '正在打开...') : (isEn ? 'Continue to feedback' : '继续到反馈表单')}
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
@@ -3848,7 +3976,7 @@ function updateStatusText(status: UpdateStatus | null): string {
   return `当前版本 ${status.version ?? ''}`
 }
 
-function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
+function SettingsTab({ summoner, onOpenFeedback }: { summoner: SummonerInfo | null; onOpenFeedback: () => void }) {
   const t = useT()
   const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
@@ -4252,6 +4380,25 @@ function SettingsTab({ summoner }: { summoner: SummonerInfo | null }) {
                     on={settings.persistMatchHistory}
                     onClick={() => update('persistMatchHistory', !settings.persistMatchHistory)}
                   />
+                </div>
+                <div className="mt-2 rounded-[6px] border border-line/60 bg-[#07101b]/46 p-3 text-xs leading-5 text-dim">
+                  <div className="font-bold text-cream">{lang === 'en' ? 'Read-only client access' : '只读客户端连接'}</div>
+                  <p className="mt-1">
+                    {lang === 'en'
+                      ? 'Mayhempedia reads local League Client state to show your champion, match history, items, and augments. It does not read game memory, automate gameplay, collect Riot credentials, or upload your local history.'
+                      : 'Mayhempedia 只读取本机 League Client 状态，用于显示英雄、对局记录、装备和海克斯；不会读取游戏内存、自动操作游戏、收集 Riot 登录凭证，也不会上传本地对局记录。'}
+                  </p>
+                </div>
+                <div className="mt-2 flex items-center justify-between gap-3 border-t border-line/60 pt-3">
+                  <div>
+                    <div className="text-sm">{lang === 'en' ? 'Beta feedback' : 'Beta 反馈'}</div>
+                    <div className="mt-0.5 max-w-xl text-xs text-dim">
+                      {lang === 'en' ? 'Open the feedback form only when you choose to send a rating or comment.' : '只会在你主动选择评分或评论后，才打开外部反馈表单。'}
+                    </div>
+                  </div>
+                  <button type="button" onClick={onOpenFeedback} className={BTN_SECONDARY}>
+                    {lang === 'en' ? 'Share feedback' : '留下反馈'}
+                  </button>
                 </div>
               </SettingsSection>
             </div>

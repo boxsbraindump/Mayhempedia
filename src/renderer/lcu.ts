@@ -138,6 +138,11 @@ export interface DashboardSections {
   recentMatches: boolean
   achievements: boolean
 }
+export interface FeedbackSettings {
+  state: 'unasked' | 'later' | 'completed' | 'disabled'
+  lastPromptedAt: string | null
+  rating: number | null
+}
 export interface CustomRoute {
   id: string
   championId: number
@@ -162,6 +167,7 @@ export interface Settings {
   customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
+  feedback: FeedbackSettings
 }
 
 declare global {
@@ -186,6 +192,7 @@ declare global {
       getUpdateStatus: () => Promise<UpdateStatus>
       checkForUpdates: () => Promise<UpdateStatus>
       installUpdate: () => Promise<boolean>
+      openFeedback: (payload: { rating: number; comment: string }) => Promise<boolean>
       onUpdateStatus: (cb: (s: UpdateStatus) => void) => void
     }
   }
