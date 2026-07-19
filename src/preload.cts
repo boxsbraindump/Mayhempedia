@@ -215,7 +215,7 @@ contextBridge.exposeInMainWorld('mayhem', {
   getUpdateStatus: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:getStatus'),
   checkForUpdates: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:check'),
   installUpdate: (): Promise<boolean> => ipcRenderer.invoke('updates:install'),
-  openFeedback: (payload: { rating: number; comment: string }): Promise<boolean> =>
+  openFeedback: (payload: { kind: 'feedback' | 'problem'; rating: number; comment: string }): Promise<boolean> =>
     ipcRenderer.invoke('feedback:open', payload),
   onUpdateStatus: (cb: (s: UpdateStatus) => void) => {
     ipcRenderer.on('updates:status', (_event, data: UpdateStatus) => cb(data))

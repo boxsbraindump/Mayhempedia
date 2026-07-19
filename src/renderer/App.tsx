@@ -75,6 +75,7 @@ const EMPTY_CUSTOM_ROUTES: CustomRoute[] = []
 const CUSTOM_ROUTE_DRAFT_STORAGE_KEY = 'mayhempedia.customRouteDraft'
 const CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY = 'mayhempedia.customRouteSubpage'
 const CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY = 'mayhempedia.customRouteLibrarySelection'
+type FeedbackMode = 'feedback' | 'problem'
 
 const RARITY_KEY: Record<number, string> = { 0: 'silver', 1: 'gold', 2: 'prismatic', 4: 'special' }
 const RARITY: Record<number, { label: string; text: string; border: string; bg: string }> = {
@@ -202,7 +203,7 @@ export default function App() {
   const [notice, setNotice] = useState<AppNotice | null>(null)
   const [matchDetailId, setMatchDetailId] = useState<number | null>(null) // 查看的是"近期对局"里某一局的真实出装/海克斯
   const [settings, setSettings] = useState<Settings | null>(null)
-  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [feedbackMode, setFeedbackMode] = useState<FeedbackMode | null>(null)
   const [previewLanguage] = useState<Lang>(() => {
     if (typeof window === 'undefined' || isElectron()) return 'zh'
     return window.localStorage.getItem('mayhempedia.previewLanguage') === 'en' ? 'en' : 'zh'
@@ -317,15 +318,15 @@ export default function App() {
   }, [detectedChamp?.id])
 
   useEffect(() => {
-    if (!isElectron() || !settings || feedbackOpen || tab !== 'dash' || activeChampionId) return
+    if (!isElectron() || !settings || feedbackMode || tab !== 'dash' || activeChampionId) return
     const feedback = settings.feedback
     const matchCount = matchHistory?.matches.length ?? 0
     const lastPrompted = feedback.lastPromptedAt ? Date.parse(feedback.lastPromptedAt) : 0
     const canAskAgain = feedback.state === 'unasked' || (feedback.state === 'later' && Date.now() - lastPrompted > 7 * 24 * 60 * 60 * 1000)
     if (!canAskAgain || matchCount < 3) return
-    const timer = window.setTimeout(() => setFeedbackOpen(true), 1100)
+    const timer = window.setTimeout(() => setFeedbackMode('feedback'), 1100)
     return () => window.clearTimeout(timer)
-  }, [activeChampionId, feedbackOpen, matchHistory?.matches.length, settings, tab])
+  }, [activeChampionId, feedbackMode, matchHistory?.matches.length, settings, tab])
 
   async function saveFeedback(feedback: FeedbackSettings) {
     if (!isElectron()) return
@@ -333,14 +334,16 @@ export default function App() {
     setSettings(updated)
   }
 
-  async function submitFeedback(rating: number, comment: string): Promise<boolean> {
-    const opened = await window.mayhem!.openFeedback({ rating, comment })
+  async function submitFeedback(mode: FeedbackMode, rating: number, comment: string): Promise<boolean> {
+    const opened = await window.mayhem!.openFeedback({ kind: mode, rating, comment })
     if (!opened) {
       setNotice({ text: appLang === 'en' ? 'Could not open the feedback form. Please try again.' : '暂时无法打开反馈表单，请稍后重试。', tone: 'warning' })
       return false
     }
-    await saveFeedback({ state: 'completed', lastPromptedAt: new Date().toISOString(), rating })
-    setFeedbackOpen(false)
+    if (mode === 'feedback') {
+      await saveFeedback({ state: 'completed', lastPromptedAt: new Date().toISOString(), rating })
+    }
+    setFeedbackMode(null)
     return true
   }
 
@@ -377,17 +380,19 @@ export default function App() {
       <div className="relative flex h-[calc(100%-36px)] min-h-0 min-w-0 overflow-hidden bg-ink">
       <div className="pointer-events-none absolute inset-0 bg-[#0a1018]" />
       {notice && <NoticeToast notice={notice} onClose={() => setNotice(null)} />}
-      {feedbackOpen && (
+      {feedbackMode && (
         <FeedbackPrompt
+          mode={feedbackMode}
           lang={appLang}
           onLater={() => {
             void saveFeedback({ state: 'later', lastPromptedAt: new Date().toISOString(), rating: settings?.feedback.rating ?? null })
-            setFeedbackOpen(false)
+            setFeedbackMode(null)
           }}
           onDisable={() => {
             void saveFeedback({ state: 'disabled', lastPromptedAt: new Date().toISOString(), rating: settings?.feedback.rating ?? null })
-            setFeedbackOpen(false)
+            setFeedbackMode(null)
           }}
+          onCancel={() => setFeedbackMode(null)}
           onSubmit={submitFeedback}
         />
       )}
@@ -499,7 +504,7 @@ export default function App() {
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
         {core && matchDetailId == null && champId == null && tab === 'settings' && (
-          <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackOpen(true)} />
+          <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackMode('feedback')} onReportProblem={() => setFeedbackMode('problem')} />
         )}
       </main>
       </div>
@@ -643,25 +648,30 @@ function NoticeToast({ notice, onClose }: { notice: AppNotice; onClose: () => vo
 }
 
 function FeedbackPrompt({
+  mode,
   lang,
   onLater,
   onDisable,
+  onCancel,
   onSubmit,
 }: {
+  mode: FeedbackMode
   lang: Lang
   onLater: () => void
   onDisable: () => void
-  onSubmit: (rating: number, comment: string) => Promise<boolean>
+  onCancel: () => void
+  onSubmit: (mode: FeedbackMode, rating: number, comment: string) => Promise<boolean>
 }) {
   const [rating, setRating] = useState<number | null>(null)
   const [comment, setComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const isEn = lang === 'en'
+  const isProblem = mode === 'problem'
 
   async function submit() {
-    if (!rating || submitting) return
+    if (submitting || (!isProblem && !rating) || (isProblem && !comment.trim())) return
     setSubmitting(true)
-    const opened = await onSubmit(rating, comment)
+    const opened = await onSubmit(mode, rating ?? 0, comment)
     if (!opened) setSubmitting(false)
   }
 
@@ -670,15 +680,19 @@ function FeedbackPrompt({
       <section className="w-full max-w-[470px] rounded-[8px] border border-line/80 bg-[#0b1420] p-5 shadow-[0_24px_72px_rgba(0,0,0,0.5)]">
         <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Mayhempedia Beta</div>
         <h2 className="mt-1 text-[19px] font-black text-cream">
-          {isEn ? 'Did Mayhempedia help this game?' : 'Mayhempedia 这局有帮到你吗？'}
+          {isProblem ? (isEn ? 'Report a problem' : '报告问题') : (isEn ? 'Did Mayhempedia help this game?' : 'Mayhempedia 这局有帮到你吗？')}
         </h2>
         <p className="mt-2 text-[12px] leading-5 text-dim">
-          {isEn
+          {isProblem
+            ? (isEn
+              ? 'Describe what you saw, what you expected, and where it happened. You review everything here before choosing to open the report form.'
+              : '描述你看到的问题、你的预期，以及发生在哪个页面。你会先在这里写完，再决定是否打开外部提交页。')
+            : (isEn
             ? 'A quick rating helps us decide what to fix next. Your note is only sent after you choose to continue to the feedback form.'
-            : '一个简单评分就能帮助我们决定下一步修什么。只有你点击继续到反馈表单后，评论才会离开应用。'}
+            : '一个简单评分就能帮助我们决定下一步修什么。只有你点击继续到反馈表单后，评论才会离开应用。')}
         </p>
 
-        <div className="mt-4 grid grid-cols-5 gap-1.5" aria-label={isEn ? 'Rate Mayhempedia from 1 to 5' : '为 Mayhempedia 评分，1 到 5 分'}>
+        {!isProblem && <div className="mt-4 grid grid-cols-5 gap-1.5" aria-label={isEn ? 'Rate Mayhempedia from 1 to 5' : '为 Mayhempedia 评分，1 到 5 分'}>
           {[1, 2, 3, 4, 5].map((value) => (
             <button
               key={value}
@@ -695,29 +709,25 @@ function FeedbackPrompt({
               {value}
             </button>
           ))}
-        </div>
+        </div>}
 
         <label className="mt-4 block">
-          <span className="text-[11px] font-bold text-cream">{isEn ? 'Anything we should fix or keep?' : '有什么该修，或值得保留？'}</span>
+          <span className="text-[11px] font-bold text-cream">{isProblem ? (isEn ? 'What happened?' : '发生了什么？') : (isEn ? 'Anything we should fix or keep?' : '有什么该修，或值得保留？')}</span>
           <textarea
             value={comment}
             onChange={(event) => setComment(event.target.value.slice(0, 700))}
             maxLength={700}
-            placeholder={isEn ? 'Optional. A sentence is enough.' : '选填，一句话就够。'}
+            placeholder={isProblem ? (isEn ? 'What you were doing, what went wrong, and what you expected.' : '你当时在做什么、哪里不对、预期应该是什么。') : (isEn ? 'Optional. A sentence is enough.' : '选填，一句话就够。')}
             className="mt-2 min-h-24 w-full resize-none rounded-[6px] border border-line/70 bg-[#07101b]/70 px-3 py-2 text-[12px] leading-5 text-cream outline-none transition placeholder:text-dim/60 focus:border-hex/65"
           />
         </label>
 
         <div className="mt-4 flex items-center justify-between gap-3">
-          <button type="button" onClick={onDisable} className="text-[11px] font-bold text-dim transition hover:text-cream">
-            {isEn ? "Don't ask again" : '不再提示'}
-          </button>
+          {isProblem ? <button type="button" onClick={onCancel} className="text-[11px] font-bold text-dim transition hover:text-cream">{isEn ? 'Cancel' : '取消'}</button> : <button type="button" onClick={onDisable} className="text-[11px] font-bold text-dim transition hover:text-cream">{isEn ? "Don't ask again" : '不再提示'}</button>}
           <div className="flex items-center gap-2">
-            <button type="button" onClick={onLater} className={BTN_SECONDARY}>
-              {isEn ? 'Later' : '以后再说'}
-            </button>
-            <button type="button" disabled={!rating || submitting} onClick={() => void submit()} className={BTN_PRIMARY + ' disabled:cursor-not-allowed disabled:opacity-45'}>
-              {submitting ? (isEn ? 'Opening...' : '正在打开...') : (isEn ? 'Continue to feedback' : '继续到反馈表单')}
+            {!isProblem && <button type="button" onClick={onLater} className={BTN_SECONDARY}>{isEn ? 'Later' : '以后再说'}</button>}
+            <button type="button" disabled={(!isProblem && !rating) || (isProblem && !comment.trim()) || submitting} onClick={() => void submit()} className={BTN_PRIMARY + ' disabled:cursor-not-allowed disabled:opacity-45'}>
+              {submitting ? (isEn ? 'Opening...' : '正在打开...') : (isProblem ? (isEn ? 'Continue to report' : '继续提交问题') : (isEn ? 'Continue to feedback' : '继续到反馈表单'))}
             </button>
           </div>
         </div>
@@ -3976,7 +3986,7 @@ function updateStatusText(status: UpdateStatus | null): string {
   return `当前版本 ${status.version ?? ''}`
 }
 
-function SettingsTab({ summoner, onOpenFeedback }: { summoner: SummonerInfo | null; onOpenFeedback: () => void }) {
+function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: SummonerInfo | null; onOpenFeedback: () => void; onReportProblem: () => void }) {
   const t = useT()
   const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
@@ -4396,9 +4406,14 @@ function SettingsTab({ summoner, onOpenFeedback }: { summoner: SummonerInfo | nu
                       {lang === 'en' ? 'Open the feedback form only when you choose to send a rating or comment.' : '只会在你主动选择评分或评论后，才打开外部反馈表单。'}
                     </div>
                   </div>
-                  <button type="button" onClick={onOpenFeedback} className={BTN_SECONDARY}>
-                    {lang === 'en' ? 'Share feedback' : '留下反馈'}
-                  </button>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <button type="button" onClick={onOpenFeedback} className={BTN_SECONDARY}>
+                      {lang === 'en' ? 'Share feedback' : '留下反馈'}
+                    </button>
+                    <button type="button" onClick={onReportProblem} className={BTN_DANGER}>
+                      {lang === 'en' ? 'Report a problem' : '报告问题'}
+                    </button>
+                  </div>
                 </div>
               </SettingsSection>
             </div>

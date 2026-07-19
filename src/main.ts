@@ -109,6 +109,7 @@ interface AppNotice {
 }
 
 interface FeedbackPayload {
+  kind?: unknown
   rating?: unknown
   comment?: unknown
 }
@@ -726,17 +727,23 @@ function registerUpdateIpc(): void {
 
 function registerFeedbackIpc(): void {
   ipcMain.handle('feedback:open', async (_event, payload: FeedbackPayload): Promise<boolean> => {
+    const kind = payload?.kind === 'problem' ? 'problem' : 'feedback'
     const rating = typeof payload?.rating === 'number' ? Math.max(1, Math.min(5, Math.round(payload.rating))) : 0
     const comment = typeof payload?.comment === 'string' ? payload.comment.trim().slice(0, 700) : ''
-    const title = encodeURIComponent(`Beta feedback: ${rating ? `${rating}/5` : 'General'}`)
+    const title = encodeURIComponent(
+      kind === 'problem'
+        ? `Problem report: Mayhempedia ${app.getVersion()}`
+        : `Beta feedback: ${rating ? `${rating}/5` : 'General'}`,
+    )
     const body = encodeURIComponent(
       [
-        '## What happened?',
-        comment || '_No written comment provided._',
+        kind === 'problem' ? '## What went wrong?' : '## What happened?',
+        comment || (kind === 'problem' ? '_Please describe the issue._' : '_No written comment provided._'),
         '',
         '## Context',
         `- Mayhempedia version: ${app.getVersion()}`,
-        `- Rating: ${rating || 'Not provided'}/5`,
+        `- Submission: ${kind === 'problem' ? 'Problem report' : 'Beta feedback'}`,
+        ...(kind === 'feedback' ? [`- Rating: ${rating || 'Not provided'}/5`] : []),
         '- The app reads local League Client state only; no gameplay automation.',
       ].join('\n'),
     )

@@ -192,7 +192,7 @@ declare global {
       getUpdateStatus: () => Promise<UpdateStatus>
       checkForUpdates: () => Promise<UpdateStatus>
       installUpdate: () => Promise<boolean>
-      openFeedback: (payload: { rating: number; comment: string }) => Promise<boolean>
+      openFeedback: (payload: { kind: 'feedback' | 'problem'; rating: number; comment: string }) => Promise<boolean>
       onUpdateStatus: (cb: (s: UpdateStatus) => void) => void
     }
   }
