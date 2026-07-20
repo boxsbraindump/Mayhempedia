@@ -607,10 +607,10 @@ function createPreviewMatchDetail(core: Core, match: MatchSummary): MatchFullDet
   }
 }
 
-const LCU_BADGE: Record<LcuStatus['state'], { label: string; dot: string }> = {
-  connecting: { label: '连接客户端中…', dot: 'bg-hex animate-pulse' },
-  connected: { label: '已连接客户端', dot: 'bg-hex' },
-  error: { label: '连接失败', dot: 'bg-red' },
+const LCU_BADGE: Record<LcuStatus['state'], { labelKey: string; dot: string }> = {
+  connecting: { labelKey: 'lcu.connecting', dot: 'bg-hex animate-pulse' },
+  connected: { labelKey: 'lcu.connected', dot: 'bg-hex' },
+  error: { labelKey: 'lcu.error', dot: 'bg-red' },
 }
 
 const DEFAULT_LCU_BADGE = LCU_BADGE.connecting
@@ -974,7 +974,7 @@ function Sidebar({
           'glass-control rounded-[8px] border border-line/55 px-2 py-2 text-xs text-dim ' +
           (open ? 'flex items-center gap-2' : '')
         }
-        title={t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}
+        title={t(lcuBadge.labelKey)}
       >
         <div className="flex shrink-0 items-center justify-center">
           <span className={'h-2.5 w-2.5 rounded-full shrink-0 ' + lcuBadge.dot} />
@@ -983,7 +983,7 @@ function Sidebar({
           {open ? (
             <div className={'transition duration-150 ease-out ' + (labelsVisible ? 'translate-x-0 opacity-100 delay-75' : '-translate-x-1 opacity-0')}>
               <div className="text-[9px] leading-tight text-dim/80">LCU</div>
-              <div className="truncate text-[10px] leading-tight text-cream/72">{t(`lcu.${lcuStatus?.state ?? 'connecting'}`, lcuBadge.label)}</div>
+              <div className="truncate text-[10px] leading-tight text-cream/72">{t(lcuBadge.labelKey)}</div>
             </div>
           ) : (
             'LCU'
@@ -1040,6 +1040,7 @@ function Dashboard({
   void summoner
   void sections
   void selectedArchetypeByChampionId
+  const t = useT()
   const champById = useMemo(() => new Map(core.champions.map((c) => [c.id, c])), [core])
   const lcuBadge = lcuStatus ? LCU_BADGE[lcuStatus.state] : DEFAULT_LCU_BADGE
   const recentMatches = matchHistory?.matches ?? null
@@ -1175,7 +1176,7 @@ function Dashboard({
               </div>
               <div className="flex items-center gap-1.5 rounded border border-line/55 bg-[#050a11]/36 px-2 py-1">
                 <span className={'h-2 w-2 rounded-full ' + lcuBadge.dot} />
-                <span className="text-[10px] font-extrabold text-dim">{lcuBadge.label}</span>
+                <span className="text-[10px] font-extrabold text-dim">{t(lcuBadge.labelKey)}</span>
               </div>
             </div>
             <div className="grid gap-1.5">
