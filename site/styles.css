@@ -1352,6 +1352,7 @@ body.site-v2 {
 
 .site-v2 .landing-brand img { width: 28px; height: 28px; }
 .site-v2 .landing-brand > span > span { color: var(--landing-cyan); }
+.site-v2 .landing-brand small { display: block; margin-top: 1px; color: #6f8493; font-size: 8px; font-weight: 760; letter-spacing: 0.08em; text-transform: uppercase; }
 
 .site-v2 .landing-links {
   display: flex;
@@ -1364,7 +1365,8 @@ body.site-v2 {
 }
 
 .site-v2 .landing-links a,
-.site-v2 .nav-cta {
+.site-v2 .nav-cta,
+.site-v2 .nav-build {
   font-size: 12px;
   font-weight: 760;
   transition: color 180ms ease, background 180ms ease, transform 180ms ease;
@@ -1372,7 +1374,11 @@ body.site-v2 {
 
 .site-v2 .landing-links a { padding: 8px 10px; border-radius: 5px; color: var(--landing-muted); }
 .site-v2 .landing-links a:hover { color: var(--landing-text); background: rgba(255, 255, 255, 0.05); }
-.site-v2 .nav-cta { justify-self: end; padding: 10px 12px; border-radius: 6px; color: #041017; background: var(--landing-cyan); }
+.site-v2 .nav-actions { display: flex; justify-self: end; align-items: center; gap: 10px; }
+.site-v2 .nav-build { display: inline-flex; align-items: center; gap: 6px; color: #8599a8; font-size: 10px; white-space: nowrap; }
+.site-v2 .nav-build i { width: 5px; height: 5px; border-radius: 50%; background: var(--landing-cyan); box-shadow: 0 0 0 3px rgba(85, 212, 227, 0.1); }
+.site-v2 .nav-build b { padding-left: 6px; border-left: 1px solid rgba(156, 177, 195, 0.24); color: var(--landing-gold); font-size: 10px; }
+.site-v2 .nav-cta { padding: 10px 12px; border-radius: 6px; color: #041017; background: var(--landing-cyan); }
 .site-v2 .nav-cta:hover, .site-v2 .button-main:hover { transform: translateY(-2px); filter: brightness(1.06); }
 .site-v2 .nav-cta:active, .site-v2 .button-main:active { transform: translateY(0); }
 
@@ -1569,6 +1575,7 @@ body.site-v2.motion-ready [data-reveal].is-visible { opacity: 1; transform: tran
   .site-v2 .landing-shell { width: min(100% - 24px, 520px); }
   .site-v2 .landing-nav { grid-template-columns: 1fr auto; top: 10px; margin-top: 10px; }
   .site-v2 .landing-links { display: none; }
+  .site-v2 .nav-build { display: none; }
   .site-v2 .nav-cta { padding-inline: 10px; }
   .site-v2 .launch-hero { padding: 67px 0 62px; }
   .site-v2 .hero-copy h1 { font-size: clamp(44px, 13vw, 61px); }
