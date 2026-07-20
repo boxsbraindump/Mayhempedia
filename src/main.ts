@@ -1,10 +1,10 @@
 // 主进程：建窗口 + 连 LCU，把选人/换将数据通过 IPC 推给 React 渲染层。
 // M1 只在控制台打印；这一步把同一份 LCU 逻辑接上真正的窗口。
 
-import { app, BrowserWindow, ipcMain, Notification, screen } from 'electron'
+import { app, BrowserWindow, ipcMain, Notification, screen, shell } from 'electron'
 import electronUpdater from 'electron-updater'
 import { authenticate, createWebSocketConnection, createHttp1Request } from 'league-connect'
-import type { Credentials } from 'league-connect'
+import type { Credentials, LeagueWebSocket } from 'league-connect'
 import uiohook from 'uiohook-napi'
 import { createServer } from 'node:http'
 import https from 'node:https'
@@ -21,7 +21,7 @@ import {
   mergePersistedMatchHistory,
   savePersistedMatchDetail,
 } from './match-history-store.js'
-import { getSettings, setSetting, type Settings, type OverlaySettings } from './settings.js'
+import { getSettings, setSetting, type Settings, type OverlaySettings, type Hotkey } from './settings.js'
 
 const { uIOhook, UiohookKey } = uiohook
 const { autoUpdater } = electronUpdater
@@ -87,6 +87,10 @@ const MAIN_BASE_HEIGHT = 720
 let lastSnapshot = ''
 /** connectLcu() 认证成功后填充，供"点进某一局看完整详情"这类按需请求复用，不用每次都重新 authenticate */
 let lcuCredentials: Credentials | null = null
+let lcuWebSocket: LeagueWebSocket | null = null
+let lcuConnectionPromise: Promise<void> | null = null
+let lcuReconnectTimer: ReturnType<typeof setTimeout> | null = null
+let appIsQuitting = false
 let currentPuuid: string | null = null
 let buildChampionIds = new Set<number>()
 let championAliasToId = new Map<string, number>()
@@ -94,6 +98,7 @@ let lastNotifiedChampionId: number | null = null
 const OVERLAY_WIDTH = 456
 const OVERLAY_HEIGHT = 424
 const overlayCollapseHotkey: OverlaySettings['hotkey'] = { ctrl: true, shift: true, alt: false, key: 'C' }
+const LCU_RECONNECT_DELAY_MS = 3_000
 
 /** 推给"两个"窗口——主 companion 窗口 + M2 overlay 探针都订阅同一批 LCU 事件 */
 function send(channel: string, data: unknown): void {
@@ -106,6 +111,12 @@ interface AppNotice {
   title: string
   body: string
   tone: 'success' | 'warning' | 'info'
+}
+
+interface FeedbackPayload {
+  kind?: unknown
+  rating?: unknown
+  comment?: unknown
 }
 
 interface UpdateStatus {
@@ -362,6 +373,21 @@ function toggleOverlay(): void {
 }
 
 /**
+ * The companion stays out of the way while playing, but a global hotkey can
+ * bring the current champion's Combat File forward for route switching.
+ */
+function toggleMainWindow(): void {
+  if (!mainWindow) return
+  if (mainWindow.isVisible() && mainWindow.isFocused()) {
+    mainWindow.hide()
+    return
+  }
+  if (mainWindow.isMinimized()) mainWindow.restore()
+  mainWindow.show()
+  mainWindow.focus()
+}
+
+/**
  * 手动拖动定位：默认 overlay 是点击穿透的(setIgnoreMouseEvents true)，鼠标事件根本落不到
  * 这个窗口上，没法拖。解锁模式下关掉穿透，渲染层给个 -webkit-app-region:drag 的拖拽区，
  * 就能像 TFT 那类叠加插件一样手动拖窗口；再按一次锁定，把最终坐标存进 customPos。
@@ -419,7 +445,7 @@ function notifyChampionDetected(myChampionId: number): void {
     id: `champ-${myChampionId}-${Date.now()}`,
     title: hasBuild ? 'Overlay 已准备好' : '暂无流派数据',
     body: hasBuild
-      ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().overlay.hotkey)} 可隐藏。`
+      ? `已识别 ${name}，推荐面板已自动显示；按 ${comboLabel(getSettings().mainWindowHotkey)} 可打开完整路线并切换打法。`
       : `${name} 还没收录流派数据，可以先看英雄 Tier 或海克斯一览。`,
     tone: hasBuild ? 'success' : 'warning',
   })
@@ -454,34 +480,90 @@ function handleChampSelect(session: ChampSelectSession | null): void {
   if (myChampionId) notifyChampionDetected(myChampionId)
 }
 
+function loadLcuSupportData(): void {
+  void Promise.allSettled([
+    loadChampions().then(() => console.log('[ARAM Copilot] ✅ 英雄数据就绪')),
+    loadBuildChampionIds().then(() => console.log(`[ARAM Copilot] ✅ 流派索引就绪：${buildChampionIds.size} 个英雄有推荐数据`)),
+    loadChampionAliasMap(),
+  ]).then((results) => {
+    const failedCount = results.filter((result) => result.status === 'rejected').length
+    if (failedCount > 0) {
+      console.warn(`[ARAM Copilot] ${failedCount} 项辅助资料加载失败；不影响客户端连接，将在下次启动时重试。`)
+    }
+  })
+}
+
+function scheduleLcuReconnect(reason: string): void {
+  if (appIsQuitting || lcuReconnectTimer) return
+
+  lcuCredentials = null
+  send('lcu:status', { state: 'reconnecting' })
+  console.warn(`[ARAM Copilot] LCU ${reason}，${LCU_RECONNECT_DELAY_MS / 1000} 秒后自动重连。`)
+  lcuReconnectTimer = setTimeout(() => {
+    lcuReconnectTimer = null
+    void startLcuConnection()
+  }, LCU_RECONNECT_DELAY_MS)
+}
+
+async function startLcuConnection(): Promise<void> {
+  if (appIsQuitting || lcuConnectionPromise) return
+
+  const connection = connectLcu()
+  lcuConnectionPromise = connection
+  try {
+    await connection
+  } catch (error) {
+    console.error('[ARAM Copilot] LCU 连接失败:', error)
+    scheduleLcuReconnect('连接失败')
+  } finally {
+    if (lcuConnectionPromise === connection) lcuConnectionPromise = null
+  }
+}
+
 async function connectLcu(): Promise<void> {
   send('lcu:status', { state: 'connecting' })
   console.log('[ARAM Copilot] 等待英雄联盟客户端…（请先打开客户端）')
-  const credentials = await authenticate({ awaitConnection: true })
+  const credentials = await authenticate({ awaitConnection: true, pollInterval: 1000 })
   console.log(`[ARAM Copilot] ✅ 已连接 LCU (port ${credentials.port})`)
   lcuCredentials = credentials
 
-  await loadChampions()
-  console.log('[ARAM Copilot] ✅ 英雄数据就绪')
-  await loadBuildChampionIds()
-  console.log(`[ARAM Copilot] ✅ 流派索引就绪：${buildChampionIds.size} 个英雄有推荐数据`)
-  await loadChampionAliasMap()
-
-  send('lcu:status', { state: 'connected' })
-
-  const summoner = await fetchSummoner(credentials)
-  if (summoner) {
-    currentPuuid = summoner.puuid
-    console.log(`[ARAM Copilot] 当前登录账号: ${summoner.gameName}#${summoner.tagLine}`)
-    send('lcu:summoner', { gameName: summoner.gameName, tagLine: summoner.tagLine })
-  }
-
   const ws = await createWebSocketConnection({
-    authenticationOptions: { awaitConnection: true },
+    authenticationOptions: { awaitConnection: true, pollInterval: 1000 },
+    pollInterval: 1000,
+    maxRetries: -1,
+  })
+  const previousWebSocket = lcuWebSocket
+  lcuWebSocket = ws
+  previousWebSocket?.close()
+  const recoverFromSocketDisconnect = (reason: string) => {
+    if (lcuWebSocket !== ws) return
+    lcuWebSocket = null
+    scheduleLcuReconnect(reason)
+  }
+  ws.on('close', () => recoverFromSocketDisconnect('连接已断开'))
+  ws.on('error', (error) => {
+    console.warn('[ARAM Copilot] LCU WebSocket 出错:', error)
+    recoverFromSocketDisconnect('连接中断')
   })
   ws.subscribe('/lol-champ-select/v1/session', (data: unknown) => {
     handleChampSelect(data as ChampSelectSession)
   })
+
+  // LCU 已经可用时立即向界面报到。英雄名称/路线索引是辅助资料，不能因为网络抖动而把客户端误报为失败。
+  send('lcu:status', { state: 'connected' })
+  loadLcuSupportData()
+
+  let summoner: Awaited<ReturnType<typeof fetchSummoner>> = null
+  try {
+    summoner = await fetchSummoner(credentials)
+    if (summoner) {
+      currentPuuid = summoner.puuid
+      console.log(`[ARAM Copilot] 当前登录账号: ${summoner.gameName}#${summoner.tagLine}`)
+      send('lcu:summoner', { gameName: summoner.gameName, tagLine: summoner.tagLine })
+    }
+  } catch (error) {
+    console.warn('[ARAM Copilot] 当前账号读取失败，连接会继续保持:', error)
+  }
 
   try {
     const res = await createHttp1Request({ method: 'GET', url: '/lol-champ-select/v1/session' }, credentials)
@@ -553,12 +635,12 @@ async function connectLcu(): Promise<void> {
  * 组合键读自设置(overlay.hotkey)，不是写死的——虽然设置页目前还没有"按键捕获"UI改不了它，
  * 但运行时是真的按配置值判断，不是摆设，以后加上捕获UI就能直接生效。
  */
-function hotkeyMatches(hk: OverlaySettings['hotkey'], e: { ctrlKey: boolean; shiftKey: boolean; altKey: boolean; keycode: number }): boolean {
+function hotkeyMatches(hk: Hotkey, e: { ctrlKey: boolean; shiftKey: boolean; altKey: boolean; keycode: number }): boolean {
   const keycode = (UiohookKey as unknown as Record<string, number>)[hk.key]
   return e.ctrlKey === hk.ctrl && e.shiftKey === hk.shift && e.altKey === hk.alt && keycode != null && e.keycode === keycode
 }
 
-function comboLabel(hk: OverlaySettings['hotkey']): string {
+function comboLabel(hk: Hotkey): string {
   return `${hk.ctrl ? 'Ctrl+' : ''}${hk.shift ? 'Shift+' : ''}${hk.alt ? 'Alt+' : ''}${hk.key}`
 }
 
@@ -567,12 +649,14 @@ function registerHotkey(): void {
     const overlay = getSettings().overlay
     if (hotkeyMatches(overlay.hotkey, e)) toggleOverlay()
     else if (hotkeyMatches(overlay.moveHotkey, e)) toggleOverlayLock()
+    else if (hotkeyMatches(getSettings().mainWindowHotkey, e)) toggleMainWindow()
     else if (hotkeyMatches(overlayCollapseHotkey, e)) toggleOverlayCollapsed()
   })
   uIOhook.start()
-  const overlay = getSettings().overlay
+  const settings = getSettings()
+  const overlay = settings.overlay
   console.log(
-    `[ARAM Copilot] 全局快捷键 ${comboLabel(overlay.hotkey)}(呼出/隐藏) / ${comboLabel(overlay.moveHotkey)}(解锁拖动) 已注册（底层钩子，穿透游戏独占输入）`,
+    `[ARAM Copilot] 全局快捷键 ${comboLabel(overlay.hotkey)}(呼出/隐藏) / ${comboLabel(settings.mainWindowHotkey)}(主窗口) / ${comboLabel(overlay.moveHotkey)}(解锁拖动) 已注册（底层钩子，穿透游戏独占输入）`,
   )
 }
 
@@ -702,6 +786,38 @@ function registerUpdateIpc(): void {
   })
 }
 
+function registerFeedbackIpc(): void {
+  ipcMain.handle('feedback:open', async (_event, payload: FeedbackPayload): Promise<boolean> => {
+    const kind = payload?.kind === 'problem' ? 'problem' : 'feedback'
+    const rating = typeof payload?.rating === 'number' ? Math.max(1, Math.min(5, Math.round(payload.rating))) : 0
+    const comment = typeof payload?.comment === 'string' ? payload.comment.trim().slice(0, 700) : ''
+    const title = encodeURIComponent(
+      kind === 'problem'
+        ? `Problem report: Mayhempedia ${app.getVersion()}`
+        : `Beta feedback: ${rating ? `${rating}/5` : 'General'}`,
+    )
+    const body = encodeURIComponent(
+      [
+        kind === 'problem' ? '## What went wrong?' : '## What happened?',
+        comment || (kind === 'problem' ? '_Please describe the issue._' : '_No written comment provided._'),
+        '',
+        '## Context',
+        `- Mayhempedia version: ${app.getVersion()}`,
+        `- Submission: ${kind === 'problem' ? 'Problem report' : 'Beta feedback'}`,
+        ...(kind === 'feedback' ? [`- Rating: ${rating || 'Not provided'}/5`] : []),
+        '- The app reads local League Client state only; no gameplay automation.',
+      ].join('\n'),
+    )
+    try {
+      await shell.openExternal(`https://github.com/boxsbraindump/Mayhempedia/issues/new?title=${title}&body=${body}`)
+      return true
+    } catch (error) {
+      console.error('[Mayhempedia] 打开反馈页面失败:', error)
+      return false
+    }
+  })
+}
+
 function registerMatchDetailIpc(): void {
   ipcMain.handle('lcu:getMatchDetail', async (_e, gameId: number) => {
     const shouldPersist = getSettings().persistMatchHistory
@@ -731,6 +847,7 @@ app.whenReady().then(async () => {
   registerSettingsIpc()
   registerWindowIpc()
   registerUpdateIpc()
+  registerFeedbackIpc()
   registerMatchDetailIpc()
   registerAccountHistoryIpc()
   applyAutoLaunch(getSettings().autoLaunch)
@@ -750,13 +867,13 @@ app.whenReady().then(async () => {
     }, 4500)
   }
 
-  connectLcu().catch((err) => {
-    console.error('[ARAM Copilot] LCU 连接失败:', err)
-    send('lcu:status', { state: 'error', message: String(err) })
-  })
+  void startLcuConnection()
 })
 
 app.on('will-quit', () => {
+  appIsQuitting = true
+  if (lcuReconnectTimer) clearTimeout(lcuReconnectTimer)
+  lcuWebSocket?.close()
   uIOhook.stop()
 })
 

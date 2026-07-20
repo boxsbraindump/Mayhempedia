@@ -1,14 +1,15 @@
 import Store from 'electron-store'
 import {
   buildMatchHistoryResult,
+  MAX_MATCH_HISTORY_GAMES,
   type Achievement,
   type MatchFullDetail,
   type MatchHistoryResult,
   type MatchSummary,
 } from './match-history.js'
 
-const MAX_STORED_MATCHES = 500
-const MAX_STORED_DETAILS = 100
+export const MAX_STORED_MATCHES = MAX_MATCH_HISTORY_GAMES
+const MAX_STORED_DETAILS = MAX_STORED_MATCHES
 
 interface AccountMatchHistory {
   puuid: string
@@ -57,8 +58,35 @@ function emptyAccount(puuid: string): AccountMatchHistory {
   }
 }
 
+function normalizeAccount(account: AccountMatchHistory): AccountMatchHistory {
+  const matches = mergeMatches([], account.matches ?? [])
+  const keptGameIds = new Set(matches.map((match) => match.gameId))
+  return {
+    ...account,
+    matches,
+    achievements: mergeAchievements([], account.achievements ?? []).filter((achievement) => keptGameIds.has(achievement.gameId)),
+    details: pruneDetails(account.details ?? {}, matches),
+  }
+}
+
 function readAccount(puuid: string): AccountMatchHistory {
-  return getStore().store.accounts?.[puuid] ?? emptyAccount(puuid)
+  const stored = getStore().store.accounts?.[puuid]
+  if (!stored) return emptyAccount(puuid)
+  const normalized = normalizeAccount(stored)
+  const storedDetailIds = Object.keys(stored.details ?? {}).sort()
+  const normalizedDetailIds = Object.keys(normalized.details).sort()
+  const needsPrune =
+    stored.matches.length !== normalized.matches.length ||
+    stored.matches.some((match, index) => match.gameId !== normalized.matches[index]?.gameId) ||
+    stored.achievements.length !== normalized.achievements.length ||
+    stored.achievements.some((achievement, index) => {
+      const normalizedAchievement = normalized.achievements[index]
+      return !normalizedAchievement || `${achievement.key}:${achievement.gameId}` !== `${normalizedAchievement.key}:${normalizedAchievement.gameId}`
+    }) ||
+    storedDetailIds.length !== normalizedDetailIds.length ||
+    storedDetailIds.some((id, index) => id !== normalizedDetailIds[index])
+  if (needsPrune) writeAccount(normalized)
+  return normalized
 }
 
 function writeAccount(account: AccountMatchHistory): void {
@@ -102,7 +130,8 @@ export function loadPersistedMatchHistory(puuid: string): MatchHistoryResult | n
 }
 
 export function listPersistedAccounts(currentPuuid: string | null): PersistedAccountSummary[] {
-  return Object.values(getStore().store.accounts ?? {})
+  return Object.keys(getStore().store.accounts ?? {})
+    .map((puuid) => readAccount(puuid))
     .map((account) => ({
       puuid: account.puuid,
       gameName: account.gameName,

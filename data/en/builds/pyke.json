@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Pyke",
       "damageType": "AD",
-      "note": "Pyke AD route for ARAM: Mayhem. Prioritize Dashing as the main augment plan. Strong secondary hits include Blunt Force / Shadow Runner / Mad Scientist. Build toward Hubris > Ionian Boots of Lucidity > The Collector > Axiom Arc > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Pyke AD route for ARAM: Mayhem. Prioritize Dashing as the main augment plan. Strong secondary hits include Blunt Force / Shadow Runner / Mad Scientist. Build toward The Collector > Hubris > Ionian Boots of Lucidity > Axiom Arc > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -47,16 +47,16 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6697,
           "name": "Hubris"
         },
         {
           "id": 3158,
           "name": "Ionian Boots of Lucidity"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 6696,

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Shadow Runner Qiyana",
       "damageType": "AD",
-      "note": "Qiyana AD route for ARAM: Mayhem. Prioritize Shadow Runner / Dashing as the main augment plan. Strong secondary hits include Thread the Needle / Blunt Force / Slap Around. Build toward Blade of The Ruined King > Axiom Arc > Serylda's Grudge > The Collector > Ionian Boots of Lucidity > Mercury's Treads. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com.",
+      "note": "Qiyana AD route for ARAM: Mayhem. Prioritize Shadow Runner / Dashing as the main augment plan. Strong secondary hits include Thread the Needle / Blunt Force / Slap Around. Build toward The Collector > Blade of The Ruined King > Axiom Arc > Serylda's Grudge > Ionian Boots of Lucidity > Mercury's Treads. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -46,6 +46,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3153,
           "name": "Blade of The Ruined King"
         },
@@ -56,10 +60,6 @@
         {
           "id": 6694,
           "name": "Serylda's Grudge"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3158,
@@ -92,7 +92,7 @@
       "key": "ap-crit",
       "name": "AP Jeweled Gauntlet Qiyana",
       "damageType": "AP",
-      "note": "Qiyana AP route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Clown College as the main augment plan. Strong secondary hits include Dashing / Recursion / Back To Basics. Build toward Blade of The Ruined King > Axiom Arc > Serylda's Grudge > The Collector > Ionian Boots of Lucidity > Profane Hydra. Start with Long Sword + Guardian's Blade. Cross-checked against gl.ali213.net and metasrc.com and arammayhem.com.",
+      "note": "Qiyana AP route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Clown College as the main augment plan. Strong secondary hits include Dashing / Recursion / Back To Basics. Build toward The Collector > Blade of The Ruined King > Axiom Arc > Serylda's Grudge > Ionian Boots of Lucidity > Profane Hydra. Start with Long Sword + Guardian's Blade. Cross-checked against gl.ali213.net and metasrc.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -132,6 +132,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3153,
           "name": "Blade of The Ruined King"
         },
@@ -142,10 +146,6 @@
         {
           "id": 6694,
           "name": "Serylda's Grudge"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3158,

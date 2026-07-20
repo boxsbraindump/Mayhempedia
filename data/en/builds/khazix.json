@@ -6,7 +6,7 @@
       "key": "ad-crit-lethality",
       "name": "AD Crit Kha'Zix",
       "damageType": "AD",
-      "note": "Kha'Zix AD route for ARAM: Mayhem. Prioritize Back To Basics / Mad Scientist as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / Thread the Needle. Build toward Hubris > Ionian Boots of Lucidity > The Collector > Serylda's Grudge > Lord Dominik's Regards > Edge of Night. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Kha'Zix AD route for ARAM: Mayhem. Prioritize Back To Basics / Mad Scientist as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / Thread the Needle. Build toward The Collector > Hubris > Ionian Boots of Lucidity > Serylda's Grudge > Lord Dominik's Regards > Edge of Night. Start with Long Sword + Guardian's Blade. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -46,16 +46,16 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6697,
           "name": "Hubris"
         },
         {
           "id": 3158,
           "name": "Ionian Boots of Lucidity"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 6694,

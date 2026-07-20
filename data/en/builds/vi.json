@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Vi",
       "damageType": "AD",
-      "note": "Vi AD route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Blunt Force / Dashing. Build toward Hubris > The Collector > Infinity Edge > Death's Dance > Mercury's Treads > Black Cleaver. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "note": "Vi AD route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Blunt Force / Dashing. Build toward The Collector > Hubris > Infinity Edge > Death's Dance > Mercury's Treads > Black Cleaver. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -41,12 +41,12 @@
       },
       "items": [
         {
-          "id": 6697,
-          "name": "Hubris"
-        },
-        {
           "id": 6676,
           "name": "The Collector"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
         },
         {
           "id": 3031,

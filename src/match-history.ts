@@ -284,6 +284,8 @@ async function getJson<T>(credentials: Credentials, url: string): Promise<T | nu
  * 拉最近对局 → 筛出嚎哭深渊(含经典大乱斗+Mayhem) → 逐场拉完整对局详情算队内百分位 → 汇总 ARP。
  * 全部走本机 LCU 只读接口，不碰 Riot 云端 API。
  */
+export const MAX_MATCH_HISTORY_GAMES = 20
+
 export async function fetchMatchHistory(credentials: Credentials): Promise<MatchHistoryResult | null> {
   const list = await getJson<{ games: { games: RawGame[] } }>(
     credentials,
@@ -293,7 +295,10 @@ export async function fetchMatchHistory(credentials: Credentials): Promise<Match
   if (games.length === 0) return null
 
   const myPuuid = games[0].participantIdentities[0]?.player.puuid
-  const aramGames = games.filter((g) => g.mapId === HOWLING_ABYSS_MAP_ID)
+  const aramGames = games
+    .filter((g) => g.mapId === HOWLING_ABYSS_MAP_ID)
+    .sort((a, b) => String(b.gameCreationDate).localeCompare(String(a.gameCreationDate)))
+    .slice(0, MAX_MATCH_HISTORY_GAMES)
   const augmentRarity = await loadAugmentRarity()
   const runtimeAugmentAliases = await loadRuntimeAugmentAliases()
 

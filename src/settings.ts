@@ -4,12 +4,19 @@
 import Store from 'electron-store'
 import type { CustomRoute } from './custom-routes.js'
 
+export interface Hotkey {
+  ctrl: boolean
+  shift: boolean
+  alt: boolean
+  key: string
+}
+
 export interface OverlaySettings {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   opacity: number // 0.3–1
-  hotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string } // key 是 UiohookKey 的键名，如 "X"
+  hotkey: Hotkey // key 是 UiohookKey 的键名，如 "X"
   /** 拖动解锁/锁定的快捷键——解锁后才能像 TFT 插件那样手动拖窗口。 */
-  moveHotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string }
+  moveHotkey: Hotkey
   /** 手动拖动后落盘的实际坐标；null = 还没拖过，用 position 锚点算默认位置。 */
   customPos: { x: number; y: number } | null
 }
@@ -21,6 +28,12 @@ export interface DashboardSections {
   achievements: boolean
 }
 
+export interface FeedbackSettings {
+  state: 'unasked' | 'later' | 'completed' | 'disabled'
+  lastPromptedAt: string | null
+  rating: number | null
+}
+
 export interface Settings {
   // 语言
   language: 'zh' | 'en'
@@ -28,6 +41,8 @@ export interface Settings {
   // 启动/窗口类
   autoLaunch: boolean
   zoomFactor: number // 0.5 / 0.75 / 1 / 1.25 / 1.5
+  /** 游戏中快速调出当前英雄的完整 Combat File。 */
+  mainWindowHotkey: Hotkey
 
   // Overlay 行为类
   overlay: OverlaySettings
@@ -42,12 +57,16 @@ export interface Settings {
 
   // 数据/隐私类
   persistMatchHistory: boolean // 本地积累对局记录，供未来长期战力分析；只落本地盘，不上传
+
+  // Beta 反馈。评论不存入设置；这里只记录是否需要再次提示与可选评分。
+  feedback: FeedbackSettings
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   language: 'zh',
   autoLaunch: false,
   zoomFactor: 1,
+  mainWindowHotkey: { ctrl: true, shift: true, alt: false, key: 'M' },
   overlay: {
     position: 'top-left',
     opacity: 0.85,
@@ -65,6 +84,11 @@ export const DEFAULT_SETTINGS: Settings = {
   customRoutes: [],
   notificationMode: 'inpage',
   persistMatchHistory: true, // 默认开：这是产品核心卖点(长期攒Tier数据素材)，纯本地零风险；设置页要把这点说清楚，不能默默开
+  feedback: {
+    state: 'unasked',
+    lastPromptedAt: null,
+    rating: null,
+  },
 }
 
 let store: Store<Settings> | null = null
@@ -96,6 +120,10 @@ export function getSettings(): Settings {
     zoomFactor: normalizeZoom(stored.zoomFactor),
     overlay: { ...DEFAULT_SETTINGS.overlay, ...stored.overlay },
     dashboardSections: { ...DEFAULT_SETTINGS.dashboardSections, ...stored.dashboardSections },
+    feedback: {
+      ...DEFAULT_SETTINGS.feedback,
+      ...(stored.feedback && typeof stored.feedback === 'object' ? stored.feedback : {}),
+    },
     selectedArchetypeByChampionId: {
       ...DEFAULT_SETTINGS.selectedArchetypeByChampionId,
       ...stored.selectedArchetypeByChampionId,

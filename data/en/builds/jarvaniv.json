@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Jarvan IV",
       "damageType": "AD",
-      "note": "Jarvan IV AD route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Goliath / Blunt Force. Build toward Sundered Sky > Mercury's Treads > Eclipse > The Collector > Sterak's Gage > Death's Dance. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and mobalytics.gg.",
+      "note": "Jarvan IV AD route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Goliath / Blunt Force. Build toward The Collector > Sundered Sky > Mercury's Treads > Eclipse > Sterak's Gage > Death's Dance. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and mobalytics.gg.",
       "augments": {
         "core": [
           {
@@ -52,6 +52,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6610,
           "name": "Sundered Sky"
         },
@@ -62,10 +66,6 @@
         {
           "id": 6692,
           "name": "Eclipse"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3053,

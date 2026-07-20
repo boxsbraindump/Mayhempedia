@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DATA = join(__dirname, '..', 'data')
 const BUILDS = join(DATA, 'builds')
+const COLLECTOR_ID = 6676
 
 const augById = new Map()
 const itemById = new Map()
@@ -43,6 +44,11 @@ for (const f of files) {
     for (const it of arch.items ?? []) checkItem(it, `${w}/items`)
     for (const it of arch.boots ?? []) checkItem(it, `${w}/boots`)
     for (const it of arch.optionalItems ?? []) checkItem(it, `${w}/optionalItems`)
+    const collectorIndex = (arch.items ?? []).findIndex((item) => item.id === COLLECTOR_ID)
+    if (collectorIndex > 0) {
+      console.log(`  [${w}] The Collector must be the first completed item; found at position ${collectorIndex + 1}`)
+      errors++
+    }
     if (!arch.starterItems?.length) {
       console.log(`  ❌ [${w}] 缺出门装`)
       errors++

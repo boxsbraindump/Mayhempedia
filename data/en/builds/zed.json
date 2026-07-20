@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Zed",
       "damageType": "AD",
-      "note": "Zed AD route for ARAM: Mayhem. Prioritize Recursion / Ethereal Weapon as the main augment plan. Strong secondary hits include Dashing / Blunt Force / Mad Scientist. Build toward Spear of Shojin > Ionian Boots of Lucidity > Axiom Arc > Voltaic Cyclosword > The Collector > Black Cleaver. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and aramgg.com and blitz.gg.",
+      "note": "Zed AD route for ARAM: Mayhem. Prioritize Recursion / Ethereal Weapon as the main augment plan. Strong secondary hits include Dashing / Blunt Force / Mad Scientist. Build toward The Collector > Spear of Shojin > Ionian Boots of Lucidity > Axiom Arc > Voltaic Cyclosword > Black Cleaver. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and aramgg.com and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -47,6 +47,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3161,
           "name": "Spear of Shojin"
         },
@@ -61,10 +65,6 @@
         {
           "id": 6699,
           "name": "Voltaic Cyclosword"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3071,

@@ -6,7 +6,7 @@
       "key": "adcrit",
       "name": "AD Crit Ezreal",
       "damageType": "AD",
-      "note": "Ezreal AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Ethereal Weapon / Recursion. Build toward Trinity Force > Ionian Boots of Lucidity > Manamune > Spear of Shojin > Serylda's Grudge > The Collector. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Ezreal AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Ethereal Weapon / Recursion. Build toward The Collector > Trinity Force > Ionian Boots of Lucidity > Manamune > Spear of Shojin > Serylda's Grudge. Start with Tear of the Goddess + Long Sword + Long Sword. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -42,6 +42,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3078,
           "name": "Trinity Force"
         },
@@ -60,10 +64,6 @@
         {
           "id": 6694,
           "name": "Serylda's Grudge"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         }
       ],
       "runes": null,

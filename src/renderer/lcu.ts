@@ -2,7 +2,7 @@
 // 在浏览器预览里 window.mayhem 不存在，所有订阅都安全地什么都不做（双模式：预览开发 / 真机运行都不报错）。
 
 export interface LcuStatus {
-  state: 'connecting' | 'connected' | 'error'
+  state: 'connecting' | 'reconnecting' | 'connected' | 'error'
   message?: string
 }
 
@@ -115,9 +115,16 @@ export interface MatchFullDetail {
 export interface OverlaySettings {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   opacity: number
-  hotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string }
-  moveHotkey: { ctrl: boolean; shift: boolean; alt: boolean; key: string }
+  hotkey: Hotkey
+  moveHotkey: Hotkey
   customPos: { x: number; y: number } | null
+}
+
+export interface Hotkey {
+  ctrl: boolean
+  shift: boolean
+  alt: boolean
+  key: string
 }
 export interface OverlayLockState {
   locked: boolean
@@ -130,6 +137,11 @@ export interface DashboardSections {
   versionChanges: boolean
   recentMatches: boolean
   achievements: boolean
+}
+export interface FeedbackSettings {
+  state: 'unasked' | 'later' | 'completed' | 'disabled'
+  lastPromptedAt: string | null
+  rating: number | null
 }
 export interface CustomRoute {
   id: string
@@ -148,12 +160,14 @@ export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
   zoomFactor: number
+  mainWindowHotkey: Hotkey
   overlay: OverlaySettings
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
   customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
+  feedback: FeedbackSettings
 }
 
 declare global {
@@ -178,6 +192,7 @@ declare global {
       getUpdateStatus: () => Promise<UpdateStatus>
       checkForUpdates: () => Promise<UpdateStatus>
       installUpdate: () => Promise<boolean>
+      openFeedback: (payload: { kind: 'feedback' | 'problem'; rating: number; comment: string }) => Promise<boolean>
       onUpdateStatus: (cb: (s: UpdateStatus) => void) => void
     }
   }
