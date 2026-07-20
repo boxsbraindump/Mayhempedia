@@ -2,7 +2,7 @@
 // 在浏览器预览里 window.mayhem 不存在，所有订阅都安全地什么都不做（双模式：预览开发 / 真机运行都不报错）。
 
 export interface LcuStatus {
-  state: 'connecting' | 'connected' | 'error'
+  state: 'connecting' | 'reconnecting' | 'connected' | 'error'
   message?: string
 }
 

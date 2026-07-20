@@ -4,7 +4,7 @@
 import { app, BrowserWindow, ipcMain, Notification, screen, shell } from 'electron'
 import electronUpdater from 'electron-updater'
 import { authenticate, createWebSocketConnection, createHttp1Request } from 'league-connect'
-import type { Credentials } from 'league-connect'
+import type { Credentials, LeagueWebSocket } from 'league-connect'
 import uiohook from 'uiohook-napi'
 import { createServer } from 'node:http'
 import https from 'node:https'
@@ -87,6 +87,10 @@ const MAIN_BASE_HEIGHT = 720
 let lastSnapshot = ''
 /** connectLcu() 认证成功后填充，供"点进某一局看完整详情"这类按需请求复用，不用每次都重新 authenticate */
 let lcuCredentials: Credentials | null = null
+let lcuWebSocket: LeagueWebSocket | null = null
+let lcuConnectionPromise: Promise<void> | null = null
+let lcuReconnectTimer: ReturnType<typeof setTimeout> | null = null
+let appIsQuitting = false
 let currentPuuid: string | null = null
 let buildChampionIds = new Set<number>()
 let championAliasToId = new Map<string, number>()
@@ -94,6 +98,7 @@ let lastNotifiedChampionId: number | null = null
 const OVERLAY_WIDTH = 456
 const OVERLAY_HEIGHT = 424
 const overlayCollapseHotkey: OverlaySettings['hotkey'] = { ctrl: true, shift: true, alt: false, key: 'C' }
+const LCU_RECONNECT_DELAY_MS = 3_000
 
 /** 推给"两个"窗口——主 companion 窗口 + M2 overlay 探针都订阅同一批 LCU 事件 */
 function send(channel: string, data: unknown): void {
@@ -475,34 +480,90 @@ function handleChampSelect(session: ChampSelectSession | null): void {
   if (myChampionId) notifyChampionDetected(myChampionId)
 }
 
+function loadLcuSupportData(): void {
+  void Promise.allSettled([
+    loadChampions().then(() => console.log('[ARAM Copilot] ✅ 英雄数据就绪')),
+    loadBuildChampionIds().then(() => console.log(`[ARAM Copilot] ✅ 流派索引就绪：${buildChampionIds.size} 个英雄有推荐数据`)),
+    loadChampionAliasMap(),
+  ]).then((results) => {
+    const failedCount = results.filter((result) => result.status === 'rejected').length
+    if (failedCount > 0) {
+      console.warn(`[ARAM Copilot] ${failedCount} 项辅助资料加载失败；不影响客户端连接，将在下次启动时重试。`)
+    }
+  })
+}
+
+function scheduleLcuReconnect(reason: string): void {
+  if (appIsQuitting || lcuReconnectTimer) return
+
+  lcuCredentials = null
+  send('lcu:status', { state: 'reconnecting' })
+  console.warn(`[ARAM Copilot] LCU ${reason}，${LCU_RECONNECT_DELAY_MS / 1000} 秒后自动重连。`)
+  lcuReconnectTimer = setTimeout(() => {
+    lcuReconnectTimer = null
+    void startLcuConnection()
+  }, LCU_RECONNECT_DELAY_MS)
+}
+
+async function startLcuConnection(): Promise<void> {
+  if (appIsQuitting || lcuConnectionPromise) return
+
+  const connection = connectLcu()
+  lcuConnectionPromise = connection
+  try {
+    await connection
+  } catch (error) {
+    console.error('[ARAM Copilot] LCU 连接失败:', error)
+    scheduleLcuReconnect('连接失败')
+  } finally {
+    if (lcuConnectionPromise === connection) lcuConnectionPromise = null
+  }
+}
+
 async function connectLcu(): Promise<void> {
   send('lcu:status', { state: 'connecting' })
   console.log('[ARAM Copilot] 等待英雄联盟客户端…（请先打开客户端）')
-  const credentials = await authenticate({ awaitConnection: true })
+  const credentials = await authenticate({ awaitConnection: true, pollInterval: 1000 })
   console.log(`[ARAM Copilot] ✅ 已连接 LCU (port ${credentials.port})`)
   lcuCredentials = credentials
 
-  await loadChampions()
-  console.log('[ARAM Copilot] ✅ 英雄数据就绪')
-  await loadBuildChampionIds()
-  console.log(`[ARAM Copilot] ✅ 流派索引就绪：${buildChampionIds.size} 个英雄有推荐数据`)
-  await loadChampionAliasMap()
-
-  send('lcu:status', { state: 'connected' })
-
-  const summoner = await fetchSummoner(credentials)
-  if (summoner) {
-    currentPuuid = summoner.puuid
-    console.log(`[ARAM Copilot] 当前登录账号: ${summoner.gameName}#${summoner.tagLine}`)
-    send('lcu:summoner', { gameName: summoner.gameName, tagLine: summoner.tagLine })
-  }
-
   const ws = await createWebSocketConnection({
-    authenticationOptions: { awaitConnection: true },
+    authenticationOptions: { awaitConnection: true, pollInterval: 1000 },
+    pollInterval: 1000,
+    maxRetries: -1,
+  })
+  const previousWebSocket = lcuWebSocket
+  lcuWebSocket = ws
+  previousWebSocket?.close()
+  const recoverFromSocketDisconnect = (reason: string) => {
+    if (lcuWebSocket !== ws) return
+    lcuWebSocket = null
+    scheduleLcuReconnect(reason)
+  }
+  ws.on('close', () => recoverFromSocketDisconnect('连接已断开'))
+  ws.on('error', (error) => {
+    console.warn('[ARAM Copilot] LCU WebSocket 出错:', error)
+    recoverFromSocketDisconnect('连接中断')
   })
   ws.subscribe('/lol-champ-select/v1/session', (data: unknown) => {
     handleChampSelect(data as ChampSelectSession)
   })
+
+  // LCU 已经可用时立即向界面报到。英雄名称/路线索引是辅助资料，不能因为网络抖动而把客户端误报为失败。
+  send('lcu:status', { state: 'connected' })
+  loadLcuSupportData()
+
+  let summoner: Awaited<ReturnType<typeof fetchSummoner>> = null
+  try {
+    summoner = await fetchSummoner(credentials)
+    if (summoner) {
+      currentPuuid = summoner.puuid
+      console.log(`[ARAM Copilot] 当前登录账号: ${summoner.gameName}#${summoner.tagLine}`)
+      send('lcu:summoner', { gameName: summoner.gameName, tagLine: summoner.tagLine })
+    }
+  } catch (error) {
+    console.warn('[ARAM Copilot] 当前账号读取失败，连接会继续保持:', error)
+  }
 
   try {
     const res = await createHttp1Request({ method: 'GET', url: '/lol-champ-select/v1/session' }, credentials)
@@ -806,13 +867,13 @@ app.whenReady().then(async () => {
     }, 4500)
   }
 
-  connectLcu().catch((err) => {
-    console.error('[ARAM Copilot] LCU 连接失败:', err)
-    send('lcu:status', { state: 'error', message: String(err) })
-  })
+  void startLcuConnection()
 })
 
 app.on('will-quit', () => {
+  appIsQuitting = true
+  if (lcuReconnectTimer) clearTimeout(lcuReconnectTimer)
+  lcuWebSocket?.close()
   uIOhook.stop()
 })
 

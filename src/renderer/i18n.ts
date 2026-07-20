@@ -214,6 +214,7 @@ const zh: Dict = {
   'rarity.special': '特殊',
 
   'lcu.connecting': '连接客户端中…',
+  'lcu.reconnecting': '客户端重连中…',
   'lcu.connected': '已连接客户端',
   'lcu.error': '连接失败',
 
@@ -596,6 +597,7 @@ const en: Dict = {
   'rarity.special': 'Special',
 
   'lcu.connecting': 'Connecting to client…',
+  'lcu.reconnecting': 'Reconnecting to client…',
   'lcu.connected': 'Client connected',
   'lcu.error': 'Connection failed',
 

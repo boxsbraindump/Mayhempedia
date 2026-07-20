@@ -9,7 +9,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 export interface LcuStatus {
-  state: 'connecting' | 'connected' | 'error'
+  state: 'connecting' | 'reconnecting' | 'connected' | 'error'
   message?: string
 }
 

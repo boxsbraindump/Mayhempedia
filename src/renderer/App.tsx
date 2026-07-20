@@ -609,6 +609,7 @@ function createPreviewMatchDetail(core: Core, match: MatchSummary): MatchFullDet
 
 const LCU_BADGE: Record<LcuStatus['state'], { labelKey: string; dot: string }> = {
   connecting: { labelKey: 'lcu.connecting', dot: 'bg-hex animate-pulse' },
+  reconnecting: { labelKey: 'lcu.reconnecting', dot: 'bg-gold animate-pulse' },
   connected: { labelKey: 'lcu.connected', dot: 'bg-hex' },
   error: { labelKey: 'lcu.error', dot: 'bg-red' },
 }
