@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Dual Wield Varus",
       "damageType": "AD",
-      "note": "Varus AD route for ARAM: Mayhem. Prioritize Dual Wield / Skilled Sniper as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Tap Dancer. Build toward Blade of The Ruined King > Berserker's Greaves > The Collector > Infinity Edge > Lord Dominik's Regards > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Varus AD route for ARAM: Mayhem. Prioritize Dual Wield / Skilled Sniper as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Tap Dancer. Build toward The Collector > Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -46,16 +46,16 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3153,
           "name": "Blade of The Ruined King"
         },
         {
           "id": 3006,
           "name": "Berserker's Greaves"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3031,

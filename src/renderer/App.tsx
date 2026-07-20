@@ -1131,6 +1131,7 @@ function Dashboard({
   const title = lang === 'en' ? 'Command Center' : '作战大厅'
   const lcuReady = lcuStatus?.state === 'connected'
   const localMatchCount = recentMatches?.length ?? 0
+  const localMatchSummary = `${localMatchCount} / 20`
   const heroHeadline = detectedChamp
     ? (lang === 'en' ? `${detectedChamp.name} Combat File` : `${detectedChamp.name} Combat File`)
     : title
@@ -1189,8 +1190,8 @@ function Dashboard({
                 tone={detectedHasBuild ? 'ready' : detectedChamp ? 'warning' : 'idle'}
               />
               <DashboardReadoutRow
-                label={lang === 'en' ? 'Local matches' : '本地对局'}
-                value={localMatchCount > 0 ? `${localMatchCount}` : (lang === 'en' ? 'Not yet' : '暂无')}
+                label={lang === 'en' ? 'Saved matches' : '已保存对局'}
+                value={localMatchCount > 0 ? localMatchSummary : '0 / 20'}
                 tone={localMatchCount > 0 ? 'active' : 'idle'}
               />
             </div>
@@ -1291,7 +1292,7 @@ function Dashboard({
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Recent history' : '最近对局'}</div>
                 <div className="mt-0.5 text-[15px] font-black text-cream">
                   {localMatchCount > 0
-                    ? (lang === 'en' ? `${localMatchCount} local games` : `${localMatchCount} 场本地记录`)
+                    ? (lang === 'en' ? `${localMatchSummary} saved games` : `已保存 ${localMatchSummary} 场`)
                     : (lang === 'en' ? 'No games yet' : '还没有对局')}
                 </div>
               </div>
@@ -5407,11 +5408,11 @@ function AugmentBrowser({ core }: { core: Core }) {
           <div className="grid grid-cols-[repeat(auto-fill,minmax(82px,1fr))] gap-1.5 bg-[#07101b]/55 p-1.5">
             {g.items.map((a) => (
               <AugmentHoverCard key={a.id} augment={a}>
-                <div className="group flex h-[86px] min-w-0 flex-col items-center justify-start gap-1 rounded-[6px] border border-line/45 bg-[#0b121d]/78 px-1.5 py-2 text-center transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-panel2/62">
-                  <div className={'h-11 w-11 shrink-0 overflow-hidden rounded-[6px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.20)] transition group-hover:scale-[1.03] ' + g.meta.border}>
+                <div className="group flex h-[88px] min-w-0 flex-col items-center justify-start gap-1 rounded-[6px] border border-line/45 bg-[#0b121d]/78 px-1.5 py-2 text-center transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-panel2/62">
+                  <div className={'h-10 w-10 shrink-0 overflow-hidden rounded-[6px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.20)] transition group-hover:scale-[1.03] ' + g.meta.border}>
                     <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="h-full w-full object-cover" />
                   </div>
-                  <div className="line-clamp-2 min-h-[24px] w-full text-[11px] font-bold leading-[12px] text-cream">{a.name}</div>
+                  <div className="line-clamp-3 min-h-[30px] w-full break-words text-[9px] font-bold leading-[10px] text-cream">{a.name}</div>
                 </div>
               </AugmentHoverCard>
             ))}
@@ -6231,7 +6232,7 @@ function AugmentChoiceInput({
               className="flex cursor-pointer items-center gap-1.5 rounded-md border border-line/50 bg-panel2/45 p-1.5 text-left transition hover:border-hex/50"
             >
               <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-6 w-6 rounded border border-line object-cover" />
-              <span className="min-w-0 truncate text-[11px] text-cream">{a.name}</span>
+              <span className="min-w-0 break-words text-[10px] leading-[12px] text-cream">{a.name}</span>
             </button>
           ))}
         </div>
@@ -6301,7 +6302,7 @@ function OwnedAugmentsPanel({
               className="flex cursor-pointer items-center gap-1.5 rounded-md border border-line/50 bg-panel2/45 p-1.5 text-left transition hover:border-hex/50"
             >
               <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-6 w-6 rounded border border-line object-cover" />
-              <span className="min-w-0 truncate text-[11px] text-cream">{a.name}</span>
+              <span className="min-w-0 break-words text-[10px] leading-[12px] text-cream">{a.name}</span>
             </button>
           ))}
         </div>
@@ -6399,9 +6400,9 @@ function QuickAugLine({ label, tone, items }: { label: string; tone: 'core' | 'g
       {items.length > 0 ? (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(128px,1fr))] gap-1.5">
           {items.slice(0, 3).map((a) => (
-            <div key={a.id} className="flex min-w-0 items-center gap-1.5 rounded-[5px] border border-line/50 bg-[#050a11]/45 px-1.5 py-1">
+            <div key={a.id} className="flex min-h-[36px] min-w-0 items-center gap-1.5 rounded-[5px] border border-line/50 bg-[#050a11]/45 px-1.5 py-1">
               <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-7 w-7 shrink-0 rounded border border-line/70 object-cover" />
-              <span className="min-w-0 truncate text-[11px] font-extrabold text-cream">{a.name}</span>
+              <span className="min-w-0 break-words text-[9px] font-extrabold leading-[10px] text-cream">{a.name}</span>
             </div>
           ))}
         </div>
@@ -7451,7 +7452,7 @@ function AugTier({
           const r = RARITY[a.rarity] ?? RARITY[0]
           return (
             <AugmentHoverCard key={ref.id} augment={a}>
-              <div className="flex h-[42px] w-[112px] items-center gap-1.5 rounded-[5px] border border-line/35 bg-[#050a11]/24 px-1.5 py-1 transition hover:border-hex/36 hover:bg-panel2/34">
+              <div className="flex min-h-[42px] min-w-[96px] max-w-[176px] items-center gap-1.5 rounded-[5px] border border-line/35 bg-[#050a11]/24 px-1.5 py-1 transition hover:border-hex/36 hover:bg-panel2/34">
                 <div
                   className={
                     'h-8 w-8 shrink-0 overflow-hidden rounded-[5px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.18)] ' +
@@ -7462,7 +7463,7 @@ function AugTier({
                 >
                   <img src={icon(a.iconLargeLocal)} alt={a.name} className="w-full h-full object-cover" />
                 </div>
-                <span className="line-clamp-2 min-w-0 text-[9px] font-bold leading-[11px] text-cream">{a.name}</span>
+                <span className="min-w-0 break-words text-[9px] font-bold leading-[10px] text-cream">{a.name}</span>
               </div>
             </AugmentHoverCard>
           )
@@ -7531,7 +7532,7 @@ function AugmentHoverCard({ augment: a, children }: { augment: Augment; children
           <div className="flex items-center gap-2.5">
             <img src={icon(a.iconSmallLocal)} alt="" className={'h-9 w-9 shrink-0 rounded-md border-2 object-cover ' + r.border} />
             <div className="min-w-0">
-              <div className="truncate text-sm font-bold text-cream">{a.name}</div>
+              <div className="break-words text-sm font-bold leading-tight text-cream">{a.name}</div>
               <div className={'text-[10px] font-bold uppercase tracking-wide ' + r.text}>
                 {t(`rarity.${RARITY_KEY[a.rarity]}`, r.label)}
               </div>

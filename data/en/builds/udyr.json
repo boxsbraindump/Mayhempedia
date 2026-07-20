@@ -6,7 +6,7 @@
       "key": "ad-crit",
       "name": "AD The Brutalizer Udyr",
       "damageType": "AD",
-      "note": "Udyr AD route for ARAM: Mayhem. Prioritize The Brutalizer / Giant Slayer as the main augment plan. Strong secondary hits include Vulnerability / Ethereal Weapon / Jeweled Gauntlet. Build toward Hubris > The Collector > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn.",
+      "note": "Udyr AD route for ARAM: Mayhem. Prioritize The Brutalizer / Giant Slayer as the main augment plan. Strong secondary hits include Vulnerability / Ethereal Weapon / Jeweled Gauntlet. Build toward The Collector > Hubris > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn.",
       "augments": {
         "core": [
           {
@@ -52,12 +52,12 @@
       },
       "items": [
         {
-          "id": 6697,
-          "name": "Hubris"
-        },
-        {
           "id": 6676,
           "name": "The Collector"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
         },
         {
           "id": 3036,

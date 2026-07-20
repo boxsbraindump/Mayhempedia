@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Yunara",
       "damageType": "AD",
-      "note": "Yunara AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Scopiest Weapons. Build toward Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > The Collector > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Yunara AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Scopiest Weapons. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -57,6 +57,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6672,
           "name": "Kraken Slayer"
         },
@@ -71,10 +75,6 @@
         {
           "id": 3085,
           "name": "Runaan's Hurricane"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3032,

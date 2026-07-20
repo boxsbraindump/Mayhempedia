@@ -57,13 +57,13 @@ function AugmentRail({
           {augs.map((a) => {
             const r = RARITY[a.rarity] ?? RARITY[0]
             return (
-              <div key={a.id} title={`${a.name}\n${plainText(a.desc || a.tooltip)}`} className="flex min-h-8 w-fit max-w-[168px] items-center gap-1.5 rounded-md border border-line/55 bg-panel/35 px-1.5 py-1">
+              <div key={a.id} title={`${a.name}\n${plainText(a.desc || a.tooltip)}`} className="flex min-h-8 min-w-[88px] max-w-[188px] items-center gap-1.5 rounded-md border border-line/55 bg-panel/35 px-1.5 py-1">
                 <img
                   src={icon(a.iconLargeLocal)}
                   alt={a.name}
                   className={'h-6 w-6 shrink-0 rounded border object-cover ' + r.border + ' ' + r.glow}
                 />
-                <span className="break-words text-[10px] font-extrabold leading-[12px] text-cream">{a.name}</span>
+                <span className="break-words text-[9px] font-extrabold leading-[11px] text-cream">{a.name}</span>
               </div>
             )
           })}

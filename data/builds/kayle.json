@@ -3,10 +3,10 @@
   "championName": "凯尔",
   "archetypes": [
     {
-      "key": "hybrid",
-      "name": "物法双修凯尔",
+      "key": "on-hit",
+      "name": "攻速特效凯尔",
       "damageType": "AP",
-      "note": "普攻触发装备特效叠输出，前期苟发育，后期普攻+被动斩杀收割。",
+      "note": "当前 Mayhem 数据的主线是破败王者之刃→鬼索的狂暴之刃→界弓三件套；凯尔的被动火焰波可持续触发特效。狂战士胫甲通常在前两件补齐，纳什之牙与黄昏与黎明作为后续 AP/攻速补强。",
       "augments": {
         "core": [
           {
@@ -22,14 +22,14 @@
         ],
         "good": [
           {
+            "id": 910008,
+            "apiName": "ARAMMayhemScopierWeapons",
+            "name": "更远瞄准"
+          },
+          {
             "id": 129,
             "apiName": "Marksmage",
             "name": "神射法师"
-          },
-          {
-            "id": 29,
-            "apiName": "EtherealWeapon",
-            "name": "虚幻武器"
           },
           {
             "id": 22,
@@ -37,52 +37,55 @@
             "name": "灵巧"
           },
           {
-            "id": 48,
-            "apiName": "JeweledGauntlet",
-            "name": "珠光护手"
+            "id": 29,
+            "apiName": "EtherealWeapon",
+            "name": "虚幻武器"
           }
         ],
         "trap": []
       },
       "items": [
         {
-          "id": 2517,
-          "name": "无穷饥渴"
+          "id": 3153,
+          "name": "破败王者之刃"
         },
         {
           "id": 3006,
           "name": "狂战士胫甲"
         },
         {
-          "id": 3091,
-          "name": "智慧末刃"
-        },
-        {
-          "id": 2510,
-          "name": "黄昏与黎明"
-        },
-        {
           "id": 3124,
           "name": "鬼索的狂暴之刃"
         },
         {
+          "id": 3302,
+          "name": "界弓"
+        },
+        {
           "id": 3115,
           "name": "纳什之牙"
+        },
+        {
+          "id": 2510,
+          "name": "黄昏与黎明"
         }
       ],
       "runes": null,
       "sources": [
-        "arammayhem.com",
-        "op.gg"
+        "arammayhem.com"
       ],
       "starterItems": [
         {
-          "id": 3184,
-          "name": "守护者战锤"
+          "id": 1043,
+          "name": "反曲之弓"
         },
         {
           "id": 1001,
           "name": "鞋子"
+        },
+        {
+          "id": 1042,
+          "name": "短剑"
         },
         {
           "id": 2003,

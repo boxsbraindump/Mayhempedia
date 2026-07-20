@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Jayce",
       "damageType": "AD",
-      "note": "Jayce AD route for ARAM: Mayhem. Prioritize Skilled Sniper as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Giant Slayer / Ethereal Weapon. Build toward Hubris > The Collector > Serylda's Grudge > Ionian Boots of Lucidity > Infinity Edge > Spear of Shojin. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Jayce AD route for ARAM: Mayhem. Prioritize Skilled Sniper as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Giant Slayer / Ethereal Weapon. Build toward The Collector > Hubris > Serylda's Grudge > Ionian Boots of Lucidity > Infinity Edge > Spear of Shojin. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -41,12 +41,12 @@
       },
       "items": [
         {
-          "id": 6697,
-          "name": "Hubris"
-        },
-        {
           "id": 6676,
           "name": "The Collector"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
         },
         {
           "id": 6694,

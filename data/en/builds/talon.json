@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Talon",
       "damageType": "AD",
-      "note": "Talon AD route for ARAM: Mayhem. Prioritize Blunt Force / Thread the Needle as the main augment plan. Strong secondary hits include Ultimate Revolution / Deft / It's Killing Time. Build toward Hubris > Ionian Boots of Lucidity > Axiom Arc > The Collector > Serylda's Grudge > Eclipse. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com.",
+      "note": "Talon AD route for ARAM: Mayhem. Prioritize Blunt Force / Thread the Needle as the main augment plan. Strong secondary hits include Ultimate Revolution / Deft / It's Killing Time. Build toward The Collector > Hubris > Ionian Boots of Lucidity > Axiom Arc > Serylda's Grudge > Eclipse. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -47,6 +47,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6697,
           "name": "Hubris"
         },
@@ -57,10 +61,6 @@
         {
           "id": 6696,
           "name": "Axiom Arc"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 6694,

@@ -6,7 +6,7 @@
       "key": "ad-crit",
       "name": "AD Crit Corki",
       "damageType": "AD",
-      "note": "Corki AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Draw Your Sword as the main augment plan. Strong secondary hits include Fan The Hammer / Giant Slayer / Deft. Build toward Trinity Force > Berserker's Greaves > The Collector > Infinity Edge > Lord Dominik's Regards > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Corki AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Draw Your Sword as the main augment plan. Strong secondary hits include Fan The Hammer / Giant Slayer / Deft. Build toward The Collector > Trinity Force > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -62,16 +62,16 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3078,
           "name": "Trinity Force"
         },
         {
           "id": 3006,
           "name": "Berserker's Greaves"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         },
         {
           "id": 3031,

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Jeweled Gauntlet Lucian",
       "damageType": "AD",
-      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Vulnerability / Giant Slayer. Build toward Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > The Collector. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Vulnerability / Giant Slayer. Build toward The Collector > Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
       "augments": {
         "core": [
           {
@@ -46,6 +46,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3508,
           "name": "Essence Reaver"
         },
@@ -64,10 +68,6 @@
         {
           "id": 3032,
           "name": "Yun Tal Wildarrows"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         }
       ],
       "runes": null,
@@ -89,7 +89,7 @@
       "key": "melee",
       "name": "AD Draw Your Sword Lucian",
       "damageType": "AD",
-      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Vulnerability / Dual Wield. Build toward Bloodthirster > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > The Collector. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and dvg.cn.",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Jeweled Gauntlet / Vulnerability / Dual Wield. Build toward The Collector > Bloodthirster > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and dvg.cn.",
       "augments": {
         "core": [
           {
@@ -130,6 +130,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 3072,
           "name": "Bloodthirster"
         },
@@ -148,10 +152,6 @@
         {
           "id": 3032,
           "name": "Yun Tal Wildarrows"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         }
       ],
       "runes": null,

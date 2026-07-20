@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Lee Sin",
       "damageType": "AD",
-      "note": "Lee Sin AD route for ARAM: Mayhem. Prioritize Blunt Force / Mystic Punch as the main augment plan. Strong secondary hits include Outlaw's Grit / Clown College / Giant Slayer. Build toward Axiom Arc > Eclipse > Mercury's Treads > Black Cleaver > Death's Dance > The Collector. Start with Long Sword + Guardian's Blade. Cross-checked against aramgg.com and arammayhem.com.",
+      "note": "Lee Sin AD route for ARAM: Mayhem. Prioritize Blunt Force / Mystic Punch as the main augment plan. Strong secondary hits include Outlaw's Grit / Clown College / Giant Slayer. Build toward The Collector > Axiom Arc > Eclipse > Mercury's Treads > Black Cleaver > Death's Dance. Start with Long Sword + Guardian's Blade. Cross-checked against aramgg.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -52,6 +52,10 @@
       },
       "items": [
         {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
           "id": 6696,
           "name": "Axiom Arc"
         },
@@ -70,10 +74,6 @@
         {
           "id": 6333,
           "name": "Death's Dance"
-        },
-        {
-          "id": 6676,
-          "name": "The Collector"
         }
       ],
       "runes": null,

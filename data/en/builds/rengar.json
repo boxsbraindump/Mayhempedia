@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Rengar",
       "damageType": "AD",
-      "note": "Rengar AD route for ARAM: Mayhem. Prioritize Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / escAPADe. Build toward Hubris > The Collector > Infinity Edge > Voltaic Cyclosword > Edge of Night > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and op.gg.",
+      "note": "Rengar AD route for ARAM: Mayhem. Prioritize Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force / Goredrink / escAPADe. Build toward The Collector > Hubris > Infinity Edge > Voltaic Cyclosword > Edge of Night > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and op.gg.",
       "augments": {
         "core": [
           {
@@ -36,12 +36,12 @@
       },
       "items": [
         {
-          "id": 6697,
-          "name": "Hubris"
-        },
-        {
           "id": 6676,
           "name": "The Collector"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
         },
         {
           "id": 3031,

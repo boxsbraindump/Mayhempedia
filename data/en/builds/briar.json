@@ -6,7 +6,7 @@
       "key": "ad-crit",
       "name": "AD Crit Briar",
       "damageType": "AD",
-      "note": "Briar AD route for ARAM: Mayhem. Prioritize Mystic Punch / Dashing as the main augment plan. Strong secondary hits include Goredrink / Blunt Force / Dual Wield. Build toward Hubris > The Collector > Endless Hunger > Death's Dance > Infinity Edge > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "note": "Briar AD route for ARAM: Mayhem. Prioritize Mystic Punch / Dashing as the main augment plan. Strong secondary hits include Goredrink / Blunt Force / Dual Wield. Build toward The Collector > Hubris > Endless Hunger > Death's Dance > Infinity Edge > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -41,12 +41,12 @@
       },
       "items": [
         {
-          "id": 6697,
-          "name": "Hubris"
-        },
-        {
           "id": 6676,
           "name": "The Collector"
+        },
+        {
+          "id": 6697,
+          "name": "Hubris"
         },
         {
           "id": 2517,
