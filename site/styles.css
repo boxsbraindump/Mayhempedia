@@ -1374,6 +1374,8 @@ body.site-v2 {
 
 .site-v2 .landing-links a { padding: 8px 10px; border-radius: 5px; color: var(--landing-muted); }
 .site-v2 .landing-links a:hover { color: var(--landing-text); background: rgba(255, 255, 255, 0.05); }
+.site-v2 .discord-link, .site-v2 .discord-inline { display: inline-flex; align-items: center; gap: 6px; }
+.site-v2 .discord-link img, .site-v2 .discord-inline img { width: 14px; height: 14px; flex: 0 0 auto; }
 .site-v2 .nav-actions { display: flex; justify-self: end; align-items: center; gap: 10px; }
 .site-v2 .nav-build { display: inline-flex; align-items: center; gap: 6px; color: #8599a8; font-size: 10px; white-space: nowrap; }
 .site-v2 .nav-build i { width: 5px; height: 5px; border-radius: 50%; background: var(--landing-cyan); box-shadow: 0 0 0 3px rgba(85, 212, 227, 0.1); }
