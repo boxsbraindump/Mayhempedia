@@ -53,3 +53,12 @@ if (motionAllowed) {
     card.addEventListener('pointerleave', () => { card.style.transform = '' })
   })
 }
+
+document.querySelectorAll('[data-download-source]').forEach((link) => {
+  link.addEventListener('click', () => {
+    window.zaraz?.track?.('download_clicked', {
+      placement: link.getAttribute('data-download-source') || 'unknown',
+      version: '0.1.1',
+    })
+  })
+})
