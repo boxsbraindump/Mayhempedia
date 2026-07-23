@@ -1,6 +1,33 @@
 const motionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 if (motionAllowed) document.body.classList.add('motion-ready')
 
+// Conversion events stay inert until the site owner wires in an analytics
+// provider. This keeps the GitHub Pages build privacy-first while exposing a
+// single event contract for Zaraz, Plausible, or a small first-party endpoint.
+const PUBLIC_RELEASE_VERSION = '0.1.1'
+const analyticsEndpoint = window.MAYHEMPEDIA_ANALYTICS_ENDPOINT || ''
+
+function track(eventName, properties = {}) {
+  const payload = {
+    ...properties,
+    version: PUBLIC_RELEASE_VERSION,
+    path: window.location.pathname,
+  }
+
+  window.dataLayer?.push({ event: eventName, ...payload })
+  window.zaraz?.track?.(eventName, payload)
+  window.plausible?.(eventName, { props: payload })
+
+  if (analyticsEndpoint && navigator.sendBeacon) {
+    navigator.sendBeacon(
+      analyticsEndpoint,
+      new Blob([JSON.stringify({ event: eventName, ...payload })], { type: 'application/json' }),
+    )
+  }
+}
+
+track('landing_view')
+
 const revealElements = document.querySelectorAll('[data-reveal]')
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(
@@ -20,7 +47,31 @@ if ('IntersectionObserver' in window) {
 }
 
 const nav = document.querySelector('[data-nav]')
-window.addEventListener('scroll', () => nav?.classList.toggle('is-scrolled', window.scrollY > 12), { passive: true })
+if (nav && 'IntersectionObserver' in window) {
+  const navSentinel = document.createElement('span')
+  navSentinel.setAttribute('aria-hidden', 'true')
+  nav.before(navSentinel)
+  const navObserver = new IntersectionObserver(
+    ([entry]) => nav.classList.toggle('is-scrolled', !entry.isIntersecting),
+    { threshold: 1 },
+  )
+  navObserver.observe(navSentinel)
+}
+
+document.querySelectorAll('[data-demo-target]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const demo = button.closest('.concept-window')
+    const target = button.getAttribute('data-demo-target')
+    demo?.querySelectorAll('[data-demo-target]').forEach((tab) => {
+      const isActive = tab === button
+      tab.classList.toggle('is-active', isActive)
+      tab.setAttribute('aria-selected', String(isActive))
+    })
+    demo?.querySelectorAll('[data-demo-panel]').forEach((panel) => {
+      panel.classList.toggle('is-active', panel.getAttribute('data-demo-panel') === target)
+    })
+  })
+})
 
 if (motionAllowed) {
   document.querySelectorAll('[data-parallax-stage]').forEach((stage) => {
@@ -56,9 +107,29 @@ if (motionAllowed) {
 
 document.querySelectorAll('[data-download-source]').forEach((link) => {
   link.addEventListener('click', () => {
-    window.zaraz?.track?.('download_clicked', {
+    track('download_clicked', {
       placement: link.getAttribute('data-download-source') || 'unknown',
-      version: '0.1.1',
     })
   })
 })
+
+document.querySelectorAll('[data-preview-source]').forEach((link) => {
+  link.addEventListener('click', () => {
+    track('preview_clicked', {
+      placement: link.getAttribute('data-preview-source') || 'unknown',
+    })
+  })
+})
+
+const demoSection = document.querySelector('#demo-client, #inside')
+if (demoSection && 'IntersectionObserver' in window) {
+  const demoObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return
+      track('demo_viewed', { placement: demoSection.id })
+      demoObserver.disconnect()
+    },
+    { threshold: 0.35 },
+  )
+  demoObserver.observe(demoSection)
+}

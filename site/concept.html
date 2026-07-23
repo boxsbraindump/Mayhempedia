@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mayhempedia is a local-first Windows companion for ARAM Mayhem: Combat Files, augment priorities, item routes, and match capture." />
+    <meta property="og:title" content="Mayhempedia | ARAM Mayhem Combat Files" />
+    <meta property="og:description" content="Know the route before the lobby timer runs out. A local-first ARAM Mayhem companion for builds, augments, and match capture." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/app-combat-file-clean-en.png" />
+    <link rel="icon" href="assets/mayhempedia-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="concept.css" />
+    <script src="app.js" defer></script>
+    <title>Mayhempedia Concept | ARAM Mayhem Combat Files</title>
+  </head>
+  <body class="concept-page">
+    <a class="concept-skip" href="#main-content">Skip to content</a>
+    <div class="concept-shell">
+      <header class="concept-nav" data-nav>
+        <a class="concept-brand" href="#top" aria-label="Mayhempedia home">
+          <img src="assets/mayhempedia-icon.svg" alt="" />
+          <span>Mayhem<span>pedia</span></span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#route-loop">Route loop</a>
+          <a href="#screens">Screens</a>
+          <a href="#safety">Safety</a>
+        </nav>
+        <a class="concept-nav-cta" href="#download">Download</a>
+      </header>
+
+      <main id="main-content">
+        <section class="concept-hero" id="top" aria-labelledby="concept-title">
+          <div class="concept-hero-art" aria-hidden="true">
+            <img src="assets/hero/xayah.png" alt="" />
+          </div>
+          <div class="concept-hero-copy" data-reveal>
+            <p class="concept-kicker">Combat Files for ARAM Mayhem</p>
+            <h1 id="concept-title">Click through the route before chaos.</h1>
+            <p class="concept-lede">A tiny product demo for the lobby moment: browse champions, open the route sheet, then keep the build that worked.</p>
+            <div class="concept-actions">
+              <a class="concept-primary" data-download-source="concept-hero" href="https://github.com/boxsbraindump/Mayhempedia/releases/download/v0.1.1/Mayhempedia-0.1.1-setup-x64.exe">Download for Windows <span aria-hidden="true">&#8594;</span></a>
+              <a class="concept-secondary" data-preview-source="concept-hero" href="#demo-client">Try the client</a>
+            </div>
+          </div>
+
+          <div class="concept-board" id="demo-client" data-reveal data-delay="120" data-parallax-stage>
+            <figure class="concept-window" data-parallax-card>
+              <div class="concept-window-bar">
+                <span></span><span></span><span></span>
+                <strong>Mayhempedia client preview</strong>
+              </div>
+              <div class="concept-demo-tabs" role="tablist" aria-label="Mayhempedia client screens">
+                <button type="button" class="is-active" data-demo-target="codex" role="tab" aria-selected="true">Champion Codex</button>
+                <button type="button" data-demo-target="combat" role="tab" aria-selected="false">Combat File</button>
+                <button type="button" data-demo-target="history" role="tab" aria-selected="false">Match Capture</button>
+              </div>
+              <div class="concept-demo-screen">
+                <img class="is-active" data-demo-panel="codex" src="assets/app-dashboard-en.png" alt="Mayhempedia Champion Codex dashboard preview" />
+                <img data-demo-panel="combat" src="assets/app-combat-file-clean-en.png" alt="Mayhempedia Combat File showing a champion route, augment priorities, starter items, and final item build" />
+                <img data-demo-panel="history" src="assets/app-history-en.png" alt="Mayhempedia match capture view showing builds, augments, and save controls" />
+              </div>
+            </figure>
+            <aside class="concept-card concept-card-left" data-float-card>
+              <span>Core augments</span>
+              <div>
+                <img src="assets/hero/augment-deft.png" alt="" />
+                <img src="assets/hero/augment-fan-the-hammer.png" alt="" />
+                <img src="assets/hero/augment-giant-slayer.png" alt="" />
+              </div>
+            </aside>
+            <aside class="concept-card concept-card-right" data-float-card>
+              <span>Final six</span>
+              <div>
+                <img src="assets/hero/item-collector.png" alt="" />
+                <img src="assets/hero/item-navori.png" alt="" />
+                <img src="assets/hero/item-infinity-edge.png" alt="" />
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="concept-proof" aria-label="Mayhempedia coverage">
+          <div><strong>173</strong><span>champion files</span></div>
+          <div><strong>199</strong><span>augment signals</span></div>
+          <div><strong>Local</strong><span>client-side history</span></div>
+          <div><strong>0</strong><span>Riot passwords</span></div>
+        </section>
+
+        <section class="route-loop" id="route-loop" aria-labelledby="loop-title">
+          <div class="loop-copy" data-reveal>
+            <p class="concept-kicker">Decision loop</p>
+            <h2 id="loop-title">The page follows how a lobby actually feels.</h2>
+            <p>Less browsing. More priority. Each screen is shaped around the next decision a player needs to make.</p>
+          </div>
+          <div class="loop-stack">
+            <article data-reveal>
+              <span>Pick</span>
+              <h3>Start from the rolled champion.</h3>
+              <p>Search or open the Combat File directly, without rebuilding the same context every match.</p>
+            </article>
+            <article data-reveal data-delay="80">
+              <span>Route</span>
+              <h3>Read the reason before the items.</h3>
+              <p>Core augments, fallbacks, starter items, and final build sit in one ordered view.</p>
+            </article>
+            <article data-reveal data-delay="160">
+              <span>Keep</span>
+              <h3>Save the game that taught you something.</h3>
+              <p>Match capture turns a strange winning loadout into a route you can revisit later.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen-river" id="screens" aria-labelledby="screens-title">
+          <div class="river-heading" data-reveal>
+            <h2 id="screens-title">Three views. One job: keep the next action obvious.</h2>
+          </div>
+          <div class="river-grid">
+            <article class="river-card river-card-large" data-reveal>
+              <img src="assets/app-combat-file-clean-en-16x9.png" alt="Mayhempedia Combat File preview" loading="lazy" />
+              <div>
+                <span>Combat File</span>
+                <h3>The complete route sheet.</h3>
+              </div>
+            </article>
+            <article class="river-card" data-reveal data-delay="80">
+              <img src="assets/app-dashboard-en-16x9.png" alt="Mayhempedia dashboard preview" loading="lazy" />
+              <div>
+                <span>Champion Codex</span>
+                <h3>Coverage without clutter.</h3>
+              </div>
+            </article>
+            <article class="river-card" data-reveal data-delay="160">
+              <img src="assets/app-history-en-16x9.png" alt="Mayhempedia match history preview" loading="lazy" />
+              <div>
+                <span>Match capture</span>
+                <h3>Keep the route that worked.</h3>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="safety-panel" id="safety" aria-labelledby="safety-title">
+          <div data-reveal>
+            <p class="concept-kicker">Local-first by design</p>
+            <h2 id="safety-title">Useful tools should feel calm to install.</h2>
+          </div>
+          <div class="safety-list" data-reveal data-delay="100">
+            <article><strong>No Riot password</strong><span>Mayhempedia does not ask for account credentials.</span></article>
+            <article><strong>No gameplay automation</strong><span>It reads local client state and does not play the game for you.</span></article>
+            <article><strong>History stays local</strong><span>Match captures are kept on your computer by default.</span></article>
+          </div>
+        </section>
+
+        <section class="download-dock" id="download" aria-labelledby="download-title">
+          <div>
+            <p class="concept-kicker">Windows x64</p>
+            <h2 id="download-title">Install once. Keep the route close.</h2>
+          </div>
+          <a class="concept-primary" data-download-source="concept-download" href="https://github.com/boxsbraindump/Mayhempedia/releases/download/v0.1.1/Mayhempedia-0.1.1-setup-x64.exe">Download Mayhempedia <span aria-hidden="true">&#8594;</span></a>
+        </section>
+      </main>
+
+      <footer class="concept-footer">
+        <p>Mayhempedia is a fan-made desktop companion. It is not endorsed by Riot Games.</p>
+        <nav aria-label="Footer navigation">
+          <a href="privacy.html">Privacy</a>
+          <a href="https://discord.gg/V56Yxb4sPm" target="_blank" rel="noreferrer">Discord</a>
+          <a href="https://github.com/boxsbraindump/Mayhempedia/releases">Releases</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>
