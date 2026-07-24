@@ -7,7 +7,7 @@
   --home-text: #f1f0e9;
   --home-muted: #a8b0b2;
   --home-faint: #758087;
-  --home-accent: #d9f36b;
+  --home-accent: #22d3ee;
   color-scheme: dark;
   font-family: "Segoe UI Variable", "Aptos", "Segoe UI", system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
@@ -106,7 +106,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   min-height: 44px;
   padding: 0 17px;
   border: 1px solid var(--home-accent);
-  color: #10140b;
+  color: #061014;
   background: var(--home-accent);
   font-size: 13px;
   font-weight: 800;
@@ -114,7 +114,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .header-download:hover,
-.button:hover { transform: translateY(-2px); background: #e8ff8b; }
+.button:hover { transform: translateY(-2px); background: #5ee7f2; }
 .header-download:active,
 .button:active { transform: translateY(1px); }
 
