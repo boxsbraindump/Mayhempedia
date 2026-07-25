@@ -31,7 +31,23 @@
       "fixedZh": [
         "修复下载按钮跳转 GitHub 前 Zaraz 事件可能丢失的问题。"
       ],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases"
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases",
+      "public": {
+        "titleEn": "A clearer view of app updates",
+        "titleZh": "更清晰的应用更新记录",
+        "summaryEn": "The next beta adds an in-app What's new view so you can see the latest Mayhempedia client changes at a glance.",
+        "summaryZh": "下一个测试版会在客户端里加入 What's new 更新视图，让你直接看到 Mayhempedia 最近的变化。",
+        "addedEn": [
+          "Added an in-app What's new view for Mayhempedia client updates."
+        ],
+        "addedZh": [
+          "新增客户端 What's new 更新视图，集中展示 Mayhempedia 的版本变化。"
+        ],
+        "changedEn": [],
+        "changedZh": [],
+        "fixedEn": [],
+        "fixedZh": []
+      }
     },
     {
       "version": "0.1.1",
@@ -55,7 +71,25 @@
       "changedZh": [],
       "fixedEn": [],
       "fixedZh": [],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.1"
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.1",
+      "public": {
+        "titleEn": "First installable beta",
+        "titleZh": "第一个可安装测试版",
+        "summaryEn": "The first public Windows installer introduced the Champion Codex, local-first client integration, and update checks.",
+        "summaryZh": "第一个公开 Windows 安装包带来了英雄图鉴、本地优先的客户端连接和版本检查。",
+        "addedEn": [
+          "Published the first installable Windows beta.",
+          "Added configurable hotkeys and the initial desktop update flow."
+        ],
+        "addedZh": [
+          "发布第一个可安装的 Windows 测试版。",
+          "新增可配置快捷键和基础桌面更新流程。"
+        ],
+        "changedEn": [],
+        "changedZh": [],
+        "fixedEn": [],
+        "fixedZh": []
+      }
     },
     {
       "version": "0.1.0",
@@ -79,7 +113,27 @@
       "changedZh": [],
       "fixedEn": [],
       "fixedZh": [],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.0"
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.0",
+      "public": {
+        "titleEn": "Initial test build",
+        "titleZh": "初始测试版",
+        "summaryEn": "The first Mayhempedia test build connected the desktop companion to the League Client read-only interface.",
+        "summaryZh": "Mayhempedia 初始测试版打通了桌面伴侣与 League Client 只读接口。",
+        "addedEn": [
+          "Added the initial Electron desktop companion.",
+          "Connected to League Client state without reading game memory or automating gameplay.",
+          "Added the first Champion Codex and ARAM build data views."
+        ],
+        "addedZh": [
+          "新增基础 Electron 桌面伴侣应用。",
+          "连接 League Client 状态，不读取游戏内存，也不自动操作游戏。",
+          "新增第一版英雄图鉴和 ARAM 路线数据视图。"
+        ],
+        "changedEn": [],
+        "changedZh": [],
+        "fixedEn": [],
+        "fixedZh": []
+      }
     }
   ]
 }

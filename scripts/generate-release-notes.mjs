@@ -34,6 +34,26 @@ const changelog = [
   ]),
 ].join('\n')
 
+const publicReleases = payload.releases.map((release) => {
+  const notes = release.public ?? {}
+  return {
+    version: release.version,
+    status: release.status,
+    date: release.date,
+    titleEn: notes.titleEn ?? '',
+    titleZh: notes.titleZh ?? '',
+    summaryEn: notes.summaryEn ?? '',
+    summaryZh: notes.summaryZh ?? '',
+    addedEn: notes.addedEn ?? [],
+    addedZh: notes.addedZh ?? [],
+    changedEn: notes.changedEn ?? [],
+    changedZh: notes.changedZh ?? [],
+    fixedEn: notes.fixedEn ?? [],
+    fixedZh: notes.fixedZh ?? [],
+    releaseUrl: release.releaseUrl,
+  }
+})
+
 await writeFile(changelogPath, `${changelog.trim()}\n`, 'utf8')
-await writeFile(sitePath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
+await writeFile(sitePath, `${JSON.stringify({ currentVersion: payload.currentVersion, releases: publicReleases }, null, 2)}\n`, 'utf8')
 console.log(`Generated CHANGELOG.md and site/updates.json for ${payload.releases.length} releases.`)
