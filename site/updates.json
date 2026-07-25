@@ -1,26 +1,6 @@
 {
-  "currentVersion": "0.1.2",
+  "currentVersion": "0.1.1",
   "releases": [
-    {
-      "version": "0.1.2",
-      "status": "unreleased",
-      "date": "2026-07-24",
-      "titleEn": "A clearer view of app updates",
-      "titleZh": "更清晰的应用更新记录",
-      "summaryEn": "The next beta adds an in-app What's new view so you can see the latest Mayhempedia client changes at a glance.",
-      "summaryZh": "下一个测试版会在客户端里加入 What's new 更新视图，让你直接看到 Mayhempedia 最近的变化。",
-      "addedEn": [
-        "Added an in-app What's new view for Mayhempedia client updates."
-      ],
-      "addedZh": [
-        "新增客户端 What's new 更新视图，集中展示 Mayhempedia 的版本变化。"
-      ],
-      "changedEn": [],
-      "changedZh": [],
-      "fixedEn": [],
-      "fixedZh": [],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases"
-    },
     {
       "version": "0.1.1",
       "status": "released",

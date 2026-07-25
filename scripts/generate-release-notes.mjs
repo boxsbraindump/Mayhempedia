@@ -34,26 +34,37 @@ const changelog = [
   ]),
 ].join('\n')
 
-const publicReleases = payload.releases.map((release) => {
-  const notes = release.public ?? {}
-  return {
-    version: release.version,
-    status: release.status,
-    date: release.date,
-    titleEn: notes.titleEn ?? '',
-    titleZh: notes.titleZh ?? '',
-    summaryEn: notes.summaryEn ?? '',
-    summaryZh: notes.summaryZh ?? '',
-    addedEn: notes.addedEn ?? [],
-    addedZh: notes.addedZh ?? [],
-    changedEn: notes.changedEn ?? [],
-    changedZh: notes.changedZh ?? [],
-    fixedEn: notes.fixedEn ?? [],
-    fixedZh: notes.fixedZh ?? [],
-    releaseUrl: release.releaseUrl,
-  }
-})
+// The public site must only advertise installers that actually exist. Keep
+// unreleased work in the repository changelog, but never surface it on the
+// download site before its GitHub Release is live.
+const publicReleases = payload.releases
+  .filter((release) => release.status === 'released')
+  .map((release) => {
+    const notes = release.public ?? {}
+    return {
+      version: release.version,
+      status: release.status,
+      date: release.date,
+      titleEn: notes.titleEn ?? '',
+      titleZh: notes.titleZh ?? '',
+      summaryEn: notes.summaryEn ?? '',
+      summaryZh: notes.summaryZh ?? '',
+      addedEn: notes.addedEn ?? [],
+      addedZh: notes.addedZh ?? [],
+      changedEn: notes.changedEn ?? [],
+      changedZh: notes.changedZh ?? [],
+      fixedEn: notes.fixedEn ?? [],
+      fixedZh: notes.fixedZh ?? [],
+      releaseUrl: release.releaseUrl,
+    }
+  })
+
+const publicCurrentVersion = publicReleases[0]?.version
+
+if (!publicCurrentVersion) {
+  throw new Error('No released version is available for the public website.')
+}
 
 await writeFile(changelogPath, `${changelog.trim()}\n`, 'utf8')
-await writeFile(sitePath, `${JSON.stringify({ currentVersion: payload.currentVersion, releases: publicReleases }, null, 2)}\n`, 'utf8')
-console.log(`Generated CHANGELOG.md and site/updates.json for ${payload.releases.length} releases.`)
+await writeFile(sitePath, `${JSON.stringify({ currentVersion: publicCurrentVersion, releases: publicReleases }, null, 2)}\n`, 'utf8')
+console.log(`Generated CHANGELOG.md and site/updates.json for ${publicReleases.length} public releases.`)
