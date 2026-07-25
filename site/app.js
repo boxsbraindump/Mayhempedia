@@ -1,13 +1,12 @@
 const motionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 if (motionAllowed) document.body.classList.add('motion-ready')
 
-// Conversion events stay inert until the site owner wires in an analytics
-// provider. This keeps the GitHub Pages build privacy-first while exposing a
-// single event contract for Zaraz, Plausible, or a small first-party endpoint.
+// Keep one small event contract so Cloudflare Zaraz can receive anonymous
+// conversion events without adding a separate analytics dependency.
 const PUBLIC_RELEASE_VERSION = '0.1.1'
 const analyticsEndpoint = window.MAYHEMPEDIA_ANALYTICS_ENDPOINT || ''
 
-function track(eventName, properties = {}) {
+async function track(eventName, properties = {}) {
   const payload = {
     ...properties,
     version: PUBLIC_RELEASE_VERSION,
@@ -15,8 +14,12 @@ function track(eventName, properties = {}) {
   }
 
   window.dataLayer?.push({ event: eventName, ...payload })
-  window.zaraz?.track?.(eventName, payload)
+  const zarazRequest = window.zaraz?.track?.(eventName, payload)
   window.plausible?.(eventName, { props: payload })
+
+  if (zarazRequest && typeof zarazRequest.then === 'function') {
+    await zarazRequest
+  }
 
   if (analyticsEndpoint && navigator.sendBeacon) {
     navigator.sendBeacon(
@@ -106,10 +109,22 @@ if (motionAllowed) {
 }
 
 document.querySelectorAll('[data-download-source]').forEach((link) => {
-  link.addEventListener('click', () => {
-    track('download_clicked', {
+  link.addEventListener('click', async (event) => {
+    const eventPayload = {
       placement: link.getAttribute('data-download-source') || 'unknown',
-    })
+    }
+
+    // External downloads can navigate away before an async Zaraz event is sent.
+    // Delay a normal click just long enough to finish tracking, while keeping
+    // modified clicks (new tab, middle click) native.
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      void track('download_clicked', eventPayload)
+      return
+    }
+
+    event.preventDefault()
+    await track('download_clicked', eventPayload)
+    window.location.assign(link.href)
   })
 })
 
