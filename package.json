@@ -4,7 +4,7 @@
   "private": true,
   "productName": "Mayhempedia",
   "author": "Mayhempedia",
-  "homepage": "https://boxsbraindump.github.io/Mayhempedia/",
+  "homepage": "https://mayhempedia.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/boxsbraindump/Mayhempedia.git"
@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/boxsbraindump/Mayhempedia/issues"
   },
-  "description": "海克斯大乱斗 overlay — ARAM Build Copilot (流派副官)",
+  "description": "A local-first Windows companion for League of Legends ARAM: Mayhem.",
   "type": "module",
   "main": "dist/main.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "data:en-patch-notes": "node scripts/generate-en-patch-notes.mjs",
     "data:augments-lcu": "node scripts/fetch-augments-from-lcu.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
-    "validate": "node scripts/validate-builds.mjs && node scripts/validate-localized-data.mjs"
+    "validate": "node scripts/validate-builds.mjs && node scripts/validate-localized-data.mjs && node scripts/verify-code-signing-policy.mjs"
   },
   "build": {
     "appId": "gg.mayhempedia.desktop",

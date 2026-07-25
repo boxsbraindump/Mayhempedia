@@ -2,6 +2,9 @@
 
 Public installers must be signed. Do not publish an installer produced by `npm run dist:unsigned`.
 
+Follow the public [Code Signing Policy](./CODE_SIGNING_POLICY.md). Release
+candidates are internal signing inputs, not community downloads.
+
 Keep the public website pointed at the latest signed release. The repository may
 carry the next package version before its installer exists; update the website
 download URL only after the signed artifact has passed the smoke test below.

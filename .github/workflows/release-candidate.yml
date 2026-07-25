@@ -1,0 +1,57 @@
+name: Build Windows release candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref to build (tag or commit SHA)
+        required: true
+        default: main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build signing input
+    runs-on: windows-latest
+    steps:
+      - name: Check out verified source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate source data
+        run: npm run validate
+
+      - name: Build Windows signing input
+        run: |
+          npm run build
+          npm run build:renderer
+          npx electron-builder --win nsis --publish never
+
+      - name: Upload private signing input
+        uses: actions/upload-artifact@v4
+        with:
+          name: mayhempedia-signing-input-${{ github.sha }}
+          path: |
+            download/*.exe
+            download/*.blockmap
+            download/latest.yml
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Record distribution boundary
+        run: |
+          echo "This artifact is an unsigned signing input."
+          echo "Do not publish it. A verified signed artifact is required for public distribution."

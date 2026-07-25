@@ -1,36 +1,66 @@
-# 海克斯大乱斗 Overlay — ARAM Champ-Select Copilot
+# Mayhempedia
 
-英雄联盟「海克斯大乱斗 / ARAM: Mayhem」的桌面 overlay。专攻选人/换将那 12 秒的决策。
-设计文档见 [BRAINSTORM.md](./BRAINSTORM.md)。
+Mayhempedia is a local-first Windows companion for League of Legends ARAM: Mayhem.
+It helps players turn a champion roll into a practical route: augment priorities,
+item order, route reasoning, and locally stored match capture.
 
-## 当前进度：Electron 主窗口 + LCU 打通
+Official site: https://mayhempedia.com
 
-只用官方/容忍的**只读**接口（LCU API），不读内存、不自动操作。
+## What it does
 
-### 运行
+- Browse route files for the full champion roster.
+- Read core and alternate augment priorities alongside starter and final items.
+- Show a display-only overlay. It does not automate gameplay or make game actions.
+- Read local League Client state to recognize champion select.
+- Keep settings, custom routes, and optional local match history on the player device.
+
+## What it does not do
+
+- It does not ask for Riot account passwords.
+- It does not read League of Legends game memory.
+- It does not automate clicks, purchases, champion actions, or augment choices.
+- It does not upload match history or desktop usage telemetry.
+
+More detail is available in the [privacy and play-safety note](https://mayhempedia.com/privacy.html).
+
+## Status
+
+Mayhempedia is in closed beta. Product updates and test access news are posted on
+the [official Discord](https://discord.gg/V56Yxb4sPm). Public Windows installers
+are published only after they have been code signed and verified.
+
+## Development
+
+Requirements: Node.js 22+ and a local League Client installation for end-to-end
+LCU testing.
 
 ```bash
 npm install
-npm start        # = tsc 编译主进程 + vite build 渲染层 + electron 启动
+npm start
 ```
 
-然后：
-1. 会弹出一个 **Mayhempedia** 窗口（首页/英雄/海克斯一览/自动化设置都能点）。
-2. 打开英雄联盟**客户端**（程序会等它，侧栏底部会显示"连接客户端中… → 已连接客户端"）。
-3. 进入一局**大乱斗**选人阶段，页面顶部应弹出"选人阶段检测到 XX，点击查看流派 →"的提示条。
+`npm start` builds the Electron main process and Vite renderer, then opens the
+desktop app. Use `npm run validate` to validate route data and localization.
 
-> ⚠️ 需要本机装有英雄联盟客户端才能实测真实连接效果。日常开发调 UI 建议还是走浏览器预览（`npm run dev`），更快。
+## Data and attribution
 
-## 技术栈
+Mayhempedia combines public League client data, CommunityDragon assets, public
+ARAM: Mayhem information, and curated route research. It is a fan-made project
+and is not endorsed by Riot Games.
 
-- **Electron + TypeScript**（ESM）
-- **[league-connect](https://github.com/supergrecko/league-connect)** — 自动读 lockfile、连 LCU REST + WebSocket
-- **Community Dragon** — 英雄静态数据（championId → 名字）
+## Contributing and feedback
 
-## 路线图
+Report product problems or route-data issues through
+[GitHub Issues](https://github.com/boxsbraindump/Mayhempedia/issues), or discuss
+closed-beta feedback in Discord. Contributions from non-maintainers should use a
+pull request so a maintainer can review the change before it reaches `main`.
 
-- [x] M1 连 LCU → 打印选人板凳
-- [ ] M2 透明置顶 + 点击穿透 overlay 窗口
-- [ ] M3 选人阶段渲染板凳 + ARAM 平衡数值徽章
-- [ ] 二期：海克斯增强推荐
-- [ ] 三期：对局内 HUD
+## Code signing policy
+
+See [CODE_SIGNING_POLICY.md](./CODE_SIGNING_POLICY.md). The policy explains who
+may approve a release, how a release is built, and how a public Windows artifact
+is verified before distribution.
+
+## License
+
+Mayhempedia is licensed under the [MIT License](./LICENSE).
