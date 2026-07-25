@@ -92,6 +92,42 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "dusk-dawn-spellblade",
+      "name": "Dusk and Dawn Spellblade Gwen",
+      "damageType": "AP",
+      "note": "Dusk and Dawn doubles on-hit effects on the attack after a spell. Gwen's passive, E empowered attack, Nashor's Tooth, and Q stacks all benefit. E into an attack into Q is the core sequence; hard-pivot only with Ethereal Weapon or Upgrade Sheen.",
+      "augments": {
+        "core": [
+          { "id": 29, "apiName": "EtherealWeapon", "name": "Ethereal Weapon" },
+          { "id": 910031, "apiName": "ARAMMayhemUpgradeSheen", "name": "Upgrade Sheen" }
+        ],
+        "good": [
+          { "id": 225, "apiName": "DualWield", "name": "Dual Wield" },
+          { "id": 87, "apiName": "Typhoon", "name": "Typhoon" },
+          { "id": 4, "apiName": "BacktoBasics", "name": "Back To Basics" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 2510, "name": "Dusk and Dawn" },
+        { "id": 3115, "name": "Nashor's Tooth" },
+        { "id": 3020, "name": "Sorcerer's Shoes" },
+        { "id": 4633, "name": "Riftmaker" },
+        { "id": 3089, "name": "Rabadon's Deathcap" },
+        { "id": 3135, "name": "Void Staff" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3112, "name": "Guardian's Orb" },
+        { "id": 1001, "name": "Boots" },
+        { "id": 2003, "name": "Health Potion" }
+      ],
+      "releaseDate": "2026-07-24",
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

@@ -77,6 +77,42 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "spirit-bomb-shield",
+      "name": "Spirit Bomb Shield Ivern",
+      "damageType": "Support",
+      "note": "Turn every E shield and protection window into Spirit Bomb stacks. Windspeaker's Blessing and Wee Woo Wee Woo keep the shield loop moving; at full stacks, Spirit Bomb automatically lands on the lowest-health ally. Best when Daisy starts the fight and you can protect the follow-up.",
+      "augments": {
+        "core": [
+          { "id": 910019, "apiName": "ARAMMayhemSpiritBomb", "name": "Spirit Bomb" },
+          { "id": 910011, "apiName": "ARAMMayhemWindspeakersBlessing", "name": "Windspeaker's Blessing" }
+        ],
+        "good": [
+          { "id": 910012, "apiName": "ARAMMayhemWeeWooWeeWoo", "name": "Wee Woo Wee Woo" },
+          { "id": 910104, "apiName": "ARAMMayhemRejuvenation", "name": "Rejuvenation" },
+          { "id": 68, "apiName": "Recursion", "name": "Recursion" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6617, "name": "Moonstone Renewer" },
+        { "id": 3158, "name": "Ionian Boots of Lucidity" },
+        { "id": 2526, "name": "Whispering Circlet" },
+        { "id": 3107, "name": "Redemption" },
+        { "id": 6620, "name": "Echoes of Helia" },
+        { "id": 6621, "name": "Dawncore" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3070, "name": "Tear of the Goddess" },
+        { "id": 4642, "name": "Bandleglass Mirror" },
+        { "id": 2003, "name": "Health Potion" }
+      ],
+      "releaseDate": "2026-07-24",
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

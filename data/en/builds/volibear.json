@@ -88,6 +88,42 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "pressure-cooker",
+      "name": "Pressure Cooker Volibear",
+      "damageType": "Tank",
+      "note": "Pressure Cooker applies a nearby magic burn that scales with maximum health, so the job is not to rush damage. Use Q to enter, W to sustain, and E to extend your time in range. Tank Engine and Heartsteel make both your burn and body scale into the late game.",
+      "augments": {
+        "core": [
+          { "id": 910037, "apiName": "ARAMMayhemPressureCooker", "name": "Pressure Cooker" },
+          { "id": 313, "apiName": "TankEngine", "name": "Tank Engine" }
+        ],
+        "good": [
+          { "id": 41, "apiName": "Goliath", "name": "Goliath" },
+          { "id": 18, "apiName": "CourageoftheColossus", "name": "Courage of the Colossus" },
+          { "id": 152, "apiName": "Quest_SteelYourHeart", "name": "Quest: Steel Your Heart" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 3084, "name": "Heartsteel" },
+        { "id": 3111, "name": "Mercury's Treads" },
+        { "id": 3083, "name": "Warmog's Armor" },
+        { "id": 2502, "name": "Unending Despair" },
+        { "id": 3065, "name": "Spirit Visage" },
+        { "id": 4010, "name": "Bloodletter's Curse" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 1011, "name": "Giant's Belt" },
+        { "id": 1028, "name": "Ruby Crystal" },
+        { "id": 2003, "name": "Health Potion" }
+      ],
+      "releaseDate": "2026-07-24",
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

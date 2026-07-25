@@ -108,6 +108,96 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "split-q",
+      "name": "Spellsplit Q Morgana",
+      "damageType": "AP",
+      "note": "Assign Spellsplit to Q: it splits on hit, at maximum range, or on recast. Pair it with Multishot and Pursuit of Haste to turn Dark Binding into a long-range waveclear and poke tool. This is a pivot when you roll the Q-specific augments, not a replacement for standard burn Morgana.",
+      "augments": {
+        "core": [
+          {
+            "id": 910069,
+            "apiName": "ARAMMayhemSpellSplit",
+            "name": "Spellsplit"
+          },
+          {
+            "id": 910077,
+            "apiName": "ARAMMayhemMultishot",
+            "name": "Multishot"
+          }
+        ],
+        "good": [
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "Pursuit of Haste"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          },
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "Archmage"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": [],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

@@ -97,6 +97,39 @@
           "name": "鞋子"
         }
       ]
+    },
+    {
+      "key": "r-crit",
+      "name": "R暴击收割阿克尚",
+      "damageType": "AD",
+      "note": "只在刷到易损或珠光护手时转。它们让大招子弹可以暴击；随后用升级无尽之刃把每一发收割弹的暴击收益放大。先做无尽确保升级生效，R留给兵线被清掉或目标低血量的窗口。",
+      "augments": {
+        "core": [
+          { "id": 92, "apiName": "Vulnerability", "name": "易损" },
+          { "id": 910001, "apiName": "ARAMMayhemUpgradeInfinityEdge", "name": "升级无尽之刃" }
+        ],
+        "good": [
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
+          { "id": 910098, "apiName": "ARAMMayhemGlassCannon", "name": "玻璃大炮" },
+          { "id": 32, "apiName": "Executioner", "name": "裁决使" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3031, "name": "无尽之刃" },
+        { "id": 3006, "name": "狂战士胫甲" },
+        { "id": 3036, "name": "多米尼克领主的致意" },
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 3032, "name": "育恩塔尔荒野箭" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3134, "name": "锯齿短匕" },
+        { "id": 1001, "name": "鞋子" }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

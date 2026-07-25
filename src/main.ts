@@ -730,6 +730,7 @@ function registerWindowIpc(): void {
 }
 
 function registerUpdateIpc(): void {
+  ipcMain.handle('app:getVersion', () => app.getVersion())
   autoUpdater.autoDownload = true
   autoUpdater.autoInstallOnAppQuit = true
 

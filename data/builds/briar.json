@@ -79,6 +79,40 @@
           "name": "鞋子"
         }
       ]
+    },
+    {
+      "key": "tooth-fairy-reset",
+      "name": "牙仙子收割贝蕾亚",
+      "damageType": "AD",
+      "note": "牙仙会在爆发后掉落牙齿，捡起后永久叠穿甲。用收集者和狂妄尽早建立斩杀线，再靠E减伤与死亡之舞把每次进场变成下一轮追击；适合能稳定跟队友一起收割的对局。",
+      "augments": {
+        "core": [
+          { "id": 910006, "apiName": "ARAMMayhemToothFairy", "name": "牙仙" },
+          { "id": 32, "apiName": "Executioner", "name": "裁决使" }
+        ],
+        "good": [
+          { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
+          { "id": 910010, "apiName": "ARAMMayhemUpgradeCollector", "name": "升级收集者" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "收集者" },
+        { "id": 3111, "name": "水银之靴" },
+        { "id": 6697, "name": "狂妄" },
+        { "id": 6333, "name": "死亡之舞" },
+        { "id": 6696, "name": "公理圆弧" },
+        { "id": 3031, "name": "无尽之刃" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3134, "name": "锯齿短匕" },
+        { "id": 1001, "name": "鞋子" },
+        { "id": 2003, "name": "生命药水" }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

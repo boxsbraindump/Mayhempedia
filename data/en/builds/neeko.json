@@ -97,6 +97,96 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "q-quest",
+      "name": "Q Quest Multishot Neeko",
+      "damageType": "AP",
+      "note": "Assign Pursuit of Haste, Multishot, and Echo Cast to Q. Use Blooming Burst to complete the quest safely, then repeatedly lower health bars with more missiles and a shorter cooldown. This route is about long-range pressure; you do not need to force disguise ult engages.",
+      "augments": {
+        "core": [
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "Pursuit of Haste"
+          },
+          {
+            "id": 910077,
+            "apiName": "ARAMMayhemMultishot",
+            "name": "Multishot"
+          }
+        ],
+        "good": [
+          {
+            "id": 910051,
+            "apiName": "ARAMMayhemEchoCast",
+            "name": "Echo Cast"
+          },
+          {
+            "id": 910069,
+            "apiName": "ARAMMayhemSpellSplit",
+            "name": "Spellsplit"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "Magic Missile"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "Infernal Conduit"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "Luden's Echo"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 4628,
+          "name": "Horizon Focus"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "Lost Chapter"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": [],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

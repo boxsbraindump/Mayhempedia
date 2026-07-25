@@ -83,6 +83,83 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "support-burst",
+      "name": "辅助秒人流索拉卡",
+      "damageType": "Support",
+      "releaseDate": "2026-07-23",
+      "note": "用蛋白奶昔把额外双抗转成治疗和护盾强度，再用信众赋能与天音爆把每一次治疗变成伤害和斩杀压力。仁慈一击绑定Q后接普攻补伤害；装备按冰心、兰顿、败魔、自然之力、贾修、法穿杖的顺序堆双抗与法穿。",
+      "augments": {
+        "core": [
+          {
+            "id": 910070,
+            "apiName": "ARAMMayhemProteinShake",
+            "name": "蛋白奶昔"
+          },
+          {
+            "id": 910059,
+            "apiName": "ARAMMayhemMercysStrike",
+            "name": "仁慈一击"
+          },
+          {
+            "id": 910045,
+            "apiName": "ARAMMayhemEmpoweredByTheFaithful",
+            "name": "信众赋能"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "天音爆"
+          }
+        ],
+        "good": [],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3110,
+          "name": "冰霜之心"
+        },
+        {
+          "id": 3143,
+          "name": "兰顿之兆"
+        },
+        {
+          "id": 2504,
+          "name": "败魔"
+        },
+        {
+          "id": 4401,
+          "name": "自然之力"
+        },
+        {
+          "id": 6665,
+          "name": "千变者贾修"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "Douyin community build"
+      ],
+      "starterItems": [
+        {
+          "id": 3024,
+          "name": "冰川圆盾"
+        },
+        {
+          "id": 1029,
+          "name": "布甲"
+        },
+        {
+          "id": 2031,
+          "name": "复用型药水"
+        }
+      ]
     }
   ]
 }

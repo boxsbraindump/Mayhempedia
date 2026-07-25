@@ -101,6 +101,101 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "cruelty-comet",
+      "name": "Cruelty Comet Rell",
+      "damageType": "Tank",
+      "note": "Treat Cruelty as the damage engine: every immobilize or ground calls down a comet that scales with AP and maximum health. A multi-person R-flash can splash the whole enemy team; Tank Engine, Courage of the Colossus, and Soul Eater turn repeat crowd control into sustained uptime.",
+      "augments": {
+        "core": [
+          {
+            "id": 910041,
+            "apiName": "ARAMMayhemCruelty",
+            "name": "Cruelty"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "good": [
+          {
+            "id": 18,
+            "apiName": "CourageoftheColossus",
+            "name": "Courage of the Colossus"
+          },
+          {
+            "id": 910043,
+            "apiName": "ARAMMayhemRavenousBind",
+            "name": "Ravenous Bind"
+          },
+          {
+            "id": 910028,
+            "apiName": "ARAMMayhemSoulEater",
+            "name": "Soul Eater"
+          },
+          {
+            "id": 41,
+            "apiName": "Goliath",
+            "name": "Goliath"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3084,
+          "name": "Heartsteel"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads"
+        },
+        {
+          "id": 4010,
+          "name": "Bloodletter's Curse"
+        },
+        {
+          "id": 3083,
+          "name": "Warmog's Armor"
+        },
+        {
+          "id": 3190,
+          "name": "Locket of the Iron Solari"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 1011,
+          "name": "Giant's Belt"
+        },
+        {
+          "id": 1028,
+          "name": "Ruby Crystal"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": [],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

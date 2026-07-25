@@ -170,6 +170,7 @@ export interface Settings {
   overlay: OverlaySettings
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  favoriteRouteKeys: string[]
   customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
@@ -211,6 +212,7 @@ contextBridge.exposeInMainWorld('mayhem', {
     ipcRenderer.invoke('matchHistory:forgetAccount', puuid),
   minimizeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:minimize'),
   closeWindow: (): Promise<void> => ipcRenderer.invoke('appWindow:close'),
+  appVersion: (): Promise<string> => ipcRenderer.invoke('app:getVersion'),
   showOverlay: (): Promise<boolean> => ipcRenderer.invoke('overlay:show'),
   getUpdateStatus: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:getStatus'),
   checkForUpdates: (): Promise<UpdateStatus> => ipcRenderer.invoke('updates:check'),

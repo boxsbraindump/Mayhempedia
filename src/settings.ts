@@ -50,6 +50,8 @@ export interface Settings {
   // 主页内容显示（内容开关类）
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  /** 玩家主动收藏的路线，用于在同一英雄的路线切换器内置顶。仅保存在本机。 */
+  favoriteRouteKeys: string[]
   customRoutes: CustomRoute[]
 
   // 通知类
@@ -81,6 +83,7 @@ export const DEFAULT_SETTINGS: Settings = {
     achievements: true,
   },
   selectedArchetypeByChampionId: {},
+  favoriteRouteKeys: [],
   customRoutes: [],
   notificationMode: 'inpage',
   persistMatchHistory: true, // 默认开：这是产品核心卖点(长期攒Tier数据素材)，纯本地零风险；设置页要把这点说清楚，不能默默开
@@ -128,6 +131,7 @@ export function getSettings(): Settings {
       ...DEFAULT_SETTINGS.selectedArchetypeByChampionId,
       ...stored.selectedArchetypeByChampionId,
     },
+    favoriteRouteKeys: Array.isArray(stored.favoriteRouteKeys) ? stored.favoriteRouteKeys : [],
     customRoutes: Array.isArray(stored.customRoutes) ? stored.customRoutes : [],
   }
 }

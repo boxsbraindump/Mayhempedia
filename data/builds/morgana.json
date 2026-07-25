@@ -106,6 +106,94 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "split-q",
+      "name": "法术分裂Q莫甘娜",
+      "damageType": "AP",
+      "note": "把「法术分裂」选给Q：命中、最远距离或二段时会分裂；再用多重射击和急速追猎把禁锢变成远程清线与持续消耗工具。这是刷到Q专属海克斯后的转向路线，不是常规灼烧流的替代品。",
+      "augments": {
+        "core": [
+          {
+            "id": 910069,
+            "apiName": "ARAMMayhemSpellSplit",
+            "name": "法术分裂"
+          },
+          {
+            "id": 910077,
+            "apiName": "ARAMMayhemMultishot",
+            "name": "多重射击"
+          }
+        ],
+        "good": [
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "急速追猎"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          },
+          {
+            "id": 900001,
+            "apiName": "MayhemArchmage",
+            "name": "大法师"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

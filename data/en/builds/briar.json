@@ -81,6 +81,42 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "tooth-fairy-reset",
+      "name": "Tooth Fairy Reset Briar",
+      "damageType": "AD",
+      "note": "Tooth Fairy drops Teeth after burst damage; collecting them permanently grants lethality. Use The Collector and Hubris to establish early execute pressure, then let E damage reduction and Death's Dance turn each entry into another reset. Pick it when your team can reliably help secure targets.",
+      "augments": {
+        "core": [
+          { "id": 910006, "apiName": "ARAMMayhemToothFairy", "name": "Tooth Fairy" },
+          { "id": 32, "apiName": "Executioner", "name": "Executioner" }
+        ],
+        "good": [
+          { "id": 82, "apiName": "TheBrutalizer", "name": "The Brutalizer" },
+          { "id": 195, "apiName": "GiantSlayer", "name": "Giant Slayer" },
+          { "id": 910010, "apiName": "ARAMMayhemUpgradeCollector", "name": "Upgrade Collector" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6676, "name": "The Collector" },
+        { "id": 3111, "name": "Mercury's Treads" },
+        { "id": 6697, "name": "Hubris" },
+        { "id": 6333, "name": "Death's Dance" },
+        { "id": 6696, "name": "Axiom Arc" },
+        { "id": 3031, "name": "Infinity Edge" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3134, "name": "Serrated Dirk" },
+        { "id": 1001, "name": "Boots" },
+        { "id": 2003, "name": "Health Potion" }
+      ],
+      "releaseDate": "2026-07-24",
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

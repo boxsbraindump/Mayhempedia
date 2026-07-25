@@ -2,20 +2,28 @@
 
 Release history for the Mayhempedia desktop companion. League/ARAM game patch notes live separately in `data/patch-notes.json`.
 
-## [0.1.2] - Unreleased
+## [0.1.2] - 2026-07-25 (Closed beta)
 
-The next beta is being prepared with a clearer public release history, a more focused download path, and stronger conversion measurement.
+0.1.2 expands the route library with new ARAM: Mayhem playstyles, makes the right route easier to reach from the home screen, and brings the companion up to the 26.14 Mayhem update.
 
 ### Added
-- Added a public Updates page and a reusable release-notes data source.
-- Added a What's new section inside the desktop app.
+- Added 11 new official-style routes for Akshan, Briar, Gwen, Hwei, Ivern, Jarvan IV, Morgana, Neeko, Rell, Soraka, and Volibear.
+- Added curated Combo Plays to explain useful augment and item interactions.
+- Added New labels to recently published routes and homepage picks.
+- Added visible desktop app version information in the sidebar.
 
 ### Changed
-- Refined the homepage around preview first, then download.
-- Aligned the website accent color with the blue used by the client.
+- Refined the Command Center with four focused new-route picks, complete six-item builds, and core augments at a glance.
+- Opening a homepage route now lands directly on that exact Combat File route instead of the champion default.
+- Reworked Combat File and overlay spacing so core augments, alternatives, starter items, and final items scan more cleanly.
+- Updated tactical notes to League of Legends 26.14 and limited the view to ARAM: Mayhem changes.
+- Tightened the Command Center layout by aligning the Champion Codex and recent matches, while removing low-value count cards.
 
 ### Fixed
-- Wait for Cloudflare Zaraz to record download clicks before navigating to GitHub.
+- Corrected 26.14 Mayhem augment icons, names, and localized patch-note content.
+- Fixed mixed-language labels in the English interface and improved long augment-name readability.
+- Kept local match history capped and displayed as 20 saved games maximum.
+- Removed the misleading in-app update page; public release availability is now handled by the packaged release flow.
 
 ## [0.1.1] - 2026-07-18
 

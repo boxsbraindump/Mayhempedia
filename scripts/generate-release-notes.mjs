@@ -12,13 +12,19 @@ function list(items) {
   return items.length ? items.map((item) => `- ${item}`).join('\n') : '- None'
 }
 
+function releaseLabel(release) {
+  if (release.status === 'closed_beta') return `${release.date} (Closed beta)`
+  if (release.status === 'unreleased') return 'Unreleased'
+  return release.date
+}
+
 const changelog = [
   '# Mayhempedia changelog',
   '',
   'Release history for the Mayhempedia desktop companion. League/ARAM game patch notes live separately in `data/patch-notes.json`.',
   '',
   ...payload.releases.flatMap((release) => [
-    `## [${release.version}] - ${release.status === 'unreleased' ? 'Unreleased' : release.date}`,
+    `## [${release.version}] - ${releaseLabel(release)}`,
     '',
     release.summaryEn,
     '',
@@ -34,11 +40,10 @@ const changelog = [
   ]),
 ].join('\n')
 
-// The public site must only advertise installers that actually exist. Keep
-// unreleased work in the repository changelog, but never surface it on the
-// download site before its GitHub Release is live.
+// The Updates page can show work in progress, but its status makes clear that
+// the matching installer is not public yet. The homepage download link stays
+// pinned to the latest released installer until the release check passes.
 const publicReleases = payload.releases
-  .filter((release) => release.status === 'released')
   .map((release) => {
     const notes = release.public ?? {}
     return {
@@ -59,7 +64,7 @@ const publicReleases = payload.releases
     }
   })
 
-const publicCurrentVersion = publicReleases[0]?.version
+const publicCurrentVersion = payload.currentVersion
 
 if (!publicCurrentVersion) {
   throw new Error('No released version is available for the public website.')
@@ -67,4 +72,4 @@ if (!publicCurrentVersion) {
 
 await writeFile(changelogPath, `${changelog.trim()}\n`, 'utf8')
 await writeFile(sitePath, `${JSON.stringify({ currentVersion: publicCurrentVersion, releases: publicReleases }, null, 2)}\n`, 'utf8')
-console.log(`Generated CHANGELOG.md and site/updates.json for ${publicReleases.length} public releases.`)
+console.log(`Generated CHANGELOG.md and site/updates.json for ${publicReleases.length} release entries.`)

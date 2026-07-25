@@ -95,6 +95,94 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "q-quest",
+      "name": "Q任务多重妮蔻",
+      "damageType": "AP",
+      "note": "把急速追猎、多重射击与回声施法都选给Q。先用Q稳定完成任务，后续靠更短CD和追加弹体反复压低血线；这条路线的重点是远距离消耗，不需要强行伪装开R。",
+      "augments": {
+        "core": [
+          {
+            "id": 910026,
+            "apiName": "ARAMMayhemPursuitOfHaste",
+            "name": "急速追猎"
+          },
+          {
+            "id": 910077,
+            "apiName": "ARAMMayhemMultishot",
+            "name": "多重射击"
+          }
+        ],
+        "good": [
+          {
+            "id": 910051,
+            "apiName": "ARAMMayhemEchoCast",
+            "name": "回声施法"
+          },
+          {
+            "id": 910069,
+            "apiName": "ARAMMayhemSpellSplit",
+            "name": "法术分裂"
+          },
+          {
+            "id": 133,
+            "apiName": "MagicMissile",
+            "name": "魔法飞弹"
+          },
+          {
+            "id": 45,
+            "apiName": "InfernalConduit",
+            "name": "炼狱导管"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6655,
+          "name": "卢登的回声"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 4628,
+          "name": "视界专注"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        },
+        {
+          "id": 3135,
+          "name": "虚空之杖"
+        },
+        {
+          "id": 3157,
+          "name": "中娅沙漏"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3802,
+          "name": "遗失的章节"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

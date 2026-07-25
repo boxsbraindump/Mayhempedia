@@ -75,6 +75,40 @@
           "name": "班德尔玻璃镜"
         }
       ]
+    },
+    {
+      "key": "spirit-bomb-shield",
+      "name": "元气弹护盾艾翁",
+      "damageType": "Support",
+      "note": "把每次E护盾和保护队友的频率转成元气弹层数。风语者的祝福与急救鸣笛优先保证护盾循环，满层元气弹会自动丢给最低血量队友，适合围绕黛西开团后的持续保护。",
+      "augments": {
+        "core": [
+          { "id": 910019, "apiName": "ARAMMayhemSpiritBomb", "name": "元气弹" },
+          { "id": 910011, "apiName": "ARAMMayhemWindspeakersBlessing", "name": "风语者的祝福" }
+        ],
+        "good": [
+          { "id": 910012, "apiName": "ARAMMayhemWeeWooWeeWoo", "name": "急救鸣笛" },
+          { "id": 910104, "apiName": "ARAMMayhemRejuvenation", "name": "焕发生机" },
+          { "id": 68, "apiName": "Recursion", "name": "循环往复" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6617, "name": "月石再生器" },
+        { "id": 3158, "name": "明朗之靴" },
+        { "id": 2526, "name": "耳语头环" },
+        { "id": 3107, "name": "救赎" },
+        { "id": 6620, "name": "海力亚的回响" },
+        { "id": 6621, "name": "黎明核心" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3070, "name": "女神之泪" },
+        { "id": 4642, "name": "班德尔玻璃镜" },
+        { "id": 2003, "name": "生命药水" }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

@@ -164,6 +164,7 @@ export interface Settings {
   overlay: OverlaySettings
   dashboardSections: DashboardSections
   selectedArchetypeByChampionId: Record<string, string>
+  favoriteRouteKeys: string[]
   customRoutes: CustomRoute[]
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
@@ -188,6 +189,7 @@ declare global {
       forgetStoredAccount: (puuid: string) => Promise<PersistedAccountSummary[]>
       minimizeWindow: () => Promise<void>
       closeWindow: () => Promise<void>
+      appVersion: () => Promise<string>
       showOverlay: () => Promise<boolean>
       getUpdateStatus: () => Promise<UpdateStatus>
       checkForUpdates: () => Promise<UpdateStatus>

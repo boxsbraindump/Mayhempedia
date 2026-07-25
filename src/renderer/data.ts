@@ -66,6 +66,11 @@ export interface Archetype {
   name: string
   damageType: string
   note: string
+  /** Official editor override. When omitted, the first official route is recommended. */
+  recommended?: boolean
+  /** Lets a newly published route stay marked as new for a short window. */
+  releaseDate?: string
+  isNew?: boolean
   augments: { core: Ref[]; good: Ref[]; trap: Ref[] }
   starterItems?: Ref[]
   items: Ref[]
@@ -80,6 +85,39 @@ export interface Build {
   championId: number
   championName: string
   archetypes: Archetype[]
+}
+
+/** A compact, cross-champion interaction worth recognizing during augment select or shop planning. */
+export interface AugmentCombo {
+  key: string
+  name: string
+  description: string
+  playPattern: string
+  kind?: 'augment' | 'item'
+  augmentIds?: number[]
+  itemIds?: number[]
+  itemBranches?: Array<{
+    name: string
+    description?: string
+    itemIds: number[]
+    championIds?: number[]
+  }>
+  itemPlan?: {
+    name: string
+    description: string
+    itemIds: number[]
+    itemBranches: Array<{
+      name: string
+      description?: string
+      itemIds: number[]
+      championIds?: number[]
+    }>
+  }
+  linkedComboKey?: string
+  championIds: number[]
+  tags: string[]
+  source?: string
+  releaseDate?: string
 }
 
 /** 某英雄本版本的 ARAM 平衡修正（Riot 官方 wiki Module:ChampionData/data，倍率=1 表示无修正、字段缺失也视为 1） */
@@ -164,6 +202,7 @@ export interface Core {
   altChampionById: Map<number, Pick<Champion, 'id' | 'name' | 'title' | 'alias' | 'pinyin' | 'initials'>>
   runtimeAugmentAliases: Record<number, number>
   augments: Augment[] // 全列表（海克斯一览用）
+  augmentCombos: AugmentCombo[]
   champions: Champion[]
   buildIndex: Record<string, string> // championId -> 流派文件名
   aramBalance: AramBalance[] // 只含有修正的英雄
@@ -194,6 +233,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     patchNotes,
     releaseNotesPayload,
     augmentAliasPayload,
+    augmentCombos,
   ] = await Promise.all([
     fetch(`${root}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
     fetch(`${root}/items.json`).then((r) => r.json() as Promise<Item[]>),
@@ -209,6 +249,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     fetch('/augment-runtime-aliases.json')
       .then((r) => (r.ok ? (r.json() as Promise<RuntimeAugmentAliasPayload>) : { aliases: {} }))
       .catch(() => ({ aliases: {} })),
+    fetch(`${root}/augment-combos.json`).then((r) => r.json() as Promise<AugmentCombo[]>),
   ])
   runtimeAugmentIdAliases = normalizeAliasPayload(augmentAliasPayload)
   return {
@@ -219,6 +260,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     altChampionById: new Map(altChampions.map((c) => [c.id, c])),
     runtimeAugmentAliases: runtimeAugmentIdAliases,
     augments: aug.filter((a) => a.availability !== 'legacy'),
+    augmentCombos,
     champions,
     buildIndex,
     aramBalance,
@@ -277,6 +319,7 @@ export function customRouteToArchetype(route: CustomRoute, core: Core): Archetyp
     name: route.title,
     damageType: route.damageType,
     note: route.description,
+    releaseDate: route.updatedAt,
     starterItems: refsFromIds(route.starterItemIds, core.itemById),
     items: refsFromIds(route.itemIds, core.itemById),
     augments: {

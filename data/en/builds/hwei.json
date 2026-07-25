@@ -99,6 +99,42 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "luden-one-shot",
+      "name": "Luden One-Cycle Hwei",
+      "damageType": "AP",
+      "note": "Switch only against light frontlines when QE or EE can consistently reach the backline. Luden's, Stormsurge, and Shadowflame raise the execute threshold for one clean spell rotation; Magic Missile and Jeweled Gauntlet make distant hits snowball into kills.",
+      "augments": {
+        "core": [
+          { "id": 133, "apiName": "MagicMissile", "name": "Magic Missile" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "Jeweled Gauntlet" }
+        ],
+        "good": [
+          { "id": 30, "apiName": "Eureka", "name": "Eureka" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "Phenomenal Evil" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "Infernal Conduit" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "Luden's Echo" },
+        { "id": 3020, "name": "Sorcerer's Shoes" },
+        { "id": 4646, "name": "Stormsurge" },
+        { "id": 4645, "name": "Shadowflame" },
+        { "id": 3089, "name": "Rabadon's Deathcap" },
+        { "id": 3135, "name": "Void Staff" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3802, "name": "Lost Chapter" },
+        { "id": 2003, "name": "Health Potion" },
+        { "id": 2003, "name": "Health Potion" }
+      ],
+      "releaseDate": "2026-07-24",
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

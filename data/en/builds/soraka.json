@@ -85,6 +85,85 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "support-burst",
+      "name": "Burst Support Soraka",
+      "damageType": "Support",
+      "releaseDate": "2026-07-23",
+      "note": "Protein Shake turns bonus defenses into heal and shield power, while Empowered By The Faithful and Sonic Boom turn every heal into damage and execute pressure. Bind Mercy's Strike to Q, then follow with an empowered attack. Build Frozen Heart into Randuin's, Kaenic Rookern, Force of Nature, Jak'Sho, and Void Staff for defenses plus penetration.",
+      "augments": {
+        "core": [
+          {
+            "id": 910070,
+            "apiName": "ARAMMayhemProteinShake",
+            "name": "Protein Shake"
+          },
+          {
+            "id": 910059,
+            "apiName": "ARAMMayhemMercysStrike",
+            "name": "Mercy's Strike"
+          },
+          {
+            "id": 910045,
+            "apiName": "ARAMMayhemEmpoweredByTheFaithful",
+            "name": "Empowered By The Faithful"
+          },
+          {
+            "id": 76,
+            "apiName": "SonicBoom",
+            "name": "Sonic Boom"
+          }
+        ],
+        "good": [],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 3110,
+          "name": "Frozen Heart"
+        },
+        {
+          "id": 3143,
+          "name": "Randuin's Omen"
+        },
+        {
+          "id": 2504,
+          "name": "Kaenic Rookern"
+        },
+        {
+          "id": 4401,
+          "name": "Force of Nature"
+        },
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean"
+        },
+        {
+          "id": 3135,
+          "name": "Void Staff"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "Douyin community build"
+      ],
+      "starterItems": [
+        {
+          "id": 3024,
+          "name": "Glacial Buckler"
+        },
+        {
+          "id": 1029,
+          "name": "Cloth Armor"
+        },
+        {
+          "id": 2031,
+          "name": "Refillable Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": []
     }
   ]
 }

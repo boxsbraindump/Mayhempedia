@@ -96,6 +96,90 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "terrain-ap",
+      "name": "地形R·AP嘉文四世",
+      "damageType": "AP",
+      "note": "娱乐路线：用公理圆弧和海克斯注力刚壁缩短R节奏，再把「地形制敌」选给R，让天崩地裂的墙成为AP伤害区。只在首轮刷到地形制敌、对手后排位移少且队友能接控制时转；没有核心就继续AD开团。",
+      "augments": {
+        "core": [
+          {
+            "id": 910020,
+            "apiName": "ARAMMayhemTerraind",
+            "name": "地形制敌"
+          }
+        ],
+        "good": [
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "精怪魔法"
+          },
+          {
+            "id": 11,
+            "apiName": "CantTouchThis",
+            "name": "你摸不到"
+          },
+          {
+            "id": 910086,
+            "apiName": "ARAMMayhemHideOnBush",
+            "name": "藏身草丛"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6696,
+          "name": "公理圆弧"
+        },
+        {
+          "id": 3073,
+          "name": "海克斯注力刚壁"
+        },
+        {
+          "id": 3020,
+          "name": "法师之靴"
+        },
+        {
+          "id": 3118,
+          "name": "残疫"
+        },
+        {
+          "id": 4645,
+          "name": "影焰"
+        },
+        {
+          "id": 3089,
+          "name": "灭世者的死亡之帽"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "守护者之刃"
+        },
+        {
+          "id": 1001,
+          "name": "鞋子"
+        },
+        {
+          "id": 2003,
+          "name": "生命药水"
+        }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

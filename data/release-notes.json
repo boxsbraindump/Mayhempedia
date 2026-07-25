@@ -3,50 +3,84 @@
   "releases": [
     {
       "version": "0.1.2",
-      "status": "unreleased",
-      "date": "2026-07-24",
-      "titleEn": "A clearer release and download flow",
-      "titleZh": "更清晰的版本与下载流程",
-      "summaryEn": "The next beta is being prepared with a clearer public release history, a more focused download path, and stronger conversion measurement.",
-      "summaryZh": "下一版测试版本正在准备中，重点是更清晰的公开更新记录、更顺畅的下载路径和更可靠的转化统计。",
+      "status": "closed_beta",
+      "date": "2026-07-25",
+      "titleEn": "New routes, clearer choices",
+      "titleZh": "??????????",
+      "summaryEn": "0.1.2 expands the route library with new ARAM: Mayhem playstyles, makes the right route easier to reach from the home screen, and brings the companion up to the 26.14 Mayhem update.",
+      "summaryZh": "0.1.2 ???? ARAM: Mayhem ?????????????????????? 26.14 ?????????",
       "addedEn": [
-        "Added a public Updates page and a reusable release-notes data source.",
-        "Added a What's new section inside the desktop app."
+        "Added 11 new official-style routes for Akshan, Briar, Gwen, Hwei, Ivern, Jarvan IV, Morgana, Neeko, Rell, Soraka, and Volibear.",
+        "Added curated Combo Plays to explain useful augment and item interactions.",
+        "Added New labels to recently published routes and homepage picks.",
+        "Added visible desktop app version information in the sidebar."
       ],
       "addedZh": [
-        "新增官网 Updates 更新页面和统一的版本记录数据源。",
-        "桌面应用新增 What's new 版本更新入口。"
+        "?????????????????????????????????????????? 11 ????????",
+        "???????????????????????",
+        "?????????????? NEW ???",
+        "?????????????"
       ],
       "changedEn": [
-        "Refined the homepage around preview first, then download.",
-        "Aligned the website accent color with the blue used by the client."
+        "Refined the Command Center with four focused new-route picks, complete six-item builds, and core augments at a glance.",
+        "Opening a homepage route now lands directly on that exact Combat File route instead of the champion default.",
+        "Reworked Combat File and overlay spacing so core augments, alternatives, starter items, and final items scan more cleanly.",
+        "Updated tactical notes to League of Legends 26.14 and limited the view to ARAM: Mayhem changes.",
+        "Tightened the Command Center layout by aligning the Champion Codex and recent matches, while removing low-value count cards."
       ],
       "changedZh": [
-        "官网首页调整为先预览、再下载的路径。",
-        "官网强调色统一为客户端使用的青蓝色。"
+        "????????????????????????????????",
+        "?????????????????? Combat File ??????????????",
+        "???? Combat File ? Overlay ???????????????????????",
+        "??????????? 26.14????? ARAM: Mayhem ?????",
+        "?????????????????????????????"
       ],
       "fixedEn": [
-        "Wait for Cloudflare Zaraz to record download clicks before navigating to GitHub."
+        "Corrected 26.14 Mayhem augment icons, names, and localized patch-note content.",
+        "Fixed mixed-language labels in the English interface and improved long augment-name readability.",
+        "Kept local match history capped and displayed as 20 saved games maximum.",
+        "Removed the misleading in-app update page; public release availability is now handled by the packaged release flow."
       ],
       "fixedZh": [
-        "修复下载按钮跳转 GitHub 前 Zaraz 事件可能丢失的问题。"
+        "?? 26.14 ???????????????????????",
+        "???????????????????????????",
+        "???????????? 20 ????????????",
+        "????????????????????????????????????"
       ],
       "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases",
       "public": {
-        "titleEn": "A clearer view of app updates",
-        "titleZh": "更清晰的应用更新记录",
-        "summaryEn": "The next beta adds an in-app What's new view so you can see the latest Mayhempedia client changes at a glance.",
-        "summaryZh": "下一个测试版会在客户端里加入 What's new 更新视图，让你直接看到 Mayhempedia 最近的变化。",
+        "titleEn": "New routes, clearer choices",
+        "titleZh": "??????????",
+        "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.14 Mayhem notes, and a more focused desktop companion.",
+        "summaryZh": "0.1.2 ?? ARAM: Mayhem ???????????????26.14 ???????????????",
         "addedEn": [
-          "Added an in-app What's new view for Mayhempedia client updates."
+          "11 new routes and curated Combo Plays.",
+          "New labels for recently published routes and homepage picks.",
+          "A visible app version in the desktop sidebar."
         ],
         "addedZh": [
-          "新增客户端 What's new 更新视图，集中展示 Mayhempedia 的版本变化。"
+          "?? 11 ???????????",
+          "???????????? NEW ???",
+          "?????????????"
         ],
-        "changedEn": [],
-        "changedZh": [],
-        "fixedEn": [],
-        "fixedZh": []
+        "changedEn": [
+          "Homepage picks now open the exact route they represent.",
+          "Combat File, overlay, and Command Center layouts are easier to scan.",
+          "Tactical notes now cover 26.14 ARAM: Mayhem changes only."
+        ],
+        "changedZh": [
+          "????????????????",
+          "Combat File?Overlay ??????????",
+          "??????? 26.14 ARAM: Mayhem ???"
+        ],
+        "fixedEn": [
+          "Corrected Mayhem augment icons, localization, and long-name readability.",
+          "Local match history is clearly capped at 20 saved games."
+        ],
+        "fixedZh": [
+          "??????????????????",
+          "??????????????? 20 ??"
+        ]
       }
     },
     {

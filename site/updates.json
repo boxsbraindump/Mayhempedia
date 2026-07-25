@@ -1,6 +1,44 @@
 {
-  "currentVersion": "0.1.1",
+  "currentVersion": "0.1.2",
   "releases": [
+    {
+      "version": "0.1.2",
+      "status": "closed_beta",
+      "date": "2026-07-25",
+      "titleEn": "New routes, clearer choices",
+      "titleZh": "??????????",
+      "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.14 Mayhem notes, and a more focused desktop companion.",
+      "summaryZh": "0.1.2 ?? ARAM: Mayhem ???????????????26.14 ???????????????",
+      "addedEn": [
+        "11 new routes and curated Combo Plays.",
+        "New labels for recently published routes and homepage picks.",
+        "A visible app version in the desktop sidebar."
+      ],
+      "addedZh": [
+        "?? 11 ???????????",
+        "???????????? NEW ???",
+        "?????????????"
+      ],
+      "changedEn": [
+        "Homepage picks now open the exact route they represent.",
+        "Combat File, overlay, and Command Center layouts are easier to scan.",
+        "Tactical notes now cover 26.14 ARAM: Mayhem changes only."
+      ],
+      "changedZh": [
+        "????????????????",
+        "Combat File?Overlay ??????????",
+        "??????? 26.14 ARAM: Mayhem ???"
+      ],
+      "fixedEn": [
+        "Corrected Mayhem augment icons, localization, and long-name readability.",
+        "Local match history is clearly capped at 20 saved games."
+      ],
+      "fixedZh": [
+        "??????????????????",
+        "??????????????? 20 ??"
+      ],
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases"
+    },
     {
       "version": "0.1.1",
       "status": "released",

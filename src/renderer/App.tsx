@@ -75,7 +75,31 @@ const EMPTY_CUSTOM_ROUTES: CustomRoute[] = []
 const CUSTOM_ROUTE_DRAFT_STORAGE_KEY = 'mayhempedia.customRouteDraft'
 const CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY = 'mayhempedia.customRouteSubpage'
 const CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY = 'mayhempedia.customRouteLibrarySelection'
+const HOMEPAGE_NEW_ROUTE_FILES = [
+  'akshan.json',
+  'briar.json',
+  'gwen.json',
+  'hwei.json',
+  'ivern.json',
+  'jarvaniv.json',
+  'morgana.json',
+  'neeko.json',
+  'rell.json',
+  'soraka.json',
+  'volibear.json',
+] as const
 type FeedbackMode = 'feedback' | 'problem'
+
+function isReleaseDemo(): boolean {
+  if (typeof window === 'undefined' || isElectron()) return false
+  return new URLSearchParams(window.location.search).get('release-demo') === '1'
+}
+
+function releaseDemoChampionId(): number {
+  if (typeof window === 'undefined') return 21
+  const value = Number(new URLSearchParams(window.location.search).get('champion'))
+  return Number.isFinite(value) && value > 0 ? value : 21
+}
 
 const RARITY_KEY: Record<number, string> = { 0: 'silver', 1: 'gold', 2: 'prismatic', 4: 'special' }
 const RARITY: Record<number, { label: string; text: string; border: string; bg: string }> = {
@@ -95,7 +119,7 @@ const ROLES: { key: string; label: string }[] = [
   { key: 'support', label: '辅助' },
 ]
 
-type Tab = 'dash' | 'champ' | 'history' | 'builder' | 'tier' | 'aug' | 'patch' | 'updates' | 'settings'
+type Tab = 'dash' | 'champ' | 'history' | 'builder' | 'tier' | 'aug' | 'patch' | 'settings'
 const NAV: { key: Tab; label: string }[] = [
   { key: 'dash', label: '作战总览' },
   { key: 'champ', label: '英雄图鉴' },
@@ -103,7 +127,6 @@ const NAV: { key: Tab; label: string }[] = [
   { key: 'builder', label: '自定义路线' },
   { key: 'aug', label: '海克斯图鉴' },
   { key: 'patch', label: '战术更新' },
-  { key: 'updates', label: '应用更新' },
   { key: 'settings', label: '设置' },
 ].filter((item) => CUSTOM_ROUTES_ENABLED || item.key !== 'builder') as { key: Tab; label: string }[]
 
@@ -176,14 +199,6 @@ function NavIcon({ k }: { k: Tab }) {
         <path d="M9.6 13.7h5.2" stroke={main} strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     )
-  if (k === 'updates')
-    return (
-      <svg {...p}>
-        <path d="M7 4.5h6.8L18 8.7v10.8H7z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
-        <path d="M14 4.8V9h4M9.7 13.2h5.1M9.7 16.3h3.5" fill="none" stroke={main} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M18.5 3v3.2M16.9 4.6h3.2" stroke={soft} strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    )
   if (k === 'settings')
     return (
       <svg {...p}>
@@ -201,10 +216,13 @@ function NavIcon({ k }: { k: Tab }) {
 }
 
 export default function App() {
+  const releaseDemo = isReleaseDemo()
+  const demoChampionId = releaseDemoChampionId()
   const [core, setCore] = useState<Core | null>(null)
   const [err, setErr] = useState<string | null>(null)
-  const [tab, setTab] = useState<Tab>('dash')
-  const [champId, setChampId] = useState<number | null>(null)
+  const [tab, setTab] = useState<Tab>(() => (releaseDemo ? 'champ' : 'dash'))
+  const [champId, setChampId] = useState<number | null>(() => (releaseDemo ? demoChampionId : null))
+  const [routeFocus, setRouteFocus] = useState<{ championId: number; archetypeKey: string } | null>(null)
   const [lcuStatus, setLcuStatus] = useState<LcuStatus | null>(null)
   const [activeChampionId, setActiveChampionId] = useState<number | null>(null)
   const [matchHistory, setMatchHistory] = useState<MatchHistoryResult | null>(null)
@@ -276,6 +294,7 @@ export default function App() {
   }, [])
 
   async function setArchetypePreference(championId: number, archetypeKey: string) {
+    setRouteFocus({ championId, archetypeKey })
     const baseSettings = settings ?? (isElectron() ? await window.mayhem!.getSettings() : null)
     const next = { ...(baseSettings?.selectedArchetypeByChampionId ?? {}), [String(championId)]: archetypeKey }
     setSettings((current) => (current ? { ...current, selectedArchetypeByChampionId: next } : baseSettings))
@@ -283,6 +302,18 @@ export default function App() {
     const updated = await window.mayhem!.setSetting('selectedArchetypeByChampionId', next)
     setSettings(updated)
     setDashboardSections(updated.dashboardSections)
+  }
+
+  async function toggleRouteFavorite(routeKey: string) {
+    const baseSettings = settings ?? (isElectron() ? await window.mayhem!.getSettings() : null)
+    const current = baseSettings?.favoriteRouteKeys ?? []
+    const next = current.includes(routeKey)
+      ? current.filter((key) => key !== routeKey)
+      : [...current, routeKey]
+    setSettings((existing) => (existing ? { ...existing, favoriteRouteKeys: next } : baseSettings))
+    if (!isElectron()) return
+    const updated = await window.mayhem!.setSetting('favoriteRouteKeys', next)
+    setSettings(updated)
   }
 
   async function saveCustomRoutes(routes: CustomRoute[]) {
@@ -385,7 +416,7 @@ export default function App() {
       }}
     >
     <div data-lang={appLang} className="density-compact relative h-full w-full overflow-hidden rounded-none bg-ink text-cream shadow-[inset_0_1px_0_rgba(244,241,232,0.05)]">
-      <WindowTitleBar />
+      <WindowTitleBar demoUpdate={releaseDemo} />
       <div className="relative flex h-[calc(100%-36px)] min-h-0 min-w-0 overflow-hidden bg-ink">
       <div className="pointer-events-none absolute inset-0 bg-[#0a1018]" />
       {notice && <NoticeToast notice={notice} onClose={() => setNotice(null)} />}
@@ -454,8 +485,11 @@ export default function App() {
             championId={champId}
             onBack={() => setChampId(null)}
             onPick={setChampId}
-            selectedArchetypeKey={settings?.selectedArchetypeByChampionId[String(champId)]}
+            selectedArchetypeKey={routeFocus?.championId === champId ? routeFocus.archetypeKey : settings?.selectedArchetypeByChampionId[String(champId)]}
             onArchetypePreference={setArchetypePreference}
+            favoriteRouteKeys={settings?.favoriteRouteKeys ?? []}
+            onToggleFavorite={toggleRouteFavorite}
+            releaseDemo={releaseDemo}
             customRoutes={visibleCustomRoutes}
           />
         )}
@@ -463,6 +497,10 @@ export default function App() {
           <Dashboard
             core={core}
             onPick={setChampId}
+            onPickRoute={(championId, archetypeKey) => {
+              void setArchetypePreference(championId, archetypeKey)
+              setChampId(championId)
+            }}
             onPickMatch={setMatchDetailId}
             matchHistory={previewMatchHistory}
             summoner={summoner}
@@ -508,11 +546,10 @@ export default function App() {
             }}
           />
         )}
-        {core && matchDetailId == null && champId == null && tab === 'aug' && <AugmentBrowser core={core} />}
+        {core && matchDetailId == null && champId == null && tab === 'aug' && <AugmentBrowser core={core} onPickChampion={setChampId} />}
         {core && matchDetailId == null && champId == null && tab === 'patch' && (
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
-        {core && matchDetailId == null && champId == null && tab === 'updates' && <WhatsNewTab core={core} />}
         {core && matchDetailId == null && champId == null && tab === 'settings' && (
           <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackMode('feedback')} onReportProblem={() => setFeedbackMode('problem')} />
         )}
@@ -755,7 +792,34 @@ function BrandWordmark({ className = '' }: { className?: string }) {
   )
 }
 
-function WindowTitleBar() {
+function WindowTitleBar({ demoUpdate = false }: { demoUpdate?: boolean }) {
+  const lang = useLang()
+  const [status, setStatus] = useState<UpdateStatus | null>(null)
+
+  useEffect(() => {
+    if (!isElectron()) return
+    window.mayhem!.getUpdateStatus().then(setStatus)
+    window.mayhem!.onUpdateStatus(setStatus)
+  }, [])
+
+  const state = demoUpdate ? 'downloaded' : status?.state ?? 'idle'
+  const showUpdateAction = state === 'available' || state === 'downloading' || state === 'downloaded'
+  const label =
+    state === 'downloaded'
+      ? (lang === 'en' ? 'Restart to install update' : '重启并安装更新')
+      : state === 'available'
+        ? (lang === 'en' ? 'Update downloading' : '正在下载更新')
+        : state === 'downloading'
+          ? (lang === 'en' ? `Downloading update ${status?.percent ?? 0}%` : `正在下载更新 ${status?.percent ?? 0}%`)
+          : state === 'checking'
+            ? (lang === 'en' ? 'Checking for updates' : '正在检查更新')
+            : (lang === 'en' ? 'You are up to date' : '当前已是最新版本')
+
+  const installUpdate = async () => {
+    if (!isElectron() || state !== 'downloaded') return
+    await window.mayhem!.installUpdate()
+  }
+
   return (
     <header className="window-drag-region relative z-50 flex h-9 shrink-0 items-center justify-between border-b border-line/55 bg-[#0a111c] px-3">
       <div className="flex items-center gap-2 text-[12px] font-extrabold tracking-tight text-cream">
@@ -765,7 +829,39 @@ function WindowTitleBar() {
         <BrandWordmark />
         <span className="h-1.5 w-1.5 rounded-full bg-hex" />
       </div>
-      <WindowControls />
+      <div className="window-no-drag flex h-full items-stretch">
+        {(isElectron() || demoUpdate) && showUpdateAction && (
+          <button
+            type="button"
+            aria-label={label}
+            title={label}
+            onClick={installUpdate}
+            disabled={state !== 'downloaded'}
+            className={
+              'relative grid h-full w-10 place-items-center text-hex transition hover:bg-hex/10 disabled:cursor-default disabled:hover:bg-transparent'
+            }
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {state === 'downloaded' ? (
+                <>
+                  <path d="M12 3v11" />
+                  <path d="m8 10 4 4 4-4" />
+                  <path d="M5 20h14" />
+                </>
+              ) : (
+                <>
+                  <path d="M20 11a8 8 0 0 0-14.9-3.9L3 10" />
+                  <path d="M3 4v6h6" />
+                  <path d="M4 13a8 8 0 0 0 14.9 3.9L21 14" />
+                  <path d="M21 20v-6h-6" />
+                </>
+              )}
+            </svg>
+            <span className="absolute right-2 top-1.5 h-1.5 w-1.5 rounded-full bg-hex" />
+          </button>
+        )}
+        <WindowControls />
+      </div>
     </header>
   )
 }
@@ -847,6 +943,7 @@ function Sidebar({
     return window.localStorage.getItem('mayhempedia.sidebarExpanded') === '1'
   })
   const [visualExpanded, setVisualExpanded] = useState(expanded)
+  const [appVersion, setAppVersion] = useState('0.1.2')
 
   useEffect(() => {
     if (expanded) {
@@ -860,6 +957,11 @@ function Sidebar({
   useEffect(() => {
     window.localStorage.setItem('mayhempedia.sidebarExpanded', expanded ? '1' : '0')
   }, [expanded])
+
+  useEffect(() => {
+    if (!isElectron()) return
+    window.mayhem!.appVersion().then(setAppVersion).catch(() => undefined)
+  }, [])
 
   const open = visualExpanded
   const labelsVisible = expanded && visualExpanded
@@ -1001,6 +1103,9 @@ function Sidebar({
           )}
         </div>
       </div>
+      <div className={open ? 'mt-1 text-center text-[9px] font-bold text-dim/55' : 'mt-1 text-center text-[8px] font-bold text-dim/55'} title="Mayhempedia version">
+        v{appVersion}
+      </div>
     </aside>
   )
 }
@@ -1014,6 +1119,7 @@ function Sidebar({
 function Dashboard({
   core,
   onPick,
+  onPickRoute,
   onPickMatch,
   matchHistory,
   summoner,
@@ -1032,6 +1138,7 @@ function Dashboard({
 }: {
   core: Core
   onPick: (id: number) => void
+  onPickRoute: (championId: number, archetypeKey: string) => void
   onPickMatch: (gameId: number) => void
   matchHistory: MatchHistoryResult | null
   summoner: SummonerInfo | null
@@ -1083,31 +1190,34 @@ function Dashboard({
     .slice(0, 12)
   const customPreview = [...customRoutes].slice(-4).reverse()
   const [officialDiscoveries, setOfficialDiscoveries] = useState<OfficialDiscovery[]>([])
+  const newDiscoveryTargets = useMemo(
+    () =>
+      HOMEPAGE_NEW_ROUTE_FILES.map((file) => {
+        const match = Object.entries(core.buildIndex).find(([, buildFile]) => buildFile === file)
+        if (!match) return null
+        const champion = champById.get(Number(match[0]))
+        return champion ? { champion, file } : null
+      }).filter((target): target is { champion: Champion; file: string } => !!target).slice(0, 4),
+    [champById, core.buildIndex],
+  )
   const officialDiscoveryKey = useMemo(
     () =>
-      core.heroTier
-        .filter((entry) => ['S', 'A', 'B'].includes(entry.tier) && core.buildIndex[entry.id])
-        .slice(0, 4)
-        .map((entry) => `${entry.id}:${core.buildIndex[entry.id]}`)
+      newDiscoveryTargets
+        .map(({ champion, file }) => `${champion.id}:${file}`)
         .join('|'),
-    [core.buildIndex, core.heroTier],
+    [newDiscoveryTargets],
   )
   const lang = useLang()
   useEffect(() => {
     let cancelled = false
-    const targets = core.heroTier
-      .filter((entry) => ['S', 'A', 'B'].includes(entry.tier) && core.buildIndex[entry.id])
-      .slice(0, 4)
+    const targets = newDiscoveryTargets
     Promise.all(
-      targets.map(async (entry) => {
-        const champion = champById.get(entry.id)
-        const file = core.buildIndex[entry.id]
-        if (!champion || !file) return null
+      targets.map(async ({ champion, file }) => {
         try {
           const build = await loadBuild(file, lang)
-          const archetype = build.archetypes[0]
+          const archetype = build.archetypes.find((route) => route.isNew || !!route.releaseDate)
           if (!archetype) return null
-          return { champion, archetype, tier: entry.tier }
+          return { champion, archetype, isNew: true }
         } catch {
           return null
         }
@@ -1118,7 +1228,7 @@ function Dashboard({
     return () => {
       cancelled = true
     }
-  }, [champById, core, officialDiscoveryKey, lang])
+  }, [core.heroTier, lang, newDiscoveryTargets, officialDiscoveryKey])
   const patch = core.patchNotes
   const [championQuery, setChampionQuery] = useState('')
   const [quickTier, setQuickTier] = useState<string>('all')
@@ -1144,6 +1254,14 @@ function Dashboard({
   const lcuReady = lcuStatus?.state === 'connected'
   const localMatchCount = recentMatches?.length ?? 0
   const localMatchSummary = `${localMatchCount} / 20`
+  const demoChampion = useMemo(
+    () =>
+      core.champions.find((champion) => {
+        const alias = champion.alias.replace(/[^a-z]/gi, '').toLowerCase()
+        return alias === 'xayah' || alias === 'kaisa'
+      }) ?? core.champions[0],
+    [core.champions],
+  )
   const heroHeadline = detectedChamp
     ? (lang === 'en' ? `${detectedChamp.name} Combat File` : `${detectedChamp.name} Combat File`)
     : title
@@ -1160,7 +1278,7 @@ function Dashboard({
     : (lang === 'en' ? 'Browse champions' : '浏览英雄图鉴')
   return (
     <>
-      <section className="glass-panel-strong relative mb-3 overflow-hidden rounded-[8px] border p-3.5">
+      <section className="glass-panel-strong relative mb-3 overflow-hidden rounded-[8px] border p-3">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-hex/45" />
         <div className="relative grid grid-cols-[minmax(0,1fr)_360px] gap-3 max-[920px]:grid-cols-1">
           <div className="min-w-0">
@@ -1171,16 +1289,34 @@ function Dashboard({
               <button type="button" onClick={primaryAction} className={BTN_PRIMARY}>
                 {primaryActionLabel}
               </button>
+              {!detectedChamp && demoChampion && (
+                <button
+                  type="button"
+                  onClick={() => onPick(demoChampion.id)}
+                  className={BTN_SECONDARY}
+                >
+                  {lang === 'en' ? `Preview ${demoChampion.name} Combat File` : `预览 ${demoChampion.name} Combat File`}
+                </button>
+              )}
               <button type="button" onClick={onGoHistory} className={BTN_SECONDARY}>
                 {lang === 'en' ? 'Review matches' : '查看对局记录'}
               </button>
               <button type="button" onClick={onGoBuilder} className="rounded-md px-2.5 py-1.5 text-[11px] font-black text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px">
                 {lang === 'en' ? 'Route workshop' : '路线工作台'}
               </button>
+              {isElectron() && (
+                <button
+                  type="button"
+                  onClick={() => void window.mayhem!.showOverlay()}
+                  className="rounded-md border border-hex/35 bg-hex/8 px-2.5 py-1.5 text-[11px] font-black text-hex transition hover:border-hex/60 hover:bg-hex/14 active:translate-y-px"
+                >
+                  {lang === 'en' ? 'Preview overlay' : '预览 Overlay'}
+                </button>
+              )}
             </div>
           </div>
-          <div className="rounded-[7px] border border-line/60 bg-[#07101b]/50 p-2.5">
-            <div className="mb-2 flex items-center justify-between gap-2 border-b border-line/45 pb-2">
+          <div className="rounded-[7px] border border-line/60 bg-[#07101b]/50 p-3">
+            <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-line/45 pb-2.5">
               <div>
                 <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Live status' : '实时状态'}</div>
                 <div className="mt-0.5 text-[14px] font-black text-cream">{title}</div>
@@ -1190,7 +1326,7 @@ function Dashboard({
                 <span className="text-[10px] font-extrabold text-dim">{t(lcuBadge.labelKey)}</span>
               </div>
             </div>
-            <div className="grid gap-1.5">
+            <div className="grid gap-2">
               <DashboardReadoutRow
                 label={lang === 'en' ? 'Champion lock' : '英雄锁定'}
                 value={detectedChamp?.name ?? (lang === 'en' ? 'Waiting' : '等待中')}
@@ -1214,14 +1350,14 @@ function Dashboard({
       <OfficialDiscoveryRoutes
         discoveries={officialDiscoveries}
         core={core}
-        onPick={onPick}
+        onPickRoute={onPickRoute}
         onOpenChampions={onGoChamp}
       />
 
-      <div className="grid grid-cols-[minmax(0,1.38fr)_minmax(300px,.72fr)] gap-3 max-[980px]:grid-cols-1">
-        <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
+      <div className="mt-3 grid items-stretch grid-cols-[minmax(0,1.38fr)_minmax(300px,.72fr)] gap-3 max-[980px]:grid-cols-1">
+        <section className="glass-panel relative h-full overflow-hidden rounded-[8px] border p-3">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-hex/35" />
-          <div className="mb-2 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-line/50 pb-2">
+          <div className="mb-2.5 flex items-start justify-between gap-2 border-b border-line/50 pb-2.5">
             <div className="min-w-0">
               <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Champion library' : '英雄图鉴'}</div>
               <h2 className="mt-0.5 text-[15px] font-black text-cream">{coveredCount}/{core.champions.length} {lang === 'en' ? 'champions covered' : '英雄已有路线'}</h2>
@@ -1229,7 +1365,7 @@ function Dashboard({
             <button type="button" onClick={onGoChamp} className={BTN_TINY_SECONDARY}>{lang === 'en' ? 'All' : '全部'}</button>
           </div>
 
-          <div className="grid grid-cols-[minmax(0,1fr)_132px] gap-2 max-[760px]:grid-cols-1">
+          <div className="grid grid-cols-[minmax(0,1fr)_132px] gap-2.5 max-[760px]:grid-cols-1">
             <div className="min-w-0">
               <div className="flex gap-2">
                 <input
@@ -1240,7 +1376,7 @@ function Dashboard({
                 />
                 <button type="button" onClick={onGoTier} className={BTN_TINY_SECONDARY + ' h-8 shrink-0 py-0'}>{lang === 'en' ? 'Tier' : '强度'}</button>
               </div>
-              <div className="mt-1.5 flex flex-wrap gap-1">
+              <div className="mt-2 flex flex-wrap gap-1">
                 {['all', 'S', 'A', 'B', 'C', 'D'].map((tier) => (
                   <button
                     key={tier}
@@ -1256,7 +1392,7 @@ function Dashboard({
                 ))}
               </div>
             </div>
-            <div className="rounded-[6px] border border-line/55 bg-[#07101b]/46 p-1.5">
+            <div className="rounded-[6px] border border-line/55 bg-[#07101b]/46 p-2">
               <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Coverage' : '覆盖状态'}</div>
               <div className="mt-1 grid grid-cols-2 gap-1">
                 <div className="text-[13px] font-black text-cream">{coveredCount}</div>
@@ -1268,8 +1404,8 @@ function Dashboard({
             </div>
           </div>
 
-          <div className="mt-2">
-            <div className="mb-1.5 flex items-center justify-between">
+          <div className="mt-2.5">
+            <div className="mb-2 flex items-center justify-between">
               <div className="text-[10px] font-black uppercase tracking-[0.14em] text-dim">
                 {championQuery
                   ? (lang === 'en' ? 'Search results' : '搜索结果')
@@ -1297,9 +1433,9 @@ function Dashboard({
           </div>
         </section>
 
-        <aside className="grid gap-3">
-          <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
-            <div className="mb-2 flex items-center justify-between gap-2 border-b border-line/45 pb-2">
+        <aside className="grid h-full gap-3">
+          <section className="glass-panel relative h-full overflow-hidden rounded-[8px] border p-3">
+            <div className="mb-2.5 flex items-start justify-between gap-2 border-b border-line/45 pb-2.5">
               <div className="min-w-0">
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">{lang === 'en' ? 'Recent history' : '最近对局'}</div>
                 <div className="mt-0.5 text-[15px] font-black text-cream">
@@ -1312,7 +1448,7 @@ function Dashboard({
                 {lang === 'en' ? 'All' : '全部'}
               </button>
             </div>
-            <div className="grid gap-1.5">
+            <div className="grid gap-2">
               {(recentMatches ?? []).slice(0, 3).map((match) => {
                 const champion = champById.get(match.championId)
                 return (
@@ -1347,13 +1483,13 @@ function Dashboard({
             </div>
           </section>
 
-          <section className="glass-panel relative overflow-hidden rounded-[8px] border p-2.5">
-            <div className="grid grid-cols-2 gap-2">
-              <button type="button" onClick={onGoBuilder} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2 text-left transition hover:border-hex/35">
+          <section className="glass-panel relative hidden overflow-hidden rounded-[8px] border p-3">
+            <div className="grid grid-cols-2 gap-2.5">
+              <button type="button" onClick={onGoBuilder} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2.5 text-left transition hover:border-hex/35">
                 <div className="text-[9px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Routes' : '自定义路线'}</div>
                 <div className="mt-1 text-[15px] font-black text-cream">{customRoutes.length}</div>
               </button>
-              <button type="button" onClick={onGoAug} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2 text-left transition hover:border-hex/35">
+              <button type="button" onClick={onGoAug} className="rounded-[6px] border border-line/55 bg-[#07101b]/44 p-2.5 text-left transition hover:border-hex/35">
                 <div className="text-[9px] font-black uppercase tracking-[0.14em] text-dim">{lang === 'en' ? 'Augments' : '海克斯'}</div>
                 <div className="mt-1 text-[15px] font-black text-cream">{core.augments.length}</div>
               </button>
@@ -1362,7 +1498,7 @@ function Dashboard({
         </aside>
       </div>
 
-      <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border px-3 py-2">
+      <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border p-3">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 max-[760px]:grid-cols-1">
           <div className="min-w-0 flex items-center gap-2">
             <div className="min-w-0">
@@ -1396,33 +1532,31 @@ function DashboardMiniStat({ label, value, suffix = '' }: { label: string; value
 type OfficialDiscovery = {
   champion: Champion
   archetype: Archetype
-  tier?: string
+  isNew: boolean
 }
 
 function OfficialDiscoveryRoutes({
   discoveries,
   core,
-  onPick,
+  onPickRoute,
   onOpenChampions,
 }: {
   discoveries: OfficialDiscovery[]
   core: Core
-  onPick: (id: number) => void
+  onPickRoute: (championId: number, archetypeKey: string) => void
   onOpenChampions: () => void
 }) {
   const lang = useLang()
   return (
-    <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border p-2.5">
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-3 border-b border-line/50 pb-1.5">
+    <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border p-3">
+      <div className="mb-2.5 flex flex-wrap items-start justify-between gap-2 border-b border-line/50 pb-2.5">
         <div className="min-w-0">
           <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">
             {lang === 'en' ? 'Mayhempedia picks' : '官方新发现玩法'}
           </div>
-          <p className="mt-0.5 max-w-[760px] text-[11px] leading-4 text-dim">
-            {lang === 'en'
-              ? 'A few editorial builds worth trying this patch.'
-              : '这版本值得试的几条编辑精选小玩法。'}
-          </p>
+          <div className="mt-0.5 text-[15px] font-black text-cream">
+            {lang === 'en' ? 'New plays this patch' : '本版本精选玩法'}
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <button type="button" onClick={onOpenChampions} className={BTN_TINY_SECONDARY}>
@@ -1432,31 +1566,28 @@ function OfficialDiscoveryRoutes({
       </div>
 
       {discoveries.length > 0 ? (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-1.5">
-          {discoveries.map(({ champion, archetype, tier }) => {
-            const items = archetype.items.map((ref) => core.itemById.get(ref.id)).filter((item): item is Item => !!item).slice(0, 3)
-            const augments = [...archetype.augments.core, ...archetype.augments.good]
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-2 pt-2">
+          {discoveries.map(({ champion, archetype, isNew }) => {
+            const items = archetype.items.map((ref) => core.itemById.get(ref.id)).filter((item): item is Item => !!item)
+            const augments = archetype.augments.core
               .map((ref) => getAugment(core.augById, ref.id))
               .filter((augment): augment is Augment => !!augment)
-              .slice(0, 2)
             return (
               <button
                 key={`${champion.id}-${archetype.key}`}
                 type="button"
-                onClick={() => onPick(champion.id)}
-                className="group min-w-0 rounded-[6px] border border-line/58 bg-[#07101b]/42 px-2 py-1.5 text-left transition hover:-translate-y-0.5 hover:border-hex/38 hover:bg-white/[0.03] active:translate-y-px"
+                onClick={() => onPickRoute(champion.id, archetype.key)}
+                className="group relative min-w-0 rounded-[6px] border border-line/58 bg-[#07101b]/42 px-2 py-1.5 text-left transition hover:-translate-y-0.5 hover:border-hex/38 hover:bg-white/[0.03] active:translate-y-px"
               >
-                <div className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-1.5">
+                <div className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-start gap-1.5">
                   <img src={icon(champion.iconLocal)} alt={champion.name} className={ICON_ASSET + ' h-7 w-7 group-hover:border-hex/45'} />
                   <div className="min-w-0">
                     <div className="truncate text-[11px] font-black text-cream">{champion.name}</div>
                     <div className="mt-0.5 truncate text-[9px] font-bold text-dim">{archetype.name}</div>
                   </div>
-                  <span className="rounded border border-hex/35 bg-hex/10 px-1.5 py-0.5 text-[8px] font-black text-hex">
-                    {tier ?? archetype.damageType}
-                  </span>
+                  {isNew && <span className="mt-px rounded border border-hex/45 bg-[#05212a] px-1 py-px text-[8px] font-black tracking-[0.08em] text-hex">NEW</span>}
                 </div>
-                <div className="mt-1 flex min-h-5 items-center gap-1">
+                <div className="mt-1 flex min-h-5 flex-wrap items-center gap-1">
                   {items.map((item) => (
                     <img key={item.id} src={icon(item.iconLocal)} alt={item.name} title={item.name} className={ICON_ASSET + ' h-5 w-5'} />
                   ))}
@@ -3935,7 +4066,7 @@ function SettingsSection({ title, children, className = '' }: { title: string; c
   )
 }
 
-type SettingsPage = 'overlay' | 'app' | 'account' | 'updates'
+type SettingsPage = 'overlay' | 'app' | 'account'
 
 function SettingsNavItem({
   label,
@@ -3988,101 +4119,18 @@ function fmtAccountDate(value: string | undefined, lang: Lang): string {
   return new Date(value).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN', { month: '2-digit', day: '2-digit' })
 }
 
-function updateStatusText(status: UpdateStatus | null): string {
-  if (!status) return '尚未检查更新'
-  if (status.state === 'checking') return '正在检查更新...'
-  if (status.state === 'available') return `发现新版本 ${status.version ?? ''}，正在下载`
-  if (status.state === 'downloading') return `正在下载 ${status.percent ?? 0}%`
-  if (status.state === 'downloaded') return `新版本 ${status.version ?? ''} 已下载，重启后安装`
-  if (status.state === 'not-available') return status.message ?? `当前已是最新版本 ${status.version ?? ''}`
-  if (status.state === 'error') return status.message ?? '检查更新失败'
-  return `当前版本 ${status.version ?? ''}`
-}
-
-
-function WhatsNewTab({ core }: { core: Core }) {
-  const lang = useLang()
-  const releases = core.releaseNotes
-  const latest = releases[0]
-  const copy = lang === 'en'
-  const sectionLabels = copy ? ['Added', 'Changed', 'Fixed'] : ['新增', '调整', '修复']
-
-  return (
-    <>
-      <PageHeader
-        eyebrow={copy ? "What's new" : '应用更新'}
-        title={copy ? 'Mayhempedia release history' : 'Mayhempedia 版本记录'}
-        description={
-          copy
-            ? 'Desktop app changes live here. The separate Patch Notes tab is reserved for ARAM game data.'
-            : '这里记录 Mayhempedia 客户端本身的更新；“战术更新”仍然只用于 ARAM 游戏资料。'
-        }
-        metrics={[
-          { label: copy ? 'Current version' : '当前版本', value: latest ? `v${latest.version}` : '—', tone: 'accent' },
-          { label: copy ? 'Releases' : '版本数量', value: releases.length },
-        ]}
-      />
-
-      <div className="grid gap-3">
-        {releases.map((release, index) => {
-          const groups = [
-            { label: sectionLabels[0], items: copy ? release.addedEn : release.addedZh },
-            { label: sectionLabels[1], items: copy ? release.changedEn : release.changedZh },
-            { label: sectionLabels[2], items: copy ? release.fixedEn : release.fixedZh },
-          ].filter((group) => group.items.length > 0)
-
-          return (
-            <article key={release.version} className={`${SURFACE} p-4 ${release.status === 'unreleased' ? 'border-hex/45' : ''}`}>
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-[17px] font-black text-cream">v{release.version}</h3>
-                    {index === 0 && <span className="rounded-[4px] border border-hex/35 bg-hex/10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-hex">{copy ? 'Latest' : '最新'}</span>}
-                    {release.status === 'unreleased' && <span className="rounded-[4px] border border-gold/35 bg-gold/10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-gold">{copy ? 'In progress' : '开发中'}</span>}
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold text-dim">{release.date}</div>
-                </div>
-                {release.releaseUrl && (
-                  <a className={BTN_GHOST} href={release.releaseUrl} target="_blank" rel="noreferrer">
-                    {copy ? 'GitHub release' : 'GitHub 发布页'}
-                  </a>
-                )}
-              </div>
-              <h4 className="mt-4 text-[14px] font-black text-cream">{copy ? release.titleEn : release.titleZh}</h4>
-              <p className="mt-1 max-w-[760px] text-[11px] leading-5 text-dim">{copy ? release.summaryEn : release.summaryZh}</p>
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {groups.map((group) => (
-                  <section key={group.label}>
-                    <h5 className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">{group.label}</h5>
-                    <ul className="mt-1.5 grid gap-1.5 text-[11px] leading-4 text-dim">
-                      {group.items.map((item) => <li key={item} className="border-l border-line/70 pl-2">{item}</li>)}
-                    </ul>
-                  </section>
-                ))}
-              </div>
-            </article>
-          )
-        })}
-      </div>
-    </>
-  )
-}
-
 function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: SummonerInfo | null; onOpenFeedback: () => void; onReportProblem: () => void }) {
   const t = useT()
   const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
   const [accounts, setAccounts] = useState<PersistedAccountSummary[] | null>(null)
-  const [updateStatus, setUpdateStatus] = useState<UpdateStatus | null>(null)
   const [settingsPage, setSettingsPage] = useState<SettingsPage>('overlay')
 
   useEffect(() => {
     if (!isElectron()) return
     window.mayhem!.getSettings().then(setSettings)
     window.mayhem!.getStoredAccounts().then(setAccounts)
-    window.mayhem!.getUpdateStatus().then(setUpdateStatus)
     window.mayhem!.onSettingsChanged(setSettings)
-    window.mayhem!.onUpdateStatus(setUpdateStatus)
   }, [])
 
   useEffect(() => {
@@ -4100,17 +4148,6 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
     if (!isElectron()) return
     const updated = await window.mayhem!.forgetStoredAccount(puuid)
     setAccounts(updated)
-  }
-
-  async function checkUpdates() {
-    if (!isElectron()) return
-    const status = await window.mayhem!.checkForUpdates()
-    setUpdateStatus(status)
-  }
-
-  async function installUpdate() {
-    if (!isElectron()) return
-    await window.mayhem!.installUpdate()
   }
 
   if (!isElectron()) {
@@ -4144,7 +4181,6 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
                   [lang === 'en' ? 'Overlay behavior' : 'Overlay 行为', lang === 'en' ? 'Position, opacity, move hotkey' : '位置、透明度、移动快捷键'],
                   [lang === 'en' ? 'App preferences' : '应用偏好', lang === 'en' ? 'Startup, zoom, language' : '启动、缩放、语言'],
                   [lang === 'en' ? 'Account and data' : '账号与数据', lang === 'en' ? 'Stored accounts and local match history' : '已保存账号与本地对局记录'],
-                  [lang === 'en' ? 'Updates' : '应用更新', lang === 'en' ? 'Version check and installer state' : '版本检查与安装状态'],
                 ].map(([label, desc]) => (
                   <div key={label} className="rounded-[7px] border border-line/60 bg-[#07101b]/46 p-3">
                     <div className="text-[12px] font-black text-cream">{label}</div>
@@ -4159,7 +4195,7 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
               </div>
               <div className="mt-3 space-y-3 text-[12px] leading-5 text-dim">
                 <p>{lang === 'en' ? 'Browser preview does not expose window.mayhem, so it cannot read or save local client settings.' : '浏览器预览没有 window.mayhem，因此无法读取或保存本地客户端设置。'}</p>
-                <p>{lang === 'en' ? 'In the packaged app, this page becomes the control room for overlay behavior, local data, account memory, and updates.' : '在打包后的客户端里，这里会成为 Overlay、本地数据、账号记忆和更新的控制室。'}</p>
+                <p>{lang === 'en' ? 'In the packaged app, this page becomes the control room for overlay behavior, local data, and account memory.' : '在打包后的客户端里，这里会成为 Overlay、本地数据和账号记忆的控制室。'}</p>
               </div>
             </div>
           </div>
@@ -4181,7 +4217,7 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
       <PageHeader
         eyebrow={lang === 'en' ? 'Desktop settings' : '桌面端设置'}
         title={t('settings.title', '设置')}
-        description={lang === 'en' ? 'Control overlay behavior, local data, account memory, and update flow from one place.' : '集中管理 Overlay 行为、本地数据、账号记忆和应用更新。'}
+        description={lang === 'en' ? 'Control overlay behavior, local data, and account memory from one place.' : '集中管理 Overlay 行为、本地数据和账号记忆。'}
         metrics={[
           { label: lang === 'en' ? 'Account' : '账号', value: summoner ? summoner.gameName : t('settings.account.none') },
           { label: lang === 'en' ? 'Stored' : '已保存', value: accounts?.length ?? 0, tone: 'accent' },
@@ -4209,12 +4245,6 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
               desc={lang === 'en' ? 'Local history and privacy' : '本地记录与隐私'}
               active={settingsPage === 'account'}
               onClick={() => setSettingsPage('account')}
-            />
-            <SettingsNavItem
-              label={lang === 'en' ? 'Updates' : '应用更新'}
-              desc={lang === 'en' ? 'Version and installer' : '版本检查与安装'}
-              active={settingsPage === 'updates'}
-              onClick={() => setSettingsPage('updates')}
             />
           </div>
           <div className="mt-4 rounded-[6px] border border-line/65 bg-panel2/30 p-3">
@@ -4501,36 +4531,6 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
             </div>
           )}
 
-          {settingsPage === 'updates' && (
-            <div className="grid gap-3">
-              <SettingsSection title={lang === 'en' ? 'Application updates' : '应用更新'}>
-                <div className="flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="text-sm">{lang === 'en' ? 'Update status' : '更新状态'}</div>
-                    <div className="mt-0.5 truncate text-xs text-dim">{updateStatusText(updateStatus)}</div>
-                  </div>
-                  {updateStatus?.state === 'downloaded' ? (
-                    <button
-                      type="button"
-                      onClick={installUpdate}
-                      className={BTN_PRIMARY + ' py-2'}
-                    >
-                      {lang === 'en' ? 'Restart to install' : '重启安装'}
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={checkUpdates}
-                      disabled={updateStatus?.state === 'checking' || updateStatus?.state === 'downloading'}
-                      className="shrink-0 rounded-[6px] border border-line px-3 py-2 text-xs font-extrabold text-dim transition hover:border-hex/45 hover:text-cream disabled:cursor-not-allowed disabled:opacity-55"
-                    >
-                      {lang === 'en' ? 'Check for updates' : '检查更新'}
-                    </button>
-                  )}
-                </div>
-              </SettingsSection>
-            </div>
-          )}
         </div>
       </div>
     </>
@@ -5382,9 +5382,10 @@ function LegacyChampionGrid({
   )
 }
 
-function AugmentBrowser({ core }: { core: Core }) {
+function AugmentBrowser({ core, onPickChampion }: { core: Core; onPickChampion: (id: number) => void }) {
   const t = useT()
   const lang = useLang()
+  const [view, setView] = useState<'atlas' | 'combos'>('atlas')
   const [q, setQ] = useState('')
   const [rarityFilter, setRarityFilter] = useState<number | 'all'>('all')
   const groups = useMemo(() => {
@@ -5410,20 +5411,47 @@ function AugmentBrowser({ core }: { core: Core }) {
   return (
     <>
       <PageHeader
-        eyebrow={lang === 'en' ? 'Augment atlas' : '海克斯图鉴'}
-        title={t('nav.aug')}
-        description={lang === 'en'
-          ? 'Search the augment pool by name or effect. Rarity groups stay visible so the page reads like a decision library, not a raw asset grid.'
-          : '按名称或效果搜索海克斯。保留棱彩、黄金、白银分组，让这里更像决策图鉴，而不是单纯素材列表。'}
+        eyebrow={view === 'atlas' ? (lang === 'en' ? 'Augment atlas' : '海克斯图鉴') : (lang === 'en' ? 'Interaction library' : '组合玩法')}
+        title={view === 'atlas' ? t('nav.aug') : t('augBrowser.combos')}
+        description={view === 'atlas'
+          ? (lang === 'en'
+              ? 'Search the augment pool by name or effect. Rarity groups stay visible so the page reads like a decision library, not a raw asset grid.'
+              : '按名称或效果搜索海克斯。保留棱彩、黄金、白银分组，让这里更像决策图鉴，而不是单纯素材列表。')
+          : (lang === 'en'
+              ? 'Recognize the pair first, then see why it works and which champions can convert it into a real route.'
+              : '先识别刷到的组合，再看它为什么强、哪些英雄能把它转成完整玩法。')}
         metrics={[
-          { label: lang === 'en' ? 'Shown' : '当前显示', value: `${shownCount}/${core.augments.length}`, tone: 'accent' },
-          ...raritySummary.map((entry) => ({
-            label: t(`rarity.${RARITY_KEY[entry.rarity]}`, entry.meta.label),
-            value: entry.count,
-            tone: entry.rarity === 2 ? 'accent' as const : 'muted' as const,
-          })),
+          ...(view === 'atlas'
+            ? [
+                { label: lang === 'en' ? 'Shown' : '当前显示', value: `${shownCount}/${core.augments.length}`, tone: 'accent' as const },
+                ...raritySummary.map((entry) => ({
+                  label: t(`rarity.${RARITY_KEY[entry.rarity]}`, entry.meta.label),
+                  value: entry.count,
+                  tone: entry.rarity === 2 ? 'accent' as const : 'muted' as const,
+                })),
+              ]
+            : [
+                { label: lang === 'en' ? 'Live combos' : '当前组合', value: core.augmentCombos.length, tone: 'accent' as const },
+                { label: lang === 'en' ? 'Best-fit champions' : '适配英雄', value: new Set(core.augmentCombos.flatMap((combo) => combo.championIds)).size, tone: 'muted' as const },
+              ]),
         ]}
       />
+      <div className="mb-2.5 inline-flex rounded-[6px] border border-line/65 bg-panel/62 p-1">
+        {(['atlas', 'combos'] as const).map((entry) => (
+          <button
+            key={entry}
+            type="button"
+            onClick={() => setView(entry)}
+            className={
+              'rounded-[4px] px-3 py-1.5 text-[10px] font-black transition ' +
+              (view === entry ? 'bg-hex text-[#041017]' : 'text-dim hover:text-cream')
+            }
+          >
+            {entry === 'atlas' ? t('augBrowser.atlas') : t('augBrowser.combos')}
+          </button>
+        ))}
+      </div>
+      {view === 'atlas' ? <>
       <section className="glass-control sticky top-0 z-20 mb-2.5 rounded-[6px] border border-line/70 p-2.5 shadow-[0_12px_30px_rgba(0,0,0,0.20)]">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 max-[760px]:grid-cols-1">
           <input className={SEARCH_INLINE} placeholder={t('augBrowser.search')} value={q} onChange={(e) => setQ(e.target.value)} />
@@ -5501,7 +5529,133 @@ function AugmentBrowser({ core }: { core: Core }) {
         </section>
       ))}
       {groups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
+      </> : <AugmentComboLibrary core={core} onPickChampion={onPickChampion} />}
     </>
+  )
+}
+
+function AugmentComboLibrary({ core, onPickChampion }: { core: Core; onPickChampion: (id: number) => void }) {
+  const t = useT()
+  const lang = useLang()
+
+  return (
+    <div className="space-y-2.5">
+      {core.augmentCombos.map((combo) => {
+        const isItemCombo = combo.kind === 'item'
+        const augments = (combo.augmentIds ?? []).map((id) => getAugment(core.augById, id)).filter((augment): augment is Augment => !!augment)
+        const items = (combo.itemIds ?? []).map((id) => core.itemById.get(id)).filter((item): item is Item => !!item)
+        const planItems = (combo.itemPlan?.itemIds ?? []).map((id) => core.itemById.get(id)).filter((item): item is Item => !!item)
+        return (
+          <section key={combo.key} className="glass-panel relative overflow-hidden rounded-[7px] border border-line/70 p-3">
+            <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line/45 pb-2.5">
+              <div>
+                <div className="text-[9px] font-black uppercase tracking-[0.15em] text-hex">{isItemCombo ? (lang === 'en' ? 'Build play' : '装备玩法') : (lang === 'en' ? 'Augment combo' : '海克斯组合')}</div>
+                <h2 className="mt-0.5 text-[17px] font-black text-cream">{combo.name}</h2>
+              </div>
+              <div className="flex flex-wrap justify-end gap-1">
+                {combo.tags.map((tag) => <span key={tag} className="rounded border border-line/55 bg-[#050a11]/32 px-1.5 py-0.5 text-[9px] font-bold text-dim">{tag}</span>)}
+                {combo.releaseDate && <span className="rounded border border-hex/35 bg-hex/10 px-1.5 py-0.5 text-[9px] font-black text-hex">NEW</span>}
+              </div>
+            </div>
+
+            <div className="grid gap-3 py-3 lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.45fr)]">
+              <div className="flex min-w-0 flex-wrap items-center gap-2">
+                {isItemCombo ? (
+                  <div className="min-w-0">
+                    <div className="mb-1 text-[9px] font-black uppercase tracking-[0.14em] text-gold">{lang === 'en' ? 'Core build' : '核心成装'}</div>
+                    <ComboItemRow items={items} />
+                  </div>
+                ) : augments.map((augment, index) => {
+                  const rarity = RARITY[augment.rarity] ?? RARITY[0]
+                  return (
+                    <div key={augment.id} className="flex items-center gap-2">
+                      {index > 0 && <span className="text-lg font-black text-dim">+</span>}
+                      <AugmentHoverCard augment={augment}>
+                        <div className="flex min-w-[122px] items-center gap-2 rounded-[5px] border border-line/55 bg-[#050a11]/30 px-2 py-1.5 transition hover:border-hex/45">
+                          <span className={'h-9 w-9 shrink-0 overflow-hidden rounded-[5px] border-2 ' + rarity.border}>
+                            <img src={icon(augment.iconLargeLocal)} alt={augment.name} className="h-full w-full object-cover" />
+                          </span>
+                          <span className="max-w-[104px] break-words text-[10px] font-black leading-[12px] text-cream">{augment.name}</span>
+                        </div>
+                      </AugmentHoverCard>
+                    </div>
+                  )
+                })}
+                {!isItemCombo && items.length > 0 && (
+                  <div className="min-w-0 border-l border-line/50 pl-2">
+                    <div className="mb-1 text-[9px] font-black uppercase tracking-[0.14em] text-gold">{lang === 'en' ? 'Paired build' : '配套出装'}</div>
+                    <ComboItemRow items={items} compact />
+                  </div>
+                )}
+              </div>
+              <p className="text-[11px] leading-5 text-dim">{combo.description}</p>
+            </div>
+
+            {combo.itemPlan && (
+              <div className="border-t border-line/45 py-2.5">
+                <div className="mb-2 text-[9px] font-black uppercase tracking-[0.14em] text-gold">{lang === 'en' ? 'Build play' : '装备玩法'}</div>
+                <div className="rounded-[6px] border border-line/50 bg-[#050a11]/24 p-2.5">
+                  <div className="text-[11px] font-black text-cream">{combo.itemPlan.name}</div>
+                  <p className="mt-1 text-[10px] leading-4 text-dim">{combo.itemPlan.description}</p>
+                  <div className="mt-2"><ComboItemRow items={planItems} compact /></div>
+                  <div className="mt-3 grid gap-2.5 border-t border-line/45 pt-3 lg:grid-cols-2">
+                    {combo.itemPlan.itemBranches.map((branch) => {
+                  const branchItems = branch.itemIds.map((id) => core.itemById.get(id)).filter((item): item is Item => !!item)
+                  const branchChampions = (branch.championIds ?? [])
+                    .map((id) => core.champions.find((champion) => champion.id === id))
+                    .filter((champion): champion is Champion => !!champion)
+                  return (
+                    <div key={branch.name} className="rounded-[5px] border border-line/50 bg-panel/24 p-2.5">
+                      <div className="text-[10px] font-black text-cream">{branch.name}</div>
+                        {branch.description && <p className="mt-1 text-[10px] leading-4 text-dim">{branch.description}</p>}
+                        <div className="mt-2"><ComboItemRow items={branchItems} compact /></div>
+                        {branchChampions.length > 0 && (
+                          <div className="mt-2.5 flex flex-wrap gap-1">
+                          {branchChampions.map((champion) => (
+                            <button key={champion.id} type="button" onClick={() => onPickChampion(champion.id)} className="inline-flex items-center gap-1 rounded border border-line/45 bg-panel/30 py-0.5 pl-0.5 pr-1.5 text-[9px] font-bold text-dim transition hover:border-hex/45 hover:text-cream">
+                              <img src={icon(champion.iconLocal)} alt="" className="h-4 w-4 rounded-[3px]" />
+                              {champion.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="border-t border-line/45 pt-2.5">
+              <div>
+                <div className="text-[9px] font-black uppercase tracking-[0.14em] text-gold">{lang === 'en' ? 'How to play' : '玩法要点'}</div>
+                <p className="mt-1 text-[11px] leading-5 text-dim">{combo.playPattern}</p>
+              </div>
+            </div>
+          </section>
+        )
+      })}
+      {core.augmentCombos.length === 0 && <div className="p-11 text-center text-dim">{t('common.none')}</div>}
+    </div>
+  )
+}
+
+function ComboItemRow({ items, compact = false }: { items: Item[]; compact?: boolean }) {
+  return (
+    <div className="flex min-w-0 flex-wrap items-center gap-1">
+      {items.map((item, index) => (
+        <div key={`${item.id}-${index}`} className="flex items-center gap-1">
+          {index > 0 && <span className="text-[10px] font-black text-dim/65">→</span>}
+          <ItemHoverCard item={item}>
+            <div className={'group relative flex items-center gap-1 rounded-[5px] border border-line/55 bg-[#07101b]/60 px-1 py-1 transition hover:border-hex/45 ' + (compact ? 'max-w-[82px]' : 'max-w-[104px]')}>
+              <img src={icon(item.iconLocal)} alt={item.name} className={compact ? 'h-7 w-7 shrink-0 rounded-[4px] object-cover' : 'h-8 w-8 shrink-0 rounded-[4px] object-cover'} />
+              {!compact && <span className="line-clamp-2 min-w-0 text-[9px] font-bold leading-[11px] text-dim">{item.name}</span>}
+            </div>
+          </ItemHoverCard>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -5582,19 +5736,23 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
         {pn.mayhem.bugfixes.length > 0 && (
           <>
             <div className="mb-2 text-[12px] font-black text-cream">{t('patch.bugfixes')}</div>
-            <ul className="space-y-1 text-[12px] leading-5 text-dim">
+            <ol className="grid divide-y divide-line/45 overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42 text-[12px] leading-5 text-dim">
               {(lang === 'en' && pn.mayhem.bugfixesEn ? pn.mayhem.bugfixesEn : pn.mayhem.bugfixes).map((b, i) => (
-                <li key={i} className="rounded-[6px] border border-line/45 bg-[#07101b]/36 px-2.5 py-1.5">{b}</li>
+                <li key={i} className="grid grid-cols-[20px_minmax(0,1fr)] gap-2 px-3 py-2">
+                  <span className="pt-px font-black text-cyan">{String(i + 1).padStart(2, '0')}</span>
+                  <span>{b}</span>
+                </li>
               ))}
-            </ul>
+            </ol>
           </>
         )}
       </section>
 
-      <section className={SURFACE + ' mb-3 p-3.5'}>
-        <h3 className="mb-3 text-[14px] font-black text-cream">{t('patch.championChanges')}</h3>
-        <div className="flex flex-col divide-y divide-line/55 overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42">
-          {pn.championChanges.map((c) => {
+      {pn.championChanges.length > 0 && (
+        <section className={SURFACE + ' mb-3 p-3.5'}>
+          <h3 className="mb-3 text-[14px] font-black text-cream">{t('patch.championChanges')}</h3>
+          <div className="flex flex-col divide-y divide-line/55 overflow-hidden rounded-[7px] border border-line/60 bg-[#07101b]/42">
+            {pn.championChanges.map((c) => {
             const champ = core.champions.find((ch) => ch.id === c.championId)
             const name = lang === 'en' ? (c.championNameEn ?? champ?.name ?? c.championName) : c.championName
             const lines = lang === 'en' && c.changesEn ? c.changesEn : c.changes
@@ -5618,9 +5776,10 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
                 </ul>
               </button>
             )
-          })}
-        </div>
-      </section>
+            })}
+          </div>
+        </section>
+      )}
 
       {pn.itemChanges.length > 0 && (
         <section className={SURFACE + ' mb-3 p-3.5'}>
@@ -5674,7 +5833,7 @@ function AugmentGlyph({ icon: slug }: { icon?: string }) {
   if (slug)
     return (
       <img
-        src={`/assets/mayhem-augments/${slug}.webp`}
+        src={slug.includes('/') ? icon(slug) : `/assets/mayhem-augments/${slug}.webp`}
         alt=""
         aria-hidden="true"
         className={ICON_ASSET + ' h-10 w-10'}
@@ -5840,6 +5999,9 @@ function Detail({
   onPick,
   selectedArchetypeKey,
   onArchetypePreference,
+  favoriteRouteKeys,
+  onToggleFavorite,
+  releaseDemo = false,
   customRoutes,
 }: {
   core: Core
@@ -5848,6 +6010,9 @@ function Detail({
   onPick: (id: number) => void
   selectedArchetypeKey?: string
   onArchetypePreference: (championId: number, archetypeKey: string) => void
+  favoriteRouteKeys: string[]
+  onToggleFavorite: (routeKey: string) => void | Promise<void>
+  releaseDemo?: boolean
   customRoutes: CustomRoute[]
 }) {
   const t = useT()
@@ -5901,6 +6066,25 @@ function Detail({
     onArchetypePreference(championId, archetype.key)
   }
 
+  const routeOptions = useMemo(() => {
+    if (!build) return []
+    return build.archetypes
+      .map((archetype, index) => {
+        const isCustom = archetype.key.startsWith('custom-')
+        const releasedAt = archetype.releaseDate ? Date.parse(archetype.releaseDate) : Number.NaN
+        const isNew = archetype.isNew === true || (Number.isFinite(releasedAt) && Date.now() - releasedAt < 21 * 24 * 60 * 60 * 1000) || (releaseDemo && index === build.archetypes.length - 1)
+        const isFavorite = favoriteRouteKeys.includes(archetype.key) || (releaseDemo && index === 0)
+        return {
+          archetype,
+          index,
+          isFavorite,
+          isNew,
+          isRecommended: archetype.recommended ?? (!isCustom && index === 0),
+        }
+      })
+      .sort((a, b) => Number(b.isFavorite) - Number(a.isFavorite) || Number(b.isRecommended) - Number(a.isRecommended) || a.index - b.index)
+  }, [build, favoriteRouteKeys, releaseDemo])
+
   return (
     <>
       <button
@@ -5923,7 +6107,7 @@ function Detail({
             </div>
           </div>
             <div className="grid gap-1.5 sm:grid-cols-2">
-            {build.archetypes.map((a, i) => {
+            {routeOptions.map(({ archetype: a, index: i, isFavorite, isNew, isRecommended }) => {
               const coreAugments = a.augments.core
                 .map((ref) => getAugment(core.augById, ref.id)?.name ?? ref.name)
                 .filter(Boolean)
@@ -5940,7 +6124,15 @@ function Detail({
                   }
                 >
                   <span className="min-w-0">
-                    <span className="block truncate text-[12px] font-extrabold">{a.name}</span>
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <span className="block min-w-0 truncate text-[12px] font-extrabold">{a.name}</span>
+                      {isRecommended && (
+                        <span title={lang === 'en' ? 'Recommended route' : '推荐路线'} className={i === activeIdx ? 'grid h-4 w-4 shrink-0 place-items-center rounded bg-[#041017]/15 text-[#041017]' : 'grid h-4 w-4 shrink-0 place-items-center rounded bg-gold/15 text-gold'}>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" /></svg>
+                        </span>
+                      )}
+                      {isNew && <span className={i === activeIdx ? 'shrink-0 rounded bg-[#041017]/15 px-1 py-px text-[8px] font-black tracking-[0.08em] text-[#041017]' : 'shrink-0 rounded bg-hex/12 px-1 py-px text-[8px] font-black tracking-[0.08em] text-hex'}>NEW</span>}
+                    </span>
                     <span className={i === activeIdx ? 'mt-0.5 block truncate text-[10px] font-bold text-[#041017]/75' : 'mt-0.5 block truncate text-[10px] font-bold text-hex/85'}>
                       {coreAugments.length > 0
                         ? `${lang === 'en' ? 'Core' : '核心'}: ${coreAugments.join(' / ')}`
@@ -5950,17 +6142,37 @@ function Detail({
                       {i === activeIdx ? t('detail.archetypeLocked') : t('detail.archetypeSetActive')}
                     </span>
                   </span>
-                  <span
-                    className={
-                      'shrink-0 rounded px-2 py-0.5 text-[10px] font-extrabold ' +
-                      (i === activeIdx
-                        ? 'bg-[#041017]/15 text-[#041017]'
-                        : a.damageType === 'AP'
-                          ? 'bg-[#9664dc]/18 text-[#c9a3f0]'
-                          : 'bg-[#dc8246]/18 text-[#f0a97a]')
-                    }
-                  >
-                    {a.damageType}
+                  <span className="flex shrink-0 items-center gap-1.5">
+                    <span
+                      className={
+                        'shrink-0 rounded px-2 py-0.5 text-[10px] font-extrabold ' +
+                        (i === activeIdx
+                          ? 'bg-[#041017]/15 text-[#041017]'
+                          : a.damageType === 'AP'
+                            ? 'bg-[#9664dc]/18 text-[#c9a3f0]'
+                            : 'bg-[#dc8246]/18 text-[#f0a97a]')
+                      }
+                    >
+                      {a.damageType}
+                    </span>
+                    <span
+                      role="button"
+                      tabIndex={0}
+                      aria-label={isFavorite ? (lang === 'en' ? 'Remove route from favorites' : '取消收藏路线') : (lang === 'en' ? 'Favorite route' : '收藏路线')}
+                      title={isFavorite ? (lang === 'en' ? 'Remove favorite' : '取消收藏') : (lang === 'en' ? 'Favorite route' : '收藏路线')}
+                      onClick={(event) => { event.stopPropagation(); void onToggleFavorite(a.key) }}
+                      onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); void onToggleFavorite(a.key) } }}
+                      className={
+                        'grid h-5 w-5 place-items-center rounded transition ' +
+                        (i === activeIdx
+                          ? 'text-[#041017]/72 hover:bg-[#041017]/12 hover:text-[#041017]'
+                          : isFavorite
+                            ? 'text-gold hover:bg-gold/10'
+                            : 'text-dim hover:bg-white/[0.05] hover:text-gold')
+                      }
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill={isFavorite ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 3.8 2.5 5.1 5.6.8-4 3.9.9 5.5-5-2.6-5 2.6.9-5.5-4-3.9 5.6-.8z" /></svg>
+                    </span>
                   </span>
                 </button>
               )
@@ -7453,6 +7665,7 @@ function ItemSequence({
   slots?: number
   numbered?: boolean
 }) {
+  const t = useT()
   const visibleItems = stackItems(items)
   const emptySlots = Math.max(0, slots - visibleItems.length)
   return (
@@ -7498,7 +7711,7 @@ function ItemSequence({
         ))}
         {visibleItems.length === 0 && emptySlots === 0 && (
           <div className="rounded-[5px] border border-dashed border-line/35 bg-[#050a11]/20 px-3 py-2 text-[11px] text-dim">
-            暂无
+            {t('common.none')}
           </div>
         )}
       </div>
@@ -7523,6 +7736,7 @@ function AugTier({
   refs: Ref[]
   augById: Map<number, Augment>
 }) {
+  const t = useT()
   return (
     <div className="grid grid-cols-[110px_minmax(0,1fr)] items-center gap-2 py-2 max-[760px]:grid-cols-1">
       <div className={'text-[10px] font-black uppercase tracking-[0.14em] ' + TONE_LABEL[tone]}>{label}</div>
@@ -7550,7 +7764,7 @@ function AugTier({
           )
         }) : (
           <div className="rounded-[5px] border border-dashed border-line/35 bg-[#050a11]/20 px-3 py-2 text-[11px] text-dim">
-            暂无
+            {t('common.none')}
           </div>
         )}
       </div>

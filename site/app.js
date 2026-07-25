@@ -3,7 +3,7 @@ if (motionAllowed) document.body.classList.add('motion-ready')
 
 // Keep one small event contract so Cloudflare Zaraz can receive anonymous
 // conversion events without adding a separate analytics dependency.
-const PUBLIC_RELEASE_VERSION = '0.1.1'
+const PUBLIC_RELEASE_VERSION = '0.1.2'
 const analyticsEndpoint = window.MAYHEMPEDIA_ANALYTICS_ENDPOINT || ''
 
 async function track(eventName, properties = {}) {
@@ -125,6 +125,14 @@ document.querySelectorAll('[data-download-source]').forEach((link) => {
     event.preventDefault()
     await track('download_clicked', eventPayload)
     window.location.assign(link.href)
+  })
+})
+
+document.querySelectorAll('[data-beta-source]').forEach((link) => {
+  link.addEventListener('click', () => {
+    void track('beta_interest', {
+      placement: link.getAttribute('data-beta-source') || 'unknown',
+    })
   })
 })
 

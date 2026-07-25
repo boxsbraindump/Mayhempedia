@@ -97,6 +97,40 @@
           "name": "生命药水"
         }
       ]
+    },
+    {
+      "key": "luden-one-shot",
+      "name": "卢登一轮爆发彗",
+      "damageType": "AP",
+      "note": "只在敌方前排不多、你能稳定用QE/EE命中后排时切换。卢登、风暴狂涌和影焰把一套命中的处决线抬高；魔法飞弹与珠光护手会让远距离命中更容易滚成击杀。",
+      "augments": {
+        "core": [
+          { "id": 133, "apiName": "MagicMissile", "name": "魔法飞弹" },
+          { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" }
+        ],
+        "good": [
+          { "id": 30, "apiName": "Eureka", "name": "尤里卡" },
+          { "id": 65, "apiName": "PhenomenalEvil", "name": "超凡邪恶" },
+          { "id": 45, "apiName": "InfernalConduit", "name": "炼狱导管" }
+        ],
+        "trap": []
+      },
+      "items": [
+        { "id": 6655, "name": "卢登的回声" },
+        { "id": 3020, "name": "法师之靴" },
+        { "id": 4646, "name": "风暴狂涌" },
+        { "id": 4645, "name": "影焰" },
+        { "id": 3089, "name": "灭世者的死亡之帽" },
+        { "id": 3135, "name": "虚空之杖" }
+      ],
+      "runes": null,
+      "sources": ["aramgg.com", "arammayhem.com"],
+      "starterItems": [
+        { "id": 3802, "name": "遗失的章节" },
+        { "id": 2003, "name": "生命药水" },
+        { "id": 2003, "name": "生命药水" }
+      ],
+      "releaseDate": "2026-07-24"
     }
   ]
 }

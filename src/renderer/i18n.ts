@@ -19,6 +19,8 @@ const zh: Dict = {
   'nav.aug': '海克斯图鉴',
   'nav.patch': '战术更新',
   'nav.settings': '设置',
+  'nav.collapse': '收起菜单',
+  'nav.expand': '展开菜单',
 
   'settings.title': '设置',
   'settings.electronOnly': '需要在真正的 Mayhempedia 客户端窗口里运行才能读写设置(浏览器预览下 window.mayhem 不存在)。',
@@ -208,6 +210,8 @@ const zh: Dict = {
 
   'augBrowser.meta': '{count} 个海克斯',
   'augBrowser.search': '搜海克斯（名称或效果）…',
+  'augBrowser.atlas': '海克斯图鉴',
+  'augBrowser.combos': '组合玩法',
   'rarity.silver': '白银',
   'rarity.gold': '黄金',
   'rarity.prismatic': '棱彩',
@@ -402,6 +406,8 @@ const en: Dict = {
   'nav.aug': 'Augments',
   'nav.patch': 'Patch Notes',
   'nav.settings': 'Settings',
+  'nav.collapse': 'Collapse menu',
+  'nav.expand': 'Expand menu',
 
   'settings.title': 'Settings',
   'settings.electronOnly': 'Settings only work inside the real Mayhempedia app window (window.mayhem is unavailable in a browser preview).',
@@ -591,6 +597,8 @@ const en: Dict = {
 
   'augBrowser.meta': '{count} augments',
   'augBrowser.search': 'Search augments (name or effect)…',
+  'augBrowser.atlas': 'Augment Atlas',
+  'augBrowser.combos': 'Combo Plays',
   'rarity.silver': 'Silver',
   'rarity.gold': 'Gold',
   'rarity.prismatic': 'Prismatic',

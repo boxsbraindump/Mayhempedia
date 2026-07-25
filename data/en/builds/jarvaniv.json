@@ -98,6 +98,92 @@
       ],
       "boots": [],
       "optionalItems": []
+    },
+    {
+      "key": "terrain-ap",
+      "name": "Terrain R AP Jarvan IV",
+      "damageType": "AP",
+      "note": "Experimental route: shorten the R cycle with Axiom Arc and Experimental Hexplate, then assign Terrain'd to Cataclysm so its walls become the AP damage zone. Pivot only if you find Terrain'd early, the enemy backline has limited mobility, and your team can follow the engage. Otherwise, stay on the AD engage route.",
+      "augments": {
+        "core": [
+          {
+            "id": 910020,
+            "apiName": "ARAMMayhemTerraind",
+            "name": "Terrain'd"
+          }
+        ],
+        "good": [
+          {
+            "id": 194,
+            "apiName": "FeyMagic",
+            "name": "Fey Magic"
+          },
+          {
+            "id": 11,
+            "apiName": "CantTouchThis",
+            "name": "Cant Touch This"
+          },
+          {
+            "id": 910086,
+            "apiName": "ARAMMayhemHideOnBush",
+            "name": "Hide on Bush"
+          },
+          {
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "Tank Engine"
+          }
+        ],
+        "trap": []
+      },
+      "items": [
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 3073,
+          "name": "Experimental Hexplate"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes"
+        },
+        {
+          "id": 3118,
+          "name": "Malignance"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap"
+        }
+      ],
+      "runes": null,
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
+      "starterItems": [
+        {
+          "id": 3177,
+          "name": "Guardian's Blade"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        },
+        {
+          "id": 2003,
+          "name": "Health Potion"
+        }
+      ],
+      "boots": [],
+      "optionalItems": [],
+      "releaseDate": "2026-07-24"
     }
   ]
 }
