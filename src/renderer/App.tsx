@@ -95,7 +95,7 @@ const ROLES: { key: string; label: string }[] = [
   { key: 'support', label: '辅助' },
 ]
 
-type Tab = 'dash' | 'champ' | 'history' | 'builder' | 'tier' | 'aug' | 'patch' | 'settings'
+type Tab = 'dash' | 'champ' | 'history' | 'builder' | 'tier' | 'aug' | 'patch' | 'updates' | 'settings'
 const NAV: { key: Tab; label: string }[] = [
   { key: 'dash', label: '作战总览' },
   { key: 'champ', label: '英雄图鉴' },
@@ -103,6 +103,7 @@ const NAV: { key: Tab; label: string }[] = [
   { key: 'builder', label: '自定义路线' },
   { key: 'aug', label: '海克斯图鉴' },
   { key: 'patch', label: '战术更新' },
+  { key: 'updates', label: '应用更新' },
   { key: 'settings', label: '设置' },
 ].filter((item) => CUSTOM_ROUTES_ENABLED || item.key !== 'builder') as { key: Tab; label: string }[]
 
@@ -173,6 +174,14 @@ function NavIcon({ k }: { k: Tab }) {
         <path d="M7 4.5h6.8L18 8.7v10.8H7z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
         <path d="M14 4.8V9h4" fill="none" stroke={soft} strokeWidth="2" strokeLinejoin="round" />
         <path d="M9.6 13.7h5.2" stroke={main} strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    )
+  if (k === 'updates')
+    return (
+      <svg {...p}>
+        <path d="M7 4.5h6.8L18 8.7v10.8H7z" fill="none" stroke={main} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M14 4.8V9h4M9.7 13.2h5.1M9.7 16.3h3.5" fill="none" stroke={main} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18.5 3v3.2M16.9 4.6h3.2" stroke={soft} strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     )
   if (k === 'settings')
@@ -503,6 +512,7 @@ export default function App() {
         {core && matchDetailId == null && champId == null && tab === 'patch' && (
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
+        {core && matchDetailId == null && champId == null && tab === 'updates' && <WhatsNewTab core={core} />}
         {core && matchDetailId == null && champId == null && tab === 'settings' && (
           <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackMode('feedback')} onReportProblem={() => setFeedbackMode('problem')} />
         )}
@@ -3987,6 +3997,75 @@ function updateStatusText(status: UpdateStatus | null): string {
   if (status.state === 'not-available') return status.message ?? `当前已是最新版本 ${status.version ?? ''}`
   if (status.state === 'error') return status.message ?? '检查更新失败'
   return `当前版本 ${status.version ?? ''}`
+}
+
+
+function WhatsNewTab({ core }: { core: Core }) {
+  const lang = useLang()
+  const releases = core.releaseNotes
+  const latest = releases[0]
+  const copy = lang === 'en'
+  const sectionLabels = copy ? ['Added', 'Changed', 'Fixed'] : ['新增', '调整', '修复']
+
+  return (
+    <>
+      <PageHeader
+        eyebrow={copy ? "What's new" : '应用更新'}
+        title={copy ? 'Mayhempedia release history' : 'Mayhempedia 版本记录'}
+        description={
+          copy
+            ? 'Desktop app changes live here. The separate Patch Notes tab is reserved for ARAM game data.'
+            : '这里记录 Mayhempedia 客户端本身的更新；“战术更新”仍然只用于 ARAM 游戏资料。'
+        }
+        metrics={[
+          { label: copy ? 'Current version' : '当前版本', value: latest ? `v${latest.version}` : '—', tone: 'accent' },
+          { label: copy ? 'Releases' : '版本数量', value: releases.length },
+        ]}
+      />
+
+      <div className="grid gap-3">
+        {releases.map((release, index) => {
+          const groups = [
+            { label: sectionLabels[0], items: copy ? release.addedEn : release.addedZh },
+            { label: sectionLabels[1], items: copy ? release.changedEn : release.changedZh },
+            { label: sectionLabels[2], items: copy ? release.fixedEn : release.fixedZh },
+          ].filter((group) => group.items.length > 0)
+
+          return (
+            <article key={release.version} className={`${SURFACE} p-4 ${release.status === 'unreleased' ? 'border-hex/45' : ''}`}>
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-[17px] font-black text-cream">v{release.version}</h3>
+                    {index === 0 && <span className="rounded-[4px] border border-hex/35 bg-hex/10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-hex">{copy ? 'Latest' : '最新'}</span>}
+                    {release.status === 'unreleased' && <span className="rounded-[4px] border border-gold/35 bg-gold/10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-gold">{copy ? 'In progress' : '开发中'}</span>}
+                  </div>
+                  <div className="mt-1 text-[11px] font-semibold text-dim">{release.date}</div>
+                </div>
+                {release.releaseUrl && (
+                  <a className={BTN_GHOST} href={release.releaseUrl} target="_blank" rel="noreferrer">
+                    {copy ? 'GitHub release' : 'GitHub 发布页'}
+                  </a>
+                )}
+              </div>
+              <h4 className="mt-4 text-[14px] font-black text-cream">{copy ? release.titleEn : release.titleZh}</h4>
+              <p className="mt-1 max-w-[760px] text-[11px] leading-5 text-dim">{copy ? release.summaryEn : release.summaryZh}</p>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {groups.map((group) => (
+                  <section key={group.label}>
+                    <h5 className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">{group.label}</h5>
+                    <ul className="mt-1.5 grid gap-1.5 text-[11px] leading-4 text-dim">
+                      {group.items.map((item) => <li key={item} className="border-l border-line/70 pl-2">{item}</li>)}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </>
+  )
 }
 
 function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: SummonerInfo | null; onOpenFeedback: () => void; onReportProblem: () => void }) {

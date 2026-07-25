@@ -124,6 +124,23 @@ export interface PatchNotes {
   }
 }
 
+export interface ReleaseNote {
+  version: string
+  status: 'unreleased' | 'released'
+  date: string
+  titleEn: string
+  titleZh: string
+  summaryEn: string
+  summaryZh: string
+  addedEn: string[]
+  addedZh: string[]
+  changedEn: string[]
+  changedZh: string[]
+  fixedEn: string[]
+  fixedZh: string[]
+  releaseUrl?: string
+}
+
 interface RuntimeAugmentAliasPayload {
   aliases?: Record<string, number>
 }
@@ -152,6 +169,7 @@ export interface Core {
   aramBalance: AramBalance[] // 只含有修正的英雄
   heroTier: HeroTier[]
   patchNotes: PatchNotes
+  releaseNotes: ReleaseNote[]
 }
 
 /**
@@ -174,6 +192,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     aramBalance,
     heroTier,
     patchNotes,
+    releaseNotesPayload,
     augmentAliasPayload,
   ] = await Promise.all([
     fetch(`${root}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
@@ -186,6 +205,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     fetch('/aram-balance.json').then((r) => r.json() as Promise<AramBalance[]>),
     fetch('/hero-tier.json').then((r) => r.json() as Promise<HeroTier[]>),
     fetch(`${root}/patch-notes.json`).then((r) => r.json() as Promise<PatchNotes>),
+    fetch('/release-notes.json').then((r) => r.json() as Promise<{ releases: ReleaseNote[] }>),
     fetch('/augment-runtime-aliases.json')
       .then((r) => (r.ok ? (r.json() as Promise<RuntimeAugmentAliasPayload>) : { aliases: {} }))
       .catch(() => ({ aliases: {} })),
@@ -204,6 +224,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     aramBalance,
     heroTier,
     patchNotes,
+    releaseNotes: releaseNotesPayload.releases,
   }
 }
 

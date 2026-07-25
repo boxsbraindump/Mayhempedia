@@ -1,0 +1,85 @@
+{
+  "currentVersion": "0.1.2",
+  "releases": [
+    {
+      "version": "0.1.2",
+      "status": "unreleased",
+      "date": "2026-07-24",
+      "titleEn": "A clearer release and download flow",
+      "titleZh": "更清晰的版本与下载流程",
+      "summaryEn": "The next beta is being prepared with a clearer public release history, a more focused download path, and stronger conversion measurement.",
+      "summaryZh": "下一版测试版本正在准备中，重点是更清晰的公开更新记录、更顺畅的下载路径和更可靠的转化统计。",
+      "addedEn": [
+        "Added a public Updates page and a reusable release-notes data source.",
+        "Added a What's new section inside the desktop app."
+      ],
+      "addedZh": [
+        "新增官网 Updates 更新页面和统一的版本记录数据源。",
+        "桌面应用新增 What's new 版本更新入口。"
+      ],
+      "changedEn": [
+        "Refined the homepage around preview first, then download.",
+        "Aligned the website accent color with the blue used by the client."
+      ],
+      "changedZh": [
+        "官网首页调整为先预览、再下载的路径。",
+        "官网强调色统一为客户端使用的青蓝色。"
+      ],
+      "fixedEn": [
+        "Wait for Cloudflare Zaraz to record download clicks before navigating to GitHub."
+      ],
+      "fixedZh": [
+        "修复下载按钮跳转 GitHub 前 Zaraz 事件可能丢失的问题。"
+      ],
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases"
+    },
+    {
+      "version": "0.1.1",
+      "status": "released",
+      "date": "2026-07-18",
+      "titleEn": "First installable beta",
+      "titleZh": "第一个可安装测试版",
+      "summaryEn": "The first public Windows installer for Mayhempedia, with the Champion Codex, local-first client integration, and update checks.",
+      "summaryZh": "Mayhempedia 第一个公开 Windows 安装包，包含英雄图鉴、本地优先的客户端连接和版本检查。",
+      "addedEn": [
+        "Published the first installable Windows beta.",
+        "Added configurable hotkeys and the initial desktop release flow.",
+        "Added a public homepage with the Combat File preview."
+      ],
+      "addedZh": [
+        "发布第一个可安装的 Windows 测试版。",
+        "新增可配置快捷键和基础桌面版本发布流程。",
+        "新增带 Combat File 预览的官网首页。"
+      ],
+      "changedEn": [],
+      "changedZh": [],
+      "fixedEn": [],
+      "fixedZh": [],
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.1"
+    },
+    {
+      "version": "0.1.0",
+      "status": "released",
+      "date": "2026-07-15",
+      "titleEn": "Initial test build",
+      "titleZh": "初始测试版",
+      "summaryEn": "The first Mayhempedia test build connected the Electron desktop shell to the League Client read-only interface.",
+      "summaryZh": "Mayhempedia 初始测试版打通 Electron 桌面窗口与 League Client 只读接口。",
+      "addedEn": [
+        "Added the initial Electron desktop companion.",
+        "Connected to League Client state without reading game memory or automating gameplay.",
+        "Added the first Champion Codex and ARAM build data views."
+      ],
+      "addedZh": [
+        "新增基础 Electron 桌面伴侣应用。",
+        "连接 League Client 状态，不读取游戏内存，也不自动操作游戏。",
+        "新增第一版英雄图鉴和 ARAM 路线数据视图。"
+      ],
+      "changedEn": [],
+      "changedZh": [],
+      "fixedEn": [],
+      "fixedZh": [],
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.0"
+    }
+  ]
+}
