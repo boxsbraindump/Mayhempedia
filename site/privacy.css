@@ -1,0 +1,15 @@
+.privacy-intro { max-width: 760px; }
+.privacy-list { border-top: 1px solid var(--home-line); }
+.privacy-entry { display: grid; grid-template-columns: 150px minmax(0, 720px); gap: 42px; padding: 42px 0; border-bottom: 1px solid var(--home-line); }
+.privacy-meta { color: var(--home-accent); font-size: 21px; font-weight: 800; }
+.privacy-body h2 { color: var(--home-text); font-size: 28px; line-height: 1.08; }
+.privacy-body p, .privacy-body ul { max-width: 65ch; margin-top: 14px; color: var(--home-muted); font-size: 14px; line-height: 1.7; }
+.privacy-body ul { display: grid; gap: 8px; padding-left: 20px; }
+.privacy-body li::marker { color: var(--home-accent); }
+.privacy-body a { color: var(--home-accent); }
+.privacy-note { color: var(--home-faint) !important; font-size: 12px !important; }
+@media (max-width: 760px) {
+  .privacy-entry { grid-template-columns: 1fr; gap: 14px; padding: 30px 0; }
+  .privacy-meta { font-size: 17px; }
+  .privacy-body h2 { font-size: 24px; }
+}

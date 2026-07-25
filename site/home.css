@@ -92,10 +92,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: color 180ms ease;
 }
 
+.main-nav a { position: relative; }
+
 .main-nav a:hover,
 .site-footer a:hover,
 .text-link:hover,
 .download-note a:hover { color: var(--home-accent); }
+
+.main-nav a[aria-current="page"] { color: var(--home-text); }
+.main-nav a[aria-current="page"]::after { position: absolute; right: 0; bottom: -8px; left: 0; height: 2px; content: ""; background: var(--home-accent); }
 
 .header-download,
 .button {
@@ -450,7 +455,6 @@ h2 {
 
 @media (max-width: 900px) {
   .main-nav { gap: 14px; }
-  .main-nav a:nth-child(1), .main-nav a:nth-child(2) { display: none; }
   .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 72px; }
   .hero-copy { max-width: 680px; }
   .hero-visual { max-width: 760px; }
@@ -461,8 +465,10 @@ h2 {
 
 @media (max-width: 640px) {
   .site-wrap { width: min(100% - 32px, 560px); }
-  .header-inner { min-height: 64px; gap: 12px; }
-  .main-nav { display: none; }
+  .header-inner { min-height: 64px; flex-wrap: wrap; gap: 0 12px; padding: 10px 0; }
+  .main-nav { order: 3; display: flex; width: 100%; margin: 8px 0 0; padding: 8px 0 2px; gap: 20px; overflow-x: auto; scrollbar-width: none; }
+  .main-nav::-webkit-scrollbar { display: none; }
+  .main-nav a { flex: 0 0 auto; white-space: nowrap; }
   .header-download { min-height: 38px; padding: 0 12px; font-size: 12px; }
   h1 { font-size: 46px; }
   h2 { font-size: 38px; }
