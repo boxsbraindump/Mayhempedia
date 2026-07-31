@@ -2637,7 +2637,13 @@ type PickerEntry = {
 type SearchableChampion = Champion & { searchExtra?: string }
 
 function normalizedSearchText(...parts: Array<string | number | null | undefined>): string {
-  return parts.filter((part) => part != null && String(part).trim().length > 0).join(' ').toLocaleLowerCase()
+  return parts
+    .filter((part) => part != null && String(part).trim().length > 0)
+    .join(' ')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase()
+    .replace(/[\s'’`.-]+/g, '')
 }
 
 function cleanGameText(value?: string): string {
@@ -4630,7 +4636,7 @@ function ChampionGrid({
     [core.heroTier],
   )
   const list = useMemo(() => {
-    const s = q.trim().toLowerCase()
+    const s = normalizedSearchText(q)
     let filtered = s
       ? core.champions.filter((c) => {
           const alt = core.altChampionById.get(c.id)
@@ -4660,6 +4666,15 @@ function ChampionGrid({
       return (hasBuild(b.id) ? 1 : 0) - (hasBuild(a.id) ? 1 : 0)
     })
   }, [q, role, tierFilter, tierById, core.champions, core.altChampionById, detectedChamp?.id])
+  const updateSearch = (value: string) => {
+    setQ(value)
+    if (value.trim()) {
+      // A champion name is an explicit intent. Do not let an old role or tier
+      // filter make the primary search box look broken.
+      setRole(null)
+      setTierFilter(null)
+    }
+  }
   const tierGroups = useMemo(
     () =>
       TIER_ORDER.map((tier) => ({
@@ -4741,7 +4756,11 @@ function ChampionGrid({
             className={SEARCH_INLINE + ' h-9 rounded-[6px]'}
             placeholder={t('champGrid.search')}
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            type="search"
+            aria-label={t('champGrid.search')}
+            onChange={(event) => updateSearch(event.currentTarget.value)}
+            onInput={(event) => updateSearch(event.currentTarget.value)}
+            onCompositionEnd={(event) => updateSearch(event.currentTarget.value)}
             autoFocus
           />
           <div className="shrink-0 rounded-[6px] border border-line/65 bg-[#0a1421]/65 px-3 py-2 text-[11px] text-dim">
