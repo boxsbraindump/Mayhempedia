@@ -1,64 +1,64 @@
 {
-  "patch": "26.14",
-  "theme": "Mayhem balance and variety",
-  "releaseDate": "2026-07-14",
-  "sourceUrl": "https://www.leagueoflegends.com/en-au/news/game-updates/league-of-legends-patch-26-14-notes/",
-  "championChanges": [],
+  "patch": "26.15",
+  "theme": "ARAM: Mayhem damage and Augment calibration",
+  "releaseDate": "2026-07-28",
+  "sourceUrl": "https://www.leagueoflegends.com/en-gb/news/game-updates/league-of-legends-patch-26-15-notes/",
+  "championChanges": [
+    { "championId": 103, "championName": "Ahri", "changes": ["Healing: 90% → 100%."] },
+    { "championId": 166, "championName": "Akshan", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 12, "championName": "Alistar", "changes": ["Healing: 80% → 100%. Damage dealt: 95% → 100%."] },
+    { "championId": 799, "championName": "Ambessa", "changes": ["Damage taken: -5% → 0%."] },
+    { "championId": 1, "championName": "Annie", "changes": ["Shielding: 90% → 100%. Damage taken: -5% → 0%."] },
+    { "championId": 22, "championName": "Ashe", "changes": ["Damage dealt: 105% → 100%."] },
+    { "championId": 42, "championName": "Corki", "changes": ["Damage taken: 10% → 5%."] },
+    { "championId": 245, "championName": "Ekko", "changes": ["Damage dealt: 110% → 105%."] },
+    { "championId": 910, "championName": "Hwei", "changes": ["Damage to minions: 60% → 100%."] },
+    { "championId": 202, "championName": "Jhin", "changes": ["Damage taken: -5% → 0%."] },
+    { "championId": 145, "championName": "Kai'Sa", "changes": ["Damage taken: 10% → 0%."] },
+    { "championId": 203, "championName": "Kindred", "changes": ["Damage dealt: 110% → 100%."] },
+    { "championId": 96, "championName": "Kog'Maw", "changes": ["Damage dealt: 88% → 90%."] },
+    { "championId": 236, "championName": "Lucian", "changes": ["Damage dealt: 105% → 100%."] },
+    { "championId": 90, "championName": "Malzahar", "changes": ["Damage to minions: 60% → 100%."] },
+    { "championId": 21, "championName": "Miss Fortune", "changes": ["Damage taken: -5% → 0%."] },
+    { "championId": 82, "championName": "Mordekaiser", "changes": ["Damage taken: -2% → 0%."] },
+    { "championId": 25, "championName": "Morgana", "changes": ["Damage taken: -10% → 0%."] },
+    { "championId": 75, "championName": "Nasus", "changes": ["Damage taken: -5% → 0%."] },
+    { "championId": 246, "championName": "Qiyana", "changes": ["Damage dealt: 115% → 110%."] },
+    { "championId": 13, "championName": "Ryze", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 235, "championName": "Senna", "changes": ["Damage dealt: 97% → 100%."] },
+    { "championId": 27, "championName": "Singed", "changes": ["Damage taken: -8% → 0%."] },
+    { "championId": 901, "championName": "Smolder", "changes": ["Ability Haste: -10 → 0."] },
+    { "championId": 16, "championName": "Soraka", "changes": ["Healing: 105% → 100%."] },
+    { "championId": 17, "championName": "Teemo", "changes": ["Ability Haste: -10 → 0. Damage to minions: 60% → 100%."] },
+    { "championId": 48, "championName": "Trundle", "changes": ["Damage taken: -5% → 0%."] },
+    { "championId": 5, "championName": "Xin Zhao", "changes": ["Damage dealt: 95% → 100%."] },
+    { "championId": 26, "championName": "Zilean", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 115, "championName": "Ziggs", "changes": ["Damage dealt: 87% → 90%. Damage to minions: 60% → 100%."] }
+  ],
   "itemChanges": [],
-  "systemChanges": [],
+  "systemChanges": ["Damage dealt modifiers now affect spell, attack, item, and Augment damage. Riot also removed many champion-specific modifiers so the remaining values better reflect overall ARAM: Mayhem performance."],
   "mayhem": {
-    "summaryEn": "Patch 26.14 lowers several high-frustration Augments, buffs struggling options, and adjusts Augment RNG to reduce repetitive offers. Dropkick keeps its high-roll potential with far less health scaling, while Dimension Shift, Poro Stampede, and Squishy Slappy Grab receive meaningful buffs.",
+    "summaryEn": "Patch 26.15 expands how damage modifiers apply and recalibrates champion-specific modifiers. High-impact Augments including Critical Missile and Titan's Resolve changed numerically; combo routes remain available but should be reviewed against the new values.",
     "augmentChanges": [
-      {
-        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
-        "name": "Dimension Shift",
-        "change": "Cooldown: 108s → 75s. AD/AP: 25–100 → 35–150. Health: 200–1000 → 300–1500. New: deals 1 damage to structures."
-      },
-      {
-        "icon": "icons/augments/ARAMMayhemPoroStampede_arammayhem.webp",
-        "name": "Poro Stampede",
-        "change": "Spawn interval: 35–20s → 25–15s. Base damage: 50–100 → 100–200."
-      },
-      {
-        "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp",
-        "name": "Squishy Slappy Grab",
-        "change": "Shield per slapped target: 25–75 → 35–150."
-      },
-      {
-        "icon": "assets/mayhem-augments/pin-cushion.webp",
-        "name": "Pin Cushion",
-        "change": "New execute: executes when accumulated damage would kill the target."
-      },
-      {
-        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
-        "name": "Dropkick",
-        "change": "Base value: 5% → 4%. Base AD scaling: 0.035% → 0.055%. Bonus-health scaling: 0.002% → 0.0001%."
-      },
-      {
-        "icon": "assets/mayhem-augments/tooth-fairy.webp",
-        "name": "Tooth Fairy",
-        "change": "Penetration per tooth: 4 → 3."
-      },
-      {
-        "icon": "icons/augments/InfernalConduit_large.png",
-        "name": "Infernal Conduit",
-        "change": "No longer reduces cooldown when affecting non-champions."
-      },
-      {
-        "icon": "icons/augments/StackosaurusRex_large.png",
-        "name": "Stackosaurus Rex",
-        "change": "No longer affects Augment or item effects."
-      }
+      { "name": "Warding Weapon", "change": "Armor and MR per stack: 5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12." },
+      { "name": "Squishy Slappy Grab", "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp", "change": "Cooldown: 45s → 35s." },
+      { "name": "Titan's Resolve", "icon": "icons/augments/ARAMMayhemTitansResolve_arammayhem.webp", "change": "Adaptive Force: 25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75. Armor and MR per 10 stacks: 4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10." },
+      { "name": "Hellbent", "icon": "icons/augments/ARAMMayhemHellbent_arammayhem.webp", "change": "Cooldown: 120s → 90s." },
+      { "name": "Earthwake", "icon": "icons/augments/Earthwake_large.png", "change": "Base damage: 70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250." },
+      { "name": "Endless Decimation", "icon": "icons/augments/ARAMMayhemEndlessDecimation_arammayhem.webp", "change": "Missing-health healing: 15% → 18%." },
+      { "name": "Chain Reaction", "icon": "icons/augments/ARAMMayhemChainReaction_arammayhem.webp", "change": "Now deals 250% damage for ultimate abilities." },
+      { "name": "Critical Missile", "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp", "change": "Damage per missile: 20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85." },
+      { "name": "Drop Bear", "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp", "change": "Stun: 1.5s → 0.5s. Tibbers health: 0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500." },
+      { "name": "Pat on the Back", "change": "Can now be taken by multiple teammates." },
+      { "name": "Mercy's Strike", "icon": "icons/augments/ARAMMayhemMercysStrike_arammayhem.webp", "change": "Now consumes on attacking turrets; turrets take damage equal to 2.5% of their maximum health." }
     ],
     "bugfixes": [
-      "Fixed Divine Domain granting infinite attack range.",
-      "Fixed Combusting Interest not granting gold from damage-over-time effects such as Darius, Teemo, and Twitch.",
-      "Fixed Smolder being offered Combusting Interest.",
-      "Fixed It's Go Time not correctly granting move speed with Master Yi E, Ashe Q, and Twitch Q.",
-      "Fixed High Roller sometimes failing to drop an Anvil when a unit died.",
-      "Fixed Drop Bear sometimes dying immediately after spawning.",
-      "Fixed players still receiving another active summoner spell after choosing Shark Tempest and SnowBomb.",
-      "Fixed Pursuit of Haste being offered to Yasuo E."
+      "Skill interactions: fixed Skilled Sniper with Vel'Koz Q, Anivia Q, and Rakan Q; fixed Morgana R Echo clone direction and Ekko Q with Spell Split.",
+      "Cooldowns and projectiles: fixed Apex Inventor and Wooglet's Witchcap cooldown behavior, plus Twitch R bolts.",
+      "Quest progress: fixed Milio W Support Main, Rakan E, and Master Yi Q / Viego R Dashing Haste progress through Pandora's Box.",
+      "Economy and shop: fixed Combusting Interest gold from burn items or Augments; fixed Diadem of Songs in the shop and builds section.",
+      "Offer and trigger logic: fixed Overloaded with Katarina E and Shaco E; fixed Mercy's Strike being offered to non-supports and Akshan E issues with Warding Weapon / Trusty Weapon.",
+      "Other fixes: Nidalee Q with Missile Split, Lil' Extra Help VFX, and Pursuit of Haste / Power interactions."
     ]
   }
 }

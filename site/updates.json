@@ -3,11 +3,11 @@
   "releases": [
     {
       "version": "0.1.2",
-      "status": "closed_beta",
+      "status": "released",
       "date": "2026-07-25",
       "titleEn": "New routes, clearer choices",
       "titleZh": "??????????",
-      "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.14 Mayhem notes, and a more focused desktop companion.",
+      "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.15 Mayhem notes, and a more focused desktop companion.",
       "summaryZh": "0.1.2 ?? ARAM: Mayhem ???????????????26.14 ???????????????",
       "addedEn": [
         "11 new routes and curated Combo Plays.",
@@ -22,7 +22,7 @@
       "changedEn": [
         "Homepage picks now open the exact route they represent.",
         "Combat File, overlay, and Command Center layouts are easier to scan.",
-        "Tactical notes now cover 26.14 ARAM: Mayhem changes only."
+        "Tactical notes now cover 26.15 ARAM: Mayhem changes only."
       ],
       "changedZh": [
         "????????????????",
@@ -37,7 +37,7 @@
         "??????????????????",
         "??????????????? 20 ??"
       ],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases"
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.2"
     },
     {
       "version": "0.1.1",

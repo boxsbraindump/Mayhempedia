@@ -5675,7 +5675,7 @@ function PatchNotesTab({ core, onPick }: { core: Core; onPick: (id: number) => v
         metrics={[
           { label: lang === 'en' ? 'Patch' : '补丁', value: pn.patch, tone: 'accent' },
           { label: lang === 'en' ? 'Date' : '日期', value: pn.releaseDate },
-          { label: lang === 'en' ? 'Mayhem changes' : '专属改动', value: pn.mayhem.augmentChanges.length + pn.mayhem.bugfixes.length },
+          { label: lang === 'en' ? 'Mayhem changes' : '专属改动', value: pn.systemChanges.length + pn.championChanges.length + pn.mayhem.augmentChanges.length + pn.mayhem.bugfixes.length },
         ]}
       />
 

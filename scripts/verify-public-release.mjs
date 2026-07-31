@@ -36,7 +36,7 @@ if (!siteApp.includes(`const PUBLIC_RELEASE_VERSION = '${version}'`)) {
 }
 
 const installerUrl = `releases/download/v${version}/Mayhempedia-${version}-setup-x64.exe`
-if (!siteIndex.includes(`Early beta ${version}`) || !siteIndex.includes(`Download ${version}`) || !siteIndex.includes(installerUrl)) {
+if (!siteIndex.includes(`Windows x64 / ${version} public beta`) || !siteIndex.includes(`Download ${version} for Windows`) || !siteIndex.includes(installerUrl)) {
   fail(`site/index.html does not consistently advertise the v${version} installer.`)
 }
 

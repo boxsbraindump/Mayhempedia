@@ -1,92 +1,78 @@
 {
-  "patch": "26.14",
-  "theme": "Mayhem balance and variety",
-  "releaseDate": "2026-07-14",
-  "sourceUrl": "https://www.leagueoflegends.com/en-au/news/game-updates/league-of-legends-patch-26-14-notes/",
-  "championChanges": [],
+  "patch": "26.15",
+  "theme": "海克斯大乱斗：全局伤害与海克斯校准",
+  "releaseDate": "2026-07-28",
+  "sourceUrl": "https://www.leagueoflegends.com/en-gb/news/game-updates/league-of-legends-patch-26-15-notes/",
+  "championChanges": [
+    { "championId": 103, "championName": "阿狸", "championNameEn": "Ahri", "changes": ["治疗效果：90% → 100%。"], "changesEn": ["Healing: 90% → 100%."] },
+    { "championId": 166, "championName": "阿克尚", "championNameEn": "Akshan", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 12, "championName": "阿利斯塔", "championNameEn": "Alistar", "changes": ["治疗效果：80% → 100%；造成伤害：95% → 100%。"], "changesEn": ["Healing: 80% → 100%. Damage dealt: 95% → 100%."] },
+    { "championId": 799, "championName": "安蓓萨", "championNameEn": "Ambessa", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
+    { "championId": 1, "championName": "安妮", "championNameEn": "Annie", "changes": ["护盾效果：90% → 100%；承受伤害：-5% → 0%。"], "changesEn": ["Shielding: 90% → 100%. Damage taken: -5% → 0%."] },
+    { "championId": 22, "championName": "艾希", "championNameEn": "Ashe", "changes": ["造成伤害：105% → 100%。"], "changesEn": ["Damage dealt: 105% → 100%."] },
+    { "championId": 42, "championName": "库奇", "championNameEn": "Corki", "changes": ["承受伤害：10% → 5%。"], "changesEn": ["Damage taken: 10% → 5%."] },
+    { "championId": 245, "championName": "艾克", "championNameEn": "Ekko", "changes": ["造成伤害：110% → 105%。"], "changesEn": ["Damage dealt: 110% → 105%."] },
+    { "championId": 910, "championName": "彗", "championNameEn": "Hwei", "changes": ["对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage to minions: 60% → 100%."] },
+    { "championId": 202, "championName": "烬", "championNameEn": "Jhin", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
+    { "championId": 145, "championName": "卡莎", "championNameEn": "Kai'Sa", "changes": ["承受伤害：10% → 0%。"], "changesEn": ["Damage taken: 10% → 0%."] },
+    { "championId": 203, "championName": "千珏", "championNameEn": "Kindred", "changes": ["造成伤害：110% → 100%。"], "changesEn": ["Damage dealt: 110% → 100%."] },
+    { "championId": 96, "championName": "克格莫", "championNameEn": "Kog'Maw", "changes": ["造成伤害：88% → 90%。"], "changesEn": ["Damage dealt: 88% → 90%."] },
+    { "championId": 236, "championName": "卢锡安", "championNameEn": "Lucian", "changes": ["造成伤害：105% → 100%。"], "changesEn": ["Damage dealt: 105% → 100%."] },
+    { "championId": 90, "championName": "玛尔扎哈", "championNameEn": "Malzahar", "changes": ["对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage to minions: 60% → 100%."] },
+    { "championId": 21, "championName": "厄运小姐", "championNameEn": "Miss Fortune", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
+    { "championId": 82, "championName": "莫德凯撒", "championNameEn": "Mordekaiser", "changes": ["承受伤害：-2% → 0%。"], "changesEn": ["Damage taken: -2% → 0%."] },
+    { "championId": 25, "championName": "莫甘娜", "championNameEn": "Morgana", "changes": ["承受伤害：-10% → 0%。"], "changesEn": ["Damage taken: -10% → 0%."] },
+    { "championId": 75, "championName": "内瑟斯", "championNameEn": "Nasus", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
+    { "championId": 246, "championName": "奇亚娜", "championNameEn": "Qiyana", "changes": ["造成伤害：115% → 110%。"], "changesEn": ["Damage dealt: 115% → 110%."] },
+    { "championId": 13, "championName": "瑞兹", "championNameEn": "Ryze", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 235, "championName": "赛娜", "championNameEn": "Senna", "changes": ["造成伤害：97% → 100%。"], "changesEn": ["Damage dealt: 97% → 100%."] },
+    { "championId": 27, "championName": "辛吉德", "championNameEn": "Singed", "changes": ["承受伤害：-8% → 0%。"], "changesEn": ["Damage taken: -8% → 0%."] },
+    { "championId": 901, "championName": "斯莫德", "championNameEn": "Smolder", "changes": ["技能急速：-10 → 0。"], "changesEn": ["Ability Haste: -10 → 0."] },
+    { "championId": 16, "championName": "索拉卡", "championNameEn": "Soraka", "changes": ["治疗效果：105% → 100%。"], "changesEn": ["Healing: 105% → 100%."] },
+    { "championId": 17, "championName": "提莫", "championNameEn": "Teemo", "changes": ["技能急速：-10 → 0；对小兵造成伤害：60% → 100%。"], "changesEn": ["Ability Haste: -10 → 0. Damage to minions: 60% → 100%."] },
+    { "championId": 48, "championName": "特朗德尔", "championNameEn": "Trundle", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
+    { "championId": 5, "championName": "赵信", "championNameEn": "Xin Zhao", "changes": ["造成伤害：95% → 100%。"], "changesEn": ["Damage dealt: 95% → 100%."] },
+    { "championId": 26, "championName": "基兰", "championNameEn": "Zilean", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
+    { "championId": 115, "championName": "吉格斯", "championNameEn": "Ziggs", "changes": ["造成伤害：87% → 90%；对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage dealt: 87% → 90%. Damage to minions: 60% → 100%."] }
+  ],
   "itemChanges": [],
-  "systemChanges": [],
-  "systemChangesEn": [],
+  "systemChanges": [
+    "造成伤害修正现已同时影响技能、普攻、装备和海克斯伤害；Riot 同时移除了大量英雄专属修正，让保留的数值更贴近英雄在海克斯大乱斗中的整体表现。"
+  ],
+  "systemChangesEn": [
+    "Damage dealt modifiers now affect spell, attack, item, and Augment damage. Riot also removed many champion-specific modifiers so the remaining values better reflect overall ARAM: Mayhem performance."
+  ],
   "mayhem": {
-    "summaryZh": "26.14 主要下调高挫败感海克斯、加强弱势选项，并调整海克斯随机机制，减少同类选项反复出现。飞身踢仍保留高上限，但其生命值收益被大幅压低；维度偏移、魄罗奔袭和软泥拍抓等偏弱选择获得明显加强。",
-    "summaryEn": "Patch 26.14 lowers several high-frustration Augments, buffs struggling options, and adjusts Augment RNG to reduce repetitive offers. Dropkick keeps its high-roll potential with far less health scaling, while Dimension Shift, Poro Stampede, and Squishy Slappy Grab receive meaningful buffs.",
+    "summaryZh": "26.15 的核心是统一伤害修正的覆盖范围，并重新校准英雄专属修正。会心飞弹、泰坦的坚决等高影响海克斯获得数值调整；组合玩法仍保留，但应以本次伤害值为准复核。",
+    "summaryEn": "Patch 26.15 expands how damage modifiers apply and recalibrates champion-specific modifiers. High-impact Augments including Critical Missile and Titan's Resolve changed numerically; combo routes remain available but should be reviewed against the new values.",
     "augmentChanges": [
-      {
-        "name": "维度偏移",
-        "nameEn": "Dimension Shift",
-        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
-        "change": "冷却：108 秒 → 75 秒；攻击力/法强：25–100 → 35–150；生命值：200–1000 → 300–1500；新增：可对防御塔造成 1 点伤害。",
-        "changeEn": "Cooldown: 108s → 75s. AD/AP: 25–100 → 35–150. Health: 200–1000 → 300–1500. New: deals 1 damage to structures."
-      },
-      {
-        "name": "魄罗奔袭",
-        "nameEn": "Poro Stampede",
-        "icon": "icons/augments/ARAMMayhemPoroStampede_arammayhem.webp",
-        "change": "生成间隔：35–20 秒 → 25–15 秒；基础伤害：50–100 → 100–200。",
-        "changeEn": "Spawn interval: 35–20s → 25–15s. Base damage: 50–100 → 100–200."
-      },
-      {
-        "name": "软泥拍抓",
-        "nameEn": "Squishy Slappy Grab",
-        "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp",
-        "change": "每个被拍目标提供的护盾：25–75 → 35–150。",
-        "changeEn": "Shield per slapped target: 25–75 → 35–150."
-      },
-      {
-        "name": "针插垫",
-        "nameEn": "Pin Cushion",
-        "icon": "assets/mayhem-augments/pin-cushion.webp",
-        "change": "新增斩杀：累计伤害足以击杀目标时会直接斩杀。",
-        "changeEn": "New execute: executes when accumulated damage would kill the target."
-      },
-      {
-        "name": "飞身踢",
-        "nameEn": "Dropkick",
-        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
-        "change": "基础数值：5% → 4%；基础攻击力成长：0.035% → 0.055%；额外生命值成长：0.002% → 0.0001%。",
-        "changeEn": "Base value: 5% → 4%. Base AD scaling: 0.035% → 0.055%. Bonus-health scaling: 0.002% → 0.0001%."
-      },
-      {
-        "name": "牙仙",
-        "nameEn": "Tooth Fairy",
-        "icon": "assets/mayhem-augments/tooth-fairy.webp",
-        "change": "每颗牙齿提供的穿透：4 → 3。",
-        "changeEn": "Penetration per tooth: 4 → 3."
-      },
-      {
-        "name": "炼狱导管",
-        "nameEn": "Infernal Conduit",
-        "icon": "icons/augments/InfernalConduit_large.png",
-        "change": "不再会因影响非英雄单位而减少冷却时间。",
-        "changeEn": "No longer reduces cooldown when affecting non-champions."
-      },
-      {
-        "name": "叠角龙",
-        "nameEn": "Stackosaurus Rex",
-        "icon": "icons/augments/StackosaurusRex_large.png",
-        "change": "不再影响海克斯或装备效果。",
-        "changeEn": "No longer affects Augment or item effects."
-      }
+      { "name": "自适应守卫（Warding Weapon）", "nameEn": "Warding Weapon", "change": "每层提供的护甲与魔抗：5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12。", "changeEn": "Armor and MR per stack: 5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12." },
+      { "name": "软泥拍抓", "nameEn": "Squishy Slappy Grab", "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp", "change": "冷却时间：45 秒 → 35 秒。", "changeEn": "Cooldown: 45s → 35s." },
+      { "name": "泰坦的坚决", "nameEn": "Titan's Resolve", "icon": "icons/augments/ARAMMayhemTitansResolve_arammayhem.webp", "change": "适应之力：25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75；每 10 层护甲与魔抗：4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10。", "changeEn": "Adaptive Force: 25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75. Armor and MR per 10 stacks: 4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10." },
+      { "name": "执念狂热", "nameEn": "Hellbent", "icon": "icons/augments/ARAMMayhemHellbent_arammayhem.webp", "change": "冷却时间：120 秒 → 90 秒。", "changeEn": "Cooldown: 120s → 90s." },
+      { "name": "大地苏醒", "nameEn": "Earthwake", "icon": "icons/augments/Earthwake_large.png", "change": "基础伤害：70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250。", "changeEn": "Base damage: 70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250." },
+      { "name": "无尽屠戮", "nameEn": "Endless Decimation", "icon": "icons/augments/ARAMMayhemEndlessDecimation_arammayhem.webp", "change": "基于已损失生命值的治疗：15% → 18%。", "changeEn": "Missing-health healing: 15% → 18%." },
+      { "name": "连锁反应", "nameEn": "Chain Reaction", "icon": "icons/augments/ARAMMayhemChainReaction_arammayhem.webp", "change": "终极技能触发时造成 250% 伤害。", "changeEn": "Now deals 250% damage for ultimate abilities." },
+      { "name": "会心飞弹", "nameEn": "Critical Missile", "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp", "change": "每枚飞弹伤害：20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85。", "changeEn": "Damage per missile: 20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85." },
+      { "name": "空降猛击", "nameEn": "Drop Bear", "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp", "change": "眩晕：1.5 秒 → 0.5 秒；提伯斯生命值：0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500。", "changeEn": "Stun: 1.5s → 0.5s. Tibbers health: 0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500." },
+      { "name": "拍拍背", "nameEn": "Pat on the Back", "change": "现在可被多位队友同时选择。", "changeEn": "Can now be taken by multiple teammates." },
+      { "name": "仁慈一击", "nameEn": "Mercy's Strike", "icon": "icons/augments/ARAMMayhemMercysStrike_arammayhem.webp", "change": "攻击防御塔时也会消耗效果；防御塔承受相当于目标最大生命值 2.5% 的伤害。", "changeEn": "Now consumes on attacking turrets; turrets take damage equal to 2.5% of their maximum health." }
     ],
     "bugfixes": [
-      "修复「神圣领域」可无限增加攻击距离的问题。",
-      "修复「燃财效应」不会为德莱厄斯、提莫、图奇等持续伤害提供金币的问题。",
-      "修复斯莫德可能获得「燃财效应」的问题。",
-      "修复「该出发了」未能正确给予剑圣 E、艾希 Q、图奇 Q 额外移速的问题。",
-      "修复「高玩」有时不会在单位死亡时掉落铁砧的问题。",
-      "修复「掉落熊」有时会在生成后立刻死亡的问题。",
-      "修复选择「鲨鱼风暴」和「雪球炸弹」后仍可能获得另一个主动召唤师技能的问题。",
-      "修复「急速追猎」可能被分配给亚索 E 的问题。"
+      "技能交互：修复维克兹 Q、艾尼维亚 Q、洛 Q 与「精准狙击」的交互问题；修复莫甘娜 R 的回声分身方向问题，以及艾克 Q 与「法术分裂」的交互。",
+      "冷却与投射物：修复「巅峰发明家」与「沃格勒特的女巫帽」的冷却问题，以及图奇 R 弹体的问题。",
+      "任务进度：修复米利欧 W「辅助主力」、洛 E 任务，以及剑圣 Q、佛耶戈 R 通过「潘多拉」获得位移急速的进度问题。",
+      "经济与商店：修复「燃烧利息」由灼烧装备或海克斯生成金币的问题；修复「歌之权冠」在商店与出装区域的显示。",
+      "分配与触发：修复「无情超载」错误影响卡特琳娜 E、萨科 E；修复「仁慈一击」会提供给非辅助英雄，以及阿克尚 E 的「自适应守卫／可靠武器」异常。",
+      "其他：修复妮德丽 Q 与「飞弹分裂」、一点小帮助 VFX，以及急速追猎／力量追猎相关问题。"
     ],
     "bugfixesEn": [
-      "Fixed Divine Domain granting infinite attack range.",
-      "Fixed Combusting Interest not granting gold from damage-over-time effects such as Darius, Teemo, and Twitch.",
-      "Fixed Smolder being offered Combusting Interest.",
-      "Fixed It's Go Time not correctly granting move speed with Master Yi E, Ashe Q, and Twitch Q.",
-      "Fixed High Roller sometimes failing to drop an Anvil when a unit died.",
-      "Fixed Drop Bear sometimes dying immediately after spawning.",
-      "Fixed players still receiving another active summoner spell after choosing Shark Tempest and SnowBomb.",
-      "Fixed Pursuit of Haste being offered to Yasuo E."
+      "Skill interactions: fixed Skilled Sniper with Vel'Koz Q, Anivia Q, and Rakan Q; fixed Morgana R Echo clone direction and Ekko Q with Spell Split.",
+      "Cooldowns and projectiles: fixed Apex Inventor and Wooglet's Witchcap cooldown behavior, plus Twitch R bolts.",
+      "Quest progress: fixed Milio W Support Main, Rakan E, and Master Yi Q / Viego R Dashing Haste progress through Pandora's Box.",
+      "Economy and shop: fixed Combusting Interest gold from burn items or Augments; fixed Diadem of Songs in the shop and builds section.",
+      "Offer and trigger logic: fixed Overloaded with Katarina E and Shaco E; fixed Mercy's Strike being offered to non-supports and Akshan E issues with Warding Weapon / Trusty Weapon.",
+      "Other fixes: Nidalee Q with Missile Split, Lil' Extra Help VFX, and Pursuit of Haste / Power interactions."
     ]
   }
 }

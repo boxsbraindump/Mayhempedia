@@ -3,11 +3,11 @@
   "releases": [
     {
       "version": "0.1.2",
-      "status": "closed_beta",
+      "status": "released",
       "date": "2026-07-25",
       "titleEn": "New routes, clearer choices",
       "titleZh": "??????????",
-      "summaryEn": "0.1.2 expands the route library with new ARAM: Mayhem playstyles, makes the right route easier to reach from the home screen, and brings the companion up to the 26.14 Mayhem update.",
+      "summaryEn": "0.1.2 expands the route library with new ARAM: Mayhem playstyles, makes the right route easier to reach from the home screen, and brings the companion up to the 26.15 Mayhem update.",
       "summaryZh": "0.1.2 ???? ARAM: Mayhem ?????????????????????? 26.14 ?????????",
       "addedEn": [
         "Added 11 new official-style routes for Akshan, Briar, Gwen, Hwei, Ivern, Jarvan IV, Morgana, Neeko, Rell, Soraka, and Volibear.",
@@ -25,7 +25,7 @@
         "Refined the Command Center with four focused new-route picks, complete six-item builds, and core augments at a glance.",
         "Opening a homepage route now lands directly on that exact Combat File route instead of the champion default.",
         "Reworked Combat File and overlay spacing so core augments, alternatives, starter items, and final items scan more cleanly.",
-        "Updated tactical notes to League of Legends 26.14 and limited the view to ARAM: Mayhem changes.",
+        "Updated tactical notes to League of Legends 26.15 and limited the view to ARAM: Mayhem changes.",
         "Tightened the Command Center layout by aligning the Champion Codex and recent matches, while removing low-value count cards."
       ],
       "changedZh": [
@@ -36,7 +36,7 @@
         "?????????????????????????????"
       ],
       "fixedEn": [
-        "Corrected 26.14 Mayhem augment icons, names, and localized patch-note content.",
+        "Corrected Mayhem augment icons, names, and localized patch-note content through 26.15.",
         "Fixed mixed-language labels in the English interface and improved long augment-name readability.",
         "Kept local match history capped and displayed as 20 saved games maximum.",
         "Removed the misleading in-app update page; public release availability is now handled by the packaged release flow."
@@ -47,11 +47,11 @@
         "???????????? 20 ????????????",
         "????????????????????????????????????"
       ],
-      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases",
+      "releaseUrl": "https://github.com/boxsbraindump/Mayhempedia/releases/tag/v0.1.2",
       "public": {
         "titleEn": "New routes, clearer choices",
         "titleZh": "??????????",
-        "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.14 Mayhem notes, and a more focused desktop companion.",
+        "summaryEn": "0.1.2 adds new ARAM: Mayhem routes, a clearer route-pick flow, updated 26.15 Mayhem notes, and a more focused desktop companion.",
         "summaryZh": "0.1.2 ?? ARAM: Mayhem ???????????????26.14 ???????????????",
         "addedEn": [
           "11 new routes and curated Combo Plays.",
@@ -66,7 +66,7 @@
         "changedEn": [
           "Homepage picks now open the exact route they represent.",
           "Combat File, overlay, and Command Center layouts are easier to scan.",
-          "Tactical notes now cover 26.14 ARAM: Mayhem changes only."
+          "Tactical notes now cover 26.15 ARAM: Mayhem changes only."
         ],
         "changedZh": [
           "????????????????",

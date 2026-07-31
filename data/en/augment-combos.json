@@ -3,7 +3,7 @@
     "key": "thousand-blade-volley",
     "kind": "augment",
     "name": "Thousand-Blade Volley",
-    "description": "Critical Missile turns every crit into a seeking firework missile. Vulnerability supplies crit and lets item effects and damage-over-time crit too. This is the core play; the build only pushes the missile and on-hit trigger rate to its limit.",
+    "description": "Critical Missile turns every crit into a seeking firework missile. Vulnerability supplies crit and lets item effects and damage-over-time crit too. Patch 26.15 lowers each missile's base damage, but this remains the core play; the build only pushes the missile and on-hit trigger rate to its limit.",
     "playPattern": "Secure Critical Missile and Vulnerability first, then enter the Fated Ashes, Triple Recurve build path. Constant attacks drive missiles, spread attacks, and item effects at the same time.",
     "augmentIds": [910000, 92],
     "itemIds": [],
