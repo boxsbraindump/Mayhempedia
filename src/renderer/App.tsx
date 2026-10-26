@@ -16,6 +16,8 @@ import {
   type Build,
   type Core,
   type AramBalance,
+  type AugmentTier,
+  type AugmentTierRating,
 } from './data'
 import { customRouteKey } from '../custom-routes'
 import {
@@ -222,6 +224,8 @@ export default function App() {
   const [err, setErr] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>(() => (releaseDemo ? 'champ' : 'dash'))
   const [champId, setChampId] = useState<number | null>(() => (releaseDemo ? demoChampionId : null))
+  // 放在 App 层：从海克斯详情跳去英雄页再返回时，还停在同一个海克斯
+  const [augmentDetailId, setAugmentDetailId] = useState<number | null>(null)
   const [routeFocus, setRouteFocus] = useState<{ championId: number; archetypeKey: string } | null>(null)
   const [lcuStatus, setLcuStatus] = useState<LcuStatus | null>(null)
   const [activeChampionId, setActiveChampionId] = useState<number | null>(null)
@@ -395,7 +399,7 @@ export default function App() {
 
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  }, [tab, champId, matchDetailId])
+  }, [tab, champId, matchDetailId, augmentDetailId])
 
   function handleMainScroll(event: { currentTarget: HTMLElement }) {
     const scroller = event.currentTarget
@@ -442,6 +446,7 @@ export default function App() {
           setTab(t)
           setChampId(null)
           setMatchDetailId(null)
+          setAugmentDetailId(null)
         }}
         lcuStatus={lcuStatus}
       />
@@ -546,7 +551,18 @@ export default function App() {
             }}
           />
         )}
-        {core && matchDetailId == null && champId == null && tab === 'aug' && <AugmentBrowser core={core} onPickChampion={setChampId} />}
+        {core && matchDetailId == null && champId == null && tab === 'aug' && (
+          <AugmentBrowser
+            core={core}
+            onPickChampion={setChampId}
+            onPickRoute={(championId, archetypeKey) => {
+              void setArchetypePreference(championId, archetypeKey)
+              setChampId(championId)
+            }}
+            detailId={augmentDetailId}
+            onOpenDetail={setAugmentDetailId}
+          />
+        )}
         {core && matchDetailId == null && champId == null && tab === 'patch' && (
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
@@ -5401,7 +5417,19 @@ function LegacyChampionGrid({
   )
 }
 
-function AugmentBrowser({ core, onPickChampion }: { core: Core; onPickChampion: (id: number) => void }) {
+function AugmentBrowser({
+  core,
+  onPickChampion,
+  onPickRoute,
+  detailId,
+  onOpenDetail,
+}: {
+  core: Core
+  onPickChampion: (id: number) => void
+  onPickRoute: (championId: number, archetypeKey: string) => void
+  detailId: number | null
+  onOpenDetail: (id: number | null) => void
+}) {
   const t = useT()
   const lang = useLang()
   const [view, setView] = useState<'atlas' | 'combos'>('atlas')
@@ -5426,6 +5454,11 @@ function AugmentBrowser({ core, onPickChampion }: { core: Core; onPickChampion: 
     meta: RARITY[rarity],
     count: core.augments.filter((a) => a.rarity === rarity).length,
   }))
+
+  const detailAugment = detailId != null ? core.augById.get(detailId) : undefined
+  if (detailAugment) {
+    return <AugmentDetail core={core} augment={detailAugment} onBack={() => onOpenDetail(null)} onPickRoute={onPickRoute} />
+  }
 
   return (
     <>
@@ -5536,12 +5569,16 @@ function AugmentBrowser({ core, onPickChampion }: { core: Core; onPickChampion: 
           <div className="grid grid-cols-[repeat(auto-fill,minmax(82px,1fr))] gap-1.5 bg-[#07101b]/55 p-1.5">
             {g.items.map((a) => (
               <AugmentHoverCard key={a.id} augment={a}>
-                <div className="group flex h-[88px] min-w-0 flex-col items-center justify-start gap-1 rounded-[6px] border border-line/45 bg-[#0b121d]/78 px-1.5 py-2 text-center transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-panel2/62">
+                <button
+                  type="button"
+                  onClick={() => onOpenDetail(a.id)}
+                  className="group flex h-[88px] w-full min-w-0 cursor-pointer flex-col items-center justify-start gap-1 rounded-[6px] border border-line/45 bg-[#0b121d]/78 px-1.5 py-2 text-center transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-panel2/62"
+                >
                   <div className={'h-10 w-10 shrink-0 overflow-hidden rounded-[6px] border-2 shadow-[0_8px_18px_rgba(0,0,0,0.20)] transition group-hover:scale-[1.03] ' + g.meta.border}>
                     <img src={icon(a.iconLargeLocal)} alt={a.name} loading="lazy" className="h-full w-full object-cover" />
                   </div>
                   <div className="line-clamp-3 min-h-[30px] w-full break-words text-[9px] font-bold leading-[10px] text-cream">{a.name}</div>
-                </div>
+                </button>
               </AugmentHoverCard>
             ))}
           </div>
@@ -5549,6 +5586,150 @@ function AugmentBrowser({ core, onPickChampion }: { core: Core; onPickChampion: 
       ))}
       {groups.length === 0 && <div className="p-11 text-center text-dim">{t('champGrid.notFound', { q })}</div>}
       </> : <AugmentComboLibrary core={core} onPickChampion={onPickChampion} />}
+    </>
+  )
+}
+
+const ROUTE_SLOT_BY_TIER: Partial<Record<AugmentTier, 'core' | 'good' | 'trap'>> = { S: 'core', A: 'good', D: 'trap' }
+
+/** 海克斯详情：完整效果 + 各英雄评级（data/augment-tiers.json，按 S/A/B/C/D 分组） */
+function AugmentDetail({
+  core,
+  augment: a,
+  onBack,
+  onPickRoute,
+}: {
+  core: Core
+  augment: Augment
+  onBack: () => void
+  onPickRoute: (championId: number, archetypeKey: string) => void
+}) {
+  const t = useT()
+  const lang = useLang()
+  const r = RARITY[a.rarity] ?? RARITY[0]
+  const champById = useMemo(() => new Map(core.champions.map((c) => [c.id, c])), [core])
+  const ratings = core.augmentTiers.byAugment.get(a.id) ?? []
+  const groups = core.augmentTiers.tiers
+    .map((tier) => ({
+      tier,
+      meta: TIER_META[tier],
+      entries: ratings
+        .filter((rating) => rating.tier === tier)
+        .flatMap((rating) => {
+          const champion = champById.get(rating.championId)
+          return champion ? [{ rating, champion }] : []
+        })
+        .sort((x, y) => x.champion.pinyin.localeCompare(y.champion.pinyin)),
+    }))
+    .filter((group) => group.entries.length > 0)
+  const isNew = !!a.introducedPatch && a.introducedPatch === core.augmentTiers.patch
+  const sourceRules = core.augmentTiers.sources
+    .filter((source) => ratings.some((rating) => rating.source === source.id))
+    .map((source) => (lang === 'en' ? `${source.label.en} (${source.rule.en})` : `${source.label.zh}（${source.rule.zh}）`))
+  const slotLabel = (tier: AugmentTier) => {
+    const slot = ROUTE_SLOT_BY_TIER[tier]
+    return slot ? t(`archetypeCard.${slot}`) : tier
+  }
+  const bestRoute = (rating: AugmentTierRating) => rating.routes?.find((route) => route.tier === rating.tier) ?? rating.routes?.[0]
+
+  return (
+    <>
+      <button
+        className="group mb-2.5 inline-flex h-8 items-center gap-1.5 rounded-md border border-line/45 bg-transparent px-2 text-[12px] font-bold text-dim cursor-pointer transition hover:border-hex/35 hover:bg-white/[0.04] hover:text-cream active:scale-[0.98]"
+        onClick={onBack}
+      >
+        <span aria-hidden="true" className="grid h-5 w-5 place-items-center rounded border border-line/40 bg-[#050a11]/45 text-[13px] leading-none text-hex/85 transition group-hover:border-hex/45 group-hover:text-hex">←</span>
+        <span>{t('augDetail.back')}</span>
+      </button>
+      <section className={PAGE_HEADER}>
+        <div className="relative grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 max-[900px]:grid-cols-[auto_minmax(0,1fr)]">
+          <div className={'h-[72px] w-[72px] overflow-hidden rounded-[8px] border-2 shadow-[0_10px_24px_rgba(0,0,0,0.28)] ' + r.border}>
+            <img src={icon(a.iconLargeLocal)} alt={a.name} className="h-full w-full object-cover" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={'text-[10px] font-black uppercase tracking-[0.16em] ' + r.text}>{t(`rarity.${RARITY_KEY[a.rarity]}`, r.label)}</span>
+              {isNew && (
+                <span className="rounded border border-hex/45 bg-hex/10 px-1.5 py-0.5 text-[10px] font-black text-hex">
+                  {t('augDetail.new', { patch: a.introducedPatch ?? '' })}
+                </span>
+              )}
+            </div>
+            <h2 className="mt-0.5 text-[21px] font-black leading-tight text-cream">{a.name}</h2>
+            <div className="mt-2 max-w-[760px] whitespace-pre-line text-[12px] leading-5 text-dim">{augmentDisplayText(a) || t('common.none')}</div>
+          </div>
+          <div className="flex flex-wrap items-stretch justify-end gap-1.5 max-[900px]:col-span-2 max-[900px]:justify-start">
+            {[
+              { label: t('augDetail.rated'), value: ratings.length, accent: true },
+              { label: 'S', value: ratings.filter((rating) => rating.tier === 'S').length },
+              { label: 'D', value: ratings.filter((rating) => rating.tier === 'D').length },
+            ].map((metric) => (
+              <div key={metric.label} className="min-w-[84px] rounded-[6px] border border-line/60 bg-[#07101b]/45 px-2.5 py-2">
+                <div className="text-[10px] font-black text-dim">{metric.label}</div>
+                <div className={'mt-0.5 text-[15px] font-black tabular-nums ' + (metric.accent ? 'text-hex' : 'text-cream')}>{metric.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className={SURFACE + ' p-3'}>
+        <div className="mb-2.5 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 className="text-[14px] font-black text-cream">{t('augDetail.championTiers')}</h3>
+          {sourceRules.length > 0 && (
+            <div className="text-[11px] text-dim">{t('augDetail.sourceNote', { sources: sourceRules.join(lang === 'en' ? '; ' : '；') })}</div>
+          )}
+        </div>
+        {groups.length === 0 ? (
+          <div className="rounded-[6px] border border-dashed border-line/45 bg-[#050a11]/20 px-3 py-4 text-center text-[12px] text-dim">{t('augDetail.empty')}</div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {groups.map((g) => (
+              <div key={g.tier} className={'relative overflow-hidden rounded-[7px] border p-2.5 pl-3.5 ' + g.meta.row}>
+                <div className={'absolute inset-y-0 left-0 w-1 ' + g.meta.bar} />
+                <div className="grid grid-cols-[64px_minmax(0,1fr)] gap-3 max-[640px]:grid-cols-1">
+                  <div className="flex flex-col items-center gap-1 pt-0.5">
+                    <div className={'grid h-10 w-10 place-items-center rounded-lg text-xl font-extrabold ' + g.meta.badge}>{g.tier}</div>
+                    <div className="text-center text-[10px] font-bold text-dim">{t(`augDetail.tier.${g.tier}`)}</div>
+                    <div className="text-[10px] font-bold tabular-nums text-dim/70">{g.entries.length}</div>
+                  </div>
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(210px,1fr))] content-start gap-1.5">
+                    {g.entries.map(({ rating, champion }) => {
+                      const best = bestRoute(rating)
+                      return (
+                        <div key={champion.id} className="flex min-w-0 items-center gap-2 rounded-md border border-line/55 bg-ink/28 p-1.5">
+                          <button
+                            type="button"
+                            onClick={() => best && onPickRoute(champion.id, best.key)}
+                            className="shrink-0 cursor-pointer"
+                            title={champion.name}
+                          >
+                            <img src={icon(champion.iconLocal)} alt={champion.name} className="h-9 w-9 rounded-md border border-line/70 object-cover transition hover:border-gold/50" />
+                          </button>
+                          <div className="min-w-0 flex-1">
+                            <div className="truncate text-[12px] font-extrabold text-cream">{champion.name}</div>
+                            <div className="mt-0.5 flex flex-wrap gap-1">
+                              {(rating.routes ?? []).map((route) => (
+                                <button
+                                  key={route.key}
+                                  type="button"
+                                  onClick={() => onPickRoute(champion.id, route.key)}
+                                  className="max-w-full cursor-pointer truncate rounded border border-line/55 bg-[#050a11]/40 px-1.5 py-0.5 text-[10px] font-bold text-dim transition hover:border-hex/40 hover:text-cream"
+                                >
+                                  {route.name[lang === 'en' ? 'en' : 'zh']} · {slotLabel(route.tier)}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </>
   )
 }
