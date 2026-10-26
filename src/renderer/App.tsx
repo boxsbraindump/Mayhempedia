@@ -37,8 +37,19 @@ import {
   type PlayerMatchStats,
   type CustomRoute,
   type UpdateStatus,
+  type PlayPreferences,
 } from './lcu'
 import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
+import {
+  EMPTY_PLAY_PREFERENCES,
+  MAX_MANUAL_CHAMPIONS,
+  PLAYSTYLES,
+  homepageRoute,
+  playstyleChampions,
+  rankPreferredChampions,
+  type PlaystyleKey,
+  type PreferenceReason,
+} from './play-preferences'
 import { LangProvider, useT, useLang, t, type Lang } from './i18n'
 
 /* 复用样式片段（字面量常量，Tailwind 扫描可识别） */
@@ -75,6 +86,9 @@ const EMPTY_CUSTOM_ROUTES: CustomRoute[] = []
 const CUSTOM_ROUTE_DRAFT_STORAGE_KEY = 'mayhempedia.customRouteDraft'
 const CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY = 'mayhempedia.customRouteSubpage'
 const CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY = 'mayhempedia.customRouteLibrarySelection'
+/** 浏览器预览没有 window.mayhem，常玩偏好退回存 localStorage（跟自定义路线一样） */
+const PLAY_PREFERENCES_STORAGE_KEY = 'mayhempedia.playPreferences'
+const HOMEPAGE_PICK_COUNT = 4
 const HOMEPAGE_NEW_ROUTE_FILES = [
   'akshan.json',
   'briar.json',
@@ -243,6 +257,15 @@ export default function App() {
       return []
     }
   })
+  const [previewPlayPreferences, setPreviewPlayPreferences] = useState<PlayPreferences>(() => {
+    if (typeof window === 'undefined') return EMPTY_PLAY_PREFERENCES
+    try {
+      return { ...EMPTY_PLAY_PREFERENCES, ...(JSON.parse(window.localStorage.getItem(PLAY_PREFERENCES_STORAGE_KEY) ?? '{}') as Partial<PlayPreferences>) }
+    } catch {
+      return EMPTY_PLAY_PREFERENCES
+    }
+  })
+  const [playPreferencesOpen, setPlayPreferencesOpen] = useState(false)
   // 主页板块显隐开关；未拿到设置(浏览器预览/还没读到)前默认全部显示，不让空指针挡住主页
   const [dashboardSections, setDashboardSections] = useState<DashboardSections | null>(null)
   const mainRef = useRef<HTMLElement | null>(null)
@@ -326,6 +349,17 @@ export default function App() {
     setSettings(updated)
   }
 
+  async function savePlayPreferences(next: PlayPreferences) {
+    if (!isElectron()) {
+      setPreviewPlayPreferences(next)
+      window.localStorage.setItem(PLAY_PREFERENCES_STORAGE_KEY, JSON.stringify(next))
+      return
+    }
+    setSettings((current) => (current ? { ...current, playPreferences: next } : current))
+    const updated = await window.mayhem!.setSetting('playPreferences', next)
+    setSettings(updated)
+  }
+
   async function saveMatchPlayerRoute(route: CustomRoute) {
     const next = [...customRoutes.filter((existing) => existing.id !== route.id), route]
     window.localStorage.setItem(CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY, 'library')
@@ -346,6 +380,7 @@ export default function App() {
   )
   const appLang: Lang = settings?.language ?? previewLanguage
   const appZoom = settings?.zoomFactor ?? 1
+  const playPreferences = isElectron() ? settings?.playPreferences ?? null : previewPlayPreferences
   const previewMatchHistory = useMemo(
     () => (core && !isElectron() && !matchHistory ? createPreviewMatchHistory(core) : matchHistory),
     [core, matchHistory],
@@ -436,6 +471,17 @@ export default function App() {
           onSubmit={submitFeedback}
         />
       )}
+      {playPreferencesOpen && core && playPreferences && (
+        <PlayPreferencesDialog
+          core={core}
+          initial={playPreferences}
+          onCancel={() => setPlayPreferencesOpen(false)}
+          onSave={(next) => {
+            void savePlayPreferences({ ...next, prompted: true })
+            setPlayPreferencesOpen(false)
+          }}
+        />
+      )}
       <Sidebar
         tab={tab}
         onTab={(t) => {
@@ -516,6 +562,9 @@ export default function App() {
             detectedHasBuild={detectedHasBuild}
             selectedArchetypeByChampionId={settings?.selectedArchetypeByChampionId ?? {}}
             customRoutes={visibleCustomRoutes}
+            playPreferences={playPreferences}
+            onEditPlayPreferences={() => setPlayPreferencesOpen(true)}
+            onDismissPlayPrompt={() => void savePlayPreferences({ ...(playPreferences ?? EMPTY_PLAY_PREFERENCES), prompted: true })}
           />
         )}
         {core && matchDetailId == null && champId == null && tab === 'champ' && (
@@ -551,7 +600,7 @@ export default function App() {
           <PatchNotesTab core={core} onPick={setChampId} />
         )}
         {core && matchDetailId == null && champId == null && tab === 'settings' && (
-          <SettingsTab summoner={summoner} onOpenFeedback={() => setFeedbackMode('feedback')} onReportProblem={() => setFeedbackMode('problem')} />
+          <SettingsTab core={core} summoner={summoner} onOpenFeedback={() => setFeedbackMode('feedback')} onReportProblem={() => setFeedbackMode('problem')} />
         )}
       </main>
       </div>
@@ -1135,6 +1184,9 @@ function Dashboard({
   detectedHasBuild,
   selectedArchetypeByChampionId,
   customRoutes,
+  playPreferences,
+  onEditPlayPreferences,
+  onDismissPlayPrompt,
 }: {
   core: Core
   onPick: (id: number) => void
@@ -1154,6 +1206,10 @@ function Dashboard({
   detectedHasBuild: boolean
   selectedArchetypeByChampionId: Record<string, string>
   customRoutes: CustomRoute[]
+  /** null = 设置还没读到，先不弹首次提示 */
+  playPreferences: PlayPreferences | null
+  onEditPlayPreferences: () => void
+  onDismissPlayPrompt: () => void
 }) {
   void summoner
   void sections
@@ -1190,45 +1246,73 @@ function Dashboard({
     .slice(0, 12)
   const customPreview = [...customRoutes].slice(-4).reverse()
   const [officialDiscoveries, setOfficialDiscoveries] = useState<OfficialDiscovery[]>([])
+  // 不在这里截断：有个性化推荐时，官方精选要跳过已经展示的英雄再补位。
   const newDiscoveryTargets = useMemo(
     () =>
-      HOMEPAGE_NEW_ROUTE_FILES.map((file) => {
+      HOMEPAGE_NEW_ROUTE_FILES.map((file: string) => {
         const match = Object.entries(core.buildIndex).find(([, buildFile]) => buildFile === file)
         if (!match) return null
         const champion = champById.get(Number(match[0]))
         return champion ? { champion, file } : null
-      }).filter((target): target is { champion: Champion; file: string } => !!target).slice(0, 4),
+      }).filter((target): target is { champion: Champion; file: string } => !!target),
     [champById, core.buildIndex],
+  )
+  // 常玩英雄（手动勾选 + 本地对局 + 偏好打法），纯本地计算，见 play-preferences.ts
+  const preferredTargets = useMemo(
+    () =>
+      rankPreferredChampions({
+        champions: core.champions,
+        heroTier: core.heroTier,
+        matches: recentMatches ?? [],
+        preferences: playPreferences ?? EMPTY_PLAY_PREFERENCES,
+      })
+        .map((preferred) => ({ ...preferred, file: core.buildIndex[String(preferred.champion.id)] }))
+        .filter((target) => !!target.file),
+    [core.buildIndex, core.champions, core.heroTier, playPreferences, recentMatches],
   )
   const officialDiscoveryKey = useMemo(
     () =>
-      newDiscoveryTargets
-        .map(({ champion, file }) => `${champion.id}:${file}`)
-        .join('|'),
-    [newDiscoveryTargets],
+      [
+        ...preferredTargets.map(({ champion, file, reason }) => `${champion.id}:${file}:${JSON.stringify(reason)}`),
+        ...newDiscoveryTargets.map(({ champion, file }) => `${champion.id}:${file}`),
+      ].join('|'),
+    [newDiscoveryTargets, preferredTargets],
   )
   const lang = useLang()
+  // 依赖放 key 而不是目标数组：设置每次变动都会换一个新的 playPreferences 对象，内容没变就不必重新读路线文件。
+  // core 只在切换语言重新加载时才变，那时英雄名要跟着换。
   useEffect(() => {
     let cancelled = false
-    const targets = newDiscoveryTargets
-    Promise.all(
-      targets.map(async ({ champion, file }) => {
-        try {
-          const build = await loadBuild(file, lang)
-          const archetype = build.archetypes.find((route) => route.isNew || !!route.releaseDate)
-          if (!archetype) return null
-          return { champion, archetype, isNew: true }
-        } catch {
-          return null
-        }
-      }),
-    ).then((items) => {
-      if (!cancelled) setOfficialDiscoveries(items.filter((item): item is OfficialDiscovery => !!item))
+    const loadRoute = async (file: string) => {
+      try {
+        return homepageRoute((await loadBuild(file, lang)).archetypes)
+      } catch {
+        return null
+      }
+    }
+    Promise.all([
+      Promise.all(preferredTargets.map(async ({ champion, file, reason }): Promise<OfficialDiscovery | null> => {
+        const route = await loadRoute(file)
+        return route ? { champion, ...route, reason } : null
+      })),
+      Promise.all(newDiscoveryTargets.map(async ({ champion, file }): Promise<OfficialDiscovery | null> => {
+        const route = await loadRoute(file)
+        return route?.isNew ? { champion, ...route } : null
+      })),
+    ]).then(([personalItems, curatedItems]) => {
+      if (cancelled) return
+      const personal = personalItems.filter((item): item is OfficialDiscovery => !!item)
+      // 常玩英雄的本版本新路线排最前，其次是他们的推荐路线；剩下的位置用官方精选补满。
+      const picks = [...personal.filter((item) => item.isNew), ...personal.filter((item) => !item.isNew)].slice(0, HOMEPAGE_PICK_COUNT)
+      const shown = new Set(picks.map((item) => item.champion.id))
+      const curated = curatedItems.filter((item): item is OfficialDiscovery => !!item && !shown.has(item.champion.id))
+      setOfficialDiscoveries([...picks, ...curated].slice(0, HOMEPAGE_PICK_COUNT))
     })
     return () => {
       cancelled = true
     }
-  }, [core.heroTier, lang, newDiscoveryTargets, officialDiscoveryKey])
+  }, [core, lang, officialDiscoveryKey])
+  const showPlayPrompt = !!playPreferences && !playPreferences.prompted && preferredTargets.length === 0
   const patch = core.patchNotes
   const [championQuery, setChampionQuery] = useState('')
   const [quickTier, setQuickTier] = useState<string>('all')
@@ -1352,6 +1436,9 @@ function Dashboard({
         core={core}
         onPickRoute={onPickRoute}
         onOpenChampions={onGoChamp}
+        showPrompt={showPlayPrompt}
+        onEditPreferences={onEditPlayPreferences}
+        onDismissPrompt={onDismissPlayPrompt}
       />
 
       <div className="mt-3 grid items-stretch grid-cols-[minmax(0,1.38fr)_minmax(300px,.72fr)] gap-3 max-[980px]:grid-cols-1">
@@ -1533,6 +1620,14 @@ type OfficialDiscovery = {
   champion: Champion
   archetype: Archetype
   isNew: boolean
+  /** 有值 = 按玩家常玩英雄推荐的；没有 = 官方精选补位 */
+  reason?: PreferenceReason
+}
+
+function preferenceReasonLabel(reason: PreferenceReason, translate: (key: string, fallbackOrVars?: string | Record<string, string | number>) => string): string {
+  if (reason.kind === 'manual') return translate('dash.picks.reason.manual')
+  if (reason.kind === 'history') return translate('dash.picks.reason.history', { n: reason.games })
+  return translate(`playPrefs.style.${reason.playstyle}`)
 }
 
 function OfficialDiscoveryRoutes({
@@ -1540,34 +1635,62 @@ function OfficialDiscoveryRoutes({
   core,
   onPickRoute,
   onOpenChampions,
+  showPrompt,
+  onEditPreferences,
+  onDismissPrompt,
 }: {
   discoveries: OfficialDiscovery[]
   core: Core
   onPickRoute: (championId: number, archetypeKey: string) => void
   onOpenChampions: () => void
+  showPrompt: boolean
+  onEditPreferences: () => void
+  onDismissPrompt: () => void
 }) {
   const lang = useLang()
+  const t = useT()
+  const personalized = discoveries.some((discovery) => discovery.reason)
   return (
     <section className="glass-panel relative mt-3 overflow-hidden rounded-[8px] border p-3">
       <div className="mb-2.5 flex flex-wrap items-start justify-between gap-2 border-b border-line/50 pb-2.5">
         <div className="min-w-0">
           <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">
-            {lang === 'en' ? 'Mayhempedia picks' : '官方新发现玩法'}
+            {personalized ? t('dash.picks.personalEyebrow') : lang === 'en' ? 'Mayhempedia picks' : '官方新发现玩法'}
           </div>
           <div className="mt-0.5 text-[15px] font-black text-cream">
             {lang === 'en' ? 'New plays this patch' : '本版本精选玩法'}
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <button type="button" onClick={onEditPreferences} className={BTN_TINY_SECONDARY}>
+            {t('dash.picks.editPrefs')}
+          </button>
           <button type="button" onClick={onOpenChampions} className={BTN_TINY_SECONDARY}>
             {lang === 'en' ? 'Champion Codex' : '英雄图鉴'}
           </button>
         </div>
       </div>
 
+      {showPrompt && (
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2 rounded-[6px] border border-hex/30 bg-hex/[0.06] px-2.5 py-2">
+          <div className="min-w-0">
+            <div className="text-[11px] font-black text-cream">{t('dash.picks.prompt.title')}</div>
+            <div className="mt-0.5 text-[10px] leading-4 text-dim">{t('dash.picks.prompt.desc')}</div>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <button type="button" onClick={onDismissPrompt} className="rounded-md px-2 py-1 text-[10px] font-bold text-dim transition hover:text-cream">
+              {t('dash.picks.prompt.skip')}
+            </button>
+            <button type="button" onClick={onEditPreferences} className={BTN_PRIMARY}>
+              {t('dash.picks.prompt.choose')}
+            </button>
+          </div>
+        </div>
+      )}
+
       {discoveries.length > 0 ? (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-2 pt-2">
-          {discoveries.map(({ champion, archetype, isNew }) => {
+          {discoveries.map(({ champion, archetype, isNew, reason }) => {
             const items = archetype.items.map((ref) => core.itemById.get(ref.id)).filter((item): item is Item => !!item)
             const augments = archetype.augments.core
               .map((ref) => getAugment(core.augById, ref.id))
@@ -1584,6 +1707,7 @@ function OfficialDiscoveryRoutes({
                   <div className="min-w-0">
                     <div className="truncate text-[11px] font-black text-cream">{champion.name}</div>
                     <div className="mt-0.5 truncate text-[9px] font-bold text-dim">{archetype.name}</div>
+                    {reason && <div className="mt-0.5 truncate text-[9px] font-black text-hex/85">{preferenceReasonLabel(reason, t)}</div>}
                   </div>
                   {isNew && <span className="mt-px rounded border border-hex/45 bg-[#05212a] px-1 py-px text-[8px] font-black tracking-[0.08em] text-hex">NEW</span>}
                 </div>
@@ -1610,6 +1734,188 @@ function OfficialDiscoveryRoutes({
         />
       )}
     </section>
+  )
+}
+
+/**
+ * 常玩英雄/偏好打法的选择器。首页弹窗和设置页共用；受控组件，保存时机由外层决定。
+ * onChange 传的是 updater 而不是新值：连点几下还没重新渲染时，每次改动都要基于上一次的结果。
+ */
+function PlayPreferencesEditor({
+  core,
+  value,
+  onChange,
+}: {
+  core: Core
+  value: PlayPreferences
+  onChange: (update: (current: PlayPreferences) => PlayPreferences) => void
+}) {
+  const t = useT()
+  const [query, setQuery] = useState('')
+  const champById = useMemo(() => new Map(core.champions.map((champion) => [champion.id, champion])), [core.champions])
+  const selected = value.championIds.map((id) => champById.get(id)).filter((champion): champion is Champion => !!champion)
+  const full = selected.length >= MAX_MANUAL_CHAMPIONS
+  const normalizedQuery = normalizedSearchText(query)
+  const results = useMemo(
+    () =>
+      normalizedQuery
+        ? core.champions.filter((champion) => {
+            const alt = core.altChampionById.get(champion.id)
+            return normalizedSearchText(champion.name, champion.title, champion.alias, champion.pinyin, champion.initials, alt?.name, alt?.title, alt?.alias, alt?.pinyin, alt?.initials).includes(normalizedQuery)
+          })
+        : core.champions,
+    [core.altChampionById, core.champions, normalizedQuery],
+  )
+  const toggleStyle = (key: PlaystyleKey) =>
+    onChange((current) => ({
+      ...current,
+      playstyles: current.playstyles.includes(key) ? current.playstyles.filter((entry) => entry !== key) : [...current.playstyles, key],
+    }))
+  const toggleChampion = (championId: number) =>
+    onChange((current) => {
+      if (current.championIds.includes(championId)) return { ...current, championIds: current.championIds.filter((id) => id !== championId) }
+      if (current.championIds.length >= MAX_MANUAL_CHAMPIONS) return current
+      return { ...current, championIds: [...current.championIds, championId] }
+    })
+
+  return (
+    <div className="grid gap-3">
+      <div>
+        <div className="text-[12px] font-black text-cream">{t('playPrefs.playstyles')}</div>
+        <div className="mt-0.5 text-[10px] text-dim">{t('playPrefs.playstylesDesc')}</div>
+        <div className="mt-2 grid grid-cols-3 gap-1.5 max-[760px]:grid-cols-2">
+          {PLAYSTYLES.map((style) => {
+            const on = value.playstyles.includes(style.key)
+            const examples = playstyleChampions(style.key, core.champions, core.heroTier).slice(0, 3)
+            return (
+              <button
+                key={style.key}
+                type="button"
+                aria-pressed={on}
+                onClick={() => toggleStyle(style.key)}
+                className={
+                  'min-w-0 rounded-[6px] border px-2 py-1.5 text-left transition active:translate-y-px ' +
+                  (on ? 'border-hex/60 bg-hex/10' : 'border-line/60 bg-[#07101b]/46 hover:border-hex/35 hover:bg-white/[0.03]')
+                }
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span className={'truncate text-[11px] font-black ' + (on ? 'text-hex' : 'text-cream')}>{t(`playPrefs.style.${style.key}`)}</span>
+                  <span className="flex shrink-0 -space-x-1">
+                    {examples.map((champion) => (
+                      <img key={champion.id} src={icon(champion.iconLocal)} alt={champion.name} title={champion.name} className="h-4 w-4 rounded-full border border-panel object-cover" />
+                    ))}
+                  </span>
+                </span>
+                <span className="mt-0.5 block truncate text-[9px] font-bold text-dim">{t(`playPrefs.style.${style.key}.desc`)}</span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-baseline justify-between gap-2">
+          <div className="text-[12px] font-black text-cream">{t('playPrefs.champions')}</div>
+          <div className="text-[10px] font-black tabular-nums text-dim">{selected.length}/{MAX_MANUAL_CHAMPIONS}</div>
+        </div>
+        <div className={'mt-0.5 text-[10px] ' + (full ? 'text-hex' : 'text-dim')}>
+          {full ? t('playPrefs.limitReached', { max: MAX_MANUAL_CHAMPIONS }) : t('playPrefs.championsDesc', { max: MAX_MANUAL_CHAMPIONS })}
+        </div>
+        <div className="mt-2 flex min-h-7 flex-wrap items-center gap-1">
+          {selected.length === 0 ? (
+            <span className="text-[10px] text-dim/70">{t('playPrefs.selectedEmpty')}</span>
+          ) : (
+            selected.map((champion) => (
+              <button
+                key={champion.id}
+                type="button"
+                onClick={() => toggleChampion(champion.id)}
+                title={t('playPrefs.remove', { name: champion.name })}
+                aria-label={t('playPrefs.remove', { name: champion.name })}
+                className="flex items-center gap-1 rounded-[5px] border border-hex/45 bg-hex/10 py-0.5 pl-0.5 pr-1.5 text-[10px] font-black text-cream transition hover:border-red/50 active:translate-y-px"
+              >
+                <img src={icon(champion.iconLocal)} alt="" className="h-5 w-5 rounded object-cover" />
+                {champion.name}
+                <span className="text-dim">×</span>
+              </button>
+            ))
+          )}
+        </div>
+        <input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder={t('playPrefs.search')}
+          className={SEARCH_INLINE + ' mt-2 h-8 py-1.5'}
+        />
+        <div className="mt-2 grid max-h-[186px] grid-cols-12 gap-1 overflow-y-auto pr-1 max-[760px]:grid-cols-8">
+          {results.map((champion) => {
+            const on = value.championIds.includes(champion.id)
+            return (
+              <button
+                key={champion.id}
+                type="button"
+                aria-pressed={on}
+                disabled={!on && full}
+                onClick={() => toggleChampion(champion.id)}
+                title={champion.name}
+                className={
+                  'rounded-[5px] border p-0.5 transition active:translate-y-px disabled:cursor-not-allowed disabled:opacity-35 ' +
+                  (on ? 'border-hex bg-hex/15' : 'border-line/50 bg-[#07101b]/48 hover:border-hex/40')
+                }
+              >
+                <img src={icon(champion.iconLocal)} alt={champion.name} className="mx-auto h-7 w-7 rounded object-cover" />
+              </button>
+            )
+          })}
+          {results.length === 0 && <div className="col-span-full py-3 text-center text-[11px] text-dim">{t('playPrefs.noResults')}</div>}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PlayPreferencesDialog({
+  core,
+  initial,
+  onCancel,
+  onSave,
+}: {
+  core: Core
+  initial: PlayPreferences
+  onCancel: () => void
+  onSave: (next: PlayPreferences) => void
+}) {
+  const t = useT()
+  const [draft, setDraft] = useState(initial)
+  return (
+    <div className="fixed inset-0 z-[90] grid place-items-center bg-[#03070c]/58 px-5 backdrop-blur-[2px]">
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="play-preferences-title"
+        className="w-full max-w-[640px] rounded-[8px] border border-line/80 bg-[#0b1420] p-5 shadow-[0_24px_72px_rgba(0,0,0,0.5)]"
+      >
+        <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Mayhempedia</div>
+        <h2 id="play-preferences-title" className="mt-1 text-[19px] font-black text-cream">{t('playPrefs.title')}</h2>
+        <p className="mt-2 text-[12px] leading-5 text-dim">{t('playPrefs.desc')}</p>
+        <div className="mt-4">
+          <PlayPreferencesEditor core={core} value={draft} onChange={setDraft} />
+        </div>
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => setDraft((current) => ({ ...current, championIds: [], playstyles: [] }))}
+            className="text-[11px] font-bold text-dim transition hover:text-cream"
+          >
+            {t('playPrefs.clear')}
+          </button>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={onCancel} className={BTN_SECONDARY}>{t('playPrefs.cancel')}</button>
+            <button type="button" onClick={() => onSave(draft)} className={BTN_PRIMARY}>{t('playPrefs.save')}</button>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 
@@ -4072,7 +4378,7 @@ function SettingsSection({ title, children, className = '' }: { title: string; c
   )
 }
 
-type SettingsPage = 'overlay' | 'app' | 'account'
+type SettingsPage = 'overlay' | 'app' | 'picks' | 'account'
 
 function SettingsNavItem({
   label,
@@ -4125,7 +4431,7 @@ function fmtAccountDate(value: string | undefined, lang: Lang): string {
   return new Date(value).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN', { month: '2-digit', day: '2-digit' })
 }
 
-function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: SummonerInfo | null; onOpenFeedback: () => void; onReportProblem: () => void }) {
+function SettingsTab({ core, summoner, onOpenFeedback, onReportProblem }: { core: Core; summoner: SummonerInfo | null; onOpenFeedback: () => void; onReportProblem: () => void }) {
   const t = useT()
   const lang = useLang()
   const [settings, setSettings] = useState<Settings | null>(null)
@@ -4148,6 +4454,21 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
     if (!isElectron()) return
     const updated = await window.mayhem!.setSetting(key, value)
     setSettings(updated)
+  }
+
+  // 选择器每点一下就保存。连点时 settings 还没重新渲染，所以基于 ref 里最近一次的结果改，
+  // 再乐观更新界面，不然后一下会拿旧值把前一下的改动盖掉。
+  const latestPlayPreferences = useRef<PlayPreferences | null>(null)
+  useEffect(() => {
+    latestPlayPreferences.current = settings?.playPreferences ?? null
+  }, [settings?.playPreferences])
+  function updatePlayPreferences(change: (current: PlayPreferences) => PlayPreferences) {
+    const base = latestPlayPreferences.current ?? settings?.playPreferences
+    if (!base) return
+    const next = { ...change(base), prompted: true }
+    latestPlayPreferences.current = next
+    setSettings((current) => (current ? { ...current, playPreferences: next } : current))
+    void update('playPreferences', next)
   }
 
   async function forgetAccount(puuid: string) {
@@ -4186,6 +4507,7 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
                 {[
                   [lang === 'en' ? 'Overlay behavior' : 'Overlay 行为', lang === 'en' ? 'Position, opacity, move hotkey' : '位置、透明度、移动快捷键'],
                   [lang === 'en' ? 'App preferences' : '应用偏好', lang === 'en' ? 'Startup, zoom, language' : '启动、缩放、语言'],
+                  [t('settings.playPrefs.nav'), t('settings.playPrefs.navDesc')],
                   [lang === 'en' ? 'Account and data' : '账号与数据', lang === 'en' ? 'Stored accounts and local match history' : '已保存账号与本地对局记录'],
                 ].map(([label, desc]) => (
                   <div key={label} className="rounded-[7px] border border-line/60 bg-[#07101b]/46 p-3">
@@ -4245,6 +4567,12 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
               desc={lang === 'en' ? 'Startup, zoom, language' : '启动、缩放、语言'}
               active={settingsPage === 'app'}
               onClick={() => setSettingsPage('app')}
+            />
+            <SettingsNavItem
+              label={t('settings.playPrefs.nav')}
+              desc={t('settings.playPrefs.navDesc')}
+              active={settingsPage === 'picks'}
+              onClick={() => setSettingsPage('picks')}
             />
             <SettingsNavItem
               label={lang === 'en' ? 'Account & Data' : '账号与数据'}
@@ -4443,6 +4771,15 @@ function SettingsTab({ summoner, onOpenFeedback, onReportProblem }: { summoner: 
                     />
                   </div>
                 ))}
+              </SettingsSection>
+            </div>
+          )}
+
+          {settingsPage === 'picks' && (
+            <div className="grid gap-3">
+              <SettingsSection title={t('settings.playPrefs.title')}>
+                <div className="mb-3 text-xs leading-5 text-dim">{t('playPrefs.desc')}</div>
+                <PlayPreferencesEditor core={core} value={settings.playPreferences} onChange={updatePlayPreferences} />
               </SettingsSection>
             </div>
           )}

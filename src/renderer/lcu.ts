@@ -156,6 +156,11 @@ export interface CustomRoute {
   trapAugmentIds: number[]
   updatedAt: string
 }
+export interface PlayPreferences {
+  championIds: number[]
+  playstyles: string[]
+  prompted: boolean
+}
 export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
@@ -166,6 +171,7 @@ export interface Settings {
   selectedArchetypeByChampionId: Record<string, string>
   favoriteRouteKeys: string[]
   customRoutes: CustomRoute[]
+  playPreferences: PlayPreferences
   notificationMode: 'inpage' | 'system'
   persistMatchHistory: boolean
   feedback: FeedbackSettings

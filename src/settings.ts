@@ -34,6 +34,15 @@ export interface FeedbackSettings {
   rating: number | null
 }
 
+/** 玩家手动勾选的常玩英雄和偏好打法；跟本地对局记录一起决定首页优先推荐谁的路线。 */
+export interface PlayPreferences {
+  championIds: number[]
+  /** 打法类型 key，见 src/renderer/play-preferences.ts 的 PLAYSTYLES */
+  playstyles: string[]
+  /** 首页的首次提示已处理过（保存过或点了「先不用」），之后不再提示。 */
+  prompted: boolean
+}
+
 export interface Settings {
   // 语言
   language: 'zh' | 'en'
@@ -53,6 +62,8 @@ export interface Settings {
   /** 玩家主动收藏的路线，用于在同一英雄的路线切换器内置顶。仅保存在本机。 */
   favoriteRouteKeys: string[]
   customRoutes: CustomRoute[]
+  /** 首页「本版本精选玩法」的个性化偏好。仅保存在本机。 */
+  playPreferences: PlayPreferences
 
   // 通知类
   notificationMode: 'inpage' | 'system'
@@ -85,6 +96,11 @@ export const DEFAULT_SETTINGS: Settings = {
   selectedArchetypeByChampionId: {},
   favoriteRouteKeys: [],
   customRoutes: [],
+  playPreferences: {
+    championIds: [],
+    playstyles: [],
+    prompted: false,
+  },
   notificationMode: 'inpage',
   persistMatchHistory: true, // 默认开：这是产品核心卖点(长期攒Tier数据素材)，纯本地零风险；设置页要把这点说清楚，不能默默开
   feedback: {
@@ -101,6 +117,15 @@ const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5] as const
 function normalizeZoom(value: unknown): number {
   if (typeof value !== 'number' || !Number.isFinite(value)) return DEFAULT_SETTINGS.zoomFactor
   return ZOOM_PRESETS.includes(value as (typeof ZOOM_PRESETS)[number]) ? value : DEFAULT_SETTINGS.zoomFactor
+}
+
+function normalizePlayPreferences(value: unknown): PlayPreferences {
+  const stored = value && typeof value === 'object' ? (value as Partial<PlayPreferences>) : {}
+  return {
+    championIds: Array.isArray(stored.championIds) ? stored.championIds.filter((id) => typeof id === 'number') : [],
+    playstyles: Array.isArray(stored.playstyles) ? stored.playstyles.filter((key) => typeof key === 'string') : [],
+    prompted: stored.prompted === true,
+  }
 }
 
 function getStore(): Store<Settings> {
@@ -133,6 +158,7 @@ export function getSettings(): Settings {
     },
     favoriteRouteKeys: Array.isArray(stored.favoriteRouteKeys) ? stored.favoriteRouteKeys : [],
     customRoutes: Array.isArray(stored.customRoutes) ? stored.customRoutes : [],
+    playPreferences: normalizePlayPreferences(stored.playPreferences),
   }
 }
 
