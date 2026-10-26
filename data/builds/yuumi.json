@@ -27,19 +27,9 @@
             "name": "神圣干预"
           },
           {
-            "id": 198,
-            "apiName": "HolyFire",
-            "name": "圣火"
-          },
-          {
             "id": 37,
             "apiName": "FirstAidKit",
             "name": "急救用具"
-          },
-          {
-            "id": 231,
-            "apiName": "LightWarden",
-            "name": "光明守望者"
           }
         ],
         "trap": [
@@ -112,11 +102,6 @@
           }
         ],
         "good": [
-          {
-            "id": 64,
-            "apiName": "Perseverance",
-            "name": "坚韧"
-          },
           {
             "id": 118,
             "apiName": "CriticalHealing",

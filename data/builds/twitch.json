@@ -6,21 +6,41 @@
       "key": "ad",
       "name": "暴击AD图奇",
       "damageType": "AD",
-      "note": "主流打法：靠E中毒+被动隐身进场，堆暴击/攻速把普攻和R放大到极致。经直接抓取arammayhem.com/build/twitch/正文核实：核心装备收集者-卢安娜的飓风-无尽之刃-狂战士胫甲与海克斯连拨击锤/双刀流/灵巧/关键暴击/巨人杀手均逐字对应，可信度高。",
+      "note": "隐身突袭打法：Q 隐身绕到侧翼，E 叠毒后 R 穿透弹道扫射整排敌人。双刀流让每次普攻多叠一层毒；26.21 新增的王冠之重在图奇身上表现很好，突袭拿到击杀后持续变强，它降低移速的代价正好靠隐身弥补。亮出你的剑、命运之武器也是强势选择。",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "双刀流"
+          },
+          {
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "王冠之重"
           }
         ],
         "good": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "任务：海牛阿福的勇士"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -30,16 +50,6 @@
             "id": 47,
             "apiName": "ItsCritical",
             "name": "关键暴击"
-          },
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "巨人杀手"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "最万用的瞄准镜"
           }
         ],
         "trap": [
@@ -80,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "op.gg"
+        "op.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

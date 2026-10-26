@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Malphite",
+      "name": "Tank Malphite",
       "damageType": "Tank",
       "note": "Malphite TANK route for ARAM: Mayhem. Prioritize Goliath / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Celestial Body. Build toward Heartsteel > Plated Steelcaps > Spirit Visage > Unending Despair > Warmog's Armor > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com.",
       "augments": {

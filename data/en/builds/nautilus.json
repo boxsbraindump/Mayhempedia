@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Nautilus",
+      "name": "Tank Nautilus",
       "damageType": "Tank",
       "note": "Nautilus TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Courage of the Colossus / Goliath. Build toward Heartsteel > Warmog's Armor > Unending Despair > Mercury's Treads > Thornmail > Spirit Visage. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg and op.gg.",
       "augments": {

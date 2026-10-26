@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Mystic Punch Yone",
       "damageType": "AD",
-      "note": "Yone AD route for ARAM: Mayhem. Prioritize Mystic Punch / Deft as the main augment plan. Strong secondary hits include Dual Wield / Goredrink / Quantum Computing. Build toward Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Immortal Shieldbow > Death's Dance > Wit's End. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and aramgg.com.",
+      "note": "Yone AD route for ARAM: Mayhem. Prioritize Mystic Punch / Deft as the main augment plan. Strong secondary hits include Dual Wield / Goredrink / Symphony of War. Build toward Blade of The Ruined King > Berserker's Greaves > Infinity Edge > Immortal Shieldbow > Death's Dance > Wit's End. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 138,
             "apiName": "Goredrink",
             "name": "Goredrink"
-          },
-          {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "Quantum Computing"
           },
           {
             "id": 79,

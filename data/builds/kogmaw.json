@@ -22,11 +22,6 @@
         ],
         "good": [
           {
-            "id": 52,
-            "apiName": "LightningStrikes",
-            "name": "闪电打击"
-          },
-          {
             "id": 115,
             "apiName": "ScopiestWeapons",
             "name": "最万用的瞄准镜"

@@ -6,7 +6,7 @@
       "key": "ad-tank",
       "name": "AD纳尔（战坦核心流）",
       "damageType": "AD",
-      "note": "心之钢起手叠血量放大小纳尔百分比伤害和大招体型。⚠️ 本档案经过大幅修正：草稿最初的核心海克斯「叠角龙」查无实据，arammayhem.com真实Prismatic档核心其实是歌利亚巨人/连拨击锤，已替换；出装同样改正——真实最高协同出装是心之钢→巨型九头蛇→狂徒铠甲→霸王血铠(48.78%胜率)，草稿最初的三相之力/黑色切割者/智慧末刃/斯特拉克是套用召唤师峡谷老版本常见件，与Mayhem实测数据对不上，已替换。⚠️ 草稿另一个「AP法穿三环流」archetype经核实是彻底的方向错误：真正与连拨击锤配对的是靠暴击/普攻的AD连招(双刀流+卢安娜的飓风)，不是AP法穿爆发，该archetype已整体删除。",
+      "note": "战坦打法：心之钢叠生命值，放大小纳尔的百分比伤害和大纳尔的体型。歌利亚巨人与重量级打击手是本版本纳尔最稳的两个海克斯，钢化你心、坦克引擎继续堆生命值；26.21 新增的装甲冲击让放技能后的下一次普攻按护甲打出额外伤害，很适合大纳尔进场后的连招。",
       "augments": {
         "core": [
           {
@@ -15,26 +15,31 @@
             "name": "歌利亚巨人"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 181,
+            "apiName": "HeavyHitter",
+            "name": "重量级打击手"
           }
         ],
         "good": [
-          {
-            "id": 313,
-            "apiName": "TankEngine",
-            "name": "坦克引擎"
-          },
           {
             "id": 152,
             "apiName": "Quest_SteelYourHeart",
             "name": "任务：钢化你心"
           },
           {
-            "id": 181,
-            "apiName": "HeavyHitter",
-            "name": "重量级打击手"
+            "id": 313,
+            "apiName": "TankEngine",
+            "name": "坦克引擎"
+          },
+          {
+            "id": 3049,
+            "apiName": "ARAMMayhemArmoredImpact",
+            "name": "装甲冲击"
+          },
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "小蜜蜂！！！"
           },
           {
             "id": 7,
@@ -78,90 +83,8 @@
       ],
       "runes": null,
       "sources": [
-        "arammayhem.com"
-      ],
-      "starterItems": [
-        {
-          "id": 3177,
-          "name": "守护者之刃"
-        },
-        {
-          "id": 1001,
-          "name": "鞋子"
-        },
-        {
-          "id": 2003,
-          "name": "生命药水"
-        }
-      ]
-    },
-    {
-      "key": "mini-w-hammer",
-      "name": "小纳尔连拨三环流",
-      "damageType": "AP",
-      "note": "抽到连拨击锤后再走。小纳尔W有高法强与百分比生命值收益，连拨击锤、双刀流和接二连三能用一发普攻快速打出多次三环；怒气接近满时注意先拉开，别把伤害窗口浪费在大纳尔形态。",
-      "augments": {
-        "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
-          {
-            "id": 225,
-            "apiName": "DualWield",
-            "name": "双刀流"
-          },
-          {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "接二连三"
-          },
-          {
-            "id": 29,
-            "apiName": "EtherealWeapon",
-            "name": "虚幻武器"
-          },
-          {
-            "id": 30,
-            "apiName": "Eureka",
-            "name": "尤里卡"
-          }
-        ],
-        "trap": []
-      },
-      "items": [
-        {
-          "id": 3115,
-          "name": "纳什之牙"
-        },
-        {
-          "id": 3006,
-          "name": "狂战士胫甲"
-        },
-        {
-          "id": 2510,
-          "name": "黄昏与黎明"
-        },
-        {
-          "id": 3116,
-          "name": "瑞莱的冰晶节杖"
-        },
-        {
-          "id": 3089,
-          "name": "灭世者的死亡之帽"
-        },
-        {
-          "id": 3135,
-          "name": "虚空之杖"
-        }
-      ],
-      "runes": null,
-      "sources": [
         "arammayhem.com",
-        "metasrc.com"
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Sivir",
       "damageType": "AD",
-      "note": "Sivir AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include Fan The Hammer / It's Critical / Light 'em Up!. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows. Start with Noonquiver. Cross-checked against metasrc.com and arammayhem.com.",
+      "note": "Sivir AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include It's Critical / Light 'em Up! / Soul Siphon. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows. Start with Noonquiver. Cross-checked against metasrc.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -21,11 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
           {
             "id": 47,
             "apiName": "ItsCritical",

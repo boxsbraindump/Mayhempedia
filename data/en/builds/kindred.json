@@ -6,45 +6,50 @@
       "key": "ad",
       "name": "AD Kindred",
       "damageType": "AD",
-      "note": "Kindred AD route for ARAM: Mayhem. Prioritize Deft / Fan The Hammer as the main augment plan. Strong secondary hits include Dual Wield / Goredrink / Blunt Force. Build toward The Collector > Berserker's Greaves > Infinity Edge > Blade of The Ruined King > Bloodthirster > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "note": "Kindred AD route for ARAM: Mayhem. Prioritize Still Here / Dual Wield as the main augment plan. Strong secondary hits include Mad Scientist / Weapon of Destiny / Clown College. Build toward The Collector > Berserker's Greaves > Infinity Edge > Blade of The Ruined King > Bloodthirster > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {
         "core": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "Quest: Urf's Champion"
+          },
           {
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ],
-        "good": [
-          {
-            "id": 225,
-            "apiName": "DualWield",
-            "name": "Dual Wield"
-          },
-          {
             "id": 138,
             "apiName": "Goredrink",
             "name": "Goredrink"
-          },
-          {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "Blunt Force"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "Scopiest Weapons"
-          },
-          {
-            "id": 238,
-            "apiName": "TransmutePrismatic",
-            "name": "Transmute: Prismatic"
           }
         ],
         "trap": []
@@ -79,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

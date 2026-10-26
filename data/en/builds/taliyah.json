@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Taliyah",
       "damageType": "AP",
-      "note": "Taliyah AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Juice Box / Witchful Thinking / Big Brain. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Liandry's Torment > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and blitz.gg and op.gg.",
+      "note": "Taliyah AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Witchful Thinking / Big Brain / Infernal Conduit. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Liandry's Torment > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and blitz.gg and op.gg.",
       "augments": {
         "core": [
           {
@@ -21,11 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
           {
             "id": 97,
             "apiName": "WitchfulThinking",

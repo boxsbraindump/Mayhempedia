@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Kog'Maw",
       "damageType": "AD",
-      "note": "Kog'Maw AD route for ARAM: Mayhem. Prioritize Dual Wield / Deft as the main augment plan. Strong secondary hits include Lightning Strikes / Scopiest Weapons / It's Critical. Build toward Blade of The Ruined King > Berserker's Greaves > Guinsoo's Rageblade > Runaan's Hurricane > Infinity Edge > Terminus. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
+      "note": "Kog'Maw AD route for ARAM: Mayhem. Prioritize Dual Wield / Deft as the main augment plan. Strong secondary hits include Scopiest Weapons / It's Critical / Giant Slayer. Build toward Blade of The Ruined King > Berserker's Greaves > Guinsoo's Rageblade > Runaan's Hurricane > Infinity Edge > Terminus. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -21,11 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 52,
-            "apiName": "LightningStrikes",
-            "name": "Lightning Strikes"
-          },
           {
             "id": 115,
             "apiName": "ScopiestWeapons",

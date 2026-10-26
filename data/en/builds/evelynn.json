@@ -37,11 +37,6 @@
             "name": "Magic Missile"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
-          {
             "id": 180,
             "apiName": "BigBrain",
             "name": "Big Brain"

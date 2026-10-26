@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Heimerdinger",
       "damageType": "AP",
-      "note": "Heimerdinger AP route for ARAM: Mayhem. Prioritize Recursion / Eureka / Infernal Conduit as the main augment plan. Strong secondary hits include Magic Missile / Juice Box / Phenomenal Evil. Build toward Blackfire Torch > Liandry's Torment > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com.",
+      "note": "Heimerdinger AP route for ARAM: Mayhem. Prioritize Recursion / Eureka / Infernal Conduit as the main augment plan. Strong secondary hits include Magic Missile / Phenomenal Evil / Witchful Thinking. Build toward Blackfire Torch > Liandry's Torment > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Rabadon's Deathcap. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "Magic Missile"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 65,

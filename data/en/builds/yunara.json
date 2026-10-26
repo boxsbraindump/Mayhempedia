@@ -6,45 +6,50 @@
       "key": "ad",
       "name": "AD Yunara",
       "damageType": "AD",
-      "note": "Yunara AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Scopiest Weapons. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Yunara AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Still Here as the main augment plan. Strong secondary hits include Dual Wield / Quest: Urf's Champion / Totentanz. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com and hexdata.com.cn.",
       "augments": {
         "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
+          }
+        ],
+        "good": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "Dual Wield"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ],
-        "good": [
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "Quest: Urf's Champion"
+          },
+          {
+            "id": 3079,
+            "apiName": "ARAMMayhemTotentanz",
+            "name": "Totentanz"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
           {
             "id": 81,
             "apiName": "TapDancer",
             "name": "Tap Dancer"
-          },
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "Giant Slayer"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "Scopiest Weapons"
-          },
-          {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "Deft"
-          },
-          {
-            "id": 92,
-            "apiName": "Vulnerability",
-            "name": "Vulnerability"
           }
         ],
         "trap": [
@@ -85,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "aramgg.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

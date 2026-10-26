@@ -96,11 +96,6 @@
             "name": "关键暴击"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
-          {
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "虚幻武器"

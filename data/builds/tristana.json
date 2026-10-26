@@ -6,21 +6,41 @@
       "key": "ad",
       "name": "AD暴击崔丝塔娜",
       "damageType": "AD",
-      "note": "崔丝塔娜是纯AD暴击流赏金猎人打法，核心逻辑是靠E炮弹震荡的施法距离加成+暴击装备堆叠爆发，站桩输出。连拨击锤与E单体触发多次结算强协同；亮出你的剑让她变近战获得攻速/生命/生命偷取，是ADC里公认的高选取率海克斯。",
+      "note": "亮剑近战打法：亮出你的剑在崔丝塔娜身上表现最好，变近战后获得攻速和生命偷取，W 跳进人群配合 E 炸弹打爆发。屹立不倒在残血时提供攻速和吸血，越打越能活。没有亮剑时可以走双刀流E爆弹路线。",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "亮出你的剑"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
           }
         ],
         "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "王冠之重"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -30,16 +50,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "巨人杀手"
-          },
-          {
-            "id": 225,
-            "apiName": "DualWield",
-            "name": "双刀流"
-          },
-          {
-            "id": 138,
-            "apiName": "Goredrink",
-            "name": "渴血"
           }
         ],
         "trap": [
@@ -85,7 +95,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -100,27 +111,32 @@
     },
     {
       "key": "hammer-e-bomb",
-      "name": "连拨击锤E爆弹崔丝塔娜",
+      "name": "双刀流E爆弹崔丝塔娜",
       "damageType": "AD",
-      "note": "抽到连拨击锤时转入。对带E炸弹的目标普攻，单次攻击能快速叠层并提前引爆；优先找能安全A到人的站位，再用R把贴脸目标推开。",
+      "note": "抽到双刀流时转入：每次普攻打出两段，能更快叠满 E 炸弹提前引爆。双刀流是崔丝塔娜本版本最常选的棱彩海克斯之一。找能安全普攻到人的位置，用 R 推开贴脸的敌人；王冠之重、屹立不倒都适合这种远程持续输出的打法。",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "双刀流"
+          }
+        ],
+        "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
           },
           {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "接二连三"
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "王冠之重"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
           },
           {
             "id": 22,
@@ -164,7 +180,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Nocturne",
       "damageType": "AD",
-      "note": "Nocturne AD route for ARAM: Mayhem. Prioritize Deft / Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force / The Brutalizer / Vanish. Build toward The Collector > Mercury's Treads > Axiom Arc > Experimental Hexplate > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "note": "Nocturne AD route for ARAM: Mayhem. Prioritize Deft / Thread the Needle as the main augment plan. Strong secondary hits include Blunt Force. Build toward The Collector > Mercury's Treads > Axiom Arc > Experimental Hexplate > Edge of Night > Serylda's Grudge. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
       "augments": {
         "core": [
           {
@@ -25,16 +25,6 @@
             "id": 7,
             "apiName": "BluntForce",
             "name": "Blunt Force"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "The Brutalizer"
-          },
-          {
-            "id": 89,
-            "apiName": "Vanish",
-            "name": "Vanish"
           }
         ],
         "trap": [

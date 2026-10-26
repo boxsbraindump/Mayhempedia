@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "暴击奎因(AD射手)",
       "damageType": "AD",
-      "note": "AD暴击/攻速射手流，靠W变形切换单体爆发与多目标消耗。经metasrc.com与arammayhem.com两站交叉验证(26.13版本)：双刀流与连拨击锤是棱彩阶爆款(约60%胜率)，灵巧是白银阶暴击核心。⚠️ 已修正内部矛盾：原草稿正文写「鞋子首选狂战士胫甲」但items数组错填了轻灵之靴，已改正为狂战士胫甲；海妖杀手/水银弯刀/瞄准脑袋/关键暴击在两站真实榜单里都查不到，已剔除。",
+      "note": "攻速暴击射手打法：E 突进打出标记，W 变形切换单体爆发与多目标消耗。26.21 连拨击锤移除后，双刀流仍是核心，屹立不倒补足残血时的攻速和吸血；死之舞适合奎因这种能突进收割的英雄，五秒内拿到击杀就能全身而退。",
       "augments": {
         "core": [
           {
@@ -15,12 +15,32 @@
             "name": "双刀流"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
           }
         ],
         "good": [
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
+          {
+            "id": 3079,
+            "apiName": "ARAMMayhemTotentanz",
+            "name": "死之舞"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -63,7 +83,8 @@
       "runes": null,
       "sources": [
         "metasrc.com",
-        "arammayhem.com"
+        "arammayhem.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

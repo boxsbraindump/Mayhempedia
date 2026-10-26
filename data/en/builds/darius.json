@@ -101,7 +101,7 @@
     },
     {
       "key": "tank",
-      "name": "Tank Tank Engine Darius",
+      "name": "Tank Engine Darius",
       "damageType": "Tank",
       "note": "Darius TANK route for ARAM: Mayhem. Prioritize Tank Engine as the main augment plan. Strong secondary hits include Dawnbringer's Resolve / Heavy Hitter / Impassable. Build toward Heartsteel > Overlord's Bloodmail > Unending Despair > Sundered Sky > Warmog's Armor > Mercury's Treads. Start with Long Sword + Guardian's Blade. Cross-checked against aramonly.com and metasrc.com and arammayhem.com.",
       "augments": {

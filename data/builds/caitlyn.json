@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD暴击凯特琳",
       "damageType": "AD",
-      "note": "远程消耗+暴击后期核心；「亮出你的剑」会把她转成近战附加护甲/生命偷取，是短时间换血/收割用的爆发窗口，不是打法主轴。",
+      "note": "26.21 凯特琳最强的海克斯是亮出你的剑：变成近战后获得攻速、生命值和生命偷取，可以直接站在前排打持续输出，表现明显领先其他选择。没有亮剑时按远程暴击打法玩，W 夹子接爆头普攻消耗，命运之武器、屹立不倒都是稳定的补充。",
       "augments": {
         "core": [
           {
@@ -15,12 +15,27 @@
             "name": "亮出你的剑"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
           }
         ],
         "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "任务：海牛阿福的勇士"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -75,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "aramgg.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

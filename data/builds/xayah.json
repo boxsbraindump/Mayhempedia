@@ -6,40 +6,50 @@
       "key": "ad-crit",
       "name": "AD暴击流霞",
       "damageType": "AD",
-      "note": "暴击攻速流ADC，靠W(致命之羽)清野/清线+叠加暴击装备打团爆发。",
+      "note": "暴击射手打法：普攻和 W 叠羽毛，E 回收羽毛打出多段伤害和定身。屹立不倒在残血时提供攻速和吸血，配合 R 无敌躲伤害后反打；亮出你的剑能让霞变近战打持续输出。科学狂人、命运之武器等通用强势海克斯在霞身上也很稳定。",
       "augments": {
         "core": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          }
+        ],
+        "good": [
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "任务：海牛阿福的勇士"
+          },
           {
             "id": 22,
             "apiName": "Deft",
             "name": "灵巧"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "巨人杀手"
-          },
-          {
             "id": 225,
             "apiName": "DualWield",
             "name": "双刀流"
-          },
-          {
-            "id": 47,
-            "apiName": "ItsCritical",
-            "name": "关键暴击"
-          },
-          {
-            "id": 77,
-            "apiName": "SoulSiphon",
-            "name": "灵魂虹吸"
           }
         ],
         "trap": []
@@ -74,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

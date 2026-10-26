@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Infernal Conduit Aurelion Sol",
       "damageType": "AP",
-      "note": "Aurelion Sol AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Eureka / Juice Box / Phenomenal Evil. Build toward Blackfire Torch > Sorcerer's Shoes > Rylai's Crystal Scepter > Liandry's Torment > Archangel's Staff > Shadowflame. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and blitz.gg.",
+      "note": "Aurelion Sol AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Eureka / Phenomenal Evil / Ice Cold. Build toward Blackfire Torch > Sorcerer's Shoes > Rylai's Crystal Scepter > Liandry's Torment > Archangel's Staff > Shadowflame. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -25,11 +25,6 @@
             "id": 30,
             "apiName": "Eureka",
             "name": "Eureka"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 65,

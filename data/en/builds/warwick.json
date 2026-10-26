@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank-fighter",
-      "name": "AD/Tank Tank Warwick",
+      "name": "AD/Tank Warwick",
       "damageType": "AD/Tank",
       "note": "Warwick AD/TANK route for ARAM: Mayhem. Prioritize Tank Engine / Heavy Hitter as the main augment plan. Strong secondary hits include Goliath / Goredrink / Quest: Steel Your Heart. Build toward Blade of The Ruined King > Heartsteel > Mercury's Treads > Spirit Visage > Thornmail > Death's Dance. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com and lolhaidou.cn.",
       "augments": {
@@ -35,11 +35,6 @@
             "id": 152,
             "apiName": "Quest_SteelYourHeart",
             "name": "Quest: Steel Your Heart"
-          },
-          {
-            "id": 52,
-            "apiName": "LightningStrikes",
-            "name": "Lightning Strikes"
           }
         ],
         "trap": [
@@ -47,11 +42,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "Magic Missile"
-          },
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "Keystone Conjurer"
           }
         ]
       },

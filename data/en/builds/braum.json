@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Braum",
+      "name": "Tank Braum",
       "damageType": "Tank",
       "note": "Braum TANK route for ARAM: Mayhem. Prioritize Tank Engine / Goliath as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Courage of the Colossus. Build toward Heartsteel > Unending Despair > Warmog's Armor > Mercury's Treads > Thornmail > Kaenic Rookern. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {

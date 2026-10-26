@@ -4,23 +4,43 @@
   "archetypes": [
     {
       "key": "ad",
-      "name": "AD Fan The Hammer Twitch",
+      "name": "AD Crit Twitch",
       "damageType": "AD",
-      "note": "Twitch AD route for ARAM: Mayhem. Prioritize Fan The Hammer / Dual Wield as the main augment plan. Strong secondary hits include Deft / It's Critical / Giant Slayer. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg.",
+      "note": "Twitch AD route for ARAM: Mayhem. Prioritize Dual Wield / Heavy Is The Crown as the main augment plan. Strong secondary hits include Draw Your Sword / Weapon of Destiny / Quest: Urf's Champion. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg and hexdata.com.cn.",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "Dual Wield"
+          },
+          {
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "Heavy Is The Crown"
           }
         ],
         "good": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "Quest: Urf's Champion"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -30,16 +50,6 @@
             "id": 47,
             "apiName": "ItsCritical",
             "name": "It's Critical"
-          },
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "Giant Slayer"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "Scopiest Weapons"
           }
         ],
         "trap": [
@@ -80,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "op.gg"
+        "op.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

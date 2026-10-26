@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "暴击斯莫德",
       "damageType": "AD",
-      "note": "暴击/攻速流ADC，靠Q技能叠层与暴击缩放后期爆发极高，夺萃之镰+无尽之刃为核心。",
+      "note": "叠层暴击打法：Q 命中叠层，叠到高层后伤害和范围质变。叠角龙让每次叠层多叠，是斯莫德最契合的海克斯；珠光护手让 Q 可以暴击。26.21 的鼓声暴起 低音轰鸣也适合斯莫德：放完 Q 后下一次普攻多一段伤害并加速，方便边走位边叠层。",
       "augments": {
         "core": [
           {
@@ -15,26 +15,36 @@
             "name": "珠光护手"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "叠角龙"
           }
         ],
         "good": [
           {
-            "id": 204,
-            "apiName": "StackosaurusRex",
-            "name": "叠角龙"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
           },
           {
-            "id": 86,
-            "apiName": "TrueshotProdigy",
-            "name": "精准奇才"
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "回归基本功"
           },
           {
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "巨人杀手"
+          },
+          {
+            "id": 105,
+            "apiName": "Homeguard",
+            "name": "家园卫士"
           },
           {
             "id": 115,
@@ -86,7 +96,8 @@
         "arammayhem.com",
         "metasrc.com",
         "hupu.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

@@ -32,11 +32,6 @@
             "name": "珠光护手"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
-          },
-          {
             "id": 11,
             "apiName": "CantTouchThis",
             "name": "你摸不到"

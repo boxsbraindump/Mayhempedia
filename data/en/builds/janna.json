@@ -30,11 +30,6 @@
             "id": 37,
             "apiName": "FirstAidKit",
             "name": "First-Aid Kit"
-          },
-          {
-            "id": 231,
-            "apiName": "LightWarden",
-            "name": "Light Warden"
           }
         ],
         "trap": [

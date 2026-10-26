@@ -35,11 +35,6 @@
             "id": 152,
             "apiName": "Quest_SteelYourHeart",
             "name": "任务：钢化你心"
-          },
-          {
-            "id": 52,
-            "apiName": "LightningStrikes",
-            "name": "闪电打击"
           }
         ],
         "trap": [
@@ -47,11 +42,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "魔法飞弹"
-          },
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "基石法师"
           }
         ]
       },

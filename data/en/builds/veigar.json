@@ -45,11 +45,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "Magic Missile"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           }
         ],
         "trap": []

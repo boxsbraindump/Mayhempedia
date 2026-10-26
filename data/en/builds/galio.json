@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Engine Galio",
+      "name": "Tank Engine Galio",
       "damageType": "Tank",
       "note": "Galio TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Courage of the Colossus / Goliath / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Randuin's Omen > Thornmail > Jak'Sho, The Protean > Frozen Heart. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against lolhaidou.cn and arammayhem.com and aramgg.com.",
       "augments": {
@@ -136,20 +136,9 @@
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "Stackosaurus Rex"
-          },
-          {
-            "id": 96,
-            "apiName": "WisdomofAges",
-            "name": "Wisdom of Ages"
           }
         ],
-        "trap": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

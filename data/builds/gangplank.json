@@ -22,16 +22,6 @@
         ],
         "good": [
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "残暴之力"
-          },
-          {
             "id": 7,
             "apiName": "BluntForce",
             "name": "大力"
@@ -127,11 +117,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "巨人杀手"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "残暴之力"
           }
         ],
         "trap": []

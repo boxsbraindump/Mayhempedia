@@ -37,13 +37,7 @@
             "name": "Mad Scientist"
           }
         ],
-        "trap": [
-          {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

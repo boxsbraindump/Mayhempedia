@@ -22,11 +22,6 @@
         ],
         "good": [
           {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "裁决使"
-          },
-          {
             "id": 115,
             "apiName": "ScopiestWeapons",
             "name": "最万用的瞄准镜"
@@ -40,11 +35,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "虚幻武器"
-          },
-          {
-            "id": 42,
-            "apiName": "GuiltyPleasure",
-            "name": "恶趣味"
           }
         ],
         "trap": [

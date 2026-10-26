@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Taric",
+      "name": "Tank Taric",
       "damageType": "Tank",
       "note": "Taric TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Celestial Body / Ice Cold. Build toward Heartsteel > Mercury's Treads > Winter's Approach > Unending Despair > Malignance > Thornmail. Start with Giant's Belt + Tear of the Goddess. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
       "augments": {
@@ -52,11 +52,6 @@
             "id": 205,
             "apiName": "ADAPt",
             "name": "ADAPt"
-          },
-          {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "Quantum Computing"
           }
         ]
       },

@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "Support Milio",
       "damageType": "Support",
-      "note": "Milio SUPPORT route for ARAM: Mayhem. Prioritize All For You as the main augment plan. Strong secondary hits include First-Aid Kit / Sonic Boom / Dematerialize. Build toward Moonstone Renewer > Staff of Flowing Water > Ardent Censer > Redemption > Mikael's Blessing > Ionian Boots of Lucidity. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Milio SUPPORT route for ARAM: Mayhem. Prioritize All For You as the main augment plan. Strong secondary hits include First-Aid Kit / Sonic Boom / Magic Missile. Build toward Moonstone Renewer > Staff of Flowing Water > Ardent Censer > Redemption > Mikael's Blessing > Ionian Boots of Lucidity. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -25,11 +25,6 @@
             "id": 76,
             "apiName": "SonicBoom",
             "name": "Sonic Boom"
-          },
-          {
-            "id": 171,
-            "apiName": "Dematerialize",
-            "name": "Dematerialize"
           },
           {
             "id": 133,

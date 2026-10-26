@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Jinx",
       "damageType": "AD",
-      "note": "Jinx AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Deft / Fan The Hammer / Tap Dancer. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com.",
+      "note": "Jinx AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Deft / Tap Dancer. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -20,11 +20,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           },
           {
             "id": 81,

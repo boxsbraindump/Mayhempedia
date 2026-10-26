@@ -11,6 +11,7 @@ import { readFile, writeFile, mkdir, stat } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { iconColorFamily } from './lib/augment-icon-color.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DATA_DIR = join(__dirname, '..', 'data')
@@ -51,6 +52,15 @@ const CDRAGON_ONLY_LIVE = {
 }
 const CDRAGON_ICON_ROOT = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default'
 const RARITY_BY_CDRAGON = { kSilver: 0, kGold: 1, kPrismatic: 2 }
+const RARITY_NAME = ['silver', 'gold', 'prismatic']
+
+// 图标：Riot 游戏文件里每个海克斯的 *_small.png 是白图，*_large.png 才是按稀有度上好色的原图
+// （海斗 kiwi 目录优先，其次竞技场 cherry 目录；技能类海克斯用按稀有度区分的通用图标）。
+// 只采用颜色和海斗稀有度一致的原图；都没有时退回白色原图，抓取结束会列出来。
+const GAME_ICON_DIRS = {
+  kiwi: 'https://raw.communitydragon.org/latest/game/assets/ux/kiwi/augments/icons/',
+  cherry: 'https://raw.communitydragon.org/latest/game/assets/ux/cherry/augments/icons/',
+}
 
 const RARITY_BY_BADGE = { silver: 0, gold: 1, prismatic: 2 }
 const RARITY_LABEL_ZH = { 0: '银 Silver', 1: '金 Gold', 2: '棱彩 Prismatic' }
@@ -222,6 +232,61 @@ async function main() {
     (runtimeIdsByName.get(normalizeName(enName)) ?? []).map((id) => cdragonZhById.get(id)).filter(Boolean)
   const sameZhName = (a, b) => a.replace(/[\s：:！!]/g, '') === b.replace(/[\s：:！!]/g, '')
 
+  const cdragonEnById = new Map(cdragonEn.map((augment) => [augment.id, augment]))
+  const runtimeAliases = (await loadJson('augment-runtime-aliases.json').catch(() => ({ aliases: {} }))).aliases ?? {}
+  const runtimeIdsByLocal = new Map()
+  for (const [runtimeId, localId] of Object.entries(runtimeAliases)) {
+    runtimeIdsByLocal.set(localId, [...(runtimeIdsByLocal.get(localId) ?? []), Number(runtimeId)])
+  }
+  /** 这个海克斯在 Riot 客户端数据里的条目；海斗条目（id ≥ 1000）优先，竞技场条目兜底 */
+  function riotEntries(localId, enName) {
+    const ids = new Set([
+      localId,
+      localId + 1000,
+      localId + 2000,
+      ...(runtimeIdsByLocal.get(localId) ?? []),
+      ...(runtimeIdsByName.get(normalizeName(enName)) ?? []),
+    ])
+    const entries = [...ids]
+      .map((runtimeId) => cdragonEnById.get(runtimeId))
+      .filter((entry) => entry && normalizeName(entry.nameTRA) === normalizeName(enName))
+    const mayhem = entries.filter((entry) => entry.id >= 1000)
+    return mayhem.length ? mayhem : entries
+  }
+
+  const listIcons = async (url) =>
+    new Set([...(await fetchText(url)).matchAll(/href="([^"?#/]+\.png)"/g)].map((match) => match[1].toLowerCase()))
+  const gameIcons = { kiwi: await listIcons(GAME_ICON_DIRS.kiwi), cherry: await listIcons(GAME_ICON_DIRS.cherry) }
+
+  /** 按顺序试官方上色原图，再试本地/网站上已有的图，返回第一张颜色和稀有度一致的；都不一致返回 null */
+  async function coloredIcon(riot, rarity, fallbacks) {
+    const candidates = []
+    for (const entry of riot) {
+      const base = entry.augmentSmallIconPath.split('/').pop().toLowerCase()
+      if (base.startsWith('genericabilityaugmenticon')) candidates.push(['kiwi', `genericabilityaugmenticon_${RARITY_NAME[rarity]}.png`])
+      const large = base.replace('_small.png', '_large.png')
+      for (const dir of ['kiwi', 'cherry']) if (gameIcons[dir].has(large)) candidates.push([dir, large])
+    }
+    const tried = new Set()
+    for (const [dir, file] of candidates) {
+      const local = `icons/augments/official/${dir}_${file}`
+      if (tried.has(local)) continue
+      tried.add(local)
+      const url = `${GAME_ICON_DIRS[dir]}${file}`
+      await download(url, join(DATA_DIR, local))
+      if ((await iconColorFamily(join(DATA_DIR, local))) === rarity) return { local, url, kind: 'riot' }
+    }
+    for (const fallback of fallbacks) {
+      if (!fallback.local || tried.has(fallback.local)) continue
+      tried.add(fallback.local)
+      if (fallback.url && fallback.local.startsWith('icons/')) await download(fallback.url, join(DATA_DIR, fallback.local)).catch(() => {})
+      if (!existsSync(join(DATA_DIR, fallback.local))) continue
+      if ((await iconColorFamily(join(DATA_DIR, fallback.local))) === rarity) return { ...fallback, kind: 'local' }
+    }
+    return null
+  }
+  await mkdir(join(ICON_DIR, 'official'), { recursive: true })
+
   const catalogSlugs = new Set(catalog.rows.map((row) => row.slug))
   const slugs = [...catalog.rows.map((row) => row.slug), ...EXTRA_LIVE_SLUGS.filter((slug) => !catalogSlugs.has(slug))]
   console.log(`arammayhem.com ${catalog.patch} 目录 ${catalog.rows.length} 个 + 额外保留 ${slugs.length - catalog.rows.length} 个，抓取详情页…`)
@@ -244,14 +309,16 @@ async function main() {
     zhFallback: [],
     descFallback: [],
     unresolved: [],
+    rarityFromRiot: [],
+    whiteIcon: [],
   }
   const zh = []
   const en = []
   const snapshot = []
 
   for (const { slug, enUrl, en: enPage, zh: zhPage } of details) {
-    const rarity = RARITY_BY_BADGE[enPage.badge.toLowerCase()]
-    if (rarity === undefined) throw new Error(`${slug}: 认不出稀有度徽章 "${enPage.badge}"`)
+    const siteRarity = RARITY_BY_BADGE[enPage.badge.toLowerCase()]
+    if (siteRarity === undefined) throw new Error(`${slug}: 认不出稀有度徽章 "${enPage.badge}"`)
 
     let idSource = 'snapshot'
     let previous = previousEnById.get(previousIdBySlug.get(slug))
@@ -276,18 +343,27 @@ async function main() {
     const previousZhRecord = previous ? previousZhById.get(previous.id) : undefined
     const wasLive = previous?.availability === 'live'
     const apiName = previous?.apiName ?? apiNameFromSlug(slug)
-    const iconUrl = `${ROOT}${enPage.imagePath}`
+    // 稀有度以 Riot 客户端数据为准（版本里改过稀有度的它都跟上了），和 arammayhem 不一致时打印出来
+    const riot = riotEntries(id, enPage.name)
+    const riotRarities = [...new Set(riot.filter((entry) => entry.id >= 1000).map((entry) => RARITY_BY_CDRAGON[entry.rarity]))]
+    const rarity = riotRarities.length === 1 ? riotRarities[0] : siteRarity
+    if (rarity !== siteRarity) report.rarityFromRiot.push(`${enPage.name}: arammayhem ${RARITY_NAME[siteRarity]} → Riot ${RARITY_NAME[rarity]}`)
 
-    // 旧的 live 记录且稀有度没变 → 沿用原图标（含 data/assets/ 里手工校对过的稀有度专用图标）；否则用 arammayhem 的图
-    let iconLargeLocal = previous?.iconLargeLocal
-    let iconSmallLocal = previous?.iconSmallLocal
-    if (!wasLive || previous.rarity !== rarity) {
-      const ext = enPage.imagePath.match(/\.(\w+)$/)?.[1] ?? 'webp'
-      iconLargeLocal = iconSmallLocal = `icons/augments/${apiName}_arammayhem.${ext}`
+    const siteIconLocal = `icons/augments/${apiName}_arammayhem.${enPage.imagePath.match(/\.(\w+)$/)?.[1] ?? 'webp'}`
+    const siteIconUrl = `${ROOT}${enPage.imagePath}`
+    const icon = (await coloredIcon(riot, rarity, [
+      { local: previous?.iconLargeLocal, url: previous?.iconLargeUrl },
+      { local: `assets/mayhem-augments/${slug}-${RARITY_NAME[rarity]}.webp` },
+      { local: `assets/mayhem-augments/${slug}.webp` },
+      { local: siteIconLocal, url: siteIconUrl },
+    ])) ?? { local: siteIconLocal, url: siteIconUrl, kind: 'white' }
+    if (icon.kind === 'white') {
+      await download(icon.url, join(DATA_DIR, icon.local))
+      report.whiteIcon.push(`${zhPage.name}（${RARITY_NAME[rarity]}）`)
     }
-    if (iconLargeLocal.startsWith('icons/augments/') && iconLargeLocal.includes('_arammayhem.')) {
-      await download(iconUrl, join(DATA_DIR, iconLargeLocal))
-    }
+    const iconUrl = icon.url ?? siteIconUrl
+    const iconLargeLocal = icon.local
+    const iconSmallLocal = iconLargeLocal
 
     if (!wasLive) report.added.push(`${enPage.name} (${id}, ${idSource})`)
     if (wasLive && previous.rarity !== rarity) report.rarityChanged.push(`${enPage.name}: ${previous.rarity} → ${rarity}`)
@@ -349,7 +425,8 @@ async function main() {
       slug,
       name: enPage.name,
       nameZh: zhName,
-      rarity: enPage.badge.toLowerCase(),
+      rarity: RARITY_NAME[rarity],
+      icon: icon.kind,
       introducedPatch,
       pickRate: open?.pickRate ?? null,
       pickRateRank: open?.pickRateRank ?? null,
@@ -359,7 +436,6 @@ async function main() {
     })
   }
 
-  const cdragonEnById = new Map(cdragonEn.map((augment) => [augment.id, augment]))
   for (const [runtimeIdKey, text] of Object.entries(CDRAGON_ONLY_LIVE)) {
     const runtime = cdragonEnById.get(Number(runtimeIdKey))
     if (!runtime) throw new Error(`CommunityDragon 里找不到运行时 id ${runtimeIdKey}`)
@@ -375,9 +451,18 @@ async function main() {
     usedIds.add(id)
     const slug = runtime.nameTRA.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
     const apiName = previous?.apiName ?? apiNameFromSlug(slug)
-    const iconUrl = `${CDRAGON_ICON_ROOT}${runtime.augmentSmallIconPath.toLowerCase().replace('/lol-game-data/assets/assets/', '/assets/')}`
-    const iconLocal = previous?.iconLargeLocal ?? `icons/augments/${apiName}_cdragon.png`
-    if (!previous) await download(iconUrl, join(DATA_DIR, iconLocal))
+    const smallUrl = `${CDRAGON_ICON_ROOT}${runtime.augmentSmallIconPath.toLowerCase().replace('/lol-game-data/assets/assets/', '/assets/')}`
+    const smallLocal = `icons/augments/${apiName}_cdragon.png`
+    const icon = (await coloredIcon(riotEntries(id, runtime.nameTRA), rarity, [
+      { local: previous?.iconLargeLocal, url: previous?.iconLargeUrl },
+      { local: smallLocal, url: smallUrl },
+    ])) ?? { local: smallLocal, url: smallUrl, kind: 'white' }
+    if (icon.kind === 'white') {
+      await download(icon.url, join(DATA_DIR, icon.local))
+      report.whiteIcon.push(`${cdragonZhById.get(runtime.id) ?? runtime.nameTRA}（${RARITY_NAME[rarity]}）`)
+    }
+    const iconUrl = icon.url
+    const iconLocal = icon.local
     const zhName = cdragonZhById.get(runtime.id) ?? runtime.nameTRA
     const record = (name, desc, rarityLabel) => ({
       id,
@@ -393,7 +478,7 @@ async function main() {
       iconLargeUrl: iconUrl,
       iconSmallUrl: iconUrl,
       iconLargeLocal: iconLocal,
-      iconSmallLocal: previous?.iconSmallLocal ?? iconLocal,
+      iconSmallLocal: iconLocal,
       rarityLabel,
     })
     en.push(record(runtime.nameTRA, text.en, RARITY_LABEL_EN[rarity]))
@@ -405,7 +490,8 @@ async function main() {
       slug,
       name: runtime.nameTRA,
       nameZh: zhName,
-      rarity: ['silver', 'gold', 'prismatic'][rarity],
+      rarity: RARITY_NAME[rarity],
+      icon: icon.kind,
       introducedPatch: null,
       pickRate: null,
       pickRateRank: null,
@@ -416,7 +502,22 @@ async function main() {
   }
 
   const liveIds = new Set(en.map((augment) => augment.id))
-  const toLegacy = (augment) => ({ ...augment, availability: 'legacy', source: augment.source ?? 'legacy-cdragon' })
+  // 旧条目会出现在对局记录里，图标同样换成颜色和稀有度一致的官方原图（找不到就保持原样）
+  const legacyIcons = new Map()
+  for (const augment of previousEn.filter((entry) => entry.rarity !== 4 && !liveIds.has(entry.id))) {
+    const icon = await coloredIcon(riotEntries(augment.id, augment.name), augment.rarity, [
+      { local: augment.iconLargeLocal, url: augment.iconLargeUrl },
+    ])
+    if (icon) {
+      legacyIcons.set(augment.id, { iconLargeUrl: icon.url, iconSmallUrl: icon.url, iconLargeLocal: icon.local, iconSmallLocal: icon.local })
+    }
+  }
+  const toLegacy = (augment) => ({
+    ...augment,
+    ...legacyIcons.get(augment.id),
+    availability: 'legacy',
+    source: augment.source ?? 'legacy-cdragon',
+  })
   // 隐藏的旧条目也换成客户端官方中文名（旧路线、旧对局里显示的名字要和游戏里一致）
   const legacyZh = previousZh
     .filter((augment) => augment.rarity !== 4 && !liveIds.has(augment.id))
@@ -468,6 +569,8 @@ async function main() {
   console.log(`新增 ${report.added.length}: ${report.added.join(' | ')}`)
   console.log(`移出现役 ${removed.length}: ${removed.map((augment) => `${augment.name} (${augment.id})`).join(' | ')}`)
   if (report.rarityChanged.length) console.log(`稀有度变化: ${report.rarityChanged.join(' | ')}`)
+  if (report.rarityFromRiot.length) console.log(`稀有度改用 Riot 数据: ${report.rarityFromRiot.join(' | ')}`)
+  console.log(`官方原图里找不到对应稀有度彩图、暂用白图 ${report.whiteIcon.length}: ${report.whiteIcon.join(' | ')}`)
   if (report.zhRenamed.length) console.log(`中文名变化 ${report.zhRenamed.length}: ${report.zhRenamed.join(' | ')}`)
   if (report.zhOfficial.length) console.log(`改用客户端官方中文名: ${report.zhOfficial.join(' | ')}`)
   if (report.legacyZhOfficial.length) {

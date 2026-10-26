@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Giant Slayer Graves",
       "damageType": "AD",
-      "note": "Graves AD route for ARAM: Mayhem. Prioritize Giant Slayer / Soul Siphon as the main augment plan. Strong secondary hits include Executioner / It's Killing Time / Bread And Butter. Build toward The Collector > Mercury's Treads > Infinity Edge > Lord Dominik's Regards > Youmuu's Ghostblade > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
+      "note": "Graves AD route for ARAM: Mayhem. Prioritize Giant Slayer / Soul Siphon as the main augment plan. Strong secondary hits include It's Killing Time / Bread And Butter / Deft. Build toward The Collector > Mercury's Treads > Infinity Edge > Lord Dominik's Regards > Youmuu's Ghostblade > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -21,11 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
-          },
           {
             "id": 211,
             "apiName": "ItsKillingTime",
@@ -98,7 +93,7 @@
       "key": "melee-sword",
       "name": "AD Draw Your Sword Graves",
       "damageType": "AD",
-      "note": "Graves AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Slow and Steady / Back To Basics / It's Killing Time. Build toward The Collector > Mercury's Treads > Infinity Edge > Youmuu's Ghostblade > Hubris > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
+      "note": "Graves AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Back To Basics / It's Killing Time / Shadow Runner. Build toward The Collector > Mercury's Treads > Infinity Edge > Youmuu's Ghostblade > Hubris > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -108,11 +103,6 @@
           }
         ],
         "good": [
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "Slow and Steady"
-          },
           {
             "id": 4,
             "apiName": "BacktoBasics",

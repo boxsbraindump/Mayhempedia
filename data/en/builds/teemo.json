@@ -92,7 +92,7 @@
       "key": "infinite-shrooms",
       "name": "AP Archmage Teemo",
       "damageType": "AP",
-      "note": "Teemo AP route for ARAM: Mayhem. Prioritize Archmage / Purist - Caster as the main augment plan. Strong secondary hits include Eureka / Infinite Recursion / High Roller. Build toward Malignance > Nashor's Tooth > Lich Bane > Liandry's Torment > Shadowflame > Cryptbloom. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against Community curated.",
+      "note": "Teemo AP route for ARAM: Mayhem. Prioritize Archmage / Purist - Caster as the main augment plan. Strong secondary hits include Eureka / Infinite Recursion. Build toward Malignance > Nashor's Tooth > Lich Bane > Liandry's Torment > Shadowflame > Cryptbloom. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against Community curated.",
       "augments": {
         "core": [
           {
@@ -116,11 +116,6 @@
             "id": 900003,
             "apiName": "MayhemInfiniteRecursion",
             "name": "Infinite Recursion"
-          },
-          {
-            "id": 900004,
-            "apiName": "MayhemHighRoller",
-            "name": "High Roller"
           }
         ],
         "trap": []

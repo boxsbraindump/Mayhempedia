@@ -20,52 +20,52 @@
         "change": "New (Silver): Gain a Shield when you cast an ability, scaled by its mana cost."
       },
       {
-        "icon": "icons/augments/ARAMMayhemFlowOfSpirit_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_silver.png",
         "name": "Flow of Spirit",
         "change": "New (Silver): Using a specific ability grants stacking Attack Speed."
       },
       {
-        "icon": "icons/augments/ARAMMayhemFruitify_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_fruitseason_large.png",
         "name": "Fruitify",
         "change": "New (Silver): Enemy champion takedowns create Fruit that you and allies can pick up for healing."
       },
       {
-        "icon": "icons/augments/ARAMMayhemGiftOfTheDrowned_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_giftofthedrowned_large.png",
         "name": "Gift of the Drowned",
         "change": "New (Silver): All Bonus Health from your items converts to Lethality."
       },
       {
-        "icon": "icons/augments/ARAMMayhemHandsOffTheTalent_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_bonk_large.png",
         "name": "Hands off the Talent",
         "change": "New (Silver): Attacks deal extra damage when fired from max range."
       },
       {
-        "icon": "icons/augments/ARAMMayhemLichBrain_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_lichbrain_large.png",
         "name": "Lich Brain",
         "change": "New (Silver): Gain Ability Power based on your Bonus Health."
       },
       {
-        "icon": "icons/augments/ARAMMayhemLonelyWarrior_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_adamant_large.png",
         "name": "Lonely Warrior",
         "change": "New (Silver): Gain Armor, Magic Resistance, and Attack Speed for each nearby enemy champion."
       },
       {
-        "icon": "icons/augments/ARAMMayhemNoManaNoProblem_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_nomananoproblem_large.png",
         "name": "No Mana, No Problem",
         "change": "New (Silver): All mana from your items converts to Ability Power."
       },
       {
-        "icon": "icons/augments/ARAMMayhemSoundBarrier_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_swiftandsafe_large.png",
         "name": "Sound Barrier",
         "change": "New (Silver): Your shields grant Move Speed."
       },
       {
-        "icon": "icons/augments/ARAMMayhemUltimateRecursion_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_zealot_large.png",
         "name": "Ultimate Recursion",
         "change": "New (Silver): Gain 50 Ultimate Ability Haste."
       },
       {
-        "icon": "icons/augments/ARAMMayhemArcaneAxiom_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_arcaneaxiom_large.png",
         "name": "Arcane Axiom",
         "change": "New (Gold): Takedowns refund part of your Ultimate cooldown."
       },
@@ -80,17 +80,17 @@
         "change": "New (Gold): Abilities occasionally throw an exploding beehive that damages, slows, and applies On-Hit effects."
       },
       {
-        "icon": "icons/augments/ARAMMayhemBrassBlast_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_camo_large.png",
         "name": "Brass Blast",
         "change": "New (Gold): Gain a Summoner Spell that charges a horn blast to knock back and damage enemies."
       },
       {
-        "icon": "icons/augments/ARAMMayhemCrimsonCobalt_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "name": "CRIMSON COBALT",
         "change": "New (Gold): One ability marks enemy champions. Consuming the mark deals extra damage and reduces that ability's cooldown."
       },
       {
-        "icon": "icons/augments/ARAMMayhemDoubleTime_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_aram_phenomenalevil_large.png",
         "name": "Double Time",
         "change": "New (Gold): Damaging enemy champions with two different abilities in quick succession grants permanent Mana and extra damage."
       },
@@ -100,7 +100,7 @@
         "change": "New (Gold): Healing and shielding allies summons butterflies that fly at damaged enemies once you have enough."
       },
       {
-        "icon": "icons/augments/ARAMMayhemGetJinxed_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_overextender_large.png",
         "name": "Get Jinxed",
         "change": "New (Gold): Gain a Summoner Spell that lets you ride a rocket into enemies."
       },
@@ -110,22 +110,22 @@
         "change": "New (Gold): Gain AD, AP, and Attack Speed but lose Move Speed. Takedowns strengthen this effect, and dying weakens it."
       },
       {
-        "icon": "icons/augments/ARAMMayhemJeweledBracelet_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "name": "Jeweled Bracelet",
         "change": "New (Gold): Your Ultimate can now critically strike."
       },
       {
-        "icon": "icons/augments/ARAMMayhemRecoil_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "name": "Recoil",
         "change": "New (Gold): One ability launches you backward when cast."
       },
       {
-        "icon": "icons/augments/ARAMMayhemSalvation_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_salvation_large.png",
         "name": "Salvation",
         "change": "New (Gold): Falling to low Health pushes enemies back and heals allies."
       },
       {
-        "icon": "icons/augments/ARAMMayhemSapMagic_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_mercysstrike_large.png",
         "name": "Sap Magic",
         "change": "New (Gold): Every 10 seconds, your next Attack deals extra damage and heals you."
       },
@@ -145,17 +145,17 @@
         "change": "New (Gold): After casting an ability, your next attack deals bonus damage and grants a burst of Move Speed."
       },
       {
-        "icon": "icons/augments/ARAMMayhemTickleMonster_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_ticklemonster_large.png",
         "name": "Tickle Monster",
         "change": "New (Gold): All AD from your items converts to Attack Speed."
       },
       {
-        "icon": "icons/augments/ARAMMayhemUpgradeStormsurge_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_upgradehubris_large.png",
         "name": "Upgrade Stormsurge",
         "change": "New (Gold): When Stormsurge applies Squall, it detonates in an area for extra damage and marks enemies with a secondary Squall."
       },
       {
-        "icon": "icons/augments/ARAMMayhemWeaponOfDestiny_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_protagonistssignatureweapon_large.png",
         "name": "Weapon of Destiny",
         "change": "New (Gold): The first Legendary item you buy gains stronger stats with each takedown."
       },
@@ -165,22 +165,22 @@
         "change": "New (Prismatic): A large portion of your Attack Speed converts to Critical Strike Damage."
       },
       {
-        "icon": "icons/augments/ARAMMayhemBouncingBees_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_kingme_large.png",
         "name": "Bouncing Bees",
         "change": "New (Prismatic): After using an ability, your next Attack bounces to nearby enemies, prioritizing champions. A quest adds bounces and AD for bouncing to champions."
       },
       {
-        "icon": "icons/augments/ARAMMayhemGroupHug_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_empyreampromise_large.png",
         "name": "Group Hug",
         "change": "New (Prismatic): An ability that heals or shields also heals or shields nearby allies."
       },
       {
-        "icon": "icons/augments/ARAMMayhemMoshMonster_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_prismatic.png",
         "name": "Mosh Monster",
         "change": "New (Prismatic): Ultimate grants Bonus Health and creates a zone that slows enemy champions. Takedowns increase both the Health and zone size."
       },
       {
-        "icon": "icons/augments/ARAMMayhemThirdTimesTheHarm_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_silverbeats_large.png",
         "name": "Third Times the Harm",
         "change": "New (Prismatic): Attacking an enemy champion three times deals a burst of damage and grants a burst of Attack Speed."
       },
@@ -190,22 +190,22 @@
         "change": "New (Prismatic): Gain a Summoner Spell that grants 5 seconds of immortality. Without a takedown in that window, you are dragged to the underworld."
       },
       {
-        "icon": "assets/mayhem-augments/combusting-interest.webp",
+        "icon": "icons/augments/official/kiwi_bloodmoney2_large.png",
         "name": "Combusting Interest",
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemCritNCast_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_critncast_large.png",
         "name": "Crit 'n Cast",
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_criticalmissile_large.png",
         "name": "Critical Missile",
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_whenthedarknesscomes_large.png",
         "name": "Dimension Shift",
         "change": "Removed from the Augment pool."
       },
@@ -215,17 +215,17 @@
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_dropkick_large.png",
         "name": "Dropkick",
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/FanTheHammer_large.png",
+        "icon": "icons/augments/official/cherry_fanthehammer_large.png",
         "name": "Fan The Hammer",
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemHideOnBush_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_brushpower_large.png",
         "name": "Hide on Bush",
         "change": "Removed from the Augment pool."
       },
@@ -235,7 +235,7 @@
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemOurHealing_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_equillibrium_large.png",
         "name": "Our Healing",
         "change": "Removed from the Augment pool."
       },
@@ -245,7 +245,7 @@
         "change": "Removed from the Augment pool."
       },
       {
-        "icon": "icons/augments/ARAMMayhemSpiritualPurification_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_spiritualpurification_large.png",
         "name": "Spiritual Purification",
         "change": "Removed from the Augment pool."
       },

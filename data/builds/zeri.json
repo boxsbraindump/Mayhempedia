@@ -6,16 +6,41 @@
       "key": "crit_onhit",
       "name": "暴击/攻速泽丽",
       "damageType": "AD",
-      "note": "靠E技能刷新位移和普攻叠加暴击/攻速海克斯滚雪球。核心海克斯连拨击锤/踢踏舞/巨人杀手与出装(育恩塔尔荒野箭+卢安娜的飓风+无尽之刃+狂战士胫甲)经arammayhem.com直接确认为棱彩T1与核心出装。⚠️ 会心防御最初被误判为陷阱，实际arammayhem.com数据显示55.76%胜率、且该站把它推荐给同样是暴击ADC的英雄，已改列为好选择。泽丽在当前版本整体偏弱(约48%胜率)，这套只是相对最优解。",
+      "note": "机动攻速打法：E 刷新位移，Q 连发打持续输出。26.21 鼓声暴起 低音轰鸣在泽丽身上表现突出：每次放技能后的下一次普攻多一段伤害并加速，配合 E 走位非常顺；屹立不倒补足残血时的攻速和吸血。濒死悟道和科学狂人是强力的棱彩备选。",
       "augments": {
         "core": [
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
           }
         ],
         "good": [
+          {
+            "id": 910076,
+            "apiName": "ARAMMayhemHellbent",
+            "name": "濒死悟道"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 910016,
+            "apiName": "ARAMMayhemEscapePlan",
+            "name": "逃跑计划"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
           {
             "id": 81,
             "apiName": "TapDancer",
@@ -25,21 +50,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "巨人杀手"
-          },
-          {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "灵巧"
-          },
-          {
-            "id": 87,
-            "apiName": "Typhoon",
-            "name": "台风"
-          },
-          {
-            "id": 80,
-            "apiName": "TankItOrLeaveIt",
-            "name": "会心防御"
           }
         ],
         "trap": []
@@ -72,7 +82,8 @@
       ],
       "runes": null,
       "sources": [
-        "arammayhem.com"
+        "arammayhem.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

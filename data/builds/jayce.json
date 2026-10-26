@@ -30,11 +30,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "虚幻武器"
-          },
-          {
-            "id": 67,
-            "apiName": "RabbleRousing",
-            "name": "古式佳酿"
           }
         ],
         "trap": []

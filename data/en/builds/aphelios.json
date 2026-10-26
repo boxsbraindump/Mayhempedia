@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Aphelios",
       "damageType": "AD",
-      "note": "Aphelios AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Dual Wield as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Fan The Hammer. Build toward The Collector > Infinity Edge > Berserker's Greaves > Runaan's Hurricane > Lord Dominik's Regards > Bloodthirster. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com and op.gg and blitz.gg.",
+      "note": "Aphelios AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Dual Wield as the main augment plan. Strong secondary hits include Giant Slayer / Deft / It's Critical. Build toward The Collector > Infinity Edge > Berserker's Greaves > Runaan's Hurricane > Lord Dominik's Regards > Bloodthirster. Start with Long Sword + Guardian's Blade. Cross-checked against arammayhem.com and metasrc.com and op.gg and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           },
           {
             "id": 47,

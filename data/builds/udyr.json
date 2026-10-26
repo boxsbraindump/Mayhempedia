@@ -6,13 +6,13 @@
       "key": "ad-crit",
       "name": "穿甲暴击流乌迪尔",
       "damageType": "AD",
-      "note": "核心是觉醒Q(闪电五连鞭)而非大招，靠护甲穿透+暴击把Q打成秒杀技，操作要求较高。⚠️ 乌迪尔在英文数据站属于小众/操作型英雄(胜率约45-48%，C~D档)，不是版本强势选择，这套是能查到的最具体的中文一图流攻略路线。科学狂人归为陷阱是编辑推断(该海克斯在部分来源被列为A级但未区分具体适配哪套打法)，非直接数据结论，仅供参考。",
+      "note": "觉醒 Q 秒人打法：靠护甲穿透和暴击把觉醒 Q 打成爆发技能，操作要求较高。珠光护手让 Q/R 可以暴击，是本版本乌迪尔最常选的棱彩海克斯；巨人杀手专打前排。社区里「最万用的瞄准镜 + 小丑学院」的觉醒 Q 组合也很有名。乌迪尔本版本整体更偏坦克和 AP 打法，这条路线适合熟练玩家。",
       "augments": {
         "core": [
           {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "残暴之力"
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "珠光护手"
           },
           {
             "id": 195,
@@ -22,9 +22,14 @@
         ],
         "good": [
           {
-            "id": 92,
-            "apiName": "Vulnerability",
-            "name": "易损"
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "最万用的瞄准镜"
           },
           {
             "id": 29,
@@ -32,14 +37,19 @@
             "name": "虚幻武器"
           },
           {
-            "id": 48,
-            "apiName": "JeweledGauntlet",
-            "name": "珠光护手"
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "易损"
           },
           {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "量子计算"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
+          },
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "小蜜蜂！！！"
           }
         ],
         "trap": [
@@ -79,7 +89,9 @@
       "runes": null,
       "sources": [
         "news.qq.com",
-        "dvg.cn"
+        "dvg.cn",
+        "hexdata.com.cn",
+        "arammayhem.com"
       ],
       "starterItems": [
         {

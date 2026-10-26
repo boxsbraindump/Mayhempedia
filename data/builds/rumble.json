@@ -37,11 +37,6 @@
             "name": "渴血"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
-          },
-          {
             "id": 92,
             "apiName": "Vulnerability",
             "name": "易损"

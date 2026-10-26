@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Thresh",
+      "name": "Tank Thresh",
       "damageType": "Tank",
       "note": "Thresh TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Slap Around. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Thornmail > Fimbulwinter. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {

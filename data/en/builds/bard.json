@@ -6,7 +6,7 @@
       "key": "support",
       "name": "Support First-Aid Kit Bard",
       "damageType": "Support",
-      "note": "Bard SUPPORT route for ARAM: Mayhem. Prioritize First-Aid Kit / All For You as the main augment plan. Strong secondary hits include Recursion / Typhoon / Wisdom of Ages. Build toward Mikael's Blessing > Redemption > Sorcerer's Shoes > Morellonomicon > Zhonya's Hourglass > Frozen Heart. Start with Kindlegem + Forbidden Idol. Cross-checked against arammayhem.com.",
+      "note": "Bard SUPPORT route for ARAM: Mayhem. Prioritize First-Aid Kit / All For You as the main augment plan. Strong secondary hits include Recursion / Typhoon. Build toward Mikael's Blessing > Redemption > Sorcerer's Shoes > Morellonomicon > Zhonya's Hourglass > Frozen Heart. Start with Kindlegem + Forbidden Idol. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "Typhoon"
-          },
-          {
-            "id": 96,
-            "apiName": "WisdomofAges",
-            "name": "Wisdom of Ages"
           }
         ],
         "trap": [

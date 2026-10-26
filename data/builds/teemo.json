@@ -114,11 +114,6 @@
             "id": 900003,
             "apiName": "MayhemInfiniteRecursion",
             "name": "无限循环往复"
-          },
-          {
-            "id": 900004,
-            "apiName": "MayhemHighRoller",
-            "name": "掷骰狂人"
           }
         ],
         "trap": []

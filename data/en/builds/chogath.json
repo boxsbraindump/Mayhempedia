@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank-hp-stack",
-      "name": "Tank Tank Cho'Gath",
+      "name": "Tank Cho'Gath",
       "damageType": "Tank",
       "note": "Cho'Gath TANK route for ARAM: Mayhem. Prioritize Tank Engine / Goliath as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Goredrink. Build toward Heartsteel > Warmog's Armor > Unending Despair > Mercury's Treads > Thornmail > Spirit Visage. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and op.gg and blitz.gg.",
       "augments": {

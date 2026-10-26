@@ -40,11 +40,6 @@
             "id": 113,
             "apiName": "SkilledSniper",
             "name": "Skilled Sniper"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           }
         ],
         "trap": []

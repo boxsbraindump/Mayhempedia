@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Caitlyn",
       "damageType": "AD",
-      "note": "Caitlyn AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Giant Slayer / Skilled Sniper. Build toward The Collector > Berserker's Greaves > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Caitlyn AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Weapon of Destiny as the main augment plan. Strong secondary hits include Still Here / Mad Scientist / Quest: Urf's Champion. Build toward The Collector > Berserker's Greaves > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com and metasrc.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,12 +15,27 @@
             "name": "Draw Your Sword"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
           }
         ],
         "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "Quest: Urf's Champion"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -75,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "aramgg.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

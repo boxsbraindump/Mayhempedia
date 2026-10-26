@@ -84,14 +84,15 @@
       "key": "tooth-fairy-reset",
       "name": "牙仙子收割贝蕾亚",
       "damageType": "AD",
-      "note": "牙仙子会在爆发后掉落牙齿，捡起后永久叠穿甲。用收集者和狂妄尽早建立斩杀线，再靠E减伤与死亡之舞把每次进场变成下一轮追击；适合能稳定跟队友一起收割的对局。",
+      "note": "抽到牙仙子时转入：爆发后掉落牙齿，捡起后永久叠穿甲。将他们放倒倒倒和贝蕾亚的狂暴连击很契合，五次命中后的治疗和额外伤害让她能在人堆里打得更久；王冠之重适合靠击杀滚雪球的对局。用收集者和狂妄尽早建立斩杀线，再靠E减伤与死亡之舞撑过每次进场。牙仙子在贝蕾亚身上不是数据最好的海克斯，这是一条抽到再走的路线。",
       "augments": {
         "core": [
           { "id": 910006, "apiName": "ARAMMayhemToothFairy", "name": "牙仙子" },
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" }
+          { "id": 3116, "apiName": "ARAMMayhemTakeEmDownDownDown", "name": "将他们放倒倒倒" }
         ],
         "good": [
-          { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
+          { "id": 3132, "apiName": "ARAMMayhemHeavyIsTheCrown", "name": "王冠之重" },
+          { "id": 3078, "apiName": "ARAMMayhemTheBoomAndTheBass", "name": "鼓声暴起 低音轰鸣" },
           { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
           { "id": 910010, "apiName": "ARAMMayhemUpgradeCollector", "name": "升级：收集者" }
         ],
@@ -106,7 +107,7 @@
         { "id": 3031, "name": "无尽之刃" }
       ],
       "runes": null,
-      "sources": ["aramgg.com", "arammayhem.com"],
+      "sources": ["aramgg.com", "arammayhem.com", "hexdata.com.cn"],
       "starterItems": [
         { "id": 3134, "name": "锯齿短匕" },
         { "id": 1001, "name": "鞋子" },

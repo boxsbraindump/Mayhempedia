@@ -6,21 +6,41 @@
       "key": "ad_ranged_crit",
       "name": "远程暴击ADC烬",
       "damageType": "AD",
-      "note": "主流打法：站桩输出+四阶暴击收割，走瞄准镜类海克斯拉伸射程再叠暴击/攻速。收集者/无尽之刃/多米尼克领主之致意是核心确认的三件套，轻灵之靴是常见鞋子选择。",
+      "note": "站桩暴击打法：第四发子弹暴击收割，W/R 远程消耗。26.21 鼓声暴起 低音轰鸣在烬身上表现突出：放完技能后的下一枪多一段魔法伤害并加速，正好配合四发节奏拉开距离；命运之武器让第一件传说装备随击杀成长。小蜜蜂！！！、三重射击、小丑学院都是稳定的备选。",
       "augments": {
         "core": [
+          {
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          }
+        ],
+        "good": [
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "小蜜蜂！！！"
+          },
+          {
+            "id": 910074,
+            "apiName": "ARAMMayhemTripleshot",
+            "name": "三重射击"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
           {
             "id": 115,
             "apiName": "ScopiestWeapons",
             "name": "最万用的瞄准镜"
           },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
           {
             "id": 195,
             "apiName": "GiantSlayer",
@@ -30,25 +50,9 @@
             "id": 22,
             "apiName": "Deft",
             "name": "灵巧"
-          },
-          {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "大力"
-          },
-          {
-            "id": 103,
-            "apiName": "BreadAndButter",
-            "name": "面包和黄油"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "基石法师"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {
@@ -79,7 +83,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -112,24 +117,9 @@
             "name": "巨人杀手"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "一板一眼"
-          },
-          {
             "id": 68,
             "apiName": "Recursion",
             "name": "循环往复"
-          },
-          {
-            "id": 9,
-            "apiName": "BuffBuddies",
-            "name": "霸符兄弟"
           }
         ],
         "trap": [

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD 暴击莎弥拉",
       "damageType": "AD",
-      "note": "莎弥拉是暴击/攻速AD输出流，核心是靠连招堆连击数打出爆发并用W护盾保命。「亮出你的剑」是版本最强棱彩海克斯，收集者+水银之靴+无尽之刃是主流出装。⚠️ 装备卢安娜的飓风后系统不会再供应「亮出你的剑」这个海克斯，两者互斥。",
+      "note": "亮剑近战打法：亮出你的剑是莎弥拉本版本最强的海克斯，变近战后用连招叠评级、W 挡弹道，R 打出范围爆发。命运之武器让第一件传说装备随击杀成长，屹立不倒补足残血时的攻速和吸血。注意：装备卢安娜的飓风后系统不会再提供亮出你的剑，两者互斥。",
       "augments": {
         "core": [
           {
@@ -15,12 +15,32 @@
             "name": "亮出你的剑"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
           }
         ],
         "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
+          {
+            "id": 910016,
+            "apiName": "ARAMMayhemEscapePlan",
+            "name": "逃跑计划"
+          },
+          {
+            "id": 910006,
+            "apiName": "ARAMMayhemToothFairy",
+            "name": "牙仙子"
+          },
           {
             "id": 77,
             "apiName": "SoulSiphon",
@@ -30,16 +50,6 @@
             "id": 138,
             "apiName": "Goredrink",
             "name": "渴血"
-          },
-          {
-            "id": 86,
-            "apiName": "TrueshotProdigy",
-            "name": "精准奇才"
-          },
-          {
-            "id": 47,
-            "apiName": "ItsCritical",
-            "name": "关键暴击"
           }
         ],
         "trap": [
@@ -79,7 +89,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

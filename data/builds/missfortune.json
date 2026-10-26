@@ -6,30 +6,40 @@
       "key": "ad",
       "name": "AD暴击厄运小姐",
       "damageType": "AD",
-      "note": "亮剑变近战叠攻速暴击、E减速控场后连拨击锤打AOE，是当前主流强势玩法。",
+      "note": "亮剑近战打法为主：亮出你的剑让厄运小姐变近战叠攻速和生命偷取，E 减速控场后 Q 弹射收割。26.21 新增的小蜜蜂！！！在厄运小姐身上很常见，Q/E/R 命中都能放出蜂巢补伤害和减速。命运之武器、科学狂人、家园卫士是稳定的补充。",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "亮出你的剑"
+          },
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "小蜜蜂！！！"
           }
         ],
         "good": [
           {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 105,
+            "apiName": "Homeguard",
+            "name": "家园卫士"
+          },
+          {
             "id": 22,
             "apiName": "Deft",
             "name": "灵巧"
-          },
-          {
-            "id": 97,
-            "apiName": "WitchfulThinking",
-            "name": "巫师式思考"
           },
           {
             "id": 81,
@@ -74,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

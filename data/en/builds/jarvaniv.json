@@ -42,13 +42,7 @@
             "name": "Goredrink"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "Keystone Conjurer"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {
@@ -124,11 +118,6 @@
             "name": "Cant Touch This"
           },
           {
-            "id": 910086,
-            "apiName": "ARAMMayhemHideOnBush",
-            "name": "Hide on Bush"
-          },
-          {
             "id": 313,
             "apiName": "TankEngine",
             "name": "Tank Engine"
@@ -181,9 +170,9 @@
           "name": "Health Potion"
         }
       ],
+      "releaseDate": "2026-07-24",
       "boots": [],
-      "optionalItems": [],
-      "releaseDate": "2026-07-24"
+      "optionalItems": []
     }
   ]
 }

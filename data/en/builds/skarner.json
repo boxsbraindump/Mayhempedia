@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Skarner",
+      "name": "Tank Skarner",
       "damageType": "Tank",
       "note": "Skarner TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Stackosaurus Rex. Build toward Heartsteel > Mercury's Treads > Unending Despair > Warmog's Armor > Winter's Approach > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
       "augments": {

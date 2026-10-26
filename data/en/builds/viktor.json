@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Viktor",
       "damageType": "AP",
-      "note": "Viktor AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Magic Missile / Infernal Conduit / Juice Box. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Liandry's Torment > Rabadon's Deathcap > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
+      "note": "Viktor AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Magic Missile / Infernal Conduit / Phenomenal Evil. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Liandry's Torment > Rabadon's Deathcap > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 45,
             "apiName": "InfernalConduit",
             "name": "Infernal Conduit"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 65,

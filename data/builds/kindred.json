@@ -6,45 +6,50 @@
       "key": "ad",
       "name": "AD暴击千珏",
       "damageType": "AD",
-      "note": "国际服(metasrc/arammayhem/blitz)交叉印证一致：千珏走标准AD暴击弓手出装，靠攻速叠印记(被动)并触发攻击特效，收集者+电刀类装备加速叠标记、收割残血。⚠️ 质变：棱彩阶最初被误判为陷阱，实际metasrc数据显示58.16%胜率是可考虑的功能性选择，已改列为好选择；纳沃利烁刃未获两站核心出装列表支持，已剔除。",
+      "note": "攻速暴击打法：靠普攻叠被动印记、触发攻击特效收割残血。26.21 连拨击锤移除后，屹立不倒（越残血攻速和吸血越高）配合千珏大招的不死领域很好用，双刀流继续提供多段普攻。科学狂人、命运之武器等通用强势海克斯可作为补充。",
       "augments": {
         "core": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
+          },
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "双刀流"
+          }
+        ],
+        "good": [
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "任务：海牛阿福的勇士"
+          },
           {
             "id": 22,
             "apiName": "Deft",
             "name": "灵巧"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
-          {
-            "id": 225,
-            "apiName": "DualWield",
-            "name": "双刀流"
-          },
-          {
             "id": 138,
             "apiName": "Goredrink",
             "name": "渴血"
-          },
-          {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "大力"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "最万用的瞄准镜"
-          },
-          {
-            "id": 238,
-            "apiName": "TransmutePrismatic",
-            "name": "质变：棱彩阶"
           }
         ],
         "trap": []
@@ -79,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

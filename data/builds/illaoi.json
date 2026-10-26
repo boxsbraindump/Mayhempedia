@@ -40,11 +40,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "虚幻武器"
-          },
-          {
-            "id": 110,
-            "apiName": "Clothesline",
-            "name": "晾衣绳"
           }
         ],
         "trap": []

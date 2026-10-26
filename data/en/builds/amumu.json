@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Engine Amumu",
+      "name": "Tank Engine Amumu",
       "damageType": "Tank",
       "note": "Amumu TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Celestial Body / Recursion / Courage of the Colossus. Build toward Heartsteel > Unending Despair > Mercury's Treads > Thornmail > Sunfire Aegis > Warmog's Armor. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
       "augments": {
@@ -107,7 +107,7 @@
       "key": "ap",
       "name": "AP Phenomenal Evil Amumu",
       "damageType": "AP",
-      "note": "Amumu AP route for ARAM: Mayhem. Prioritize Phenomenal Evil as the main augment plan. Strong secondary hits include Infernal Conduit / Wisdom of Ages / Courage of the Colossus. Build toward Liandry's Torment > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Zhonya's Hourglass > Rabadon's Deathcap. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramonly.com and aramgg.com.",
+      "note": "Amumu AP route for ARAM: Mayhem. Prioritize Phenomenal Evil as the main augment plan. Strong secondary hits include Infernal Conduit / Courage of the Colossus. Build toward Liandry's Torment > Sorcerer's Shoes > Rylai's Crystal Scepter > Void Staff > Zhonya's Hourglass > Rabadon's Deathcap. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and aramonly.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -121,11 +121,6 @@
             "id": 45,
             "apiName": "InfernalConduit",
             "name": "Infernal Conduit"
-          },
-          {
-            "id": 96,
-            "apiName": "WisdomofAges",
-            "name": "Wisdom of Ages"
           },
           {
             "id": 18,

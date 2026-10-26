@@ -6,7 +6,7 @@
       "key": "enchanter",
       "name": "Support Critical Healing Yuumi",
       "damageType": "Support",
-      "note": "Yuumi SUPPORT route for ARAM: Mayhem. Prioritize Critical Healing / All For You as the main augment plan. Strong secondary hits include Divine Intervention / Holy Fire / First-Aid Kit. Build toward Moonstone Renewer > Dawncore > Ardent Censer > Mikael's Blessing > Redemption > Staff of Flowing Water. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against metasrc.com and arammayhem.com and 17173.com.",
+      "note": "Yuumi SUPPORT route for ARAM: Mayhem. Prioritize Critical Healing / All For You as the main augment plan. Strong secondary hits include Divine Intervention / First-Aid Kit. Build toward Moonstone Renewer > Dawncore > Ardent Censer > Mikael's Blessing > Redemption > Staff of Flowing Water. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against metasrc.com and arammayhem.com and 17173.com.",
       "augments": {
         "core": [
           {
@@ -27,19 +27,9 @@
             "name": "Divine Intervention"
           },
           {
-            "id": 198,
-            "apiName": "HolyFire",
-            "name": "Holy Fire"
-          },
-          {
             "id": 37,
             "apiName": "FirstAidKit",
             "name": "First-Aid Kit"
-          },
-          {
-            "id": 231,
-            "apiName": "LightWarden",
-            "name": "Light Warden"
           }
         ],
         "trap": [
@@ -99,7 +89,7 @@
       "key": "cod-tank",
       "name": "AP Circle of Death Yuumi",
       "damageType": "AP",
-      "note": "Yuumi AP route for ARAM: Mayhem. Prioritize Circle of Death / Tank Engine as the main augment plan. Strong secondary hits include Perseverance / Critical Healing / Ultimate Revolution. Build toward Moonstone Renewer > Dead Man's Plate > Spirit Visage > Mikael's Blessing > Void Staff > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
+      "note": "Yuumi AP route for ARAM: Mayhem. Prioritize Circle of Death / Tank Engine as the main augment plan. Strong secondary hits include Critical Healing / Ultimate Revolution. Build toward Moonstone Renewer > Dead Man's Plate > Spirit Visage > Mikael's Blessing > Void Staff > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -114,11 +104,6 @@
           }
         ],
         "good": [
-          {
-            "id": 64,
-            "apiName": "Perseverance",
-            "name": "Perseverance"
-          },
           {
             "id": 118,
             "apiName": "CriticalHealing",

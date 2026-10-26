@@ -6,21 +6,41 @@
       "key": "ad_ranged_crit",
       "name": "AD Scopiest Weapons Jhin",
       "damageType": "AD",
-      "note": "Jhin AD route for ARAM: Mayhem. Prioritize Scopiest Weapons / Fan The Hammer as the main augment plan. Strong secondary hits include Giant Slayer / Deft / Blunt Force. Build toward The Collector > Boots of Swiftness > Infinity Edge > Lord Dominik's Regards > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Jhin AD route for ARAM: Mayhem. Prioritize The Boom and the Bass / Weapon of Destiny as the main augment plan. Strong secondary hits include BEES!!! / Tripleshot / Clown College. Build toward The Collector > Boots of Swiftness > Infinity Edge > Lord Dominik's Regards > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and hexdata.com.cn.",
       "augments": {
         "core": [
+          {
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          }
+        ],
+        "good": [
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "BEES!!!"
+          },
+          {
+            "id": 910074,
+            "apiName": "ARAMMayhemTripleshot",
+            "name": "Tripleshot"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
           {
             "id": 115,
             "apiName": "ScopiestWeapons",
             "name": "Scopiest Weapons"
           },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ],
-        "good": [
           {
             "id": 195,
             "apiName": "GiantSlayer",
@@ -30,25 +50,9 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "Blunt Force"
-          },
-          {
-            "id": 103,
-            "apiName": "BreadAndButter",
-            "name": "Bread And Butter"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "Keystone Conjurer"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {
@@ -79,7 +83,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -98,7 +103,7 @@
       "key": "draw_your_sword_melee",
       "name": "AD Draw Your Sword Jhin",
       "damageType": "AD",
-      "note": "Jhin AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Giant Slayer / Fan The Hammer / Slow and Steady. Build toward The Collector > Boots of Swiftness > Infinity Edge > Runaan's Hurricane > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and dvg.cn.",
+      "note": "Jhin AD route for ARAM: Mayhem. Prioritize Draw Your Sword as the main augment plan. Strong secondary hits include Giant Slayer / Recursion. Build toward The Collector > Boots of Swiftness > Infinity Edge > Runaan's Hurricane > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and dvg.cn.",
       "augments": {
         "core": [
           {
@@ -114,24 +119,9 @@
             "name": "Giant Slayer"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "Slow and Steady"
-          },
-          {
             "id": 68,
             "apiName": "Recursion",
             "name": "Recursion"
-          },
-          {
-            "id": 9,
-            "apiName": "BuffBuddies",
-            "name": "Buff Buddies"
           }
         ],
         "trap": [

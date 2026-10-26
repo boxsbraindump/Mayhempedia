@@ -6,45 +6,45 @@
       "key": "ap",
       "name": "AP Elise",
       "damageType": "AP",
-      "note": "Elise AP route for ARAM: Mayhem. Prioritize Eureka / Juice Box as the main augment plan. Strong secondary hits include Witchful Thinking / Big Brain / Phenomenal Evil. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and op.gg.",
+      "note": "Elise AP route for ARAM: Mayhem. Prioritize BEES!!! / The Boom and the Bass as the main augment plan. Strong secondary hits include Eureka / From Beginning To End / Final Form. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and op.gg and hexdata.com.cn.",
       "augments": {
         "core": [
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "BEES!!!"
+          },
+          {
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
+          }
+        ],
+        "good": [
           {
             "id": 30,
             "apiName": "Eureka",
             "name": "Eureka"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          }
-        ],
-        "good": [
+            "id": 38,
+            "apiName": "FromBeginningToEnd",
+            "name": "From Beginning To End"
+          },
+          {
+            "id": 910023,
+            "apiName": "ARAMMayhemFinalForm",
+            "name": "Final Form"
+          },
           {
             "id": 97,
             "apiName": "WitchfulThinking",
             "name": "Witchful Thinking"
           },
           {
-            "id": 180,
-            "apiName": "BigBrain",
-            "name": "Big Brain"
-          },
-          {
             "id": 65,
             "apiName": "PhenomenalEvil",
             "name": "Phenomenal Evil"
-          },
-          {
-            "id": 133,
-            "apiName": "MagicMissile",
-            "name": "Magic Missile"
-          },
-          {
-            "id": 68,
-            "apiName": "Recursion",
-            "name": "Recursion"
           },
           {
             "id": 129,
@@ -84,7 +84,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "op.gg"
+        "op.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

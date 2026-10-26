@@ -32,23 +32,12 @@
             "name": "歌利亚巨人"
           },
           {
-            "id": 70,
-            "apiName": "RestlessRestoration",
-            "name": "无休回复"
-          },
-          {
             "id": 18,
             "apiName": "CourageoftheColossus",
             "name": "巨像的勇气"
           }
         ],
-        "trap": [
-          {
-            "id": 234,
-            "apiName": "GambaAnvil",
-            "name": "财运锻造器"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

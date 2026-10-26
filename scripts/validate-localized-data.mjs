@@ -139,9 +139,10 @@ async function main() {
   scanNoCjkStrings(errors, 'data/en/patch-notes.json', enPatchNotes)
 
   const requiredAugments = {
-    MayhemArchmage: { rarity: 2, icon: 'assets/mayhem-augments/archmage-prismatic.webp' },
-    ARAMMayhemTerror: { rarity: 2, icon: 'assets/mayhem-augments/terror-prismatic.webp' },
-    ARAMMayhemBonk: { rarity: 1, icon: 'assets/mayhem-augments/bonk-gold.webp' },
+    // 稀有度以 Riot 客户端数据为准；图标由抓取脚本从官方原图里按颜色挑，这里不再写死路径
+    MayhemArchmage: { rarity: 2 },
+    ARAMMayhemTerror: { rarity: 1 },
+    ARAMMayhemBonk: { rarity: 1 },
     ARAMMayhemDoubleTap: { rarity: 2 }, // 26.17 起从金色改为棱彩
   }
   for (const [apiName, expected] of Object.entries(requiredAugments)) {

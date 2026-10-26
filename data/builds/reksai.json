@@ -37,11 +37,6 @@
             "name": "旋转至胜"
           },
           {
-            "id": 57,
-            "apiName": "MountainSoul",
-            "name": "山脉龙魂"
-          },
-          {
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "叠角龙"
@@ -57,11 +52,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "魔法飞弹"
-          },
-          {
-            "id": 174,
-            "apiName": "LaserEyes",
-            "name": "镭射眼"
           }
         ]
       },

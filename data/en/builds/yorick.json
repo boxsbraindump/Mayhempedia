@@ -6,7 +6,7 @@
       "key": "tank-bruiser",
       "name": "AD Tank Yorick",
       "damageType": "AD",
-      "note": "Yorick AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Ethereal Weapon as the main augment plan. Strong secondary hits include Goredrink / Omni Soul / Mountain Soul. Build toward Heartsteel > Mercury's Treads > Iceborn Gauntlet > Spirit Visage > Thornmail > Randuin's Omen. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "note": "Yorick AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Ethereal Weapon as the main augment plan. Strong secondary hits include Goredrink / Omni Soul / Magic Missile. Build toward Heartsteel > Mercury's Treads > Iceborn Gauntlet > Spirit Visage > Thornmail > Randuin's Omen. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 62,
             "apiName": "OmniSoul",
             "name": "Omni Soul"
-          },
-          {
-            "id": 57,
-            "apiName": "MountainSoul",
-            "name": "Mountain Soul"
           },
           {
             "id": 133,

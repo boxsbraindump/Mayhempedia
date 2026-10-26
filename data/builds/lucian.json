@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD暴击卢锡安",
       "damageType": "AD",
-      "note": "标准远程暴击ADC打法，珠光护手让技能也能暴击，配合易损/连拨击锤/灵巧堆叠攻速与爆发。",
+      "note": "标准远程暴击打法：技能接被动双发普攻打爆发。珠光护手让技能也能暴击；大腕把大量攻速转成暴击伤害，正好放大卢锡安被动的两段普攻。26.21 新增的珠光手镯让大招可以暴击，易损则补暴击并让持续伤害也能暴击。",
       "augments": {
         "core": [
           {
@@ -15,21 +15,31 @@
             "name": "珠光护手"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3018,
+            "apiName": "ARAMMayhemBigShot",
+            "name": "大腕"
           }
         ],
         "good": [
           {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "灵巧"
-          },
-          {
             "id": 92,
             "apiName": "Vulnerability",
             "name": "易损"
+          },
+          {
+            "id": 3123,
+            "apiName": "ARAMMayhemJeweledBracelet",
+            "name": "珠光手镯"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "灵巧"
           },
           {
             "id": 195,
@@ -74,7 +84,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "mobalytics.gg"
+        "mobalytics.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

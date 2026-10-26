@@ -37,11 +37,6 @@
             "name": "Spin To Win"
           },
           {
-            "id": 57,
-            "apiName": "MountainSoul",
-            "name": "Mountain Soul"
-          },
-          {
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "Stackosaurus Rex"
@@ -57,11 +52,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "Magic Missile"
-          },
-          {
-            "id": 174,
-            "apiName": "LaserEyes",
-            "name": "Laser Eyes"
           }
         ]
       },

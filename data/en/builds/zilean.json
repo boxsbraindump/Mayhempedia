@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Zilean",
       "damageType": "AP",
-      "note": "Zilean AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Mind to Matter / Magic Missile / Juice Box. Build toward Luden's Echo > Sorcerer's Shoes > Stormsurge > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Zilean AP route for ARAM: Mayhem. Prioritize Eureka / Recursion as the main augment plan. Strong secondary hits include Mind to Matter / Magic Missile / Big Brain. Build toward Luden's Echo > Sorcerer's Shoes > Stormsurge > Shadowflame > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -32,11 +32,6 @@
             "name": "Magic Missile"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
-          {
             "id": 180,
             "apiName": "BigBrain",
             "name": "Big Brain"
@@ -52,11 +47,6 @@
             "id": 47,
             "apiName": "ItsCritical",
             "name": "It's Critical"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           }
         ]
       },

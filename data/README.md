@@ -78,6 +78,10 @@ npm run data:icons     # 只重下图标（读现有 JSON）
   这两张表在 arammayhem 补齐后应删掉对应条目（脚本会提示）。
 - **隐藏 legacy 兼容项**：`availability: "legacy"` 只用于解析旧官方路线/旧对局里引用的历史 ID，不展示给玩家选择；
   流派和组合里引用到的 legacy 海克斯在加载时会被过滤掉（`src/renderer/data.ts`）。
+- **图标用 Riot 官方上色原图**：游戏文件里 `*_small.png` 是白图，`*_large.png` 是按稀有度上好色的图（海斗 kiwi 目录优先，
+  其次竞技场 cherry 目录，技能类用分稀有度的通用图标），存到 `icons/augments/official/`。抓取时按颜色自动挑和海斗稀有度一致的那张
+  （`scripts/lib/augment-icon-color.mjs`），不自己调色；官方没有彩图的暂用白色原图，抓取结束会列出来。
+- **稀有度以 Riot 客户端数据为准**（`cherry-augments.json` 里 id ≥ 1000 的海斗条目），和 arammayhem 不一致时脚本会打印。
 - **新海克斯的 id = Riot 运行时 id**（如 BEES!!! = 3086），对局记录可以直接对上；注意它们和装备 id 处于同一数值区间（如 3036），按名字批量改数据时别混。
 - **图标 CDN 分支不同**：增强图标在 `.../latest/game/`，装备图标在 `.../latest/plugins/rcp-be-lol-game-data/global/default/`（图标与语言无关，始终 `default`）。
 - **切语言**：改 `scripts/fetch-data.mjs` 顶部 `LANG`（`default`=英文 / `zh_cn` / `ko_kr` …）重跑 `npm run data:fetch` 即可，图标不用重下。

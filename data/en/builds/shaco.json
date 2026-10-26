@@ -6,30 +6,30 @@
       "key": "ad",
       "name": "AD Shaco",
       "damageType": "AD",
-      "note": "Shaco AD route for ARAM: Mayhem. Prioritize Executioner / Eureka as the main augment plan. Strong secondary hits include Blunt Force / Recursion / Dashing. Build toward The Collector > Berserker's Greaves > Infinity Edge > Hubris > Voltaic Cyclosword > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com.",
+      "note": "Shaco AD route for ARAM: Mayhem. Prioritize Big Shot / Upgrade Infinity Edge as the main augment plan. Strong secondary hits include Clown College / Shadow Runner / Dashing. Build toward The Collector > Berserker's Greaves > Infinity Edge > Hubris > Voltaic Cyclosword > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
+            "id": 3018,
+            "apiName": "ARAMMayhemBigShot",
+            "name": "Big Shot"
           },
           {
-            "id": 30,
-            "apiName": "Eureka",
-            "name": "Eureka"
+            "id": 910001,
+            "apiName": "ARAMMayhemUpgradeInfinityEdge",
+            "name": "Upgrade Infinity Edge"
           }
         ],
         "good": [
           {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "Blunt Force"
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
           },
           {
-            "id": 68,
-            "apiName": "Recursion",
-            "name": "Recursion"
+            "id": 73,
+            "apiName": "ShadowRunner",
+            "name": "Shadow Runner"
           },
           {
             "id": 19,
@@ -37,18 +37,22 @@
             "name": "Dashing"
           },
           {
-            "id": 226,
-            "apiName": "Stats",
-            "name": "Stats!"
+            "id": 910067,
+            "apiName": "ARAMMayhemNightstalking",
+            "name": "Nightstalking"
+          },
+          {
+            "id": 7,
+            "apiName": "BluntForce",
+            "name": "Blunt Force"
+          },
+          {
+            "id": 910010,
+            "apiName": "ARAMMayhemUpgradeCollector",
+            "name": "Upgrade Collector"
           }
         ],
-        "trap": [
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "Slow and Steady"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {
@@ -78,7 +82,8 @@
       ],
       "runes": null,
       "sources": [
-        "arammayhem.com"
+        "arammayhem.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

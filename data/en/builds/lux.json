@@ -35,11 +35,6 @@
             "id": 68,
             "apiName": "Recursion",
             "name": "Recursion"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           }
         ],
         "trap": [
@@ -47,11 +42,6 @@
             "id": 47,
             "apiName": "ItsCritical",
             "name": "It's Critical"
-          },
-          {
-            "id": 135,
-            "apiName": "Spellwake",
-            "name": "Spellwake"
           }
         ]
       },

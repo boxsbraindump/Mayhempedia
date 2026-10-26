@@ -4,15 +4,15 @@
   "archetypes": [
     {
       "key": "ad-crit",
-      "name": "AD The Brutalizer Udyr",
+      "name": "Lethality Crit Udyr",
       "damageType": "AD",
-      "note": "Udyr AD route for ARAM: Mayhem. Prioritize The Brutalizer / Giant Slayer as the main augment plan. Strong secondary hits include Vulnerability / Ethereal Weapon / Jeweled Gauntlet. Build toward The Collector > Hubris > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn.",
+      "note": "Udyr AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Giant Slayer as the main augment plan. Strong secondary hits include Clown College / Scopiest Weapons / Ethereal Weapon. Build toward The Collector > Hubris > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn and hexdata.com.cn and arammayhem.com.",
       "augments": {
         "core": [
           {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "The Brutalizer"
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
           },
           {
             "id": 195,
@@ -22,9 +22,14 @@
         ],
         "good": [
           {
-            "id": 92,
-            "apiName": "Vulnerability",
-            "name": "Vulnerability"
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 115,
+            "apiName": "ScopiestWeapons",
+            "name": "Scopiest Weapons"
           },
           {
             "id": 29,
@@ -32,14 +37,19 @@
             "name": "Ethereal Weapon"
           },
           {
-            "id": 48,
-            "apiName": "JeweledGauntlet",
-            "name": "Jeweled Gauntlet"
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
           },
           {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "Quantum Computing"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
+          },
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "BEES!!!"
           }
         ],
         "trap": [
@@ -79,7 +89,9 @@
       "runes": null,
       "sources": [
         "news.qq.com",
-        "dvg.cn"
+        "dvg.cn",
+        "hexdata.com.cn",
+        "arammayhem.com"
       ],
       "starterItems": [
         {

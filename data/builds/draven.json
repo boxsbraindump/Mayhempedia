@@ -47,11 +47,6 @@
             "id": 205,
             "apiName": "ADAPt",
             "name": "物理转魔法"
-          },
-          {
-            "id": 171,
-            "apiName": "Dematerialize",
-            "name": "去质"
           }
         ]
       },

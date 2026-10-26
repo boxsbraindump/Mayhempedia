@@ -6,7 +6,7 @@
       "key": "adbruiser",
       "name": "AD Urgot",
       "damageType": "AD",
-      "note": "Urgot AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Heavy Hitter as the main augment plan. Strong secondary hits include Tap Dancer / Goredrink / Slow and Steady. Build toward Overlord's Bloodmail > Mercury's Treads > Titanic Hydra > Heartsteel > Warmog's Armor > Unending Despair. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "note": "Urgot AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Heavy Hitter as the main augment plan. Strong secondary hits include Tap Dancer / Goredrink. Build toward Overlord's Bloodmail > Mercury's Treads > Titanic Hydra > Heartsteel > Warmog's Armor > Unending Despair. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -30,25 +30,9 @@
             "id": 138,
             "apiName": "Goredrink",
             "name": "Goredrink"
-          },
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "Slow and Steady"
-          },
-          {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "Twice Thrice"
           }
         ],
-        "trap": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

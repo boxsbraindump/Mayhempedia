@@ -35,11 +35,6 @@
             "id": 68,
             "apiName": "Recursion",
             "name": "循环往复"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
           }
         ],
         "trap": [
@@ -47,11 +42,6 @@
             "id": 47,
             "apiName": "ItsCritical",
             "name": "关键暴击"
-          },
-          {
-            "id": 135,
-            "apiName": "Spellwake",
-            "name": "法术苏醒"
           }
         ]
       },

@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Eureka Nunu & Willump",
       "damageType": "AP",
-      "note": "Nunu & Willump AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Juice Box / Celestial Body / Magic Missile. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
+      "note": "Nunu & Willump AP route for ARAM: Mayhem. Prioritize Eureka / Witchful Thinking as the main augment plan. Strong secondary hits include Celestial Body / Magic Missile. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -21,11 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
           {
             "id": 13,
             "apiName": "CelestialBody",
@@ -99,7 +94,7 @@
     },
     {
       "key": "tank",
-      "name": "Tank Tank Engine Nunu & Willump",
+      "name": "Tank Engine Nunu & Willump",
       "damageType": "Tank",
       "note": "Nunu & Willump TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Blunt Force. Build toward Heartsteel > Unending Despair > Overlord's Bloodmail > Sunfire Aegis > Thornmail > Plated Steelcaps. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and blitz.gg.",
       "augments": {
@@ -142,11 +137,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           }
         ]
       },

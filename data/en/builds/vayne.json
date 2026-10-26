@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Dual Wield Vayne",
       "damageType": "AD",
-      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Twice Thrice / Draw Your Sword / Deft. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Terminus > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
+      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Dual Wield / Still Here as the main augment plan. Strong secondary hits include The Boom and the Bass / Draw Your Sword / Mad Scientist. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Terminus > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,21 +15,31 @@
             "name": "Dual Wield"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
           }
         ],
         "good": [
           {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "Twice Thrice"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
           },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "Draw Your Sword"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 910023,
+            "apiName": "ARAMMayhemFinalForm",
+            "name": "Final Form"
           },
           {
             "id": 22,
@@ -40,11 +50,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "Typhoon"
-          },
-          {
-            "id": 54,
-            "apiName": "MasterofDuality",
-            "name": "Master of Duality"
           }
         ],
         "trap": []
@@ -79,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -102,7 +108,7 @@
       "key": "shadow-runner-one-shot",
       "name": "AD Shadow Runner Vayne",
       "damageType": "AD",
-      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Shadow Runner as the main augment plan. Strong secondary hits include Dual Wield / Typhoon / Twice Thrice. Build toward Trinity Force > Berserker's Greaves > Rapid Firecannon > Blade of The Ruined King > Infinity Edge > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Vayne AD route for ARAM: Mayhem. Prioritize Shadow Runner as the main augment plan. Strong secondary hits include Dual Wield / Typhoon / Deft. Build toward Trinity Force > Berserker's Greaves > Rapid Firecannon > Blade of The Ruined King > Infinity Edge > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -121,11 +127,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "Typhoon"
-          },
-          {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "Twice Thrice"
           },
           {
             "id": 22,

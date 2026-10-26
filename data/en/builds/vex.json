@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Vex",
       "damageType": "AP",
-      "note": "Vex AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Eureka as the main augment plan. Strong secondary hits include Big Brain / Jeweled Gauntlet / Juice Box. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Void Staff > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and dvg.cn.",
+      "note": "Vex AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Eureka as the main augment plan. Strong secondary hits include Big Brain / Jeweled Gauntlet / Cant Touch This. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Rabadon's Deathcap > Void Staff > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and dvg.cn.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 48,
             "apiName": "JeweledGauntlet",
             "name": "Jeweled Gauntlet"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 11,

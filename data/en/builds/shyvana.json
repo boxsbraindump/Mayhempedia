@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Mystic Punch Shyvana",
       "damageType": "AP",
-      "note": "Shyvana AP route for ARAM: Mayhem. Prioritize Mystic Punch / Ethereal Weapon as the main augment plan. Strong secondary hits include Giant Slayer / Executioner / Ice Cold. Build toward Dusk and Dawn > Riftmaker > Liandry's Torment > Mercury's Treads > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Shyvana AP route for ARAM: Mayhem. Prioritize Mystic Punch / Ethereal Weapon as the main augment plan. Strong secondary hits include Giant Slayer / Ice Cold / Goredrink. Build toward Dusk and Dawn > Riftmaker > Liandry's Torment > Mercury's Treads > Rabadon's Deathcap > Zhonya's Hourglass. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -25,11 +25,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "Giant Slayer"
-          },
-          {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
           },
           {
             "id": 44,

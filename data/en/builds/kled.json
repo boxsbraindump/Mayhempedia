@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Kled",
       "damageType": "AD",
-      "note": "Kled AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Clown College / Deft / Twice Thrice. Build toward Heartsteel > Mercury's Treads > Titanic Hydra > Overlord's Bloodmail > Death's Dance > Profane Hydra. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and blitz.gg and arammayhem.com.",
+      "note": "Kled AD route for ARAM: Mayhem. Prioritize Heavy Hitter / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Clown College / Deft / Outlaw's Grit. Build toward Heartsteel > Mercury's Treads > Titanic Hydra > Overlord's Bloodmail > Death's Dance > Profane Hydra. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against metasrc.com and blitz.gg and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "Twice Thrice"
           },
           {
             "id": 63,

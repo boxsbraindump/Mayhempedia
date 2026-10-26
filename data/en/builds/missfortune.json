@@ -4,32 +4,42 @@
   "archetypes": [
     {
       "key": "ad",
-      "name": "AD Fan The Hammer Miss Fortune",
+      "name": "AD Crit Miss Fortune",
       "damageType": "AD",
-      "note": "Miss Fortune AD route for ARAM: Mayhem. Prioritize Fan The Hammer / Draw Your Sword as the main augment plan. Strong secondary hits include Deft / Witchful Thinking / Tap Dancer. Build toward The Collector > Berserker's Greaves > Axiom Arc > Infinity Edge > Serylda's Grudge > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "note": "Miss Fortune AD route for ARAM: Mayhem. Prioritize Draw Your Sword / BEES!!! as the main augment plan. Strong secondary hits include Weapon of Destiny / Mad Scientist / Homeguard. Build toward The Collector > Berserker's Greaves > Axiom Arc > Infinity Edge > Serylda's Grudge > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "Draw Your Sword"
+          },
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "BEES!!!"
           }
         ],
         "good": [
           {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 105,
+            "apiName": "Homeguard",
+            "name": "Homeguard"
+          },
+          {
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 97,
-            "apiName": "WitchfulThinking",
-            "name": "Witchful Thinking"
           },
           {
             "id": 81,
@@ -74,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

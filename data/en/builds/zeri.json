@@ -6,16 +6,41 @@
       "key": "crit_onhit",
       "name": "AD Crit Zeri",
       "damageType": "AD",
-      "note": "Zeri AD route for ARAM: Mayhem. Prioritize Fan The Hammer as the main augment plan. Strong secondary hits include Tap Dancer / Giant Slayer / Deft. Build toward Yun Tal Wildarrows > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Infinity Edge > Rapid Firecannon. Start with Noonquiver. Cross-checked against arammayhem.com.",
+      "note": "Zeri AD route for ARAM: Mayhem. Prioritize The Boom and the Bass / Still Here as the main augment plan. Strong secondary hits include Hellbent / Mad Scientist / Escape Plan. Build toward Yun Tal Wildarrows > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Infinity Edge > Rapid Firecannon. Start with Noonquiver. Cross-checked against arammayhem.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
           }
         ],
         "good": [
+          {
+            "id": 910076,
+            "apiName": "ARAMMayhemHellbent",
+            "name": "Hellbent"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 910016,
+            "apiName": "ARAMMayhemEscapePlan",
+            "name": "Escape Plan"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
           {
             "id": 81,
             "apiName": "TapDancer",
@@ -25,21 +50,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "Giant Slayer"
-          },
-          {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "Deft"
-          },
-          {
-            "id": 87,
-            "apiName": "Typhoon",
-            "name": "Typhoon"
-          },
-          {
-            "id": 80,
-            "apiName": "TankItOrLeaveIt",
-            "name": "Tank It Or Leave It"
           }
         ],
         "trap": []
@@ -72,7 +82,8 @@
       ],
       "runes": null,
       "sources": [
-        "arammayhem.com"
+        "arammayhem.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

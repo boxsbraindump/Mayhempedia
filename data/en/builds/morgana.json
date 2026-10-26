@@ -42,11 +42,6 @@
             "name": "Slap Around"
           },
           {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
-          },
-          {
             "id": 60,
             "apiName": "OceanSoul",
             "name": "Ocean Soul"
@@ -195,9 +190,9 @@
           "name": "Health Potion"
         }
       ],
+      "releaseDate": "2026-07-24",
       "boots": [],
-      "optionalItems": [],
-      "releaseDate": "2026-07-24"
+      "optionalItems": []
     }
   ]
 }

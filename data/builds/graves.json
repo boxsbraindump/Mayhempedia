@@ -22,11 +22,6 @@
         ],
         "good": [
           {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "裁决使"
-          },
-          {
             "id": 211,
             "apiName": "ItsKillingTime",
             "name": "杀戮时间到了"
@@ -106,11 +101,6 @@
           }
         ],
         "good": [
-          {
-            "id": 250,
-            "apiName": "SlowAndSteady",
-            "name": "一板一眼"
-          },
           {
             "id": 4,
             "apiName": "BacktoBasics",

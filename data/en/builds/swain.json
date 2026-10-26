@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Swain",
       "damageType": "AP",
-      "note": "Swain AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Magic Missile / Phenomenal Evil / Juice Box. Build toward Rod of Ages > Mercury's Treads > Rylai's Crystal Scepter > Liandry's Torment > Spirit Visage > Morellonomicon. Start with Catalyst of Aeons. Cross-checked against metasrc.com and arammayhem.com and u.gg and blitz.gg.",
+      "note": "Swain AP route for ARAM: Mayhem. Prioritize Infernal Conduit / Recursion as the main augment plan. Strong secondary hits include Magic Missile / Phenomenal Evil / Blunt Force. Build toward Rod of Ages > Mercury's Treads > Rylai's Crystal Scepter > Liandry's Torment > Spirit Visage > Morellonomicon. Start with Catalyst of Aeons. Cross-checked against metasrc.com and arammayhem.com and u.gg and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 65,
             "apiName": "PhenomenalEvil",
             "name": "Phenomenal Evil"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 7,

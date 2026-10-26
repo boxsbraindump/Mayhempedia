@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Locke",
       "damageType": "AP",
-      "note": "Locke AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Big Brain as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Executioner / Deathtouch. Build toward Luden's Echo > Sorcerer's Shoes > Dusk and Dawn > Rabadon's Deathcap > Shadowflame > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against aramgg.com and metasrc.com and blitz.gg and arammayhem.com.",
+      "note": "Locke AP route for ARAM: Mayhem. Prioritize Witchful Thinking / Big Brain as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Dashing. Build toward Luden's Echo > Sorcerer's Shoes > Dusk and Dawn > Rabadon's Deathcap > Shadowflame > Zhonya's Hourglass. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against aramgg.com and metasrc.com and blitz.gg and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -25,16 +25,6 @@
             "id": 156,
             "apiName": "Quest_WoogletsWitchcap",
             "name": "Quest: Wooglet's Witchcap"
-          },
-          {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
-          },
-          {
-            "id": 217,
-            "apiName": "Deathtouch",
-            "name": "Deathtouch"
           },
           {
             "id": 19,

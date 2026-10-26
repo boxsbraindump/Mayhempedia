@@ -42,13 +42,7 @@
             "name": "Goliath"
           }
         ],
-        "trap": [
-          {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "Quantum Computing"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

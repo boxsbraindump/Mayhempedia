@@ -42,13 +42,7 @@
             "name": "歌利亚巨人"
           }
         ],
-        "trap": [
-          {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "量子计算"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

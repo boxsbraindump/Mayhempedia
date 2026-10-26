@@ -32,70 +32,70 @@
       {
         "name": "灵魂乐流",
         "nameEn": "Flow of Spirit",
-        "icon": "icons/augments/ARAMMayhemFlowOfSpirit_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_silver.png",
         "change": "新增（银色）：使用选定技能会获得可叠加的攻击速度。",
         "changeEn": "New (Silver): Using a specific ability grants stacking Attack Speed."
       },
       {
         "name": "水果化",
         "nameEn": "Fruitify",
-        "icon": "icons/augments/ARAMMayhemFruitify_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_fruitseason_large.png",
         "change": "新增（银色）：参与击杀敌方英雄会生成水果，你和队友拾取后回复生命值。",
         "changeEn": "New (Silver): Enemy champion takedowns create Fruit that you and allies can pick up for healing."
       },
       {
         "name": "溺水之赠礼",
         "nameEn": "Gift of the Drowned",
-        "icon": "icons/augments/ARAMMayhemGiftOfTheDrowned_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_giftofthedrowned_large.png",
         "change": "新增（银色）：装备提供的所有额外生命值转化为穿甲。",
         "changeEn": "New (Silver): All Bonus Health from your items converts to Lethality."
       },
       {
         "name": "远射天资",
         "nameEn": "Hands off the Talent",
-        "icon": "icons/augments/ARAMMayhemHandsOffTheTalent_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_bonk_large.png",
         "change": "新增（银色）：在最大攻击距离发动的普攻造成额外伤害。",
         "changeEn": "New (Silver): Attacks deal extra damage when fired from max range."
       },
       {
         "name": "巫妖大脑",
         "nameEn": "Lich Brain",
-        "icon": "icons/augments/ARAMMayhemLichBrain_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_lichbrain_large.png",
         "change": "新增（银色）：基于额外生命值获得法术强度。",
         "changeEn": "New (Silver): Gain Ability Power based on your Bonus Health."
       },
       {
         "name": "孤勇者",
         "nameEn": "Lonely Warrior",
-        "icon": "icons/augments/ARAMMayhemLonelyWarrior_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_adamant_large.png",
         "change": "新增（银色）：附近每有一名敌方英雄，获得护甲、魔法抗性和攻击速度。",
         "changeEn": "New (Silver): Gain Armor, Magic Resistance, and Attack Speed for each nearby enemy champion."
       },
       {
         "name": "没法力，没问题",
         "nameEn": "No Mana, No Problem",
-        "icon": "icons/augments/ARAMMayhemNoManaNoProblem_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_nomananoproblem_large.png",
         "change": "新增（银色）：装备提供的所有法力值转化为法术强度。",
         "changeEn": "New (Silver): All mana from your items converts to Ability Power."
       },
       {
         "name": "音之屏障",
         "nameEn": "Sound Barrier",
-        "icon": "icons/augments/ARAMMayhemSoundBarrier_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_swiftandsafe_large.png",
         "change": "新增（银色）：你施加的护盾会提供移动速度。",
         "changeEn": "New (Silver): Your shields grant Move Speed."
       },
       {
         "name": "终极循环往复",
         "nameEn": "Ultimate Recursion",
-        "icon": "icons/augments/ARAMMayhemUltimateRecursion_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_zealot_large.png",
         "change": "新增（银色）：获得 50 终极技能急速。",
         "changeEn": "New (Silver): Gain 50 Ultimate Ability Haste."
       },
       {
         "name": "奥术公理",
         "nameEn": "Arcane Axiom",
-        "icon": "icons/augments/ARAMMayhemArcaneAxiom_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_arcaneaxiom_large.png",
         "change": "新增（金色）：参与击杀会返还部分终极技能冷却时间。",
         "changeEn": "New (Gold): Takedowns refund part of your Ultimate cooldown."
       },
@@ -116,21 +116,21 @@
       {
         "name": "黄铜爆音",
         "nameEn": "Brass Blast",
-        "icon": "icons/augments/ARAMMayhemBrassBlast_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_camo_large.png",
         "change": "新增（金色）：获得一个召唤师技能：蓄力吹响号角，击退并伤害敌人。",
         "changeEn": "New (Gold): Gain a Summoner Spell that charges a horn blast to knock back and damage enemies."
       },
       {
         "name": "深红钴蓝闪光",
         "nameEn": "CRIMSON COBALT",
-        "icon": "icons/augments/ARAMMayhemCrimsonCobalt_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "change": "新增（金色）：选定技能会标记敌方英雄；消耗标记造成额外伤害并缩短该技能的冷却时间。",
         "changeEn": "New (Gold): One ability marks enemy champions. Consuming the mark deals extra damage and reduces that ability's cooldown."
       },
       {
         "name": "翻倍时间",
         "nameEn": "Double Time",
-        "icon": "icons/augments/ARAMMayhemDoubleTime_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_aram_phenomenalevil_large.png",
         "change": "新增（金色）：短时间内用两个不同技能伤害敌方英雄，会永久提升法力值并造成额外伤害。",
         "changeEn": "New (Gold): Damaging enemy champions with two different abilities in quick succession grants permanent Mana and extra damage."
       },
@@ -144,7 +144,7 @@
       {
         "name": "罪恶快感！",
         "nameEn": "Get Jinxed",
-        "icon": "icons/augments/ARAMMayhemGetJinxed_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_overextender_large.png",
         "change": "新增（金色）：获得一个召唤师技能：骑着火箭冲进敌阵。",
         "changeEn": "New (Gold): Gain a Summoner Spell that lets you ride a rocket into enemies."
       },
@@ -158,28 +158,28 @@
       {
         "name": "珠光手镯",
         "nameEn": "Jeweled Bracelet",
-        "icon": "icons/augments/ARAMMayhemJeweledBracelet_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "change": "新增（金色）：你的终极技能可以暴击。",
         "changeEn": "New (Gold): Your Ultimate can now critically strike."
       },
       {
         "name": "反冲",
         "nameEn": "Recoil",
-        "icon": "icons/augments/ARAMMayhemRecoil_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_gold.png",
         "change": "新增（金色）：选定技能施放时会把你向后弹开。",
         "changeEn": "New (Gold): One ability launches you backward when cast."
       },
       {
         "name": "拯救",
         "nameEn": "Salvation",
-        "icon": "icons/augments/ARAMMayhemSalvation_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_salvation_large.png",
         "change": "新增（金色）：生命值降到较低时击退周围敌人并治疗队友。",
         "changeEn": "New (Gold): Falling to low Health pushes enemies back and heals allies."
       },
       {
         "name": "吸元秘术",
         "nameEn": "Sap Magic",
-        "icon": "icons/augments/ARAMMayhemSapMagic_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_mercysstrike_large.png",
         "change": "新增（金色）：每 10 秒，下一次普攻造成额外伤害并治疗你。",
         "changeEn": "New (Gold): Every 10 seconds, your next Attack deals extra damage and heals you."
       },
@@ -207,21 +207,21 @@
       {
         "name": "嗡嗡怪兽",
         "nameEn": "Tickle Monster",
-        "icon": "icons/augments/ARAMMayhemTickleMonster_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_ticklemonster_large.png",
         "change": "新增（金色）：装备提供的所有攻击力转化为攻击速度。",
         "changeEn": "New (Gold): All AD from your items converts to Attack Speed."
       },
       {
         "name": "升级：风暴狂涌",
         "nameEn": "Upgrade Stormsurge",
-        "icon": "icons/augments/ARAMMayhemUpgradeStormsurge_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_upgradehubris_large.png",
         "change": "新增（金色）：风暴狂涌施加飑风时会范围引爆造成额外伤害，并给敌人标记第二层飑风。",
         "changeEn": "New (Gold): When Stormsurge applies Squall, it detonates in an area for extra damage and marks enemies with a secondary Squall."
       },
       {
         "name": "命运之武器",
         "nameEn": "Weapon of Destiny",
-        "icon": "icons/augments/ARAMMayhemWeaponOfDestiny_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_protagonistssignatureweapon_large.png",
         "change": "新增（金色）：你购买的第一件传说装备每次参与击杀都会获得更强的属性。",
         "changeEn": "New (Gold): The first Legendary item you buy gains stronger stats with each takedown."
       },
@@ -235,28 +235,28 @@
       {
         "name": "弹跳蜜蜂",
         "nameEn": "Bouncing Bees",
-        "icon": "icons/augments/ARAMMayhemBouncingBees_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_kingme_large.png",
         "change": "新增（棱彩）：施放技能后，下一次普攻会弹射到附近敌人（优先英雄）；附带任务：弹射命中英雄可增加弹射次数和攻击力。",
         "changeEn": "New (Prismatic): After using an ability, your next Attack bounces to nearby enemies, prioritizing champions. A quest adds bounces and AD for bouncing to champions."
       },
       {
         "name": "一起抱抱",
         "nameEn": "Group Hug",
-        "icon": "icons/augments/ARAMMayhemGroupHug_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_empyreampromise_large.png",
         "change": "新增（棱彩）：一个提供治疗或护盾的技能，也会治疗或护盾附近的队友。",
         "changeEn": "New (Prismatic): An ability that heals or shields also heals or shields nearby allies."
       },
       {
         "name": "热舞怪兽",
         "nameEn": "Mosh Monster",
-        "icon": "icons/augments/ARAMMayhemMoshMonster_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_genericabilityaugmenticon_prismatic.png",
         "change": "新增（棱彩）：终极技能提供额外生命值，并生成减速敌方英雄的区域；参与击杀会提升生命值和区域大小。",
         "changeEn": "New (Prismatic): Ultimate grants Bonus Health and creates a zone that slows enemy champions. Takedowns increase both the Health and zone size."
       },
       {
         "name": "伤不过三",
         "nameEn": "Third Times the Harm",
-        "icon": "icons/augments/ARAMMayhemThirdTimesTheHarm_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_silverbeats_large.png",
         "change": "新增（棱彩）：对同一名敌方英雄攻击三次会造成一次爆发伤害，并提供一段攻击速度。",
         "changeEn": "New (Prismatic): Attacking an enemy champion three times deals a burst of damage and grants a burst of Attack Speed."
       },
@@ -270,28 +270,28 @@
       {
         "name": "炽燃利息",
         "nameEn": "Combusting Interest",
-        "icon": "assets/mayhem-augments/combusting-interest.webp",
+        "icon": "icons/augments/official/kiwi_bloodmoney2_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
       {
         "name": "由暴生急",
         "nameEn": "Crit 'n Cast",
-        "icon": "icons/augments/ARAMMayhemCritNCast_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_critncast_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
       {
         "name": "暴击飞弹",
         "nameEn": "Critical Missile",
-        "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_criticalmissile_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
       {
         "name": "位面转移",
         "nameEn": "Dimension Shift",
-        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_whenthedarknesscomes_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
@@ -305,21 +305,21 @@
       {
         "name": "飞身踢",
         "nameEn": "Dropkick",
-        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_dropkick_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
       {
         "name": "连拨击锤",
         "nameEn": "Fan The Hammer",
-        "icon": "icons/augments/FanTheHammer_large.png",
+        "icon": "icons/augments/official/cherry_fanthehammer_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
       {
         "name": "藏身草丛",
         "nameEn": "Hide on Bush",
-        "icon": "icons/augments/ARAMMayhemHideOnBush_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_brushpower_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
@@ -333,7 +333,7 @@
       {
         "name": "我们的治疗",
         "nameEn": "Our Healing",
-        "icon": "icons/augments/ARAMMayhemOurHealing_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_equillibrium_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },
@@ -347,7 +347,7 @@
       {
         "name": "心灵净化",
         "nameEn": "Spiritual Purification",
-        "icon": "icons/augments/ARAMMayhemSpiritualPurification_arammayhem.webp",
+        "icon": "icons/augments/official/kiwi_spiritualpurification_large.png",
         "change": "已移出海克斯池。",
         "changeEn": "Removed from the Augment pool."
       },

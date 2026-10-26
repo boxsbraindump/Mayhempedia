@@ -35,11 +35,6 @@
             "id": 181,
             "apiName": "HeavyHitter",
             "name": "重量级打击手"
-          },
-          {
-            "id": 321,
-            "apiName": "Bodyguard",
-            "name": "保镖"
           }
         ],
         "trap": [

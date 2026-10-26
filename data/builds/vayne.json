@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD暴击薇恩",
       "damageType": "AD",
-      "note": "双发/多重攻击类海克斯配合破败王者之刃+狂热的攻速平A乘区放大伤害。",
+      "note": "攻速特效打法：W 三环打真实伤害，Q 翻滚接普攻输出，E 钉墙自保。双刀流在薇恩身上表现最好，每次普攻打两段更快触发 W；屹立不倒补足残血时的攻速和吸血。26.21 的鼓声暴起 低音轰鸣让 Q 后的下一次普攻多一段伤害并加速，很契合薇恩的 Q-A 节奏。",
       "augments": {
         "core": [
           {
@@ -15,21 +15,31 @@
             "name": "双刀流"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
           }
         ],
         "good": [
           {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "接二连三"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
           },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "亮出你的剑"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 910023,
+            "apiName": "ARAMMayhemFinalForm",
+            "name": "最终形态"
           },
           {
             "id": 22,
@@ -40,11 +50,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "台风"
-          },
-          {
-            "id": 54,
-            "apiName": "MasterofDuality",
-            "name": "物法皆修"
           }
         ],
         "trap": []
@@ -79,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -119,11 +125,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "台风"
-          },
-          {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "接二连三"
           },
           {
             "id": 22,

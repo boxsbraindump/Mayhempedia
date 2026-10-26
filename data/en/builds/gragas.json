@@ -90,7 +90,7 @@
     },
     {
       "key": "tank",
-      "name": "Tank Tank Engine Gragas",
+      "name": "Tank Engine Gragas",
       "damageType": "Tank",
       "note": "Gragas TANK route for ARAM: Mayhem. Prioritize Tank Engine / Goliath as the main augment plan. Strong secondary hits include Ethereal Weapon / Celestial Body / Overflow. Build toward Heartsteel > Mercury's Treads > Unending Despair > Spirit Visage > Liandry's Torment > Abyssal Mask. Start with Needlessly Large Rod. Cross-checked against aramgg.com and blitz.gg and arammayhem.com.",
       "augments": {

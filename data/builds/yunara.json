@@ -6,45 +6,50 @@
       "key": "ad",
       "name": "AD暴击芸阿娜",
       "damageType": "AD",
-      "note": "叠加攻速与暴击触发次数(双刀流/连拨击锤让每次攻击拆分成多段伤害)，配合无尽之刃系暴击装备打出爆发。",
+      "note": "攻速暴击打法：普攻叠攻速和暴击触发次数打持续输出。26.21 芸阿娜表现最好的是亮出你的剑和屹立不倒：近战形态吃满攻速和吸血，残血时还能继续反打；双刀流、死之舞、命运之武器是好的补充。",
       "augments": {
         "core": [
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "亮出你的剑"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "屹立不倒"
+          }
+        ],
+        "good": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "双刀流"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ],
-        "good": [
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "任务：海牛阿福的勇士"
+          },
+          {
+            "id": 3079,
+            "apiName": "ARAMMayhemTotentanz",
+            "name": "死之舞"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
           {
             "id": 81,
             "apiName": "TapDancer",
             "name": "踢踏舞"
-          },
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "巨人杀手"
-          },
-          {
-            "id": 115,
-            "apiName": "ScopiestWeapons",
-            "name": "最万用的瞄准镜"
-          },
-          {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "灵巧"
-          },
-          {
-            "id": 92,
-            "apiName": "Vulnerability",
-            "name": "易损"
           }
         ],
         "trap": [
@@ -85,7 +90,8 @@
       "sources": [
         "arammayhem.com",
         "aramgg.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

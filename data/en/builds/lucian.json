@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Jeweled Gauntlet Lucian",
       "damageType": "AD",
-      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Vulnerability / Giant Slayer. Build toward The Collector > Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg.",
+      "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Big Shot as the main augment plan. Strong secondary hits include Vulnerability / Jeweled Bracelet / Weapon of Destiny. Build toward The Collector > Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,21 +15,31 @@
             "name": "Jeweled Gauntlet"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3018,
+            "apiName": "ARAMMayhemBigShot",
+            "name": "Big Shot"
           }
         ],
         "good": [
           {
-            "id": 22,
-            "apiName": "Deft",
-            "name": "Deft"
-          },
-          {
             "id": 92,
             "apiName": "Vulnerability",
             "name": "Vulnerability"
+          },
+          {
+            "id": 3123,
+            "apiName": "ARAMMayhemJeweledBracelet",
+            "name": "Jeweled Bracelet"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 22,
+            "apiName": "Deft",
+            "name": "Deft"
           },
           {
             "id": 195,
@@ -74,7 +84,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "mobalytics.gg"
+        "mobalytics.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

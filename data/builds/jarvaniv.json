@@ -42,13 +42,7 @@
             "name": "渴血"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "基石法师"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {
@@ -120,11 +114,6 @@
             "id": 11,
             "apiName": "CantTouchThis",
             "name": "你摸不到"
-          },
-          {
-            "id": 910086,
-            "apiName": "ARAMMayhemHideOnBush",
-            "name": "藏身草丛"
           },
           {
             "id": 313,

@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Vladimir",
       "damageType": "AP",
-      "note": "Vladimir AP route for ARAM: Mayhem. Prioritize Eureka / Back To Basics as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Juice Box / Recursion. Build toward Haunting Guise > Liandry's Torment > Sorcerer's Shoes > Cosmic Drive > Rabadon's Deathcap > Void Staff. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and lolhaidou.cn and metasrc.com.",
+      "note": "Vladimir AP route for ARAM: Mayhem. Prioritize Eureka / Back To Basics as the main augment plan. Strong secondary hits include Quest: Wooglet's Witchcap / Recursion / Phenomenal Evil. Build toward Haunting Guise > Liandry's Torment > Sorcerer's Shoes > Cosmic Drive > Rabadon's Deathcap > Void Staff. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against arammayhem.com and lolhaidou.cn and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -25,11 +25,6 @@
             "id": 156,
             "apiName": "Quest_WoogletsWitchcap",
             "name": "Quest: Wooglet's Witchcap"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 68,

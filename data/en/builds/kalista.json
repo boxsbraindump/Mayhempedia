@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Kalista",
       "damageType": "AD",
-      "note": "Kalista AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include Tap Dancer / Dashing / Fan The Hammer. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Infinity Edge > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and metasrc.com and op.gg.",
+      "note": "Kalista AD route for ARAM: Mayhem. Prioritize Deft / Dual Wield as the main augment plan. Strong secondary hits include Tap Dancer / Dashing / Giant Slayer. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Infinity Edge > Bloodthirster. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and blitz.gg and metasrc.com and op.gg.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 19,
             "apiName": "Dashing",
             "name": "Dashing"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           },
           {
             "id": 195,

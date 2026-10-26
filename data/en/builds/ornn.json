@@ -4,9 +4,9 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Engine Ornn",
+      "name": "Tank Engine Ornn",
       "damageType": "Tank",
-      "note": "Ornn TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Restless Restoration. Build toward Heartsteel > Spirit Visage > Unending Despair > Mercury's Treads > Thornmail > Jak'Sho, The Protean. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "note": "Ornn TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Courage of the Colossus. Build toward Heartsteel > Spirit Visage > Unending Despair > Mercury's Treads > Thornmail > Jak'Sho, The Protean. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -32,23 +32,12 @@
             "name": "Goliath"
           },
           {
-            "id": 70,
-            "apiName": "RestlessRestoration",
-            "name": "Restless Restoration"
-          },
-          {
             "id": 18,
             "apiName": "CourageoftheColossus",
             "name": "Courage of the Colossus"
           }
         ],
-        "trap": [
-          {
-            "id": 234,
-            "apiName": "GambaAnvil",
-            "name": "Gamba Anvil"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

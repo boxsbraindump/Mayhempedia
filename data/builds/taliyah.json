@@ -22,11 +22,6 @@
         ],
         "good": [
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
-          },
-          {
             "id": 97,
             "apiName": "WitchfulThinking",
             "name": "巫师式思考"

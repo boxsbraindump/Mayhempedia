@@ -1,6 +1,6 @@
 {
   "source": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/cherry-augments.json",
-  "fetchedAt": "2026-10-26T22:15:40.948Z",
+  "fetchedAt": "2026-10-26T22:48:07.775Z",
   "notes": [
     "Maps Riot/CommunityDragon runtime augment ids to Mayhempedia local ids.",
     "Only live Mayhempedia augments are used as visible targets; unmatched Kiwi rows are kept for review only."
@@ -3126,7 +3126,7 @@
       "localId": 910088,
       "localName": "Terror",
       "localApiName": "ARAMMayhemTerror",
-      "localRarity": 2,
+      "localRarity": 1,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3390,7 +3390,7 @@
       "localId": 2116,
       "localName": "Pursuit of Power",
       "localApiName": "ARAMMayhemPursuitOfPower",
-      "localRarity": 0,
+      "localRarity": 1,
       "fallbackAlreadyWorks": true
     },
     {

@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Giant Slayer Gangplank",
       "damageType": "AD",
-      "note": "Gangplank AD route for ARAM: Mayhem. Prioritize Giant Slayer / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Fan The Hammer / The Brutalizer / Blunt Force. Build toward The Collector > Ionian Boots of Lucidity > Infinity Edge > Maw of Malmortius > Guardian Angel > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and op.gg and blitz.gg.",
+      "note": "Gangplank AD route for ARAM: Mayhem. Prioritize Giant Slayer / Jeweled Gauntlet as the main augment plan. Strong secondary hits include Blunt Force / Back To Basics. Build toward The Collector > Ionian Boots of Lucidity > Infinity Edge > Maw of Malmortius > Guardian Angel > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and op.gg and blitz.gg.",
       "augments": {
         "core": [
           {
@@ -21,16 +21,6 @@
           }
         ],
         "good": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "The Brutalizer"
-          },
           {
             "id": 7,
             "apiName": "BluntForce",
@@ -129,11 +119,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "Giant Slayer"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "The Brutalizer"
           }
         ],
         "trap": []

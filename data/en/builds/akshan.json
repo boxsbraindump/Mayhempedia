@@ -6,21 +6,31 @@
       "key": "ad",
       "name": "AD Akshan",
       "damageType": "AD",
-      "note": "Akshan AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include It's Critical / Giant Slayer / Deft. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Mortal Reminder > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and zhihu.com.",
+      "note": "Akshan AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Weapon of Destiny / Clown College / Mad Scientist. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Mortal Reminder > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and zhihu.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "Dual Wield"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
           }
         ],
         "good": [
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
           {
             "id": 47,
             "apiName": "ItsCritical",
@@ -35,11 +45,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
-          },
-          {
-            "id": 6,
-            "apiName": "BladeWaltz",
-            "name": "Blade Waltz"
           }
         ],
         "trap": [
@@ -47,11 +52,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "Magic Missile"
-          },
-          {
-            "id": 174,
-            "apiName": "LaserEyes",
-            "name": "Laser Eyes"
           }
         ]
       },
@@ -85,7 +85,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "zhihu.com"
+        "zhihu.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -107,29 +108,71 @@
       "note": "Pivot only when you hit Vulnerability or Jeweled Gauntlet. They let each Comeuppance shot critically strike; Upgrade Infinity Edge then multiplies the payoff. Finish Infinity Edge first, and save R for a cleared minion wave or low-health target.",
       "augments": {
         "core": [
-          { "id": 92, "apiName": "Vulnerability", "name": "Vulnerability" },
-          { "id": 910001, "apiName": "ARAMMayhemUpgradeInfinityEdge", "name": "Upgrade Infinity Edge" }
+          {
+            "id": 92,
+            "apiName": "Vulnerability",
+            "name": "Vulnerability"
+          },
+          {
+            "id": 910001,
+            "apiName": "ARAMMayhemUpgradeInfinityEdge",
+            "name": "Upgrade Infinity Edge"
+          }
         ],
         "good": [
-          { "id": 48, "apiName": "JeweledGauntlet", "name": "Jeweled Gauntlet" },
-          { "id": 910098, "apiName": "ARAMMayhemGlassCannon", "name": "Glass Cannon" },
-          { "id": 32, "apiName": "Executioner", "name": "Executioner" }
+          {
+            "id": 48,
+            "apiName": "JeweledGauntlet",
+            "name": "Jeweled Gauntlet"
+          },
+          {
+            "id": 910098,
+            "apiName": "ARAMMayhemGlassCannon",
+            "name": "Glass Cannon"
+          }
         ],
         "trap": []
       },
       "items": [
-        { "id": 6676, "name": "The Collector" },
-        { "id": 3031, "name": "Infinity Edge" },
-        { "id": 3006, "name": "Berserker's Greaves" },
-        { "id": 3036, "name": "Lord Dominik's Regards" },
-        { "id": 6696, "name": "Axiom Arc" },
-        { "id": 3032, "name": "Yun Tal Wildarrows" }
+        {
+          "id": 6676,
+          "name": "The Collector"
+        },
+        {
+          "id": 3031,
+          "name": "Infinity Edge"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves"
+        },
+        {
+          "id": 3036,
+          "name": "Lord Dominik's Regards"
+        },
+        {
+          "id": 6696,
+          "name": "Axiom Arc"
+        },
+        {
+          "id": 3032,
+          "name": "Yun Tal Wildarrows"
+        }
       ],
       "runes": null,
-      "sources": ["aramgg.com", "arammayhem.com"],
+      "sources": [
+        "aramgg.com",
+        "arammayhem.com"
+      ],
       "starterItems": [
-        { "id": 3134, "name": "Serrated Dirk" },
-        { "id": 1001, "name": "Boots" }
+        {
+          "id": 3134,
+          "name": "Serrated Dirk"
+        },
+        {
+          "id": 1001,
+          "name": "Boots"
+        }
       ],
       "releaseDate": "2026-07-24",
       "boots": [],

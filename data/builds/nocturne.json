@@ -25,16 +25,6 @@
             "id": 7,
             "apiName": "BluntForce",
             "name": "大力"
-          },
-          {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "残暴之力"
-          },
-          {
-            "id": 89,
-            "apiName": "Vanish",
-            "name": "遁入暗影"
           }
         ],
         "trap": [

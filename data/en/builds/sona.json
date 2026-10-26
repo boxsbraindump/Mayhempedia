@@ -6,7 +6,7 @@
       "key": "enchanter",
       "name": "Support Sona",
       "damageType": "Support",
-      "note": "Sona SUPPORT route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Witchful Thinking / Mind to Matter / Light Warden. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Whispering Circlet > Ardent Censer > Dawncore > Redemption. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com.",
+      "note": "Sona SUPPORT route for ARAM: Mayhem. Prioritize Recursion / Eureka as the main augment plan. Strong secondary hits include Witchful Thinking / Mind to Matter / Phenomenal Evil. Build toward Moonstone Renewer > Ionian Boots of Lucidity > Whispering Circlet > Ardent Censer > Dawncore > Redemption. Start with Tear of the Goddess + Bandleglass Mirror. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {
         "core": [
           {
@@ -30,11 +30,6 @@
             "id": 56,
             "apiName": "MindtoMatter",
             "name": "Mind to Matter"
-          },
-          {
-            "id": 231,
-            "apiName": "LightWarden",
-            "name": "Light Warden"
           },
           {
             "id": 65,

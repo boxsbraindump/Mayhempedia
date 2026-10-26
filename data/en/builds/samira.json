@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Samira",
       "damageType": "AD",
-      "note": "Samira AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Fan The Hammer as the main augment plan. Strong secondary hits include Soul Siphon / Goredrink / Trueshot Prodigy. Build toward The Collector > Mercury's Treads > Infinity Edge > Immortal Shieldbow > Lord Dominik's Regards > Death's Dance. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com.",
+      "note": "Samira AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Weapon of Destiny as the main augment plan. Strong secondary hits include Still Here / Clown College / Escape Plan. Build toward The Collector > Mercury's Treads > Infinity Edge > Immortal Shieldbow > Lord Dominik's Regards > Death's Dance. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,12 +15,32 @@
             "name": "Draw Your Sword"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
           }
         ],
         "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 910016,
+            "apiName": "ARAMMayhemEscapePlan",
+            "name": "Escape Plan"
+          },
+          {
+            "id": 910006,
+            "apiName": "ARAMMayhemToothFairy",
+            "name": "Tooth Fairy"
+          },
           {
             "id": 77,
             "apiName": "SoulSiphon",
@@ -30,16 +50,6 @@
             "id": 138,
             "apiName": "Goredrink",
             "name": "Goredrink"
-          },
-          {
-            "id": 86,
-            "apiName": "TrueshotProdigy",
-            "name": "Trueshot Prodigy"
-          },
-          {
-            "id": 47,
-            "apiName": "ItsCritical",
-            "name": "It's Critical"
           }
         ],
         "trap": [
@@ -79,7 +89,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

@@ -30,11 +30,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "Ethereal Weapon"
-          },
-          {
-            "id": 67,
-            "apiName": "RabbleRousing",
-            "name": "Rabble Rousing"
           }
         ],
         "trap": []

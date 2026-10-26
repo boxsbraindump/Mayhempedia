@@ -42,11 +42,6 @@
             "name": "Magic Missile"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
-          {
             "id": 113,
             "apiName": "SkilledSniper",
             "name": "Skilled Sniper"

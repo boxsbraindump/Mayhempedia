@@ -4,9 +4,9 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Poppy",
+      "name": "Tank Poppy",
       "damageType": "Tank",
-      "note": "Poppy TANK route for ARAM: Mayhem. Prioritize Goliath / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Tank Engine / Undying Guard. Build toward Heartsteel > Mercury's Treads > Unending Despair > Thornmail > Jak'Sho, The Protean > Sunfire Aegis. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Poppy TANK route for ARAM: Mayhem. Prioritize Goliath / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Tank Engine / Stackosaurus Rex. Build toward Heartsteel > Mercury's Treads > Unending Despair > Thornmail > Jak'Sho, The Protean > Sunfire Aegis. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {
         "core": [
           {
@@ -32,22 +32,12 @@
             "name": "Tank Engine"
           },
           {
-            "id": 327,
-            "apiName": "UndyingGuard",
-            "name": "Undying Guard"
-          },
-          {
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "Stackosaurus Rex"
           }
         ],
         "trap": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
           {
             "id": 47,
             "apiName": "ItsCritical",

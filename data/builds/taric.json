@@ -52,11 +52,6 @@
             "id": 205,
             "apiName": "ADAPt",
             "name": "物理转魔法"
-          },
-          {
-            "id": 66,
-            "apiName": "QuantumComputing",
-            "name": "量子计算"
           }
         ]
       },

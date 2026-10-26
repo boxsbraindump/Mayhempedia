@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Smolder",
       "damageType": "AD",
-      "note": "Smolder AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Fan The Hammer as the main augment plan. Strong secondary hits include Stackosaurus Rex / Trueshot Prodigy / Giant Slayer. Build toward Essence Reaver > Ionian Boots of Lucidity > Spear of Shojin > Rapid Firecannon > Infinity Edge > Mortal Reminder. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and hupu.com and blitz.gg.",
+      "note": "Smolder AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Stackosaurus Rex as the main augment plan. Strong secondary hits include The Boom and the Bass / Mad Scientist / Back To Basics. Build toward Essence Reaver > Ionian Boots of Lucidity > Spear of Shojin > Rapid Firecannon > Infinity Edge > Mortal Reminder. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and hupu.com and blitz.gg and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,26 +15,36 @@
             "name": "Jeweled Gauntlet"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 204,
+            "apiName": "StackosaurusRex",
+            "name": "Stackosaurus Rex"
           }
         ],
         "good": [
           {
-            "id": 204,
-            "apiName": "StackosaurusRex",
-            "name": "Stackosaurus Rex"
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "The Boom and the Bass"
           },
           {
-            "id": 86,
-            "apiName": "TrueshotProdigy",
-            "name": "Trueshot Prodigy"
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
           },
           {
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "Giant Slayer"
+          },
+          {
+            "id": 105,
+            "apiName": "Homeguard",
+            "name": "Homeguard"
           },
           {
             "id": 115,
@@ -86,7 +96,8 @@
         "arammayhem.com",
         "metasrc.com",
         "hupu.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

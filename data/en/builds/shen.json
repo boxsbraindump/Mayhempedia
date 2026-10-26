@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Shen",
+      "name": "Tank Shen",
       "damageType": "Tank",
       "note": "Shen TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Heavy Hitter / Goliath / Blunt Force. Build toward Heartsteel > Mercury's Treads > Unending Despair > Deathfire Grasp > Thornmail > Spirit Visage. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and metasrc.com.",
       "augments": {

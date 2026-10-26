@@ -134,20 +134,9 @@
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "叠角龙"
-          },
-          {
-            "id": 96,
-            "apiName": "WisdomofAges",
-            "name": "时光之智慧"
           }
         ],
-        "trap": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

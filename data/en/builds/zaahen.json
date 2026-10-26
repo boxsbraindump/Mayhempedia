@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Zaahen",
       "damageType": "AD",
-      "note": "Zaahen AD route for ARAM: Mayhem. Prioritize Goredrink / Mystic Punch as the main augment plan. Strong secondary hits include Executioner / Scopiest Weapons / Recursion. Build toward Hubris > Sundered Sky > Mercury's Treads > Death's Dance > Spear of Shojin > Sterak's Gage. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and news.qq.com.",
+      "note": "Zaahen AD route for ARAM: Mayhem. Prioritize Goredrink / Mystic Punch as the main augment plan. Strong secondary hits include Scopiest Weapons / Recursion / Ethereal Weapon. Build toward Hubris > Sundered Sky > Mercury's Treads > Death's Dance > Spear of Shojin > Sterak's Gage. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and news.qq.com.",
       "augments": {
         "core": [
           {
@@ -22,11 +22,6 @@
         ],
         "good": [
           {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "Executioner"
-          },
-          {
             "id": 115,
             "apiName": "ScopiestWeapons",
             "name": "Scopiest Weapons"
@@ -40,11 +35,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "Ethereal Weapon"
-          },
-          {
-            "id": 42,
-            "apiName": "GuiltyPleasure",
-            "name": "Guilty Pleasure"
           }
         ],
         "trap": [

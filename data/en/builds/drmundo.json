@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Dr. Mundo",
+      "name": "Tank Dr. Mundo",
       "damageType": "Tank",
       "note": "Dr. Mundo TANK route for ARAM: Mayhem. Prioritize Goliath / Tank Engine as the main augment plan. Strong secondary hits include Stackosaurus Rex / Quest: Steel Your Heart / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Warmog's Armor > Unending Despair > Spirit Visage > Thornmail. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and aramgg.com and op.gg.",
       "augments": {

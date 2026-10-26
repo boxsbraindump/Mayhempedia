@@ -47,11 +47,6 @@
             "id": 205,
             "apiName": "ADAPt",
             "name": "ADAPt"
-          },
-          {
-            "id": 171,
-            "apiName": "Dematerialize",
-            "name": "Dematerialize"
           }
         ]
       },

@@ -4,15 +4,15 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Rell",
+      "name": "Armored Impact Tank Rell",
       "damageType": "Tank",
-      "note": "Rell TANK route for ARAM: Mayhem. Prioritize The Brutalizer / Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Courage of the Colossus / Goliath. Build toward Heartsteel > Unending Despair > Warmog's Armor > Mercury's Treads > Thornmail > Locket of the Iron Solari. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Rell TANK route for ARAM: Mayhem. Prioritize Armored Impact / Tank Engine as the main augment plan. Strong secondary hits include Infinite Recursion / Quest: Steel Your Heart / Pressure Cooker. Build toward Heartsteel > Unending Despair > Warmog's Armor > Mercury's Treads > Thornmail > Locket of the Iron Solari. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
-            "id": 82,
-            "apiName": "TheBrutalizer",
-            "name": "The Brutalizer"
+            "id": 3049,
+            "apiName": "ARAMMayhemArmoredImpact",
+            "name": "Armored Impact"
           },
           {
             "id": 313,
@@ -22,9 +22,24 @@
         ],
         "good": [
           {
+            "id": 900003,
+            "apiName": "MayhemInfiniteRecursion",
+            "name": "Infinite Recursion"
+          },
+          {
             "id": 152,
             "apiName": "Quest_SteelYourHeart",
             "name": "Quest: Steel Your Heart"
+          },
+          {
+            "id": 910037,
+            "apiName": "ARAMMayhemPressureCooker",
+            "name": "Pressure Cooker"
+          },
+          {
+            "id": 910007,
+            "apiName": "ARAMMayhemUpgradeImmolate",
+            "name": "Upgrade Immolate"
           },
           {
             "id": 18,
@@ -35,16 +50,6 @@
             "id": 41,
             "apiName": "Goliath",
             "name": "Goliath"
-          },
-          {
-            "id": 181,
-            "apiName": "HeavyHitter",
-            "name": "Heavy Hitter"
-          },
-          {
-            "id": 7,
-            "apiName": "BluntForce",
-            "name": "Blunt Force"
           }
         ],
         "trap": []
@@ -79,7 +84,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -193,9 +199,9 @@
           "name": "Health Potion"
         }
       ],
+      "releaseDate": "2026-07-24",
       "boots": [],
-      "optionalItems": [],
-      "releaseDate": "2026-07-24"
+      "optionalItems": []
     }
   ]
 }

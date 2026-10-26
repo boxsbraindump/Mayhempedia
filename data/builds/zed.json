@@ -37,13 +37,7 @@
             "name": "科学狂人"
           }
         ],
-        "trap": [
-          {
-            "id": 32,
-            "apiName": "Executioner",
-            "name": "裁决使"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

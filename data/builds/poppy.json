@@ -32,22 +32,12 @@
             "name": "坦克引擎"
           },
           {
-            "id": 327,
-            "apiName": "UndyingGuard",
-            "name": "不灭守护"
-          },
-          {
             "id": 204,
             "apiName": "StackosaurusRex",
             "name": "叠角龙"
           }
         ],
         "trap": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
-          },
           {
             "id": 47,
             "apiName": "ItsCritical",

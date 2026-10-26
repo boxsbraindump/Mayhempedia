@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Zac",
+      "name": "Tank Zac",
       "damageType": "Tank",
       "note": "Zac TANK route for ARAM: Mayhem. Prioritize Tank Engine as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Heavy Hitter / Goliath. Build toward Heartsteel > Mercury's Treads > Spirit Visage > Unending Despair > Thornmail > Warmog's Armor. Start with Ruby Crystal + Bami's Cinder. Cross-checked against arammayhem.com and metasrc.com and aramgg.com.",
       "augments": {

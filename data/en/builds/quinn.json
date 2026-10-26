@@ -6,7 +6,7 @@
       "key": "ad",
       "name": "AD Quinn",
       "damageType": "AD",
-      "note": "Quinn AD route for ARAM: Mayhem. Prioritize Dual Wield / Fan The Hammer as the main augment plan. Strong secondary hits include Deft / Giant Slayer. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Bloodthirster > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com.",
+      "note": "Quinn AD route for ARAM: Mayhem. Prioritize Dual Wield / Still Here as the main augment plan. Strong secondary hits include Weapon of Destiny / Clown College / Totentanz. Build toward The Collector > Berserker's Greaves > Infinity Edge > Lord Dominik's Regards > Bloodthirster > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and hexdata.com.cn.",
       "augments": {
         "core": [
           {
@@ -15,12 +15,32 @@
             "name": "Dual Wield"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
           }
         ],
         "good": [
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "Clown College"
+          },
+          {
+            "id": 3079,
+            "apiName": "ARAMMayhemTotentanz",
+            "name": "Totentanz"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -63,7 +83,8 @@
       "runes": null,
       "sources": [
         "metasrc.com",
-        "arammayhem.com"
+        "arammayhem.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

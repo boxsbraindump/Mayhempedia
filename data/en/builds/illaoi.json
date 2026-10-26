@@ -40,11 +40,6 @@
             "id": 29,
             "apiName": "EtherealWeapon",
             "name": "Ethereal Weapon"
-          },
-          {
-            "id": 110,
-            "apiName": "Clothesline",
-            "name": "Clothesline"
           }
         ],
         "trap": []

@@ -6,40 +6,50 @@
       "key": "ad-crit",
       "name": "AD Crit Xayah",
       "damageType": "AD",
-      "note": "Xayah AD route for ARAM: Mayhem. Prioritize Deft / Fan The Hammer as the main augment plan. Strong secondary hits include Giant Slayer / Dual Wield / It's Critical. Build toward The Collector > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > Runaan's Hurricane. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg.",
+      "note": "Xayah AD route for ARAM: Mayhem. Prioritize Still Here / Draw Your Sword as the main augment plan. Strong secondary hits include Mad Scientist / Back To Basics / Weapon of Destiny. Build toward The Collector > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > Runaan's Hurricane. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {
         "core": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
+          },
+          {
+            "id": 134,
+            "apiName": "DrawYourSword",
+            "name": "Draw Your Sword"
+          }
+        ],
+        "good": [
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 4,
+            "apiName": "BacktoBasics",
+            "name": "Back To Basics"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 154,
+            "apiName": "Quest_UrfsChampion",
+            "name": "Quest: Urf's Champion"
+          },
           {
             "id": 22,
             "apiName": "Deft",
             "name": "Deft"
           },
           {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ],
-        "good": [
-          {
-            "id": 195,
-            "apiName": "GiantSlayer",
-            "name": "Giant Slayer"
-          },
-          {
             "id": 225,
             "apiName": "DualWield",
             "name": "Dual Wield"
-          },
-          {
-            "id": 47,
-            "apiName": "ItsCritical",
-            "name": "It's Critical"
-          },
-          {
-            "id": 77,
-            "apiName": "SoulSiphon",
-            "name": "Soul Siphon"
           }
         ],
         "trap": []
@@ -74,7 +84,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "blitz.gg"
+        "blitz.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

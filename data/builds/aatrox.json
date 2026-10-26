@@ -17,19 +17,9 @@
         ],
         "good": [
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
-          },
-          {
             "id": 7,
             "apiName": "BluntForce",
             "name": "大力"
-          },
-          {
-            "id": 70,
-            "apiName": "RestlessRestoration",
-            "name": "无休回复"
           }
         ],
         "trap": [

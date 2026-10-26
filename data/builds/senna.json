@@ -35,11 +35,6 @@
             "id": 87,
             "apiName": "Typhoon",
             "name": "台风"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
           }
         ],
         "trap": []

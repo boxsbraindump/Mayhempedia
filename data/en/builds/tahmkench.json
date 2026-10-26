@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Engine Tahm Kench",
+      "name": "Tank Engine Tahm Kench",
       "damageType": "Tank",
       "note": "Tahm Kench TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Heavy Hitter / Impassable. Build toward Heartsteel > Warmog's Armor > Unending Despair > Mercury's Treads > Thornmail > Jak'Sho, The Protean. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against arammayhem.com and mobalytics.gg and aramgg.com.",
       "augments": {

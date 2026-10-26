@@ -6,21 +6,31 @@
       "key": "ad",
       "name": "暴击AD阿克尚",
       "damageType": "AD",
-      "note": "大招被动带暴击加成，普攻+Q骚扰触发被动、大招收割，双刀流/连拨击锤放大攻速与多重弹道输出。",
+      "note": "暴击射手打法：普攻和Q消耗触发被动，R在敌人残血时收割。26.21 连拨击锤移除后，双刀流是阿克尚唯一的攻速核心；命运之武器、小丑学院这类通用强势海克斯在他身上也有稳定表现。阿克尚本版本整体偏弱，更适合熟练玩家。",
       "augments": {
         "core": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "双刀流"
-          },
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "连拨击锤"
           }
         ],
         "good": [
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "命运之武器"
+          },
+          {
+            "id": 310,
+            "apiName": "ClownCollege",
+            "name": "小丑学院"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "科学狂人"
+          },
           {
             "id": 47,
             "apiName": "ItsCritical",
@@ -35,11 +45,6 @@
             "id": 22,
             "apiName": "Deft",
             "name": "灵巧"
-          },
-          {
-            "id": 6,
-            "apiName": "BladeWaltz",
-            "name": "利刃华尔兹"
           }
         ],
         "trap": [
@@ -47,11 +52,6 @@
             "id": 133,
             "apiName": "MagicMissile",
             "name": "魔法飞弹"
-          },
-          {
-            "id": 174,
-            "apiName": "LaserEyes",
-            "name": "镭射眼"
           }
         ]
       },
@@ -85,7 +85,8 @@
       "sources": [
         "arammayhem.com",
         "metasrc.com",
-        "zhihu.com"
+        "zhihu.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -110,8 +111,7 @@
         ],
         "good": [
           { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },
-          { "id": 910098, "apiName": "ARAMMayhemGlassCannon", "name": "玻璃大炮" },
-          { "id": 32, "apiName": "Executioner", "name": "裁决使" }
+          { "id": 910098, "apiName": "ARAMMayhemGlassCannon", "name": "玻璃大炮" }
         ],
         "trap": []
       },

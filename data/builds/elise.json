@@ -6,45 +6,45 @@
       "key": "ap",
       "name": "AP法核伊莉丝",
       "damageType": "AP",
-      "note": "单一法核爆发路线：卢登起手叠法强，配影焰/风暴狂涌打穿甲，法穿鞋+死亡之帽收尾。metasrc.com、arammayhem.com、op.gg三站一致确认核心装备与增强推荐。⚠️ 神射法师最初被误判为陷阱，实际两站都把它列为Gold档强势海克斯(约52.51%胜率)，已改列为好选择。",
+      "note": "AP 法核打法：人形态技能消耗起手，蜘蛛形态贴脸补伤害。26.21 的小蜜蜂！！！让技能命中时额外放出蜂巢，鼓声暴起 低音轰鸣让技能后的下一次普攻多打一段魔法伤害并加速，正好契合伊莉丝人形态技能接蜘蛛形态普攻的连招节奏。尤里卡、有始有终可作为补充。",
       "augments": {
         "core": [
+          {
+            "id": 3086,
+            "apiName": "ARAMMayhemBees",
+            "name": "小蜜蜂！！！"
+          },
+          {
+            "id": 3078,
+            "apiName": "ARAMMayhemTheBoomAndTheBass",
+            "name": "鼓声暴起 低音轰鸣"
+          }
+        ],
+        "good": [
           {
             "id": 30,
             "apiName": "Eureka",
             "name": "尤里卡"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "果汁盒"
-          }
-        ],
-        "good": [
+            "id": 38,
+            "apiName": "FromBeginningToEnd",
+            "name": "有始有终"
+          },
+          {
+            "id": 910023,
+            "apiName": "ARAMMayhemFinalForm",
+            "name": "最终形态"
+          },
           {
             "id": 97,
             "apiName": "WitchfulThinking",
             "name": "巫师式思考"
           },
           {
-            "id": 180,
-            "apiName": "BigBrain",
-            "name": "超强大脑"
-          },
-          {
             "id": 65,
             "apiName": "PhenomenalEvil",
             "name": "超凡邪恶"
-          },
-          {
-            "id": 133,
-            "apiName": "MagicMissile",
-            "name": "魔法飞弹"
-          },
-          {
-            "id": 68,
-            "apiName": "Recursion",
-            "name": "循环往复"
           },
           {
             "id": 129,
@@ -84,7 +84,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "op.gg"
+        "op.gg",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {

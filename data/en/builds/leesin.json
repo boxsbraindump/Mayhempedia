@@ -42,13 +42,7 @@
             "name": "Goredrink"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "Keystone Conjurer"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Engine Alistar",
+      "name": "Tank Engine Alistar",
       "damageType": "Tank",
       "note": "Alistar TANK route for ARAM: Mayhem. Prioritize Tank Engine / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Courage of the Colossus / Goliath / Celestial Body. Build toward Heartsteel > Mercury's Treads > Winter's Approach > Spirit Visage > Unending Despair > Thornmail. Start with Giant's Belt + Ruby Crystal. Cross-checked against arammayhem.com and aramgg.com.",
       "augments": {

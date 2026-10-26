@@ -4,7 +4,7 @@
   "archetypes": [
     {
       "key": "tank",
-      "name": "Tank Tank Leona",
+      "name": "Tank Leona",
       "damageType": "Tank",
       "note": "Leona TANK route for ARAM: Mayhem. Prioritize Courage of the Colossus / Quest: Steel Your Heart as the main augment plan. Strong secondary hits include Goliath / Tank Engine / Heavy Hitter. Build toward Heartsteel > Mercury's Treads > Thornmail > Sunfire Aegis > Unending Despair > Locket of the Iron Solari. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and blitz.gg.",
       "augments": {

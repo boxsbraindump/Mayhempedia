@@ -30,11 +30,6 @@
             "id": 37,
             "apiName": "FirstAidKit",
             "name": "急救用具"
-          },
-          {
-            "id": 231,
-            "apiName": "LightWarden",
-            "name": "光明守望者"
           }
         ],
         "trap": [

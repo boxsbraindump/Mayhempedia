@@ -37,11 +37,6 @@
             "name": "Goredrink"
           },
           {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
-          },
-          {
             "id": 92,
             "apiName": "Vulnerability",
             "name": "Vulnerability"

@@ -6,7 +6,7 @@
       "key": "ap",
       "name": "AP Fiddlesticks",
       "damageType": "AP",
-      "note": "Fiddlesticks AP route for ARAM: Mayhem. Prioritize It's Killing Time / Witchful Thinking as the main augment plan. Strong secondary hits include Eureka / Juice Box / Fey Magic. Build toward Liandry's Torment > Sorcerer's Shoes > Shadowflame > Zhonya's Hourglass > Rabadon's Deathcap > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
+      "note": "Fiddlesticks AP route for ARAM: Mayhem. Prioritize It's Killing Time / Witchful Thinking as the main augment plan. Strong secondary hits include Eureka / Fey Magic / Ultimate Unstoppable. Build toward Liandry's Torment > Sorcerer's Shoes > Shadowflame > Zhonya's Hourglass > Rabadon's Deathcap > Rylai's Crystal Scepter. Start with Guardian's Orb + Boots + Health Potion. Cross-checked against metasrc.com and arammayhem.com.",
       "augments": {
         "core": [
           {
@@ -25,11 +25,6 @@
             "id": 30,
             "apiName": "Eureka",
             "name": "Eureka"
-          },
-          {
-            "id": 49,
-            "apiName": "JuiceBox",
-            "name": "Juice Box"
           },
           {
             "id": 194,

@@ -47,7 +47,9 @@ function routeTitle(championName, route, enAugmentById, useMechanicName) {
   const coreAugment = route.augments?.core?.[0] ? refName(route.augments.core[0], enAugmentById) : ''
   const flavor = routeFlavor(route)
   const mechanic = useMechanicName ? (coreAugment || flavor) : flavor
-  return [type, mechanic, championName].filter(Boolean).join(' ')
+  // 避免「Tank Tank Rell」「Tank Tank Engine Alistar」这类类型词和打法词重复
+  const typeShown = mechanic && mechanic.split(' ')[0].toLowerCase() === type.toLowerCase() ? '' : type
+  return [typeShown, mechanic, championName].filter(Boolean).join(' ')
 }
 
 function routeNote(championName, route, enItemById, enAugmentById) {
@@ -91,13 +93,17 @@ async function main() {
     const build = await readJson(join(BUILD_DIR, file))
     const champion = enChampionById.get(build.championId)
     const championName = champion?.name ?? build.championName
+    // 已有路线保留现有英文标题（不随核心海克斯变动改名）；带 releaseDate 的官方新路线说明也是手写的，一并保留
+    const existing = await readJson(join(EN_BUILD_DIR, file)).catch(() => null)
+    const existingRoute = (route) => existing?.archetypes?.find((entry) => entry.key === route.key)
+    const handWritten = (route) => (route.releaseDate ? existingRoute(route) : undefined)
     const localized = {
       ...build,
       championName,
       archetypes: (build.archetypes ?? []).map((route) => ({
         ...route,
-        name: routeTitle(championName, route, enAugmentById, (build.archetypes ?? []).length > 1),
-        note: routeNote(championName, route, enItemById, enAugmentById),
+        name: existingRoute(route)?.name ?? routeTitle(championName, route, enAugmentById, (build.archetypes ?? []).length > 1),
+        note: handWritten(route)?.note ?? routeNote(championName, route, enItemById, enAugmentById),
         augments: {
           core: mapRefs(route.augments?.core, enAugmentById),
           good: mapRefs(route.augments?.good, enAugmentById),

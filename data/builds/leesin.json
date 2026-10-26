@@ -42,13 +42,7 @@
             "name": "渴血"
           }
         ],
-        "trap": [
-          {
-            "id": 50,
-            "apiName": "KeystoneConjurer",
-            "name": "基石法师"
-          }
-        ]
+        "trap": []
       },
       "items": [
         {

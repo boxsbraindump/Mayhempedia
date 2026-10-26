@@ -4,23 +4,43 @@
   "archetypes": [
     {
       "key": "ad",
-      "name": "AD Fan The Hammer Tristana",
+      "name": "AD Crit Tristana",
       "damageType": "AD",
-      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Fan The Hammer / Draw Your Sword as the main augment plan. Strong secondary hits include Deft / Giant Slayer / Dual Wield. Build toward The Collector > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > Mortal Reminder. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and aramgg.com.",
+      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Still Here as the main augment plan. Strong secondary hits include Dual Wield / Weapon of Destiny / Mad Scientist. Build toward The Collector > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > Mortal Reminder. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and hexdata.com.cn.",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          },
           {
             "id": 134,
             "apiName": "DrawYourSword",
             "name": "Draw Your Sword"
+          },
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
           }
         ],
         "good": [
+          {
+            "id": 225,
+            "apiName": "DualWield",
+            "name": "Dual Wield"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
+          },
+          {
+            "id": 53,
+            "apiName": "MadScientist",
+            "name": "Mad Scientist"
+          },
+          {
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "Heavy Is The Crown"
+          },
           {
             "id": 22,
             "apiName": "Deft",
@@ -30,16 +50,6 @@
             "id": 195,
             "apiName": "GiantSlayer",
             "name": "Giant Slayer"
-          },
-          {
-            "id": 225,
-            "apiName": "DualWield",
-            "name": "Dual Wield"
-          },
-          {
-            "id": 138,
-            "apiName": "Goredrink",
-            "name": "Goredrink"
           }
         ],
         "trap": [
@@ -85,7 +95,8 @@
       "sources": [
         "metasrc.com",
         "arammayhem.com",
-        "aramgg.com"
+        "aramgg.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
@@ -102,27 +113,32 @@
     },
     {
       "key": "hammer-e-bomb",
-      "name": "AD Fan The Hammer Tristana",
+      "name": "Dual Wield E-Bomb Tristana",
       "damageType": "AD",
-      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Fan The Hammer as the main augment plan. Strong secondary hits include Dual Wield / Twice Thrice / Deft. Build toward Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com.",
+      "note": "Tristana AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Still Here / Heavy Is The Crown / Weapon of Destiny. Build toward Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and hexdata.com.cn.",
       "augments": {
         "core": [
-          {
-            "id": 220,
-            "apiName": "FanTheHammer",
-            "name": "Fan The Hammer"
-          }
-        ],
-        "good": [
           {
             "id": 225,
             "apiName": "DualWield",
             "name": "Dual Wield"
+          }
+        ],
+        "good": [
+          {
+            "id": 3131,
+            "apiName": "ARAMMayhemStillHere",
+            "name": "Still Here"
           },
           {
-            "id": 107,
-            "apiName": "TwiceThrice",
-            "name": "Twice Thrice"
+            "id": 3132,
+            "apiName": "ARAMMayhemHeavyIsTheCrown",
+            "name": "Heavy Is The Crown"
+          },
+          {
+            "id": 3081,
+            "apiName": "ARAMMayhemWeaponOfDestiny",
+            "name": "Weapon of Destiny"
           },
           {
             "id": 22,
@@ -166,7 +182,8 @@
       "runes": null,
       "sources": [
         "arammayhem.com",
-        "metasrc.com"
+        "metasrc.com",
+        "hexdata.com.cn"
       ],
       "starterItems": [
         {
