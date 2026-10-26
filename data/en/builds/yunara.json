@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Yunara",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Yunara AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Still Here as the main augment plan. Strong secondary hits include Dual Wield / Quest: Urf's Champion / Totentanz. Build toward The Collector > Kraken Slayer > Berserker's Greaves > Infinity Edge > Runaan's Hurricane > Yun Tal Wildarrows. Start with Hearthbound Axe + Health Potion + Health Potion. Cross-checked against arammayhem.com and aramgg.com and metasrc.com and hexdata.com.cn.",
       "augments": {

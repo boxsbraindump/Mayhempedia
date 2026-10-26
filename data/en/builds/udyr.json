@@ -5,6 +5,7 @@
     {
       "key": "ad-crit",
       "name": "Lethality Crit Udyr",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Udyr AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Giant Slayer as the main augment plan. Strong secondary hits include Clown College / Scopiest Weapons / Ethereal Weapon. Build toward The Collector > Hubris > Lord Dominik's Regards > Infinity Edge > Youmuu's Ghostblade > Blade of The Ruined King. Start with Serrated Dirk + Boots. Cross-checked against news.qq.com and dvg.cn and hexdata.com.cn and arammayhem.com.",
       "augments": {

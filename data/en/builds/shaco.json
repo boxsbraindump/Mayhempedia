@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Shaco",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Shaco AD route for ARAM: Mayhem. Prioritize Big Shot / Upgrade Infinity Edge as the main augment plan. Strong secondary hits include Clown College / Shadow Runner / Dashing. Build toward The Collector > Berserker's Greaves > Infinity Edge > Hubris > Voltaic Cyclosword > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and hexdata.com.cn.",
       "augments": {

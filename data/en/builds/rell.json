@@ -5,6 +5,7 @@
     {
       "key": "tank",
       "name": "Armored Impact Tank Rell",
+      "updatedPatch": "26.21",
       "damageType": "Tank",
       "note": "Rell TANK route for ARAM: Mayhem. Prioritize Armored Impact / Tank Engine as the main augment plan. Strong secondary hits include Infinite Recursion / Quest: Steel Your Heart / Pressure Cooker. Build toward Heartsteel > Unending Despair > Warmog's Armor > Mercury's Treads > Thornmail > Locket of the Iron Solari. Start with Giant's Belt + Ruby Crystal + Health Potion. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and hexdata.com.cn.",
       "augments": {

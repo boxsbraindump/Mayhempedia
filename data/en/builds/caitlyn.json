@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Caitlyn",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Caitlyn AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Weapon of Destiny as the main augment plan. Strong secondary hits include Still Here / Mad Scientist / Quest: Urf's Champion. Build toward The Collector > Berserker's Greaves > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and aramgg.com and metasrc.com and hexdata.com.cn.",
       "augments": {

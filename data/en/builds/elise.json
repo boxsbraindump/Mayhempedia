@@ -5,6 +5,7 @@
     {
       "key": "ap",
       "name": "AP Elise",
+      "updatedPatch": "26.21",
       "damageType": "AP",
       "note": "Elise AP route for ARAM: Mayhem. Prioritize BEES!!! / The Boom and the Bass as the main augment plan. Strong secondary hits include Eureka / From Beginning To End / Final Form. Build toward Luden's Echo > Sorcerer's Shoes > Shadowflame > Stormsurge > Rabadon's Deathcap > Void Staff. Start with Lost Chapter + Health Potion + Health Potion. Cross-checked against metasrc.com and arammayhem.com and op.gg and hexdata.com.cn.",
       "augments": {

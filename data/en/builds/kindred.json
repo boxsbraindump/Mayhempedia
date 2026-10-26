@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Kindred",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Kindred AD route for ARAM: Mayhem. Prioritize Still Here / Dual Wield as the main augment plan. Strong secondary hits include Mad Scientist / Weapon of Destiny / Clown College. Build toward The Collector > Berserker's Greaves > Infinity Edge > Blade of The Ruined King > Bloodthirster > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {
