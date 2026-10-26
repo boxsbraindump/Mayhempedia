@@ -72,6 +72,8 @@ export interface Archetype {
   /** Lets a newly published route stay marked as new for a short window. */
   releaseDate?: string
   isNew?: boolean
+  /** Patch in which this route's core content was last substantially reworked (e.g. "26.21"). Separate from releaseDate/isNew. */
+  updatedPatch?: string
   augments: { core: Ref[]; good: Ref[]; trap: Ref[] }
   starterItems?: Ref[]
   items: Ref[]

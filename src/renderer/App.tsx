@@ -52,6 +52,7 @@ import {
   rankPreferredChampions,
   type PlaystyleKey,
   type PreferenceReason,
+  type RouteTag,
 } from './play-preferences'
 import { LangProvider, useT, useLang, t, type Lang } from './i18n'
 
@@ -1310,7 +1311,7 @@ function Dashboard({
     let cancelled = false
     const loadRoute = async (file: string) => {
       try {
-        return homepageRoute((await loadBuild(file, lang)).archetypes)
+        return homepageRoute((await loadBuild(file, lang)).archetypes, core.patchNotes.patch)
       } catch {
         return null
       }
@@ -1322,13 +1323,14 @@ function Dashboard({
       })),
       Promise.all(newDiscoveryTargets.map(async ({ champion, file }): Promise<OfficialDiscovery | null> => {
         const route = await loadRoute(file)
-        return route?.isNew ? { champion, ...route } : null
+        return route?.tag === 'new' ? { champion, ...route } : null
       })),
     ]).then(([personalItems, curatedItems]) => {
       if (cancelled) return
       const personal = personalItems.filter((item): item is OfficialDiscovery => !!item)
-      // 常玩英雄的本版本新路线排最前，其次是他们的推荐路线；剩下的位置用官方精选补满。
-      const picks = [...personal.filter((item) => item.isNew), ...personal.filter((item) => !item.isNew)].slice(0, HOMEPAGE_PICK_COUNT)
+      // 常玩英雄的新路线排最前，其次是本版更新过的路线，再其次是推荐路线；剩下的位置用官方精选补满。
+      const rank = (item: OfficialDiscovery) => (item.tag === 'new' ? 0 : item.tag === 'updated' ? 1 : 2)
+      const picks = [...personal].sort((a, b) => rank(a) - rank(b)).slice(0, HOMEPAGE_PICK_COUNT)
       const shown = new Set(picks.map((item) => item.champion.id))
       const curated = curatedItems.filter((item): item is OfficialDiscovery => !!item && !shown.has(item.champion.id))
       setOfficialDiscoveries([...picks, ...curated].slice(0, HOMEPAGE_PICK_COUNT))
@@ -1706,7 +1708,7 @@ function MyChampionsPanel({
 type OfficialDiscovery = {
   champion: Champion
   archetype: Archetype
-  isNew: boolean
+  tag: RouteTag | null
   /** 有值 = 按玩家常玩英雄推荐的；没有 = 官方精选补位 */
   reason?: PreferenceReason
 }
@@ -1751,7 +1753,7 @@ function OfficialDiscoveryRoutes({
 
       {discoveries.length > 0 ? (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-2 pt-2">
-          {discoveries.map(({ champion, archetype, isNew, reason }) => {
+          {discoveries.map(({ champion, archetype, tag, reason }) => {
             const items = archetype.items.map((ref) => core.itemById.get(ref.id)).filter((item): item is Item => !!item)
             const augments = archetype.augments.core
               .map((ref) => getAugment(core.augById, ref.id))
@@ -1770,7 +1772,11 @@ function OfficialDiscoveryRoutes({
                     <div className="mt-0.5 truncate text-[9px] font-bold text-dim">{archetype.name}</div>
                     {reason && <div className="mt-0.5 truncate text-[9px] font-black text-hex/85">{preferenceReasonLabel(reason, t)}</div>}
                   </div>
-                  {isNew && <span className="mt-px rounded border border-hex/45 bg-[#05212a] px-1 py-px text-[8px] font-black tracking-[0.08em] text-hex">NEW</span>}
+                  {tag && (
+                    <span className="mt-px whitespace-nowrap rounded border border-hex/45 bg-[#05212a] px-1 py-px text-[8px] font-black tracking-[0.08em] text-hex">
+                      {tag === 'new' ? 'NEW' : t('dash.picks.updatedBadge')}
+                    </span>
+                  )}
                 </div>
                 <div className="mt-1 flex min-h-5 flex-wrap items-center gap-1">
                   {items.map((item) => (

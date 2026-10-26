@@ -112,10 +112,15 @@ export function rankPreferredChampions({
   return ranked
 }
 
-/** 首页卡片该展示这个英雄的哪条路线：本版本新路线优先，没有就用官方推荐（未标注时取第一条）。 */
-export function homepageRoute(archetypes: Archetype[]): { archetype: Archetype; isNew: boolean } | null {
+/** new = 官方新路线（isNew / releaseDate）；updated = 本版重做过的路线（updatedPatch 等于当前版本） */
+export type RouteTag = 'new' | 'updated'
+
+/** 首页卡片该展示这个英雄的哪条路线：新路线 > 本版更新过的路线 > 官方推荐（未标注时取第一条）。 */
+export function homepageRoute(archetypes: Archetype[], currentPatch: string): { archetype: Archetype; tag: RouteTag | null } | null {
   const fresh = archetypes.find((route) => route.isNew || !!route.releaseDate)
-  if (fresh) return { archetype: fresh, isNew: true }
+  if (fresh) return { archetype: fresh, tag: 'new' }
+  const updated = archetypes.find((route) => route.updatedPatch === currentPatch)
+  if (updated) return { archetype: updated, tag: 'updated' }
   const recommended = archetypes.find((route) => route.recommended) ?? archetypes[0]
-  return recommended ? { archetype: recommended, isNew: false } : null
+  return recommended ? { archetype: recommended, tag: null } : null
 }

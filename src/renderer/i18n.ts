@@ -86,6 +86,7 @@ const zh: Dict = {
   'settings.playPrefs.title': '常玩英雄与打法',
 
   'dash.picks.personalEyebrow': '按你的常玩英雄',
+  'dash.picks.updatedBadge': '本版更新',
   'dash.picks.reason.manual': '你选的常玩',
   'dash.picks.reason.history': '近期玩了 {n} 局',
 
@@ -528,6 +529,7 @@ const en: Dict = {
   'settings.playPrefs.title': 'Champions and playstyles',
 
   'dash.picks.personalEyebrow': 'Based on your champions',
+  'dash.picks.updatedBadge': 'UPDATED',
   'dash.picks.reason.manual': 'Your pick',
   'dash.picks.reason.history': '{n} recent games',
 
