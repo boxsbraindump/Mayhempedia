@@ -44,6 +44,7 @@ import {
   EMPTY_PLAY_PREFERENCES,
   MAX_MANUAL_CHAMPIONS,
   PLAYSTYLES,
+  frequentChampions,
   homepageRoute,
   playstyleChampions,
   rankPreferredChampions,
@@ -392,8 +393,14 @@ export default function App() {
     setChampId(detectedChamp.id)
   }, [detectedChamp?.id])
 
+  // 首次打开直接弹出常玩英雄选择器，告诉玩家以后在首页哪里改；选人阶段不打扰。
   useEffect(() => {
-    if (!isElectron() || !settings || feedbackMode || tab !== 'dash' || activeChampionId) return
+    if (!core || !playPreferences || playPreferences.prompted || feedbackMode || tab !== 'dash' || activeChampionId) return
+    setPlayPreferencesOpen(true)
+  }, [activeChampionId, core, feedbackMode, playPreferences, tab])
+
+  useEffect(() => {
+    if (!isElectron() || !settings || feedbackMode || playPreferencesOpen || tab !== 'dash' || activeChampionId) return
     const feedback = settings.feedback
     const matchCount = matchHistory?.matches.length ?? 0
     const lastPrompted = feedback.lastPromptedAt ? Date.parse(feedback.lastPromptedAt) : 0
@@ -401,7 +408,7 @@ export default function App() {
     if (!canAskAgain || matchCount < 3) return
     const timer = window.setTimeout(() => setFeedbackMode('feedback'), 1100)
     return () => window.clearTimeout(timer)
-  }, [activeChampionId, feedbackMode, matchHistory?.matches.length, settings, tab])
+  }, [activeChampionId, feedbackMode, matchHistory?.matches.length, playPreferencesOpen, settings, tab])
 
   async function saveFeedback(feedback: FeedbackSettings) {
     if (!isElectron()) return
@@ -475,7 +482,12 @@ export default function App() {
         <PlayPreferencesDialog
           core={core}
           initial={playPreferences}
-          onCancel={() => setPlayPreferencesOpen(false)}
+          firstRun={!playPreferences.prompted}
+          onCancel={() => {
+            // 首次弹窗点「先不用」也算处理过，之后不再自动弹出；首页「我的常玩英雄」随时能再打开。
+            if (!playPreferences.prompted) void savePlayPreferences({ ...playPreferences, prompted: true })
+            setPlayPreferencesOpen(false)
+          }}
           onSave={(next) => {
             void savePlayPreferences({ ...next, prompted: true })
             setPlayPreferencesOpen(false)
@@ -564,7 +576,6 @@ export default function App() {
             customRoutes={visibleCustomRoutes}
             playPreferences={playPreferences}
             onEditPlayPreferences={() => setPlayPreferencesOpen(true)}
-            onDismissPlayPrompt={() => void savePlayPreferences({ ...(playPreferences ?? EMPTY_PLAY_PREFERENCES), prompted: true })}
           />
         )}
         {core && matchDetailId == null && champId == null && tab === 'champ' && (
@@ -1186,7 +1197,6 @@ function Dashboard({
   customRoutes,
   playPreferences,
   onEditPlayPreferences,
-  onDismissPlayPrompt,
 }: {
   core: Core
   onPick: (id: number) => void
@@ -1206,10 +1216,9 @@ function Dashboard({
   detectedHasBuild: boolean
   selectedArchetypeByChampionId: Record<string, string>
   customRoutes: CustomRoute[]
-  /** null = 设置还没读到，先不弹首次提示 */
+  /** null = 设置还没读到，先不显示「我的常玩英雄」 */
   playPreferences: PlayPreferences | null
   onEditPlayPreferences: () => void
-  onDismissPlayPrompt: () => void
 }) {
   void summoner
   void sections
@@ -1312,7 +1321,6 @@ function Dashboard({
       cancelled = true
     }
   }, [core, lang, officialDiscoveryKey])
-  const showPlayPrompt = !!playPreferences && !playPreferences.prompted && preferredTargets.length === 0
   const patch = core.patchNotes
   const [championQuery, setChampionQuery] = useState('')
   const [quickTier, setQuickTier] = useState<string>('all')
@@ -1338,14 +1346,6 @@ function Dashboard({
   const lcuReady = lcuStatus?.state === 'connected'
   const localMatchCount = recentMatches?.length ?? 0
   const localMatchSummary = `${localMatchCount} / 20`
-  const demoChampion = useMemo(
-    () =>
-      core.champions.find((champion) => {
-        const alias = champion.alias.replace(/[^a-z]/gi, '').toLowerCase()
-        return alias === 'xayah' || alias === 'kaisa'
-      }) ?? core.champions[0],
-    [core.champions],
-  )
   const heroHeadline = detectedChamp
     ? (lang === 'en' ? `${detectedChamp.name} Combat File` : `${detectedChamp.name} Combat File`)
     : title
@@ -1356,10 +1356,8 @@ function Dashboard({
     : (lang === 'en'
         ? 'Waiting for League client and ARAM champion select.'
         : '等待客户端连接与大乱斗选人。')
-  const primaryAction = detectedChamp ? () => onPick(detectedChamp.id) : onGoChamp
-  const primaryActionLabel = detectedChamp
-    ? (lang === 'en' ? 'Open Combat File' : '打开 Combat File')
-    : (lang === 'en' ? 'Browse champions' : '浏览英雄图鉴')
+  // 首页顶部只留左侧导航里没有的动作：打开当前英雄的 Combat File、预览 Overlay。
+  const showHeroActions = !!detectedChamp || isElectron()
   return (
     <>
       <section className="glass-panel-strong relative mb-3 overflow-hidden rounded-[8px] border p-3">
@@ -1369,35 +1367,33 @@ function Dashboard({
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-hex">Mayhempedia</div>
             <h1 className="mt-1 text-[23px] font-black leading-tight text-cream">{heroHeadline}</h1>
             <p className="mt-1 max-w-[760px] text-[11px] leading-4 text-dim">{heroDetail}</p>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <button type="button" onClick={primaryAction} className={BTN_PRIMARY}>
-                {primaryActionLabel}
-              </button>
-              {!detectedChamp && demoChampion && (
-                <button
-                  type="button"
-                  onClick={() => onPick(demoChampion.id)}
-                  className={BTN_SECONDARY}
-                >
-                  {lang === 'en' ? `Preview ${demoChampion.name} Combat File` : `预览 ${demoChampion.name} Combat File`}
-                </button>
-              )}
-              <button type="button" onClick={onGoHistory} className={BTN_SECONDARY}>
-                {lang === 'en' ? 'Review matches' : '查看对局记录'}
-              </button>
-              <button type="button" onClick={onGoBuilder} className="rounded-md px-2.5 py-1.5 text-[11px] font-black text-dim transition hover:bg-white/5 hover:text-cream active:translate-y-px">
-                {lang === 'en' ? 'Route workshop' : '路线工作台'}
-              </button>
-              {isElectron() && (
-                <button
-                  type="button"
-                  onClick={() => void window.mayhem!.showOverlay()}
-                  className="rounded-md border border-hex/35 bg-hex/8 px-2.5 py-1.5 text-[11px] font-black text-hex transition hover:border-hex/60 hover:bg-hex/14 active:translate-y-px"
-                >
-                  {lang === 'en' ? 'Preview overlay' : '预览 Overlay'}
-                </button>
-              )}
-            </div>
+            {showHeroActions && (
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                {detectedChamp && (
+                  <button type="button" onClick={() => onPick(detectedChamp.id)} className={BTN_PRIMARY}>
+                    {lang === 'en' ? 'Open Combat File' : '打开 Combat File'}
+                  </button>
+                )}
+                {isElectron() && (
+                  <button
+                    type="button"
+                    onClick={() => void window.mayhem!.showOverlay()}
+                    className="rounded-md border border-hex/35 bg-hex/8 px-2.5 py-1.5 text-[11px] font-black text-hex transition hover:border-hex/60 hover:bg-hex/14 active:translate-y-px"
+                  >
+                    {lang === 'en' ? 'Preview overlay' : '预览 Overlay'}
+                  </button>
+                )}
+              </div>
+            )}
+            {playPreferences && (
+              <MyChampionsPanel
+                core={core}
+                preferences={playPreferences}
+                matches={recentMatches ?? []}
+                onPick={onPick}
+                onEdit={onEditPlayPreferences}
+              />
+            )}
           </div>
           <div className="rounded-[7px] border border-line/60 bg-[#07101b]/50 p-3">
             <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-line/45 pb-2.5">
@@ -1436,9 +1432,6 @@ function Dashboard({
         core={core}
         onPickRoute={onPickRoute}
         onOpenChampions={onGoChamp}
-        showPrompt={showPlayPrompt}
-        onEditPreferences={onEditPlayPreferences}
-        onDismissPrompt={onDismissPlayPrompt}
       />
 
       <div className="mt-3 grid items-stretch grid-cols-[minmax(0,1.38fr)_minmax(300px,.72fr)] gap-3 max-[980px]:grid-cols-1">
@@ -1616,6 +1609,84 @@ function DashboardMiniStat({ label, value, suffix = '' }: { label: string; value
   )
 }
 
+/** 首页顶部「我的常玩英雄」：手动选的英雄/打法 + 本地对局里自动识别的常玩英雄，一眼能看到也能直接改。 */
+function MyChampionsPanel({
+  core,
+  preferences,
+  matches,
+  onPick,
+  onEdit,
+}: {
+  core: Core
+  preferences: PlayPreferences
+  matches: MatchSummary[]
+  onPick: (id: number) => void
+  onEdit: () => void
+}) {
+  const t = useT()
+  const champById = useMemo(() => new Map(core.champions.map((champion) => [champion.id, champion])), [core.champions])
+  const manual = preferences.championIds.map((id) => champById.get(id)).filter((champion): champion is Champion => !!champion)
+  const fromHistory = useMemo(
+    () =>
+      frequentChampions(matches)
+        .filter(({ championId }) => !preferences.championIds.includes(championId))
+        .map(({ championId, games }) => ({ champion: champById.get(championId), games }))
+        .filter((entry): entry is { champion: Champion; games: number } => !!entry.champion),
+    [champById, matches, preferences.championIds],
+  )
+  const styles = PLAYSTYLES.filter((style) => preferences.playstyles.includes(style.key))
+  const empty = manual.length === 0 && styles.length === 0 && fromHistory.length === 0
+  const chip = 'flex items-center gap-1 rounded-[5px] border py-0.5 pl-0.5 pr-1.5 text-[10px] font-black transition hover:border-hex/55 active:translate-y-px'
+
+  return (
+    <div className={PANEL_INSET + ' mt-3 px-2.5 py-2'}>
+      <div className="flex items-center justify-between gap-2">
+        <div className="text-[10px] font-black uppercase tracking-[0.14em] text-hex">{t('dash.myChamps.title')}</div>
+        {!empty && (
+          <button type="button" onClick={onEdit} className={BTN_TINY_SECONDARY}>
+            {t('dash.myChamps.edit')}
+          </button>
+        )}
+      </div>
+      {empty ? (
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
+          <div className="min-w-0 text-[11px] leading-4 text-dim">{t('dash.myChamps.empty')}</div>
+          <button type="button" onClick={onEdit} className={BTN_PRIMARY}>
+            {t('dash.myChamps.choose')}
+          </button>
+        </div>
+      ) : (
+        <div className="mt-1.5 flex flex-wrap items-center gap-1">
+          {manual.map((champion) => (
+            <button key={champion.id} type="button" onClick={() => onPick(champion.id)} className={chip + ' border-hex/40 bg-hex/10 text-cream'}>
+              <img src={icon(champion.iconLocal)} alt="" className="h-5 w-5 rounded object-cover" />
+              {champion.name}
+            </button>
+          ))}
+          {styles.map((style) => (
+            <span key={style.key} className="rounded-[5px] border border-hex/35 px-1.5 py-1 text-[10px] font-black text-hex">
+              {t(`playPrefs.style.${style.key}`)}
+            </span>
+          ))}
+          {fromHistory.length > 0 && (
+            <>
+              <span className="mx-1 h-4 w-px bg-line/55" />
+              <span className="text-[10px] font-bold text-dim">{t('dash.myChamps.fromHistory')}</span>
+              {fromHistory.map(({ champion, games }) => (
+                <button key={champion.id} type="button" onClick={() => onPick(champion.id)} className={chip + ' border-line/60 bg-panel2/45 text-cream'}>
+                  <img src={icon(champion.iconLocal)} alt="" className="h-5 w-5 rounded object-cover" />
+                  {champion.name}
+                  <span className="font-bold text-dim">{t('dash.myChamps.games', { n: games })}</span>
+                </button>
+              ))}
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 type OfficialDiscovery = {
   champion: Champion
   archetype: Archetype
@@ -1635,17 +1706,11 @@ function OfficialDiscoveryRoutes({
   core,
   onPickRoute,
   onOpenChampions,
-  showPrompt,
-  onEditPreferences,
-  onDismissPrompt,
 }: {
   discoveries: OfficialDiscovery[]
   core: Core
   onPickRoute: (championId: number, archetypeKey: string) => void
   onOpenChampions: () => void
-  showPrompt: boolean
-  onEditPreferences: () => void
-  onDismissPrompt: () => void
 }) {
   const lang = useLang()
   const t = useT()
@@ -1662,31 +1727,11 @@ function OfficialDiscoveryRoutes({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button type="button" onClick={onEditPreferences} className={BTN_TINY_SECONDARY}>
-            {t('dash.picks.editPrefs')}
-          </button>
           <button type="button" onClick={onOpenChampions} className={BTN_TINY_SECONDARY}>
             {lang === 'en' ? 'Champion Codex' : '英雄图鉴'}
           </button>
         </div>
       </div>
-
-      {showPrompt && (
-        <div className="mb-1 flex flex-wrap items-center justify-between gap-2 rounded-[6px] border border-hex/30 bg-hex/[0.06] px-2.5 py-2">
-          <div className="min-w-0">
-            <div className="text-[11px] font-black text-cream">{t('dash.picks.prompt.title')}</div>
-            <div className="mt-0.5 text-[10px] leading-4 text-dim">{t('dash.picks.prompt.desc')}</div>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
-            <button type="button" onClick={onDismissPrompt} className="rounded-md px-2 py-1 text-[10px] font-bold text-dim transition hover:text-cream">
-              {t('dash.picks.prompt.skip')}
-            </button>
-            <button type="button" onClick={onEditPreferences} className={BTN_PRIMARY}>
-              {t('dash.picks.prompt.choose')}
-            </button>
-          </div>
-        </div>
-      )}
 
       {discoveries.length > 0 ? (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(178px,1fr))] gap-2 pt-2">
@@ -1877,11 +1922,14 @@ function PlayPreferencesEditor({
 function PlayPreferencesDialog({
   core,
   initial,
+  firstRun,
   onCancel,
   onSave,
 }: {
   core: Core
   initial: PlayPreferences
+  /** 首次打开时自动弹出：多一句「以后在哪里改」，取消按钮变成「先不用」 */
+  firstRun: boolean
   onCancel: () => void
   onSave: (next: PlayPreferences) => void
 }) {
@@ -1898,6 +1946,7 @@ function PlayPreferencesDialog({
         <div className="text-[10px] font-black uppercase tracking-[0.16em] text-hex">Mayhempedia</div>
         <h2 id="play-preferences-title" className="mt-1 text-[19px] font-black text-cream">{t('playPrefs.title')}</h2>
         <p className="mt-2 text-[12px] leading-5 text-dim">{t('playPrefs.desc')}</p>
+        {firstRun && <p className="mt-1 text-[12px] font-bold leading-5 text-hex">{t('playPrefs.firstRunHint')}</p>}
         <div className="mt-4">
           <PlayPreferencesEditor core={core} value={draft} onChange={setDraft} />
         </div>
@@ -1910,7 +1959,7 @@ function PlayPreferencesDialog({
             {t('playPrefs.clear')}
           </button>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={onCancel} className={BTN_SECONDARY}>{t('playPrefs.cancel')}</button>
+            <button type="button" onClick={onCancel} className={BTN_SECONDARY}>{firstRun ? t('playPrefs.skip') : t('playPrefs.cancel')}</button>
             <button type="button" onClick={() => onSave(draft)} className={BTN_PRIMARY}>{t('playPrefs.save')}</button>
           </div>
         </div>
