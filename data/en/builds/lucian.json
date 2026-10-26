@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Jeweled Gauntlet Lucian",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Lucian AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Big Shot as the main augment plan. Strong secondary hits include Vulnerability / Jeweled Bracelet / Weapon of Destiny. Build toward The Collector > Essence Reaver > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows. Start with B. F. Sword. Cross-checked against metasrc.com and arammayhem.com and mobalytics.gg and hexdata.com.cn.",
       "augments": {

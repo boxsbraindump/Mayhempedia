@@ -5,6 +5,7 @@
     {
       "key": "ad-crit",
       "name": "AD Crit Xayah",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Xayah AD route for ARAM: Mayhem. Prioritize Still Here / Draw Your Sword as the main augment plan. Strong secondary hits include Mad Scientist / Back To Basics / Weapon of Destiny. Build toward The Collector > Berserker's Greaves > Navori Flickerblade > Infinity Edge > Yun Tal Wildarrows > Runaan's Hurricane. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {

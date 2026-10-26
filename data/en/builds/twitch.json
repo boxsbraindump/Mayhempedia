@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Crit Twitch",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Twitch AD route for ARAM: Mayhem. Prioritize Dual Wield / Heavy Is The Crown as the main augment plan. Strong secondary hits include Draw Your Sword / Weapon of Destiny / Quest: Urf's Champion. Build toward The Collector > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Rapid Firecannon. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and op.gg and hexdata.com.cn.",
       "augments": {

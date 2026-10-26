@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Crit Miss Fortune",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Miss Fortune AD route for ARAM: Mayhem. Prioritize Draw Your Sword / BEES!!! as the main augment plan. Strong secondary hits include Weapon of Destiny / Mad Scientist / Homeguard. Build toward The Collector > Berserker's Greaves > Axiom Arc > Infinity Edge > Serylda's Grudge > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and blitz.gg and hexdata.com.cn.",
       "augments": {

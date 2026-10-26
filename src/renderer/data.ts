@@ -12,6 +12,7 @@ export interface Augment {
   iconLargeLocal: string
   iconSmallLocal: string
   availability?: 'live' | 'legacy'
+  introducedPatch?: string | null
   source?: string
   sourceUrl?: string
 }
@@ -183,6 +184,61 @@ interface RuntimeAugmentAliasPayload {
   aliases?: Record<string, number>
 }
 
+export type AugmentTier = 'S' | 'A' | 'B' | 'C' | 'D'
+
+/** 海克斯 × 英雄评级（data/augment-tiers.json，由 scripts/build-augment-tiers.mjs 从各评级来源合并生成） */
+export interface AugmentTierRating {
+  augmentId: number
+  championId: number
+  tier: AugmentTier
+  /** 决定这条评级的来源 id，见 AugmentTierIndex.sources */
+  source: string
+  /** 来自官方流派时，每条用到它的流派各自的档位 */
+  routes?: Array<{ key: string; tier: AugmentTier; name: { zh: string; en: string } }>
+  /** 其他来源对同一组合的评级（优先级较低，仅供参考） */
+  others?: AugmentTierRating[]
+}
+
+export interface AugmentTierSource {
+  id: string
+  kind: string
+  label: { zh: string; en: string }
+  rule: { zh: string; en: string }
+}
+
+export interface AugmentTierIndex {
+  patch: string | null
+  tiers: AugmentTier[]
+  sources: AugmentTierSource[]
+  byAugment: Map<number, AugmentTierRating[]>
+  /** 英雄 → 海克斯 → 评级，选海克斯时按当前英雄查 */
+  byChampion: Map<number, Map<number, AugmentTierRating>>
+}
+
+interface AugmentTierPayload {
+  patch?: string | null
+  tiers?: AugmentTier[]
+  sources?: AugmentTierSource[]
+  ratings?: AugmentTierRating[]
+}
+
+function indexAugmentTiers(payload: AugmentTierPayload | null): AugmentTierIndex {
+  const byAugment = new Map<number, AugmentTierRating[]>()
+  const byChampion = new Map<number, Map<number, AugmentTierRating>>()
+  for (const rating of payload?.ratings ?? []) {
+    byAugment.set(rating.augmentId, [...(byAugment.get(rating.augmentId) ?? []), rating])
+    if (!byChampion.has(rating.championId)) byChampion.set(rating.championId, new Map())
+    byChampion.get(rating.championId)!.set(rating.augmentId, rating)
+  }
+  return {
+    patch: payload?.patch ?? null,
+    tiers: payload?.tiers ?? ['S', 'A', 'B', 'C', 'D'],
+    sources: payload?.sources ?? [],
+    byAugment,
+    byChampion,
+  }
+}
+
 let runtimeAugmentIdAliases: Record<number, number> = {}
 /** 已移出当前海克斯池的 id（availability: 'legacy'）。旧流派/组合里引用到的这些海克斯不再推荐给玩家。 */
 let legacyAugmentIds = new Set<number>()
@@ -204,6 +260,7 @@ export interface Core {
   altChampionById: Map<number, Pick<Champion, 'id' | 'name' | 'title' | 'alias' | 'pinyin' | 'initials'>>
   runtimeAugmentAliases: Record<number, number>
   augments: Augment[] // 全列表（海克斯一览用）
+  augmentTiers: AugmentTierIndex
   augmentCombos: AugmentCombo[]
   champions: Champion[]
   buildIndex: Record<string, string> // championId -> 流派文件名
@@ -236,6 +293,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     releaseNotesPayload,
     augmentAliasPayload,
     augmentCombos,
+    augmentTierPayload,
   ] = await Promise.all([
     fetch(`${root}/augments.json`).then((r) => r.json() as Promise<Augment[]>),
     fetch(`${root}/items.json`).then((r) => r.json() as Promise<Item[]>),
@@ -252,6 +310,9 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
       .then((r) => (r.ok ? (r.json() as Promise<RuntimeAugmentAliasPayload>) : { aliases: {} }))
       .catch(() => ({ aliases: {} })),
     fetch(`${root}/augment-combos.json`).then((r) => r.json() as Promise<AugmentCombo[]>),
+    fetch('/augment-tiers.json')
+      .then((r) => (r.ok ? (r.json() as Promise<AugmentTierPayload>) : null))
+      .catch(() => null),
   ])
   runtimeAugmentIdAliases = normalizeAliasPayload(augmentAliasPayload)
   legacyAugmentIds = new Set(aug.filter((a) => a.availability === 'legacy').map((a) => a.id))
@@ -263,6 +324,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     altChampionById: new Map(altChampions.map((c) => [c.id, c])),
     runtimeAugmentAliases: runtimeAugmentIdAliases,
     augments: aug.filter((a) => a.availability !== 'legacy'),
+    augmentTiers: indexAugmentTiers(augmentTierPayload),
     augmentCombos: augmentCombos.filter((combo) => !(combo.augmentIds ?? []).some((id) => legacyAugmentIds.has(id))),
     champions,
     buildIndex,

@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Crit Tristana",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Tristana AD route for ARAM: Mayhem. Prioritize Draw Your Sword / Still Here as the main augment plan. Strong secondary hits include Dual Wield / Weapon of Destiny / Mad Scientist. Build toward The Collector > Berserker's Greaves > Infinity Edge > Navori Flickerblade > Yun Tal Wildarrows > Mortal Reminder. Start with Serrated Dirk + Boots. Cross-checked against metasrc.com and arammayhem.com and aramgg.com and hexdata.com.cn.",
       "augments": {
@@ -114,6 +115,7 @@
     {
       "key": "hammer-e-bomb",
       "name": "Dual Wield E-Bomb Tristana",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Tristana AD route for ARAM: Mayhem. Prioritize Dual Wield as the main augment plan. Strong secondary hits include Still Here / Heavy Is The Crown / Weapon of Destiny. Build toward Kraken Slayer > Berserker's Greaves > Runaan's Hurricane > Infinity Edge > Yun Tal Wildarrows > Lord Dominik's Regards. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and hexdata.com.cn.",
       "augments": {

@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Dual Wield Vayne",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Vayne AD route for ARAM: Mayhem. Prioritize Dual Wield / Still Here as the main augment plan. Strong secondary hits include The Boom and the Bass / Draw Your Sword / Mad Scientist. Build toward Blade of The Ruined King > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Terminus > Kraken Slayer. Start with Guardian's Hammer + Boots + Health Potion. Cross-checked against arammayhem.com and metasrc.com and aramgg.com and hexdata.com.cn.",
       "augments": {

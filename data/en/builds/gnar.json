@@ -5,6 +5,7 @@
     {
       "key": "ad-tank",
       "name": "AD Goliath Gnar",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Gnar AD route for ARAM: Mayhem. Prioritize Goliath / Heavy Hitter as the main augment plan. Strong secondary hits include Quest: Steel Your Heart / Tank Engine / Armored Impact. Build toward Heartsteel > Mercury's Treads > Titanic Hydra > Warmog's Armor > Overlord's Bloodmail > Sterak's Gage. Start with Guardian's Blade + Boots + Health Potion. Cross-checked against arammayhem.com and hexdata.com.cn.",
       "augments": {

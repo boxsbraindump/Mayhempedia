@@ -5,6 +5,7 @@
     {
       "key": "ad",
       "name": "AD Smolder",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Smolder AD route for ARAM: Mayhem. Prioritize Jeweled Gauntlet / Stackosaurus Rex as the main augment plan. Strong secondary hits include The Boom and the Bass / Mad Scientist / Back To Basics. Build toward Essence Reaver > Ionian Boots of Lucidity > Spear of Shojin > Rapid Firecannon > Infinity Edge > Mortal Reminder. Start with B. F. Sword. Cross-checked against arammayhem.com and metasrc.com and hupu.com and blitz.gg and hexdata.com.cn.",
       "augments": {

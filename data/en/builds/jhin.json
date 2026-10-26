@@ -5,6 +5,7 @@
     {
       "key": "ad_ranged_crit",
       "name": "AD Scopiest Weapons Jhin",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Jhin AD route for ARAM: Mayhem. Prioritize The Boom and the Bass / Weapon of Destiny as the main augment plan. Strong secondary hits include BEES!!! / Tripleshot / Clown College. Build toward The Collector > Boots of Swiftness > Infinity Edge > Lord Dominik's Regards > Phantom Dancer > Bloodthirster. Start with Serrated Dirk + Boots. Cross-checked against arammayhem.com and metasrc.com and hexdata.com.cn.",
       "augments": {

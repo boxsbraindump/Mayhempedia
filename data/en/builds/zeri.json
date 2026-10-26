@@ -5,6 +5,7 @@
     {
       "key": "crit_onhit",
       "name": "AD Crit Zeri",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Zeri AD route for ARAM: Mayhem. Prioritize The Boom and the Bass / Still Here as the main augment plan. Strong secondary hits include Hellbent / Mad Scientist / Escape Plan. Build toward Yun Tal Wildarrows > Berserker's Greaves > Runaan's Hurricane > Guinsoo's Rageblade > Infinity Edge > Rapid Firecannon. Start with Noonquiver. Cross-checked against arammayhem.com and hexdata.com.cn.",
       "augments": {

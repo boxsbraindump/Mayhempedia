@@ -29,7 +29,7 @@
     "watch": "tsc -w",
     "dev": "vite",
     "build:renderer": "vite build",
-    "data": "node scripts/fetch-data.mjs && node scripts/download-icons.mjs && node scripts/fetch-arammayhem-augments.mjs && node scripts/fetch-communitydragon-augment-aliases.mjs && node scripts/fetch-aram-balance.mjs && node scripts/build-hero-tier.mjs && node scripts/generate-en-builds.mjs && node scripts/generate-en-patch-notes.mjs",
+    "data": "node scripts/fetch-data.mjs && node scripts/download-icons.mjs && node scripts/fetch-arammayhem-augments.mjs && node scripts/fetch-communitydragon-augment-aliases.mjs && node scripts/fetch-aram-balance.mjs && node scripts/build-hero-tier.mjs && node scripts/generate-en-builds.mjs && node scripts/generate-en-patch-notes.mjs && node scripts/build-augment-tiers.mjs",
     "data:fetch": "node scripts/fetch-data.mjs",
     "data:augments": "node scripts/fetch-arammayhem-augments.mjs",
     "data:augment-aliases": "node scripts/fetch-communitydragon-augment-aliases.mjs",
@@ -38,9 +38,10 @@
     "data:tier": "node scripts/build-hero-tier.mjs",
     "data:en-builds": "node scripts/generate-en-builds.mjs",
     "data:en-patch-notes": "node scripts/generate-en-patch-notes.mjs",
+    "data:tiers": "node scripts/build-augment-tiers.mjs",
     "data:augments-lcu": "node scripts/fetch-augments-from-lcu.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
-    "validate": "node scripts/validate-builds.mjs && node scripts/validate-localized-data.mjs && node scripts/verify-code-signing-policy.mjs"
+    "validate": "node scripts/validate-builds.mjs && node scripts/validate-localized-data.mjs && node scripts/build-augment-tiers.mjs --check && node scripts/verify-code-signing-policy.mjs"
   },
   "build": {
     "appId": "gg.mayhempedia.desktop",

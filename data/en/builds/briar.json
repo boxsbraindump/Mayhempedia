@@ -85,6 +85,7 @@
     {
       "key": "tooth-fairy-reset",
       "name": "Tooth Fairy Reset Briar",
+      "updatedPatch": "26.21",
       "damageType": "AD",
       "note": "Pivot here when you are offered Tooth Fairy: burst damage drops Teeth, and picking them up permanently grants Lethality. Take'em Down Down Down fits Briar's frenzied attacks well: its healing and bonus damage after five hits keep her fighting inside the enemy team longer, while Heavy Is The Crown rewards games where she snowballs off takedowns. Build The Collector and Hubris early for execute pressure, then rely on E damage reduction and Death's Dance to survive each dive. Tooth Fairy is not Briar's strongest augment by the data; take this route when it shows up.",
       "augments": {
