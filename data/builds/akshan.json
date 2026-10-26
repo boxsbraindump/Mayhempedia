@@ -106,7 +106,7 @@
       "augments": {
         "core": [
           { "id": 92, "apiName": "Vulnerability", "name": "易损" },
-          { "id": 910001, "apiName": "ARAMMayhemUpgradeInfinityEdge", "name": "升级无尽之刃" }
+          { "id": 910001, "apiName": "ARAMMayhemUpgradeInfinityEdge", "name": "升级：无尽之刃" }
         ],
         "good": [
           { "id": 48, "apiName": "JeweledGauntlet", "name": "珠光护手" },

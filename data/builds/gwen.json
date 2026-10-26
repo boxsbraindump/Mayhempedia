@@ -99,7 +99,7 @@
       "augments": {
         "core": [
           { "id": 29, "apiName": "EtherealWeapon", "name": "虚幻武器" },
-          { "id": 910031, "apiName": "ARAMMayhemUpgradeSheen", "name": "升级耀光" }
+          { "id": 910031, "apiName": "ARAMMayhemUpgradeSheen", "name": "升级：耀光" }
         ],
         "good": [
           { "id": 225, "apiName": "DualWield", "name": "双刀流" },

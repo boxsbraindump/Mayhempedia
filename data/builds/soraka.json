@@ -89,23 +89,23 @@
       "name": "辅助秒人流索拉卡",
       "damageType": "Support",
       "releaseDate": "2026-07-23",
-      "note": "用蛋白奶昔把额外双抗转成治疗和护盾强度，再用信众赋能与天音爆把每一次治疗变成伤害和斩杀压力。仁慈一击绑定Q后接普攻补伤害；装备按冰心、兰顿、败魔、自然之力、贾修、法穿杖的顺序堆双抗与法穿。",
+      "note": "用蛋白粉奶昔把额外双抗转成治疗和护盾强度，再用信念者的强化与天音爆把每一次治疗变成伤害和斩杀压力。仁慈打击绑定Q后接普攻补伤害；装备按冰心、兰顿、败魔、自然之力、贾修、法穿杖的顺序堆双抗与法穿。",
       "augments": {
         "core": [
           {
             "id": 910070,
             "apiName": "ARAMMayhemProteinShake",
-            "name": "蛋白奶昔"
+            "name": "蛋白粉奶昔"
           },
           {
             "id": 910059,
             "apiName": "ARAMMayhemMercysStrike",
-            "name": "仁慈一击"
+            "name": "仁慈打击"
           },
           {
             "id": 910045,
             "apiName": "ARAMMayhemEmpoweredByTheFaithful",
-            "name": "信众赋能"
+            "name": "信念者的强化"
           },
           {
             "id": 76,

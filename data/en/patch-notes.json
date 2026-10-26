@@ -1,64 +1,259 @@
 {
-  "patch": "26.15",
-  "theme": "ARAM: Mayhem damage and Augment calibration",
-  "releaseDate": "2026-07-28",
-  "sourceUrl": "https://www.leagueoflegends.com/en-gb/news/game-updates/league-of-legends-patch-26-15-notes/",
-  "championChanges": [
-    { "championId": 103, "championName": "Ahri", "changes": ["Healing: 90% → 100%."] },
-    { "championId": 166, "championName": "Akshan", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 12, "championName": "Alistar", "changes": ["Healing: 80% → 100%. Damage dealt: 95% → 100%."] },
-    { "championId": 799, "championName": "Ambessa", "changes": ["Damage taken: -5% → 0%."] },
-    { "championId": 1, "championName": "Annie", "changes": ["Shielding: 90% → 100%. Damage taken: -5% → 0%."] },
-    { "championId": 22, "championName": "Ashe", "changes": ["Damage dealt: 105% → 100%."] },
-    { "championId": 42, "championName": "Corki", "changes": ["Damage taken: 10% → 5%."] },
-    { "championId": 245, "championName": "Ekko", "changes": ["Damage dealt: 110% → 105%."] },
-    { "championId": 910, "championName": "Hwei", "changes": ["Damage to minions: 60% → 100%."] },
-    { "championId": 202, "championName": "Jhin", "changes": ["Damage taken: -5% → 0%."] },
-    { "championId": 145, "championName": "Kai'Sa", "changes": ["Damage taken: 10% → 0%."] },
-    { "championId": 203, "championName": "Kindred", "changes": ["Damage dealt: 110% → 100%."] },
-    { "championId": 96, "championName": "Kog'Maw", "changes": ["Damage dealt: 88% → 90%."] },
-    { "championId": 236, "championName": "Lucian", "changes": ["Damage dealt: 105% → 100%."] },
-    { "championId": 90, "championName": "Malzahar", "changes": ["Damage to minions: 60% → 100%."] },
-    { "championId": 21, "championName": "Miss Fortune", "changes": ["Damage taken: -5% → 0%."] },
-    { "championId": 82, "championName": "Mordekaiser", "changes": ["Damage taken: -2% → 0%."] },
-    { "championId": 25, "championName": "Morgana", "changes": ["Damage taken: -10% → 0%."] },
-    { "championId": 75, "championName": "Nasus", "changes": ["Damage taken: -5% → 0%."] },
-    { "championId": 246, "championName": "Qiyana", "changes": ["Damage dealt: 115% → 110%."] },
-    { "championId": 13, "championName": "Ryze", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 235, "championName": "Senna", "changes": ["Damage dealt: 97% → 100%."] },
-    { "championId": 27, "championName": "Singed", "changes": ["Damage taken: -8% → 0%."] },
-    { "championId": 901, "championName": "Smolder", "changes": ["Ability Haste: -10 → 0."] },
-    { "championId": 16, "championName": "Soraka", "changes": ["Healing: 105% → 100%."] },
-    { "championId": 17, "championName": "Teemo", "changes": ["Ability Haste: -10 → 0. Damage to minions: 60% → 100%."] },
-    { "championId": 48, "championName": "Trundle", "changes": ["Damage taken: -5% → 0%."] },
-    { "championId": 5, "championName": "Xin Zhao", "changes": ["Damage dealt: 95% → 100%."] },
-    { "championId": 26, "championName": "Zilean", "changes": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 115, "championName": "Ziggs", "changes": ["Damage dealt: 87% → 90%. Damage to minions: 60% → 100%."] }
-  ],
+  "patch": "26.21",
+  "theme": "ARAM: Mayhem — Journey to Stardom",
+  "releaseDate": "2026-10-21",
+  "sourceUrl": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes/",
+  "championChanges": [],
   "itemChanges": [],
-  "systemChanges": ["Damage dealt modifiers now affect spell, attack, item, and Augment damage. Riot also removed many champion-specific modifiers so the remaining values better reflect overall ARAM: Mayhem performance."],
+  "systemChanges": [
+    "Each ARAM: Mayhem game now features a random Headliner band that changes the rules: K/DA (collect 4 cards for an extra Augment), HEARTSTEEL (Augments can roll stronger modifiers), True Damage (takedowns and tower kills can drop Anvils for your team), Pentakill (boost one ability at game start and at level 18), Disco (dance under the disco ball to give everyone Gold), Cafe Cuties (Health relics are stronger), Bees (collect honey pots and dodge bees crossing the map), and Command Line (reroll one Augment into a higher tier in every selection).",
+    "New progression: band missions from K/DA, Pentakill, and others reward Augments, emotes, Orange Essence, and more. Games and missions raise your Superstar Rank from Newbie to Superstar, unlocking new bands and missions.",
+    "Butcher's Bridge and Koeshin's Crossing are unavailable in Mayhem this patch and are expected to return next patch.",
+    "Augment pool changes during 26.16–26.20: Upgrade Sundered Sky and Upgrade Ravenous Hydra (26.16) and Ultra Hydra and Upgrade Death's Dance (26.17) were added; Clown College returned in 26.18; Chain Reaction became Gold and Double Tap became Prismatic."
+  ],
   "mayhem": {
-    "summaryEn": "Patch 26.15 expands how damage modifiers apply and recalibrates champion-specific modifiers. High-impact Augments including Critical Missile and Titan's Resolve changed numerically; combo routes remain available but should be reviewed against the new values.",
+    "summaryEn": "Patch 26.21, Journey to Stardom, is a major ARAM: Mayhem update: 35 new Augments (10 Silver / 19 Gold / 6 Prismatic), 13 removals, random Headliner rules each game, and a new progression system. Crit marksman staples such as Fan the Hammer and Critical Missile were removed, so routes built around them need review.",
     "augmentChanges": [
-      { "name": "Warding Weapon", "change": "Armor and MR per stack: 5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12." },
-      { "name": "Squishy Slappy Grab", "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp", "change": "Cooldown: 45s → 35s." },
-      { "name": "Titan's Resolve", "icon": "icons/augments/ARAMMayhemTitansResolve_arammayhem.webp", "change": "Adaptive Force: 25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75. Armor and MR per 10 stacks: 4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10." },
-      { "name": "Hellbent", "icon": "icons/augments/ARAMMayhemHellbent_arammayhem.webp", "change": "Cooldown: 120s → 90s." },
-      { "name": "Earthwake", "icon": "icons/augments/Earthwake_large.png", "change": "Base damage: 70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250." },
-      { "name": "Endless Decimation", "icon": "icons/augments/ARAMMayhemEndlessDecimation_arammayhem.webp", "change": "Missing-health healing: 15% → 18%." },
-      { "name": "Chain Reaction", "icon": "icons/augments/ARAMMayhemChainReaction_arammayhem.webp", "change": "Now deals 250% damage for ultimate abilities." },
-      { "name": "Critical Missile", "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp", "change": "Damage per missile: 20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85." },
-      { "name": "Drop Bear", "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp", "change": "Stun: 1.5s → 0.5s. Tibbers health: 0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500." },
-      { "name": "Pat on the Back", "change": "Can now be taken by multiple teammates." },
-      { "name": "Mercy's Strike", "icon": "icons/augments/ARAMMayhemMercysStrike_arammayhem.webp", "change": "Now consumes on attacking turrets; turrets take damage equal to 2.5% of their maximum health." }
+      {
+        "icon": "icons/augments/ARAMMayhemBlueBarrier_arammayhem.webp",
+        "name": "Blue Barrier",
+        "change": "New (Silver): Gain a Shield when you cast an ability, scaled by its mana cost."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemFlowOfSpirit_arammayhem.webp",
+        "name": "Flow of Spirit",
+        "change": "New (Silver): Using a specific ability grants stacking Attack Speed."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemFruitify_arammayhem.webp",
+        "name": "Fruitify",
+        "change": "New (Silver): Enemy champion takedowns create Fruit that you and allies can pick up for healing."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemGiftOfTheDrowned_arammayhem.webp",
+        "name": "Gift of the Drowned",
+        "change": "New (Silver): All Bonus Health from your items converts to Lethality."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemHandsOffTheTalent_arammayhem.webp",
+        "name": "Hands off the Talent",
+        "change": "New (Silver): Attacks deal extra damage when fired from max range."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemLichBrain_arammayhem.webp",
+        "name": "Lich Brain",
+        "change": "New (Silver): Gain Ability Power based on your Bonus Health."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemLonelyWarrior_arammayhem.webp",
+        "name": "Lonely Warrior",
+        "change": "New (Silver): Gain Armor, Magic Resistance, and Attack Speed for each nearby enemy champion."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemNoManaNoProblem_arammayhem.webp",
+        "name": "No Mana, No Problem",
+        "change": "New (Silver): All mana from your items converts to Ability Power."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemSoundBarrier_arammayhem.webp",
+        "name": "Sound Barrier",
+        "change": "New (Silver): Your shields grant Move Speed."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemUltimateRecursion_arammayhem.webp",
+        "name": "Ultimate Recursion",
+        "change": "New (Silver): Gain 50 Ultimate Ability Haste."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemArcaneAxiom_arammayhem.webp",
+        "name": "Arcane Axiom",
+        "change": "New (Gold): Takedowns refund part of your Ultimate cooldown."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemArmoredImpact_arammayhem.webp",
+        "name": "Armored Impact",
+        "change": "New (Gold): After using an ability, your next Attack deals bonus damage based on your Armor."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemBees_arammayhem.webp",
+        "name": "BEES!!!",
+        "change": "New (Gold): Abilities occasionally throw an exploding beehive that damages, slows, and applies On-Hit effects."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemBrassBlast_arammayhem.webp",
+        "name": "Brass Blast",
+        "change": "New (Gold): Gain a Summoner Spell that charges a horn blast to knock back and damage enemies."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemCrimsonCobalt_arammayhem.webp",
+        "name": "CRIMSON COBALT",
+        "change": "New (Gold): One ability marks enemy champions. Consuming the mark deals extra damage and reduces that ability's cooldown."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemDoubleTime_arammayhem.webp",
+        "name": "Double Time",
+        "change": "New (Gold): Damaging enemy champions with two different abilities in quick succession grants permanent Mana and extra damage."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemEnchantingButterflies_arammayhem.webp",
+        "name": "Enchanting Butterflies",
+        "change": "New (Gold): Healing and shielding allies summons butterflies that fly at damaged enemies once you have enough."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemGetJinxed_arammayhem.webp",
+        "name": "Get Jinxed",
+        "change": "New (Gold): Gain a Summoner Spell that lets you ride a rocket into enemies."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemHeavyIsTheCrown_arammayhem.webp",
+        "name": "Heavy Is The Crown",
+        "change": "New (Gold): Gain AD, AP, and Attack Speed but lose Move Speed. Takedowns strengthen this effect, and dying weakens it."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemJeweledBracelet_arammayhem.webp",
+        "name": "Jeweled Bracelet",
+        "change": "New (Gold): Your Ultimate can now critically strike."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemRecoil_arammayhem.webp",
+        "name": "Recoil",
+        "change": "New (Gold): One ability launches you backward when cast."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemSalvation_arammayhem.webp",
+        "name": "Salvation",
+        "change": "New (Gold): Falling to low Health pushes enemies back and heals allies."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemSapMagic_arammayhem.webp",
+        "name": "Sap Magic",
+        "change": "New (Gold): Every 10 seconds, your next Attack deals extra damage and heals you."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemStillHere_arammayhem.webp",
+        "name": "Still Here",
+        "change": "New (Gold): Gain AD, AP, and Lifesteal based on how low your Health is."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemTakeEmDownDownDown_arammayhem.webp",
+        "name": "Take'em Down Down Down",
+        "change": "New (Gold): Damage an enemy champion five times with Attacks and abilities to gain healing and extra damage."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemTheBoomAndTheBass_arammayhem.webp",
+        "name": "The Boom and the Bass",
+        "change": "New (Gold): After casting an ability, your next attack deals bonus damage and grants a burst of Move Speed."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemTickleMonster_arammayhem.webp",
+        "name": "Tickle Monster",
+        "change": "New (Gold): All AD from your items converts to Attack Speed."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemUpgradeStormsurge_arammayhem.webp",
+        "name": "Upgrade Stormsurge",
+        "change": "New (Gold): When Stormsurge applies Squall, it detonates in an area for extra damage and marks enemies with a secondary Squall."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemWeaponOfDestiny_arammayhem.webp",
+        "name": "Weapon of Destiny",
+        "change": "New (Gold): The first Legendary item you buy gains stronger stats with each takedown."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemBigShot_arammayhem.webp",
+        "name": "Big Shot",
+        "change": "New (Prismatic): A large portion of your Attack Speed converts to Critical Strike Damage."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemBouncingBees_arammayhem.webp",
+        "name": "Bouncing Bees",
+        "change": "New (Prismatic): After using an ability, your next Attack bounces to nearby enemies, prioritizing champions. A quest adds bounces and AD for bouncing to champions."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemGroupHug_arammayhem.webp",
+        "name": "Group Hug",
+        "change": "New (Prismatic): An ability that heals or shields also heals or shields nearby allies."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemMoshMonster_arammayhem.webp",
+        "name": "Mosh Monster",
+        "change": "New (Prismatic): Ultimate grants Bonus Health and creates a zone that slows enemy champions. Takedowns increase both the Health and zone size."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemThirdTimesTheHarm_arammayhem.webp",
+        "name": "Third Times the Harm",
+        "change": "New (Prismatic): Attacking an enemy champion three times deals a burst of damage and grants a burst of Attack Speed."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemTotentanz_arammayhem.webp",
+        "name": "Totentanz",
+        "change": "New (Prismatic): Gain a Summoner Spell that grants 5 seconds of immortality. Without a takedown in that window, you are dragged to the underworld."
+      },
+      {
+        "icon": "assets/mayhem-augments/combusting-interest.webp",
+        "name": "Combusting Interest",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemCritNCast_arammayhem.webp",
+        "name": "Crit 'n Cast",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp",
+        "name": "Critical Missile",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
+        "name": "Dimension Shift",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp",
+        "name": "DropBear",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
+        "name": "Dropkick",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/FanTheHammer_large.png",
+        "name": "Fan The Hammer",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemHideOnBush_arammayhem.webp",
+        "name": "Hide on Bush",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "assets/mayhem-augments/high-roller.webp",
+        "name": "High Roller",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemOurHealing_arammayhem.webp",
+        "name": "Our Healing",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemPoroStampede_arammayhem.webp",
+        "name": "Poro Stampede",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "icon": "icons/augments/ARAMMayhemSpiritualPurification_arammayhem.webp",
+        "name": "Spiritual Purification",
+        "change": "Removed from the Augment pool."
+      },
+      {
+        "name": "Ult Bot",
+        "change": "Removed from the Augment pool."
+      }
     ],
-    "bugfixes": [
-      "Skill interactions: fixed Skilled Sniper with Vel'Koz Q, Anivia Q, and Rakan Q; fixed Morgana R Echo clone direction and Ekko Q with Spell Split.",
-      "Cooldowns and projectiles: fixed Apex Inventor and Wooglet's Witchcap cooldown behavior, plus Twitch R bolts.",
-      "Quest progress: fixed Milio W Support Main, Rakan E, and Master Yi Q / Viego R Dashing Haste progress through Pandora's Box.",
-      "Economy and shop: fixed Combusting Interest gold from burn items or Augments; fixed Diadem of Songs in the shop and builds section.",
-      "Offer and trigger logic: fixed Overloaded with Katarina E and Shaco E; fixed Mercy's Strike being offered to non-supports and Akshan E issues with Warding Weapon / Trusty Weapon.",
-      "Other fixes: Nidalee Q with Missile Split, Lil' Extra Help VFX, and Pursuit of Haste / Power interactions."
-    ]
+    "bugfixes": []
   }
 }

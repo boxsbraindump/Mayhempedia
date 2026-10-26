@@ -1,78 +1,364 @@
 {
-  "patch": "26.15",
-  "theme": "海克斯大乱斗：全局伤害与海克斯校准",
-  "releaseDate": "2026-07-28",
-  "sourceUrl": "https://www.leagueoflegends.com/en-gb/news/game-updates/league-of-legends-patch-26-15-notes/",
-  "championChanges": [
-    { "championId": 103, "championName": "阿狸", "championNameEn": "Ahri", "changes": ["治疗效果：90% → 100%。"], "changesEn": ["Healing: 90% → 100%."] },
-    { "championId": 166, "championName": "阿克尚", "championNameEn": "Akshan", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 12, "championName": "阿利斯塔", "championNameEn": "Alistar", "changes": ["治疗效果：80% → 100%；造成伤害：95% → 100%。"], "changesEn": ["Healing: 80% → 100%. Damage dealt: 95% → 100%."] },
-    { "championId": 799, "championName": "安蓓萨", "championNameEn": "Ambessa", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
-    { "championId": 1, "championName": "安妮", "championNameEn": "Annie", "changes": ["护盾效果：90% → 100%；承受伤害：-5% → 0%。"], "changesEn": ["Shielding: 90% → 100%. Damage taken: -5% → 0%."] },
-    { "championId": 22, "championName": "艾希", "championNameEn": "Ashe", "changes": ["造成伤害：105% → 100%。"], "changesEn": ["Damage dealt: 105% → 100%."] },
-    { "championId": 42, "championName": "库奇", "championNameEn": "Corki", "changes": ["承受伤害：10% → 5%。"], "changesEn": ["Damage taken: 10% → 5%."] },
-    { "championId": 245, "championName": "艾克", "championNameEn": "Ekko", "changes": ["造成伤害：110% → 105%。"], "changesEn": ["Damage dealt: 110% → 105%."] },
-    { "championId": 910, "championName": "彗", "championNameEn": "Hwei", "changes": ["对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage to minions: 60% → 100%."] },
-    { "championId": 202, "championName": "烬", "championNameEn": "Jhin", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
-    { "championId": 145, "championName": "卡莎", "championNameEn": "Kai'Sa", "changes": ["承受伤害：10% → 0%。"], "changesEn": ["Damage taken: 10% → 0%."] },
-    { "championId": 203, "championName": "千珏", "championNameEn": "Kindred", "changes": ["造成伤害：110% → 100%。"], "changesEn": ["Damage dealt: 110% → 100%."] },
-    { "championId": 96, "championName": "克格莫", "championNameEn": "Kog'Maw", "changes": ["造成伤害：88% → 90%。"], "changesEn": ["Damage dealt: 88% → 90%."] },
-    { "championId": 236, "championName": "卢锡安", "championNameEn": "Lucian", "changes": ["造成伤害：105% → 100%。"], "changesEn": ["Damage dealt: 105% → 100%."] },
-    { "championId": 90, "championName": "玛尔扎哈", "championNameEn": "Malzahar", "changes": ["对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage to minions: 60% → 100%."] },
-    { "championId": 21, "championName": "厄运小姐", "championNameEn": "Miss Fortune", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
-    { "championId": 82, "championName": "莫德凯撒", "championNameEn": "Mordekaiser", "changes": ["承受伤害：-2% → 0%。"], "changesEn": ["Damage taken: -2% → 0%."] },
-    { "championId": 25, "championName": "莫甘娜", "championNameEn": "Morgana", "changes": ["承受伤害：-10% → 0%。"], "changesEn": ["Damage taken: -10% → 0%."] },
-    { "championId": 75, "championName": "内瑟斯", "championNameEn": "Nasus", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
-    { "championId": 246, "championName": "奇亚娜", "championNameEn": "Qiyana", "changes": ["造成伤害：115% → 110%。"], "changesEn": ["Damage dealt: 115% → 110%."] },
-    { "championId": 13, "championName": "瑞兹", "championNameEn": "Ryze", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 235, "championName": "赛娜", "championNameEn": "Senna", "changes": ["造成伤害：97% → 100%。"], "changesEn": ["Damage dealt: 97% → 100%."] },
-    { "championId": 27, "championName": "辛吉德", "championNameEn": "Singed", "changes": ["承受伤害：-8% → 0%。"], "changesEn": ["Damage taken: -8% → 0%."] },
-    { "championId": 901, "championName": "斯莫德", "championNameEn": "Smolder", "changes": ["技能急速：-10 → 0。"], "changesEn": ["Ability Haste: -10 → 0."] },
-    { "championId": 16, "championName": "索拉卡", "championNameEn": "Soraka", "changes": ["治疗效果：105% → 100%。"], "changesEn": ["Healing: 105% → 100%."] },
-    { "championId": 17, "championName": "提莫", "championNameEn": "Teemo", "changes": ["技能急速：-10 → 0；对小兵造成伤害：60% → 100%。"], "changesEn": ["Ability Haste: -10 → 0. Damage to minions: 60% → 100%."] },
-    { "championId": 48, "championName": "特朗德尔", "championNameEn": "Trundle", "changes": ["承受伤害：-5% → 0%。"], "changesEn": ["Damage taken: -5% → 0%."] },
-    { "championId": 5, "championName": "赵信", "championNameEn": "Xin Zhao", "changes": ["造成伤害：95% → 100%。"], "changesEn": ["Damage dealt: 95% → 100%."] },
-    { "championId": 26, "championName": "基兰", "championNameEn": "Zilean", "changes": ["造成伤害：105% → 100%；承受伤害：5% → 0%。"], "changesEn": ["Damage dealt: 105% → 100%. Damage taken: 5% → 0%."] },
-    { "championId": 115, "championName": "吉格斯", "championNameEn": "Ziggs", "changes": ["造成伤害：87% → 90%；对小兵造成伤害：60% → 100%。"], "changesEn": ["Damage dealt: 87% → 90%. Damage to minions: 60% → 100%."] }
-  ],
+  "patch": "26.21",
+  "theme": "海克斯大乱斗：星途（Journey to Stardom）",
+  "themeEn": "ARAM: Mayhem — Journey to Stardom",
+  "releaseDate": "2026-10-21",
+  "sourceUrl": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes/",
+  "championChanges": [],
   "itemChanges": [],
   "systemChanges": [
-    "造成伤害修正现已同时影响技能、普攻、装备和海克斯伤害；Riot 同时移除了大量英雄专属修正，让保留的数值更贴近英雄在海克斯大乱斗中的整体表现。"
+    "每局海克斯大乱斗会随机一支「主打乐队」改变本局规则：K/DA（集齐 4 张卡牌额外获得一个海克斯）、HEARTSTEEL（海克斯可能附带强化词条）、True Damage（参与击杀和摧毁防御塔可能为队伍掉落铁砧）、Pentakill（开局和 18 级各强化一个技能）、Disco（在迪斯科球下跳舞为所有人提供金币）、Cafe Cuties（生命遗物效果更强）、Bees（收集蜂蜜罐，躲开横穿地图的蜜蜂）、Command Line（每次海克斯选择可把一个海克斯重随到更高阶）。",
+    "新增成长系统：完成 K/DA、Pentakill 等乐队的任务可获得海克斯、表情、橙色精粹等奖励；对局和任务会提升「巨星等级」（从新人到巨星），解锁新的乐队和任务。",
+    "本版本海克斯大乱斗暂不开放屠夫之桥和 Koeshin's Crossing，预计下个版本回归。",
+    "26.16–26.20 期间的海克斯池变化：新增升级：焚天、升级：贪欲九头蛇（26.16）和终极九头蛇、升级：死亡之舞（26.17）；小丑学院在 26.18 重新开放；连锁反应改为金色，双发快射改为棱彩。"
   ],
   "systemChangesEn": [
-    "Damage dealt modifiers now affect spell, attack, item, and Augment damage. Riot also removed many champion-specific modifiers so the remaining values better reflect overall ARAM: Mayhem performance."
+    "Each ARAM: Mayhem game now features a random Headliner band that changes the rules: K/DA (collect 4 cards for an extra Augment), HEARTSTEEL (Augments can roll stronger modifiers), True Damage (takedowns and tower kills can drop Anvils for your team), Pentakill (boost one ability at game start and at level 18), Disco (dance under the disco ball to give everyone Gold), Cafe Cuties (Health relics are stronger), Bees (collect honey pots and dodge bees crossing the map), and Command Line (reroll one Augment into a higher tier in every selection).",
+    "New progression: band missions from K/DA, Pentakill, and others reward Augments, emotes, Orange Essence, and more. Games and missions raise your Superstar Rank from Newbie to Superstar, unlocking new bands and missions.",
+    "Butcher's Bridge and Koeshin's Crossing are unavailable in Mayhem this patch and are expected to return next patch.",
+    "Augment pool changes during 26.16–26.20: Upgrade Sundered Sky and Upgrade Ravenous Hydra (26.16) and Ultra Hydra and Upgrade Death's Dance (26.17) were added; Clown College returned in 26.18; Chain Reaction became Gold and Double Tap became Prismatic."
   ],
   "mayhem": {
-    "summaryZh": "26.15 的核心是统一伤害修正的覆盖范围，并重新校准英雄专属修正。会心飞弹、泰坦的坚决等高影响海克斯获得数值调整；组合玩法仍保留，但应以本次伤害值为准复核。",
-    "summaryEn": "Patch 26.15 expands how damage modifiers apply and recalibrates champion-specific modifiers. High-impact Augments including Critical Missile and Titan's Resolve changed numerically; combo routes remain available but should be reviewed against the new values.",
+    "summaryZh": "26.21「星途」是海克斯大乱斗的大版本：新增 35 个海克斯（10 银 / 19 金 / 6 棱彩），移除 13 个，并加入每局随机的主打乐队规则和新的成长系统。连拨击锤、暴击飞弹等暴击射手的核心海克斯被移除，依赖它们的流派需要重新评估。",
+    "summaryEn": "Patch 26.21, Journey to Stardom, is a major ARAM: Mayhem update: 35 new Augments (10 Silver / 19 Gold / 6 Prismatic), 13 removals, random Headliner rules each game, and a new progression system. Crit marksman staples such as Fan the Hammer and Critical Missile were removed, so routes built around them need review.",
     "augmentChanges": [
-      { "name": "自适应守卫（Warding Weapon）", "nameEn": "Warding Weapon", "change": "每层提供的护甲与魔抗：5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12。", "changeEn": "Armor and MR per stack: 5 / 6.25 / 7.5 / 8.75 / 10 → 7 / 8.25 / 9.5 / 10.75 / 12." },
-      { "name": "软泥拍抓", "nameEn": "Squishy Slappy Grab", "icon": "icons/augments/ARAMMayhemSquishySlappyGrab_arammayhem.webp", "change": "冷却时间：45 秒 → 35 秒。", "changeEn": "Cooldown: 45s → 35s." },
-      { "name": "泰坦的坚决", "nameEn": "Titan's Resolve", "icon": "icons/augments/ARAMMayhemTitansResolve_arammayhem.webp", "change": "适应之力：25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75；每 10 层护甲与魔抗：4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10。", "changeEn": "Adaptive Force: 25 / 31.25 / 37.5 / 43.75 / 50 → 25 / 37.5 / 50 / 62.5 / 75. Armor and MR per 10 stacks: 4 / 5 / 6 / 7 / 8 → 5 / 6.25 / 7.5 / 8.75 / 10." },
-      { "name": "执念狂热", "nameEn": "Hellbent", "icon": "icons/augments/ARAMMayhemHellbent_arammayhem.webp", "change": "冷却时间：120 秒 → 90 秒。", "changeEn": "Cooldown: 120s → 90s." },
-      { "name": "大地苏醒", "nameEn": "Earthwake", "icon": "icons/augments/Earthwake_large.png", "change": "基础伤害：70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250。", "changeEn": "Base damage: 70 / 105 / 140 / 175 / 210 → 90 / 130 / 170 / 210 / 250." },
-      { "name": "无尽屠戮", "nameEn": "Endless Decimation", "icon": "icons/augments/ARAMMayhemEndlessDecimation_arammayhem.webp", "change": "基于已损失生命值的治疗：15% → 18%。", "changeEn": "Missing-health healing: 15% → 18%." },
-      { "name": "连锁反应", "nameEn": "Chain Reaction", "icon": "icons/augments/ARAMMayhemChainReaction_arammayhem.webp", "change": "终极技能触发时造成 250% 伤害。", "changeEn": "Now deals 250% damage for ultimate abilities." },
-      { "name": "会心飞弹", "nameEn": "Critical Missile", "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp", "change": "每枚飞弹伤害：20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85。", "changeEn": "Damage per missile: 20 / 40 / 60 / 80 / 100 → 15 / 32.5 / 50 / 67.5 / 85." },
-      { "name": "空降猛击", "nameEn": "Drop Bear", "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp", "change": "眩晕：1.5 秒 → 0.5 秒；提伯斯生命值：0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500。", "changeEn": "Stun: 1.5s → 0.5s. Tibbers health: 0 / 1125 / 2250 / 3375 / 4500 → 1000 / 2375 / 3750 / 5125 / 6500." },
-      { "name": "拍拍背", "nameEn": "Pat on the Back", "change": "现在可被多位队友同时选择。", "changeEn": "Can now be taken by multiple teammates." },
-      { "name": "仁慈一击", "nameEn": "Mercy's Strike", "icon": "icons/augments/ARAMMayhemMercysStrike_arammayhem.webp", "change": "攻击防御塔时也会消耗效果；防御塔承受相当于目标最大生命值 2.5% 的伤害。", "changeEn": "Now consumes on attacking turrets; turrets take damage equal to 2.5% of their maximum health." }
+      {
+        "name": "蓝色屏障",
+        "nameEn": "Blue Barrier",
+        "icon": "icons/augments/ARAMMayhemBlueBarrier_arammayhem.webp",
+        "change": "新增（银色）：施放技能时获得护盾，护盾值随该技能的法力消耗提升。",
+        "changeEn": "New (Silver): Gain a Shield when you cast an ability, scaled by its mana cost."
+      },
+      {
+        "name": "灵魂乐流",
+        "nameEn": "Flow of Spirit",
+        "icon": "icons/augments/ARAMMayhemFlowOfSpirit_arammayhem.webp",
+        "change": "新增（银色）：使用选定技能会获得可叠加的攻击速度。",
+        "changeEn": "New (Silver): Using a specific ability grants stacking Attack Speed."
+      },
+      {
+        "name": "水果化",
+        "nameEn": "Fruitify",
+        "icon": "icons/augments/ARAMMayhemFruitify_arammayhem.webp",
+        "change": "新增（银色）：参与击杀敌方英雄会生成水果，你和队友拾取后回复生命值。",
+        "changeEn": "New (Silver): Enemy champion takedowns create Fruit that you and allies can pick up for healing."
+      },
+      {
+        "name": "溺水之赠礼",
+        "nameEn": "Gift of the Drowned",
+        "icon": "icons/augments/ARAMMayhemGiftOfTheDrowned_arammayhem.webp",
+        "change": "新增（银色）：装备提供的所有额外生命值转化为穿甲。",
+        "changeEn": "New (Silver): All Bonus Health from your items converts to Lethality."
+      },
+      {
+        "name": "远射天资",
+        "nameEn": "Hands off the Talent",
+        "icon": "icons/augments/ARAMMayhemHandsOffTheTalent_arammayhem.webp",
+        "change": "新增（银色）：在最大攻击距离发动的普攻造成额外伤害。",
+        "changeEn": "New (Silver): Attacks deal extra damage when fired from max range."
+      },
+      {
+        "name": "巫妖大脑",
+        "nameEn": "Lich Brain",
+        "icon": "icons/augments/ARAMMayhemLichBrain_arammayhem.webp",
+        "change": "新增（银色）：基于额外生命值获得法术强度。",
+        "changeEn": "New (Silver): Gain Ability Power based on your Bonus Health."
+      },
+      {
+        "name": "孤勇者",
+        "nameEn": "Lonely Warrior",
+        "icon": "icons/augments/ARAMMayhemLonelyWarrior_arammayhem.webp",
+        "change": "新增（银色）：附近每有一名敌方英雄，获得护甲、魔法抗性和攻击速度。",
+        "changeEn": "New (Silver): Gain Armor, Magic Resistance, and Attack Speed for each nearby enemy champion."
+      },
+      {
+        "name": "没法力，没问题",
+        "nameEn": "No Mana, No Problem",
+        "icon": "icons/augments/ARAMMayhemNoManaNoProblem_arammayhem.webp",
+        "change": "新增（银色）：装备提供的所有法力值转化为法术强度。",
+        "changeEn": "New (Silver): All mana from your items converts to Ability Power."
+      },
+      {
+        "name": "音之屏障",
+        "nameEn": "Sound Barrier",
+        "icon": "icons/augments/ARAMMayhemSoundBarrier_arammayhem.webp",
+        "change": "新增（银色）：你施加的护盾会提供移动速度。",
+        "changeEn": "New (Silver): Your shields grant Move Speed."
+      },
+      {
+        "name": "终极循环往复",
+        "nameEn": "Ultimate Recursion",
+        "icon": "icons/augments/ARAMMayhemUltimateRecursion_arammayhem.webp",
+        "change": "新增（银色）：获得 50 终极技能急速。",
+        "changeEn": "New (Silver): Gain 50 Ultimate Ability Haste."
+      },
+      {
+        "name": "奥术公理",
+        "nameEn": "Arcane Axiom",
+        "icon": "icons/augments/ARAMMayhemArcaneAxiom_arammayhem.webp",
+        "change": "新增（金色）：参与击杀会返还部分终极技能冷却时间。",
+        "changeEn": "New (Gold): Takedowns refund part of your Ultimate cooldown."
+      },
+      {
+        "name": "装甲冲击",
+        "nameEn": "Armored Impact",
+        "icon": "icons/augments/ARAMMayhemArmoredImpact_arammayhem.webp",
+        "change": "新增（金色）：施放技能后，下一次普攻造成基于护甲的额外伤害。",
+        "changeEn": "New (Gold): After using an ability, your next Attack deals bonus damage based on your Armor."
+      },
+      {
+        "name": "小蜜蜂！！！",
+        "nameEn": "BEES!!!",
+        "icon": "icons/augments/ARAMMayhemBees_arammayhem.webp",
+        "change": "新增（金色）：技能会不时扔出会爆炸的蜂巢，造成伤害、减速并附带攻击特效。",
+        "changeEn": "New (Gold): Abilities occasionally throw an exploding beehive that damages, slows, and applies On-Hit effects."
+      },
+      {
+        "name": "黄铜爆音",
+        "nameEn": "Brass Blast",
+        "icon": "icons/augments/ARAMMayhemBrassBlast_arammayhem.webp",
+        "change": "新增（金色）：获得一个召唤师技能：蓄力吹响号角，击退并伤害敌人。",
+        "changeEn": "New (Gold): Gain a Summoner Spell that charges a horn blast to knock back and damage enemies."
+      },
+      {
+        "name": "深红钴蓝闪光",
+        "nameEn": "CRIMSON COBALT",
+        "icon": "icons/augments/ARAMMayhemCrimsonCobalt_arammayhem.webp",
+        "change": "新增（金色）：选定技能会标记敌方英雄；消耗标记造成额外伤害并缩短该技能的冷却时间。",
+        "changeEn": "New (Gold): One ability marks enemy champions. Consuming the mark deals extra damage and reduces that ability's cooldown."
+      },
+      {
+        "name": "翻倍时间",
+        "nameEn": "Double Time",
+        "icon": "icons/augments/ARAMMayhemDoubleTime_arammayhem.webp",
+        "change": "新增（金色）：短时间内用两个不同技能伤害敌方英雄，会永久提升法力值并造成额外伤害。",
+        "changeEn": "New (Gold): Damaging enemy champions with two different abilities in quick succession grants permanent Mana and extra damage."
+      },
+      {
+        "name": "迷人蝴蝶",
+        "nameEn": "Enchanting Butterflies",
+        "icon": "icons/augments/ARAMMayhemEnchantingButterflies_arammayhem.webp",
+        "change": "新增（金色）：治疗或护盾队友会召唤蝴蝶，攒够数量后飞向受伤的敌人。",
+        "changeEn": "New (Gold): Healing and shielding allies summons butterflies that fly at damaged enemies once you have enough."
+      },
+      {
+        "name": "罪恶快感！",
+        "nameEn": "Get Jinxed",
+        "icon": "icons/augments/ARAMMayhemGetJinxed_arammayhem.webp",
+        "change": "新增（金色）：获得一个召唤师技能：骑着火箭冲进敌阵。",
+        "changeEn": "New (Gold): Gain a Summoner Spell that lets you ride a rocket into enemies."
+      },
+      {
+        "name": "王冠之重",
+        "nameEn": "Heavy Is The Crown",
+        "icon": "icons/augments/ARAMMayhemHeavyIsTheCrown_arammayhem.webp",
+        "change": "新增（金色）：获得攻击力、法术强度和攻击速度，但移动速度降低；参与击杀会强化效果，阵亡会削弱效果。",
+        "changeEn": "New (Gold): Gain AD, AP, and Attack Speed but lose Move Speed. Takedowns strengthen this effect, and dying weakens it."
+      },
+      {
+        "name": "珠光手镯",
+        "nameEn": "Jeweled Bracelet",
+        "icon": "icons/augments/ARAMMayhemJeweledBracelet_arammayhem.webp",
+        "change": "新增（金色）：你的终极技能可以暴击。",
+        "changeEn": "New (Gold): Your Ultimate can now critically strike."
+      },
+      {
+        "name": "反冲",
+        "nameEn": "Recoil",
+        "icon": "icons/augments/ARAMMayhemRecoil_arammayhem.webp",
+        "change": "新增（金色）：选定技能施放时会把你向后弹开。",
+        "changeEn": "New (Gold): One ability launches you backward when cast."
+      },
+      {
+        "name": "拯救",
+        "nameEn": "Salvation",
+        "icon": "icons/augments/ARAMMayhemSalvation_arammayhem.webp",
+        "change": "新增（金色）：生命值降到较低时击退周围敌人并治疗队友。",
+        "changeEn": "New (Gold): Falling to low Health pushes enemies back and heals allies."
+      },
+      {
+        "name": "吸元秘术",
+        "nameEn": "Sap Magic",
+        "icon": "icons/augments/ARAMMayhemSapMagic_arammayhem.webp",
+        "change": "新增（金色）：每 10 秒，下一次普攻造成额外伤害并治疗你。",
+        "changeEn": "New (Gold): Every 10 seconds, your next Attack deals extra damage and heals you."
+      },
+      {
+        "name": "屹立不倒",
+        "nameEn": "Still Here",
+        "icon": "icons/augments/ARAMMayhemStillHere_arammayhem.webp",
+        "change": "新增（金色）：生命值越低，获得的攻击力、法术强度和生命偷取越多。",
+        "changeEn": "New (Gold): Gain AD, AP, and Lifesteal based on how low your Health is."
+      },
+      {
+        "name": "将他们放倒倒倒",
+        "nameEn": "Take'em Down Down Down",
+        "icon": "icons/augments/ARAMMayhemTakeEmDownDownDown_arammayhem.webp",
+        "change": "新增（金色）：用普攻和技能对同一名敌方英雄造成 5 次伤害后，获得治疗和额外伤害。",
+        "changeEn": "New (Gold): Damage an enemy champion five times with Attacks and abilities to gain healing and extra damage."
+      },
+      {
+        "name": "鼓声暴起 低音轰鸣",
+        "nameEn": "The Boom and the Bass",
+        "icon": "icons/augments/ARAMMayhemTheBoomAndTheBass_arammayhem.webp",
+        "change": "新增（金色）：施放技能后，下一次普攻造成额外伤害并提供一段爆发移动速度。",
+        "changeEn": "New (Gold): After casting an ability, your next attack deals bonus damage and grants a burst of Move Speed."
+      },
+      {
+        "name": "嗡嗡怪兽",
+        "nameEn": "Tickle Monster",
+        "icon": "icons/augments/ARAMMayhemTickleMonster_arammayhem.webp",
+        "change": "新增（金色）：装备提供的所有攻击力转化为攻击速度。",
+        "changeEn": "New (Gold): All AD from your items converts to Attack Speed."
+      },
+      {
+        "name": "升级：风暴狂涌",
+        "nameEn": "Upgrade Stormsurge",
+        "icon": "icons/augments/ARAMMayhemUpgradeStormsurge_arammayhem.webp",
+        "change": "新增（金色）：风暴狂涌施加飑风时会范围引爆造成额外伤害，并给敌人标记第二层飑风。",
+        "changeEn": "New (Gold): When Stormsurge applies Squall, it detonates in an area for extra damage and marks enemies with a secondary Squall."
+      },
+      {
+        "name": "命运之武器",
+        "nameEn": "Weapon of Destiny",
+        "icon": "icons/augments/ARAMMayhemWeaponOfDestiny_arammayhem.webp",
+        "change": "新增（金色）：你购买的第一件传说装备每次参与击杀都会获得更强的属性。",
+        "changeEn": "New (Gold): The first Legendary item you buy gains stronger stats with each takedown."
+      },
+      {
+        "name": "大腕",
+        "nameEn": "Big Shot",
+        "icon": "icons/augments/ARAMMayhemBigShot_arammayhem.webp",
+        "change": "新增（棱彩）：大部分攻击速度转化为暴击伤害。",
+        "changeEn": "New (Prismatic): A large portion of your Attack Speed converts to Critical Strike Damage."
+      },
+      {
+        "name": "弹跳蜜蜂",
+        "nameEn": "Bouncing Bees",
+        "icon": "icons/augments/ARAMMayhemBouncingBees_arammayhem.webp",
+        "change": "新增（棱彩）：施放技能后，下一次普攻会弹射到附近敌人（优先英雄）；附带任务：弹射命中英雄可增加弹射次数和攻击力。",
+        "changeEn": "New (Prismatic): After using an ability, your next Attack bounces to nearby enemies, prioritizing champions. A quest adds bounces and AD for bouncing to champions."
+      },
+      {
+        "name": "一起抱抱",
+        "nameEn": "Group Hug",
+        "icon": "icons/augments/ARAMMayhemGroupHug_arammayhem.webp",
+        "change": "新增（棱彩）：一个提供治疗或护盾的技能，也会治疗或护盾附近的队友。",
+        "changeEn": "New (Prismatic): An ability that heals or shields also heals or shields nearby allies."
+      },
+      {
+        "name": "热舞怪兽",
+        "nameEn": "Mosh Monster",
+        "icon": "icons/augments/ARAMMayhemMoshMonster_arammayhem.webp",
+        "change": "新增（棱彩）：终极技能提供额外生命值，并生成减速敌方英雄的区域；参与击杀会提升生命值和区域大小。",
+        "changeEn": "New (Prismatic): Ultimate grants Bonus Health and creates a zone that slows enemy champions. Takedowns increase both the Health and zone size."
+      },
+      {
+        "name": "伤不过三",
+        "nameEn": "Third Times the Harm",
+        "icon": "icons/augments/ARAMMayhemThirdTimesTheHarm_arammayhem.webp",
+        "change": "新增（棱彩）：对同一名敌方英雄攻击三次会造成一次爆发伤害，并提供一段攻击速度。",
+        "changeEn": "New (Prismatic): Attacking an enemy champion three times deals a burst of damage and grants a burst of Attack Speed."
+      },
+      {
+        "name": "死之舞",
+        "nameEn": "Totentanz",
+        "icon": "icons/augments/ARAMMayhemTotentanz_arammayhem.webp",
+        "change": "新增（棱彩）：获得一个召唤师技能：5 秒内不会阵亡；期间没有参与击杀则会被拖入冥界。",
+        "changeEn": "New (Prismatic): Gain a Summoner Spell that grants 5 seconds of immortality. Without a takedown in that window, you are dragged to the underworld."
+      },
+      {
+        "name": "炽燃利息",
+        "nameEn": "Combusting Interest",
+        "icon": "assets/mayhem-augments/combusting-interest.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "由暴生急",
+        "nameEn": "Crit 'n Cast",
+        "icon": "icons/augments/ARAMMayhemCritNCast_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "暴击飞弹",
+        "nameEn": "Critical Missile",
+        "icon": "icons/augments/ARAMMayhemCriticalMissile_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "位面转移",
+        "nameEn": "Dimension Shift",
+        "icon": "icons/augments/ARAMMayhemDimensionShift_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "空投熊",
+        "nameEn": "DropBear",
+        "icon": "icons/augments/ARAMMayhemDropbear_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "飞身踢",
+        "nameEn": "Dropkick",
+        "icon": "icons/augments/ARAMMayhemDropkick_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "连拨击锤",
+        "nameEn": "Fan The Hammer",
+        "icon": "icons/augments/FanTheHammer_large.png",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "藏身草丛",
+        "nameEn": "Hide on Bush",
+        "icon": "icons/augments/ARAMMayhemHideOnBush_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "掷骰狂人",
+        "nameEn": "High Roller",
+        "icon": "assets/mayhem-augments/high-roller.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "我们的治疗",
+        "nameEn": "Our Healing",
+        "icon": "icons/augments/ARAMMayhemOurHealing_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "魄罗蛮冲",
+        "nameEn": "Poro Stampede",
+        "icon": "icons/augments/ARAMMayhemPoroStampede_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "心灵净化",
+        "nameEn": "Spiritual Purification",
+        "icon": "icons/augments/ARAMMayhemSpiritualPurification_arammayhem.webp",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      },
+      {
+        "name": "大招工具人",
+        "nameEn": "Ult Bot",
+        "change": "已移出海克斯池。",
+        "changeEn": "Removed from the Augment pool."
+      }
     ],
-    "bugfixes": [
-      "技能交互：修复维克兹 Q、艾尼维亚 Q、洛 Q 与「精准狙击」的交互问题；修复莫甘娜 R 的回声分身方向问题，以及艾克 Q 与「法术分裂」的交互。",
-      "冷却与投射物：修复「巅峰发明家」与「沃格勒特的女巫帽」的冷却问题，以及图奇 R 弹体的问题。",
-      "任务进度：修复米利欧 W「辅助主力」、洛 E 任务，以及剑圣 Q、佛耶戈 R 通过「潘多拉」获得位移急速的进度问题。",
-      "经济与商店：修复「燃烧利息」由灼烧装备或海克斯生成金币的问题；修复「歌之权冠」在商店与出装区域的显示。",
-      "分配与触发：修复「无情超载」错误影响卡特琳娜 E、萨科 E；修复「仁慈一击」会提供给非辅助英雄，以及阿克尚 E 的「自适应守卫／可靠武器」异常。",
-      "其他：修复妮德丽 Q 与「飞弹分裂」、一点小帮助 VFX，以及急速追猎／力量追猎相关问题。"
-    ],
-    "bugfixesEn": [
-      "Skill interactions: fixed Skilled Sniper with Vel'Koz Q, Anivia Q, and Rakan Q; fixed Morgana R Echo clone direction and Ekko Q with Spell Split.",
-      "Cooldowns and projectiles: fixed Apex Inventor and Wooglet's Witchcap cooldown behavior, plus Twitch R bolts.",
-      "Quest progress: fixed Milio W Support Main, Rakan E, and Master Yi Q / Viego R Dashing Haste progress through Pandora's Box.",
-      "Economy and shop: fixed Combusting Interest gold from burn items or Augments; fixed Diadem of Songs in the shop and builds section.",
-      "Offer and trigger logic: fixed Overloaded with Katarina E and Shaco E; fixed Mercy's Strike being offered to non-supports and Akshan E issues with Warding Weapon / Trusty Weapon.",
-      "Other fixes: Nidalee Q with Missile Split, Lil' Extra Help VFX, and Pursuit of Haste / Power interactions."
-    ]
+    "bugfixes": [],
+    "bugfixesEn": []
   }
 }

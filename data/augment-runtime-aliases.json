@@ -1,17 +1,20 @@
 {
   "source": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/cherry-augments.json",
-  "fetchedAt": "2026-07-12T23:25:43.371Z",
+  "fetchedAt": "2026-10-26T22:15:40.948Z",
   "notes": [
     "Maps Riot/CommunityDragon runtime augment ids to Mayhempedia local ids.",
     "Only live Mayhempedia augments are used as visible targets; unmatched Kiwi rows are kept for review only."
   ],
   "aliases": {
+    "57": 910062,
     "71": 910008,
     "95": 910011,
     "170": 910024,
     "187": 910066,
+    "317": 910080,
     "1001": 910090,
     "1005": 910012,
+    "1057": 910062,
     "1067": 910104,
     "1071": 910008,
     "1095": 910011,
@@ -36,12 +39,10 @@
     "1336": 910001,
     "1337": 910036,
     "1344": 910023,
-    "1345": 910065,
     "1347": 910072,
     "1348": 910084,
     "1349": 910052,
     "1353": 313,
-    "1356": 910000,
     "1358": 910093,
     "1373": 910018,
     "1375": 910028,
@@ -63,37 +64,30 @@
     "1996": 910031,
     "2004": 910045,
     "2005": 910078,
-    "2006": 910002,
     "2009": 910025,
     "2010": 910004,
     "2016": 910063,
     "2018": 900002,
-    "2024": 910055,
     "2026": 910071,
-    "2031": 910030,
     "2032": 910079,
     "2034": 910081,
-    "2042": 910086,
     "2043": 910068,
-    "2046": 910102,
     "2054": 910074,
     "2055": 910077,
     "2062": 910051,
-    "2063": 910101,
     "2064": 910096,
     "2065": 910088,
+    "2072": 910069,
     "2073": 910044,
     "2076": 910032,
     "2077": 910043,
     "2078": 910100,
     "2080": 910095,
-    "2082": 910083,
     "2083": 910006,
     "2087": 900001,
     "2088": 910082,
     "2089": 910057,
     "2091": 910042,
-    "2095": 900004,
     "2096": 910034,
     "2098": 910049,
     "2099": 910092,
@@ -108,7 +102,6 @@
     "2123": 910058,
     "2125": 910060,
     "2127": 910014,
-    "2128": 910029,
     "2129": 910020,
     "2131": 910046,
     "2132": 910003,
@@ -118,37 +111,12 @@
     "2136": 910056,
     "2138": 910064,
     "2139": 910073,
-    "33307": 910098,
-    "-1": 98
+    "12317": 910080
   },
-  "matchedRuntimeRows": 287,
-  "explicitAliasCount": 114,
-  "unmatchedKiwiCount": 44,
+  "matchedRuntimeRows": 328,
+  "explicitAliasCount": 106,
+  "unmatchedKiwiCount": 71,
   "matches": [
-    {
-      "runtimeId": -1,
-      "runtimeName": "With Haste",
-      "runtimeApiName": "Special_WithHaste",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Strawberry/UpgradeSelection/Icons/Blessing_Augment/WithHaste_Large.png",
-      "localId": 98,
-      "localName": "With Haste",
-      "localApiName": "WithHaste",
-      "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": -1,
-      "runtimeName": "Heavy Hitter",
-      "runtimeApiName": "Special_HeavyHitter",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Strawberry/UpgradeSelection/Icons/Blessing_Augment/Heavy_Hitter_Large.png",
-      "localId": 181,
-      "localName": "Heavy Hitter",
-      "localApiName": "HeavyHitter",
-      "localRarity": 0,
-      "fallbackAlreadyWorks": false
-    },
     {
       "runtimeId": 2,
       "runtimeName": "Apex Inventor",
@@ -303,6 +271,18 @@
       "localName": "Don't Blink",
       "localApiName": "DontBlink",
       "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 27,
+      "runtimeName": "Earthwake",
+      "runtimeApiName": "Earthwake",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Earthwake_small.png",
+      "localId": 27,
+      "localName": "Earthwake",
+      "localApiName": "Earthwake",
+      "localRarity": 2,
       "fallbackAlreadyWorks": true
     },
     {
@@ -496,6 +476,18 @@
       "localApiName": "MindtoMatter",
       "localRarity": 0,
       "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 57,
+      "runtimeName": "Mountain Soul",
+      "runtimeApiName": "MountainSoul",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/MountainSoul_small.png",
+      "localId": 910062,
+      "localName": "MountainSoul",
+      "localApiName": "ARAMMayhemMountainsoul",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": false
     },
     {
       "runtimeId": 58,
@@ -846,6 +838,18 @@
       "fallbackAlreadyWorks": true
     },
     {
+      "runtimeId": 116,
+      "runtimeName": "Flashy",
+      "runtimeApiName": "Flashy",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Flashy_small.png",
+      "localId": 116,
+      "localName": "Flashy",
+      "localApiName": "Flashy",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 118,
       "runtimeName": "Critical Healing",
       "runtimeApiName": "CriticalHealing",
@@ -986,7 +990,7 @@
       "localId": 154,
       "localName": "Quest: Urf's Champion",
       "localApiName": "Quest_UrfsChampion",
-      "localRarity": 1,
+      "localRarity": 2,
       "fallbackAlreadyWorks": true
     },
     {
@@ -1134,18 +1138,6 @@
       "fallbackAlreadyWorks": true
     },
     {
-      "runtimeId": 220,
-      "runtimeName": "Fan the Hammer",
-      "runtimeApiName": "FanTheHammer",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/FanTheHammer_small.png",
-      "localId": 220,
-      "localName": "Fan The Hammer",
-      "localApiName": "FanTheHammer",
-      "localRarity": 2,
-      "fallbackAlreadyWorks": true
-    },
-    {
       "runtimeId": 225,
       "runtimeName": "Dual Wield",
       "runtimeApiName": "DualWield",
@@ -1191,6 +1183,18 @@
       "localName": "Stats on Stats on Stats!",
       "localApiName": "StatsOnStatsOnStats",
       "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 237,
+      "runtimeName": "Transmute: Gold",
+      "runtimeApiName": "TransmuteGold",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/TransmuteGold_small.png",
+      "localId": 237,
+      "localName": "Transmute: Gold",
+      "localApiName": "TransmuteGold",
+      "localRarity": 0,
       "fallbackAlreadyWorks": true
     },
     {
@@ -1254,6 +1258,18 @@
       "fallbackAlreadyWorks": true
     },
     {
+      "runtimeId": 310,
+      "runtimeName": "Clown College",
+      "runtimeApiName": "ClownCollege",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/ClownCollege_small.png",
+      "localId": 310,
+      "localName": "Clown College",
+      "localApiName": "ClownCollege",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 311,
       "runtimeName": "Overflow",
       "runtimeApiName": "Overflow",
@@ -1276,6 +1292,18 @@
       "localApiName": "TankEngine",
       "localRarity": 1,
       "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 317,
+      "runtimeName": "Pandora's Box",
+      "runtimeApiName": "PandorasBox",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Pandoras_Box_Small.png",
+      "localId": 910080,
+      "localName": "PandorasBox",
+      "localApiName": "ARAMMayhemPandorasbox",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": false
     },
     {
       "runtimeId": 1001,
@@ -1458,6 +1486,18 @@
       "fallbackAlreadyWorks": true
     },
     {
+      "runtimeId": 1027,
+      "runtimeName": "Earthwake",
+      "runtimeApiName": "ARAM_Earthwake",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Earthwake_small.png",
+      "localId": 27,
+      "localName": "Earthwake",
+      "localApiName": "Earthwake",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 1028,
       "runtimeName": "Erosion",
       "runtimeApiName": "ARAM_Erosion",
@@ -1491,6 +1531,18 @@
       "localName": "Eureka",
       "localApiName": "Eureka",
       "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 1034,
+      "runtimeName": "Veil of Warding",
+      "runtimeApiName": "VeilOfWarding",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Poltergeist_small.png",
+      "localId": 1034,
+      "localName": "Veil of Warding",
+      "localApiName": "ARAMMayhemVeilOfWarding",
+      "localRarity": 0,
       "fallbackAlreadyWorks": true
     },
     {
@@ -1648,6 +1700,18 @@
       "localApiName": "MindtoMatter",
       "localRarity": 0,
       "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 1057,
+      "runtimeName": "Mountain Soul",
+      "runtimeApiName": "ARAM_MountainSoul",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/MountainSoul_small.png",
+      "localId": 910062,
+      "localName": "MountainSoul",
+      "localApiName": "ARAMMayhemMountainsoul",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": false
     },
     {
       "runtimeId": 1058,
@@ -1998,6 +2062,18 @@
       "fallbackAlreadyWorks": true
     },
     {
+      "runtimeId": 1116,
+      "runtimeName": "Flashy",
+      "runtimeApiName": "ARAM_Flashy",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Flashy_small.png",
+      "localId": 116,
+      "localName": "Flashy",
+      "localApiName": "Flashy",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 1118,
       "runtimeName": "Critical Healing",
       "runtimeApiName": "ARAM_CriticalHealing",
@@ -2250,18 +2326,6 @@
       "fallbackAlreadyWorks": true
     },
     {
-      "runtimeId": 1220,
-      "runtimeName": "Fan The Hammer",
-      "runtimeApiName": "ARAM_FanTheHammer",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/FanTheHammer_small.png",
-      "localId": 220,
-      "localName": "Fan The Hammer",
-      "localApiName": "FanTheHammer",
-      "localRarity": 2,
-      "fallbackAlreadyWorks": true
-    },
-    {
       "runtimeId": 1225,
       "runtimeName": "Dual Wield",
       "runtimeApiName": "ARAM_DualWield",
@@ -2271,6 +2335,18 @@
       "localName": "Dual Wield",
       "localApiName": "DualWield",
       "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 1237,
+      "runtimeName": "Transmute: Gold",
+      "runtimeApiName": "ARAM_TransmuteGold",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/TransmuteGold_small.png",
+      "localId": 237,
+      "localName": "Transmute: Gold",
+      "localApiName": "TransmuteGold",
+      "localRarity": 0,
       "fallbackAlreadyWorks": true
     },
     {
@@ -2331,6 +2407,18 @@
       "localName": "FireFox",
       "localApiName": "Firefox",
       "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 1310,
+      "runtimeName": "Clown College",
+      "runtimeApiName": "ARAM_ClownCollege",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/ClownCollege_small.png",
+      "localId": 310,
+      "localName": "Clown College",
+      "localApiName": "ClownCollege",
+      "localRarity": 2,
       "fallbackAlreadyWorks": true
     },
     {
@@ -2574,18 +2662,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 1345,
-      "runtimeName": "Spiritual Purification",
-      "runtimeApiName": "ARAM_SpiritualPurification",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SpiritualPurification_small.png",
-      "localId": 910065,
-      "localName": "Spiritual Purification",
-      "localApiName": "ARAMMayhemSpiritualPurification",
-      "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 1347,
       "runtimeName": "Poltergeist",
       "runtimeApiName": "Poltergeist",
@@ -2634,18 +2710,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 1356,
-      "runtimeName": "Critical Missile",
-      "runtimeApiName": "CriticalMissile",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/CriticalMissile_small.png",
-      "localId": 910000,
-      "localName": "Critical Missile",
-      "localApiName": "ARAMMayhemCriticalMissile",
-      "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 1358,
       "runtimeName": "Pinball",
       "runtimeApiName": "PinballSnowball",
@@ -2680,6 +2744,18 @@
       "localApiName": "ARAMMayhemSoulEater",
       "localRarity": 1,
       "fallbackAlreadyWorks": false
+    },
+    {
+      "runtimeId": 1379,
+      "runtimeName": "Upgrade Sword of Blossoming Dawn",
+      "runtimeApiName": "Upgrade_SwordOfBlossom",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeMikaelsBlessing_small.png",
+      "localId": 1379,
+      "localName": "Upgrade Sword of Blossoming Dawn",
+      "localApiName": "ARAMMayhemUpgradeSwordOfBlossomingDawn",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
     },
     {
       "runtimeId": 1384,
@@ -2898,18 +2974,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 2006,
-      "runtimeName": "Dropkick",
-      "runtimeApiName": "ARAM_Dropkick",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Dropkick_small.png",
-      "localId": 910002,
-      "localName": "Dropkick",
-      "localApiName": "ARAMMayhemDropkick",
-      "localRarity": 2,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 2009,
       "runtimeName": "Zealot",
       "runtimeApiName": "ARAM_Zealot",
@@ -2925,12 +2989,12 @@
       "runtimeId": 2010,
       "runtimeName": "Double Tap",
       "runtimeApiName": "ARAM_DoubleTap",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/DoubleTap_small.png",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/DualWield_small.png",
       "localId": 910004,
       "localName": "Double Tap",
       "localApiName": "ARAMMayhemDoubleTap",
-      "localRarity": 1,
+      "localRarity": 2,
       "fallbackAlreadyWorks": false
     },
     {
@@ -2958,18 +3022,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 2024,
-      "runtimeName": "Crit 'n Cast",
-      "runtimeApiName": "CritNCast",
-      "runtimeRarity": "kSilver",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/CritnCast_small.png",
-      "localId": 910055,
-      "localName": "Crit 'n Cast",
-      "localApiName": "ARAMMayhemCritNCast",
-      "localRarity": 0,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 2026,
       "runtimeName": "Kill Secured",
       "runtimeApiName": "KillSecured",
@@ -2979,18 +3031,6 @@
       "localName": "Kill Secured",
       "localApiName": "ARAMMayhemKillSecured",
       "localRarity": 0,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": 2031,
-      "runtimeName": "DropBear",
-      "runtimeApiName": "ARAM_DropBear",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Drop_Bear_Small.png",
-      "localId": 910030,
-      "localName": "DropBear",
-      "localApiName": "ARAMMayhemDropbear",
-      "localRarity": 2,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3018,18 +3058,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 2042,
-      "runtimeName": "Hide on Bush",
-      "runtimeApiName": "BrushPower",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BrushPower_small.png",
-      "localId": 910086,
-      "localName": "Hide on Bush",
-      "localApiName": "ARAMMayhemHideOnBush",
-      "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 2043,
       "runtimeName": "Nature is Healing",
       "runtimeApiName": "NatureIsHealing",
@@ -3039,18 +3067,6 @@
       "localName": "Nature is Healing",
       "localApiName": "ARAMMayhemNatureIsHealing",
       "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": 2046,
-      "runtimeName": "Poro Stampede",
-      "runtimeApiName": "PoroCharge_Active",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/QuestPoroCharge_small.png",
-      "localId": 910102,
-      "localName": "Poro Stampede",
-      "localApiName": "ARAMMayhemPoroStampede",
-      "localRarity": 2,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3090,18 +3106,6 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 2063,
-      "runtimeName": "Dimension Shift",
-      "runtimeApiName": "DimensionShift_Active",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/WhenTheDarknessComes_small.png",
-      "localId": 910101,
-      "localName": "Dimension Shift",
-      "localApiName": "ARAMMayhemDimensionShift",
-      "localRarity": 2,
-      "fallbackAlreadyWorks": false
-    },
-    {
       "runtimeId": 2064,
       "runtimeName": "Quickstep",
       "runtimeApiName": "ARAM_Quickstep",
@@ -3122,6 +3126,18 @@
       "localId": 910088,
       "localName": "Terror",
       "localApiName": "ARAMMayhemTerror",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": false
+    },
+    {
+      "runtimeId": 2072,
+      "runtimeName": "Spell Split",
+      "runtimeApiName": "Missile_Split",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Prismatic.png",
+      "localId": 910069,
+      "localName": "Spellsplit",
+      "localApiName": "ARAMMayhemSpellSplit",
       "localRarity": 2,
       "fallbackAlreadyWorks": false
     },
@@ -3165,12 +3181,12 @@
       "runtimeId": 2078,
       "runtimeName": "Chain Reaction",
       "runtimeApiName": "ChainReaction",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Prismatic.png",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Gold.png",
       "localId": 910100,
       "localName": "Chain Reaction",
       "localApiName": "ARAMMayhemChainReaction",
-      "localRarity": 2,
+      "localRarity": 1,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3182,18 +3198,6 @@
       "localId": 910095,
       "localName": "Snowblast",
       "localApiName": "ARAMMayhemSnowblast",
-      "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": 2082,
-      "runtimeName": "Our Healing",
-      "runtimeApiName": "Equilibrium",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Equillibrium_small.png",
-      "localId": 910083,
-      "localName": "Our Healing",
-      "localApiName": "ARAMMayhemOurHealing",
       "localRarity": 1,
       "fallbackAlreadyWorks": false
     },
@@ -3255,18 +3259,6 @@
       "localName": "Endless Decimation",
       "localApiName": "ARAMMayhemEndlessDecimation",
       "localRarity": 1,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": 2095,
-      "runtimeName": "High Roller",
-      "runtimeApiName": "ARAM_HighRoller",
-      "runtimeRarity": "kPrismatic",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/HighRoller_small.png",
-      "localId": 900004,
-      "localName": "High Roller",
-      "localApiName": "MayhemHighRoller",
-      "localRarity": 2,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3390,6 +3382,18 @@
       "fallbackAlreadyWorks": false
     },
     {
+      "runtimeId": 2116,
+      "runtimeName": "Pursuit of Power",
+      "runtimeApiName": "SpecializedEmpowerment",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Marksmage_small.png",
+      "localId": 2116,
+      "localName": "Pursuit of Power",
+      "localApiName": "ARAMMayhemPursuitOfPower",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 2119,
       "runtimeName": "Overextender",
       "runtimeApiName": "Overextender",
@@ -3435,18 +3439,6 @@
       "localName": "Forged By The Master",
       "localApiName": "ARAMMayhemForgedByTheMaster",
       "localRarity": 0,
-      "fallbackAlreadyWorks": false
-    },
-    {
-      "runtimeId": 2128,
-      "runtimeName": "Combusting Interest",
-      "runtimeApiName": "BloodMoneyBurn",
-      "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BloodMoney2_small.png",
-      "localId": 910029,
-      "localName": "Combusting Interest",
-      "localApiName": "ARAMMayhemCombustingInterest",
-      "localRarity": 1,
       "fallbackAlreadyWorks": false
     },
     {
@@ -3534,6 +3526,18 @@
       "fallbackAlreadyWorks": false
     },
     {
+      "runtimeId": 2137,
+      "runtimeName": "Pat On The Back",
+      "runtimeApiName": "PatOnTheBack",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/PatOnTheBack_small.png",
+      "localId": 2137,
+      "localName": "Pat On The Back",
+      "localApiName": "ARAMMayhemPatOnTheBack",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
       "runtimeId": 2138,
       "runtimeName": "Adaptive Ward",
       "runtimeApiName": "WardingWeapon",
@@ -3558,14 +3562,494 @@
       "fallbackAlreadyWorks": false
     },
     {
-      "runtimeId": 33307,
-      "runtimeName": "Glass Cannon",
-      "runtimeApiName": "Special_GlassCannon",
+      "runtimeId": 2140,
+      "runtimeName": "Upgrade Ravenous Hydra",
+      "runtimeApiName": "Upgrade_Ravenous",
       "runtimeRarity": "kGold",
-      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Strawberry/UpgradeSelection/Icons/Blessing_Augment/GlassCannon_Large.png",
-      "localId": 910098,
-      "localName": "Glass Cannon",
-      "localApiName": "ARAMMayhemGlassCannon",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeSheen_small.png",
+      "localId": 2140,
+      "localName": "Upgrade Ravenous Hydra",
+      "localApiName": "ARAMMayhemUpgradeRavenousHydra",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 2141,
+      "runtimeName": "Ultra Hydra",
+      "runtimeApiName": "Quest_UltraHydra",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UltraHydra_small.png",
+      "localId": 2141,
+      "localName": "Ultra Hydra",
+      "localApiName": "ARAMMayhemUltraHydra",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 2143,
+      "runtimeName": "Upgrade Sundered Sky",
+      "runtimeApiName": "Upgrade_SunderedSky",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeIE_small.png",
+      "localId": 2143,
+      "localName": "Upgrade Sundered Sky",
+      "localApiName": "ARAMMayhemUpgradeSunderedSky",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 2144,
+      "runtimeName": "Bolstered",
+      "runtimeApiName": "DoubleDefense",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Silver.png",
+      "localId": 2144,
+      "localName": "Bolstered",
+      "localApiName": "ARAMMayhemBolstered",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 2157,
+      "runtimeName": "Upgrade Death's Dance",
+      "runtimeApiName": "Upgrade_DeathDance",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeDeathDance_small.png",
+      "localId": 2157,
+      "localName": "Upgrade Death's Dance",
+      "localApiName": "ARAMMayhemUpgradeDeathsDance",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3004,
+      "runtimeName": "Get Jinxed",
+      "runtimeApiName": "GetJinxed",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Overextender_small.png",
+      "localId": 3004,
+      "localName": "Get Jinxed",
+      "localApiName": "ARAMMayhemGetJinxed",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3016,
+      "runtimeName": "Third Times the Harm",
+      "runtimeApiName": "ThirdTimesTheHarm",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SilverBeats_small.png",
+      "localId": 3016,
+      "localName": "Third Times the Harm",
+      "localApiName": "ARAMMayhemThirdTimesTheHarm",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3018,
+      "runtimeName": "Big Shot",
+      "runtimeApiName": "BigShot",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BigShot_small.png",
+      "localId": 3018,
+      "localName": "Big Shot",
+      "localApiName": "ARAMMayhemBigShot",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3025,
+      "runtimeName": "Sound Barrier",
+      "runtimeApiName": "Sound_Barrier",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SwiftandSafe_small.png",
+      "localId": 3025,
+      "localName": "Sound Barrier",
+      "localApiName": "ARAMMayhemSoundBarrier",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3036,
+      "runtimeName": "Double Time",
+      "runtimeApiName": "DoubleTime",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/ARAM_PhenomenalEvil_large.png",
+      "localId": 3036,
+      "localName": "Double Time",
+      "localApiName": "ARAMMayhemDoubleTime",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3039,
+      "runtimeName": "Salvation",
+      "runtimeApiName": "Salvation",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Salvation_small.png",
+      "localId": 3039,
+      "localName": "Salvation",
+      "localApiName": "ARAMMayhemSalvation",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3048,
+      "runtimeName": "Bouncing Bees",
+      "runtimeApiName": "BouncingBees",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/KingMe_large.png",
+      "localId": 3048,
+      "localName": "Bouncing Bees",
+      "localApiName": "ARAMMayhemBouncingBees",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3049,
+      "runtimeName": "Armored Impact",
+      "runtimeApiName": "ArmoredImpact",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/ArmoredImpact_small.png",
+      "localId": 3049,
+      "localName": "Armored Impact",
+      "localApiName": "ARAMMayhemArmoredImpact",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3051,
+      "runtimeName": "Blue Barrier",
+      "runtimeApiName": "BlueBarrier",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BlueNote_small.png",
+      "localId": 3051,
+      "localName": "Blue Barrier",
+      "localApiName": "ARAMMayhemBlueBarrier",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3052,
+      "runtimeName": "Hands off the Talent",
+      "runtimeApiName": "HandsOffTheTalent",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Bonk_large.png",
+      "localId": 3052,
+      "localName": "Hands off the Talent",
+      "localApiName": "ARAMMayhemHandsOffTheTalent",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3053,
+      "runtimeName": "Mosh Monster",
+      "runtimeApiName": "MoshMonster",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Prismatic.png",
+      "localId": 3053,
+      "localName": "Mosh Monster",
+      "localApiName": "ARAMMayhemMoshMonster",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3055,
+      "runtimeName": "Ultimate Recursion",
+      "runtimeApiName": "UltimateRecursion",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Zealot_large.png",
+      "localId": 3055,
+      "localName": "Ultimate Recursion",
+      "localApiName": "ARAMMayhemUltimateRecursion",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3058,
+      "runtimeName": "Tickle Monster",
+      "runtimeApiName": "TickleMonster",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/TickleMonster_small.png",
+      "localId": 3058,
+      "localName": "Tickle Monster",
+      "localApiName": "ARAMMayhemTickleMonster",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3059,
+      "runtimeName": "No Mana, No Problem",
+      "runtimeApiName": "NoManaNoProblem",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/NoManaNoProblem_small.png",
+      "localId": 3059,
+      "localName": "No Mana, No Problem",
+      "localApiName": "ARAMMayhemNoManaNoProblem",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3063,
+      "runtimeName": "Gift of the Drowned",
+      "runtimeApiName": "GiftoftheDrowned",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GiftOfTheDrowned_small.png",
+      "localId": 3063,
+      "localName": "Gift of the Drowned",
+      "localApiName": "ARAMMayhemGiftOfTheDrowned",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3071,
+      "runtimeName": "Brass Blast",
+      "runtimeApiName": "BrassBlast",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Camo_large.png",
+      "localId": 3071,
+      "localName": "Brass Blast",
+      "localApiName": "ARAMMayhemBrassBlast",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3075,
+      "runtimeName": "Recoil",
+      "runtimeApiName": "Recoil",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Gold.png",
+      "localId": 3075,
+      "localName": "Recoil",
+      "localApiName": "ARAMMayhemRecoil",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3078,
+      "runtimeName": "The Boom and the Bass",
+      "runtimeApiName": "TheBoomAndTheBass",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/TheBoomAndTheBass_small.png",
+      "localId": 3078,
+      "localName": "The Boom and the Bass",
+      "localApiName": "ARAMMayhemTheBoomAndTheBass",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3079,
+      "runtimeName": "Totentanz",
+      "runtimeApiName": "Totentanz",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Totentanz_small.png",
+      "localId": 3079,
+      "localName": "Totentanz",
+      "localApiName": "ARAMMayhemTotentanz",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3081,
+      "runtimeName": "Weapon of Destiny",
+      "runtimeApiName": "WeaponOfDestiny",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/ProtagonistsSignatureWeapon_small.png",
+      "localId": 3081,
+      "localName": "Weapon of Destiny",
+      "localApiName": "ARAMMayhemWeaponOfDestiny",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3085,
+      "runtimeName": "Flow of Spirit",
+      "runtimeApiName": "FlowOfSpirit",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Gold.png",
+      "localId": 3085,
+      "localName": "Flow of Spirit",
+      "localApiName": "ARAMMayhemFlowOfSpirit",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3086,
+      "runtimeName": "BEES!!!",
+      "runtimeApiName": "BEES",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Bees_small.png",
+      "localId": 3086,
+      "localName": "BEES!!!",
+      "localApiName": "ARAMMayhemBees",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3088,
+      "runtimeName": "CRIMSON COBALT",
+      "runtimeApiName": "CrimsonCobalt",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Gold.png",
+      "localId": 3088,
+      "localName": "CRIMSON COBALT",
+      "localApiName": "ARAMMayhemCrimsonCobalt",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3094,
+      "runtimeName": "Lich Brain",
+      "runtimeApiName": "LichBrain",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/LichBrain_small.png",
+      "localId": 3094,
+      "localName": "Lich Brain",
+      "localApiName": "ARAMMayhemLichBrain",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3116,
+      "runtimeName": "Take'em Down Down Down",
+      "runtimeApiName": "TakeemDownDownDown",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/TakeEmDownDownDown_small.png",
+      "localId": 3116,
+      "localName": "Take'em Down Down Down",
+      "localApiName": "ARAMMayhemTakeEmDownDownDown",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3118,
+      "runtimeName": "Arcane Axiom",
+      "runtimeApiName": "ArcaneAxiom",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/ArcaneAxiom_small.png",
+      "localId": 3118,
+      "localName": "Arcane Axiom",
+      "localApiName": "ARAMMayhemArcaneAxiom",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3121,
+      "runtimeName": "Fruitify",
+      "runtimeApiName": "Fruitify",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/FruitSeason_small.png",
+      "localId": 3121,
+      "localName": "Fruitify",
+      "localApiName": "ARAMMayhemFruitify",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3123,
+      "runtimeName": "Jeweled Bracelet",
+      "runtimeApiName": "JeweledBracelet",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Gold.png",
+      "localId": 3123,
+      "localName": "Jeweled Bracelet",
+      "localApiName": "ARAMMayhemJeweledBracelet",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3129,
+      "runtimeName": "Sap Magic",
+      "runtimeApiName": "SapMagic",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/MercysStrike_small.png",
+      "localId": 3129,
+      "localName": "Sap Magic",
+      "localApiName": "ARAMMayhemSapMagic",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3131,
+      "runtimeName": "Still Here",
+      "runtimeApiName": "StillHere",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/StillHere_small.png",
+      "localId": 3131,
+      "localName": "Still Here",
+      "localApiName": "ARAMMayhemStillHere",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3132,
+      "runtimeName": "Heavy Is The Crown",
+      "runtimeApiName": "HeavyIsTheCrown",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/HeavyIsTheCrown_small.png",
+      "localId": 3132,
+      "localName": "Heavy Is The Crown",
+      "localApiName": "ARAMMayhemHeavyIsTheCrown",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3134,
+      "runtimeName": "Lonely Warrior",
+      "runtimeApiName": "LonelyWarrior",
+      "runtimeRarity": "kSilver",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Adamant_small.png",
+      "localId": 3134,
+      "localName": "Lonely Warrior",
+      "localApiName": "ARAMMayhemLonelyWarrior",
+      "localRarity": 0,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3149,
+      "runtimeName": "Group Hug",
+      "runtimeApiName": "GroupHug",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/EmpyreamPromise_small.png",
+      "localId": 3149,
+      "localName": "Group Hug",
+      "localApiName": "ARAMMayhemGroupHug",
+      "localRarity": 2,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3150,
+      "runtimeName": "Upgrade Stormsurge",
+      "runtimeApiName": "Upgrade_Stormsurge",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeHubris_small.png",
+      "localId": 3150,
+      "localName": "Upgrade Stormsurge",
+      "localApiName": "ARAMMayhemUpgradeStormsurge",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 3163,
+      "runtimeName": "Enchanting Butterflies",
+      "runtimeApiName": "EnchantingButterflies",
+      "runtimeRarity": "kGold",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/EnchantedButtery_small.png",
+      "localId": 3163,
+      "localName": "Enchanting Butterflies",
+      "localApiName": "ARAMMayhemEnchantingButterflies",
+      "localRarity": 1,
+      "fallbackAlreadyWorks": true
+    },
+    {
+      "runtimeId": 12317,
+      "runtimeName": "Pandora's Box",
+      "runtimeApiName": "ARAM_PandorasBox",
+      "runtimeRarity": "kPrismatic",
+      "runtimeIconPath": "/lol-game-data/assets/ASSETS/UX/Cherry/Augments/Icons/Pandoras_Box_Small.png",
+      "localId": 910080,
+      "localName": "PandorasBox",
+      "localApiName": "ARAMMayhemPandorasbox",
       "localRarity": 2,
       "fallbackAlreadyWorks": false
     }
@@ -3579,18 +4063,25 @@
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Quest_VoidImmolation_small.png"
     },
     {
+      "runtimeId": 396,
+      "name": "Death Dealer",
+      "apiName": "DeathDealer",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Death_Dealer_small.png"
+    },
+    {
+      "runtimeId": 397,
+      "name": "Got That Dog In Em",
+      "apiName": "GotThatDogInEm",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Got_that_Dog_small.png"
+    },
+    {
       "runtimeId": 1032,
       "name": "Executioner",
       "apiName": "ARAM_Executioner",
       "rarity": "kGold",
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SpiritualPurification_small.png"
-    },
-    {
-      "runtimeId": 1034,
-      "name": "Veil of Warding",
-      "apiName": "VeilOfWarding",
-      "rarity": "kSilver",
-      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Poltergeist_small.png"
     },
     {
       "runtimeId": 1082,
@@ -3604,7 +4095,7 @@
       "name": "Self Destruct",
       "apiName": "ARAM_SelfDestruct",
       "rarity": "kSilver",
-      "iconPath": "/lol-game-data/assets/ASSETS/Maps/Particles/Kiwi/SelfDestruct_small.MAYHEM_New_Augments.png"
+      "iconPath": "/lol-game-data/assets/ASSETS/Maps/Particles/Kiwi/SelfDestruct_small.png"
     },
     {
       "runtimeId": 1154,
@@ -3705,11 +4196,25 @@
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Sneakerhead_small.png"
     },
     {
+      "runtimeId": 1345,
+      "name": "Spiritual Purification",
+      "apiName": "ARAM_SpiritualPurification",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SpiritualPurification_small.png"
+    },
+    {
       "runtimeId": 1346,
       "name": "Vampirism",
       "apiName": "Vampirism",
       "rarity": "kGold",
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Vampired_small.png"
+    },
+    {
+      "runtimeId": 1356,
+      "name": "Critical Missile",
+      "apiName": "CriticalMissile",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/CriticalMissile_small.png"
     },
     {
       "runtimeId": 1361,
@@ -3724,13 +4229,6 @@
       "apiName": "BabyKitty",
       "rarity": "kPrismatic",
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BabyKitty_small.png"
-    },
-    {
-      "runtimeId": 1379,
-      "name": "Upgrade Sword of Blossoming Dawn",
-      "apiName": "Upgrade_SwordOfBlossom",
-      "rarity": "kPrismatic",
-      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/UpgradeMikaelsBlessing_small.png"
     },
     {
       "runtimeId": 1391,
@@ -3810,6 +4308,13 @@
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/PoroKing_small.png"
     },
     {
+      "runtimeId": 2006,
+      "name": "Dropkick",
+      "apiName": "ARAM_Dropkick",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Dropkick_small.png"
+    },
+    {
       "runtimeId": 2007,
       "name": "Devil on Your Shoulder",
       "apiName": "ARAM_LittleDevil",
@@ -3824,11 +4329,46 @@
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/WeightedPopoffs_small.png"
     },
     {
-      "runtimeId": 2072,
-      "name": "Spell Split",
-      "apiName": "Missile_Split",
+      "runtimeId": 2024,
+      "name": "Crit 'n Cast",
+      "apiName": "CritNCast",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/CritnCast_small.png"
+    },
+    {
+      "runtimeId": 2042,
+      "name": "Hide on Bush",
+      "apiName": "BrushPower",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BrushPower_small.png"
+    },
+    {
+      "runtimeId": 2046,
+      "name": "Poro Stampede",
+      "apiName": "PoroCharge_Active",
       "rarity": "kPrismatic",
-      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Prismatic.png"
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/QuestPoroCharge_small.png"
+    },
+    {
+      "runtimeId": 2063,
+      "name": "Dimension Shift",
+      "apiName": "DimensionShift_Active",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/WhenTheDarknessComes_small.png"
+    },
+    {
+      "runtimeId": 2082,
+      "name": "Our Healing",
+      "apiName": "Equilibrium",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Equillibrium_small.png"
+    },
+    {
+      "runtimeId": 2095,
+      "name": "High Roller",
+      "apiName": "ARAM_HighRoller",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/HighRoller_small.png"
     },
     {
       "runtimeId": 2097,
@@ -3859,18 +4399,11 @@
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SkipTheBasic_small.png"
     },
     {
-      "runtimeId": 2137,
-      "name": "Pat On The Back",
-      "apiName": "PatOnTheBack",
+      "runtimeId": 2128,
+      "name": "Combusting Interest",
+      "apiName": "BloodMoneyBurn",
       "rarity": "kGold",
-      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/PatOnTheBack_small.png"
-    },
-    {
-      "runtimeId": 2144,
-      "name": "Bolstered",
-      "apiName": "DoubleDefense",
-      "rarity": "kSilver",
-      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/GenericAbilityAugmentIcon_Silver.png"
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/BloodMoney2_small.png"
     },
     {
       "runtimeId": 2148,
@@ -3878,6 +4411,146 @@
       "apiName": "DoubleStrike",
       "rarity": "kSilver",
       "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Adamant_small.png"
+    },
+    {
+      "runtimeId": 3170,
+      "name": "HEAVY",
+      "apiName": "GoH_PentakillAug_Q",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Pentakill_small.png"
+    },
+    {
+      "runtimeId": 3171,
+      "name": "POWER",
+      "apiName": "GoH_PentakillAug_W",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Pentakill_small.png"
+    },
+    {
+      "runtimeId": 3172,
+      "name": "THRASH",
+      "apiName": "GoH_PentakillAug_E",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Pentakill_small.png"
+    },
+    {
+      "runtimeId": 3173,
+      "name": "DOOM",
+      "apiName": "GoH_PentakillAug_R",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Pentakill_small.png"
+    },
+    {
+      "runtimeId": 3176,
+      "name": "   ",
+      "apiName": "GoH_PentakillAug_Generic",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Pentakill_small.png"
+    },
+    {
+      "runtimeId": 7001,
+      "name": "Upgrade: Zz'Rot Portal",
+      "apiName": "Upgrade_ZzRotPortal",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Upgrade_ZzrotPortal_Small.png"
+    },
+    {
+      "runtimeId": 7002,
+      "name": "Don't Stop Cleavin'",
+      "apiName": "DontStopCleavin",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Dont_Stop_Cleaving_Small.png"
+    },
+    {
+      "runtimeId": 7003,
+      "name": "Do or Die",
+      "apiName": "DoOrDie",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Do_or_Die_Small.png"
+    },
+    {
+      "runtimeId": 7004,
+      "name": "Drink Up",
+      "apiName": "DrinkUp",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Drink_Up_Small.png"
+    },
+    {
+      "runtimeId": 7005,
+      "name": "Haste Makes Waste",
+      "apiName": "HasteMakesWaste",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Haste_Makes_Waste_Small.png"
+    },
+    {
+      "runtimeId": 7006,
+      "name": "Stabby Stabby",
+      "apiName": "StabbyStabby",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Stabby_Stabby_Small.png"
+    },
+    {
+      "runtimeId": 7007,
+      "name": "Upgrade: Deathfire Grasp",
+      "apiName": "Upgrade_DeathFireGrasp",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Upgrade_Deathfire_Small.png"
+    },
+    {
+      "runtimeId": 7008,
+      "name": "Doran's Biggest Fan",
+      "apiName": "DoransBiggestFan",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Dorans_Fan_Small.png"
+    },
+    {
+      "runtimeId": 7009,
+      "name": "Upgrade: Innervating Locket",
+      "apiName": "Upgrade_InnervatingLocket",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Upgrade_Innervating_Small.png"
+    },
+    {
+      "runtimeId": 7010,
+      "name": "Time Warp: Heartsteel",
+      "apiName": "FutureSightHeartsteel",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/FS_Heart_Steal_Small.png"
+    },
+    {
+      "runtimeId": 7011,
+      "name": "True Eternity",
+      "apiName": "TrueEternity",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Do_or_Die_Small.png"
+    },
+    {
+      "runtimeId": 7012,
+      "name": "The Hex Core",
+      "apiName": "HexCore",
+      "rarity": "kPrismatic",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Dont_Stop_Cleaving_Small.png"
+    },
+    {
+      "runtimeId": 7013,
+      "name": "Spirit of the Jungle Main",
+      "apiName": "SpiritOfTheJungleMain",
+      "rarity": "kGold",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/SpiritualPurification_small.png"
+    },
+    {
+      "runtimeId": 7014,
+      "name": "Ragebait",
+      "apiName": "DipDiveDodge",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Stabby_Stabby_Small.png"
+    },
+    {
+      "runtimeId": 7015,
+      "name": "Summoner's Safari",
+      "apiName": "SummonersSafari",
+      "rarity": "kSilver",
+      "iconPath": "/lol-game-data/assets/ASSETS/UX/Kiwi/Augments/Icons/Stabby_Stabby_Small.png"
     }
   ]
 }

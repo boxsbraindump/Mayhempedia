@@ -90,7 +90,7 @@
       "key": "protect",
       "name": "保护流赛娜",
       "damageType": "Support",
-      "note": "放弃一部分个人爆发，围绕Q治疗、普攻补魂与保护型海克斯为队友持续续航。花晓之剑与元气弹让每次治疗和护盾都变成团队资源，适合有稳定输出核心的阵容。",
+      "note": "放弃一部分个人爆发，围绕Q治疗、普攻补魂与保护型海克斯为队友持续续航。花晓之剑与灵魄炸弹让每次治疗和护盾都变成团队资源，适合有稳定输出核心的阵容。",
       "augments": {
         "core": [
           {
@@ -101,14 +101,14 @@
           {
             "id": 910019,
             "apiName": "ARAMMayhemSpiritBomb",
-            "name": "元气弹"
+            "name": "灵魄炸弹"
           }
         ],
         "good": [
           {
             "id": 910006,
             "apiName": "ARAMMayhemToothFairy",
-            "name": "牙仙"
+            "name": "牙仙子"
           },
           {
             "id": 910022,
@@ -123,12 +123,12 @@
           {
             "id": 910012,
             "apiName": "ARAMMayhemWeeWooWeeWoo",
-            "name": "急救鸣笛"
+            "name": "喂呜喂呜"
           },
           {
             "id": 910013,
             "apiName": "ARAMMayhemSonata",
-            "name": "奏鸣曲"
+            "name": "咏叹奏鸣"
           }
         ],
         "trap": []

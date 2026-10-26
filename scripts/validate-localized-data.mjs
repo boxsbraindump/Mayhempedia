@@ -95,11 +95,19 @@ async function main() {
   const runtimeAliasPayload = await readJson(join(DATA_DIR, 'augment-runtime-aliases.json')).catch(() => ({
     aliases: {},
   }))
+  const augmentSnapshot = await readJson(join(DATA_DIR, 'arammayhem-augments.snapshot.json'))
 
   const zhLiveAugments = zhAugments.filter((augment) => augment.availability !== 'legacy')
   const enLiveAugments = enAugments.filter((augment) => augment.availability !== 'legacy')
-  if (zhLiveAugments.length !== 199) fail(errors, `zh live augment count expected 199, got ${zhLiveAugments.length}`)
-  if (enLiveAugments.length !== 199) fail(errors, `en live augment count expected 199, got ${enLiveAugments.length}`)
+  const expectedLive = augmentSnapshot.total
+  if (zhLiveAugments.length !== expectedLive) fail(errors, `zh live augment count expected ${expectedLive}, got ${zhLiveAugments.length}`)
+  if (enLiveAugments.length !== expectedLive) fail(errors, `en live augment count expected ${expectedLive}, got ${enLiveAugments.length}`)
+  // data/icons/ 不入库（见 .gitignore），这里只能校验入库的 data/assets/ 图标
+  for (const augment of zhLiveAugments.filter((entry) => entry.iconLargeLocal.startsWith('assets/'))) {
+    await access(join(DATA_DIR, augment.iconLargeLocal)).catch(() =>
+      fail(errors, `augment ${augment.id} ${augment.apiName} icon file missing: ${augment.iconLargeLocal}`),
+    )
+  }
 
   for (const augment of zhLiveAugments) {
     checkZhRecord(errors, `augment ${augment.id} ${augment.apiName}`, augment, ['name', 'desc', 'tooltip'])
@@ -134,7 +142,7 @@ async function main() {
     MayhemArchmage: { rarity: 2, icon: 'assets/mayhem-augments/archmage-prismatic.webp' },
     ARAMMayhemTerror: { rarity: 2, icon: 'assets/mayhem-augments/terror-prismatic.webp' },
     ARAMMayhemBonk: { rarity: 1, icon: 'assets/mayhem-augments/bonk-gold.webp' },
-    ARAMMayhemDoubleTap: { rarity: 1, icon: 'assets/mayhem-augments/double-tap-gold.webp' },
+    ARAMMayhemDoubleTap: { rarity: 2 }, // 26.17 起从金色改为棱彩
   }
   for (const [apiName, expected] of Object.entries(requiredAugments)) {
     const augment = zhLiveAugments.find((entry) => entry.apiName === apiName)
@@ -145,10 +153,9 @@ async function main() {
     if (augment.rarity !== expected.rarity) {
       fail(errors, `${apiName} rarity expected ${expected.rarity}, got ${augment.rarity}`)
     }
-    if (augment.iconLargeLocal !== expected.icon) {
+    if (expected.icon && augment.iconLargeLocal !== expected.icon) {
       fail(errors, `${apiName} icon expected ${expected.icon}, got ${augment.iconLargeLocal}`)
     }
-    await access(join(DATA_DIR, expected.icon)).catch(() => fail(errors, `${apiName} icon file missing: ${expected.icon}`))
   }
 
   const zhAugmentById = new Map(zhAugments.map((augment) => [augment.id, augment]))

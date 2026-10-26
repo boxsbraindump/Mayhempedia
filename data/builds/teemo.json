@@ -101,7 +101,7 @@
           {
             "id": 900002,
             "apiName": "MayhemPuristCaster",
-            "name": "纯粹主义者"
+            "name": "纯粹主义者 - 术师"
           }
         ],
         "good": [
@@ -118,7 +118,7 @@
           {
             "id": 900004,
             "apiName": "MayhemHighRoller",
-            "name": "掷筛狂人"
+            "name": "掷骰狂人"
           }
         ],
         "trap": []
@@ -224,7 +224,7 @@
           {
             "id": 910009,
             "apiName": "ARAMMayhemTwinFire",
-            "name": "双生火力"
+            "name": "双生火焰"
           }
         ],
         "trap": []

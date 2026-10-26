@@ -84,16 +84,16 @@
       "key": "tooth-fairy-reset",
       "name": "牙仙子收割贝蕾亚",
       "damageType": "AD",
-      "note": "牙仙会在爆发后掉落牙齿，捡起后永久叠穿甲。用收集者和狂妄尽早建立斩杀线，再靠E减伤与死亡之舞把每次进场变成下一轮追击；适合能稳定跟队友一起收割的对局。",
+      "note": "牙仙子会在爆发后掉落牙齿，捡起后永久叠穿甲。用收集者和狂妄尽早建立斩杀线，再靠E减伤与死亡之舞把每次进场变成下一轮追击；适合能稳定跟队友一起收割的对局。",
       "augments": {
         "core": [
-          { "id": 910006, "apiName": "ARAMMayhemToothFairy", "name": "牙仙" },
+          { "id": 910006, "apiName": "ARAMMayhemToothFairy", "name": "牙仙子" },
           { "id": 32, "apiName": "Executioner", "name": "裁决使" }
         ],
         "good": [
           { "id": 82, "apiName": "TheBrutalizer", "name": "残暴之力" },
           { "id": 195, "apiName": "GiantSlayer", "name": "巨人杀手" },
-          { "id": 910010, "apiName": "ARAMMayhemUpgradeCollector", "name": "升级收集者" }
+          { "id": 910010, "apiName": "ARAMMayhemUpgradeCollector", "name": "升级：收集者" }
         ],
         "trap": []
       },

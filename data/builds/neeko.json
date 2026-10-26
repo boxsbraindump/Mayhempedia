@@ -100,13 +100,13 @@
       "key": "q-quest",
       "name": "Q任务多重妮蔻",
       "damageType": "AP",
-      "note": "把急速追猎、多重射击与回声施法都选给Q。先用Q稳定完成任务，后续靠更短CD和追加弹体反复压低血线；这条路线的重点是远距离消耗，不需要强行伪装开R。",
+      "note": "把急速之追求、多重射击与回响施放都选给Q。先用Q稳定完成任务，后续靠更短CD和追加弹体反复压低血线；这条路线的重点是远距离消耗，不需要强行伪装开R。",
       "augments": {
         "core": [
           {
             "id": 910026,
             "apiName": "ARAMMayhemPursuitOfHaste",
-            "name": "急速追猎"
+            "name": "急速之追求"
           },
           {
             "id": 910077,
@@ -118,12 +118,12 @@
           {
             "id": 910051,
             "apiName": "ARAMMayhemEchoCast",
-            "name": "回声施法"
+            "name": "回响施放"
           },
           {
             "id": 910069,
             "apiName": "ARAMMayhemSpellSplit",
-            "name": "法术分裂"
+            "name": "咒语裂变"
           },
           {
             "id": 133,

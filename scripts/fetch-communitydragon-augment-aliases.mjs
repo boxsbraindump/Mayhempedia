@@ -5,13 +5,12 @@ const DATA_DIR = join(process.cwd(), 'data')
 const SOURCE =
   'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/cherry-augments.json'
 
+/** 只留字母数字比较：MountainSoul / Mountain Soul、PandorasBox / Pandora's Box 视为同名 */
 function normalizeName(value = '') {
   return String(value)
     .toLowerCase()
-    .replace(/['’]/g, '')
     .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
+    .replace(/[^a-z0-9]+/g, '')
 }
 
 async function readJson(file) {

@@ -184,6 +184,8 @@ interface RuntimeAugmentAliasPayload {
 }
 
 let runtimeAugmentIdAliases: Record<number, number> = {}
+/** 已移出当前海克斯池的 id（availability: 'legacy'）。旧流派/组合里引用到的这些海克斯不再推荐给玩家。 */
+let legacyAugmentIds = new Set<number>()
 
 function normalizeAliasPayload(payload: RuntimeAugmentAliasPayload): Record<number, number> {
   return Object.fromEntries(
@@ -252,6 +254,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     fetch(`${root}/augment-combos.json`).then((r) => r.json() as Promise<AugmentCombo[]>),
   ])
   runtimeAugmentIdAliases = normalizeAliasPayload(augmentAliasPayload)
+  legacyAugmentIds = new Set(aug.filter((a) => a.availability === 'legacy').map((a) => a.id))
   return {
     augById: new Map(aug.map((a) => [a.id, a])),
     itemById: new Map(items.filter(isSupportedPlayerItem).map((i) => [i.id, i])),
@@ -260,7 +263,7 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
     altChampionById: new Map(altChampions.map((c) => [c.id, c])),
     runtimeAugmentAliases: runtimeAugmentIdAliases,
     augments: aug.filter((a) => a.availability !== 'legacy'),
-    augmentCombos,
+    augmentCombos: augmentCombos.filter((combo) => !(combo.augmentIds ?? []).some((id) => legacyAugmentIds.has(id))),
     champions,
     buildIndex,
     aramBalance,
@@ -272,7 +275,15 @@ export async function loadCore(lang: 'zh' | 'en' = 'zh'): Promise<Core> {
 
 export async function loadBuild(file: string, lang: 'zh' | 'en' = 'zh'): Promise<Build> {
   const root = lang === 'en' ? '/en' : ''
-  return fetch(`${root}/builds/${file}`).then((r) => r.json())
+  const build: Build = await fetch(`${root}/builds/${file}`).then((r) => r.json())
+  const live = (refs: Ref[] = []) => refs.filter((ref) => !legacyAugmentIds.has(ref.id))
+  return {
+    ...build,
+    archetypes: build.archetypes.map((arch) => ({
+      ...arch,
+      augments: { core: live(arch.augments.core), good: live(arch.augments.good), trap: live(arch.augments.trap) },
+    })),
+  }
 }
 
 const MANUAL_RUNTIME_AUGMENT_ID_ALIASES: Record<number, number> = {

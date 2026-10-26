@@ -1,9 +1,9 @@
-// 抓取 & 归一化 海克斯增强 + 装备 数据 → data/*.json
-//   增强源：Community Dragon 斗魂竞技场(Cherry)增强库（大乱斗复用这套）
+// 抓取 & 归一化 装备 + 英雄 数据 → data/*.json
 //   装备源：Community Dragon items.json
+//   海克斯不在这里抓：海克斯大乱斗的海克斯池由 scripts/fetch-arammayhem-augments.mjs 负责（npm run data:augments）
 // 运行：node scripts/fetch-data.mjs [lang]   (lang 省略默认 zh_cn，写 data/；传 default 写 data/en/)
 //
-// 产出：data/augments.json、data/items.json（含解析好的图标 URL）
+// 产出：data/items.json、data/champions.json（含解析好的图标 URL）
 // 图片下载在 scripts/download-icons.mjs（本脚本只存 URL 并抽样验证）
 
 import { mkdir, writeFile } from 'node:fs/promises'
@@ -19,17 +19,7 @@ const LANG = process.argv[2] || 'zh_cn' // 语言：'default'(英文) | 'zh_cn' 
 const DATA_DIR = LANG === 'zh_cn' ? join(__dirname, '..', 'data') : join(__dirname, '..', 'data', 'en')
 const GD = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global'
 const CDRAGON_ICON = `${GD}/default` // 装备图标始终在 default 分支（不分语言）
-const GAME = 'https://raw.communitydragon.org/latest/game' // 增强图标在这个分支下
-// ⚠️ arena(增强)这个端点的英文 locale 代号是 en_us，不是 default——跟 items/champion-summary 那两个
-// GD 端点不一致(它们用 default)。实测 default.json 在这个端点上是 404，混用会直接抓取失败。
-const AUG_LANG = LANG === 'default' ? 'en_us' : LANG
-const AUG_URL = `https://raw.communitydragon.org/latest/cdragon/arena/${AUG_LANG}.json`
 const ITEMS_URL = `${GD}/${LANG}/v1/items.json`
-
-// 斗魂竞技场稀有度（4 档待进一步确认，见下方 note）
-const RARITY_ZH = { 0: '银 Silver', 1: '金 Gold', 2: '棱彩 Prismatic' }
-const RARITY_EN = { 0: 'Silver', 1: 'Gold', 2: 'Prismatic' }
-const RARITY = LANG === 'default' ? RARITY_EN : RARITY_ZH
 
 /** 去掉富文本标签 → 纯文本 */
 function stripTags(s) {
@@ -38,20 +28,6 @@ function stripTags(s) {
     .replace(/<[^>]+>/g, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
-}
-
-/** 用 dataValues 对 @Key@ / @Key*100@ / @Key*N@ 做轻量替换（取第 1 档，近似展示；精确值见 dataValues） */
-function substitute(text, dataValues = {}) {
-  if (!text) return text
-  return text.replace(/@(\w+)(?:\*([\d.]+))?@/g, (m, key, mult) => {
-    const arr = dataValues[key]
-    if (!arr) return m // 替换不了就保留原占位符
-    let v = Array.isArray(arr) ? arr[0] : arr
-    if (mult) v *= parseFloat(mult)
-    // 收拾浮点误差
-    v = Math.round(v * 1000) / 1000
-    return String(v)
-  })
 }
 
 /** 装备 iconPath("/lol-game-data/assets/ASSETS/...") → CDN URL，多候选自动试 */
@@ -76,29 +52,6 @@ async function firstWorking(urls) {
 
 async function main() {
   await mkdir(DATA_DIR, { recursive: true })
-
-  // ---------- 增强 ----------
-  console.log('拉取增强…')
-  const augRaw = (await (await fetch(AUG_URL)).json()).augments
-  const augments = augRaw
-    .filter((a) => a.apiName !== 'Augment404' && a.id !== 404) // 开发者占位彩蛋，剔除
-    .filter((a) => a.rarity !== 4)
-    .map((a) => ({
-      id: a.id,
-      apiName: a.apiName,
-      name: a.name,
-      rarity: a.rarity,
-      rarityLabel: RARITY[a.rarity] ?? String(a.rarity),
-      desc: stripTags(substitute(a.desc, a.dataValues)),
-      tooltip: stripTags(substitute(a.tooltip, a.dataValues)),
-      descRaw: a.desc,
-      dataValues: a.dataValues,
-      iconLargeUrl: `${GAME}/${a.iconLarge}`,
-      iconSmallUrl: `${GAME}/${a.iconSmall}`,
-      iconLargeLocal: `icons/augments/${a.apiName}_large.png`,
-      iconSmallLocal: `icons/augments/${a.apiName}_small.png`,
-    }))
-    .sort((x, y) => x.rarity - y.rarity || x.name.localeCompare(y.name))
 
   // ---------- 装备 ----------
   console.log('拉取装备…')
@@ -160,29 +113,18 @@ async function main() {
     })
     .sort((a, b) => a.pinyin.localeCompare(b.pinyin))
 
-  await writeFile(join(DATA_DIR, 'augments.json'), JSON.stringify(augments, null, 2))
   await writeFile(join(DATA_DIR, 'items.json'), JSON.stringify(items, null, 2))
   await writeFile(join(DATA_DIR, 'champions.json'), JSON.stringify(champions, null, 2))
 
   // ---------- 汇报 + 抽样验证 ----------
-  const rar = {}
-  for (const a of augments) rar[a.rarityLabel] = (rar[a.rarityLabel] || 0) + 1
   console.log('\n✅ 完成')
-  console.log(`增强: ${augments.length} 个`, rar)
   console.log(`装备: ${items.length} 件（图标 URL 格式候选#${pat} 生效）`)
   const kaisa = champions.find((c) => c.id === 145)
   console.log(`英雄: ${champions.length} 个（样例 卡莎: pinyin=${kaisa?.pinyin} initials=${kaisa?.initials}）`)
 
-  const sampleAug = augments.find((a) => a.name === 'Goliath') ?? augments[0]
-  const augIcon = await fetch(sampleAug.iconLargeUrl, { method: 'HEAD' })
   const itemIcon = await fetch(items[0].iconUrl, { method: 'HEAD' })
   console.log(`\n抽样图标可达性:`)
-  console.log(`  增强 ${sampleAug.name}: HTTP ${augIcon.status}  ${sampleAug.iconLargeUrl}`)
   console.log(`  装备 ${items[0].name}: HTTP ${itemIcon.status}  ${items[0].iconUrl}`)
-
-  console.log(`\n增强样例:`)
-  console.log(`  [${sampleAug.rarityLabel}] ${sampleAug.name} — ${sampleAug.desc.replace(/\n/g, ' ')}`)
-  console.log('\nnote: rarity=4 special/meta entries are excluded from the selectable ARAM Mayhem augment pool.')
 }
 
 main().catch((e) => {

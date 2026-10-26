@@ -1,21 +1,30 @@
 # 数据说明（海克斯增强 + 装备）
 
-overlay 的数据地基。全部来自 **Community Dragon**（社区维护、比官方 Data Dragon 全）。
+overlay 的数据地基。装备/英雄来自 **Community Dragon**（社区维护、比官方 Data Dragon 全）；
+海克斯池来自 **arammayhem.com**（当前版本目录 + 中英文详情页 + CC BY 4.0 开放数据，署名 "Data: arammayhem.com"），
+新海克斯的 id 和官方中文名用 Community Dragon 的客户端数据校对。
 **语言 = 中文 `zh_cn`**（在 `scripts/fetch-data.mjs` 顶部 `LANG` 常量切换；图标与语言无关）。
 
 ## 重新生成
 
 ```bash
-npm run data          # 抓取 JSON + 下载图标
-npm run data:fetch    # 只重抓 JSON
-npm run data:icons    # 只重下图标（读现有 JSON）
+npm run data           # 全部重抓 + 下载图标
+npm run data:fetch     # 只重抓装备/英雄 JSON
+npm run data:augments  # 只重抓海克斯池（arammayhem.com），之后跑 npm run data:augment-aliases
+npm run data:icons     # 只重下图标（读现有 JSON）
 ```
+
+海克斯抓取完会打印新增/移出/稀有度变化/中文名变化。改了中文名后流派文件里的引用名会漂移，
+`npm run validate` 会提示，按提示改 `data/builds/` 里的 `name` 即可。
+⚠️ 不要整体重跑 `scripts/generate-en-builds.mjs`（`npm run data` 末尾也会跑它）：0.1.2 起有 11 条英文流派是手写的，会被模板覆盖。
 
 ## 产物
 
 | 文件 | 内容 |
 |---|---|
-| `augments.json` | **199** 个 arammayhem.com live 海克斯增强 + 隐藏 legacy 兼容项 |
+| `augments.json` | **234** 个 26.21 现役海克斯（`availability: "live"`）+ 隐藏 legacy 兼容项 |
+| `arammayhem-augments.snapshot.json` | 抓取快照：每个现役海克斯的 slug、id 来源、上线版本、选取率、arammayhem 实战指南 |
+| `augment-runtime-aliases.json` | Riot 运行时海克斯 id → 本地 id（对局记录用） |
 | `items.json` | **706** 件装备 |
 | `icons/augments/{apiName}_large.png` / `_small.png` | 增强图标（450 张，git 忽略，可重下） |
 | `icons/items/{id}.png` | 装备图标（706 张，git 忽略，可重下） |
@@ -63,7 +72,12 @@ npm run data:icons    # 只重下图标（读现有 JSON）
 
 - **占位符替换取第 1 档近似值**：`desc`/`tooltip` 里的 `@Key@` 用 `dataValues[Key][0]` 替换，方便展示；**精确逐档数值以 `dataValues` 为准**。个别档位第 1 档为 0 时会显示 0（如"冰寒"），属已知近似。
 - **部分增强有残留占位符**：这些用 `@spell.X:Y@` / `{{模板}}` 引用技能计算值，静态 `dataValues` 拿不到 → `desc` 里保留原 token（如"@spell.Augment_ShadowRunner:BuffDuration@秒"）。`descRaw` 始终保留；做 UI/curate 时再处理。
-- **可见海克斯池以 arammayhem.com/augments 为准**：`availability: "live"` 的 199 个会进入增强图鉴、选择器和推荐器。
-- **隐藏 legacy 兼容项**：`availability: "legacy"` 只用于解析旧官方路线里已经引用的历史 ID，不会展示给玩家选择。
+- **可见海克斯池以 arammayhem.com/augments 的当前版本目录为准**：`availability: "live"` 的会进入增强图鉴、选择器和推荐器。
+  另有两张手工维护的补充表（见 `scripts/fetch-arammayhem-augments.mjs`）：`EXTRA_LIVE_SLUGS` 是 arammayhem 标成下架、
+  但 26.21 实战里仍出现的；`CDRAGON_ONLY_LIVE` 是 arammayhem 完全没收录的（名字/图标取 Community Dragon，部分没有描述）。
+  这两张表在 arammayhem 补齐后应删掉对应条目（脚本会提示）。
+- **隐藏 legacy 兼容项**：`availability: "legacy"` 只用于解析旧官方路线/旧对局里引用的历史 ID，不展示给玩家选择；
+  流派和组合里引用到的 legacy 海克斯在加载时会被过滤掉（`src/renderer/data.ts`）。
+- **新海克斯的 id = Riot 运行时 id**（如 BEES!!! = 3086），对局记录可以直接对上；注意它们和装备 id 处于同一数值区间（如 3036），按名字批量改数据时别混。
 - **图标 CDN 分支不同**：增强图标在 `.../latest/game/`，装备图标在 `.../latest/plugins/rcp-be-lol-game-data/global/default/`（图标与语言无关，始终 `default`）。
 - **切语言**：改 `scripts/fetch-data.mjs` 顶部 `LANG`（`default`=英文 / `zh_cn` / `ko_kr` …）重跑 `npm run data:fetch` 即可，图标不用重下。

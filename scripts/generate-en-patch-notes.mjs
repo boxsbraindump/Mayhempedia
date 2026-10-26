@@ -24,7 +24,7 @@ async function main() {
 
   const enPatchNotes = {
     patch: patchNotes.patch,
-    theme: patchNotes.theme,
+    theme: patchNotes.themeEn ?? patchNotes.theme,
     releaseDate: patchNotes.releaseDate,
     sourceUrl: patchNotes.sourceUrl,
     championChanges: patchNotes.championChanges.map((change) => ({

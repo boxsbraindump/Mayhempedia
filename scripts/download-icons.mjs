@@ -1,6 +1,6 @@
-// 下载所有增强 + 装备图标到 data/icons/，并把本地相对路径写回 JSON。
+// 下载所有增强 + 装备 + 英雄图标到 data/icons/，并把装备/英雄的本地相对路径写回 JSON。
 // 运行：node scripts/download-icons.mjs
-//   增强: data/icons/augments/{apiName}_large.png / _small.png
+//   增强: 按 augments.json 里已有的 iconLargeLocal/iconSmallLocal 补下载（不改写路径）
 //   装备: data/icons/items/{id}.png
 
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
@@ -55,16 +55,17 @@ async function main() {
   const champions = JSON.parse(await readFile(join(DATA_DIR, 'champions.json')))
 
   // ---- 增强图标 ----
-  console.log(`下载增强图标 (${augments.length} × 2)…`)
+  // 本地路径由 fetch-arammayhem-augments.mjs 决定（arammayhem / CommunityDragon / 入库的 data/assets/），这里只按原路径补下载
   const augTasks = []
   for (const a of augments) {
-    const large = `augments/${a.apiName}_large.png`
-    const small = `augments/${a.apiName}_small.png`
-    a.iconLargeLocal = `icons/${large}`
-    a.iconSmallLocal = `icons/${small}`
-    augTasks.push(() => download(a.iconLargeUrl, join(ICONS, large)).then((r) => ({ ...r, who: a.name + ' (large)' })))
-    augTasks.push(() => download(a.iconSmallUrl, join(ICONS, small)).then((r) => ({ ...r, who: a.name + ' (small)' })))
+    const targets = [[a.iconLargeLocal, a.iconLargeUrl]]
+    if (a.iconSmallLocal !== a.iconLargeLocal) targets.push([a.iconSmallLocal, a.iconSmallUrl])
+    for (const [local, url] of targets) {
+      if (!local?.startsWith('icons/') || !url) continue
+      augTasks.push(() => download(url, join(DATA_DIR, local)).then((r) => ({ ...r, who: `${a.name} (${local})` })))
+    }
   }
+  console.log(`下载增强图标 (${augTasks.length})…`)
   const augRes = await pool(augTasks, CONCURRENCY, progress)
 
   // ---- 装备图标 ----
@@ -87,8 +88,7 @@ async function main() {
   }
   const champRes = await pool(champTasks, CONCURRENCY, progress)
 
-  // ---- 回写本地路径 ----
-  await writeFile(join(DATA_DIR, 'augments.json'), JSON.stringify(augments, null, 2))
+  // ---- 回写本地路径（增强的路径不改，见上） ----
   await writeFile(join(DATA_DIR, 'items.json'), JSON.stringify(items, null, 2))
   await writeFile(join(DATA_DIR, 'champions.json'), JSON.stringify(champions, null, 2))
 
