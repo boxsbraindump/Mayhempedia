@@ -19,6 +19,9 @@ const ICON_DIR = join(DATA_DIR, 'icons', 'augments')
 const ROOT = 'https://arammayhem.com'
 const CATALOG_URL = `${ROOT}/augments/`
 const OPEN_DATA_URL = `${ROOT}/data/v1/latest/augments.json`
+// 选海克斯 overlay 读卡片名字时用的识别别名：玩家客户端可能是台服繁体或马服简体，译名和国服不同。
+// 这些名字只写进 data/augment-name-aliases.json，界面上始终显示国服译名。
+const RECOGNITION_LOCALES = ['default', 'zh_cn', 'zh_tw', 'zh_my']
 const CDRAGON_AUGMENTS_URL = (locale) =>
   `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/${locale}/v1/cherry-augments.json`
 const CONCURRENCY = 4
@@ -286,6 +289,8 @@ async function main() {
     return null
   }
   await mkdir(join(ICON_DIR, 'official'), { recursive: true })
+  /** 本地 id → 这个海克斯在 Riot 客户端数据里的条目（识别别名表要用） */
+  const riotEntriesById = new Map()
 
   const catalogSlugs = new Set(catalog.rows.map((row) => row.slug))
   const slugs = [...catalog.rows.map((row) => row.slug), ...EXTRA_LIVE_SLUGS.filter((slug) => !catalogSlugs.has(slug))]
@@ -345,6 +350,7 @@ async function main() {
     const apiName = previous?.apiName ?? apiNameFromSlug(slug)
     // 稀有度以 Riot 客户端数据为准（版本里改过稀有度的它都跟上了），和 arammayhem 不一致时打印出来
     const riot = riotEntries(id, enPage.name)
+    riotEntriesById.set(id, riot)
     const riotRarities = [...new Set(riot.filter((entry) => entry.id >= 1000).map((entry) => RARITY_BY_CDRAGON[entry.rarity]))]
     const rarity = riotRarities.length === 1 ? riotRarities[0] : siteRarity
     if (rarity !== siteRarity) report.rarityFromRiot.push(`${enPage.name}: arammayhem ${RARITY_NAME[siteRarity]} → Riot ${RARITY_NAME[rarity]}`)
@@ -453,7 +459,8 @@ async function main() {
     const apiName = previous?.apiName ?? apiNameFromSlug(slug)
     const smallUrl = `${CDRAGON_ICON_ROOT}${runtime.augmentSmallIconPath.toLowerCase().replace('/lol-game-data/assets/assets/', '/assets/')}`
     const smallLocal = `icons/augments/${apiName}_cdragon.png`
-    const icon = (await coloredIcon(riotEntries(id, runtime.nameTRA), rarity, [
+    riotEntriesById.set(id, riotEntries(id, runtime.nameTRA))
+    const icon = (await coloredIcon(riotEntriesById.get(id), rarity, [
       { local: previous?.iconLargeLocal, url: previous?.iconLargeUrl },
       { local: smallLocal, url: smallUrl },
     ])) ?? { local: smallLocal, url: smallUrl, kind: 'white' }
@@ -564,6 +571,34 @@ async function main() {
       2,
     ) + '\n',
   )
+
+  // 识别别名表：每个现役海克斯在各语言客户端卡片上显示的名字（只给 overlay 认卡用，不在界面显示）
+  const localeNames = Object.fromEntries(
+    await Promise.all(
+      RECOGNITION_LOCALES.map(async (locale) => [
+        locale,
+        new Map(JSON.parse(await fetchText(CDRAGON_AUGMENTS_URL(locale))).map((augment) => [augment.id, augment.nameTRA])),
+      ]),
+    ),
+  )
+  const aliasLines = []
+  const missingAliases = []
+  for (const augment of [...en].sort((a, b) => a.id - b.id)) {
+    const entry = [...(riotEntriesById.get(augment.id) ?? [])].sort((a, b) => b.id - a.id)[0]
+    if (!entry) {
+      missingAliases.push(augment.name)
+      continue
+    }
+    const names = Object.fromEntries(
+      RECOGNITION_LOCALES.map((locale) => [locale === 'default' ? 'en_us' : locale, localeNames[locale].get(entry.id) ?? null]),
+    )
+    aliasLines.push(`    ${JSON.stringify(String(augment.id))}: ${JSON.stringify(names)}`)
+  }
+  await writeFile(
+    join(DATA_DIR, 'augment-name-aliases.json'),
+    `{\n  "note": "选海克斯 overlay 识别卡片名字用的各语言客户端名字，界面不显示。来源：CommunityDragon cherry-augments.json",\n  "patch": ${JSON.stringify(catalog.patch)},\n  "augments": {\n${aliasLines.join(',\n')}\n  }\n}\n`,
+  )
+  if (missingAliases.length) console.log(`识别别名缺失 ${missingAliases.length}: ${missingAliases.join(' | ')}`)
 
   console.log(`\n${catalog.patch}: ${snapshot.length} 个现役海克斯，${legacyEn.length} 个隐藏 legacy`)
   console.log(`新增 ${report.added.length}: ${report.added.join(' | ')}`)

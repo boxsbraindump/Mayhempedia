@@ -25,6 +25,7 @@ npm run data:icons     # 只重下图标（读现有 JSON）
 | `augments.json` | **234** 个 26.21 现役海克斯（`availability: "live"`）+ 隐藏 legacy 兼容项 |
 | `arammayhem-augments.snapshot.json` | 抓取快照：每个现役海克斯的 slug、id 来源、上线版本、选取率、arammayhem 实战指南 |
 | `augment-runtime-aliases.json` | Riot 运行时海克斯 id → 本地 id（对局记录用） |
+| `augment-name-aliases.json` | 识别别名：每个现役海克斯在英文、国服、台服（繁体）、马服客户端卡片上的名字，只给选海克斯 overlay 读卡片名字用，界面始终显示国服译名。`npm run data:augments` 一起生成 |
 | `augment-tiers.json` | 海克斯 × 英雄评级（S/A/B/C/D），`npm run data:tiers` 从各评级来源生成；现在的来源是官方流派（核心 = S、备选 = A、陷阱 = D），以后的授权统计数据在 `scripts/build-augment-tiers.mjs` 的 `SOURCES` 里接入。改了流派后要重新生成，`npm run validate` 会检查 |
 | `items.json` | **706** 件装备 |
 | `icons/augments/{apiName}_large.png` / `_small.png` | 增强图标（450 张，git 忽略，可重下） |
