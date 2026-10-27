@@ -40,8 +40,17 @@ import {
   type CustomRoute,
   type UpdateStatus,
   type PlayPreferences,
+  type GameAugmentState,
+  EMPTY_GAME_AUGMENTS,
 } from './lcu'
-import { augmentTagLabel, scoreAugmentPick, type DecisionPick } from './augment-scoring'
+import {
+  augmentTagLabel,
+  matchRoute,
+  nextAugmentPicks,
+  resolveRouteForOwned,
+  scoreAugmentPick,
+  type DecisionPick,
+} from './augment-scoring'
 import {
   EMPTY_PLAY_PREFERENCES,
   MAX_MANUAL_CHAMPIONS,
@@ -87,6 +96,7 @@ const APP_BASE_WIDTH = 1280
 const APP_BASE_HEIGHT = 720
 const CUSTOM_ROUTES_ENABLED = true
 const EMPTY_CUSTOM_ROUTES: CustomRoute[] = []
+const NO_OWNED_AUGMENTS: number[] = []
 const CUSTOM_ROUTE_DRAFT_STORAGE_KEY = 'mayhempedia.customRouteDraft'
 const CUSTOM_ROUTE_SUBPAGE_STORAGE_KEY = 'mayhempedia.customRouteSubpage'
 const CUSTOM_ROUTE_LIBRARY_SELECTION_STORAGE_KEY = 'mayhempedia.customRouteLibrarySelection'
@@ -250,6 +260,8 @@ export default function App() {
   const [notice, setNotice] = useState<AppNotice | null>(null)
   const [matchDetailId, setMatchDetailId] = useState<number | null>(null) // 查看的是"近期对局"里某一局的真实出装/海克斯
   const [settings, setSettings] = useState<Settings | null>(null)
+  // 本局已选海克斯放 App 层：主进程广播给两个窗口，overlay 也按它显示路线和下一个拿什么
+  const [gameAugments, setGameAugments] = useState<GameAugmentState>(EMPTY_GAME_AUGMENTS)
   const [feedbackMode, setFeedbackMode] = useState<FeedbackMode | null>(null)
   const [previewLanguage] = useState<Lang>(() => {
     if (typeof window === 'undefined' || isElectron()) return 'zh'
@@ -320,7 +332,14 @@ export default function App() {
       setCustomRoutes(s.customRoutes ?? [])
       setDashboardSections(s.dashboardSections)
     })
+    window.mayhem!.getGameAugments().then(setGameAugments)
+    window.mayhem!.onGameAugmentsChanged(setGameAugments)
   }, [])
+
+  function saveGameAugments(next: GameAugmentState) {
+    setGameAugments(next)
+    if (isElectron()) void window.mayhem!.setGameAugments(next)
+  }
 
   async function setArchetypePreference(championId: number, archetypeKey: string) {
     setRouteFocus({ championId, archetypeKey })
@@ -555,6 +574,8 @@ export default function App() {
             onToggleFavorite={toggleRouteFavorite}
             releaseDemo={releaseDemo}
             customRoutes={visibleCustomRoutes}
+            gameAugments={gameAugments}
+            onGameAugments={saveGameAugments}
           />
         )}
         {core && matchDetailId == null && champId == null && tab === 'dash' && (
@@ -6595,6 +6616,8 @@ function Detail({
   onToggleFavorite,
   releaseDemo = false,
   customRoutes,
+  gameAugments,
+  onGameAugments,
 }: {
   core: Core
   championId: number
@@ -6606,6 +6629,8 @@ function Detail({
   onToggleFavorite: (routeKey: string) => void | Promise<void>
   releaseDemo?: boolean
   customRoutes: CustomRoute[]
+  gameAugments: GameAugmentState
+  onGameAugments: (next: GameAugmentState) => void
 }) {
   const t = useT()
   const lang = useLang()
@@ -6639,15 +6664,20 @@ function Detail({
       .catch(() => setBuild(withCustomRoutes(null, championId, customRoutes, core)))
   }, [championId, core, customRoutes, lang])
 
+  // 已选海克斯只对标记时的那个英雄有效；routeKey 是按它自动切到的路线，盖过手动偏好
+  const game = gameAugments.championId === championId ? gameAugments : null
+  const effectiveArchetypeKey = game?.routeKey ?? selectedArchetypeKey
+
   useEffect(() => {
     if (!build) return
-    const preferredIdx = selectedArchetypeKey
-      ? build.archetypes.findIndex((a) => a.key === selectedArchetypeKey)
+    const preferredIdx = effectiveArchetypeKey
+      ? build.archetypes.findIndex((a) => a.key === effectiveArchetypeKey)
       : -1
     setActiveIdx(preferredIdx >= 0 ? preferredIdx : 0)
-  }, [build, selectedArchetypeKey])
+  }, [build, effectiveArchetypeKey])
 
   const active = build?.archetypes[activeIdx]
+  const switchedFrom = game?.routeKey && game.routeKey === active?.key ? build?.archetypes.find((a) => a.key === game.fromKey) ?? null : null
 
   const chooseArchetype = (idx: number) => {
     const archetype = build?.archetypes[idx]
@@ -6656,6 +6686,21 @@ function Detail({
     setSyncPulse(true)
     window.setTimeout(() => setSyncPulse(false), 1800)
     onArchetypePreference(championId, archetype.key)
+    // 手动点的路线优先：清掉自动切换，下次标记新海克斯时再以它为基准重新对
+    if (game?.routeKey) onGameAugments({ ...game, routeKey: null, fromKey: null })
+  }
+
+  const updateOwnedAugments = (ownedIds: number[]) => {
+    if (!build) return
+    // 以切换前的手动路线为基准：标错一个再删掉，能退回原来的路线
+    const resolution = resolveRouteForOwned(build.archetypes, game?.fromKey ?? selectedArchetypeKey, ownedIds)
+    const switched = resolution?.switched ? resolution : null
+    onGameAugments({
+      championId,
+      ownedIds,
+      routeKey: switched ? switched.route.arch.key : null,
+      fromKey: switched ? switched.baseline.arch.key : null,
+    })
   }
 
   const routeOptions = useMemo(() => {
@@ -6695,7 +6740,7 @@ function Detail({
               <div className="mt-0.5 truncate text-[12px] font-bold text-dim">{champ.name} · {active?.name ?? t('detail.chooseArchetype', { name: champ.name })}</div>
             </div>
             <div className="rounded border border-hex/30 bg-hex/8 px-2 py-1 text-[10px] font-black text-hex">
-              {syncPulse ? 'Synced' : 'Current route'}
+              {syncPulse ? 'Synced' : switchedFrom ? t('lab.route.autoBadge') : 'Current route'}
             </div>
           </div>
             <div className="grid gap-1.5 sm:grid-cols-2">
@@ -6810,7 +6855,16 @@ function Detail({
         </div>
       )}
       {active && <ArchetypeCard key={active.key} arch={active} augById={core.augById} itemById={core.itemById} />}
-      {active && <AugmentDecisionLab arch={active} core={core} />}
+      {active && build && (
+        <AugmentDecisionLab
+          arch={active}
+          build={build}
+          core={core}
+          ownedIds={game?.ownedIds ?? NO_OWNED_AUGMENTS}
+          switchedFrom={switchedFrom}
+          onOwnedChange={updateOwnedAugments}
+        />
+      )}
     </>
   )
 }
@@ -6935,13 +6989,40 @@ function MiniItemLine({ items, showNames = false }: { items: Item[]; showNames?:
   )
 }
 
-function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
+function AugmentDecisionLab({
+  arch,
+  build,
+  core,
+  ownedIds,
+  switchedFrom,
+  onOwnedChange,
+}: {
+  arch: Archetype
+  build: Build
+  core: Core
+  ownedIds: number[]
+  switchedFrom: Archetype | null
+  onOwnedChange: (ownedIds: number[]) => void
+}) {
   const t = useT()
   const lang = useLang()
   const [queries, setQueries] = useState(['', '', ''])
   const [pickedIds, setPickedIds] = useState<Array<number | null>>([null, null, null])
   const [ownedQuery, setOwnedQuery] = useState('')
-  const [ownedIds, setOwnedIds] = useState<number[]>([])
+  // 本英雄所有路线里的核心/备选，按数据顺序去重——点一下就算拿了，位置不随路线切换跳动
+  const quickMarks = useMemo(() => {
+    const seen = new Set<number>()
+    const marks: Augment[] = []
+    for (const route of build.archetypes) {
+      for (const ref of [...route.augments.core, ...route.augments.good]) {
+        if (seen.has(ref.id)) continue
+        seen.add(ref.id)
+        const augment = getAugment(core.augById, ref.id)
+        if (augment) marks.push(augment)
+      }
+    }
+    return marks
+  }, [build, core.augById])
   const selected = useMemo(
     () => pickedIds.map((id) => (id == null ? null : getAugment(core.augById, id))),
     [core.augById, pickedIds],
@@ -6973,10 +7054,16 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
     setPickedIds([null, null, null])
   }
   const addOwned = (augment: Augment) => {
-    setOwnedIds((current) => (current.includes(augment.id) ? current : [...current, augment.id]))
+    if (!ownedIds.includes(augment.id)) onOwnedChange([...ownedIds, augment.id])
     setOwnedQuery('')
   }
-  const removeOwned = (id: number) => setOwnedIds((current) => current.filter((ownedId) => ownedId !== id))
+  const removeOwned = (id: number) => onOwnedChange(ownedIds.filter((ownedId) => ownedId !== id))
+  const toggleOwned = (augment: Augment) => (ownedIds.includes(augment.id) ? removeOwned(augment.id) : addOwned(augment))
+  // 三选一里拿了哪个：记进已选、清空本轮选项，路线和下一个推荐跟着更新
+  const takePick = (augment: Augment) => {
+    addOwned(augment)
+    clear()
+  }
 
   return (
     <section className={CARD + ' mt-3 p-3'}>
@@ -6995,10 +7082,14 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
             query={ownedQuery}
             ownedAugments={ownedAugments}
             augments={core.augments}
+            quickMarks={quickMarks}
             onQuery={setOwnedQuery}
             onAdd={addOwned}
             onRemove={removeOwned}
+            onToggle={toggleOwned}
+            onReset={() => onOwnedChange([])}
           />
+          {ownedIds.length > 0 && <RouteMatchPanel arch={arch} core={core} ownedIds={ownedIds} switchedFrom={switchedFrom} />}
           <div className="mt-2 grid grid-cols-3 gap-2 max-[820px]:grid-cols-1">
             {[0, 1, 2].map((idx) => (
               <AugmentChoiceInput
@@ -7023,10 +7114,10 @@ function AugmentDecisionLab({ arch, core }: { arch: Archetype; core: Core }) {
           </div>
           {winner ? (
             <>
-              <DecisionResult pick={winner} rank={1} featured />
+              <DecisionResult pick={winner} rank={1} featured onTake={() => takePick(winner.augment)} />
               <div className="mt-2 flex flex-col gap-1.5">
                 {decisions.slice(1).map((pick, idx) => (
-                  <DecisionResult key={pick.augment.id} pick={pick} rank={idx + 2} />
+                  <DecisionResult key={pick.augment.id} pick={pick} rank={idx + 2} onTake={() => takePick(pick.augment)} />
                 ))}
               </div>
             </>
@@ -7130,16 +7221,22 @@ function OwnedAugmentsPanel({
   query,
   ownedAugments,
   augments,
+  quickMarks,
   onQuery,
   onAdd,
   onRemove,
+  onToggle,
+  onReset,
 }: {
   query: string
   ownedAugments: Augment[]
   augments: Augment[]
+  quickMarks: Augment[]
   onQuery: (value: string) => void
   onAdd: (augment: Augment) => void
   onRemove: (id: number) => void
+  onToggle: (augment: Augment) => void
+  onReset: () => void
 }) {
   const t = useT()
   const needle = query.trim().toLowerCase()
@@ -7167,11 +7264,47 @@ function OwnedAugmentsPanel({
           <div className="mt-0.5 text-[10px] text-dim">{t('lab.owned.desc')}</div>
         </div>
         {ownedAugments.length > 0 && (
-          <span className="rounded border border-line/60 bg-panel/55 px-2 py-0.5 text-[10px] text-dim">
-            {t('lab.owned.count', { n: ownedAugments.length })}
+          <span className="flex shrink-0 items-center gap-1.5">
+            <span className="rounded border border-line/60 bg-panel/55 px-2 py-0.5 text-[10px] text-dim">
+              {t('lab.owned.count', { n: ownedAugments.length })}
+            </span>
+            <button
+              onClick={(e) => preserveNearestScroll(e.currentTarget, onReset)}
+              className="cursor-pointer rounded border border-line/55 bg-[#050a11]/42 px-2 py-0.5 text-[10px] font-bold text-dim transition hover:border-red/45 hover:text-red"
+            >
+              {t('lab.owned.reset')}
+            </button>
           </span>
         )}
       </div>
+      {quickMarks.length > 0 && (
+        <div className="mt-2">
+          <div className="text-[9px] font-black uppercase tracking-[0.12em] text-dim">{t('lab.owned.quickTitle')}</div>
+          <div className="mt-1 flex flex-wrap gap-1">
+            {quickMarks.map((a) => {
+              const taken = ownedIdSet.has(a.id)
+              return (
+                <button
+                  key={a.id}
+                  aria-pressed={taken}
+                  onClick={(e) => preserveNearestScroll(e.currentTarget, () => onToggle(a))}
+                  title={taken ? t('lab.owned.removeHint') : t('lab.owned.markHint')}
+                  className={
+                    'flex cursor-pointer items-center gap-1 rounded-md border px-1.5 py-1 text-[10px] font-bold transition ' +
+                    (taken
+                      ? 'border-hex/70 bg-hex/15 text-cream'
+                      : 'border-line/50 bg-[#050a11]/40 text-dim hover:border-hex/45 hover:text-cream')
+                  }
+                >
+                  <img src={icon(a.iconSmallLocal)} alt="" className={'h-4 w-4 rounded-full ' + (taken ? '' : 'opacity-70')} />
+                  {a.name}
+                  {taken && <span className="text-hex">✓</span>}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
       <input
         value={query}
         onChange={(e) => preserveNearestScroll(e.currentTarget, () => onQuery(e.currentTarget.value))}
@@ -7216,7 +7349,101 @@ function OwnedAugmentsPanel({
   )
 }
 
-function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; rank: number; featured?: boolean }) {
+function RouteMatchPanel({
+  arch,
+  core,
+  ownedIds,
+  switchedFrom,
+}: {
+  arch: Archetype
+  core: Core
+  ownedIds: number[]
+  switchedFrom: Archetype | null
+}) {
+  const t = useT()
+  const lang = useLang()
+  const match = useMemo(() => matchRoute(arch, ownedIds), [arch, ownedIds])
+  const next = useMemo(() => nextAugmentPicks(arch, ownedIds), [arch, ownedIds])
+  const resolve = (refs: Ref[]) => refs.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a)
+  const names = (refs: Ref[]) => refs.map((ref) => getAugment(core.augById, ref.id)?.name ?? ref.name).join(lang === 'en' ? ', ' : '、')
+  const reasons = [
+    match.coreHits.length > 0 ? t('lab.route.coreHits', { names: names(match.coreHits) }) : null,
+    match.goodHits.length > 0 ? t('lab.route.goodHits', { names: names(match.goodHits) }) : null,
+    match.trapHits.length > 0 ? t('lab.route.trapHits', { names: names(match.trapHits) }) : null,
+  ].filter((reason): reason is string => !!reason)
+
+  return (
+    <div className="mt-2 rounded-[6px] border border-gold/25 bg-gold/[0.05] p-2">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <div className="text-[10px] font-black uppercase tracking-[0.14em] text-gold">Route match</div>
+          <div className="mt-0.5 text-[12px] font-extrabold text-cream">
+            {switchedFrom ? t('lab.route.switched', { to: arch.name }) : t('lab.route.kept', { name: arch.name })}
+          </div>
+        </div>
+        {switchedFrom && (
+          <span className="shrink-0 rounded border border-line/55 bg-[#050a11]/42 px-1.5 py-0.5 text-[9px] font-bold text-dim">
+            {t('lab.route.from', { name: switchedFrom.name })}
+          </span>
+        )}
+      </div>
+      <div className={'mt-0.5 text-[10px] leading-4 ' + (match.trapHits.length > 0 ? 'text-red' : 'text-dim')}>
+        {reasons.length > 0 ? reasons.join(' · ') : t('lab.route.noHits')}
+      </div>
+      <div className="mt-2 flex flex-col gap-1.5 border-t border-line/40 pt-2">
+        <NextPickRow label={t('lab.route.nextCore')} tone="core" augments={resolve(next.core)} emptyText={t('lab.route.coreDone')} />
+        <NextPickRow label={t('lab.route.nextGood')} tone="good" augments={resolve(next.good)} />
+        <NextPickRow label={t('lab.route.avoid')} tone="trap" augments={resolve(next.trap)} />
+      </div>
+    </div>
+  )
+}
+
+function NextPickRow({
+  label,
+  tone,
+  augments,
+  emptyText,
+}: {
+  label: string
+  tone: 'core' | 'good' | 'trap'
+  augments: Augment[]
+  emptyText?: string
+}) {
+  if (augments.length === 0 && !emptyText) return null
+  const labelClass = tone === 'core' ? 'text-gold' : tone === 'good' ? 'text-hex' : 'text-red'
+  const chipClass =
+    tone === 'core' ? 'border-gold/40 bg-gold/10' : tone === 'good' ? 'border-line/55 bg-[#050a11]/40' : 'border-red/35 bg-red/8'
+  return (
+    <div className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-2">
+      <div className={'pt-1 text-[10px] font-black ' + labelClass}>{label}</div>
+      {augments.length > 0 ? (
+        <div className="flex flex-wrap gap-1">
+          {augments.map((a) => (
+            <span key={a.id} className={'flex items-center gap-1 rounded-md border px-1.5 py-0.5 ' + chipClass}>
+              <img src={icon(a.iconSmallLocal)} alt="" className="h-4 w-4 rounded-full" />
+              <span className={'text-[10px] font-bold ' + (tone === 'trap' ? 'text-red' : 'text-cream')}>{a.name}</span>
+            </span>
+          ))}
+        </div>
+      ) : (
+        <div className="pt-1 text-[10px] text-dim">{emptyText}</div>
+      )}
+    </div>
+  )
+}
+
+function DecisionResult({
+  pick,
+  rank,
+  featured = false,
+  onTake,
+}: {
+  pick: DecisionPick
+  rank: number
+  featured?: boolean
+  onTake?: () => void
+}) {
   const t = useT()
   const lang = useLang()
   const tone =
@@ -7252,6 +7479,15 @@ function DecisionResult({ pick, rank, featured = false }: { pick: DecisionPick; 
             )}
           </div>
         </div>
+        {onTake && (
+          <button
+            onClick={(e) => preserveNearestScroll(e.currentTarget, onTake)}
+            title={t('lab.takeHint')}
+            className="shrink-0 cursor-pointer self-start rounded border border-current/35 bg-[#091428]/45 px-1.5 py-0.5 text-[9px] font-extrabold transition hover:bg-[#091428]/80"
+          >
+            {t('lab.take')}
+          </button>
+        )}
       </div>
       <div className="mt-2 line-clamp-2 text-[10px] leading-4 text-dim">{pick.reason}</div>
       {pick.comboNotes.length > 0 && (

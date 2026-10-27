@@ -79,6 +79,21 @@ interface ChampSelectSession {
   myTeam?: Array<{ cellId: number; championId: number }>
 }
 
+/**
+ * 本局已选海克斯：玩家在主窗口手动标记，overlay 跟着显示按它对上的路线和下一个该拿什么。
+ * 只放内存不落盘，新一轮选人开始时清空。routeKey/fromKey 是渲染层算好的自动切换结果，
+ * 这里只负责存和广播，两个窗口看到的路线才一致。
+ */
+interface GameAugmentState {
+  championId: number | null
+  ownedIds: number[]
+  routeKey: string | null
+  fromKey: string | null
+}
+
+const EMPTY_GAME_AUGMENTS: GameAugmentState = { championId: null, ownedIds: [], routeKey: null, fromKey: null }
+const MAX_GAME_AUGMENTS = 12
+
 let mainWindow: BrowserWindow | null = null
 let overlayWindow: BrowserWindow | null = null
 
@@ -95,6 +110,9 @@ let currentPuuid: string | null = null
 let buildChampionIds = new Set<number>()
 let championAliasToId = new Map<string, number>()
 let lastNotifiedChampionId: number | null = null
+let gameAugments: GameAugmentState = EMPTY_GAME_AUGMENTS
+/** 选人 session 结束时 WebSocket 推 null；下一次推非 null 就是新一局，用来清空上一局的已选海克斯。 */
+let champSelectOpen = false
 const OVERLAY_WIDTH = 456
 const OVERLAY_HEIGHT = 424
 const overlayCollapseHotkey: OverlaySettings['hotkey'] = { ctrl: true, shift: true, alt: false, key: 'C' }
@@ -452,7 +470,14 @@ function notifyChampionDetected(myChampionId: number): void {
 }
 
 function handleChampSelect(session: ChampSelectSession | null): void {
-  if (!session) return
+  if (!session) {
+    champSelectOpen = false
+    return
+  }
+  if (!champSelectOpen) {
+    champSelectOpen = true
+    if (gameAugments !== EMPTY_GAME_AUGMENTS) setGameAugments(EMPTY_GAME_AUGMENTS)
+  }
 
   const myCellId = session.localPlayerCellId
   const me = (session.myTeam ?? []).find((p) => p.cellId === myCellId)
@@ -836,6 +861,31 @@ function registerMatchDetailIpc(): void {
   })
 }
 
+function normalizeGameAugments(value: unknown): GameAugmentState {
+  if (!value || typeof value !== 'object') return EMPTY_GAME_AUGMENTS
+  const raw = value as Partial<GameAugmentState>
+  const ownedIds = Array.isArray(raw.ownedIds)
+    ? [...new Set(raw.ownedIds.filter((id): id is number => typeof id === 'number' && Number.isFinite(id)))].slice(0, MAX_GAME_AUGMENTS)
+    : []
+  return {
+    championId: typeof raw.championId === 'number' && Number.isFinite(raw.championId) ? raw.championId : null,
+    ownedIds,
+    routeKey: typeof raw.routeKey === 'string' ? raw.routeKey : null,
+    fromKey: typeof raw.fromKey === 'string' ? raw.fromKey : null,
+  }
+}
+
+function setGameAugments(next: GameAugmentState): GameAugmentState {
+  gameAugments = next
+  send('gameAugments:changed', gameAugments)
+  return gameAugments
+}
+
+function registerGameAugmentsIpc(): void {
+  ipcMain.handle('gameAugments:get', () => gameAugments)
+  ipcMain.handle('gameAugments:set', (_e, value: unknown) => setGameAugments(normalizeGameAugments(value)))
+}
+
 function registerAccountHistoryIpc(): void {
   ipcMain.handle('matchHistory:getAccounts', () => listPersistedAccounts(currentPuuid))
   ipcMain.handle('matchHistory:forgetAccount', (_e, puuid: string) => {
@@ -851,6 +901,7 @@ app.whenReady().then(async () => {
   registerFeedbackIpc()
   registerMatchDetailIpc()
   registerAccountHistoryIpc()
+  registerGameAugmentsIpc()
   applyAutoLaunch(getSettings().autoLaunch)
 
   const rendererRoot = path.join(__dirname, '..', 'dist-renderer')

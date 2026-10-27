@@ -1,4 +1,4 @@
-import type { Archetype, Augment } from './data'
+import type { Archetype, Augment, Ref } from './data'
 import { t, type Lang } from './i18n'
 
 export type AugmentTag =
@@ -329,4 +329,71 @@ export function scoreAugmentPick(augment: Augment, arch: Archetype, ownedAugment
     comboNotes: combo.notes,
     verified: false,
   }
+}
+
+/* ---------------- 按本局已选海克斯对路线 ---------------- */
+
+/** 本局已选海克斯在一条路线上的命中情况。只认人工核对过的 core/good/trap，标签猜测不参与切路线。 */
+export interface RouteMatch {
+  arch: Archetype
+  score: number
+  coreHits: Ref[]
+  goodHits: Ref[]
+  trapHits: Ref[]
+}
+
+export interface RouteResolution {
+  /** 该用的路线：别的路线明显更对得上就是那条，否则就是 baseline。 */
+  route: RouteMatch
+  /** 玩家手动选的路线 */
+  baseline: RouteMatch
+  switched: boolean
+}
+
+export interface NextAugmentPicks {
+  core: Ref[]
+  good: Ref[]
+  trap: Ref[]
+}
+
+const ROUTE_HIT_WEIGHT = { core: 3, good: 1, trap: -2 }
+// 要比手动路线多出这么多分才切：多中一个核心够，只多中一个备选不够。
+const ROUTE_SWITCH_MARGIN = 2
+
+export function matchRoute(arch: Archetype, ownedIds: readonly number[]): RouteMatch {
+  const owned = new Set(ownedIds)
+  const coreHits = arch.augments.core.filter((ref) => owned.has(ref.id))
+  const goodHits = arch.augments.good.filter((ref) => owned.has(ref.id) && !coreHits.some((hit) => hit.id === ref.id))
+  const trapHits = arch.augments.trap.filter((ref) => owned.has(ref.id))
+  const score =
+    coreHits.length * ROUTE_HIT_WEIGHT.core + goodHits.length * ROUTE_HIT_WEIGHT.good + trapHits.length * ROUTE_HIT_WEIGHT.trap
+  return { arch, score, coreHits, goodHits, trapHits }
+}
+
+/**
+ * 给本英雄每条路线打分，挑最对得上已选海克斯的那条。手动路线没被明显比下去就保留——
+ * 只拿了个陷阱、或者别的路线只多中一个备选，都不算切换理由。同分按数据顺序（推荐路线在前）。
+ */
+export function resolveRouteForOwned(
+  archetypes: Archetype[],
+  baselineKey: string | undefined,
+  ownedIds: readonly number[],
+): RouteResolution | null {
+  if (archetypes.length === 0) return null
+  const matches = archetypes.map((arch) => matchRoute(arch, ownedIds))
+  const baseline = matches.find((match) => match.arch.key === baselineKey) ?? matches[0]
+  const best = [...matches].sort((a, b) => b.score - a.score || b.coreHits.length - a.coreHits.length)[0]
+  const switched = best !== baseline && best.score > 0 && best.score - baseline.score >= ROUTE_SWITCH_MARGIN
+  return { route: switched ? best : baseline, baseline, switched }
+}
+
+/** 下一个拿什么：先补这条路线还没拿到的核心，再看备选；陷阱单独列出来提醒避开。 */
+export function nextAugmentPicks(arch: Archetype, ownedIds: readonly number[]): NextAugmentPicks {
+  const owned = new Set(ownedIds)
+  const core = arch.augments.core.filter((ref) => !owned.has(ref.id))
+  const good = arch.augments.good.filter(
+    (ref) => !owned.has(ref.id) && !arch.augments.core.some((coreRef) => coreRef.id === ref.id),
+  )
+  const trap = arch.augments.trap.filter((ref) => !owned.has(ref.id))
+  return { core, good, trap }
 }

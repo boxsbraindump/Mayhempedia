@@ -161,6 +161,14 @@ export interface PlayPreferences {
   playstyles: string[]
   prompted: boolean
 }
+/** 本局已选海克斯，以及按它自动切到的路线（routeKey，fromKey 是切换前玩家手动选的路线）。主进程只存内存。 */
+export interface GameAugmentState {
+  championId: number | null
+  ownedIds: number[]
+  routeKey: string | null
+  fromKey: string | null
+}
+export const EMPTY_GAME_AUGMENTS: GameAugmentState = { championId: null, ownedIds: [], routeKey: null, fromKey: null }
 export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
@@ -188,6 +196,9 @@ declare global {
       getSettings: () => Promise<Settings>
       setSetting: <K extends keyof Settings>(key: K, value: Settings[K]) => Promise<Settings>
       onSettingsChanged: (cb: (s: Settings) => void) => void
+      getGameAugments: () => Promise<GameAugmentState>
+      setGameAugments: (state: GameAugmentState) => Promise<GameAugmentState>
+      onGameAugmentsChanged: (cb: (s: GameAugmentState) => void) => void
       onOverlayLock: (cb: (s: OverlayLockState) => void) => void
       onOverlayCollapsed: (cb: (s: OverlayCollapsedState) => void) => void
       getMatchDetail: (gameId: number) => Promise<MatchFullDetail | null>
