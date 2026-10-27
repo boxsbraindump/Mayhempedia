@@ -5,8 +5,17 @@
 // 想看其他流派/完整介绍去主 companion 窗口那边点。
 
 import { useEffect, useState } from 'react'
-import { isElectron, type OverlayCollapsedState, type OverlayLockState, type Settings, type CustomRoute } from './lcu'
+import {
+  isElectron,
+  EMPTY_GAME_AUGMENTS,
+  type GameAugmentState,
+  type OverlayCollapsedState,
+  type OverlayLockState,
+  type Settings,
+  type CustomRoute,
+} from './lcu'
 import { loadCore, loadBuild, withCustomRoutes, getAugment, icon, type Core, type Build, type Augment, type Item } from './data'
+import { nextAugmentPicks } from './augment-scoring'
 import { LangProvider, useLang, useT } from './i18n'
 
 const CUSTOM_ROUTES_ENABLED = true
@@ -40,15 +49,17 @@ function AugmentRail({
   tone,
   refs,
   augById,
+  emptyText,
 }: {
   label: string
-  tone: 'core' | 'good'
+  tone: 'core' | 'good' | 'trap'
   refs: Augment['id'][]
   augById: Core['augById']
+  emptyText?: string
 }) {
   const t = useT()
   const augs = refs.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
-  const toneClass = tone === 'core' ? 'text-gold' : 'text-hex'
+  const toneClass = tone === 'core' ? 'text-gold' : tone === 'good' ? 'text-hex' : 'text-red'
   return (
     <div className="grid grid-cols-[42px_minmax(0,1fr)] items-start gap-2 py-2">
       <div className={'pt-1 text-[10px] font-extrabold ' + toneClass}>{label}</div>
@@ -63,14 +74,40 @@ function AugmentRail({
                   alt={a.name}
                   className={'h-6 w-6 shrink-0 rounded border object-cover ' + r.border + ' ' + r.glow}
                 />
-                <span className="break-words text-[9px] font-extrabold leading-[11px] text-cream">{a.name}</span>
+                <span className={'break-words text-[9px] font-extrabold leading-[11px] ' + (tone === 'trap' ? 'text-red' : 'text-cream')}>{a.name}</span>
               </div>
             )
           })}
         </div>
       ) : (
-        <div className="pt-1 text-[11px] text-dim">{t('common.none')}</div>
+        <div className="pt-1 text-[11px] text-dim">{emptyText ?? t('common.none')}</div>
       )}
+    </div>
+  )
+}
+
+// 已经拿到的只放图标：玩家自己知道拿了什么，省下的高度留给"下一个拿什么"。
+function TakenRail({ ids, augById }: { ids: Augment['id'][]; augById: Core['augById'] }) {
+  const t = useT()
+  const augs = ids.map((id) => getAugment(augById, id)).filter((a): a is Augment => !!a)
+  if (augs.length === 0) return null
+  return (
+    <div className="grid grid-cols-[42px_minmax(0,1fr)] items-center gap-2 py-2">
+      <div className="text-[10px] font-extrabold text-dim">{t('overlay.taken')}</div>
+      <div className="flex flex-wrap gap-1">
+        {augs.map((a) => {
+          const r = RARITY[a.rarity] ?? RARITY[0]
+          return (
+            <img
+              key={a.id}
+              src={icon(a.iconLargeLocal)}
+              alt={a.name}
+              title={a.name}
+              className={'h-6 w-6 shrink-0 rounded border object-cover opacity-80 ' + r.border}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -233,6 +270,7 @@ function BuildPanel({
   championId,
   selectedArchetypeKey,
   customRoutes,
+  game,
   collapsed,
   locked,
   onToggleCollapsed,
@@ -241,6 +279,8 @@ function BuildPanel({
   championId: number
   selectedArchetypeKey?: string
   customRoutes: CustomRoute[]
+  /** 本英雄这局在主窗口标记过的已选海克斯；没有就是 null */
+  game: GameAugmentState | null
   collapsed: boolean
   locked: boolean
   onToggleCollapsed: () => void
@@ -261,15 +301,22 @@ function BuildPanel({
   }, [championId, core, customRoutes, lang])
 
   if (!champ) return null
-  const arch = build?.archetypes.find((a) => a.key === selectedArchetypeKey) ?? build?.archetypes[0]
+  const arch =
+    build?.archetypes.find((a) => a.key === game?.routeKey) ??
+    build?.archetypes.find((a) => a.key === selectedArchetypeKey) ??
+    build?.archetypes[0]
+  const ownedIds = game?.ownedIds ?? []
+  const autoRoute = !!arch && game?.routeKey === arch.key
+  // 标记过已选海克斯后，核心/备选只列还没拿的，顺序就是"下一个拿什么"
+  const next = arch && ownedIds.length > 0 ? nextAugmentPicks(arch, ownedIds) : null
   const starterItems = arch?.starterItems?.map((ref) => core.itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   const items = arch?.items.map((ref) => core.itemById.get(ref.id)).filter((it): it is Item => !!it) ?? []
   const coreAugs = arch?.augments.core.map((ref) => getAugment(core.augById, ref.id)).filter((a): a is Augment => !!a) ?? []
   const quickAugs =
     arch
       ? [
-          ...arch.augments.core,
-          ...arch.augments.good.filter((good) => !arch.augments.core.some((core) => core.id === good.id)),
+          ...(next ? next.core : arch.augments.core),
+          ...(next ? next.good : arch.augments.good.filter((good) => !arch.augments.core.some((core) => core.id === good.id))),
         ]
           // 先解析+过滤掉查不到的，最后再 slice——顺序不能反：若前3个引用里有一个 id 查不到，
           // 先 slice 会让结果不足3个(后面能解析的被截断在外)，跟 AugmentPool 的正确写法保持一致。
@@ -292,7 +339,16 @@ function BuildPanel({
         </div>
         <div className="min-w-0 flex-1">
           <div className="truncate text-base font-extrabold leading-tight text-cream">{champ.name}</div>
-          {arch && <div className="truncate text-[12px] font-extrabold text-hex">{arch.name}</div>}
+          {arch && (
+            <div className="flex min-w-0 items-center gap-1.5">
+              <span className="truncate text-[12px] font-extrabold text-hex">{arch.name}</span>
+              {autoRoute && (
+                <span className="shrink-0 rounded border border-hex/35 bg-hex/10 px-1 py-px text-[8px] font-extrabold text-hex">
+                  {t('overlay.autoRoute')}
+                </span>
+              )}
+            </div>
+          )}
         </div>
         {!locked && (
           <button
@@ -361,12 +417,22 @@ function BuildPanel({
             </div>
           ) : (
             <>
+          {next ? (
+            <div className="mt-3 divide-y divide-line/55">
+              <TakenRail ids={ownedIds} augById={core.augById} />
+              <AugmentRail label={t('overlay.nextCore')} tone="core" refs={next.core.map((r) => r.id)} augById={core.augById} emptyText={t('overlay.coreDone')} />
+              {next.good.length > 0 && <AugmentRail label={t('overlay.nextGood')} tone="good" refs={next.good.map((r) => r.id)} augById={core.augById} />}
+              {next.trap.length > 0 && <AugmentRail label={t('overlay.avoid')} tone="trap" refs={next.trap.map((r) => r.id)} augById={core.augById} />}
+              <ItemRail items={items} />
+            </div>
+          ) : (
           <div className="mt-3 divide-y divide-line/55">
             <AugmentRail label={t('archetypeCard.core')} tone="core" refs={arch.augments.core.map((r) => r.id)} augById={core.augById} />
             <AugmentRail label={t('archetypeCard.good')} tone="good" refs={arch.augments.good.map((r) => r.id)} augById={core.augById} />
             <StarterRail items={starterItems} />
             <ItemRail items={items} />
           </div>
+          )}
             </>
           )}
         </>
@@ -381,6 +447,7 @@ export default function Overlay() {
   const [locked, setLocked] = useState(true)
   const [collapsed, setCollapsed] = useState(false)
   const [settings, setSettings] = useState<Settings | null>(null)
+  const [gameAugments, setGameAugments] = useState<GameAugmentState>(EMPTY_GAME_AUGMENTS)
 
   useEffect(() => {
     loadCore(settings?.language ?? 'zh').then(setCore)
@@ -395,6 +462,8 @@ export default function Overlay() {
     window.mayhem!.onOverlayCollapsed((s: OverlayCollapsedState) => setCollapsed(s.collapsed))
     window.mayhem!.getSettings().then(setSettings)
     window.mayhem!.onSettingsChanged(setSettings)
+    window.mayhem!.getGameAugments().then(setGameAugments)
+    window.mayhem!.onGameAugmentsChanged(setGameAugments)
   }, [])
 
   return (
@@ -405,6 +474,7 @@ export default function Overlay() {
         locked={locked}
         collapsed={collapsed}
         settings={settings}
+        gameAugments={gameAugments}
         onToggleCollapsed={() => setCollapsed((current) => !current)}
       />
     </LangProvider>
@@ -417,6 +487,7 @@ function OverlayBody({
   locked,
   collapsed,
   settings,
+  gameAugments,
   onToggleCollapsed,
 }: {
   activeChampionId: number | null
@@ -424,6 +495,7 @@ function OverlayBody({
   locked: boolean
   collapsed: boolean
   settings: Settings | null
+  gameAugments: GameAugmentState
   onToggleCollapsed: () => void
 }) {
   const t = useT()
@@ -449,6 +521,7 @@ function OverlayBody({
             championId={activeChampionId}
             selectedArchetypeKey={settings?.selectedArchetypeByChampionId[String(activeChampionId)]}
             customRoutes={CUSTOM_ROUTES_ENABLED ? settings?.customRoutes ?? [] : []}
+            game={gameAugments.championId === activeChampionId ? gameAugments : null}
             collapsed={collapsed}
             locked={locked}
             onToggleCollapsed={onToggleCollapsed}

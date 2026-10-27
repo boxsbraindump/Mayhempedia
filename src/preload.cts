@@ -167,6 +167,13 @@ export interface PlayPreferences {
   playstyles: string[]
   prompted: boolean
 }
+// 跟 src/main.ts 的 GameAugmentState 结构一致：本局已选海克斯 + 按它自动切到的路线（只在内存里）。
+export interface GameAugmentState {
+  championId: number | null
+  ownedIds: number[]
+  routeKey: string | null
+  fromKey: string | null
+}
 export interface Settings {
   language: 'zh' | 'en'
   autoLaunch: boolean
@@ -204,6 +211,11 @@ contextBridge.exposeInMainWorld('mayhem', {
     ipcRenderer.invoke('settings:set', key, value),
   onSettingsChanged: (cb: (s: Settings) => void) => {
     ipcRenderer.on('settings:changed', (_event, data: Settings) => cb(data))
+  },
+  getGameAugments: (): Promise<GameAugmentState> => ipcRenderer.invoke('gameAugments:get'),
+  setGameAugments: (state: GameAugmentState): Promise<GameAugmentState> => ipcRenderer.invoke('gameAugments:set', state),
+  onGameAugmentsChanged: (cb: (s: GameAugmentState) => void) => {
+    ipcRenderer.on('gameAugments:changed', (_event, data: GameAugmentState) => cb(data))
   },
   onOverlayLock: (cb: (s: OverlayLockState) => void) => {
     ipcRenderer.on('overlay:lockChanged', (_event, data: OverlayLockState) => cb(data))
